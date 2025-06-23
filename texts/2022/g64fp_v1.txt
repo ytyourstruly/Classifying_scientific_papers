@@ -1,0 +1,1320 @@
+Running head: EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION1
+An efficient Bayesian observer model of attractive and repulsive temporal context effects when
+perceiving multistable dot lattices
+†,1 †,1 1
+Eline Van Geert , Tina Ivancˇir , & Johan Wagemans
+KU Leuven, Belgium Version 2.1, 20/02/2024. Please do not copy or cite without author’s
+permission.
+Author Note
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 2
+Eline Van Geert (ORCID: 0000-0002-7848-5998), Laboratory of Experimental Psychology,
+Department of Brain and Cognition, KU Leuven, Belgium; Tina Ivancˇir (ORCID:
+0000-0001-9040-9130), Laboratory of Experimental Psychology, Department of Brain and
+Cognition, KU Leuven, Belgium; Johan Wagemans (ORCID: 0000-0002-7970-1541), Laboratory of
+Experimental Psychology, Department of Brain and Cognition, KU Leuven, Belgium.
+This work has been supported by a PhD fellowship from the Research Foundation -
+Flanders (FWO) awarded to Eline Van Geert (Grant 11D3619N and 11D3621N) and by long-term
+structural funding from the Flemish Government awarded to Johan Wagemans (METH/14/02
+and METH/21/02).
+The authors made the following contributions. Eline Van Geert: Conceptualization, Data
+curation, Formal analysis, Funding acquisition, Investigation, Methodology, Project
+administration, Resources, Software, Validation, Visualization, Writing - original draft, Writing -
+review & editing; Tina Ivancˇir: Conceptualization, Formal analysis, Investigation, Methodology,
+Software, Visualization, Writing - review & editing; Johan Wagemans: Conceptualization,
+Funding acquisition, Supervision, Writing - review & editing. Eline Van Geert and Tina Ivancˇir
+contributed equally to this work.
+Correspondence concerning this article should be addressed to Eline Van Geert,
+Laboratory of Experimental Psychology, KU Leuven, Tiensestraat 102 - box 3711, 3000 Leuven.
+Telephone: +32 16 37 34 80. E-mail: eline.vangeert@kuleuven.be
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 3
+Abstract
+In multistable dot lattices, the orientation we perceive is attracted towards the orientation we
+perceived in the immediately preceding stimulus and repelled from the orientation for which
+most evidence was present previously (Van Geert, Moors, Haaf, & Wagemans, 2022).
+Theoretically-inspired models have been proposed to explain the co-occurrence of attractive
+and repulsive context effects in multistable dot lattice tasks, but these models artificially
+induced an influence of the previous trial on the current one without detailing the process
+underlying such an influence (Gepshtein & Kubovy, 2005; Schwiedrzik et al., 2014). We
+conducted a simulation study to test whether the observed attractive and repulsive context
+effects could be explained with an efficient Bayesian observer model (Wei & Stocker, 2015). This
+model assumes variable encoding precision of orientations in line with their frequency of
+occurrence (i.e., efficient encoding) and takes the dissimilarity between stimulus space and
+sensory space into account. An efficient Bayesian observer model including both a stimulus and
+a perceptual level was needed to explain the co-occurrence of both attractive and repulsive
+temporal context effects. Furthermore, this model could reproduce the empirically observed
+strong positive correlation between individuals’ attractive and repulsive effects (Van Geert et al.,
+2022), by assuming a positive correlation between temporal integration constants at the
+stimulus and the perceptual level. To conclude, the study brings evidence that efficient encoding
+and likelihood repulsion on the stimulus level can explain the repulsive context effect, whereas
+perceptual prior attraction can explain the attractive temporal context effect when perceiving
+multistable dot lattices.
+Precis: An efficient Bayesian observer model including both a stimulus and a perceptual
+level can explain repulsive temporal context effects in multistable dot lattice perception via
+efficient encoding and likelihood repulsion, and attractive effects via perceptual prior attraction.
+Keywords: efficient coding, hysteresis, adaptation, individual differences, perceptual
+organization, multistable perception, serial dependencies, context effects, attraction, repulsion
+Word count: 11971 words
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 4
+An efficient Bayesian observer model of attractive and repulsive temporal context effects when
+perceiving multistable dot lattices
+What we perceive is not only influenced by the current stimulus we have in front of our
+eyes, but also by the recent stimulus and perceptual history. Many recent studies have
+confirmed the existence of both attractive and repulsive effects of immediate temporal context
+on perception (Bosch, Fritsche, Ehinger, & de Lange, 2020; Fritsche, Spaak, & de Lange, 2020;
+Pascucci et al., 2019; Sadil, Cowell, & Huber, 2021; Snyder, Schwiedrzik, Vitela, & Melloni, 2015;
+Van Geert et al., 2022). Also in the perception of multistable dot lattices, both attractive and
+repulsive context effects are at play (Gepshtein & Kubovy, 2005; Schwiedrzik et al., 2014; Van
+Geert et al., 2022). On the one hand, the perceived orientation in these lattices is attracted
+towards the orientation perceived in the immediately preceding lattice (i.e., hysteresis, attractive
+effect of previous percept). On the other hand, the perceived orientation is repelled from the
+orientation for which most evidence was present in the previous lattice (i.e., adaptation,
+repulsive effect of previous stimulus evidence, Gepshtein & Kubovy, 2005; Schwiedrzik et al.,
+2014; Van Geert et al., 2022).
+Several theoretically-inspired models have been proposed to explain the co-occurrence of
+these context effects when perceiving multistable stimuli (Gepshtein & Kubovy, 2005;
+Schwiedrzik et al., 2014), but these models either artificially induce a direct influence of the
+previous stimulus evidence on the likelihood distribution for the current stimulus (Schwiedrzik
+et al., 2014) or induce a randomly determined shift in prior bias from the previous to the current
+percept (Gepshtein & Kubovy, 2005). From these models, it is not clear why such a direct
+influence would occur, or which underlying process would determine a random shift in bias. In
+this simulation study, we investigate whether an efficient Bayesian observer model based on Wei
+and Stocker (2015) can explain the co-occurrence of both attractive and repulsive temporal
+context effects in multistable dot lattice perception. Earlier variants of the efficient Bayesian
+observer model have successfully been used to model effects in different tasks involving
+non-ambiguous stimuli (Fritsche et al., 2020; Langlois, Jacoby, Suchow, & Griffiths, 2021; Wei &
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 5
+Stocker, 2015). In this study, we assess the viability of explaining temporal context effects on
+multistable dot lattice perception using an efficient Bayesian observer model. As part of this
+investigation, we test whether the model can not only successfully account for the average
+temporal context effects observed in Van Geert et al. (2022), but also for the observed range and
+strong positive correlation of interindividual variation in both effects.
+Attractive and repulsive temporal context effects: separate but related mechanisms?
+Whereas repulsive temporal context effects are often seen as resulting from the previous
+stimulus evidence, attractive temporal context effects are seen as resulting from the previous
+percept, response, and/or decision (Bosch et al., 2020; Sadil et al., 2021; Schwiedrzik et al., 2014;
+Van Geert et al., 2022). This is often related to repulsion being a more ‘low-level’ phenomenon,
+showing larger spatial and featural specificity than the ‘higher-level’ attraction (Fritsche et al.,
+2020; Gepshtein & Kubovy, 2005; Schwiedrzik et al., 2014). Schwiedrzik et al. (2014) also found
+both effects to map into distinct cortical networks. Although many researchers thus state that
+attractive and repulsive effects result from separate processes (Brascamp et al., 2008; Fritsche et
+al., 2020; Pascucci et al., 2019; Schwiedrzik et al., 2014), others argue that both effects share a
+common underlying mechanism (Gepshtein & Kubovy, 2005; Mattar, Kahn, Thompson-Schill, &
+Aguirre, 2016; Maus, Chaney, Liberman, & Whitney, 2013). As Van Geert et al. (2022) found a
+strong positive correlation between the size of individuals’ hysteresis (i.e., attractive effect of
+previous percept) and adaptation effects (i.e., repulsive effect of previous stimulus evidence),
+there needs to be at least some common factor influencing both effects. On the other hand, the
+results of Van Geert et al. (2022) did not bring evidence for a completely unified process
+underlying both effects, as the correlation estimate (already corrected for attenuation) was only
+from separate but related mechanisms, and in this simulation study an efficient Bayesian
+observer model is put forward to model the processes underlying both context effects in a
+theoretically coherent way.
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 6
+Attractive and repulsive temporal context effects in multistable dot lattice perception
+Gepshtein and Kubovy (2005) proposed a paradigm to distinguish between attractive and
+repulsive context effects on perception. They investigated the influence of (a) the perceived
+organization of the preceding stimulus (i.e., which organization was reported) and (b) the
+stimulus support for a certain organization in the preceding stimulus (dependent on the
+stimulus’ aspect ratio) on the perception of a second, current stimulus, using multistable dot
+lattices as stimuli.
+Multistable dot lattices are aligned dot arrays in which multiple orientations can be
+perceived. In rectangular dot lattices, four different orientations can be perceived (cf. left part of
+three equally plausible orientations are most prominent. According to the Gestalt law of
+proximity (Kubovy, Holcombe, & Wagemans, 1998), the closer the dots are together along a
+particular orientation, the more likely they will be grouped together, and consequently, the more
+likely that orientation will be perceived. Relative grouping strength has been shown to decrease
+exponentially in accordance with the relative inter-dot distance (Kubovy et al., 1998). For two
+orientations a and b, the aspect ratio of a dot lattice (AR = |a|/|b|) expresses the a orientation’s
+distance in the a and b orientations is equal. For a lattice with AR < 1, the inter-dot distance is
+smaller in the a than in the b orientation. For a lattice with AR > 1, the inter-dot distance is
+smaller in the b than in the a orientation. In both rectangular and hexagonal dot lattices, we
+define the axis orientation of the dot lattice as a whole by the a orientation, which we will refer to
+as the 0° orientation. In the rectangular dot lattices, we will refer to the b orientation as the 90°
+orientation.
+The multistable dot lattice paradigm introduced by Gepshtein and Kubovy (2005) to
+concurrently assess attractive and repulsive immediate temporal context effects on perception
+with randomly varying absolute lattice orientation as context stimuli (presented for 800 ms) and
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 7
+of a multistable rectangular dot lattice. In rectangular dot lattices, four different orientations can be perceived, of which two are more prevalent
+(as the dots are closer together along these orientations). The relative dominance of the a orientation relative to the b orientation is expressed
+in the aspect ratio of the dot lattice (AR = |a| / |b|). (c) Illustration of attractive and repulsive context effects in dot lattices. Left side: attraction
+effect (hysteresis). When the first lattice (L1) is perceived as orientation a (indicated by “a”), the probability that the second lattice (L2) will be
+perceived as orientation a is higher than when L1 was interpreted as orientation b (indicated by “b”). Right side: repulsion effect (adaptation).
+When strong support for orientation a is present in L1, the probability that L2 will be perceived as a orientation a is lower than when L1 had less
+white background. The actual experiment had white dots on a grey background. (e) Mean empirical logit probability of perceiving the relative 0°
+orientation in the first and the second lattice dependent on aspect ratio. The probability of responding 0° to the first lattice decreases with aspect
+ratio (|a|/|b|). The value of aspect ratio increases with increasing distance in the 0°-orientation, leading to more 90° responses. The probability of
+responding 0° to the second lattice increases with aspect ratio (|a|/|b|; i.e., adaptation effect), and increases when the first stimulus was perceived
+as 0° rather than 90° (i.e., hysteresis effect). Reprinted and adapted from Van Geert et al. (2022).
+more ambiguous hexagonal dot lattices with the same random absolute lattice orientation as
+test stimuli (presented for 300 ms). Participants indicated which orientation they perceived in
+each lattice using a four-alternative forced-choice task (always including the most dominant
+orientations). To manipulate the stimulus support for the 0° orientation, the aspect ratio of the
+rectangular dot lattice was varied. They then assessed how (a) perceived orientation and (b)
+aspect ratio in the first, rectangular lattice affected perceived orientation in the second,
+hexagonal lattice. An attractive (i.e., hysteresis) effect of the previous percept was present, as
+well as a repulsive (i.e., adaptation) effect of the previous stimulus evidence: the probability of
+perceiving a particular orientation in the second lattice increased when the same orientation
+was perceived in the first lattice, and the stronger the evidence for a specific orientation in the
+first lattice, the lower the probability to perceive that orientation in the second lattice
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 8
+(2005) and Schwiedrzik et al. (2014) mainly explored the existence of these effects on the group
+level, Van Geert et al. (2022) tested whether individual differences existed in the size of these
+effects, and whether every individual participant showed both effects in the expected direction.
+The results confirmed the presence of large, consistent differences in the size of attractive and
+repulsive context effects across individuals , and these differences stayed stable across one to
+two weeks time. Furthermore, almost every participant showed both effects in the expected
+direction, although not every single participant did. As indicated above, the results of Van Geert
+et al. (2022) provided evidence for at least some common factor underlying both effects, as
+individual differences in attractive and repulsive context effects were highly positively correlated
+partially percept-related and a partially decision-related effect, nuancing earlier debates on the
+origin of this effect (Bosch et al., 2020; Cicchini, Mikellidou, & Burr, 2017; Fritsche, Mostert, & de
+Lange, 2017; Manassi, Liberman, Kosovicheva, Zhang, & Whitney, 2018; Pascucci et al., 2019;
+Schwiedrzik et al., 2018).
+Now that the existence of both temporal context effects on multistable dot lattice
+perception has been firmly established, including consistent variation in the size of the effects
+across individuals, one way forward is to further our understanding of the processes underlying
+these effects by developing models and verifying whether they can reproduce and explain the
+range of variability in effect size and direction across individuals. Importantly, a good process
+model should not only be able to predict a mean response, but also plausible variation in the
+effect size and direction (Van Geert et al., 2022).
+Models of temporal context effects on multistable dot lattice perception
+Two earlier models of the multistable dot lattice paradigm for hysteresis and adaptation
+exist (Gepshtein & Kubovy, 2005; Schwiedrzik et al., 2014). In the model of Gepshtein and
+Kubovy (2005), combinations of attraction strengths (related to inter-dot distances in the first,
+rectangular lattice and sensitivity to the inter-dot distance) and a randomly determined
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 9
+persistent intrinsic bias (i.e., a higher probability to perceive some orientation more than others,
+which stays similar but not identical from first to second lattice) determine the perceived
+orientation in the second, hexagonal lattice. When the intrinsic bias exceeds the stimulus
+support (i.e., attraction strength), the multistable lattice is perceived inconsistently with the
+stimulus support. In this model, the direction of the intrinsic bias is determined randomly, and
+it is not clear where the bias comes from or which process determines the direction of the bias.
+Schwiedrzik et al. (2014) developed a Bayesian model to account for the co-occurrence of
+hysteresis and adaptation in multistable dot lattice perception. They model both effects
+independently, with the perceived orientation in the first lattice directly impacting the prior
+distribution of possible perceived orientations for the second lattice, and the reduction in
+stimulus support due to neuronal adaptation to the aspect ratio of the first lattice directly
+impacting the likelihood distribution for the second lattice. In this model, the process behind
+the direct change in the likelihood is not included and its size is determined arbitrarily.
+Based on the model by Wei and Stocker (2015), we propose an alternative Bayesian model
+that can explain the co-occurrence of hysteresis and adaptation as separate but related
+processes influencing multistable dot lattice perception. A similar model has been applied by
+Fritsche et al. (2020) to explain attractive and repulsive stimulus history effects in orientation
+perception. They did look at the influence of previous stimuli and went more than one stimulus
+back, but did not distinguish between effects of previous percepts and previous stimulus
+evidence, and only used non-ambiguous Gabor stimuli.
+Efficient Bayesian observer models of perception
+A key assumption of an efficient Bayesian observer model is that available coding
+resources are limited, and that those feature values that occur more frequently will be more
+accurately encoded or represented (i.e., the principle of efficient coding, Wei & Stocker, 2015). In
+case of orientation perception, this variable encoding precision will thus lead to frequent
+orientations being encoded more accurately than less frequent orientations. A second key
+feature of the model is that it takes the dissimilarity between stimulus space and sensory space
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 10
+into account (as in psychophysics). This leads to differential predictions of adding external
+stimulus noise, that is, noise related to uncertainty in a specific stimulus feature (e.g., variance in
+orientation) or internal sensory noise, that is, noise related to uncertainty in encoding and
+processing (e.g., due to presentation duration, stimulus size, or luminance contrast). Whereas
+external stimulus noise will only widen the likelihood distribution and increase the overall
+influence of the prior (leading to stronger prior attraction, ‘Bayesian’ percepts), internal sensory
+noise symmetric around the stimulus value in sensory space will make the likelihood
+distribution asymmetric in stimulus space and hence create the possibility for biases away from
+the peak of the prior distribution (i.e., likelihood repulsion, ‘anti-Bayesian’ percepts, Wei &
+Stocker, 2015). The relative amount of stimulus versus sensory noise will determine which effect
+will show behaviorally (i.e., attraction or repulsion).
+More concretely, frequency of occurrence will jointly influence prior and likelihood in the
+model. It influences the prior distribution directly: more frequently occurring orientations are
+also expected to occur more often. However, frequency of occurrence also influences the
+mapping between stimulus and sensory space: it influences the accuracy with which different
+orientations will be encoded, and consequently also the width and form with which different
+orientations will be represented in the likelihood. In other words, the frequency of occurrence
+will determine the prior distribution as well as how the currently encountered stimulus will be
+encoded. The stimulus-to-sensory mapping is given by the cumulative density function of the
+encoding accuracy distribution, and the sensory-to-stimulus mapping is given by the inverse of
+that cumulative density function.
+In the original model, frequency of occurrence was seen on the long term. For example, in
+most daily environments, cardinal orientations are more prevalent than oblique ones (Coppola,
+Purves, McCoy, & Purves, 1998; Girshick, Landy, & Simoncelli, 2011). In later versions of the
+model, however, it has been shown that frequency of occurrence can also be defined on the
+short term, e.g., with the frequency of occurrence changing during the experiment (Fritsche et
+al., 2020; Ni & Stocker, 2023; Noel, Zhang, Stocker, & Angelaki, 2021). For example, Ni and
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 11
+Stocker (2023) demonstrated that robust averaging (i.e., the non-uniform weighting of items in a
+stimulus ensemble) emerged naturally from an optimal integration process when sensory
+encoding (and thus the stimulus-to-sensory mapping) was efficiently adapted to the ensemble
+statistics in the experiment. Their model accurately predicted the dependence of subjects’
+decision accuracy and non-uniform weighting profile on the specific stimulus distribution in the
+experiments. Furthermore, Noel et al. (2021) showed that neurotypical participants adapted
+their sensory encoding to the changing stimulus statistics when they were exposed to an
+artificial uniform orientation distribution coupled with performance feedback in a visual
+orientation estimation task. Changes in the frequency of occurrence on the short term may thus
+be used to model short-term temporal context effects on perception.
+Fritsche et al. (2020) modeled attractive and repulsive biases of stimulus history using an
+efficient Bayesian observer model. In this model, they did not disentangle effects of previous
+stimuli and previous percepts, but treated all effects as related to the previous stimulus evidence.
+In the empirical study they conducted, they found evidence for short-term attraction and
+long-term repulsion. When fitting different models to the empirically collected data, a model
+with distinct transition distributions and different integration time constants for prior and
+likelihood performed better than a model that used the same parameters for prior and
+likelihood. In the prior distribution, only the most recently presented stimuli mattered, and
+updating was fast. In the likelihood distribution, information was integrated over longer
+timescales, and updates happened more slowly.
+In a recent extension of the original model proposed by Wei and Stocker (2015), Mao and
+Stocker (2022) described perception as a holistic inference process, where the percept of a
+stimulus is jointly represented at different levels of a representational hierarchy. To adequately
+model the (variation in) behavioral data of an earlier study (Tomassini, Morgan, & Solomon,
+2010), it was necessary to take the higher-level representation into account (i.e., categorization
+of orientation in this case).
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 12
+An efficient Bayesian observer model for temporal context effects on multistable dot lattice
+perception
+In this study, we develop an efficient Bayesian observer model for the multistable dot
+lattices paradigm used by Gepshtein and Kubovy (2005), Schwiedrzik et al. (2014), and Van Geert
+the proposed model). In addition, we investigate how several versions of the model compare to
+the empirical results obtained by Van Geert et al. (2022). More specifically, we test whether
+model implementations can explain co-occurring attractive and repulsive context effects, as well
+as a range of plausible variation in effect size and direction across ‘individuals’ (in this case
+across simulations with different parameter values). Furthermore, we test whether the model
+can reproduce a positive correlation between the size of both effects, as was empirically
+observed in Van Geert et al. (2022).
+Different from the original Wei and Stocker (2015) model, we will not only implement a
+long-term orientation prior (at least in some variants of the model), but also take the short-term
+context into account: the prior and stimulus-to-sensory mapping for the second lattice will be
+updated based on the stimulus evidence present for and the percept of the first lattice. In line
+with the earlier efficient Bayesian observer models that take short-term context into account, we
+assume an influence of the stimulus history (i.e., the frequency of occurrence of different
+stimulus orientations) on the stimulus-to-sensory mapping and consequently the likelihood
+distribution. In contrast to earlier efficient Bayesian observer models, however, we will argue
+that it is the perceptual history (i.e., the frequency of occurrence of different perceived
+orientations) rather than the stimulus history that determines the prior distribution. Different
+from the implementation by Fritsche et al. (2020), the model will distinguish attractive
+influences of the previous percept and repulsive influences of the previous stimulus evidence.
+Given that a mask was present in the dot lattice paradigm to avoid longer-term context effects,
+we only take the previous lattice into account and do not model longer-term context influences
+(different from what was the case in Fritsche et al., 2020). Furthermore, the dot lattice paradigm
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 13
+concerns multistable stimuli resulting in multi-peaked likelihood distributions, whereas
+previous implementations of the efficient Bayesian observer model focused on non-ambiguous
+stimuli (e.g., Fritsche et al., 2020; Wei & Stocker, 2015). In sum, our model builds on earlier
+models but makes at least three innovative contributions.
+κ κ κ κ κ
+uniform prior for the first lattice and the following parameter values: c = 5, = 20, = 20, = 20, = 18, = 10,
+stim stimL1 sensL1 stimL2 sensL2 percL1
+w = 0.60, and w = 0.50.
+stimL1 percL1
+Methods
+Efficient Bayesian observer model
+In this study, we model the perception of two consecutive dot lattices within one trial of
+the paradigm. All model simulations were performed in R [Version 4.0.4; R Core Team (2021)].
+All code related to this paper is openly available on the Open Science Framework:
+code for the models is already publicly shared at this point, further analysis and manuscript
+code is currently available on request but will be shared publicly once reaching a finalized
+version of the manuscript after peer review.]
+The first lattice is a rectangular dot lattice with varying aspect ratio across trials, the second
+a hexagonal dot lattice with three equally dominant orientations. First, we develop the model for
+For an overview of all R packages used, see the Appendix.
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 14
+the percept of the first lattice. Then, we update the prior and stimulus-to-sensory mapping to
+predict hysteresis and adaptation effects in the perception of the second lattice. Different from
+earlier efficient Bayesian observer models, which assume the actual frequency of occurrence of
+different stimulus values (i.e., the stimulus history) to influence both the prior and the likelihood
+in the model, we assume the stimulus history to influence the stimulus-to-sensory mapping and
+the likelihood, but the perceptual history (i.e., the history of how earlier presented stimuli were
+actually perceived) to influence the prior distribution (i.e., the belief of the observer). When the
+history contains only non-ambiguous stimuli, stimulus history and perceptual history will
+approximately align, and ignoring this distinction remains without consequences. We will, for
+example, assume stimulus history and perceptual history to be similar when we determine the
+percept of the first lattice in each trial. However, when the history contains multistable stimuli,
+for example, when determining the percept of the second lattice, this distinction between
+stimulus history and perceptual history becomes evident and consequential. As will be shown
+below, a version of the model that used the stimulus history to influence both prior and
+likelihood could explain the occurrence of adaptation, but not the occurrence of the hysteresis
+effect. In contrast, the current version of the model, which assumes the stimulus history to
+influence the likelihood and the perceptual history to influence the prior, is able to predict both
+co-occurring temporal context effects. The adaptation effect will be due to efficient encoding
+and likelihood repulsion on the stimulus level, the hysteresis effect will be due to prior attraction
+on the perceptual level. Therefore, we will describe this model as hierarchical. The size of the
+adaptation effect will depend on the relative amount of stimulus noise and sensory noise
+present, but the size of both context effects will depend mostly on the weights given to the
+stimulus evidence and percept in the previous trial compared to the long-term context.
+Perception of the first lattice. We first model how an observer comes to perceive either
+the relative 0° or the relative 90° orientation in the first lattice. Over trials, both the aspect ratio
+and the absolute orientation of the lattice are varied. The distribution of absolute lattice
+orientations in the experiment is uniform, but the long-term natural stimulus distribution of
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 15
+orientations has peaks at both cardinal orientations. As in earlier Bayesian encoding models, we
+assume encoding resources to be allocated according to the stimulus distribution (uniform in
+the experiment or with peaks at the cardinals in the long term) so that stimulus values that occur
+more frequently are more accurately represented. Two types of noise are assumed: external
+stimulus noise and internal sensory noise. The external stimulus noise (symmetric in stimulus
+space) is assumed to follow a von Mises (i.e., circular normal) distribution on the 180° (i.e.,
+halfcircular) orientation space with its mean at the actual stimulus orientation value in question
+and its precision being equal to . The internal sensory noise (symmetric in sensory space)
+328 stimL1
+is expected to follow a von Mises (i.e., circular normal) distribution on the 180° (i.e., halfcircular)
+orientation space with its mean at the sensory measurement for the actual stimulus orientation
+in question (based on the stimulus-to-sensory mapping, derived from the cumulative density
+function for the prior distribution) and its precision being equal to . The described
+332 sensL1
+stimulus and sensory noise are jointly reflected in the noise of the observer’s representation of
+the stimulus orientation. The observer’s representation of the stimulus orientation (subject to
+the stimulus noise and sensory noise described above) is expected to be bimodal, with peaks at
+the relative 0° and the relative 90° orientation. The relative height of the peaks at the relative 0°
+and the relative 90° orientation will depend on the aspect ratio of the stimulus and the observer’s
+sensitivity for aspect ratio. This bimodal distribution represents the likelihood, and is combined
+with the prior distribution (either uniform in stimulus space or with peaks at the cardinal
+orientations) to compute the posterior distribution for the first lattice. From the posterior
+distribution, either a relative 0° or a relative 90° percept can be sampled with the probabilities
+depending on the relative probability of perceiving one versus the other orientation.
+Prior distribution for the first lattice. In the prior distribution for the first lattice, the
+long-term perceptual distribution for orientation is represented. For this first lattice, we assume
+In most figures we show the results based on internal sensory noise distributions with their means at the expected
+sensory measurements (i.e., the relative 0° and relative 90° orientations). However, we also simulated a model with
+sensory measurements sampled from the probability distribution of sensory measurements given the actual
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 16
+the long-term perceptual distribution for orientation to be equal to the long-term stimulus
+distribution for orientation. We try two variants of the prior. In a first variant, we use the same
+natural stimulus distribution as in Wei and Stocker (2015):
+θ = − | θ |
+p( ) c (2 si n(2 ) ) , (1)
+θ ∈ π
+348 0
+distribution reflects the fact that horizontal and vertical orientations are more common in the
+natural environment than oblique orientations. On the other hand, within the dot lattice
+paradigm the long-term stimulus distribution is uniform: every absolute lattice orientation
+occurs equally frequently. Therefore, we implemented a second variant of the model, with a
+uniform prior distribution for the first lattice:
+θ =
+p( ) (2)
+stimulus-to-sensory mapping that is used in the calculation of the likelihood distribution for the
+first lattice.
+Likelihood function for the first lattice. Given that the first dot lattice is rectangular, it
+has two dominant orientations, of which the relative dominance is dependent on the aspect
+ratio (AR) of the lattice and the observer’s sensitivity to aspect ratio. Here we assume the
+observer’s representation of the first lattice to be a weighted combination of the expected
+sensory measurement for the 0° orientation and the expected sensory measurement for the 90°
+orientation. In case AR = 1, we expect the stimulus support to be equal for both orientations,
+̸=
+which will be represented by an equal weight for both likelihood functions. In case AR 1, one
+of the two sensory measurements will have a stronger representation in the combined likelihood
+likelihoods for both sensory measurements (i.e., the expected sensory measurements for the
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 17
+relative 0° and the relative 90° orientation) in a weighted fashion:
+1 w
+AR
+|θ ∝ |θ · + |θ ·
+p(m ) p(m ) p(m ) , (3)
+L1 0 90
++ +
+1 w 1 w
+AR AR
+|θ
+with p(m ) being the single-peaked likelihood of the sensory measurement for the relative 0°
+368 0
+|θ
+orientation, p(m ) being the single-peaked likelihood of the sensory measurement for the
+369 90
+c_stim
+relative 90° orientation, and w being equal to AR . The size of the aspect ratio effect on
+370 AR
+the relative height of the 0° and 90° peaks is thus determined by a constant (i.e., c ),
+371 stim
+representing the observer’s sensitivity to aspect ratio. Each sensory measurement m is modeled
+as
+= θ + δ + δ
+m F ( ) , (4)
+stim sens
+δ δ
+with representing the stimulus noise (added in stimulus space), the sensory noise
+374 stim sens
+(added in sensory space), being the absolute orientation of the stimulus, and the
+transformation F being the cumulative distribution of the prior p( ), which determines the
+θ |θ
+stimulus-to-sensory mapping (Wei & Stocker, 2015). For each stimulus orientation , p(m )
+377 i i
+can be computed according to (4) and the specific noise distributions. Both single-peaked
+|θ |θ
+likelihood functions, i.e., p(m ) for m and p(m ) for m , are generated with the same
+379 0 0 90 90
+level of stimulus noise (inversely represented in the model as stimulus precision: ) and
+380 stimL1
+the same level of sensory noise (included in the model as sensory precision: ). As
+381 sensL1
+described above, the external stimulus noise (symmetric in stimulus space) is assumed to follow
+a von Mises (i.e., circular normal) distribution on the 180° (i.e., halfcircular) orientation space
+with its mean at the actual stimulus orientation value in question and its precision being equal
+to . The internal sensory noise (symmetric in sensory space) is expected to follow a von
+385 stimL1
+Mises (i.e., circular normal) distribution on the 180° (i.e., halfcircular) orientation space with its
+mean at the expected sensory measurement for the actual stimulus orientation value in
+question (based on the stimulus-to-sensory mapping, derived from the cumulative density
+function for the prior distribution) and its precision being equal to . For
+389 sensL1
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 18
+implementational details on the computation of the likelihood, we refer the interested reader to
+the model code, which is publicly available on OSF.
+Posterior distribution and percept for the first lattice. To arrive at the posterior
+likelihood are combined:
+θ| ∝ θ · |θ
+p( m ) p( ) p(m ) . (5)
+L1 L1
+From this posterior distribution, the probability of perceiving the relative 0° or 90° orientation
+can directly be deduced, e.g., for the relative 0° orientation:
+θ = |
+p( 0 m )
+◦ L1
+θˆ = =
+p( 0 ) . (6)
+L1
+θ = ◦| + θ = ◦|
+p( 0 m ) p( 90 m )
+L1 L1
+In case one wants to derive perceptual responses, one of the two dominant orientations can be
+sampled with the relative posterior probability at these orientations.
+.04 absolute absolute
+0° 90°
+.03
+.02
+.01
+.00
+−45° 0° 45° 90° 135°
+relative orientation in stimulus space
+ytilibaborp
+a PRIOR 1
+.04 absolute absolute
+0° 90°
+.03
+.02
+.01
+.00
+−45° 0° 45° 90° 135°
+relative orientation in stimulus space
+ytilibaborp
+b LIKELIHOOD 1
+.04 absolute absolute
+0° 90°
+.03
+.02
+.00
+−45° 0° 45° 90° 135°
+relative orientation in stimulus space
+ytilibaborp
+c POSTERIOR 1
+absolute lattice orientation of 23° and AR = 1.3ˆ-1, which favors the relative 0° orientation. (c) Posterior distribution for the first lattice. Based on
+the difference in height of the peaks for the relative 0° and 90° orientation, i.e., p(0°) and p(90°), the probability of a 0° or 90° response can be
+determined. Note. The red vertical lines in the graph are placed at the two dominant relative 0° and 90° orientations in the lattice. The black
+vertical lines label the absolute 0° and 90° orientations.
+Perception of the second lattice. We model how an observer comes to perceive either
+the relative 0° , the relative 60° or the relative 120° orientation in the second lattice. Over trials,
+both the aspect ratio of the preceding first lattice and the absolute orientation of the lattices
+(same for first and second lattice) are varied. The distribution of absolute lattice orientations in
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 19
+the experiment is uniform, but the long-term natural stimulus distribution of orientations has
+peaks at both cardinal orientations. As in earlier Bayesian encoding models, we assume
+encoding resources to be allocated according to the stimulus distribution (uniform in the
+experiment or with peaks at the cardinals in the long term) so that stimulus values that occur
+more frequently are more accurately represented. Two types of noise are assumed: external
+stimulus noise and internal sensory noise. The external stimulus noise (symmetric in stimulus
+space) is assumed to follow a von Mises (i.e., circular normal) distribution on the 180° (i.e.,
+halfcircular) orientation space with its mean at the actual stimulus orientation value in question
+and its precision being equal to . The internal sensory noise (symmetric in sensory space)
+411 stimL1
+is expected to follow a von Mises (i.e., circular normal) distribution on the 180° (i.e., halfcircular)
+orientation space with its mean at the expected sensory measurement for the actual stimulus
+orientation value in question (based on the stimulus-to-sensory mapping, derived from the
+cumulative density function for the prior distribution) and its precision being equal to .
+415 sensL1
+The described stimulus and sensory noise are jointly reflected in the noise of the observer’s
+representation of the stimulus orientation. The observer’s representation of the stimulus
+orientation (subject to the stimulus noise and sensory noise described above) is expected to be
+multimodal, with peaks at the relative 0° , relative 60° and relative 120° orientation. This
+multimodal distribution (with equal weighting for each of the three distributions) represents the
+likelihood, and is combined with a prior distribution to compute the posterior distribution for
+the second lattice. The prior distribution for the second lattice is a perceptual prior distribution,
+defined as a weighted combination of the prior distribution for the first lattice, indicating the
+long-term frequency of occurrence (i.e., uniform distribution or with peaks at the cardinals), and
+the recent perceptual history (i.e., a von Mises distribution with a precision of and its
+425 percL1
+mean at the perceived orientation for the first lattice). From the posterior distribution, either a
+relative 0°, relative 60°, or relative 120° percept can be sampled with the probabilities depending
+on the relative probability of perceiving each of the three orientations.
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 20
+Prior distribution for the second lattice. In the current version of the model, we assume
+two different frequency distributions: a stimulus frequency distribution affecting the
+stimulus-to-sensory mapping and a perceptual frequency distribution used in combination with
+the likelihood to form the posterior distribution. A version of the model that used the stimulus
+frequency distribution for both the stimulus-to-sensory mapping and the prior distribution
+could explain the occurrence of adaptation, but not the occurrence of the hysteresis effect.
+The stimulus frequency distribution determines the stimulus-to-sensory mapping for the
+defined as a weighted mixture between the posterior for the first lattice (representing short-term
+context influences based on the stimulus evidence present) and the prior for the first lattice
+(representing longer-term context influences of the natural stimulus distribution; both a prior
+peaking at the cardinals and a uniform prior are tested, cf. above). If the weight of the posterior
+compared to that of the prior is increased (i.e., higher w ), the stimulus prior will update
+441 stimL1
+more heavily based on the immediate stimulus history.
+θ ∝ θ · − + θ| ·
+p( ) p( ) (1 w ) p( m ) w (7)
+L2stim L1 stimL1 L1 stimL1
+The perceptual frequency distribution determines the prior for the second lattice. The
+mixture between the prior for the first lattice (representing longer-term perceptual context; both
+a prior peaking at the cardinals and a uniform prior are tested, cf. above) and a single-peaked
+von Mises distribution around the perceived orientation of the first lattice. If the weight of the
+single-peaked von Mises distribution compared to that of the long-term perceptual frequency
+distribution is increased (i.e., higher w ), the perceptual prior will update more heavily
+449 percL1
+based on the immediate perceptual history. Different from the stimulus frequency distribution,
+the perceptual prior thus includes direct information about the percept/decision/response
+concerning the first lattice. We assume the precision of the single-peaked von Mises distribution
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 21
+part of the perceptual prior (i.e., ) to be smaller than the stimulus or sensory precision for
+453 percL1
+the second lattice (given that the percept for the first lattice is not visually present, this creates
+the possibility for more noise than for the second lattice which is visually present).
+θ ∝ θ · − + θˆ κ ·
+p( ) p( ) (1 w ) semi ci r cul ar von M i se s( , ) w (8)
+L2per c L1 per cL1 L1 per cL1 per cL1
+Likelihood distribution for the second lattice. Given that the second dot lattice is
+hexagonal, it has three equally dominant orientations. Therefore, we assume the observer’s
+representation of the second lattice to be a combination of the sensory measurements for the 0°,
+60°, and 120° orientations, with equal weight for all three sensory measurements. To arrive at a
+measurements (i.e., the sensory measurements for the relative 0°, 60°, and 120° orientation) with
+equal weights:
+1 1 1
+|θ ∝ |θ · + |θ · + |θ ·
+p(m ) p(m ) p(m ) p(m ) , (9)
+L2 0 60 120
+3 3 3
+|θ |θ |θ
+with p(m ), p(m ), and p(m ) being the single-peaked likelihoods of the sensory
+463 0 60 120
+measurements for the relative 0°, 60°, and 120° orientation. As for the first lattice, each sensory
+measurement m is modeled as in (4), using the cumulative distribution of the stimulus prior (7)
+θ |θ
+to determine the stimulus-to-sensory mapping. For each stimulus orientation , p(m ) can
+466 i i
+be computed according to (4) and the specific noise distributions. Each single-peaked likelihood
+function is generated with the same level of stimulus noise (inversely represented in the model
+as stimulus precision: ) and the same level of sensory noise (included in the model as
+469 stimL2
+sensory precision: ). As described above, the external stimulus noise (symmetric in
+470 sensL2
+stimulus space) is assumed to follow a von Mises (i.e., circular normal) distribution on the 180°
+(i.e., halfcircular) orientation space with its mean at the actual stimulus orientation value in
+question and its precision being equal to . The internal sensory noise (symmetric in
+473 stimL2
+sensory space) is expected to follow a von Mises (i.e., circular normal) distribution on the 180°
+(i.e., halfcircular) orientation space with its mean at the expected sensory measurement for the
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 22
+actual stimulus orientation value in question (based on the stimulus-to-sensory mapping,
+derived from the cumulative density function for the prior distribution) and its precision being
+equal to . Given that the second lattice was presented more briefly than the first lattice
+478 sensL2
+(300 ms vs 800 ms), we assume the sensory precision for the second lattice to be lower than the
+precision for the first lattice. For implementational details on the computation of the likelihood,
+we refer the reader to the model code, which is publicly available on OSF.
+Posterior distribution and percept for the second lattice. To arrive at the posterior
+perceptual prior distribution and the likelihood distribution are combined:
+θ| ∝ θ · |θ
+p( m ) p( ) p(m ) . (10)
+L2 L2per c L2
+From this posterior distribution, the probability of perceiving the relative 0°, 60°, or 120°
+orientations can directly be deduced, e.g., for the relative 0° orientation:
+θ = |
+p( 0 m )
+◦ L2
+θˆ = =
+p( 0 ) . (11)
+L2
+θ = ◦| + θ = ◦| + θ = ◦|
+p( 0 m ) p( 60 m ) p( 120 m )
+L2 L2 L2
+In case one wants to derive perceptual responses, one of the three dominant orientations can be
+sampled with the relative posterior probability at these orientations.
+.03 absolute absolute
+0° 90°
+.02
+.01
+.00
+−45° 0° 45° 90° 135°
+relative orientation in stimulus space
+ytilibaborp
+a STIMULUS PRIOR 2
+.03 absolute absolute
+0° 90°
+.02
+.01
+.00
+−45° 0° 45° 90° 135°
+relative orientation in stimulus space
+ytilibaborp
+b PERCEPTUAL PRIOR 2
+.03 absolute absolute
+0° 90°
+.02
+.01
+.00
+−45° 0° 45° 90° 135°
+relative orientation in stimulus space
+ytilibaborp
+c LIKELIHOOD 2
+.03 absolute absolute
+0° 90°
+.02
+.01
+.00
+−45° 0° 45° 90° 135°
+relative orientation in stimulus space
+ytilibaborp
+d POSTERIOR 2
+for the second lattice, given the relative 0° orientation was perceived in the first lattice. (c) Likelihood distribution defined in the stimulus space
+for the second lattice. This distribution is influenced by the stimulus prior for the second lattice (and hence the aspect ratio of the first lattice) via
+the stimulus-to-sensory mapping. (d) Posterior distribution for the second lattice, combining perceptual prior and likelihood for the second
+lattice. Based on the difference in height of the peaks for the relative 0°, 60°, and 120° orientation, the probability of a 0°, 60°, or 120° response can
+be determined. Note. The red vertical lines in the graph are placed at the three dominant relative 0°, 60°, and 120° orientations in the lattice. The
+black vertical lines label the absolute 0° and 90° orientations.
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 23
+Free parameters in efficient Bayesian observer model
+c influences the strength of the effect of aspect ratio on the relative difference in height
+490 stim
+between the 0° and 90° peaks in the likelihood distribution for the first lattice. When c is
+491 stim
+increased, aspect ratio more heavily influences the difference in height for the 0° and the 90°
+peak in the likelihood distribution for the first lattice.
+κ κ
+(i.e., stimulus precision for the first rectangular lattice) and (i.e., stimulus
+494 stimL1 stimL2
+precision for the second hexagonal lattice) influence the general precision of the likelihood
+peaks for the first and the second lattice, respectively. Stimulus precision does not alter the
+asymmetry of the likelihood distributions in stimulus space. When is decreased, lower
+497 stim
+stimulus precision or, in other words, more external stimulus noise is present.
+κ κ
+(i.e., sensory precision for the first lattice) and (i.e., sensory precision for the
+499 sensL1 sensL2
+second lattice) influence the asymmetry of the likelihood distributions for the first and the
+second lattice (in stimulus space), respectively. When is decreased, lower sensory precision
+501 sens
+or thus more internal sensory noise is present. Given the difference in presentation time (i.e., 800
+κ κ
+ms for the first and 300 ms for the second lattice), we assume to be higher than .
+503 sensL1 sensL2
+w (i.e., the weight of the posterior of the first lattice on the stimulus prior for the
+504 stimL1
+second lattice) determines the relative influence of the short-term effect of the first lattice on the
+stimulus prior for the second lattice compared to the influence of the long-term natural
+stimulus distribution.
+w (i.e., the weight of the percept of the first lattice on the perceptual prior for the
+508 percL1
+second lattice) determines the relative influence of the percept of the first lattice on the
+perceptual prior for the second lattice compared to a uniform distribution.
+(i.e., the precision of the peak for the percept of the first lattice) reflects the
+511 percL1
+precision of the von Mises distribution used in determining the perceptual prior for the second
+lattice.
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 24
+Model calculations and analyses
+To investigate the effect of different model choices and parameters, we calculated the
+probabilities of perceiving the relative 0° orientation in the first and the second lattice for
+different versions of the general model described above. For each version of the model that we
+investigated, we calculated the probabilities for each possible trial, with the trial defined by a
+combination of the aspect ratio of the first lattice (i.e., 1.3ˆ-1, 1.2ˆ-1, 1.1ˆ-1, 1.0, 1.1, 1.2, 1.3), and
+the percept of the first lattice (i.e., relative 0° or relative 90° orientation). When using a
+non-uniform natural stimulus distribution in the prior for the first lattice, we also calculated the
+probabilities for each absolute lattice orientation (i.e., from 1° to 180° in steps of 1°).
+Our first aim was to find a model and parameter combination that matched well with the
+average behavioral results found in Van Geert et al. (2022). Once this model version and
+parameter values was found, we manipulated each of the model parameters separately to
+investigate their effect on the expected probabilities of perceiving the relative 0° orientation in
+the first and the second lattice.
+Our second aim was to introduce variation in some of the parameter values, to
+approximate the interindividual variation in effect size and direction found in the behavioral
+data for the dot lattices paradigm (Van Geert et al., 2022). We varied (a) the constant influencing
+the relation between aspect ratio and differential height of the 0° and 90° peak in the likelihood
+for the first lattice (c ), (b) the weight of the posterior of the first lattice on the stimulus prior
+532 stim
+for the second lattice (w ), and (c) the weight of the percept of the first lattice on the
+533 stimL1
+perceptual prior for the second lattice (w ). To investigate whether we could reproduce the
+534 percL1
+strong positive correlation between individuals’ hysteresis and adaptation effects found in Van
+Geert et al. (2022), we drew 75 individual parameter combinations for c , w , and w
+536 stim stimL1 percL1
+from a truncated multivariate normal distribution with means 5, 6.5, 5, a lower boundary of zero
+for all three parameters, an upper boundary of 10 for w and w , and the following
+538 stimL1 percL1
+When using a uniform prior distribution for the first lattice, the absolute lattice orientation does not influence the
+posterior probabilities for the first or the second lattice.
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 25
+ 
+25 0 0
+ 
+ 
+ 
+variance-covariance matrix: . The w and w parameters were then
+0 9 8.95
+539   stimL1 percL1
+ 
+ 
+0 8.95 9
+rescaled with a maximum of one instead of ten to match the zero-to-one range. We then
+calculated the probabilities of perceiving the relative 0° orientation in the first and the second
+lattice for all 75 parameter combinations and calculated the expected frequencies of each
+response given those probabilities.
+To compare the variation in hysteresis and adaptation effects in the models to the
+variation in the behavioral results from Van Geert et al. (2022), and also to compare the observed
+correlation between individual hysteresis and adaptation effects, we conducted similar Bayesian
+analyses as in Van Geert et al. (2022) to the simulated data. More specifically, we estimated
+individual hysteresis and adaptation effects using a Bayesian multilevel binomial regression
+model predicting the percept of the second lattice, with aspect ratio of the first lattice (AR) and
+the percept of the first lattice (R10) as fixed and random effects. To estimate the direct proximity
+effect, we used a Bayesian multilevel binomial regression model predicting the percept of the
+first lattice, with aspect ratio of the first lattice (AR) as fixed and random effect. For more details
+on these Bayesian analyses, please consult the Appendix as well as Van Geert et al. (2022).
+Results
+Approximation of average attractive and repulsive temporal context effects
+After exploration of several parameter combinations, we were able to approximate the
+κ κ κ κ κ
+values: c = 5, = 20, = 20, = 20, = 18, = 10, w = 0.60,
+559 stim stimL1 sensL1 stimL2 sensL2 percL1 stimL1
+and w = 0.50. Whether a uniform prior distribution or a natural stimulus distribution was
+560 percL1
+used as prior for the first lattice did not visibly influence the results. Given the considerable
+number of parameters, other parameter combinations could give results similar to the one
+proposed here. Therefore, we provide an online Shiny application in which the user can play
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 26
+with the different parameter values to test their effects, both on the trial and on the experiment
+−1
+−2
+- - -
+1 1 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+])°0
+1r(
+[tigol
+Full model
+−1
+−2
+−3
+- - -
+1 1 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+aspect ratio of stimulus 1
+])°0
+2r(
+[tigol
+−1
+−2
+- - -
+1 1 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+r1 = 0°
+r1 = 90°
+])°0
+1r(
+[tigol
+No perceptual prior
+−1
+−2
+−3
+- - -
+1 1 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+aspect ratio of stimulus 1
+])°0
+2r(
+[tigol
+−1
+−2
+- - -
+1 1 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+r1 = 0°
+r1 = 90°
+])°0
+1r(
+[tigol
+No efficient coding
+−1
+−2
+−3
+- - -
+1 1 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+aspect ratio of stimulus 1
+])°0
+2r(
+[tigol
+r1 = 0°
+r1 = 90°
+κ κ
+efficient Bayesian observer model with a flat prior distribution for the first lattice and the following parameters: c = 5, = 20, =
+stim stimL1 sensL1
+κ κ κ
+20, = 20, = 18, = 10, w = 0.60, and w = 0.50, (b) the same model as in (a) but using a stimulus prior rather
+stimL2 sensL2 percL1 stimL1 percL1
+than a perceptual prior for the second lattice and with w = 0.60, and w = 0, and (c) the same model as in (a) but without efficient
+stimL1 percL1
+encoding. The yellow dots indicate the expected probabilities based on the model. In (b), the dark and light yellow dots lay on top of each other.
+The behavioral results and the estimated effects based on the behavioral results of Van Geert et al. (2022), averaged across participants, are
+indicated in dark grey for r1 = 0° and light grey for r1 = 90°.
+A version of the model using the stimulus prior in combination with the likelihood for the
+second lattice instead of the perceptual prior was able to predict a repulsive context effect of the
+the same distribution is used in the prior (resulting in prior attraction) and in the likelihood
+(resulting in likelihood repulsion), and w and w are almost equal, attractive and
+572 stimL1 percL1
+repulsive effects largely cancel each other out. If w is increased and w is decreased, a
+573 stimL1 percL1
+Is efficient encoding necessary to reproduce the behavioral results? A version of the model
+without efficient encoding was able to predict an attractive context effect of the previous
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 27
+percept (as the perceptual prior was still combined with the likelihood for the second lattice),
+but not the repulsive effect of the previous stimulus evidence, as that effect depends on the
+impact of the first lattice on the stimulus-to-sensory mapping and the likelihood of the second
+Effects of free parameters on attractive and repulsive temporal context effects
+Here we start from the final efficient Bayesian observer model with a uniform prior for the
+first lattice and the parameters specified above and explore the effect of each parameter
+separately on the expected probabilities of perceiving the relative 0° orientation in the first and
+the second lattice. Under these settings, c is the only parameter influencing the size of the
+585 stim
+direct proximity effect (i.e., the effect of aspect ratio on the percept of the first lattice;
+587 stim
+influences the size of the repulsive context effect of aspect ratio on the second lattice
+−1
+−2
+−3
+- 1 - 1 - 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+])°0
+1r(
+[tigol
+stim 1
+9 −1
+−2
+−3
+- 1 - 1 - 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+])°0
+1r(
+[tigol
+stimL1 1
+30 −1
+−2
+−3
+- 1 - 1 - 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+])°0
+1r(
+[tigol
+sensL1
+κ κ
+observer model with a uniform prior for the first lattice and baseline parameter values: c = 5, = 20, and = 20. Under these
+stim stimL1 sensL1
+κ κ
+settings, and do not influence the size of the direct proximity effect (i.e., the effect of aspect ratio on the percept of the first
+stimL1 sensL1
+lattice).
+As only lowers overall precision of the likelihood distribution for the first lattice
+590 stimL1
+(which increases the influence of the prior on the posterior) and a uniform prior distribution is
+used, a change in does not have an influence on the relative posterior probabilities for
+592 stimL1
+the 0° and 90° orientation in the first lattice. Therefore, does not influence the size of the
+593 stimL1
+When the participant perceived the 90° orientation in the first lattice, no attractive context effect can be present as
+the 90° orientation of the first lattice is never close to one of the three orientations present in the second lattice (0°,
+60°, 120°). Therefore, hysteresis, i.e., an attractive context effect or having the same percept in both lattices, can only
+occur when the previous percept was the 0° orientation and the probability of perceiving the 0° orientation in the
+second lattice is at chance level when the previous percept was the 90° orientation.
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 28
+probabilities for the second lattice, a higher stimulus precision for the first lattice (i.e., )
+595 stimL1
+results in slightly lower probabilities of perceiving the relative 0° orientation in the second lattice,
+especially for lower aspect ratios (i.e.., in favor of the relative 0° orientation). In other words, a
+higher thus results in a slightly stronger repulsive effect of the previous stimulus evidence
+598 stimL1
+Given a uniform prior distribution, also does not influence the relative posterior
+600 sensL1
+probabilities for the 0° and 90° orientation in the first lattice. In other words, does not
+601 sensL1
+influence the size of the proximity effect in case a uniform prior is used for the first lattice
+the first lattice (i.e., ) results in a slightly stronger repulsive effect of the previous stimulus
+604 stimL1
+−1
+−2
+−3
+- 1 - 1 - 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+aspect ratio of stimulus 1
+])°0
+2r(
+[tigol
+perceptL1
+0°
+90°
+stim
+−1 1
+−2
+−3
+- 1 - 1 - 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+aspect ratio of stimulus 1
+])°0
+2r(
+[tigol
+perceptL1
+0°
+90°
+k 0
+stimL1
+10 −1
+−2
+−3
+- 1 - 1 - 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+aspect ratio of stimulus 1
+])°0
+2r(
+[tigol
+perceptL1
+0°
+90°
+sensL1
+−1
+−2
+−3
+- 1 - 1 - 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+aspect ratio of stimulus 1
+])°0
+2r(
+[tigol
+perceptL1
+0°
+1 90°
+k 0
+stimL2
+10 −1
+−2
+−3
+- 1 - 1 - 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+aspect ratio of stimulus 1
+])°0
+2r(
+[tigol
+perceptL1
+0°
+1 90°
+k 0
+sensL2
+9 −1
+−2
+−3
+- 1 - 1 - 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+aspect ratio of stimulus 1
+])°0
+2r(
+[tigol
+perceptL1
+0°
+90°
+percL1
+−1
+−2
+−3
+- 1 - 1 - 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+aspect ratio of stimulus 1
+])°0
+2r(
+[tigol
+perceptL1
+0°
+1 90°
+0 w
+stimL1
+0.3 −1
+0.6
+−2
+0.9
+−3
+- 1 - 1 - 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+aspect ratio of stimulus 1
+])°0
+2r(
+[tigol
+perceptL1
+0°
+90°
+percL1
+0.2
+0.5
+0.8
+κ κ κ
+Bayesian observer model with a uniform prior for the first lattice and baseline parameter values: c = 5, = 20, = 20, =
+stim stimL1 sensL1 stimL2
+κ κ
+20, = 18, = 10, w = 0.60, and w = 0.50.
+sensL2 percL1 stimL1 percL1
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 29
+606 stimL2
+for perceiving the 0° orientation in the second lattice overall, but more so for lower aspect ratios.
+Hence, a higher results in a slightly shallower adaptation effect (i.e., repulsive effect of the
+608 stimL2
+609 sensL2
+higher the sensory precision for the second lattice, the stronger the adaptation effect.
+The more precise the peak in the perceptual prior for the second lattice, the higher the
+overall probability of perceiving the relative 0° orientation in the second lattice. Although the
+effect of is present regardless of the percept for the first lattice being the relative 0° or the
+613 percL1
+relative 90° orientation, the effect of is larger for conditions in which the relative 0°
+614 percL1
+Increasing the weight of the previous stimulus evidence compared to the long-term
+uniform stimulus distribution (i.e., w ) increases the size of the adaptation effect
+617 stimL1
+619 percL1
+The effects of different parameter combinations can be further explored in the online
+application, the user can play with the different parameter values and combinations to test their
+effects, both on the trial and on the experiment level.
+Interindividual variation in proximity, hysteresis, and adaptation
+When introducing interindividual variation in the parameter values for c , w , and
+625 stim stimL1
+w , interindividual variation in proximity, hysteresis, and adaptation effects results. With
+626 percL1
+the currently used parameter combinations, the size of the hysteresis and adaptation effects
+varied less in the simulation data than in the empirical data, but the simulated variation is
+simulation results). Furthermore, the same relation between hysteresis and adaptation effects is
+visible as in the empirical data: By generating w and w in a positively correlated
+631 stimL1 percL1
+manner, we were able to reproduce the empirically found positive correlation between
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 30
+empirical results in Van Geert et al. (2022), the adaptation effect showed a strong negative
+correlation with the direct proximity effect in the simulation results and the hysteresis effect
+n=75
+−1
+−2
+- 1 - 1 - 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+aspect ratio of stimulus 1
+])°0
+1r(
+[tigol
+Empirical results
+−1
+−2
+−3
+- 1 - 1 - 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+aspect ratio of stimulus 1
+])°0
+2r(
+[tigol
+n=75
+−1
+−2
+- 1 - 1 - 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+aspect ratio of stimulus 1
+r1 = 0°
+r1 = 90°
+])°0
+1r(
+[tigol
+Simulation results
+−1
+−2
+−3
+- 1 - 1 - 1 1 1 1 1
+1.3 1.2 1.1 1 1.1 1.2 1.3
+aspect ratio of stimulus 1
+])°0
+2r(
+[tigol
+r1 = 0°
+r1 = 90°
+The probability of responding 0° to the first lattice decreases with aspect ratio (|a|/|b|). The value of aspect ratio increases with increasing distance
+in the 0°-orientation, leading to more 90° responses. The probability of responding 0° to the second lattice increases with aspect ratio (|a|/|b|; i.e.,
+adaptation effect), and increases when the first stimulus was perceived as 0° rather than 90° (i.e., hysteresis effect). (b) Mean simulated logit
+probability of perceiving the relative 0° orientation in the first and the second lattice dependent on aspect ratio. Note. Dots indicate mean values.
+In addition, mean posterior predictions and their 95% highest density continuous intervals are shown.
+Discussion and conclusions
+We tested whether the observed attractive and repulsive temporal context effects could be
+explained by an efficient Bayesian observer model (Wei & Stocker, 2015), which has previously
+been successfully applied to many different study designs involving non-ambiguous stimulus
+perception (e.g., Fritsche et al., 2020; Langlois et al., 2021; Wei & Stocker, 2015). The efficient
+Bayesian observer model assumes variable encoding precision of orientations in line with their
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 31
+0.1−0.7−0.55 0.2−0.41−0.22 0.32−0.54−0.42 0.54−0.72−0.54 0.56−0.61−0.46 0.92−0.15−0.05 1.05−0.63−0.51 1.14−0.38−0.22 1.43−0.55−0.42 1.47−0.59−0.43 1.84−0.48−0.36 1.87−0.66−0.48 2.3−0.23−0.08 2.48−0.49−0.34 2.93−0.56−0.4
+−1
+−3
+−5
+3.03−0.32−0.14 3.12−0.78−0.62 3.2−0.17−0.01 3.28−0.39−0.22 3.92−0.44−0.27 4.32−0.53−0.41 4.41−0.44−0.32 4.42−0.29−0.16 4.58−0.82−0.64 4.65−0.99−0.86 4.66−0.6−0.42 4.85−0.58−0.47 5.15−0.75−0.58 5.47−0.44−0.32 5.47−0.93−0.77
+−1
+−3
+−5
+5.53−0.47−0.32 5.61−0.47−0.34 5.63−0.63−0.5 5.65−0.84−0.67 5.7−0.49−0.32 5.79−0.54−0.38 5.92−0.73−0.59 5.98−0.52−0.39 5.99−0.75−0.62 6.14−0.67−0.49 6.49−0.82−0.71 6.51−0.77−0.66 6.53−0.82−0.69 6.59−0.34−0.18 6.66−0.46−0.27
+−1
+−3
+−5
+6.71−0.18−0.04 6.88−0.62−0.44 6.97−0.16−0.03 6.99−0.74−0.56 7.01−0.59−0.43 7.03−0.38−0.2 7.15−0.9−0.84 7.28−0.61−0.51 7.35−0.43−0.26 7.37−0.52−0.31 7.41−0.35−0.26 7.6−0.68−0.55 7.66−0.71−0.54 7.67−0.64−0.49 7.82−0.71−0.58
+−1
+−3
+−5
+8.26−0.99−0.79 8.66−0.95−0.78 9.21−0.43−0.22 9.83−0.74−0.56 10.58−0.72−0.57 10.71−0.53−0.41 11.03−0.55−0.37 11.67−0.53−0.33 11.83−0.47−0.34 12.48−0.52−0.41 13.22−0.77−0.59 14.05−0.35−0.22 14.3−0.53−0.41 14.98−0.23−0.09 15.1−0.58−0.43
+−1
+−3
+−5
+1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31
+aspect ratio of stimulus 1
+])°0
+1r(
+[tigol
+0.1−0.7−0.55 0.2−0.41−0.22 0.32−0.54−0.42 0.54−0.72−0.54 0.56−0.61−0.46 0.92−0.15−0.05 1.05−0.63−0.51 1.14−0.38−0.22 1.43−0.55−0.42 1.47−0.59−0.43 1.84−0.48−0.36 1.87−0.66−0.48 2.3−0.23−0.08 2.48−0.49−0.34 2.93−0.56−0.4
+−2
+−4
+−6
+3.03−0.32−0.14 3.12−0.78−0.62 3.2−0.17−0.01 3.28−0.39−0.22 3.92−0.44−0.27 4.32−0.53−0.41 4.41−0.44−0.32 4.42−0.29−0.16 4.58−0.82−0.64 4.65−0.99−0.86 4.66−0.6−0.42 4.85−0.58−0.47 5.15−0.75−0.58 5.47−0.44−0.32 5.47−0.93−0.77
+−2
+−4
+−6
+5.53−0.47−0.32 5.61−0.47−0.34 5.63−0.63−0.5 5.65−0.84−0.67 5.7−0.49−0.32 5.79−0.54−0.38 5.92−0.73−0.59 5.98−0.52−0.39 5.99−0.75−0.62 6.14−0.67−0.49 6.49−0.82−0.71 6.51−0.77−0.66 6.53−0.82−0.69 6.59−0.34−0.18 6.66−0.46−0.27
+−2
+−4
+−6
+6.71−0.18−0.04 6.88−0.62−0.44 6.97−0.16−0.03 6.99−0.74−0.56 7.01−0.59−0.43 7.03−0.38−0.2 7.15−0.9−0.84 7.28−0.61−0.51 7.35−0.43−0.26 7.37−0.52−0.31 7.41−0.35−0.26 7.6−0.68−0.55 7.66−0.71−0.54 7.67−0.64−0.49 7.82−0.71−0.58
+−2
+−4
+−6
+8.26−0.99−0.79 8.66−0.95−0.78 9.21−0.43−0.22 9.83−0.74−0.56 10.58−0.72−0.57 10.71−0.53−0.41 11.03−0.55−0.37 11.67−0.53−0.33 11.83−0.47−0.34 12.48−0.52−0.41 13.22−0.77−0.59 14.05−0.35−0.22 14.3−0.53−0.41 14.98−0.23−0.09 15.1−0.58−0.43
+−2
+−4
+−6
+1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31 1.-31 1.-21 1.-11 11 1.11 1.21 1.31
+aspect ratio of stimulus 1
+])°0
+2r(
+[tigol
+first stimulus decreases with aspect ratio (|a|/|b|). The value of aspect ratio increases with increasing distance in the 0 -orientation, leading to
+more 90 responses. Dots indicate observed values. In addition, mean posterior predictions and their 95% highest density continuous intervals
+are shown. (b) Mean simulated individual responses to the second stimulus dependent on aspect ratio (logit). The probability of responding 0
+to the second stimulus increases with aspect ratio (|a|/|b|; i.e., adaptation effect), and increases when the first stimulus was perceived as 0 rather
+than 90 (i.e., hysteresis effect). Dots indicate observed values. In addition, mean posterior predictions and their 95% highest density continuous
+intervals are shown. Note. Labels indicate parameter values for c , w , and w per simulated participant, respectively.
+stim stimL1 percL1
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 32
+r = 0.68
+95% HDCI [0.54, 0.79]
+−2 0 2 4 6 8
+individual adaptation effect
+tceffe
+siseretsyh
+laudividni
+Correlation between empirical hysteresis and adaptation effects
+r = 0.59
+95% HDCI [0.42, 0.74]
+−2 0 2 4 6 8
+individual adaptation effect
+tceffe
+siseretsyh
+laudividni
+Correlation between simulated hysteresis and adaptation effects
+for (a) the empirical data collected in Van Geert et al. (2022) and (b) the simulated data. Mean and 80% highest density continuous intervals are
+shown. The dashed lines indicate a slope of zero. The black and yellow lines give examples of plausible correlation estimates.
+frequency of occurrence (i.e., efficient encoding) and takes the dissimilarity between stimulus
+space and sensory space into account, which leads to asymmetric likelihood distributions as a
+result of uncertainty induced by internal sensory noise, and consequently the possibility for
+‘anti-Bayesian’ percepts biased away from the observer’s prior beliefs.
+A hierarchical efficient Bayesian observer model including both a stimulus and a
+perceptual level was needed to explain the co-occurrence of both attractive and repulsive
+temporal context effects. The aspect ratio of the first lattice (i.e., the previous stimulus evidence)
+affected the percept of the second lattice via the stimulus-to-sensory mapping (i.e., efficient
+encoding) and the likelihood (i.e., likelihood repulsion) of the second lattice. The previous
+percept affected the perceptual prior for the second lattice and as a consequence the posterior
+probability of perceiving the relative 0° orientation in the second lattice (i.e., prior attraction). In
+other words, efficient encoding and likelihood repulsion on the stimulus level could explain the
+repulsive context effect, whereas perceptual prior attraction could explain the attractive
+temporal context effect when perceiving multistable dot lattices. This reasoning was confirmed
+based on simulations from model variants without efficient coding (showing only hysteresis)
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 33
+and without a perceptual prior (showing only adaptation). The conclusion that a hierarchical
+model including both a stimulus and a perceptual level is needed, is in line with Mao and
+Stocker (2022), who suggested the need to take higher-level representations into account to
+adequately model human subjects’ orientation percepts.
+Not only the mean attractive and repulsive temporal context effects present in Van Geert et
+al. (2022) could be reproduced using a hierarchical efficient Bayesian observer model, also
+plausible variation in effect size and direction could be derived by varying (a) the constant
+influencing the relation between aspect ratio and differential height of the 0° and 90° peak in the
+likelihood for the first lattice (c ), (b) the weight of the posterior of the first lattice on the
+666 stim
+stimulus prior for the second lattice (w ), and (c) the weight of the percept of the first lattice
+667 stimL1
+on the perceptual prior for the second lattice (w ). Furthermore, the hierarchical efficient
+668 percL1
+Bayesian observer model could reproduce the empirically observed strong positive correlation
+between individuals’ attractive and repulsive effects (Van Geert et al., 2022), by assuming a
+positive correlation between temporal integration constants at the stimulus and the perceptual
+level. That is, individuals who weight the previous stimulus evidence more highly in relation to
+the long-term stimulus context will also weight the previous percept more highly in relation to
+the long-term perceptual context than individuals who weight the previous stimulus evidence
+less highly. Assuming separate but correlated temporal integration constants at the stimulus and
+the perceptual level is not implausible in our opinion. For instance, Fritsche et al. (2020) found
+better performance for a model with different integration time constants for prior and likelihood
+than for a model that used the same parameters for both. Different from the successful
+reproduction of the high positive correlation between attractive and repulsive temporal context
+effects, the correlations between the temporal context effects and the direct proximity effect did
+not match those observed in the empirical data. Follow-up research may aim to find parameter
+combinations that provide a closer match to those aspects of the empirical data.
+Whereas earlier models induced a direct effect of the previous stimulus evidence on the
+likelihood distribution for the second lattice (Schwiedrzik et al., 2014), or posited a persistent
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 34
+bias for an absolute orientation but did not model the origin of the bias (Gepshtein & Kubovy,
+2005), the current efficient Bayesian observer model provides a more complete process model of
+how previous percept and stimulus evidence can influence multistable dot lattice perception.
+We consider changes in the frequency of occurrence (in this case on the short term) and
+consequently in the prior distribution and the stimulus-to-sensory mapping a conceptually
+plausible explanation for the co-occurrence of separate but related short-term attractive and
+repulsive temporal context effects. The currently proposed model thus integrates explanations
+for both mechanisms in one coherent (hierarchical) theory, which was not the case in the earlier
+models of the dot lattice paradigm (Gepshtein & Kubovy, 2005; Schwiedrzik et al., 2014).
+Assuming separate but related processes underlying both context effects present at multiple
+hierarchical levels (i.e., likelihood repulsion on the stimulus level and prior attraction on the
+perceptual level, related through their dependence on the posterior for the first lattice), provides
+an intermediate position, in between researchers positing one single mechanism underlying
+both effects and researchers confirming differences in the characteristics of both effects.
+Furthermore, the idea of separate but related processes inherent in the efficient Bayesian
+observer model is highly compatible with the empirically observed high correlation between
+individuals’ attractive and repulsive temporal context effects as observed in Van Geert et al.
+(2022).
+It is highly likely that our visual system takes more previous stimulus evidence or percepts
+into account than only one stimulus back. Another possible follow-up is therefore to take
+changes throughout the entire experiment into account when modeling the behavioral data
+resulting from the multistable dot lattice paradigm. However, the presence of a mask in between
+trials makes modeling this process conceptually more complex. Furthermore, when modeling
+the results for the current paradigm, going only one trial back, was enough to replicate the
+behavioral effects. It was thus not necessary to go more than one trial back to successfully
+account for the co-occurrence of both effects.
+The current computational model can serve to inspire new experimentation. The model
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 35
+can generate quantitative predictions that can be tested in new experiments: for example,
+sensory noise can be manipulated using exposure time or stimulus contrast, the alignment of
+the dots in the lattice can be decreased to lower stimulus precision, or a longer inter-stimulus
+interval could be introduced to weaken the influence of the first lattice. Also, the same modeling
+approach can be adapted to other tasks measuring temporal context effects with different
+multistable stimuli.
+To conclude, a hierarchical efficient Bayesian observer model including both a stimulus
+and a perceptual level can explain repulsive temporal context effects in multistable dot lattice
+perception via efficient encoding and likelihood repulsion, and attractive effects via perceptual
+prior attraction. This conclusion is in line the conclusion of Mao and Stocker (2022), who
+suggested the need for considering the complex hierarchical structure of the brain, by also
+taking the higher-level representation into account to adequately model human subjects’
+response behavior.
+Open and Reproducible Practices Statement
+This manuscript was written in R Markdown using the papaja package (Aust & Barth, 2020)
+with code for data analysis integrated into the text. The data, materials, and analysis and
+[NOTE TO REVIEWERS/PREPRINT READERS: the code for the models is already publicly shared
+at this point, further analysis and manuscript code are currently available on request but will be
+shared publicly once reaching a finalized version of the manuscript after peer review.]
+EFFICIENT BAYESIAN OBSERVER MODEL OF HYSTERESIS AND ADAPTATION 36

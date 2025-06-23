@@ -1,0 +1,684 @@
+An Integrated Methodology for Assessing Item Discrimination in
+Mathematics Assessments
+Russell Jetera,b,†*, Darryl Chamberlain, Jr.c,† , and Kelvin Roziera
+a Department of Mathematics and Statistics, Georgia State University, P.O. Box 4110, Atlanta,
+Georgia, 30302-410, USA
+b Neuroscience Institute, Georgia State University, P.O. Box 4110, Atlanta, Georgia, 30302-410,
+USA
+c Department of Mathematics, Science and Technology, Embry-Riddle Aeronautical University, 1
+Aerospace Boulevard, Daytona Beach, FL 32114-3900, USA
+†These authors contributed equally to this work
+*Corresponding author: rjeter@gsu.edu
+Abstract
+In order to assess an assessment, one must consider whether the assessment produces valid and
+reliable results according to its intended goals. Given the various ways that validity and
+reliability can be assessed based on the goals of some assignment, there is no singular
+methodology for analyzing an educational assessment. This study attempts to address this
+research gap by presenting a unifying methodology that incorporates both CTT and IRT, along
+with other measures of validity and reliability, that can provide a robust analysis of an
+educational assessment while considering the goals of that assessment. Utilizing item measures
+from Classic Test Theory, Item Response Theory, and Distractor Analysis, we present a summary
+of each metric that will inform labeling items as sufficiently discriminating for the purposes of an
+educational assessment. We then present an analysis of 4 exams to illustrate how the metrics can
+be used in concert to identify validity and reliability at the item and assessment level. We
+conclude with a brief discussion of how this methodology can be applied to different types of
+assessments.
+Keywords: assessment; classical test theory; item response theory; distractor analysis
+Introduction
+Assessment is an integral part of every course. While all assessments attempt to measure student
+knowledge, the inherent goals of each assignment drives the design. When one hears the word
+“assessment” they often consider high-stakes exams that attempt to evaluate student knowledge
+against some predefined metrics. Final exams, placement exams, and general standardized tests
+like ACT and SAT all fit this category, and fall under evaluative assessments. In contrast,
+formative assessments attempt to measure student knowledge to further enhance the student’s
+learning. This can be further split by the goal of the formative assessment: assessment as learning
+(AaL) and assessment of learning (AoL). In AaL, the process of completing the assessment acts
+as the learning opportunity. Homework and group work normally serve the goals of AaL. In AfL,
+the instructor uses evidence collected during assessments to guide further instruction. In AoL,
+the assessment attempts to identify whether learning has occurred and if interventions need to be
+implemented. Quick surveys (such as through clicker questions) or quizzes normally serve the
+goals of AoL (Dann, 2014).
+In order to assess an assessment, one must consider whether the assessment produces valid and
+reliable results according to its intended goals. Within assessment, validity refers to the extent a
+test measures what it purports to measure and reliability refers to the extent results can be
+replicated (Wu et al., 2016). For example, the goal of a placement exam is to classify students
+into the highest course they could take with success. Measuring the validity of a placement test
+would include analyzing the course grades for students placed and determining the impact of the
+placement test. Measuring the reliability of a placement test would include checking that students
+are consistently classified into some course. In contrast, the goal of a standardized test like the
+SAT is to measure some academic ability and report it in an ordered form to distinguish between
+high-performing and low-performing students. Measuring the validity of a standardized test may
+include checking the validity of individual questions (to ensure answering the question correctly
+relates to the student having some knowledge) while measuring reliability may include
+comparing correct response rates across versions within the same year and between different
+years.
+Given the various ways that validity and reliability can be assessed based on the goals of some
+assignment, there is no singular methodology for analyzing an educational assessment. In
+general, there are two broad frameworks for studying assessments: Classical Test Theory (CTT)
+and Item Response Theory (IRT). CTT presents an analysis of the results of an assessment
+focusing on the overall scores on the assessment, whereas IRT presents an analysis that relates a
+latent, or unobservable, state (such as student ability) to an observed outcome (such as an answer
+choice on an assessment item). The latent variable is estimated by a series of observed outcomes
+as well as the relation of these outcomes to others’ outcomes (estimated item difficulties).
+These frameworks need not be disparate, and can in fact inform each other. As Wu et al. state in
+Educational Measurement for Applied Researchers:
+…while there are theoretical differences between IRT and CTT…, in practice, both IRT
+and CTT help us with building a good measuring instrument. Consequently, CTT and IRT
+should be used hand-in-hand in a complementary way, and one should not discard one
+approach for another (p.26).
+This study attempts to address this research gap by presenting a unifying methodology that
+incorporates both CTT and IRT, along with other measures of validity and reliability, that can
+provide a robust analysis of an educational assessment while considering the goals of that
+assessment.
+The outline of this paper is as follows: in the Theoretical Framework section, we present
+measures associated with CTT, IRT, and other measures for validity and reliability that will make
+up our unifying methodology for assessing educational assessments; in the Methods section, we
+frame the context with which we test and attempt to validate the theoretical framework; in the
+Results section, we present the findings of each measure outlined in the theoretical framework;
+in the Discussion sections, we relate the findings of the results for each measurement to present a
+unified analysis of the discriminatory power of items in the exams studied; finally, in the
+Conclusions we present some ideas for utilizing this methodology and directions for future study.
+Theoretical Framework
+Assessment theory commonly starts with the assumption that an assessment will have options
+(multiple-choice) or be measured as correct/incorrect (free response). In educational assessment,
+multiple-choice options are constructed using plausible but incorrect options known as
+distractors. While some IRT models can accommodate distractors (such as providing partial
+credit for the selection of certain distractors seen as “close” to the correct answer), distractor
+analysis is commonly completed in an ad hoc manner. However, evaluating distractors is critical
+when the goal of an assessment is to enhance student learning and not to simply discriminate
+between high-performing and low-performing students. Therefore, our unifying methodology
+incorporates CTT, IRT, and distractor analysis in a coherent fashion to triangulate assessment
+validity and reliability.
+Classical Test Theory
+Classical Test Theory is the analysis of assessments based primarily on students’ overall
+(observed) assessment scores. In general, the core assumption underlying CTT is that a student’s
+observed score is the sum of their “true score,” which measures their actual understanding of an
+underlying concept, and an “error score,” which can result from numerous sources. The true
+score is defined as the expectation of the observed score, meaning that “on average” the error
+will cancel out of the equation. There are a few key statistics that can be measured when
+studying assessments using this framework: observed score and the statistical measures therein,
+reliability, item difficulty, and point-biserial correlation (a measure of item discrimination). A
+brief description for each of these key statistics follows.
+Observed score distribution
+One common assumption in classic psychometric is the assumption of normality in assessment
+results. However, educational assessments do not frequently present normal results (Ho & Yu,
+2015). Thus, when presenting results on educational assessments, it is important to highlight
+statistics that measure the normality of data such as skew and kurtosis. Skew, an estimate of the
+third standardized moment of the distribution, describes where the “hump” of the data is in
+relation to the center (either mean or median) while kurtosis1, an estimate of the fourth
+standardized moment of the distribution, describes the shape of the “tails” of the data. A normal
+distribution has a skew of 0 and kurtosis of 0. Early authors in non-normal assessment analysis
+such as Lord (1955) report that “easy” tests commonly present negative skew and that
+symmetric test distributions present negative kurtosis.
+1 It is common to present kurtosis as (kurtosis - 3), which is referred to as excess kurtosis as kurtosis of a normal
+distribution is 3.
+Item difficulty
+For dichotomous items (correct/incorrect), item difficulty refers to the proportion of students that
+answered an item correctly. For polytomous items, responses may be weighted for partial credit.
+For the purposes of this paper, we only consider dichotomous item difficulty. Item difficulty
+represents the mean score on an item. Its role in discrimination is more of an indicator that an
+item will not be able to be used to discriminate between high and low performing students than
+as an indicator of performance. An item with too high of a difficulty was answered correctly by
+nearly all of the students, and can thus not be used to discriminate against high performing
+students. The same applies for low item difficulty and low performing students. In light of this,
+Lord (1955) suggests ideal item difficulties as slightly higher than halfway between a random
+guess and 100%, with 74% and 70% for four and five option multiple choice assessment items
+respectively (p.189).
+Point-biserial correlation
+Point-biserial correlation (PBC) is an item-level statistic that measures the correlation between
+students’ performance on a question and their performance on the exam as a whole. In other
+words, PBC describes how well the item discriminated between high-performing and
+low-performing students and is entirely distinct from item difficulty. PBC is equivalent to the
+Pearson correlation coefficient relating these two quantities, so the traditional interpretation of
+correlation coefficients can be applied: values range from -1 to 1; positive values indicate a
+positive correlation between the two quantities (that is, students that perform well on the exam as
+a whole perform well on the item), negative values indicate a negative correlation between the
+two quantities (students that perform well on the exam as a whole perform poorly on the item or
+students who perform poorly on the exam as a whole perform well on the item), and values close
+to zero indicate that a given question is not predictive of performance on the exam at all (and
+vice versa).
+PBC can be computed using the following formula:
+∑ (𝑥 − 𝑥)(𝑦 − 𝑦)
+𝑖 𝑖
+𝑖=1
+𝑟 =
+(1)
+𝑥𝑦
+𝑛 𝑛
+2 2
+( ) ( )
+∑ 𝑥 − 𝑥 ∑ 𝑦 − 𝑦
+𝑖 𝑖
+𝑖=1 𝑖=1
+Where 𝑛 is the number of students that completed the question being assessed, 𝑥 is the 𝑖-th
+student’s score on the question being assessed (𝑥 = 0 indicates a wrong answer, 𝑥 = 1
+𝑖 𝑖
+indicates a correct answer), 𝑥 is the mean score on the question being assessed. 𝑦 is the 𝑖-th
+student’s score on the other questions on the exam, 𝑦 is the mean score on the other questions on
+the exam.
+Items with negative PBC or a PBC of zero are poor assessment items as they indicate that the
+item is answered incorrectly by students that perform well on the exam (suggests an item has an
+error) or that the item bears no relationship to student performance and can be removed without
+consequence. Categorization of PBCs for educational assessment purposes are not uniform as
+assessments primarily serve to assess the curriculum rather than as collections of items with the
+most predictive power (Wu et al., 2016). To motivate our categorizations of PBCs, we consider
+two thresholds based on the number of questions in the assessment (𝐾) and number of students
+who answered questions in the assessment (𝑛).
+Our first threshold is based on the assumption of perfect determination. Given an exam with 𝐾
+questions, the coefficient of determination for a single question is 𝑟 = and thus the
+correlation of any one question to the overall score would be 𝑟 = . Questions with
+correlations at or above suggest a reasonable explanation of the overall score based on the
+assessment size. For example, in an exam with 10 questions, a reasonable correlation would be
+0.32 versus 0.22 in an exam with 20 questions.
+Our second threshold is based on Fisher’s z-transformation, which converts a correlation
+coefficient r into a normally distributed variable z. The standard error for Fisher’s z is
+𝑆𝐸 = . By converting the correlations to a normally distributed variable, one can calculate
+𝑛−3
+a confidence interval with the formula 𝑧' ± 𝑧 * 𝑆𝐸 . For significance 0.046, 𝑧 = 2. Thus
+𝑐𝑟𝑖𝑡 𝑧 𝑐𝑟𝑖𝑡
+when 𝑧' = 𝑆𝐸 , we have a confidence interval centered at 0. This suggests a reasonable poor
+( )
+1 1
+item threshold to be tanh ≈ when 𝑛 > 21. As we convert to a normally
+𝑛−3 𝑛−3
+distributed variable z, we suggest a sample size 𝑛 of at least 30.
+We thus categorize items using number of questions (𝐾) and assessment sample size (𝑛) in the
+following way:
+● Poor: 𝑃𝐵𝐶≤ These items at best have a confidence interval centered at 0 and thus
+𝑛−3
+do not have adequate predictive power for overall assessment score.
+1 1
+● Acceptable: < 𝑃𝐵𝐶 < These items have acceptable predictive power but may
+𝑛−3 𝐾
+be improved with revision.
+● Good: 𝑃𝐵𝐶≥ These items are at least as predictive as under an “ideal” assessment
+where each question is independent and explains variance of student responses.
+We note these categories align with common thresholds provided in the literature. For example,
+Varma (2006) notes “A point-biserial value of at least 0.15 is recommended, though our
+experience has shown that “good” items have point-biserials above 0.2 (p. 6)” which aligns with
+𝑛 = 45 for the minimum recommended PBC and 𝐾 = 24 for the minimum good PBC. These
+thresholds also assume that 𝐾 < 𝑛 − 3, which may not hold for assessments administered in
+small classes2. Considerations for thresholds where 𝐾 ≥ 𝑛 − 3 will be evaluated in future
+studies.
+Reliability
+Assessment reliability refers to the correlation between a student’s performance on a given
+assessment and their performance on a parallel assessment. In other words, how well does a
+student’s performance on a given exam match their performance on a nearly identical exam, such
+as different versions of the same exam. The most straightforward way to compute this statistic
+would be to compute the correlation between a student’s scores on two exam versions taken in a
+short time period from one another. This measure is impractical to compute in a typical learning
+environment. A practical measure is the Kuder-Richardson Formula 20 (KR-20) reliability
+coefficient (Salvucci et al., 1997). The KR-20 coefficient given by Equation 2 measures the
+correlation between the variance in student scores on a given exam to the proportion of students
+that got each question correct.
+𝐾 𝑛
+( )
+σ − ∑ 𝑝 (1−𝑝 ) ∑ 𝑥 − 𝑥
+( ) 𝑥 𝑖 𝑖 2 𝑗
+𝐾−1
+⎛ 𝑖=1 ⎞ 𝑗=1
+𝑟 = , σ = (2)
+𝐾 2 𝑥 𝑛−1
+⎝ ⎠
+Where 𝐾 is the number of questions on the exam being assessed, 𝑝 is the proportion of correct
+answers on the 𝑖-th question, 𝑛 is the number of students that completed the exam being
+assessed, 𝑥 is the 𝑗-th student’s score on the exam in question, 𝑥 is the mean score on the exam
+being assessed.
+(Salvucci et al., 1997) suggested the following criteria:
+● Low reliability: 𝑟 < 0. 5.
+● Moderate reliability: 0. 5 ≤ 𝑟 < 0. 8.
+● High reliability: 0. 8 ≤ 𝑟. (p. 115).
+Item Response Theory
+In contrast to Classical Test Theory, Item Response Theory (IRT) methodologies seek to learn a
+student’s latent (unobservable) ability variable by analyzing the students’ responses to each given
+item in the context of all students’ responses to each given item. In general, this approach works
+by developing a mathematical model that relates a given item’s estimated difficulty (based on all
+students’ responses) to the learned latent ability variable (based on the individual student’s
+responses to all items). The developed model can then be used to predict the probability that a
+given student (with corresponding latent ability) will correctly answer a given item (with
+corresponding estimated difficulty). In this model, students with an equal or higher latent ability
+than an item’s estimated difficulty are predicted to correctly answer the item.
+2 A sample size of at least n = 30 is recommended for computing PBC. This will help maintain the assumptions with
+regard to the normally distributed variable z used to derived the lower bound.
+Rasch One-Parameter Model
+In the dichotomous setting, one can construct a one-parameter Rasch model that predicts that a
+student will answer an item correctly using the following probability distribution function:
+𝑒𝑥𝑝 (θ−δ)
+𝑝 = 𝑃(𝑋 = 1|θ, δ) = (3)
+1+𝑒𝑥𝑝 (θ−δ)
+Where 𝑋 is the binary random variable that is equal to 1 if a student answers a question correctly
+and 0 if they answer it incorrectly, θ is the learned latent student ability variable, and δ is the
+estimated difficulty of a given item. The one-parameter Rasch model assumes all items
+discriminate equally and thus the discrimination parameter, which would multiply (θ − δ) in a
+one-parameter model, is 1. Given θ and δ for a particular student and item, respectively,
+Equation 3 returns the probability that the student in question answers the item correctly. Note
+when student’s latent ability θ is equal to item difficulty δ, the probability of the student
+answering the question correctly is 0.5.
+When we fix some item difficulty, we can plot the sigmoid curve relating ability to probability of
+ICCs for items of difficulties -1, -0.5, 0, 0.5, and 1 to illustrate how items with lower item
+difficulty reach higher correct probability more quickly. For example, a student with 0 estimated
+ability would be expected to answer an item with -1 difficulty correctly about 73% of the time
+while the same student would be expected to answer an item with 0.5 difficulty about 27% of the
+time.
+Estimated Item Difficulty and Latent Ability
+Two immediate consequences of training a one parameter Rasch model are “learning” an
+estimate for the item difficulty for each assessment item, and the latent ability for each student
+that took the exam. This means, for each item and student, there is a corresponding probability
+distribution function from which the probability that they will get an item correct. This
+probability can be obtained by substituting the appropriate θ and δ into Equation 3.
+Beyond the utility in computing the probability a given student will answer a question correctly
+(which will provide the basis for analyses to come), these derived measures from training the
+model can provide insight into the student population and the questions on the assessment. The
+distribution of student abilities and item difficulties can help inform the assessor of the spread of
+the students’ abilities and the items’ difficulty. It is important to note that the latent ability θ and
+item difficulty δ are unitless, and do not represent the same type of numerical relationship that
+PBC or item difficulty represent.
+Infit and Outfit
+After constructing a Rasch model of estimated student ability and item difficulty to predict the
+probability of answering a question correctly, one can consider how well the model fits the data.
+The Rasch model makes the assumption that all items have the same discrimination parameter
+value 1. We can consider fit values of less than 1 as overfitting the data and fit values greater
+than 1 as underfitting. We consider two residual-based fit statistics: outfit (outlier-sensitivity fit)
+and infit (information-weighted fit).
+Residual-Based Fit
+Residuals, in the case of a Rasch model, refers to the difference in the model’s calculated
+probability of a student, 𝑠, answering an item, 𝑖, correctly: 𝐸(𝑥 ) = 𝑃(𝑋 = 1|θ , δ ), and the
+𝑠𝑖 𝑠 𝑖
+student’s observed score, 𝑥 , on the same question. The residual-based fit is calculated as this
+𝑠𝑖
+difference divided by the variance of the item response.
+𝑥 − 𝐸(𝑋 )
+𝑠𝑖 𝑠𝑖
+𝑧 = (4)
+𝑠𝑖 𝑉𝑎𝑟(𝑋 )
+𝑠𝑖
+Residual-based fit statistics can be measured against the standardized error of items as defined by
+1 over the sum by items of the fit variance.
+𝑆𝐸 =
+𝑖 (5)
+∑𝑣
+𝑠𝑖
+Outliers occur beyond 1 ± 𝑆𝐸 . Since items with fit near 1 have the least discrimination power,
+it is suggested to use items with fit less than 1. We can thus categorize fit statistics as follows:
+● Poor: 𝑓𝑖𝑡 ≥ 1 + 𝑆𝐸
+● Acceptable: 1 − 𝑆𝐸 < 𝑓𝑖𝑡 < 1 + 𝑆𝐸
+𝑖 𝑖
+● Good: 𝑓𝑖𝑡 ≤ 1 − 𝑆𝐸
+Outfit (outlier-sensitivity fit)
+The outfit, or unweighted mean fit, is the average of the standardized fits without accounting for
+item variance.
+∑𝑧
+(6)
+𝑠𝑖
+𝑜𝑢𝑡𝑓𝑖𝑡 =
+Outfit identifies patterns when item difficulty is far from student ability. For example, outfit
+might identify when students with high ability answer a low difficulty question incorrectly or
+vice versa.
+Infit (information-weighted fit)
+The infit, or weighted mean fit, is the average of the standardized fits while accounting for item
+variance.
+∑𝑧 𝑉𝑎𝑟(𝑋 )
+𝑠𝑖 𝑠𝑖
+𝑖𝑛𝑓𝑖𝑡 = (7)
+∑𝑉𝑎𝑟(𝑋 )
+𝑠𝑖
+Infit identifies patterns when item difficulty is close to student ability. For example, infit might
+identify when students with ability near the item difficulty perform far better than expected by
+the model.
+Distractors
+Plausible, but incorrect, answers to the problem are referred to as distractors. Distractors can
+represent a wide variety of types of incorrect responses, and have been the topic of plenty of
+literature (Chamberlain Jr. & Jeter, 2019, 2020; Gierl et al., 2015, 2017). They can represent
+student misconceptions about the concept being assessed in a question or another concept; they
+can represent issues in manipulation or representation; they can even be created by manipulating
+the correct answer to the problem. Given the many types of thinking distractor answer choices
+can represent, they potentially play an integral role in the discriminative power of a multiple
+choice item. For example, an item that has no distractors that represent plausible misconceptions
+could inadvertently direct students to the correct answer choice without any understanding of the
+underlying concept being evaluated.
+Distractors Chosen Percentage
+In light of the significance of distractor answer choices, the frequency with which distractors are
+chosen can be very telling. The percentage of chosen distractors measures the rate at which
+students chose a distractor against the total number of distractors on the exam. We categorize
+distractors into three categories based on how often they were selected: “never chosen” (chosen
+0% of the time), “rarely chosen” (chosen between 0% and 5% of the time) and “sometimes
+chosen” (chosen more than 5% of the time). These categories help to identify distractors that
+were poor (never chosen), distractors that were either chosen at random or elicited a small
+percentage of students (potentially effective distractors), and effective distractors. Distractors in
+the latter two categories have potential to give insight into misconceptions present in student
+thinking, while distractors in the first category should be discarded and replaced with distractors
+based on theoretical or experimental design.
+Effective Distractors
+An effective distractor is an incorrect answer choice that is chosen by students at a rate of at least
+5% (Hingorjo & Jaleel, 2012). A distractor choice being chosen with some level of frequency
+indicates that it is likely to capture potential coherent thinking resulting from misconceptions
+about content. Ideally, every distractor would be “effective,” (each question would have 3 or 4
+effective distractors, depending on whether the question has 4 or 5 options) meaning that it is
+chosen at least 5% of the time. Realistically, many factors contribute to the choice of a distractor
+on an item, such as the exam it is seen on (e.g., first exam versus final exam) and the level of
+students taking the exam. Moreover, the literature suggests that 3 choices (2 distractors and 1
+correct solution), is optimal from a theoretical, empirical, and practical consideration (Haladyna
+et al., 2019). In light of these potential issues, the number of effective distractors a question has
+should hint to the discriminative power of the question itself.
+Identifying Discriminative Items
+Utilizing item measures from Classic Test Theory, Item Response Theory, and Distractor
+Analysis, we present a summary of each metric that will inform labeling items as sufficiently
+discriminating for the purposes of an educational assessment. Our methodology begins by
+classifying each item-level metric into “ideal”, “acceptable”, or “poor” and analyzing how these
+categories collectively explain the discriminative power of the item.
+Item-Level Metrics
+● Item Difficulty - Proportion of student sample who answered the item correctly. Ideally,
+item difficulty is normally distributed about 0.74 with as small a variance as possible. We
+consider items within one standard deviation of 0.74 to be “ideal” and items within two
+standard deviations as “acceptable.” Items outside of this range are “poor.”
+● Point-Biserial Correlation - Correlation between proportion of student sample who
+answered the item correctly and student sample overall score on assessment. Ideally
+correlation is at or above 1/ 𝐾 and is at least above 1/ 𝑛 − 3.
+● Rasch Item Infit - Infit identifies patterns when estimated item difficulty is close to
+estimated student ability. Ideally less than 1 - standard error, at least less than 1 +
+standard error.
+● Rasch Item Outfit - Outfit identifies patterns when estimated item difficulty is far from
+estimated student ability. Ideally less than 1 - standard error, at least less than 1 +
+standard error.
+● Effective Distractors - Distractors chosen at least 5%. Ideally all non-answers are
+effective Distractors, while at least one non-answer is an effective distractor.
+We then classify each assessment-level metric into “ideal”, “acceptable”, or “poor” and analyze
+how these categories collectively explain the reliability and discriminative power of the
+assessment.
+Assessment-Level Metrics
+● Item Difficulty Distribution - Ideal average item difficulty is slightly higher than
+halfway between random guess chance and 100% (e.g., 4-option item as ideally 0.74)
+with minimal item difficulty variation.
+● KR-20 Reliability Coefficient - Reliability between different forms of an assessment.
+Ideally at or above 0.8, at least at or above 0.5.
+● Distractors Chosen Distribution - Distribution of Distractors chosen across all items.
+Ideally Distractors are chosen at least 5% of the time.
+Methods
+To present a working example of our methodology, we study four multiple-choice exams
+administered in College Algebra over the course of the Fall 2017 term at the University of
+summary of the assessments.
+Exam 1 Exam 2 Exam 3 Exam 4
+A B A B C A B C A B C
+Number 3 options 1 1 1
+of MC 4 options 14 14 15 15 15 17 17 17 25 25 25
+Questions
+5 options 2 2
+total 16 16 16 16 16 17 17 17 25 25 25
+Students that took the 117 123 75 76 77 75 72 73 76 75 74
+exam
+To perform a thorough analysis of the exams, the exam items, and the students, we perform both
+exam-level analyses using Classical Test Theory (CTT) and item-level analyses using Item
+Response Theory (IRT).
+Classical Test Theory
+The CTT methods outlined in the methodology require extracting every student answer to each
+exam item as well as the corresponding solution to each item. With this information, observed
+scores for each student on each assessment can be computed by dividing the number of items
+they answered correctly on an exam by the number of items on the exam. Similarly, item
+difficulty is computed by dividing the number of correct responses to an item by the number of
+students that attempted the item. With the observed score for each student and their responses to
+each item, point-biserial correlation can then be computed by evaluating Equation 1 for each
+item and computing the corresponding bounds based on the number of questions on an exam and
+the number of students that took that exam. Lastly for CTT analyses, using the responses from
+each item (and in turn the proportion of correct answers), KR-20 can be computed for each exam
+directly from Equation 2.
+Item Response Theory
+We construct a one parameter Rasch model using the unconditional maximum likelihood
+estimation (UCON) method. The steps for training the model are as follows:
+1. Remove students with 100% scores and 0% scores
+As we are computing the natural log of average scores (either by student or by item),
+log(0) will produce errors.
+2. Approximate ability and difficulty
+( )
+δ ∑𝑞
+𝑠 𝑖
+a. Estimate ability per student using: θ = ln , where δ = (e.g., sum
+𝑠 1−δ 𝑠 𝑛
+of 1/0s for a single student divided by number of items student answered)
+( )
+1−µ ∑𝑞
+𝑖 𝑠
+b. Estimate difficulty per item using: 𝑏 = ln , where µ = (e.g., sum
+𝑖 µ 𝑖 𝑛
+of 1/0s by all students for a single question divided by number of students who
+answered the question)
+3. Standardize difficulty for mean 0
+Adjust difficulty per item with: β = 𝑏 − 𝑏 (e.g., adjusted difficulty is estimated
+𝑖 𝑖
+difficulty subtracted by average difficulty of all items)
+4. Iterate until sum of squares of residuals is sufficiently close to 0
+a. Calculate expected values: probability of student s answering question 𝑖 correctly
+( )
+given a student’s ability score and the item’s difficulty 𝑃 θ , β :
+𝑠 𝑖
+θ −β
+( ) 𝑒 𝑠 𝑖
+𝑃 θ , β =
+θ −β
+𝑠 𝑖
+1+𝑒 𝑠 𝑖
+b. Re-calculate all θ and β using the new expected values
+𝑠 𝑖
+( ) ( )
+c. Calculate estimated variances of expected values: 𝑣 = 𝑃 𝑥 * (1 − 𝑃 𝑥 )
+𝑠𝑖 𝑠𝑖 𝑠𝑖
+d. Calculate residuals between estimates and original data: 𝑒 = 𝑞 − 𝑃(𝑥 )
+𝑠𝑖 𝑠𝑖 𝑠𝑖
+e. Calculate sum of squares of residuals:
+( )2
+𝑒 = ∑ ∑ 𝑒
+𝑠𝑖
+𝑖 𝑠
+f. If e > 0.0001, re-calculate expected values and repeat: Calculate revised θ and
+β and restart at step 4 a.
+∑𝑒 ∑𝑒
+𝑠𝑖 𝑠𝑖
+𝑠 𝑖
+θ = θ + β = β −
+𝑠 𝑠 𝑖 𝑖
+∑𝑣 ∑𝑣
+𝑠𝑖 𝑠𝑖
+𝑠 𝑖
+Distractors
+The distractor-based methods outlined in the Methodology only require compiling a list of all
+student answers and a complete list of possible answer choices with their label of “distractor” or
+“solution.” From these data, percentages of distractors chosen and effective distractors per item
+only require direct computations of each distractor’s frequency of being chosen and then
+counting the number of distractors per item that were chosen more than 5% of the time.
+Item Discrimination
+A summary dataset of all of the items can be constructed using the methods for generating item
+level measurements outlined in the previous “Methods” subsections. With this summary dataset,
+the “ideal/good,” “acceptable,” and poor thresholds can be directly computed, and each item
+directly assessed for its quality with regard to each measure.
+Results
+Here we present an overview of each measurement described in the methodology with respect to
+the exams outlined in the Methods section.
+Classical Test Theory
+Overall, the Classical Test Theory analysis paints a picture typical of multiple-choice
+assessments in lower division Mathematics courses: there is a tendency for a large percentage of
+the class to get nearly all the assessment items correct. Ultimately, this limits the amount of
+discriminative power of assessment items to determine specific conceptual misunderstandings,
+because the modal response to a given item is correct.
+Observed score distribution
+While both forms for exam 1 had observed scores that were roughly normally distributed about
+70%, the remaining exams are more closely modeled by a beta distribution, given the significant
+mass on the right-hand side of the distribution (all distributions having a fairly large negative
+skewness). This is in contrast for the preferred observed score distributions described in the
+Methodology. Ideally, observed scores should follow a normal distribution with a kurtosis (the
+measure of the probability mass contained in the tails of the distribution) close to zero.
+The tendency towards right-skewed distributions can limit the discriminating power of the
+exams. An exam composed almost entirely of items that most of the students get correct will not
+be able to adequately discriminate between students with and without conceptual understanding.
+Alternatively, it suggests that questions can be dropped without affecting how well the exam can
+discriminate between student understanding.
+Reliability
+We measure assessment reliability using the Kuder-Richardson Formula 20 (KR-20) correlation
+coefficient. It measures the correlation between the proportion of right and wrong answers
+among all questions on an exam and provides a metric for assessing the internal consistency of
+an exam of dichotomous questions.
+As we detailed above, a KR-20 below 0.5 means an exam has low reliability, KR-20 between 0.5
+and 0.8 means an exam has moderate reliability, and KR-20 > 0.8 has high reliability. The KR-20
+Exam Exam 1 Exam 2 Exam 3 Exam 4
+Form A B A B C A B C A B C
+KR-20 0.68 0.71 0.78 0.71 0.74 0.78 0.75 0.53 0.77 0.77 0.70
+Aside from Exam 3 Form C, all of the exams scored comfortably in the “moderate reliability”
+range. This means that a student given a parallel, but non-identical exam should achieve a similar
+observed score to the exam that they completed during the period of study.
+Item difficulty
+Item difficulty describes the proportion of students that answer a given dichotomous question
+correctly. For dichotomous exams, it is ideal for item difficulty to be normally distributed with a
+small variance, such that there is sufficient data to discriminate between high and low performing
+students.
+Similar to the observed score distributions, with the exception of exam 1, the distributions for
+item difficulty are not normal, they are mostly right skewed. Combined with the observed scores
+distributions, this indicates that not only do most students perform well on all of the exams, but
+most of the items are answered correctly by most students.
+Point-biserial correlation
+Using the formula in Equation 2 and the thresholds for “poor,” (𝑃𝐵𝐶≤ ) “acceptable,” (
+𝑛−3
+1 1 1
+< 𝑃𝐵𝐶 < ) and “good” (𝑃𝐵𝐶≥ ), we are able to classify the point-biserial
+𝑛−3 𝐾 𝐾
+correlation for each item on each exam. The number of questions in each category for each exam
+point-biserial correlation. Percentages for bars of the same color add up to 100%.
+No exam has more than a few “poor” items in terms of point-biserial correlation, in fact, most
+questions on most exams fall into the “good” category. This indicates that for most questions,
+students’ performance on that question is indicative of their overall performance on the exam.
+This is consistent with the general tendency towards most students answering most questions
+correctly.
+Item Response Theory
+Overall, IRT results suggest exams 1 and 2 provide few outliers and that all questions
+discriminate student ability in some manner. However, exams 3 and 4 produced several outliers
+in both low and high difficulty questions evident through the estimated item difficulty values
+outside of -2 to 2 range, poor/good infit, and poor/good outfit. We present a more detailed look at
+each exam and each metric below.
+Estimated Item Difficulty and Latent Ability
+Item difficulty for exams 1 and 2 follow a normal distribution with almost all items estimated
+between -2 and 2. However, exams 3 and 4 present a small number of questions outside of the
+range -2 to 2 which are likely to be outliers. Moverover, exam 4 in particular presents a
+skew-right distribution of item difficulty with a peak around -1, suggesting this exam was easier
+described in Equation 3.
+Student estimated latent ability over all 4 exams appeared skew-left with a peak between 1 and 2.
+Recall that estimated latent ability begins as the natural log of a ratio of each student’s exam
+scores. The model then adds to student ability to better fit the sigmoid curve and distinguish
+between student performance. The model also removes any student scores of 0 and 100, resulting
+in the low number of highest estimated latent ability.
+described in Equation 3.
+Item Infit
+Recall that Item Infit identifies patterns when item difficulty is close to student ability. Item Infit
+all exam items. It is unlikely that infit alone will predict the discrimination of any item, though a
+poor item infit may be particularly indicative of an item that needs to be considered for removal.
+Item Outfit
+Recall that outfit identifies patterns when item difficulty is far from student ability. Unlike Item
+outfit (underfit outliers). As expected with the increased frequency of item difficulties outside of
+-2 and 2 in exams 3 and 4, far more outfits of poor and good appeared in those exams.
+To further investigate the differences between poor and good item outfit, we consider the
+correlation between good/poor outfit and estimated item difficulty as well as good/poor outfit
+both the normal and natural log correlation for each.
+At a glance, both good and poor outfit are correlated with the items’ estimated difficulties. In
+particular, good outfit occurred primarily in questions with difficulties between -2 and 1 while
+poor outfit was distributed throughout item difficulty (between -2 and 4). In other words,
+“easier” questions had the best fit with the model (smallest difference between expected
+probability of success and actual success). On the other hand, good and poor outfit do not appear
+correlated with point-biserial correlation. This suggests outfit and point-biserial correlation can
+be used in tandem to further distinguish between good and poor items on an assessment.
+Scatterplot comparing item outfit and point-biserial correlation (PBC) for items with “ideal/good” outfit. (bottom left)
+Scatterplot comparing item outfit and estimated item difficulty for items with “poor” outfit. (bottom right) Scatterplot comparing
+item outfit and point-biserial correlation (PBC) for items with “poor” outfit.
+Distractors
+Presenting answer choices that effectively capture students’ misconceptions of the content
+mastery being evaluated can markedly improve the diagnostic utility of summative assessments.
+In turn, this targeted distractor creation methodology can improve the discriminative power of
+assessment items by providing an appropriate answer choice for students with specific
+misconceptions (leading them to select the distractor answer choice instead of potentially
+selecting at random). Similarly, poorly constructed distractor choices can increase the probability
+of selecting the correct answer choice for savvy students by allowing them to eliminate answer
+choices without any content mastery.
+The results from analyzing the distractors in our study point to many distractors across the item
+set being selected less than 5% of the time. Subsequently, the percent of items with more than
+one effective distractor (a distractor chosen more than 5% of the time) is around 50% for most of
+the exams. This implies that on most of the items, students are able to effectively reduce the
+number of likely answer choices to 2 (the solution and the effective distractor). This increase in
+probability of answering an item correctly at random (from 25% to 50% for most questions)
+dramatically limits the discriminative power of these items.
+Distractors Chosen Percentage
+Analyzing the frequency with which a distractor answer choice is chosen, the “distractors chosen
+percentage”, allows one to gain insight into how well the question design overall is able to
+capture misconceptions into student thinking. Distractor answer choices can be split into three
+major categories depending on the frequency with which they are chosen: chosen 0% of the time
+(“never chosen”), chosen 0–5% of the time (“rarely chosen”), and chosen > 5% of the time
+(“sometimes chosen”).
+0% of the time), “Rarely Chosen” (chosen between 0% and 5% of the time), “Sometimes Chosen” (chosen more than 5% of the
+time). Percents in each color of blocks sum to 100%.
+noteworthy that each exam has between 37% and 62% of distractors chosen more than 5% of the
+time. This indicates that largely distractor answer choices are scarcely selected. This mirrors the
+findings related to observed scores: most students selected the correct answer on most items most
+of the time.
+Effective Distractors
+With the cutoff of being selected at least 5% of the time for a distractor to be considered
+for each exam. Most exams have ≈ 50% of questions with one or fewer effective distractors.
+This means that there are a significant number of questions (though not all of the 50%) that a
+student was able to improve their probability of randomly selecting the correct answer to at least
+50%.
+sum to 100%.
+Identifying Discriminative Items
+Combining all of the measurements for assessing assessment items with their corresponding
+12. Each item in exam 4B is displayed with the six key measurements for identifying the
+discriminative power displayed on the x axis: estimated item difficulty, outfit, infit, number of
+effective distractors, point-biserial correlation, and item difficulty. The cells for each item are
+color coded depending on whether the measurement falls into the “ideal/good,” (green)
+“acceptable,” (yellow) or “poor” (red) category.
+isolation. Item 4B26 has an estimated item difficulty of 4.28, which should be highly
+discriminative, but the PBC of -0.11 and item difficulty of 0.09 suggest that this item was so hard
+that almost no students were able to answer it correctly. While this item may be able to identify
+the top student in a class, it is not generally effective at discriminating between high and low
+performing students because it is so hard.
+Items 4B09 and 4B10 are illustrative examples for the efficacy of the integrated methodology.
+According to Rasch estimated item difficulty, infit, and outfit, both 4B09 and 4B10 are good
+candidates for discriminative items. However, combined with effective distractors, PBC, and
+item difficulty, it is clear that only 4B10 is an effective item. 4B09 has no effective distractors,
+and is too easy to be discriminative (96% of students answered it correctly).
+Lastly, the methodology can quite effectively identify ineffective items. 4B19 falls into the
+“poor” category for every metric considered except for effective distractors and item difficulty
+(both are acceptable).
+Methodology section, yellow items achieve the “acceptable” thresholds, and red items are “poor.”
+Discussions
+are in isolation, but how effective they can be when combined. The thresholds provided with the
+integrated methodology provide a direct comparison strategy that allows an instructor evaluating
+the items in an assessment convenient bounds for judging the discriminative power of each item
+across a range of measurements. When the measurements are in agreement, this provides the
+instructor confidence in the discriminative power of an item and will help them decide whether
+or not to maintain that item for future assessments. Moreover, the inclusion of distractor metrics
+furthers the educational purposes of assessments by identifying patterns of student thinking
+rather than solely predicting final score on assessment. It also provides nuance to considerations
+for the optimal number of options on an item. Rather than arguing from a theoretical perspective
+that 3 options provide the best statistical predictiveness, the number of item options may increase
+if more than 2 effective distractors can be established on an item.
+Returning to the goals of different types of assessments, these metrics may be used to further
+specific goals of an assessment. For example, summative assessments will pay closer attention to
+item difficulty and PBC as the goal of the assessment is to provide a single “descriptive” score
+associated with the student’s ability. Alternatively, formative assessments like assessments as
+learning (AaL) will pay closer attention to effective distractors (especially to present feedback
+associated to established patterns of student thinking) and outfit outliers as both can identify
+patterns of students answering incorrectly in expected ways (distractors) and unexpected ways
+(outfit outliers).
+Conclusions
+In this study we presented an integrated methodology that combines ideas from classical test
+theory, item response theory, and distractor analysis to identify discriminative items in multiple
+choice mathematics assessments. We provided explicit, statistically motivated thresholds for
+each measurement so that each item could be procedurally categorized as “ideal/good,”
+“acceptable,” and “poor” with respect to each measurement. This methodology provides
+instructors and researchers a high level view of each item in an assessment that can be easily
+interpreted to see the relationships between each measurement and suggest items that are
+effective and ineffective at discriminating between high and low performing students. This
+allows the instructor to quickly evaluate items for retention and removal for future exams.
+Beyond the value to an instructor deciding which items are effective and should be retained, the
+items highlighted by this integrated methodology present the opportunity to determine why
+certain items are more effective than others, and should be qualitatively analyzed by researchers.
+Qualitative analysis of distractors identified using this integrated methodology remains to be
+studied and will be the subject of future work.
+Authors’ Contribution
+RJ and DC designed and conceptualized the study and contributed to project administration. DC
+collected and processed the data. RJ and DC contributed to the methodology, investigation, and
+formal analysis. All authors interpreted the results and drafted and edited the manuscript.
+Acknowledgements
+DC acknowledges the support of NSF award number 2044302.

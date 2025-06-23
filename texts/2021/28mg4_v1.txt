@@ -1,0 +1,1652 @@
+A language of thought for the mental representation of geometric shapes
+1,2 3 4 1,2
+Mathias Sablé-Meyer , Kevin Ellis , Josh Tenenbaum , and Stanislas Dehaene
+Unicog, CEA, INSERM, Université Paris-Saclay, NeuroSpin center, 91191 Gif/Yvette, France
+Collège de France, Université Paris-Sciences-Lettres (PSL), 75005 Paris, France
+Cornell University, United States
+Massachusetts Institute of Technology, United States
+In various cultures and at all spatial scales, humans produce a rich complexity of
+geometric shapes such as lines, circles or spirals. Here, we formalize and test the
+hypothesis that all humans possess a compositional language of thought that can
+produce line drawings as recursive combinations of a minimal set of geometric prim-
+itives. We present a programming language, similar to Logo, that combines discrete
+numbers and continuous integration to form higher-level structures based on repeti-
+tion, concatenation and embedding, and we show that the simplest programs in this
+language generate the fundamental geometric shapes observed in human cultures. On
+the perceptual side, we propose that shape perception in humans involves searching
+for the shortest program that correctly draws the image (program induction). A
+consequence of this framework is that the mental diﬀiculty of remembering a shape
+should depend on its minimum description length (MDL) in the proposed language.
+In two experiments, we show that encoding and processing of geometric shapes is
+well predicted by MDL. Furthermore, our hypotheses predict additive laws for the
+psychological complexity of repeated, concatenated or embedded shapes, which we
+confirm experimentally.
+Keywords: Geometry; program induction; shape perception; Language of Thought;
+Complexity in Cognition
+Highlights honeycombs, or the spiral-like patterns of puffer fishes),
+only humans seem capable of mentally conceiving for-
+• Some geometrical shapes are universally attested
+mal, symbolic geometric structures in a combinatorial
+in humans, but not other animals
+and productive manner.
+• We formalize the hypothesis of a compositional
+The formalization of geometry is traditionally dated to
+language of thought for shapes
+Euclid’s Elements, itself rooted in Egyptian and Baby-
+• We argue for modeling human shape perception as
+lonian precursors. Yet various lines of evidence suggest
+program induction
+that an intuitive sense of geometry is much more an-
+cient, and that many, possibly all human cultures share
+• We provide empirical evidence of our proposal and
+a drive towards creating geometric designs (Van der
+outline the space of alternatives
+Waerden, 2012). Throughout the world, at geograph-
+ically distant and presumably unrelated sites, humans
+Introduction
+have produced parallel lines, circles, squares, zig-zags
+We could never know the geometric triangle
+or spirals, in activities as diverse as drawing, pottery,
+through the one we see traced on paper, if
+body paintings, rock art, land art (e.g., Nazca lines),
+our mind had not had the idea of it else-
+stone-cutting (e.g., bifaces), or large-scale constructions
+where.
+(e.g., Stonehenge). Many Neolithic sites contain square,
+—René Descartes
+circular or rectangular buildings as well as large circles of
+stones (cromlechs) whose axes are often systematically
+The cognitive origins of geometric knowledge remain
+oriented relative to geographical or astronomical land-
+heavily debated. While several animal species possess
+marks (Pimenta & Tirapicos, 2015). Before the advent
+sophisticated neural circuits for spatial navigation (in-
+of artificial flight, the shape of these large structures
+cluding head direction, place, grid and border cells), or
+could not be directly apprehended: from the ground,
+produce rich but systematic patterns (e.g. spiderwebs,
+they would be perceived as a distorted quadrilateral or
+ellipse, at best. The fact that squares and circles ap-
+peared at many different scales suggests that their hu-
+Corresponding author Mathias Sablé-Meyer
+man designers possessed an abstract mental concept of
+SABLÉ-MEYER, ELLIS, TENENBAUM, DEHAENE
+geometric shape that guided their architectural, artistic and mirror symmetry (Bornstein et al., 1978). Indeed,
+or practical creations. preschoolers’ drawings already show a tendency to rep-
+resent abstract properties of objects rather than the ob-
+Human and animal sensitivity to geometric pat-
+ject itself. Although they look primitive, drawings of a
+terns: a brief review
+house as a triangle on top of a square, or a person as
+Evidence for abstract concepts of geometry, including
+capacity for abstracting away from the actual shape and
+rectilinearity, parallelism, perpendicularity and sym-
+attending to its principal axes, at the expense of realism.
+metries, is widespread throughout prehistory. About
+Numerous tests leverage this geometric competence to
+70,000 years ago, homo Sapiens at Blombos cave carved
+assess a child’s cognitive development by counting the
+a piece of ocher with three interlocking sets of par-
+number of correct or incorrect abstract properties, for in-
+allel lines forming equilateral triangles, diamonds and
+stance when asked to draw a person (Goodenough, 1926;
+hexagons (Henshilwood et al., 2002). Much earlier, ap-
+Harris, 1963; Long et al., 2019a; Prewett et al., 1988;
+proximately 540,000 years ago, homo Erectus in Java
+Reynolds & Hickman, 2004). There is some evidence,
+carved a zig-zag pattern on a shell (J. C. A. Joordens
+however limited, that this ability may be specifically
+et al., 2015). Such a zig-zag may look simple, but it
+human: when given pencils or a tablet computer, other
+approximately respects geometric constraints of equal
+non-human primates do not draw any abstract shapes
+lengths, equal angles and parallelism, and is undoubt-
+or recognizable figures, but mostly generate shapeless
+edly attributed to the homo genus. Even earlier, since
+scribbles (Saito et al., 2014a; Tanaka et al., 2003).
+~1.8 million years, ancient humans have been carving
+spheroids (sphere-like stones) and bifaces — stones pos-
+We recently compared the perception of quadrilateral
+sessing two orthogonal planes of symmetry (Le Tensorer,
+geometric shapes in humans and in baboons, using the
+2006). The vast number of bifaces, their near-perfect
+very same task (Sablé-Meyer et al., 2021). We used
+symmetry (which is not required for them to operate as
+the intruder test (Dehaene et al., 2006), which involves
+eﬀicient tools (Le Tensorer, 2006)), and the archeologi-
+viewing an array of pictures and clicking on the one that
+cal evidence that many were never used as tools, suggest
+looks distinctly different from the others, and is well
+that an aesthetic drive for symmetry was already present
+within the grasp of human adults, children and baboons.
+in ancient humans.
+All humans, regardless of age, culture and education,
+exhibited a striking effect of shape regularity: intrud-
+Contemporary cognitive anthropology corroborates
+ers amongst squares and rectangles were detected faster
+those findings. Cognitive tests performed in relatively
+and more accurately than amongst other, more irregular
+isolated human groups such as the Mundurucu from the
+quadrilaterals, and there was a systematic gradient of re-
+Amazon, the Himba from Namibia, or aborigine groups
+sponse time and error rates across shapes, from squares
+from Northern Australia, show that in the absence of
+and rectangles to parallelograms, trapezoids, and fully
+formal western education in mathematics, adults and
+irregular shapes. Strikingly, this geometric regularity ef-
+even children already possess strong intuitions of nu-
+fect was absent in baboons. Baboon behavior was quite
+merical and geometric concepts (Amalric et al., 2017a;
+consistent across individuals and could be captured by
+Butterworth et al., 2008; Dehaene et al., 2006; Izard et
+neural network models of the ventral visual pathway for
+al., 2011b; Pica et al., 2004; Sablé-Meyer et al., 2021).
+object recognition. Modeling the human perception of
+Indeed, adults without formal western education share
+quadrilaterals, however, required an additional assump-
+with Western preschoolers a large repertoire of abstract
+tion, namely the existence of discrete symbolic concepts
+geometric concepts (Dehaene et al., 2006) and use them
+of parallelism, right angle, equal length, or equal angle.
+to capture the regularities in spatial sequences (Amalric
+We therefore argued that two strategies can be used to
+et al., 2017a) and quadrilateral shapes such as squares
+perform the outlier task: a visual one, available to all
+or parallelograms (Sablé-Meyer et al., 2021). They even
+primates, and an abstract, symbolic one that may be
+possess sophisticated intuitions of how parallel lines be-
+unique to humans (Sablé-Meyer et al., 2021).
+have under planar and spherical geometry, such as the
+unicity of a parallel line passing through a given point
+From these observations, one is left wondering what
+on the plane (Izard et al., 2011a).
+could be the origins and evolutionary advantage of the
+Another piece of evidence arises from developmental human competence for abstract geometry. We propose
+data. Preschoolers and even infants have been shown that it is a specific case, in the visual domain, of a gen-
+to possess sophisticated intuitions of space (Hermer eral human ability to decompose complex percepts and
+& Spelke, 1994; Landau et al., 1981; Newcombe et ideas into composable, reusable parts – an ability which
+al., 2005), spatial sequences (Amalric et al., 2017a), led to a massive enhancement of human productions,
+LOT FOR GEOMETRIC SHAPES
+from architecture to tool building, and of the capacity imental psychophysical or neurophysiological literature
+to understand the abstract features of the environment. on shape perception, while the individual transforma-
+tions remained (for exceptions, see Brincat & Connor,
+Summary of our approach and hypotheses
+2004, 2006; Hung et al., 2012).
+In the present paper, we formalize and put to an em-
+In our previous work, we introduced a much more re-
+pirical test the hypothesis that geometry is one of the
+stricted, yet more precise, language of thought for geo-
+manifestations of the specifically human ability to rep-
+metric sequences. Our work focused on capturing the
+resent and manipulate recursively embedded languages
+psychological complexity of all the sequences of 8 loca-
+(Dehaene et al., 2015; Fitch, 2014; Fodor, 1975; Fran-
+tions that can be generated by drawing without repeti-
+kland & Greene, 2020; Hauser et al., 2002; Piantadosi,
+tion from the vertices of an octagon using either explicit
+2011).
+prediction of the next location or eye tracking of the
+anticipation when looking at a sequence (Amalric et al.,
+Fodor (1975) famously introduced the language of
+2017a). The basic building blocks of our proposed lan-
+thought hypothesis, according to which an inner com-
+guage were the arithmetic primitive of discrete number,
+binatorial language underlies high-level cognition in hu-
+the geometric primitives of rotation and of symmetry
+mans and allows the creation of a vast space of mental
+around a given axis, and a single recursive operation of
+representations by recursive recombination of preexist-
+repetition (possibly with variations). These operations
+ing ones. Hauser, Chomsky and Fitch (Hauser et al.,
+could be embedded, thus allowing for repetitions of rep-
+2002) hypothesized that recursion might be the single
+etitions in a nested manner. For instance, the repeated
+uniquely human ingredient that explains the emergence
+application of a left-right symmetry operation, each time
+of the human language faculty. Fitch (2014) and De-
+with an increment in the starting point, could generate a
+haene et al. (2015) later argued that recursion is not
+zig-zag pattern. A square could be generated by a 4-fold
+limited to linguistic communication, and that various
+repetition of moving by 2 vertices around the octagon.
+“languages of thought”, all based on a basic capacity
+As a more complex example, a sequence of two squares
+for recursive syntax and compositional semantics, could
+could be generated by two nested “for loops”, i.e. a 2-
+underlie many other uniquely human abilities such as
+fold repetition (while changing the starting point) of the
+music, mathematics or theory of mind. Here, we apply
+4-fold repetition that draws a square.
+this idea to the domain of geometric shape perception, a
+possibility which was anticipated by (Hochberg & McAl-
+Amalric et al. (2017a) measured empirically the
+ister, 1953) who summarized their proposal as “the prob-
+diﬀiculty that preschoolers and adults (including
+ability of a given perceptual response to a stimulus is an
+Mundurucu adults) had in predicting or memorizing
+inverse function of the amount of information required
+spatial sequences of locations on an octagon. Across
+to define that pattern.”
+11 geometric sequences, psychological complexity was
+Our proposal builds upon the seminal work of Leeuwen- determined by the complexity of their internal represen-
+berg and colleagues (Boselie & Leeuwenberg, 1986; tation in the proposed language. Working memory was
+Leeuwenberg, 1971), who proposed a formal coding lan- not determined by sequence length (which, indeed, was
+guage for 2- and 3-dimensional shapes, and showed fixed at 8 items), but by the capacity to compress the
+that it could account for data on human shape per- sequence into a compact internal representation using
+ception. Furthermore, Leeuwenberg’s language outputs the proposed language. The central concept here, as al-
+sequences of numbers which can then be mapped to ready proposed by many others (Chater & Vitányi, 2003;
+tones to form “tunes”, and the length of the smallest Feldman, 2000, 2003; Li & Vitányi, 1997; Mathy & Feld-
+program for a given tune correlated with the average man, 2012; Romano et al., 2013), is that psychological
+listening time of participants asked to repeatedly listen complexity in humans depends on minimum descrip-
+to the tune until they anticipated they could predict it. tion length (MDL), i.e. the length of the shortest
+Later, Leyton (1984, 2003b) argued that the shapes that mental representation which can encode the sequence,
+humans generate arise from a set of primitives (points, rather the literal length of the sequence. In the case
+lines, planes) together with the repeated mental appli- of our language for geometric sequences, MDL was also
+cation of a series of group transformations that dupli- shown to tightly correlates with brain activity in both
+cate, stretch, rotate, or skew them. While these elegant functional magnetic resonance imaging (fMRI; Wang et
+proposals have had a considerable influence in the de- al., 2019) and magneto-encephalography (Al Roumi et
+sign of graphics software, it is fair to say that the core al., 2021). The very same language was also successfully
+aspect of productive compositionality from basic oper- extended to account for the perception of simple audi-
+ations remained partially disconnected from the exper- tory sequences made of two discrete sounds (Planton et
+SABLÉ-MEYER, ELLIS, TENENBAUM, DEHAENE
+al., 2021). problem of program induction, i.e. the identification of
+a program that produces a certain output. In line with
+In the present work, we move beyond discrete sequences
+much previous work (e.g. Chater & Vitányi, 2003; Feld-
+made of points and straight lines, and tackle the men-
+man, 2000, 2003; Feldman & Singh, 2006; Li & Vitányi,
+tal representation of static geometric shapes such as a
+1997; Mathy & Feldman, 2012; Romano et al., 2013), we
+square, a circle or a spiral. As noted above, the square is
+hypothesize that the perceived complexity of a shape is
+easily captured by a language with discrete integers and
+determined by its minimum description length (MDL)
+repetition (“for loops”). However, continuously varying
+in the proposed language.
+shapes such as circles and spirals raise interesting issues
+As a consequence of the relation between MDL and the
+that arguably require more than integers. In computer
+perceived complexity of a shape, we predict that several
+languages such as Logo, such drawings are implemented
+behavioral measures should be directly impacted by the
+using a discrete repetition instruction with a very small
+MDL of a shape. For instance, the time it takes to learn
+increment, thus drawing a quasi-continuous curve which
+a shape (i.e., to induce its program), as well as its sub-
+is in fact made of straight lines. However, we find im-
+jective complexity, should scale with the MDL. Other
+plausible the idea that humans intuitively think of such
+measures, such as the time to select a known shape
+an infinitesimal and inherently discrete representation
+amongst distractors, or the accuracy of that choice, may
+when thinking of a circle. Furthermore, computation-
+also scale with MDL to the extent that the influence
+ally, the unbounded nature of such infinitesimal loops
+of other competing strategies based on low-level visual
+would allow short programs to generate visually com-
+properties (e.g. average grey level, spatial frequency)
+plex shapes. Instead, we argue that the crucial notion
+can be mitigated. Indeed, choice time is a function of the
+of “repetition with variation” introduced in our previous
+multivariate relation between target and the distractors
+work can be helpful again, but now in a continuous ver-
+(Vigo & Doan, 2015), so in the following experiments, we
+sion. We propose that, whenever a mental primitive is
+make sure that at least one distractor is close enough to
+available, for instance for drawing a straight line, mental
+the target in low-level visual properties, thus inciting
+control structures in humans are available to either keep
+participants to adopt a higher-level strategy. Note that
+its parameters constant, or to continuously vary them
+our language targets geometric shapes specifically and
+over time. Thus, the new version of our proposed lan-
+makes no claims about other kind shapes, such as the
+guages includes not only discrete repetition (“for loops”),
+contours of natural objects, whose description requires
+but also continuous repetition (i.e. integration). As a
+other constructs (see Wilder et al., 2016).
+result, the language can conceive of a curve with a fixed
+amount of turning at any moment – a circle –, or a curve
+Two comments are in order. First, the power of the pro-
+where the amount of turning increases continuously – a
+posed language rests entirely on its capacity to encode
+spiral –, etc. Our proposal implies that both discrete
+repetition with variation (e.g. a square and then an-
+repetition and continuous path integration are primitive
+other square). This concept is equivalent to invariance
+concepts in the human language of geometry. Indeed, a
+up to a transformation (e.g. invariance of the square
+key hypothesis of the present work is that the human
+up to a transformation of its starting point), which in
+mind can encode discrete as well as continuous changes
+mathematics, is the definition of symmetry: an object
+and integrate them within a single language of thought.
+is said to be symmetric if it (or part of it) remains un-
+This part of our proposal is deeply related to the near-
+changed after some transformation. The language we
+universal existence of a system of aspect in human natu-
+proposed recursively compresses any detectable repeti-
+ral languages, betraying the existence of continuous ver-
+tion with variation, and therefore any symmetry in the
+sus discrete concepts of time and repetition (compare for
+object or sequence. Second, our proposal is related to,
+instance the imperfective, e.g. “the curve was turning”,
+but distinct from, the psychological concept of chunking.
+with the perfective, e.g. “the curve turned”) (Comrie,
+While our language decomposes objects into coherent
+1976).
+subgroups, this proposal goes beyond mere chunking in
+that (1) it applies recursively and (2) its final represen-
+In summary, we propose that the human mental rep-
+tation is not just a set of nested groupings (chunks of
+resentation of geometric shape involves a language of
+chunks) but a mental program which can generate the
+thought that can produce virtually all the geometric line
+initial shape or sequence, possibly with variations.
+drawings observed in human cultures as combinations of
+a minimal set of geometric primitives. Our core hypoth- Below, we describe the proposed language in detail, list
+esis is that perceiving a shape, in humans, consists in its predictions, and test them in two experiments. First,
+finding the shortest program that suﬀices to reproduce we show that our language predicts which shapes are
+it. Our proposal thus connects shape perception to the judged simple. Second, we show that any such language
+LOT FOR GEOMETRIC SHAPES
+has to satisfy a set of additive relationships for repeated, the position of the pen by a certain amount in the cur-
+concatenated or embedded shapes, and that those uni- rent direction without tracing; and Trace, which traces a
+versal laws can be experimentally validated. curve by integrating over a set of parameters (duration,
+speed, acceleration, and turning speed).
+A generative language for geometric shapes
+Second, the three control structures are Concatenate
+In this section, we make our proposal concrete by intro- (also denoted by “;”) which executes one program and
+ducing a specific language, somewhat similar to Logo’s then another; Repeat, which repeats a program a certain
+turtle language, for generating a variety of geometric number of times (twice by default); and Subprogram
+line drawings. The language we propose is based on two which saves the current state, executes a given program,
+postulates. First, we assume that all humans possess a and resumes the previous state for the rest of the execu-
+set of primitive operators or “mental routines” (Ullman, tion, thereby isolation the execution of the subprogram.
+1984) that serve as building blocks for more complex
+Third, since these instructions require either discrete or
+programs. We included elementary primitives that have
+continuous arguments, the language contains a number
+been proven to be present in human children or adults
+system, with integers (Int) and numerical (Num) types.
+in the absence of formal education; several of them are
+For computational simplicity, in order to avoid a huge
+likely to be inherited from primate evolution. Our prim-
+combinatorial explosion that would prevent the enumer-
+itives comprise the concepts of
+ation of all minimal programs, we did not include a full
+• Small exact integers (Feigenson et al., 2004) which algebra, in spite of recent evidence that humans may
+can be minimally generated by the successor func- possess one (Grace et al., 2020). Instead, the Int’s are
+tion 𝑠(𝑛) = 𝑛 + 1 (Izard et al., 2008), built using Peano arithmetic starting from 1 (the lan-
+guage has a one primitive and a successor primitive,
+• Fractions, i.e. ratios of those integers (Jacob &
+and the Num are either signed integers (positive or nega-
+Nieder, 2009; Siegler et al., 2011)
+tive), or signed fractions of two integers. This is enough
+• Straight line (see e.g. Izard et al., 2011b), to generate rational numbers, but prevents nesting of
+fractions.
+• Heading direction (Muller et al., 1996) and how it
+changes when we turn, The numbers generated by our language are unitless,
+and they are interpreted differently depending on the
+• Path integration (Dehaene et al., 2006; Gallis-
+functions in which they are evaluated. For the Turn
+tel, 1990; Leeuwenberg, 1971; McNaughton et al.,
+function, an argument of 1 is interpreted as “one right
+2006; O’Keefe & Nadel, 1978),
+angle” (i.e. the unit for angle is “right angle”). Similarly,
+• Right angle turn (Dehaene et al., 2006; Dillon et Move and Trace instructions use implicit units of length
+al., 2019; Izard et al., 2011b) and speed, determined such that the default values (1)
+on duration and turning speed imply turning by a full
+Extensions of this list, for instance to large approximate
+circle. These hypotheses, while plausible, are not crucial,
+numbers, would be straightforward and are considered
+since changing them would only minimally change the
+in the discussion, but as we shall see, those primitives
+predicted shape complexities (e.g. if the default turn
+appear to suﬀice to account for a broad variety of geo-
+was by 180°, a right-angle turn would still be available
+metric shapes that humans universally consider simple.
+at a minimal constant cost, as half of it).
+Our second postulate is that, in humans only, a compo-
+Calculation of minimum description length
+sitional language of thought allows these primitive op-
+erators to be combined into larger programs. We sup-
+Our language does not guarantee that each shape can
+pose that three composition instructions are available:
+be generated by a single program. Quite the opposite:
+concatenation; repetition; and call to a subprogram in
+whenever a shape can be generated at all, an infinity
+isolation.
+of programs are available to generate it. Our third key
+postulate is therefore that humans search for the short-
+Program instructions
+est program that draws a given shape. We refer to the
+following instructions. First, as in the “logo” language its Minimum Description Length (MDL), and the corre-
+(Abelson et al., 1974), drawing instructions dictate the sponding program(s) as the Minimal Program(s). No-
+movements of a pen that can move and trace curves on tice that this is compatible with a Bayesian framework,
+a plane. Those instructions are Turn, which changes or probabilistic program induction (Lake et al., 2015b):
+the current heading of the pen; Move, which changes since the number of programs of length 𝑛 increases ex-
+SABLÉ-MEYER, ELLIS, TENENBAUM, DEHAENE
+Program :=
+| Program ; Program Concatenate : run one program and then another
+control
+| Repeat([Int=2]) { Program } Repeat a program a certain number of times
+| Subprogram { Program } Execute a program, then restore the original state
+| Trace([t=Int=1], Trace a curve by moving according to the parameters
+[speed=Num=+1],
+[acceleration=Num=+0],
+drawing
+[turningSpeed=Num=+0])
+| Move([t=Num=+1]) Move a certain distance without tracing anything
+| Turn(angle=Num) Rotate the current heading
+Int :=
+| one Number 1
+| Next(Int) Successor function
+arithmetic
+Num :=
+| +Int | -Int Return a signed number
+| +Int/Int | -Int/Int Return the signed fraction of two integers
+As indicated in the right column, control primitives act on programs, drawing primitives move the pen on the plane in various ways,
+and arithmetic instructions generate integers and fractions that are passed as parameters. Green, instructions; pink, types; blue, named
+parameters; gray, default values for optional arguments (denoted by brackets).
+ponentially with 𝑛, the log likelihood of a given program As a slightly more complex example, the following pro-
+under the hypothesis of a probabilistic grammar will be
+proportional to its MDL.
+Repeat(n(n(one))) {
+The complexity of a program is defined as the number Subprogram { Trace(acceleration=one/n(n(one)),
+of nodes in its syntax tree, or equivalently the number turningSpeed=+one)
+of primitives in the program, with two exceptions. First, } ;
+whenever a signed number is required, for instance when Turn(angle=n(n(n(one)))/n(n(one)))
+turning by a certain angle, an additional node is needed }
+(indicating + or -). This node was not counted, thus
+preventing the cost of signed values from being system- This program of complexity 21 draws three identical
+atically higher than that of unsigned values (e.g. one, inward spirals using the Trace instruction. Note that
+vs. +one). Second, concatenations did not increase the number 3 is coded as next(next(one)) (again, this
+MDL. This feature arose as a by-product of our imple- assumption is adopted for simplicity; adding primitives
+mentation, which used continuations to express concate- for numbers 2 and 3 would only minimally change the
+nation (all programs takes a last argument which must predicted MDL). The Subprogram instruction ensures
+be a program, possibly empty, and executes it when it that, after drawing a single spiral, the position is reset
+is done, which effectively implements concatenations). to the origin. The Turn instruction, which takes 4/3 as
+We checked that the results did not change dramati- its argument, ensures that the three spirals are oriented
+∘ 4 ∘
+cally when adding counting concatenations, as the re- at 120 = 90 from each other.
+sults should not hinge on this implementation detail.
+Simulation results
+Examples
+We first examined the shortest programs in the proposed
+The minimal program to draw a square is
+language, and whether they always generate shapes that
+Repeat { Repeat { Trace ; Turn(angle=+one)} } are simple and frequently attested in human cultural
+history. To this end, we wrote a program that system-
+(where the infix operator “;” denotes concatenation). atically enumerates all possible programs in order of
+This program works because, in the absence of any argu- increasing MDL, and draws the corresponding shapes
+ment, Repeat defaults to 2 repetitions. Since a turn of (we eliminated, automatically as well as manually, the
+one means a right-angle turn, this program concatenates shapes that could be generated by a simpler program).
+MDL of this program is 5 (repeat + repeat + trace + shapes after cleaning of duplicates, sorted by MDL. The
+turn + one). simplest, lowest complexity shapes are extremely simple:
+LOT FOR GEOMETRIC SHAPES
+Shapes sorted by Minimum Description Length
+are culturally observed. Nevertheless, the shapes with
+MDL
+low MDL remain introspectively simple (this intuition
+is tested formally in experiment 1 further below). This
+observation is in stark contrast with most other such
+languages, such as Logo, where the combinatorial explo-
+sion creates short programs with complex, unintuitive
+graphic outputs.
+Program induction using DreamCoder
+A crucial aspect of our proposal is that humans encode a
+shape mentally by inferring a simple program that could
+generate it. Thus, the perception of a simple shape is
+an act of “program induction”. Yet it is implausible
+that humans scan through thousands of programs be-
+fore recognizing a square. Otherwise, the time required
+6 to recognize a shape would grow exponentially with the
+length of its shortest program. Thus, it is important to
+show that such an inference is, at least approximately,
+computationally feasible in our specific case. While pro-
+gram induction remains a diﬀicult challenge for com-
+puter science, we leveraged a state-of-the-art program
+induction technique, the DreamCoder algorithm (Ellis
+et al., 2021). This algorithm is given programming prob-
+9 lems via examples of the desired behavior, and searches
+for the simplest program that performs the task. Here, a
+task reduces to a shape, and DreamCoder has to find the
+shortest program that generates it. DreamCoder inter-
+nally represents the language as a probabilistic grammar
+and enumerates programs according to their likelihood
+using the probabilistic weights of the grammar.
+Two features of DreamCoder speed up the search. First,
+the weights are task-dependent and are suggested by a
+neural network for a given task. For instance, Dream-
+Coder may learn that shapes with straight lines call the
+Trace instruction without any TurningSpeed argument.
+Sample shapes generated by the enumeration of all programs in the
+proposed language. Programs were listed by increasing MDL. Iden- The neural network can be trained without any envi-
+tical or perceptually indistinguishable shapes that could be generated
+ronmental input or supervision, simply by sampling a
+by a simpler program were eliminated. Starting at MDL=4, only
+a limited sample of 7 shapes is shown, as the number of shapes random program, generating the corresponding shape
+increases exponentially with MDL.
+(called “dreaming”) in a top-down manner, then using
+this internally generated shape-program data pair in
+supervised learning in order to adjust the bottom-up
+they consist of a line segment (MDL=1), then a circle
+weights from the shape to its program representation
+(MDL=2) and a spiral (MDL=3). The low-complexity
+(see also Lake et al., 2017). Second, DreamCoder builds
+shapes with MDL = 4 or 5 are also excellent candidates
+new abstractions for pieces of programs that are often
+for cultural universals: repeating circles, dashed lines,
+used for a given set of tasks: for example, if the shapes
+spirals with various numbers of loops, and other simple
+contain many right angles, it may create a new abstrac-
+mathematical shapes such as the square, the half-circle,
+tion Turn(angle=1), thereby increasing the likelihood
+or two tangent circles. At this stage, the concatenation
+of programs that use it. In a Bayesian sense, this cor-
+instruction also generates less intuitive, but still cultur-
+responds to updating the priors over the space of pro-
+ally attested shapes such as a “sigma” (segment + circle)
+grams. This abstraction mechanism is useful to capture
+or a “crosier” (segment + spiral). As MDL increases,
+regularities in a corpus of shapes: subprograms used to
+the huge combinatorial explosion of programs results
+draw the simplest ones can be reused to draw more com-
+in an enormous variety of shapes, only some of which
+plex ones. Interestingly, these two mechanisms interact.
+SABLÉ-MEYER, ELLIS, TENENBAUM, DEHAENE
+As the grammar becomes biased towards using certain towards shapes that resemble the training set (bottom
+ased towards recognizing them; for example, the neu- for observed shapes, and therefore yield visually similar
+ral network might increase the probability of the “turn” shapes.
+primitive when it sees angles, or that of “repeat” when
+The DreamCoder approach opens up a number of per-
+it notices repeating patterns.
+spectives on how human cognition could eﬀiciently ad-
+dress the problem of program induction. First, it nat-
+A. Training set
+urally accounts for cultural drifts: while shapes such
+“Greek” “Celtic”
+as circles and squares are universally shared, cultures
+are also characterized by the frequent use of specific
+patterns (e.g. linear Greek friezes versus curvilinear
+Celtic spirals). This arises even though the geometric
+primitives are universal, because each culture adopts,
+initially by chance, some preferred combination of prim-
+itives, which are then internalized as frequent subpro-
+grams or program fragments and progressively cement
+a specific style of geometric patterns – a proposition that
+generalizes the “child as a hacker” hypothesis (Rule et
+B. Samples (dreams)
+al., 2020). Second, DreamCoder may explain how sim-
+“Greek” “Celtic”
+ple geometric shapes may be eﬀiciently recognized and
+used by young children in the absence of much or any
+training (poverty of the stimulus argument). This is be-
+cause the top-down system (from programs to shapes)
+can be used to train the bottom-up system (from shapes
+to programs) via the use of “dreams”, i.e. internally gen-
+erated training data. In an improved version of Dream-
+Coder, the bottom-up neural network could be repur-
+posed to directly retrieve the most plausible program
+for a given shape, thus providing a possible mechanism
+by which humans can quickly identify simple shapes. Fi-
+Testing the DreamCoder algorithm for program induction. A, shapes
+nally, another promising aspect of this proposal, which
+used in a training phase. We verified that, in response to all 32
+shapes shown, the algorithm was able to identify a short, presum- remains to be fully explored, is the possibility of creating
+ably minimal program that could generate it. The algorithm was
+reusable abstractions or program templates. While the
+trained either with the square shapes at left (“Greek” style) or with
+the circular shapes at right (“Celtic” style). B, examples of addi- square, for instance, is not a primitive of the original lan-
+tional shapes spontaneously generated by sampling from the gram-
+guage, a square-drawing program schema may become
+mar learned during the training set, and therefore biased towards a
+certain geometric style. abstracted over time, thus allowing the participant to
+easily understand concepts such as “a square of circles”
+We found that, together, those two mechanisms made or “a square twice larger than the previous one”, etc.
+program induction feasible for our language, at least for At present, however, for simplicity, such named subpro-
+separate corpora, one with mostly rectilinear shapes (re- of the DreamCoder program-induction software.
+ferred to as “Greek”), and one with mostly curvilinear
+shapes (referred to as “Celtic”). After learning, Dream-
+Experiment 1: predicting geometric complexity
+Coder finds fitting programs for each of these tasks:
+for more exhaustive evaluation of DreamCoder includ- Does the proposed language have any psychological re-
+ing train/test splits and ablation of its various compo- ality? In experiment 1, we test the simplest prediction
+nents, including with drawing primitives, refer to (Ellis of our proposal: the perceived complexity of a shape
+et al., 2021). Interestingly, the abstractions it created should be determined by its minimal program length. If
+depending on the domain were different. This could humans represent shapes as mental programs, then for
+be visualized by sampling “dreams” from the resulting tasks involving shape perception and manipulation, the
+grammars. Simple shapes (circles, lines, squares) appear MDL of the shape should predict the diﬀiculty of the
+in both cases as they are still simple in a grammar with task. Additionally, as MDL increases, the time it takes
+additional abstractions, but the grammars exhibit a bias to perform program induction on the shape increases as
+LOT FOR GEOMETRIC SHAPES
+well, and therefore it should take longer to encode the
+shape in working memory and to compare it with other
+shapes.
+2s
+This prediction should hold only provided that other
+Blank screen
+simple perceptual strategies do not suﬀice to perform
+those tasks. In previous work, we found that the per-
+ception of quadrilaterals could be based on two systems:
+Phase 1 : Encoding Phase 2: choice
+a list of symbolic rules akin to those arising from the
+current language (e.g. right angle, equal sides), and
+B C
+only available to humans; and a classical invariant shape RT (ms) RT residuals (ms)
+recognition system, well captured by a convolutional
+Choice: Choice:
+neural network model of the ventral visual pathway, 300
+R² = 0.73 R² = 0.54
+p = 0.0004 p = 0.0067
+and available to both human and non-human primates
+(Sablé-Meyer et al., 2021). Thus, to properly test the
+existence of the first system, it is important to cancel
+Encoding:
+-300
+out the potential contributions of the second. R² = 0.46
+Encoding:
+p = 0.0158
+R² = 0.68
+p = 0.0009
+Here, we asked participants to memorize a sample ge-
+2 4 6 8 10 12 2 4 6 8 10 12
+ometric shape and perform a delayed match-to-sample
+Minimum Description Length Minimum Description Length
+task where, after a 2-second delay, that shape had to
+be selected from an array of 6 possible choices, some of
+trial, participants pressed a key for as long as they needed to mem-
+measured the choice time, but also the encoding time by
+orize a shape (encoding phase), then, after a 2-second delay, had
+letting participants view the sample shape for as long as to select the corresponding shape among a 2x3 grid (choice phase).
+Note that there was a size change between phase 1 and phase 2.
+they wished, holding down the space bar until they were
+B, correlation between MDL and behavior. Average encoding time
+ready to decide; as soon as they released the space bar, (purple) and choice time (orange) are plotted as a function of MDL.
+Error bars represent one standard error across participants. C, same
+the sample shape disappeared, then after a fixed delay,
+results after regressing out the effect of total luminance.
+the choices appeared. We hypothesized that both encod-
+ing time and choice time would be predicted by MDL.
+ration of the press the encoding time, as it is an indirect
+Methods
+measure of the time that participants needed to encode
+the target shape. More specifically, we predict that this
+Participants. Participants were 125 adults tested on-
+duration spans over several cognitive steps, some inde-
+line (53 females, 69 males, 3 preferred not to answer; age
+pendent from the shape (e.g. motor actions) and at least
+range 20 to 78, mean and median 44 years old), recruited
+one that should scale with the MDL, as participants are
+and tested online via messages on social media. The task
+performing program induction to build a mental repre-
+was approved by our university’ committee for ethical
+sentation of the shape they remember.
+research (CER-Paris-Saclay-2019-063) and participants
+gave informed consent.
+The choice screen comprised six different shapes that
+Procedure and Stimuli. On each trial, we showed
+were displayed on an isoluminant blue/yellow checker-
+participants a sample shape for a variable duration, then
+an empty screen for 2 seconds, and finally a 2x3 choice
+click on a shape, which ended the trial. We measured
+screen with 6 shapes. Participants were asked to click
+both accuracy and response time, which we refer to as
+on the shape that was shown originally. Participants
+choice time. We predicted that those variables should
+controlled how long they looked at the reference shape:
+also impacted by MDL because, after ruling out visu-
+when they were ready to start a trial, they clicked at
+ally implausible distractors (e.g. based an exceedingly
+the center of the screen (thus centering their mouse),
+different gray level), participants would have to either
+then pressed the space bar on their keyboard. The sam-
+generate the target shape from their remembered mental
+ple shape was shown for as long as the space bar was
+representation and compare the output to the remaining
+depressed. Upon releasing the space bar, the shape dis-
+candidates, or to encode the remaining candidates and
+appeared and they were left with a blank screen. In-
+compare with their memory representation of the target,
+structions insisted on the self-paced nature of the task:
+and both strategies should scale with MDL.
+“Keep the spacebar depressed for as long as you deem
+necessary to remember the shape well”. We call the du- The experiment comprised 6 initial training trials, then
+SABLÉ-MEYER, ELLIS, TENENBAUM, DEHAENE
+68 trials with 68 unique testing shapes, each appearing Both measures were significantly correlated with the
+shapes sample from the list of shapes with MDL=5 in also performed between-subjects ANOVAs on the lin-
+our language. During training, the distractors were al- ear effect of MDL (numerical factor) across participants.
+ways the same six shapes and participants had each of The main effect of MDL was again highly significant
+them as a target once. Piloting indicated that the choice (encoding time: F(1,115)=148.5, p<.001; choice time:
+of distractors was crucial for the performance to vary F(1,115)=480.7, p<.001).
+from one shape to the other: if the distractors were too
+Since MDL showed a small but significant partial cor-
+dissimilar from the sample shape, participants learned
+relation with gray level (R²=.07, p=.027), we repli-
+to press and release the spacebar as fast as they could,
+cated this analysis by first removing the main effect of
+knowing that a purely perceptual strategy suﬀiced for
+gray level on response times, then performing a sim-
+virtually perfect accuracy and therefore bypassing the
+ple linear regression on the residuals. The effect of
+need to have an accurate mental representation of the
+shape. To mitigate this strategy, we selected distractors
+R²=.46, p=.016; choice time: R²=.54, p=.006; between-
+closely matched to each shape. We computed, for each
+subjects ANOVAs, encoding time: F(1,115)=118.2,
+p<.001; choice time: F(1,115)=248.1, p<.001).
+metrics: (i) the average gray level (average pixel value of
+an image), and (ii) the difference in the vector codes of
+Both of these effects were replicated on error rates, de-
+the shapes within the last layer of a convolutional neural
+spite accuracy being very high. Plots of MDL against
+network of object recognition, CORnet (Kubilius et al.,
+either error rates or the residuals of error rates on gray
+2019). CORnet is a convolutional neural network that
+figures amongst the top-scoring models of the ventral
+icantly correlated with the dependent variable, indicat-
+stream according to BrainScore, “a composite of mul-
+ing that participants made more mistakes as MDL in-
+tiple neural and behavioral benchmarks that score any
+creased (raw R²=.51, p=.009; after taking the residuals
+ANN on how similar it is to the brain’s mechanisms for
+on gray level, R²=.48, p=.012).
+core object recognition” (Schrimpf et al., 2018, 2020).
+We also estimated the quality of our model for shape
+Then, on each trial, we presented on the choice screen,
+complexity by contrasting it with many random com-
+at random locations: (1) the correct target shape; (2)
+peting models where the shapes’ MDLs were shuffled.
+two of the four closest shapes according to CORnet;
+(3) two of the four closest shapes according to average
+derive p-values that our model is as predictive as it
+gray level, different from those selected in (2); and (4)
+is by chance, by counting the number of “better” ran-
+a last shape uniformly sampled among the remaining
+dom models generated when shuffling: for both encod-
+test shapes. The selection algorithm ensured that all 6
+ing time and choice time, no shuffled model was better,
+choice shapes differed. The choice of shapes and their
+ensuring that p<.0001, and for error rates 7 out of 10000
+placement were fully randomized for each participant,
+models were better, therefore p=.0007.
+independently within training and within testing.
+To compare the effects of MDL and gray level, we
+Results
+also performed a multiple-regression analysis with both
+Overall error rate was very low (1.82%), so we concen- variables (normalized) as predictors, across the 68 test
+trated our analysis on response times. We removed all shapes. For encoding time, both predictors were signif-
+participants who failed on 5 or more trials, as well as par- icant (both p<.0001; R²=.59; betas = 157.7 (Standard
+ticipants whose overall average encoding time or choice Error [SE]=37.4) for MDL and 272.0 (SE=37.4) for gray
+time was higher than the group mean plus three stan- level). For choice times, both predictors were also signif-
+dard deviations (9 participants removed in total; 116 re- icant (MDL: p=.0003; gray p<.0001; R²=.53; betas =
+maining). We also removed, for each shape, trials where 108.7 (SE=28.8) for MDL and 182.75 (SE=28.8) for gray
+the encoding time exceeded the average encoding time of level). For error rates, only MDL was significant (MDL:
+that shape plus three standard deviations (and similarly p=.003; gray p=.84, R²=.13; betas: =.014 (SE=.004)
+for choice time). This procedure removed 3.8% of the for MDL and -.001 (SE=.004) for gray).
+total number of trials.
+We also controlled for additional visual features (see Fig-
+To test for the predicted effect of MDL on behavior, ure 7). For each shape, we manually counted the num-
+we performed simple linear regressions on the encod- ber of extremities (variable Nex), intersections where
+ing times and choice times as a function of the MDL. two lines meet (singularities, variable Ni2), intersections
+LOT FOR GEOMETRIC SHAPES
+Histogram of the # of simulations ending A
+at given slope out of 10000 samples
+Error Rate Error Rate residuals
+0.06
+Encoding Time
+0.04
+R²=.51
+p=.009 R²=.48
+p=.012
+0.04
+0.02
+0.02
+0.00
+p<.0001
+0.00
+-0.02
+-100 -50 0 50
+2 4 6 8 10 12 2 4 6 8 10 12
+Program Cost Program Cost
+Choice Time
+Betas in a binomial GLM
+To predict Error Rate
+(error rate /unit)
+200 p<.01
+1.5
+p<.0001 p<.01
+0.8
+p=.51
+-50 0 50 p=.27
+p=.93
+0 0.1 0.2
+Error Rate
+-0.5
+p=.01 -0.7
+-0.8
+p<.01
+-1 p=.03
+-1.3
+p<.01
+p=.0007
+A, correlation between MDL and behavior. Left: Average Error Rates
+-0.012 -0.008 -0.004 0.000 0.004
+are plotted as a function of MDL. Error bars represent one standard
+simulated slope error across participants. Right: same results after regressing out
+tures. We ran a binomial GLM with all the features, normalized for
+comparison, as well as the MDL, and display the fitted coeﬀicients
+and their significance, for the error rate. Grayed out predictors
+Bootstrap over the shapes’ MDL. For each dependent variable in sep-
+were not significant in the regression, and bright orange indicates
+arate panels, we show the distribution of the slope of 10000 simple
+our regressor of interest, the MDL. Predictors are ranked according
+linear regression computed after shuffling the shapes’ MDLs. The
+to their magnitude when predicting the choice time.
+dashed line, on the right, indicates the slope of our (unshuffled)
+theory. From this we can derive p-values by computing the frac-
+tion of random theories that are better than our theory: this yields
+p=.0007 for error rates, and ensures p<.0001 for both encoding time
+and choice time as no random permutation fared better.
+fully fitted at the level of individual participants). Fig-
+ure 7 shows the breakdown of each shape’s property,
+as well as a comparison of the predictors associated to
+where three lines meet (Ni3), intersections where four or
+each normalized term in the full model. For both en-
+more lines meet (Ni4+), disconnected parts (Ndis), and
+coding time and choice time, the predictor associated
+finally the presence of a closed shape or not (closure). To
+to the MDL significantly predicted the dependent vari-
+confirm that the effect of MDL did not result from a spu-
+rious correlation with these features, we first ran a model
+more conservative control, we computed the residuals
+comparison between a mixed-effect model with all fea-
+from the first model for each participant, then averaged
+tures, grey level, and the average spatial frequency, with
+those residuals over participants and MDL levels, and
+participants as random intercepts, and the same model
+examined the correlation of those residuals with MDL.
+plus the MDL. The second model was significantly bet-
+This linear model was not significant for the encoding
+ter than the first one for both dependent measures (Like-
+time (r²=.04, p=.51), but it was for choice time (r²=.58,
+lihood Ratio Test, encoding time 𝜒 = 106.4, 𝑝 < .001;
+p=.003). Inspection of the residuals show that the “seg-
+choice time 𝜒 = 169.8, 𝑝 < .001). The same result held
+ment” shape, which is the only shape with MDL=1,
+for error rates using binomial linear models (error rate:
+had a very high residual for the encoding time, while
+𝜒 = 107.43, 𝑝 < .001; for this model no random effects
+the other seemed to follow the MDL pattern. After re-
+were included, as the estimates could not be meaning-
+moving this outlier item, both encoding time and choice
+SABLÉ-MEYER, ELLIS, TENENBAUM, DEHAENE
+A B
+Betas in a Mixed-Effect GLM predicting participants’
+Choice Time (ms/unit)
+p<.01
+169.8
+p<.01
+p<.01
+107.9
+102.2
+p<.01
+p<.01
+45.6
+p=.69
+0 28
+-26 3.4
+p=.02
+-76.7
+-89.7
+-100 p<.01
+p<.01
+Response Time (ms/unit)
+p<.01
+218.8
+p<.01
+164.9
+p<.01
+p<.01
+114.1 p<.01
+86.2
+79.2
+p=.07
+p=.55
+7.6 -27.7 27.5
+p=.04
+-100.3
+-100
+p<.01
+Residuals on all other predictors (ms), with and without MDL=1
+Choice Encoding Choice Encoding
+R²=.58 R²=.05 R²=.63 R²=.5
+p<.01 p=.51 p<.01 p=.02
+Program cost Program cost
+2 4 6 8 10 12 2 4 6 8 10 12
+Detailed analysis of Exp. 1 A, breakdown of the properties. For each shape, describes the manually annotated or computed visual features. B,
+Predictive power of the visual features. We ran a mixed-effect GLM with all visual features, normalized for comparison, as well as the MDL,
+and display the fitted coeﬀicients and their significance, for both choice time and response time. Grayed out predictors were not significant
+in the regression, and bright orange indicates our regressor of interest, the MDL. Predictors are ranked according to their magnitude when
+predicting the choice time. C. The simple linear model MDL and either choice or response time, on the residuals of a mixed-effect model
+with all visual features, after averaging per MDL value. On the right, we display the same regression after removing the only trial where
+MDL=1.
+time residuals were now significantly predicted (encod- p=.12).
+ing time: r²=.5, p=.015; choice time: r²=.63, p=.003).
+For completeness, a similar strategy was pursued with
+Discussion of experiment 1
+error rates, first taking the residuals on a binomial re-
+gression on all other predictors, and then fitting a sim- As predicted, in a delayed match-to-sample task with
+ple linear regression with MDL on those residuals. The geometric shapes, participants were influenced by the
+resulting trend was similar but not significant (r²=.23, shape’s Minimum Description Length (MDL) in our pro-
+LOT FOR GEOMETRIC SHAPES
+posed language. This result held at individual levels and suﬀices to generate a circle of squares, or a square of
+for all measures of encoding time, choice time and error circles – and thus, this addition should just have an
+rate, with comparable effect sizes. The effect of MDL additive effect on MDL.
+did not trivially arise from spurious correlation with
+These observations lead to the following quantitative
+other image properties such as number of parts, intersec-
+prediction: in any language for geometric shapes which
+tions, closure, etc. While behavior was also influenced
+includes primitives of repetition, concatenation and em-
+by the perceptual property of average gray level, the
+bedding, the cost of complex shapes should be the sum
+effect of MDL remained even when controlling for this
+of the lengths of (1) the program(s) that are being re-
+low-level effect and all other variables. Yet MDL alone
+peated, concatenated or embedded, plus (2) a fixed cost
+did not fully predict behavior: in a regression with many
+for the instruction itself and, if necessary, its operands.
+predictors, several exhibited some explanatory power in
+our task. This finding supports our prior suggestion
+placed side by side: we predict its complexity to be the
+that there are two type of strategies available to perform
+sum of the complexity of each shape plus some constant
+such perceptual tasks with geometrical figures (Sablé-
+for the concatenation instruction. Likewise, the cost for
+Meyer et al., 2021): one that encodes shapes at a visual
+a repetition of a shape should only depend on the cost
+level, based on perceptual properties such as gray level,
+of that shape, plus a constant to express the repetition,
+intersections, etc; and one that represents them at an
+and a cost for the parameter ”number of repetitions”. Fi-
+abstract, symbolic level, which is well captured by our
+proposed language.
+embedded in another (e.g. a square of circles) should be
+the cost of each shape plus a constant for the “embed”
+While this result is promising, there are many reasons to
+instruction.
+believe that our specific language proposal is not com-
+plete, and that it would be possible to find shapes for
+In summary, the following relations should hold, where
+which the fit would be poor. For instance, the com-
+𝐶𝑥 stands for “complexity” (at least for 𝑥 ≠ 𝑦, see be-
+plex outlines of natural objects (e.g. the contour of a
+low):
+recognizable animal) are completely outside of reach of
+our proposal, and other theories based on medial axis 1. 𝐶𝑥 (𝑟𝑒𝑝𝑒𝑎𝑡(𝑥, 𝑛)) = 𝛽 + 𝛽 ∗ 𝐶𝑥(𝑥) + 𝛽 ∗ 𝐶𝑥(𝑛)
+0 1 2
+or shape skeletons would fare much better (Feldman
+2. 𝐶𝑥 (𝑐𝑜𝑛𝑐𝑎𝑡(𝑥, 𝑦)) = 𝛽 + 𝛽 ∗ 𝐶𝑥(𝑥) + 𝛽 ∗ 𝐶𝑥(𝑦)
+0 1 2
+& Singh, 2006). Even within geometric shapes, and
+as we further examine in the general discussion, there 3. 𝐶𝑥 (𝑒𝑚𝑏𝑒𝑑(𝑥, 𝑦)) = 𝛽 + 𝛽 ∗ 𝐶𝑥(𝑥) + 𝛽 ∗ 𝐶𝑥(𝑦)
+0 1 2
+are shapes that the language cannot easily describe (e.g.
+Note that the multipliers 𝛽 and 𝛽 should be close to
+ovals), or properties it cannot easily encode (e.g. while 1 2
+1 if the length of the program is the only factor that
+an equilateral triangle has a low MDL, there is no way
+comes into play, but might exceed 1 if additional factors
+to describe “any triangle”). Thus, while experiment 1
+intervene (e.g. interference between the two shapes in
+tested the specifics of our language, experiment 2 was
+working memory). 𝛽 , on the other hand, represent the
+designed to test regularities that any such reasonable 0
+constant cost associated with the operation at hand and
+language should verify.
+should be strictly positive.
+In experiment 2, we therefore replicated the delayed
+Experiment 2: Fundamental laws of repetition,
+match-to-sample with new stimuli. We selected five base
+concatenation and embedding
+shapes spanning a broad range of predicted complexities,
+To sidestep the constraints that come with choosing a and used them to build new stimuli through repetition,
+specific language, we designed an experiment that tests, concatenation and embedding, with the goal of testing
+independently, the three most fundamental aspects of whether their complexity could be predicted from the
+our proposition, namely the existence of operations of complexity of their base shapes. Thus, we designed a
+repetition, concatenation and (nested) embedding (that total of 60 images that served as samples in the task :
+available in any modern programming language, have tions of those base shapes, generated by showing side by
+the highest impact on the compressibility of shapes and side four copies of the base shape; (3) twenty-five con-
+help decorrelate the length of a program and the amount catenations corresponding to all 5x5 pairs of base shapes
+of “ink” of a shape. They allow a program to be ex- placed side by side; and (4) twenty-five embeddings of
+tremely short and yet the shape to be complex, as long a base shape inside another, generated by drawing the
+as it is highly regular. For instance, from the programs outline of one shape using 8 or 9 copies of the other.
+SABLÉ-MEYER, ELLIS, TENENBAUM, DEHAENE
+In a separate group of participants, we also measured the (2) two concatenation distractors where either the left or
+subjective complexity of the same shapes. We presented right shapes were replaced by a different base shape, (3)
+participants with those 60 shapes in random order and one distractor from the embedding condition, using the
+asked them to evaluate each shape’s complexity on a same two shapes as the left and right shapes, assigned
+scale from 0-100. randomly to embedded and embedding, (4) one distrac-
+tor from the repetition condition, using randomly either
+Method
+the left or the right shape. Similarly, for the embedding
+condition, the distractors were (1) a distractor from the
+Participants. Participants were recruited via Twitter.
+embedding condition, with the same outer shape but the
+One hundred and seventy adults participated in the
+inner shape replaced by its local deviant; (2) two em-
+main delayed match-to-sample task (71 male and 99
+bedding distractors where either the outer or the inner
+females), with a breakdown of 16 participants in the
+shape was replaced by a different base shape, (3) one
+18-25 age group, 77 in the 25-40, 68 in the 50-60 and
+distractor from the concatenation condition, but using
+9 in the 60+. Participants were not compensated for
+the same two shapes as the inner and outer shapes, (4)
+participating in this study. An additional 27 adults par-
+one distractor from the repetition condition, using either
+ticipated in the subjective ratings (15 females and 12
+the inner or the outer shape. Our logic was that this set
+males). Both tasks were approved by CER-Paris-Saclay-
+of distractors covered a broad range of programs in the
+2019-063, and participants gave informed consent.
+proposed language, each with a small local change or
+Procedure and Stimuli for the delayed match-to-
+“bug” – thus forcing subjects to search for the shape
+sample task. The procedure for this experiment was
+identical to that of our first experiment, and only the
+8B shows, for each condition, an example of a target
+stimuli changed. The stimuli were generated from five
+and five possible distractors.
+base shapes that were piloted to vary in encoding and
+choice time (square, circle, S, sigma, and square root,
+In addition to those 60 trials, 10 initial training trials
+allowed participants to get used to the task flow and
+shapes had similar amounts of ink, or gray level: the
+to the diﬀiculty level of the memory task. Training tri-
+square, sigma and square root all had four segments of
+als were generated similarly, but using three different
+identical length, arranged differently; the circle matched
+base shapes and the same exact procedure. The experi-
+the square in length; and the S shape comprised two
+ment proceeded seamlessly from training to testing tri-
+semi-circles and was therefore matched with the circle.
+als, without any notice.
+Those base shapes were then used to generate the 60
+Procedure and stimuli for subjective complex-
+target stimuli for the four experimental conditions: sin-
+ity ratings. Upon clicking on a link from the twitter
+gle shape (5 stimuli), repetition (a string of 4 identical
+message, participants landed on an experiment designed
+shapes; 5 stimuli), concatenation (2 shapes side by side;
+with jsPsych (De Leeuw, 2015). The experiment started
+5x5=25 stimuli), and embedding (an inner shape was
+with a consent form as well as a small demographic ques-
+presented at the usual size, but in 8 or 9 copies that
+tionnaire for age group and sex. Then they were pre-
+formed the outlined of a second, outer shape; 5x5=25
+sented with instructions for the task: using sliders from
+stimuli).
+0-100, they had to give a complexity rating to each of
+the 60 sample shapes. To familiarize them with the type
+Each of those 60 stimuli served as samples for the
+of shapes, the instructions included 24 shapes that did
+delayed match-to-sample task. During the choice pe-
+not appear afterward. We highlighted in the instruc-
+riod, the sample stimulus was intermixed with 5 distrac-
+tions that they should focus on trying to be consistent
+tors, which were generated in order to prevent short-cut
+across shapes. Participants were then presented with all
+strategies and maximize the need for a full identification
+60 shapes in a shuffled order. Participants could freely
+of the target shape. For each base shape, we designed a
+look at the shapes in any order and change their rating
+local deviant by removing one fourth of the shape (see
+until they were satisfied. The task took a median time
+st rd
+of 6:34 minutes to answer (1 quartile, 4:48; 3 quartile,
+tions, the distractors were (1) a distractor from the same
+9:36.).
+condition, but using the local deviant instead of the tar-
+get, (2) a distractor from the same condition, but using
+Results
+a different shape, (3) three distractors drawn from each
+of the other three conditions, and sharing at least one None of the subjective rating data were rejected. For
+shape with the target. For the concatenation condition, the delayed match-to-sample task, the error rate was
+the distractors were (1) a concatenation distractor where low (3.39%), and we removed data following the same
+one of the two shapes was replaced by its local deviant; strategies as in experiment 1 (7 participants and 3.16%
+LOT FOR GEOMETRIC SHAPES
+A Base
+Shape
+Local
+Deviant
+B1. Single shape B2. Repetition
+B3. Concatenation B3. Embedding
+Stimuli used in experiment 2. A, the 5 base shapes which were presented alone and in combinations, and the corresponding deviant shapes.
+B, Examples of screens presented during the choice phase in the four conditions of the experiment (randomly intermixed): single shape,
+repetition of a base shape, concatenation of two base shapes, and embedding of a base shape into another. In each case, the sample image
+which was presented during the encoding phase is highlighted, and the other cells of the 2x3 grid illustrate the diversity of distractors. A
+distinct group of subjects also gave subjective ratings of complexity for each stimulus.
+trials rejected). Because the accuracy was very high ing the last two shapes as more complex than the first
+across most conditions, we restricted our analyses to 2, with an overall ordering close to the one predicted
+encoding time, choice time and subjective complexity. by MDL. A one-tailed student test on the distribution
+of the 60 stimuli, as a function of the base shape(s) used sion with MDL confirmed that MDL significantly cor-
+to generate them. related with all three measures (encoding time p<.001,
+average r² across subjects 𝑟 =.30; choice time p<.001,
+𝑎𝑣𝑔
+First, we verified that, in the single-shape condition,
+2 2
+𝑟 =.40; subjective p=.004, 𝑟 =.55).
+all three dependent measures varied across the 5 base 𝑎𝑣𝑔 𝑎𝑣𝑔
+shapes we selected (ANOVAs where participants with
+missing data were removed, all p<.01). For encoding We then examined whether, when those shapes entered
+and choice times, the increase was roughly as follows: into more complex stimuli, the complexity still varied
+square and circle were roughly on par, and then the re- in a similar way, predictable from equations [1-3]. In
+sponse times increased for the S, sigma and square-root the repetition condition with 4 identical shapes, a sig-
+shapes, in this order. Note that this order is close to, but nificant, monotonic profile of response was observed for
+not strictly identical to the MDL ordering, which was all three dependent measures (ANOVAs where partici-
+circle, square, S shape, square root and sigma. The sub- pants with relevant missing data were removed, encod-
+jective ratings followed a noisier profile, but still rank- ing time F(4,576)=53.88; response time F(4,576)=36.87;
+SABLÉ-MEYER, ELLIS, TENENBAUM, DEHAENE
+Repetition Concatenation Embedding
+Encoding
+Time
+Number of
+(ms)
+Repetitions Left Outer
+4 shape shape
+self
+self
+R² = 0.9 ; p < 0.0001 R² = 0.85 ; p < 0.0001 R² = 0.64 ; p < 0.0001
+Repeated shape Right shape Inner shape
+Choice
+Time
+(ms)
+R² = 0.89 ; p < 0.0001 R² = 0.89 ; p < 0.0001 R² = 0.86 ; p < 0.0001
+Subjective
+ratings of
+complexity
+R² = 0.62 ; p = 0.0028 R² = 0.64 ; p < 0.0001
+R² = 0.53 ; p = 0.001
+Results of experiment 2. The three behavioral measures (encoding time, choice time, and subjective complexity) are shown for the 60 different
+stimuli, grouped into repetition (left), concatenation (middle), and embedding (right). The conditions are sorted as a function of base shape
+complexity. Note that the single-shape condition is shown in the repetition panel (number of repetitions = 1), and that the data from the
+concatenation of two identical shapes appears twice (as number of repetitions = 2 in the left panels, and as dots connected by a gray line in
+the middle panels). Similarly, the data for “self-embedded” shapes (e.g. a square of squares) appear with a gray line in the right panels). In
+each panel, we show the coeﬀicient of determination and statistical significance of the associated model (equations [1-3] in the main text).
+Error bars indicate standard errors across subjects.
+subjective rating F(4,104)= 6.63; all p<.001). Simi- were nearly parallel to each other, as predicted by our
+larly, we analyzed just the stimuli of the concatena- equations for MDL. To test this idea, we entered all
+tion condition where two identical shapes were placed 3 conditions into a mixed-effect linear model with two
+side by side, thus corresponding to a repetition of 2. main factors and their interaction, i.e. the repeated
+Again, for all dependent measures, a significant, nearly shape (5 levels), and the number of repetitions (numer-
+monotonic increase was seen across the 5 base shapes ical factor spanning 1, 2 or 4 repetitions). As shown
+F(4,576)=32.20; choice time F(4,576)=41.01, ; subjec- agreement with equation [1]. There was no significant in-
+tive F(4,104)=15.29; all p<.001). Importantly, the teraction with the number of repetitions for both subjec-
+curves for single shape, 2 repetitions and 4 repetitions tive rating and choice time, in agreement with equation
+LOT FOR GEOMETRIC SHAPES
+[1], but a significant interaction was found for encoding concatenation, we plot separately the “self-embedding”
+time. To measure the relative importance of the interac- trials, in which the same shape was used at the inner and
+tion term, we estimated the amount of the final model’s outer levels (e.g. a square of squares, a circle of circles,
+ble 1) by comparing the marginal r² (Nakagawa et al., data points again yielded lower values than the others
+2017) of both the full model and the model without the (i.e. lower subjective complexity, faster encoding and
+interaction. For the repetition condition, this indicated choice times). When we excluded those self-embedding
+that even when the interaction term is significant, it ac- trials from the mixed-effect model, the proportion of ex-
+counted for less than 10% of the explained variance in all plained variance associated to the interaction term were
+three dependent measures, and was therefore dominated reduced, indicating that the model’s explained variance
+by the main effect of shape and number. was dominated by the main effects, especially in the
+absence of self-embedded shapes. Although those obser-
+For the concatenation and embedding conditions, as
+vations were not predicted, they are minor compared to
+the main effects, and can easily be accommodated: it
+jective complexity also increased with each of the two
+appears that the mental representation of a “square of
+shapes involved (left/right or inner/outer). Equations
+squares” involves a saving, because both the embedded
+[2] and [3] predicted that these effects should be similar
+and the embedding shapes are identical, and thus pre-
+to the single shape condition and should not interact.
+sumably parts of the mental program are reused twice.
+but now with the shapes as two 5-level factors. Start- We further tested the predictions of equations [1-3] using
+ing with the Concatenation condition, for all 3 depen- General Linear Models (GLMs). Those equations imply
+dent variables, we found significant effects of both the that we should be able to accurately reconstruct the
+shape on the left and the one on the right, as predicted. complexity of composite shapes from that of the five
+Importantly, the interaction term was also significant. base shapes. To test this, we fitted generalized linear
+However, there was a very simple explanation: the 5x5 models on each of our dependent variables after averag-
+cal. In this case, our theory predicts that these stimuli eled the repetition conditions (base shape, two shapes,
+should be compressible using the repetition instruction, and four shapes) by predicting, for each dependent mea-
+and therefore easier to perceive than other concatena- sure, its value for a given trial as a linear function of its
+tion stimuli. This is exactly what we found: as seen value in the single shape condition and the number of
+ity, those data points are connected by a gray line), three dependent variables, and all predictors were sig-
+the repeated stimuli stood out as faster and subjectively nificantly different from 0 (all p<.05; subjective rating,
+less complex than the corresponding concatenation stim- R²=.62; encoding time, R²=.90; choice time, R²=.89).
+uli. Correspondingly, the fraction of explained variance The fitted coeﬀicients for the shape term were all close
+due to the interaction term in the full model was high to one (non-significantly different from 1 for both subjec-
+(ranging from 28% to 53%) across all three measures. tive complexity and choice time, and only slightly larger
+However, when we removed the conditions where both than 1 for encoding time), suggesting that base shape
+portion of explained variance collapsed to 5% or less for the repeated shape.
+all dependent measures, even when the term remained
+Similarly, we modeled the concatenation condition by
+significant, in accordance with equation [2].
+predicting the complexity of a trial with a linear combi-
+Finally, we ran the same analysis on the embedding con- nation of the complexity of the left shape, the complex-
+dition, using both embedded and embedding shape as ity of the right shape, and a dummy variable (termed
+the 2 factors, plus their interactions. Again, both main IsSelf) for whether the left and right shapes were iden-
+effects were significant on all 3 dependent measures, as tical (as these trials are instances of repeat and should
+predicted by equation [3]. However, as in the concate- have a lower perceptual complexity). This model was
+nation condition, the interaction term had a significant significant for each of our three dependent variables, and
+effect on encoding time and choice time, which our ad- all predictors were significantly different from 0 (see Ta-
+ditive equations did not predict – albeit these interac- ble 2; all p<.05; subjective, R²=.64; encoding, R²=.85;
+tion terms’ proportion of explained variance were low, choice, R²=.89). The coeﬀicients for both left and right
+ranging from 3% to 10%. Inspired by our analysis of shapes were not significantly different from 1 at the
+SABLÉ-MEYER, ELLIS, TENENBAUM, DEHAENE
+and Embedding) and to our three dependent variables (Subjective Rating, Encoding time and Choice time). In each
+case our model had two main effects and their interaction, plus a single random effect of the participant. P-values
+were computed using the Kenward-Roger approximation for degrees of freedom. For Repetition, the main effects
+were the repeated shape (5 levels), and the number of repetitions (numerical factor in 1, 2 or 4, respectively for the
+shape alone, for the concatenation of two identical shapes, and for the repetition condition). For Concatenation,
+the main factors were the shape on the left and the shape on the right. For embedding, the main effects were the
+outer/embedding shape, and the inner/embedded shape. For Concatenation and Embedding, we ran the model a
+second time after removing the stimuli in which the same base shape was used twice (e.g. two squares, or a square
+of squares).
+Repetition Shape Number Interaction
+Subjective Rating F =2.95 p=.020 F =11.56 p<.001 F =0.88 n.s.
+4,369 1,369 4,369
+Encoding Time F =4.66 p<.001 F =185.21 p<.001 F =14.86 p<.001
+4,2215.25 1,2215.10 4,2215.17
+Choice Time F =28.31 p<.001 F =35.75 p<.001 F =0.76 n.s.
+4,2215.41 1,2215.23 4,2215.31
+Concatenation Left shape Right shape Interaction
+Including Subjective Rating F =22.16 p<.001 F =16.71 p<.001 F =3.83 p<.001
+4,624 4,624 16,624
+self-concatenated Encoding Time F =52.88 p<.001 F =45.02 p<.001 F =27.67 p<.001
+4,3796.63 4,3796.54 16,3796.56
+shapes Choice Time F =76.72 p<.001 F =58.94 p<.001 F =25.77 p<.001
+4,3797.13 4,3796.97 16,3797.01
+Excluding Subjective Rating F =25.85 p<.001 F =20.80 p<.001 F =0.45 n.s.
+4,494 4,494 11,494
+self-concatenated Encoding Time F =57.78 p<.001 F =50.76 p<.001 F =1.85 p=.041
+4,3004.67 4,3004.59 11,3004.66
+shapes Choice Time F =78.42 p<.001 F =63.97 p<.001 F =2.16 p=.014
+4,3005.32 4,3005.18 11,3005.31
+Embedding Outer shape Inner shape Interaction
+Including Subjective Rating F =66.58 p<.001 F =28.54 p<.001 F =0.90 n.s.
+4,624 4,624 16,624
+self-embedded Encoding Time F =119.23 p<.001 F =61.62 p<.001 F =3.64 p<.001
+4,3786.68 4,3786.67 16,3786.70
+shapes Choice Time F =115.12 p<.001 F =118.95 p<.001 F =6.74 p<.001
+4,3787.10 4,3787.08 16,3787.12
+Excluding Subjective Rating F =55.57 p<.001 F =24.90 p<.001 F =0.42 n.s.
+4,494 4,494 11,494
+self-embedded Encoding Time F =103.49 p<.001 F =55.88 p<.001 F =1.20 n.s.
+4,2996.89 4,2996.79 11,2996.82
+shapes Choice Time F =111.20 p<.001 F =110.49 p<.001 F =3.74 p<.001
+4,2997.45 4,2997.29 11,2997.33
+the slopes tended to be higher than 1, although this of the complexity of constituents. This property was
+reached significance only in the case of encoding time observed in three different metrics that we collected as
+for the outer shape. We also observed a trend towards a proxies for the complexity of the mental representation
+larger influence of the outer shape compared to the inner of shapes: subjective complexity ratings, encoding times
+shape, consistent with the outer shape’s greater visual and choice times in a delayed match-to-sample task.
+impact, but again this effect was only significant in a
+single dependent measure (subjective ratings). Those
+More specifically, and following the equations, the fol-
+minor trends notwithstanding, the main finding is that
+lowing three results were verified: [1] the complexity
+the data supported equation [3]: even when we made the
+of the mental representation of n identical shapes is the
+visual pattern much more complex by embedding one
+complexity of the mental representation of the shape, to-
+shape inside another, thus creating for instance a circle
+gether with a cost that increases with n; [2] the complex-
+of squares, the final complexity was still only a linear
+ity of the mental representation of two different shapes
+function of the complexity of the individual shapes.
+side by side is the sum of their respective complexities;
+and [3] the complexity of the mental representation of
+Discussion of experiment 2.
+a shape drawn in outline using several small copies of
+Participants’ behavior matched the additive properties a different shape (which we called embedding) is pre-
+predicted by equations 1 through 3: the complexity of dicted by the sum of their respective complexities. The
+complex patterns could be decomposed into the sum latter finding is the most interesting, as intuition alone
+LOT FOR GEOMETRIC SHAPES
+shape type (repeat, concatenate, and embedding), each dependent variable (subjective rating, encoding time or choice
+time), and for each variable in the model (in columns), the value of the regression slope, associated standard error,
+and whether the effect is significantly different from 0 (*, p<.05; **, p<.01; ***, p<.001).
+Repeat Shape Number of repetitions
+Subjective 0.88 ± 0.23** 1.98 ± 0.89*
+Encoding 1.37 ± 0.15*** 87.69 ± 16.45***
+Choice Time 1.05 ± 0.11*** 47.31 ± 19.1*
+Concatenate Left shape Right shape IsSelf
+Subjective 0.72 ± 0.2** 0.67 ± 0.2** -8.33 ± 2.37**
+Encoding 0.92 ± 0.17*** 0.89 ± 0.17*** -433.15 ± 55.29***
+Choice Time 0.96 ± 0.12*** 0.81 ± 0.12*** -521.96 ± 63.28***
+Embedding Outer shape Inner shape IsSelf
+Subjective 1.84 ± 0.43*** 0.95 ± 0.43* -5.26 ± 5.27
+Encoding 1.94 ± 0.45*** 1.83 ± 0.45*** -222.82 ± 148.07
+Choice Time 1.29 ± 0.16*** 1.23 ± 0.16*** -169.22 ± 85.43
+might have predicted a product operation – after all, each with their respective coeﬀicients, indicating that
+the overall pattern comprises as many copies of the in- identical shapes induce a saving. Second, unexpectedly,
+ner shape as needed to draw the outer shape. However, the same phenomenon occurred in the embedding condi-
+the prediction from the language of thought perspective tion when a shape was outlined using a smaller version
+is clear enough: drawing a square of circles is not much of itself (“self-embed” trials, e.g. a square of squares).
+more complex than drawing a square itself – it merely re- Once again, the data points to the lower complexity
+quires stopping the square program at regular intervals of those trials, compared to those using two different
+to call a subprogram for drawing a circle, and in first shapes. Such a saving is not captured by our equations.
+approximation, such embedding only has a linear effect It suggests that in the mental representation of e.g. “a
+on total complexity. Of course, this is only true in first square of squares”, the two squares may be represented
+approximation – our square of circles, for instance, com- by a single mental program or at least by some degree
+prised additional circles not only at the vertices of the of sharing of working memory resources. This interest-
+square, but also in the middle of its sides, thus requiring ing finding supports the idea that human mental repre-
+a slightly more complex square-drawing program. Such sentations allow for named subprograms, recursive calls,
+subtleties, which require further investigation, may ex- or higher-order functions over functions, which are not
+plain why the slope measuring the impact of the outer fully captured by the present language.
+shape on the complexity of the overall pattern tended
+Overall, Experiment 2 goes beyond experiment 1 in
+showing that, over and above the specific complexity
+predicted by the particular geometrical language we pro-
+Two other salient effects emerged, one which could be
+posed, there are several properties of additivity that
+predicted from equations [1-3] and another which could
+must be satisfied by any such language, and that these
+not. First, when concatenating two identical shapes, the
+properties are true of the human working memory for
+resulting shape can be either described as a repetition
+geometric shapes.
+or as a concatenation – but our language of thought
+predicts that programs involving repetition are shorter,
+General Discussion
+and therefore that the complexity of a pair of shapes
+should be lower than predicted by concatenation alone. Previous research has emphasized that all humans in-
+Our data supports this prediction: concatenations of herit, from evolution, core knowledge of space and num-
+two identical shapes have a lower complexity than pre- ber that they share with many other animal species (De-
+dicted by the sum of the complexities of the two shapes, haene et al., 2006; Feigenson et al., 2004). Here, we
+SABLÉ-MEYER, ELLIS, TENENBAUM, DEHAENE
+propose that, in humans, those core systems can also and then training a neural network to perform the back-
+be recombined using a language of thought in order to ward inference from shape to program. The notion of
+form complex mental programs. As a result, humans “inner training” is an interesting metaphor for how hu-
+are able to form complex, compositional thoughts such mans may explore, in a purely mental manner, the do-
+as “three parallel lines”, “repeat a pattern four times”, main of geometry and discover interesting properties on
+or “arrange some circles in the shape of a square”. their own, without external inputs. This is possible if
+we assume, as René Descartes did in the introductory
+In the present work, we argued that such combinatorial
+citation, that our mind already has the ideas, at least in
+mental representations underlie human perception and
+the form of a large space of potential mental programs.
+working memory for geometric shapes, and we put this
+To further accelerate its search, the DreamCoder algo-
+hypothesis to several tests. First, we proposed a con-
+rithm looks for subprograms that are reused across sev-
+crete language inspired by observations on prehistoric
+eral shapes. This mechanism is useful to go from simple
+and ethnographic geometric patterns (featuring abstract
+shapes to more and more complex ones, as each new
+patterns, right angles, parallel lines, circles and spirals)
+success offers the possibility of discovering new abstrac-
+as well as elements from the core-knowledge literature
+tions. This mechanism changes the topography of the
+(number sense). We tested this language in Experiment
+search space by bringing certain shapes (those that lever-
+1 and showed that it could predict the behavior of par-
+age the discovered abstractions) closer to the effectively
+ticipants in a shape memory task, above and beyond
+searchable threshold for program induction: while all
+lower-lever perception mechanisms. In Experiment 2,
+shapes remain accessible, some of them become much
+we further showed that theoretically motivated additive
+simpler as they can be expressed more succinctly using
+equations for the complexity of composite shapes charac-
+the discovered abstractions. This mechanism could ex-
+terize humans’ subjective ratings and objective behavior
+plain cultural drifts in the style of geometrical patterns,
+in a delayed match-to-sample task, thereby constraining
+whereby a given human culture focuses on certain shapes
+the properties that must be satisfied by any proposition
+and their variants, thus producing, over time, a variety
+for a language of thought for geometric shape.
+of similar-looking patterns.
+The proposed theory of shape perception assumes that
+The core of our proposal builds upon Leyton’s (Leyton,
+humans can eﬀiciently infer a mental program from a
+1984, 2003b) seminal proposal of a generative theory
+visual percept, a problem known in computer science
+of shapes. Leyton’s theory stipulates that all shapes
+as “program induction”. The idea that humans infer
+are constructed in a bottom-up fashion by a sequence
+mental programs was previously shown to successfully
+of operations, called “control groups”, starting from a
+account for human concept learning (Lake et al., 2015b;
+single point. For example, the mental representation
+Rule et al., 2020), including hand-drawn sketches (Ellis
+of a cube would be the extrusion across the z-axis of a
+et al., 2018). However, program induction is a computa-
+square, which itself would come from turning a segment
+tionally challenging problem. Enumerating all possible
+4 times around a central point. The segment itself would
+programs until a match is discovered is not a plausible
+be built by translating the starting point along an axis.
+strategy, as the search time would scale exponentially
+The unpublished experiments briefly mentioned by Ley-
+with the size of the program. We show how recent work
+ton (1984) seem to have probed those hypotheses only
+from the program-induction literature helps tackle this
+indirectly, for example by asking participants to per-
+problem by using DreamCoder (Ellis et al., 2021) to find
+form intuitive judgements about the stability of certain
+the best representation for several shapes. DreamCoder
+shapes. While less general and confined to two dimen-
+uses a bottom-up neural network to speed up the search
+sions, our proposal is supported by direct empirical tests
+for the relevant program. In DreamCoder, the network
+of the mental complexity of shapes.
+is trained to map each visual shape onto biases that
+accelerate the search for the relevant program. Future Earlier work by Leeuwenberg (Leeuwenberg, 1971) also
+versions could incorporate direct mappings from shapes introduced a language for shapes, particularly focused
+to programs, thus leading to the immediate recognition on the idea of nested repetitions with variations and
+of shapes close enough to the training set. What is re- the concept of continuous integration as a complement
+markable about this idea is that the system does not of discrete repetition capable of tracing curves. How-
+need any external training data (although successfully ever, Leeuwenberg’s language only satisfied one direc-
+solved problems will be used when training, much like tion of the intended correspondence between mental
+replays, in addition to “dreams”): it can generate its and linguistic complexity: the language was such that
+own supervised learning dataset by sampling programs, low-complexity mental representation corresponded to
+executing them to produce the corresponding shapes, a short program, but the converse was not true as some
+LOT FOR GEOMETRIC SHAPES
+short programs generated shapes that were not easily from preschoolers and human adults without formal ed-
+parsed by humans. Nevertheless, the behavioral results ucation, however, always required both the object recog-
+he reported are in line with ours: he found the length nition model and the symbolic geometry model. Thus,
+of the shortest program is a good predictor of subjec- two strategies seem to be available for geometric shape
+tive ratings of complexity, as well as objective perfor- perception: a purely visual strategy, available to both
+mance in shape copying and other similar tasks (Boselie baboons and humans, and a symbolic geometry strategy,
+& Leeuwenberg, 1986; Leeuwenberg, 1969, 1971; see also putatively available only to humans. It is important to
+Restle, 1970, 1973). take this dual-route model into consideration when test-
+ing the present idea: if the stimuli can be too easily
+More recently, several articles highlighted the impor-
+discriminated by object recognition alone, then humans
+tance of the notion of repetition with variation in the
+may not make the effort to encode them symbolically, in
+human perception of geometric and auditory sequences
+the proposed language of thought, and MDL may cease
+(Amalric et al., 2017a; Piantadosi et al., 2016; Planton
+to determine performance (as we observed in pilot data).
+et al., 2021; Roumi et al., 2021; Simon, 1972). The lan-
+Limits of our language
+guage first proposed by Amalric et al. (2017a) included
+two distinct notions of repetitions with variations, ei-
+The language we proposed is severely limited in scope: it
+ther changing the starting point with each repetition,
+only applies to the perception and drawing of geometric
+or changing a parameter with each repetition. Our geo-
+shapes. While it could plausibly draw a human stick-
+metric language generalizes this idea to the case of con-
+tinuous curve tracing. Our tracing primitive can be con-
+dren’s drawings, tracing the contours of a human body
+sidered a particular case of infinitesimal repetition with
+or any other realistic shape is outside the reach of our
+variation: at each time step, parameters are updated
+proposal. This aspect separates the present work from
+for the computation of the next time step. Importantly,
+related research on contour perception (Feldman, 2001;
+we did not allow for arbitrary infinitesimal repetition
+Feldman & Singh, 2005; Wilder et al., 2016), which of-
+like what is present in the Logo language (Abelson et
+fers theories of smooth continuous contours for natural
+al., 1974), where at each time step arbitrary compu-
+objects or artificial blobs. It also sets our work apart
+tations can occur. While such computations were re-
+from a longstanding literature on the determinants of
+quired in the original logo in order to draw curves by
+shape perception, such as skeletal representation or me-
+infinitesimally changing the heading at each time step,
+dial axis extraction (Ayzenberg et al., 2019; Ayzenberg
+it also opened the possibility of short programs having
+& Lourenco, 2019; Blum, 1973; Firestone & Scholl, 2014;
+extremely complex outputs. By limiting ourselves to
+Lowet et al., 2018). In the future, it would be interesting
+simple, linear variations of speed or turning angle over
+to examine whether the two approaches can be unified,
+time, our language fits with the universal presence of a
+as they share some converging ideas, such as the use
+limited set of shapes (mostly lines, circles and spirals)
+of probabilistically generative models for finding a can-
+in human geometric patterns.
+didate skeleton of a shape (Feldman & Singh, 2006) or
+finding subgroups within a complex shape (Froyen et al.,
+Another, more speculative aspect of our proposal is that
+2015), but also some challenging experimental results,
+a recursively compositional language of thought for ge-
+such as the automatic extraction of medial axes even for
+ometry is unique to humans. As also proposed by others,
+triangles or rectangles (Firestone & Scholl, 2014). In a
+only humans would possess a recursive compositional ca-
+sense, the two approaches are complementary: there are
+pacity (Dehaene et al., 2015; Fitch, 2014; Hauser et al.,
+many visual domains for which our language is not well
+2002; Penn et al., 2008). Thus, an important goal for the
+suited, e.g. predicting the complexity of the contour
+future is to explicitly test the perception of the present
+outline of an animal, where a skeleton-based approach
+shapes in non-human primates. Our recent work (Sablé-
+is superior; but our proposal is intended to explain an-
+Meyer et al., 2021) shows that, even for shapes as simple
+other domain, abstract geometric shape, and identify
+as quadrilaterals, human behavior differs strikingly from
+the core tools required to account for their perception
+baboons and is characterized by a symbolic geometrical
+and production in humans.
+regularity effect: in humans only, regular quadrilater-
+als such as squares, rectangles or parallelograms (which Simple arguments show that the proposed language can
+can be compressed in the present language) are easier to generate most of the geometric shapes that humans find
+perceive than less regular ones. Baboon behavior was simple and that are frequently attested in human cul-
+not random either, it but could be captured by existing tures as well as in the history of geometry. Any regular
+neural network models of the ventral visual pathway polygon, for instance, such as an equilateral triangle,
+for object recognition. Accounting for behavioral data can be generated by a program similar to the square,
+SABLÉ-MEYER, ELLIS, TENENBAUM, DEHAENE
+but using fractions of a right-angle turn; the pseudocode when the phenomenon requires alignments of parts of
+would read: Repeat p times { Trace ; Turn(angle=4/p ) the stimuli, as those may be generated with shorter pro-
+}. Stars with various numbers of branches can be simi- grams than the counterparts that don’t induce closure
+larly generated. Less regular polygons, such as a rectan- (e.g. a Kanisza triangle versus a “misaligned” alterna-
+gle approximating the proportions of the famous golden tive, which is costlier to express). However, as noted in
+section, can be generated using fractions (e.g. 5/3 or (Kanizsa, 1976), “[Geometric regularity] is not a neces-
+8/5). Symmetrical patterns and friezes such as or sary condition for the formation of subjective surfaces
+arise naturally from recursive combinations of rep- and contours. Amorphous shapes are possible and ir-
+etitions and alternations. Finally, using concatenation regular figures can generate contours.” Such examples,
+erate, for instance, a pentagram (star inside a circle), a scope of the current proposition, but have been given
+circle of circles, etc. Bayesian accounts, see for example (Feldman, 2001; Gol-
+dreich & Peterson, 2012).
+Nevertheless, some simple figures remain diﬀicult to gen-
+erate with a short program. A trapezoid, for instance,
+Finally, in the present framework, each program must
+comprises two parallel sides interrupted by two arbitrary
+contain all the instructions to generate a given shape in
+segments. Drawing a trapezoid in our language requires
+every detail. An unfortunate consequence is that a large
+a turn by an arbitrary angle ￿, followed by a second
+part of this program is repeated when a subject learns a
+turn by 2- ￿ to restore parallelism. However, our lan-
+new but related shape. For instance, the triskelion ( )
+guage does not have variables that could store the value
+includes a detailed subprogram for a spiral, although the
+￿, and hence does not find this shape simpler than an
+same program may have been used to describe other
+arbitrary quadrilateral with turns ￿ and ￿. In general,
+shapes. The DreamCoder algorithm sidesteps this by
+our approach is unable to encode a partial regularity in-
+inventing abstractions over several iterations, but this
+feature is not part of the language itself. It may be
+variables could address this limitation, but exploration
+useful to add to our language a capacity for named sub-
+of this idea suggested that straightforwardly adding vari-
+programs, such that the spiral program would be en-
+ables has a high cost: while they allow one to express
+coded just once and evoked by a single call to its pro-
+otherwise hard to describe simple shapes, they also make
+cedure name (“spiral”), thus further increasing the hu-
+very complex shapes easy to describe, an undesirable
+man memory compression rate. The idea that humans
+feature that is hard to keep in check.
+construct complex geometrical concepts by progressively
+developing a vocabulary of nested, increasingly complex
+There are also shapes for which our language proposes
+ones, is an appealing view of mathematical development
+implausible programs. For instance, the minimal pro-
+that should be the focus of future work.
+gram that draws a “+” shape repeats four segments
+starting from the center, instead of drawing the shape us-
+Future directions
+ing two intersecting segments. As for continuous shapes,
+our program cannot account for some simple shapes such
+We see several promising research directions to go be-
+as the ellipse or parabola. These shapes might be better
+yond the present work. A first one, drawing inspiration
+represented as visual transformations of the outputs of
+from Kosslyn, Shepard and Leyton’s work, would allow
+another program (e.g. compressing a circle to get an
+for further mental manipulation of the outputs of the
+ellipse). Such a dual-mode system, combining the gen-
+present language, thus performing operations such as
+erative and transformative capacities of mental imagery,
+deformations, rotations, or even extrusions as a post-
+has been proposed by others (e.g. Kosslyn, 1980; Ley-
+processing step. This would open up to the modeling
+ton, 2003b; Shepard & Cooper, 1982). The addition of
+of 3-D shape, for instance using rotation around a fixed
+a buffer in which mental operations such as rotations or
+axis. A second would be develop a library of increas-
+shearing could be applied would be an important addi-
+ingly complex and reusable named subprograms, such
+tion to the present work.
+as “square”, “spiral”, etc. Finally, a third possibility
+Although our model was not designed with Gestalt con- would be to integrate ideas from a different program-
+figurations in mind, it might capture some, if not all, ming paradigm. The language we used is imperative
+of the perceptual and memory savings associated with in nature: its programs describe, in every detail, the
+Gestalt stimuli. For instance, shorter programs would sequence of operations needed to draw a shape. How-
+be allocated to displays in which shapes are aligned, ever, not all programming languages work that way.
+repeated, or otherwise obey “good continuation” rules. Logic programming languages such as Prolog describe
+Some configurations based on closure may be captured the logic of the computation and its constraints rather
+LOT FOR GEOMETRIC SHAPES
+than the details of its execution flow. Such constraint- Brincat, S. L., & Connor, C. E. (2006). Dy-
+based programming may be closer to how humans think, namic Shape Synthesis in Posterior Infer-
+particularly in the mathematical domain. The canonical otemporal Cortex. Neuron, 49(1), 17–24.
+(equidistance from a center point) rather than a genera-
+Butterworth, B., Reeve, R., Reynolds, F., & Lloyd, D.
+tive program (turn by a fixed curvature, as in the present
+(2008). Numerical thought with and without words:
+language). Integrating both declarative and imperative
+Evidence from indigenous Australian children. Proc
+elements may provide a better account of specific shapes,
+Natl Acad Sci U S A, 105(35), 13179–13184.
+such as trapezoids or generic triangles, which only pos-
+sess some properties (e.g. two parallel sides, or three Chater, N., & Vitányi, P. (2003). Simplicity: A unifying
+sides) while leaving the other details unspecified. Some principle in cognitive science? Trends in Cognitive
+geometrical shapes could thus be defined in terms of Sciences, 7 (1), 19–22.
+properties that they satisfy, others in more detailed im-
+Comrie, B. (1976). Aspect: An Introduction to the Study
+perative instructions, and both could be reused in con-
+of Verbal Aspect and Related Problems. Cambridge
+trol structures such as embed or repeat. Meanwhile, we
+University Press.
+surmise that the present proposal merely brings us one
+step closer to understanding how abstract mathematical
+De Leeuw, J. R. (2015). jsPsych: A JavaScript li-
+and geometrical objects are mentally encoded.
+brary for creating behavioral experiments in a Web
+browser. Behavior Research Methods, 47 (1), 1–12.

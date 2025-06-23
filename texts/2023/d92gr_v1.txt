@@ -1,0 +1,829 @@
+Lexical feedback in the Time-Invariant String Kernel (TISK) model of spoken
+word recognition
+James S. Magnuson1,2,3
+Heejo You4
+Thomas Hannagan3,5*
+1 BCBL: Basque Center on Cognition, Brain & Language, Donostia-San Sebastián, Spain
+2 Ikerbasque: Basque Foundation for Science, Bilbao, Spain
+3 Department of Psychological Sciences and CT Institute for the Brain and Cognitive
+Sciences, University of Connecticut, Storrs, CT, USA
+4 Hyundai Motor Group Robotics LAB, Uiwang, South Korea
+5* Stellantis Group
+* Work conducted while the author was at the University of Connecticut
+RUNNING HEAD: FEEDBACK IN THE TISK MODEL OF SPOKEN WORD
+RECOGNITION
+CORRESPONDING AUTHOR: James Magnuson, james.magnuson@uconn.edu
+Abstract
+The Time-Invariant String Kernel (TISK) model of spoken word recognition (Hannagan,
+Magnuson & Grainger, 2013; You & Magnuson, 2018) is an interactive activation model with
+many similarities to TRACE (McClelland & Elman, 1986). However, by replacing most time-
+specific nodes in TRACE with time-invariant open-diphone nodes, it uses orders of
+magnitude fewer nodes and connections than TRACE. Although TISK performed
+remarkably similarly to TRACE in simulations reported by Hannagan et al., the original TISK
+implementation did not include lexical feedback, precluding simulation of top-down effects,
+and leaving open the possibility that adding feedback to TISK might fundamentally alter its
+performance. Here, we demonstrate that when lexical feedback is added to TISK, it gains
+the ability to simulate top-down effects without losing the ability to simulate the fundamental
+phenomena tested by Hannagan et al. Furthermore, with feedback, TISK demonstrates
+graceful degradation when noise is added to input, although parameters without feedback
+can be found that also promote (less) graceful degradation. We review arguments for and
+against feedback in cognitive architectures, and argue that feedback provides a
+computationally efficient basis for robust constraint-based processing.
+Keywords: Computational models; neural networks; spoken word recognition; interaction;
+feedback
+1. Introduction
+Consider the speech signal. A series of rapid, overlapping articulatory events creates
+acoustic patterns that human listeners can map onto series of segments (consonants and
+vowels). Cues to word boundaries are rare and probabilistic; clear breaks in the signal are
+more likely to occur within words than between words in fluent speech (Cole, Jakimik, &
+Cooper, 1980; Lehiste, 1960). Even if listeners could perfectly extract a speaker’s intended
+segments from the speech signal in a bottom-up fashion (a virtual impossibility given
+phonetic and phonological processes such as coarticulation, assimilation, and reduction),
+considerable challenges would remain. Segment sequences must be mapped onto words
+in memory. Words are distinguished by order (the orderings of /k/, /æ/, and /t/ as /kæt/,
+/tæk/ and /ækt/ correspond to CAT, TACK, and ACT) and elements can be repeated (e.g.,
+/to/ vs. /tot/, i.e., TOE vs. TOTE), so the encoding scheme for spoken word recognition
+must represent order and repeated elements. Recognition of embedded words must be
+avoided; when CATALOG is uttered, listeners hear the intended word, and are apparently
+unaware that they have also heard patterns that correspond to CAT, AT, A, CATTLE,
+LAW, and LOG (depending on dialect), or even a possible 3-word sequence (CAT A LOG).
+The system must tolerate variability that emerges from phonological processes such as
+assimilation that merge or alter phonetic properties of segments (e.g., GREEN BEAN may
+be realized as /grimbin/; e.g., Gow, 2003), and reductions that alter segments (e.g., TO as
+/tə/, or KIND OF as /kaində/) or even remove them. For example, RECOGNIZE SPEECH
+may reduce to /r k^naispit∫/. At first, one might consider that such an example could be
+disambiguated lexically, except that a plausible alternative parse would be WRECK A
+NICE BEACH (Picone, Goudie-Marshall, Doddington, & Fisher, 1986). In such cases, a
+broader semantic context might be needed to constrain lexical mapping and arrive at the
+correct parse.
+In grappling with these challenges, theories of spoken word recognition have come
+to agree on three fundamental principles: As a word is heard (incrementality), words are
+activated based on degree of phonetic overlap with the input and their prior probability
+(probabilistic similarity mapping), and activated words compete for recognition (parallel
+competition). Theories differ in similarity metrics, and in the mechanisms they posit for
+achieving parallel activation and implementing and resolving competition (ranging from
+lateral inhibition to bottom-up or top-down inhibition, or competition implicit in Bayesian
+normalization; for a review, see Magnuson, Mirman & Harris, 2012).
+A particularly salient point of disagreement concerns top-down feedback from words
+to sublexical representations. TRACE (McClelland & Elman, 1986) is an interactive-
+activation model with arguably the deepest and broadest coverage of spoken word
+recognition (cf. Magnuson et al., 2012, Magnuson & Crinnion, 2021). Top-down effects in
+TRACE emerge from lexical-phonemic feedback. In contrast, Norris, McQueen, and Cutler
+(2000; see also 2016) have argued that purely feedforward systems can do anything a
+feedback system can do, so long as they include a mechanism for post-perceptual behavior
+consistent with top-down influences (e.g., via post-lexical integration of phonemic and lexical
+knowledge).
+Consider two important top-down effects in spoken word recognition. First, there is
+the Ganong (1980) effect, where phoneme identification is influenced by lexical status. For
+example, compared to a nonword continuum between iss and ish, where participants are
+asked to identify the final consonant, identification shifts towards /s/ if the continuum is
+instead between a word and nonword pair like kiss-*kish, but towards /∫/ given *fiss-fish.
+Thus, either lexical context modulates phonetic perception (the interactive or feedback
+assumption), or it has a post-perceptual influence on responses (the feedforward
+assumption). Another fundamental top-down effect in spoken word recognition is phoneme
+restoration (Samuel, 1981a, 1981b, 1996, 1997). If a phoneme in a word is replaced by
+silence, it leaves a salient gap, and participants have no trouble reporting that the word is
+not intact and can identify which phoneme is missing. In contrast, when a phoneme is
+replaced by noise, participants typically report that the word is intact but has noise added to
+it. They have difficulty specifying which phoneme the noise is aligned with, and report
+perception consistent with lexical context (e.g., if noise, denoted as #, replaces a phoneme
+in the word after, the noise is heard as /t/ in /æf#^r/ but as /f/ in /æ#t^r/). This implies that
+noise provides enough bottom-up support for the missing phoneme to be filled in, either
+perceptually via lexical feedback or via post-perceptual lexical integration.
+Norris et al. (2000, 2016) have argued that although activation feedback (direct
+feedback from words to phonemes) provides a potential explanation for top-down effects, it
+cannot provide perceptual benefits and so should be rejected on theoretical grounds. Norris
+et al. (2000) demonstrated that a network with only feedforward connections (i.e., an
+autonomous architecture) could simulate top-down effects in spoken word recognition. It did
+so by performing integration of bottom-up and top-down information outside the primary path
+of perceptual processing (see Fig. 1). Their argument that “feedback is never necessary”
+has three major components. First, they argued that a system optimally tuned to identify
+each phoneme using only bottom-up information could not be improved by top-down
+feedback. This claim resembles the data processing inequality (Shannon & Weaver, 1949),
+which states that information can be lost but not gained in processing a signal. Since
+information cannot be added, feedback cannot improve the mapping from signal to words
+(so the argument goes). Norris and Cutler (2021) make a more specific point: they argue
+that if the input is a mix of noise and signal, feedback cannot differentiate between them,
+and can only reinforce the ‘status quo’ (that is, nodes will send feedback proportional to their
+input no matter what proportion of their input was due to signal vs. noise). Second, they
+argued that activation feedback precludes veridical perception (once top-down and bottom-
+up information are mixed, they cannot be separated). Third, logic dictates that recognizing
+spoken words requires information to flow from sounds to words, but not from words to
+sounds. They argue that this makes feedback an additional architectural feature that violates
+Occam’s Razor (which, in the case of a cognitive model, we might state as do not postulate
+mechanisms unless they are required to account for data). Thus, relative to a feedforward
+architecture, they argue that feedback cannot improve performance, it can hinder veridical
+perception, and it constitutes a more complex explanation than is required by the data.
+Magnuson, Mirman, Luthra, Strauss and Harris (2018) present a comprehensive
+rebuttal of this autonomous position. We will not recapitulate the full critique here, though
+we return to it in the General Discussion (as well as a subsequent commentary by Norris,
+McQueen, & Cutler, 2018, and a recent paper describing how the joint effects of feedback
+and lateral inhibition allow interactive activation models to selectively reinforce signal over
+noise [Magnuson, Crinnion, Luthra, Gaston, & Grubb, 2024]). For now, we will focus on one
+crucial gap in the arguments against feedback: such arguments neglect graceful
+degradation (in the face of noise, damage, or changes in parameters), a key motivation for
+feedback in parallel-distributed processing models.
+In addition to their critique, Magnuson et al. (2018) responded to the Norris et al.
+(2000, 2016) arguments by demonstration proof: simulations with TRACE showed clear
+beneficial effects of feedback. They compared recognition time (operationalized as the
+number of processing cycles it takes for a target word's activation to reach a threshold) and
+accuracy for all items in the original 211-word TRACE lexicon, and a larger (907-word)
+lexicon with and without feedback (that is, with the feedback parameter in TRACE set to its
+default value or zero). Without noise, TRACE performs with high accuracy without feedback
+(feedback set to zero), though with longer mean recognition time (compared to with feedback
+on). Crucially, as noise was added, feedback allowed TRACE to demonstrate graceful
+degradation: accuracy was higher with feedback than without (and the accuracy difference
+increased as noise increased), and mean recognition times were faster with feedback than
+without at all levels of noise. Thus, feedback is not a convenient but unprincipled means of
+simulating top-down effects (as Norris et al., 2000, present it); feedback endows an
+interactive model with the ability to resist noise and to exhibit graceful degradation as high
+levels of noise are encountered.
+Fig. 1. Autonomous vs. interactive architectures (from Magnuson et al., 2018). Left: autonomous
+architecture, where integration is shunted outside the pathway of perceptual processing, allowing
+integration without contaminating input with top-down knowledge. Right: interactive architecture,
+where feedback directly influences bottom-up information during online processing.
+1.1. Feedback and TISK
+In 2013, Hannagan, Magnuson and Grainger introduced the Time-Invariant String Kernel
+(TISK) model of spoken word recognition. TISK replaces most time-specific units in TRACE
+with time-invariant units (both described shortly). However, for the sake of simplicity,
+Hannagan et al. did not include lexical feedback in the original model. Despite this, TISK
+performed remarkably similarly to the TRACE model (e.g., with similar time course of
+phonological activation and competition given noise-free inputs). Adding feedback would
+allow us to test whether TISK could simulate top-down effects and exhibit graceful
+degradation like TRACE. However, one must also test whether TISK, with feedback added,
+can still simulate the effects reported by Hannagan et al. (2013). Before turning to these
+simulations, we will review the motivation and structure of TRACE and TISK.
+1.2. The problem of sequence encoding. Sequence encoding is a fundamental challenge
+for models of spoken word recognition; speech unfolds over time, and representing
+phonological word forms entails representing temporal order (CAT vs. TACK, i.e., /kæt/ vs.
+/tæk/) and repeated elements (SOUL vs. SOLO, i.e., /sol/ vs. /solo/). To illustrate this
+challenge, consider the simple network in Fig. 2. Here, the only connections are forward
+ones from phoneme nodes to word nodes. Note that such a network cannot encode temporal
+order. Any word node receiving input from /k/, /æ/, and /t/ in any order (i.e., ACT /ækt/, CAT
+/kæt/, TACK /tæk/, or nonwords /tkæ/, /ktæ/, or /ætk/) would be equally activated by any
+ordering of the three phonemes. Neither could such a network distinguish words with the
+same constituent phonemes but differing in repeated elements (SOUL vs. SOLO). The
+second /o/ in /solo/ would simply be more evidence that /o/ had occurred; the network cannot
+represent two instances of /o/ in different temporal positions.
+DAD ADD ACT CAT TACK
+æ d k t
+Fig. 2: A simple word recognition network incapable of encoding temporal order or repeated phonemes
+(Magnuson, 2018a.)
+Note that a model like this could be used to investigate many aspects of word
+recognition. In fact, the Merge model (Norris et al., 2000) has this structure (as well as lateral
+inhibition), and can simulate many important aspects of spoken word recognition, despite
+being unable to encode order or repeated elements. Avoiding these challenges can only be
+a temporary simplifying assumption, however. Ultimately, models of spoken word
+recognition must grapple with the representation of order and repeated elements.
+The TRACE model (McClelland & Elman, 1986) takes an innovative approach to the
+problem. TRACE translates time to space, by creating time-specific duplicates of feature,
+phoneme, and word nodes. A template for CAT is maximally activated by strongly activated
+/k/, /æ/,1 and /t/ phonemes aligned with a word node standing for CAT.
+distributed vector of pseudo-spectral representations used as TRACE inputs. Their
+horizontal extent represents their temporal extent. Although feature patterns for adjacent
+phonemes overlap in TRACE (providing a coarse analog to coarticulation), for the sake of
+simplicity, we do not attempt to depict that overlap here.
+At each time step t in a TRACE simulation, pseudo-spectral input patterns are
+applied. Feature nodes aligned with input slice t (that is, time-specific feature nodes) are
+activated by the bottom-up input at time t. Subsequently (from step t+1 onward), bottom-up
+input is not applied at slice t. However, feature detectors aligned at slice t that were activated
+by input continue to be active for many time steps, because their activations are a summative
+combination of their bottom-up input and previous activation. The latter is scaled by a decay
+parameter, such that a unit's activation will eventually diminish to a defined baseline level in
+the absence of new input. Similarly, phoneme nodes are aligned at specific time slices, and
+receive input from feature nodes aligned with them in time. As long as the aligned feature
+nodes are active, the aligned phoneme nodes will receive bottom-up input. Phoneme nodes'
+activations are a function of bottom-up input and decay-scaled prior activation, as well as
+lateral inhibition from other phoneme nodes with which they overlap in time, and lexical
+feedback (described below). Phoneme nodes send bottom-up activation to nodes
+TRACE only has 14 phonemes; typically, instances of /æ/ are coded as /a/ in TRACE.
+corresponding to words containing them that are aligned (at least partially) in time with the
+phoneme node. Word nodes also send feedback to phoneme nodes that send them bottom-
+up input. As "time" progresses in a TRACE simulation, inputs aligned with specific time
+points activate aligned features, phonemes, and words. This time-specific "reduplication"
+strategy – aligning copies of each feature, phoneme, and word in memory with specific time
+points – allows TRACE to represent temporally ordered sequences, including sequences
+with repeated elements. Thus, given the input /dæd/ (DAD), the first and second instances
+of /d/ would activate independent /d/ nodes.
+TAB TAB TAB TAB TAB
+TAB TAB TAB TAB TAB
+TAB TAB TAB TAB TAB
+TAB TAB TAB TAB TAB
+TAB TAB TAB TAB TAB
+TAB TAB TAB TAB TAB
+CAT CAT CAT CAT
+CAT CAT CAT CAT
+CAT CAT CAT CAT CAT
+CAT CAT CAT CAT CAT
+CAT CAT CAT CAT CAT
+CAT CAT CAT CAT CAT
+CAB CAB CAB CAB CAB
+CAB CAB CAB CAB CAB
+CAB CAB CAB CAB CAB CAB
+CAB CAB CAB CAB CAB CAB
+CAB CAB CAB CAB CAB CAB
+CAB CAB CAB CAB CAB CAB
+k k k k k k k k k k k
+k k k k k k k k k k k
+æ æ æ æ æ æ æ æ æ æ æ
+æ æ æ æ æ æ æ æ æ æ æ
+b b b b b b b b b b b
+b b b b b b b b b b b
+k æ b
+Fig. 3: TRACE's time-as-space encoding (Magnuson, 2018b). At the bottom, inputs corresponding to
+/k/, /æ/, and /t/ have specific alignments (in TRACE, these would be distributed representations of over-
+time pseudo-spectral features). Those inputs activate phoneme templates aligned with them, which in
+turn activate aligned words. Darkness of shading indicates degree of activation. The maximally-
+activated copies of CAB, CAT and TAB are those aligned with the input, though degree of activation
+reflects amount and temporal distribution of phonetic overlap (CAB > CAT > TAB).
+This reduplication strategy is frequently criticized. Indeed, McClelland and Elman
+(1986) discussed plausibility concerns (p. 77). Some have argued that this scheme is simply
+implausible (e.g., Grossberg & Kazerounian, 2011; Norris, 1994), largely because of the
+numbers of nodes and connections it would take to implement a realistic phoneme inventory
+and lexicon. Magnuson (2015) presents a case for the TRACE architecture as a model of
+echoic memory. Hannagan et al. (2013) estimate how many nodes and connections a
+realistically-sized version of TRACE would require, and estimate that a version with 40
+phonemes and 20,000 words would require ~1.3 million nodes and more than 40 billion
+connections. Given estimates that the human brain contains 86 billion neurons and 150
+trillion synapses (Azevedo et al., 2009), it is not clear that we can rule out the TRACE
+solution based on intuitions about the plausibility of numbers of units and connections
+required. However, it does raise the question of whether a more compact representation
+might be possible.
+1.3. Origins and innovations of TISK
+The idea of TISK originally came from discussions between Jonathan Grainger and TH,
+and eventually included JM. The aim was to keep the explanatory power of the TRACE
+model while dispensing with its duplicated time-specific units. Hannagan et al. (2013),
+inspired by models of visual word recognition developed by Grainger and others using
+open bigram codes (Whitney, 2001; Grainger & van Heuven, 2003; Dehaene et al., 2005),
+asked whether a simpler interactive activation model of spoken word recognition could be
+implemented with a variant of open diphone coding. Open diphones are adjacent or non-
+adjacent phoneme pairs that occur in a string. For example, the (ordered) open diphones
+out, such lists are highly distinctive. To encode the lists in a length-independent fashion,
+we can create a phoneme x phoneme matrix (corresponding to all possible diphones),2
+and simply enter the count of each diphone for a word. This then is a kind of string kernel
+for words: we can manipulate or compare representations of words of any size through
+vector/matrix operations (i.e., the operations are identical since they are computed over
+matrices).
+Word Ordered open diphones
+CAT kæ, kt, æt
+TACK tæ, tk, æk
+ACT æk, æt, kt
+DAD dæ, dd, æd
+ADD æd
+SOUL so, sl, ol
+SOLO so x 2, sl, ol, oo
+TISK's architecture is presented schematically in Fig. 4. Time-specific phoneme input
+nodes feed to time-invariant N-phone nodes (corresponding single phone and diphone
+nodes), but via what Hannagan et al. dubbed a symmetry network (in recognition of prior
+work on the topic by Shawe-Taylor, 1993). The symmetry network does not activate all open
+diphones equally. It privileges ordered diphones and activation is inversely proportional to
+distance between diphone members (e.g., /st/ would be less activated by SPOT than STOP).
+This followed work by Dandurand, Hannagan and Grainger (2013) showing that weight
+gradients can emerge in models of visual word recognition trained to be invariant to the
+location of the word input on a simulated retina. It also built on work by Hannagan and
+Grainger (2012), who noticed the similarity between N-gram schemes for visual word
+recognition, and a versatile technique called “string kernels” that has been used in text
+classification (Lodhi et al. 2002) and computational biology (Leslie & Kuang, 2004). Building
+on these two strands of work, the TISK symmetry network uses weight gradients as well as
+If we include a "blank" for the second position, we can also encode each single phoneme
+in a word, crucially providing a means for including words consisting of a single phoneme.
+Hannagan et al. Spoken word recognition without a TRACE
+14 phonemes in the original TRACE model to the approximately knowledge, however, there have been no published investigations
+40 phonemes in the English inventory would not in itself lead to of string kernels in the domain of spoken word recognition. While
+an explosive increase in units or connections (see Appendix A). the notion of an open biphone may at first blush sound implausi-
+Moving from the original TRACE lexicon of just 212 words to ble, keep in mind that the open bigram string kernel approach
+a realistically-sized lexicon of 20,000 words, however, would. In affords spatial invariance for visual word recognition. Might it
+fact, the original TRACE model, with 14 phonemes and 212 also provide a basis for temporal invariance for spoken words?
+words would require 15,000 units and 45 million connections.
+Increasing the phoneme inventory would change the number of 2. TISK, THE TIME INVARIANT STRING KERNEL MODEL OF
+units to approximately 17,000 and the number of connections to SPOKEN WORD RECOGNITION: MATERIALS AND
+45.4 million. Increasing the lexicon to 20,000 words would result METHODS
+in 1.3 million units and 400 billion connections. How might we
+2.1. GENERAL ARCHITECTURE AND DYNAMICS
+construct a more efficient model?
+Our extension of the string kernel approach to spoken words is
+1.2. VISUAL AND SPOKEN WORD RECOGNITION vation dynamics as the TRACE model, but avoids a massive
+There are several reasons to believe that visual and spoken word reduplication of units, as it replaces most time-specific units from
+recognition could share more mechanisms than is usually appre- TRACE with time-invariant units. It is comprised of four levels:
+ciated. To be sure, very salient differences exist between the visual inputs, phonemes, nphones (single phones and diphones) and
+and auditory modalities. One signal has a temporal dimension, words. Inputs consist of a bank of time-specific input units as
+the other is spatially extended. The former travels sequentially in TRACE, through which a wave of transient activation travels.
+(over time) through the cochlear nerve, the latter in parallel However, this input layer is deliberately very simplified compared
+through the optic nerve. In addition, just as in spoken word recog- to its TRACE analog. The input is like the Dandurand et al. (2010)
+nition, researchers in the field of visual word recognition have to input layer, though in our case, it is a time slice phoneme
+ponder an invariance problem. Although a unique fixation near matrix rather than a spatial slot letter matrix. Thus, for this
+the center of a word is usually enough for an adult to recog- initial assay with the model, we are deferring an implementa-
+nize it (Starr and Rayner, 2001), ultimately this fixation has only tion like TRACE’s pseudo-spectral featural level and the details
+stochastic precision and will rarely bring the same stimulus twice it affords (such as TRACE’s rough analog to coarticulation, where
+at exactly the same place on the retina, resulting in dissimilar feature patterns are extended over time and overlap). With our
+retinal patterns. A credible model of the visual word recognition localist phoneme inputs, at any time there is always at most one
+system should find a way to overcome this disparity in a word’s input unit active—inputs do not overlap in time, and do not code
+many location exemplars, and to summon a unique lexical mean- for phonetic similarity (that is, the inputs are orthogonal local-
+ing and a unique phonology independently of wherever the visual ist nodes). Note that the use of time-specific nodes at this level is
+gating connections to accurately activate N-phone nodes, even in the presence of repeated
+stimulus actually fell on the retina. a matter of computational convenience without theoretical com-
+phonemes. For more details about the symmetry network and TISK more generally, see
+mitment or consequence; these nodes provide a computationally
+Hannagan et al. (2013). Note that the full code for TISK is freely available (You & Magnuson,
+In the machine learning literature, one computational t echnique
+that has been very successful at comparing sequences of symbols
+independently of their position goes under the name of string
+kernels (Hofmann et al., 2008). Symbols could be amino-acids,
+nucleotides, or letters in a webpage: in every case the gist of string
+kernels is to represent strings (such as “TIME”) as points in a
+high-dimensional space of symbol combinations (for instance as
+a vector where each component stands for a combination of two
+symbols, and only the components for “TI,” “TM,” “TE,” “IM,”
+“IE,” “ME” would be non-zero). It is known that this space is
+propitious to linear pattern separations and yet can capture the
+(domain-dependent) similarities between them. String kernels
+have also been very successful due to their computability: it is not
+always necessary to explicitly represent the structures in the space
+of symbol combinations in order to compute their similarity (the
+so-called “kernel trick,” which we will not use here).
+It has been argued that string kernels provide a very good fit to
+several robust masked priming effects in visual word recognition,
+such as for instance letter transposition effects (the phenomenon
+that a letter transposition like trasnpose better primes the original
+word than a stimulus with letter replacements, such as tracm-
+pose), and are thus likely involved at least in the early stages of
+word recognition.
+visual word encoding (Hannagan and Grainger, 2012). To our
+Frontiers in Psychology | Language Sciences September 2013 | Volume 4 | Article 563 | 4
+presented one at a time on time-specific copies of each possible phoneme. Phonemes activate
+corresponding diphones and single nodes in the N-phone layer. N-phone units activate corresponding
+words. Lateral inhibition governs lexical competition (indicated by knobbed recurrent link in top right).
+The greyed out arrow from words to N-phones indicated that the original TISK model did not have
+lexical feedback (which is the only structural alteration in the model introduced in this paper). The
+symmetry network allows an input like /ba/ to activate both the /ba/ and /ab/ diphones, but activates the
+diphone corresponding to the input much more strongly. See Hannagan et al. (2013, pp. 5-6) for details.
+2. Adding lexical feedback
+Again, there are several reasons to add feedback to TISK. Any comprehensive model of
+spoken word recognition must be able to account for top-down effects, and feedback allows
+TRACE to plausibly simulate many such effects (McClelland & Elman, 1986). As discussed
+above, however, at least some effects considered to be “top-down” can be simulated without
+feedback (Norris et al., 2000). However, graceful degradation is another important
+motivation for feedback in interactive activation models (Dell, Chang & Griffin, 1999;
+McClelland & Elman, 1986 [e.g., pp. 6-7]; McClelland & Rumelhart, 1981, 1989), which turns
+out to have important implications for the feedback vs. autonomy debate. Graceful
+degradation seems to be less familiar to most cognitive scientists (e.g., it received no
+discussion in the Norris et al., 2000, target article or in the accompanying commentaries),
+although it is one of the original, primary motivations for feedback in interactive activation
+models (for example, when noise is added to inputs, feedback promotes gradual declines in
+performance rather than an abrupt collapse; McClelland & Rumelhart, 1981).
+These points direct us to a clear agenda for simulations with feedback (from words to N-
+phones) added to TISK. First, can we identify a non-zero feedback parameter that will (a)
+afford plausible top-down effects while allowing robust word recognition, without impeding
+the model's ability to simulate the phenomena attested by Hannagan et al. (2013), including
+(b) the time course of phonological competition and (c) item-specific correlations with
+TRACE and (d) lexical dimensions (word length, numbers of different competitor types,
+etc.)? Finally, (e) will feedback in TISK allow the model to exhibit graceful degradation given
+noisy inputs (i.e., will feedback preserve accuracy and processing efficiency)? We address
+these issues in the following order: parameter discovery, replication of earlier simulations
+(time course, similar item-specific recognition times as for the original TISK model and
+TRACE, similar item-specific correlations with lexical dimensions), simulations of crucial top-
+down phenomena in spoken word recognition, and performance in noise (testing for graceful
+degradation). All code required to reproduce our simulations, analyses, and figures is
+2.1. Simulation 1
+2.1.1. Parameters. We used a trial-and-error process for parameter exploration. We began
+with a value of positive feedback from words to their constituent N-phones. We assessed
+mean accuracy over the 211-word (original TRACE) lexicon, and if accuracy was lower than
+approximately 80%, we examined errors for clues as to what was impeding accuracy. If we
+found a parameter setting that would allow reasonable accuracy, we then examined the
+model's ability to simulate top-down effects (with phenomena like those discussed below). If
+feedback was not strong enough for plausible top-down effects, or if error patterns implied
+parameter changes were needed, we would adjust parameters and retest. We iterated this
+process, gradually increasing our accuracy threshold.
+performance with feedback. Parameters in the 'optimized without feedback' column that differ from
+original parameters are in bold. Parameters in the 'optimized with feedback' column that differ from
+parameters in the 'optimized without feedback' column are also in bold.
+Optimized Optimized
+Parameter Original TISK without feedback with feedback
+Input phoneme decay 0.010 0.001 0.001
+N-phone decay 0.001 0.001 0.100
+Word decay 0.010 0.050 0.050
+Phoneme to N-phone 1.000 0.100 0.100
+Diphone to word 0.050 0.050 0.050
+Single phone to word 0.010 0.010 0.010
+Word to word inhibition -0.005 -0.005 -0.010
+Positive word to N-phone feedback 0.150
+Negative word to N-phone feedback -0.050
+After a few iterations, we determined that there were three key parameters that could
+be adjusted to provide the full complement of desired outcomes (a-e above). First, of course,
+we needed positive feedback from words to constituent N-phones. Second, feedback tended
+to cause resonance between word and N-phone layers that would lead to the activation of
+too many words. For example, given the input /dal/ (DOLL), the lexical node for DOLL would
+send feedback to /d/, /a/, /l/, /da/, /dl/, and /al/ nodes at the N-phone level. These would
+enhance activation of doll, but also any word containing any of these elements (e.g.,
+SADDLE and DRILL would contain /dl/), allowing them to send feedback to elements that
+had not occurred. We discovered that we could avoid "runaway" activation by both
+increasing decay at the N-phone level and by including a small amount of negative feedback
+to a word's non-constituents (i.e., a small amount of inhibition to every N-phone or single
+phone that is not part of a word, similar to top-down inhibition in early interactive activation
+altering, with the three parameters that were ultimately altered in bold font. We have not
+searched the parameter space exhaustively. However, our explorations suggest that stable
+We also considered that the original TISK parameters might not provide the best
+possible performance in noise without feedback. We therefore explored the parameter
+space without feedback with the aim of finding parameters that would allow the model to
+continue to exhibit fundamental target behaviors described below while maximizing
+performance in noise. We present details of our parameter space exploration for models
+with and without feedback in Appendix 1. For now, because the most robust parameters for
+the model without feedback differ from the original TISK parameters, we will present results
+in the following simulations using the new parameter set (while noting that the original TISK
+model and the version with feedback and parameters optimized for graceful degradation
+differ only slightly and qualitatively in the following simulations – with the exception, of
+course, of the final graceful degradation simulations).
+Fig. 5: Mean time course for targets and different classes of competitors in TRACE and TISK with and
+without feedback (including the original model, as well as the version with parameters ‘optimized’ for
+graceful degradation, as detailed later). Each line represents the mean for a class of items over all 211
+words in the original TRACE lexicon. Cohorts overlap in the first two phonemes. Rhymes overlap in
+all but the first phoneme. Unrelated is the mean activation of all words in the lexicon. Ribbons indicate
+standard error.
+Before turning to top-down effects, let us consider whether TISK performs similarly
+addresses this by first examining mean competition over time for different categories of
+potential phonological relatives. To conduct this comparison, we conducted 211 simulations
+with TRACE and with two versions (with and without feedback) of TISK. For each model,
+there were 211 simulations (one for each word in the original TRACE lexicon). For every
+target word, we tracked target activation over time, as well as the mean activation of every
+item in two categories of phonological relatives (cohorts and rhymes) over time (e.g., for
+/dal/, the activation of every word beginning /da/ would be included in the [onset] cohort
+mean, and every three-phoneme word ending in /al/ would be in the rhyme category). If a
+word had no relatives in a category, it would not contribute to the mean for that category. As
+a baseline reference, we simply tracked the mean activation of all words; given 211 words,
+this mean approaches the minimum possible activation value. Although the mean values are
+somewhat damped when feedback is added to TISK, the crucial consideration is that the
+rank ordering of competitors is similar for all three models.3
+Fig. 6 extends our examination of how similar the performance of TISK is (with and
+without feedback) to TRACE by comparing item-specific recognition times (RTs) for each
+model. Recognition time was operationalized as the cycle at which the target word exceeded
+all other word's activations by at least 0.05 and then continued to exceed all others by that
+amount for at least 10 cycles (cf. Hannagan et al., 2013), and subsequently remained the
+most activated word until the end of the simulation. Mean accuracies were 100% for TRACE,
+99% for the original TISK without feedback (TISK), and 97% for TISK with feedback
+(TISKfb). As can be seen in Fig. 6, item-specific RTs for correctly recognized items were
+remarkably similar for the three models.
+r = 0.97
+25 50 75 100
+RT (TISKfb cycles)
+Fig. 6: RT correlations for original TISK (without feedback), TISKfb (TISK with feedback), and
+TRACE. Left panel: TISKfb vs. TISK. Middle panel: TISKfb vs. TRACE. Right panel: original TISK
+vs. TRACE. Diagonal grey lines indicate the identity line, dashed lines indicate best linear fit.
+(plus a fourth variant: TISK without feedback with parameters optimized for accuracy in
+noise, as described in Simulation 5) relate to several lexical dimensions: word length (in
+phonemes), number of embeddings (words embedded in the target, e.g., CAT has AT
+embedded within it), number of cohort (onset) competitors, number of "ex-embeddings"
+The models differ in that 0.0 is the lowest possible activation in TISK while activations
+can become negative in TRACE; hence, rank order is the crucial concern. Note that
+negative activations in TRACE can be easily transformed to positive predictions using,
+e.g., the Luce choice rule (R.D. Luce, 1959; cf. Allopenna, Magnuson, & Tanenhaus,
+1998).
+)selcyc
+]bf
+on[
+KSIT(
+TR
+r = 0.84
+25 50 75 100
+RT (TISKfb cycles)
+)selcyc
+ECART(
+TR
+r = 0.84
+25 50 75 100
+RT (TISK [no fb] cycles)
+)selcyc
+ECART(
+TR
+(words the target embeds within, e.g., CAT embeds within CATALOG), number of "DAS"
+neighbors (i.e., words differing from the target by a single phonemic deletion, addition, or
+substitution; Luce & Pisoni, 1998), and number of "rhyme-1" items (words differing from the
+target only in first position, whether by deletion, addition, or substitution; e.g., CAT’s rhyme-
+1s include SCAT, BAT, MAT, SAT, and AT). The dimensions are ordered according to the
+sign and magnitude of their prediction on RT; longer words are recognized more slowly,
+having more embeddings or cohorts is associated with slower RT, and having more ex-
+embeddings, neighbors or rhyme-1s is associated with faster RT. The potential reasons for
+these relationships is beyond the scope of this paper (Magnuson, in preparation, discusses
+this in detail); our focus is instead the similarities between models. All three models show
+the same patterns, and are even very similar in the strength of each correlation.
+2 3 4 5 6 7
+Fig. 7: item-specific RTs in TRACE, TISKfb (with feedback), TISK without feedback with parameters
+optimized for noise, and original TISK (without feedback), as a function of lexical dimensions for the
+211-word TRACE lexicon. Dimensions: Length is number of phonemes, Embeddings is how many
+words embed within the target word (e.g., CAB and IN embed in CABINET), Onset competitors are
+cohorts (words overlapping in the first two phonemes), ex-Embeddings are the number of words the
+target word embeds into (e.g., CAB embeds in CABINET, CABARET, etc.), Neighbors are the number
+of words differing from the target by no more than a 1-phoneme deletion, addition, or substitution (so-
+called DAS neighbors), and Rhyme-1 items are items that mismatch the target only at the first phoneme
+(by deletion, addition, or substitution; e.g., for CAT, these would include AT, SCAT, and BAT).
+The results from Simulation 1 demonstrate that we can add feedback to TISK without
+disrupting the model's similarity to TRACE. The time course of different kinds of phonological
+competition are quite similar, and TISK retains its high similarity to TRACE in item-specific
+RTs with feedback on, and there are only very subtle quantitative differences in item-specific
+RTs between TISK with and without feedback apparent in our examination of how a variety
+TR
+ECART
+r = 0.695 r = 0.614 r = 0.519 r = −0.361 r = −0.399 r = −0.508
+100 100 100 100 100
+80 80 80 80 80
+60 60 60 60 60
+40 40 40 40 40
+20 20 20 20 20
+0 0 0 0 0
+0 1 2 3 4 5 6 0 5 10 0 1 2 3 0 2 4 6 8 10 0 5 10 15 20 25
+2 3 4 5 6 7
+TR
+bfKSIT
+r = 0.821 r = 0.712 r = 0.441 r = −0.321 r = −0.482 r = −0.425
+100 100 100 100 100
+80 80 80 80 80
+60 60 60 60 60
+40 40 40 40 40
+20 20 20 20 20
+0 0 0 0 0
+0 1 2 3 4 5 6 0 5 10 0 1 2 3 0 2 4 6 8 10 0 5 10 15 20 25
+2 3 4 5 6 7
+TR
+bf
+on
+KSIT
+r = 0.495 r = 0.430 r = 0.380 r = 0.103 r = −0.173 r = −0.004
+100 100 100 100 100
+80 80 80 80 80
+60 60 60 60 60
+40 40 40 40 40
+20 20 20 20 20
+0 0 0 0 0
+0 1 2 3 4 5 6 0 5 10 0 1 2 3 0 2 4 6 8 10 0 5 10 15 20 25
+2 3 4 5 6 7
+Length
+TR
+lanigiro
+KSIT
+r = 0.863 r = 0.684 r = 0.447 r = −0.345 r = −0.534 r = −0.464
+100 100 100 100 100
+80 80 80 80 80
+60 60 60 60 60
+40 40 40 40 40
+20 20 20 20 20
+0 0 0 0 0
+0 1 2 3 4 5 6 0 5 10 0 1 2 3 0 2 4 6 8 10 0 5 10 15 20 25
+Embeddings Cohorts Log ex−embeddings Neighbors Rhymes
+of lexical dimensions relate to recognition time. With this fundamental consideration of prior
+results resolved, we can turn to the details of specific top-down effects.
+2.2. Simulation 2: Ganong effect
+For Simulation 2, we compared the ability of TISK with and without feedback to simulate the
+Ganong effect (Ganong, 1980). In the Ganong paradigm, we begin with a continuum from
+one phoneme to another (e.g., changing gradually from /s/ to /∫/, e.g., ess to esh) and
+establish a baseline identification pattern across the continuum (e.g., rate of "s" [vs. "sh"]
+responses at each step). If we add context such that the continuum changes from a word to
+a nonword (e.g., from bus /b^s/ to *buhsh /b^∫/, or from *russ /r^s/ to rush /r^∫/), human
+listeners' identification rates will change. Specifically, they will make more responses
+consistent with the lexical endpoint, typically shifting the category boundary away from the
+lexical endpoint (e.g., for /b^s to /b^∫/, they will make more "s" responses, and the shift to
+"sh" responses will happen closer to the unambiguous /∫/ endpoint).
+To simulate the Ganong effect with TISK, we created a continuum from /s/ to /∫/. To
+do this, we presented inputs ranging from activations of 0.0 for /s/ and 1.0 for /∫/ to 1.0 for /s/
+and 0.0 for /∫/, with mixtures in between (e.g., 60% /s/ and 40% /∫/). We then embedded this
+continuum in an /s/-biased context (from a nonword, /b^∫/, to a word, /b^s/) and in an /∫/-
+biased context (from word /r^∫/ to nonword /r^s/). Without feedback, the model’s performance
+is identical for both contexts (left panel of Fig. 8). With feedback, /∫/ is more activated in the
+ambiguous range (center of the continuum) in the /r^/-context, while /s/ is more activated in
+the ambiguous range given the /b^/-context. Thus, feedback allows TISK to simulate the
+Ganong effect.
+Fig. 8: Lexical effects on phoneme activations. The continuum ranges from /∫/ at step 0 to /s/ at step 6.
+Circles mark /s/ activations, triangles mark /∫/ activations. Open symbols mark lexically-consistent
+phonemes; filled symbols mark lexically-inconsistent phonemes. Left: original TISK model (without
+feedback). Right: TISK with feedback. With feedback (right), the activation of /∫/ is enhanced and the
+activation of /s/ is damped for the /r^∫/ to /r^s/ continuum, and the converse is true for the /b^∫/-/b^s/
+continuum.
+2.3. Simulation 3: Retroactive effects of feedback
+In Simulation 2 (Ganong effect), we observed proactive effects of feedback, where preceding
+context modulated later phoneme activations. In Simulation 3, we ask whether we can also
+observe retroactive influences of feedback (so-called right-context effects; see simulations
+described by McClelland & Elman [1986] on the following pages for related results: pp. 27,
+29, 30 [their figures 8-11]; pp. 66-69). For this simulation, we began with the lexical items
+plug and blush. If we replace the onsets of these items with a stimulus halfway between /p/
+and /b/ (denoted by /#/), we create an ambiguity that will be sustained until the final phoneme
+is presented. We conducted simulations where the inputs were either the clear lexical inputs
+/pl^g/ or /bl^∫/ to establish baseline activations for /p/ and /b/ (we added blush to the TRACE
+lexicon for this simulation; note also that plush was not in the lexicon). Then we conducted
+simulations where the input was /#l^g/ (disambiguated as plug at the final phoneme) or /#l^∫/
+(disambiguated as blush at the final phoneme).
+The results are plotted in Fig. 9. In each panel, we plot activations for /p/ and /b/ given
+the four input patterns (/pl^g/, /bl^∫/, /#l^g/, /#l^∫/). Without feedback (left panel of Fig. 9),
+lexical contexts have no effects, and each stimulus results in perfectly equivalent activations
+of /p/ and /b/. With feedback (right panel), the initial phase of activation is identical across
+contexts because it is driven purely by the bottom-up input. As more context arrives, we see
+changes primarily in diminished decay of phonemes. However, the effects are different for
+the two ambiguous contexts. Indeed, we can see differences emerging around cycle 20. The
+initial differences are stronger activation of /p/ than /b/ prior to disambiguation. This occurs
+because there are more words that begin with /p/ than /b/ in the TRACE lexicon. The effects
+also appear to be stronger for the context ending in /∫/; this emerges because there are 4
+items with the diphone /^∫/ in the lexicon, but 7 with /^g/. Since the items activated by
+feedback will compete with the ambiguous onset position, having a smaller number of items
+sharing the pattern leads to greater ultimate activation. Thus, Simulation 3 shows clear
+retroactive effects of feedback.
+Fig. 9: Retroactive phoneme restoration by following context. Here, the TRACE symbol for /∫/ (/S/) is
+used.
+2.4. Simulation 4: Phoneme restoration
+In Simulation 4, we turn to another classic top-down effect using an analog to the phoneme
+restoration paradigm (Samuel, 1981a,b, 1996, 1997). In a phoneme restoration paradigm, a
+phoneme is replaced either with noise or with silence (typically in a lexical context where
+there is only one possible completion for the replaced phoneme, e.g., #uxury or _uxury
+[where # indicates noise and _ indicates silence] can only be restored as luxury). The two
+kinds of replacement yield very different effects. If a phoneme is replaced by noise, a listener
+typically reports hearing all the phonemes in the word, and will likely have difficulty identifying
+the precise location of the noise. If a phoneme is replaced by silence, the gap is salient, and
+listeners can report the precise location of the silence and which specific phoneme is
+missing. Another difference is that noise-replaced phonemes can drive selective adaptation
+(Samuel, 1997), as though the actual phoneme had been repeated, but silence cannot. The
+interpretation of this pattern is that noise provides sufficient bottom-up activation that the
+missing phoneme is “filled in” by feedback. As a result, the listener not only cannot reliably
+report which phoneme has been replaced, but is uncertain of the position of the noise.
+This means that the critical pattern a model must be able to simulate is (a) robust
+activation of a lexically-consistent phoneme when it is replaced with noise, but (b) weak or
+absent activation when it is replaced with silence (see Grossberg & Kazerounian, 2011,
+2016 and Magnuson, 2015, for a debate about how phoneme restoration should be
+modeled).
+To test TISK's ability to simulate phoneme restoration with and without feedback, we
+used a single word, luxury (/l^kS^ri/), that was the key example in a relevant debate
+(Grossberg & Kazerounian, 2011; Magnuson, 2015). We examined the activations of the
+"expected" phonemes in initial, medial, and final positions (/l/, /∫/, and /i/, respectively) when
+they were intact versus when they were replaced with silence or increasingly strong noise.
+Again, in a successful simulation, replaced phonemes should be robustly activated given
+sufficient noise input, but should be activated weakly or not at all given replacement with
+silence.
+The results are shown in Fig. 10. First, consider the results without feedback. There
+is no activation whatsoever given silence replacement or noise with standard deviation of
+0.2, and only slightly graded activations given noise, very near the level of activation
+observed for intact phonemes.4 In contrast, large lexical effects are readily apparent with
+feedback. Consider the left bottom panel of Fig. 10. There is a large separation between the
+activations of /l/ given an intact phoneme vs. silence. Even a small amount of noise (SD =
+0.2) yields substantially higher activation compared to silence, with a large jump and similar
+activation levels for SD ≥ 0.4. The increase in activation in the late time course, even for the
+silence case, reflects increasing lexical activation (and therefore feedback) later in the word.
+In medial and final positions, a similar pattern is observed. In the latter case, there is
+a notable increase in the activation of /i/ given silence relative to the other positions. This
+demonstrates increasingly strong feedback effects late in a word (in this case, 6 phonemes
+have already occurred in a word that becomes unique at position 4). Crucially, though, there
+remains a categorical difference in the degree of activation for noise with SD > 0.2.
+4 Noise with SD > 0.2 drives similar phoneme activations as the intact phoneme in TISK
+without feedback due to the threshold function governing activation. When the noise
+SD is 0.2 or less, total input to the phoneme node (a combination of bottom-up input
+and its own previous state adjusted by decay) does not reach threshold and so its
+resulting activation remains 0. When noise SD > 0.2, the threshold is reached.
+Fig. 10: Phoneme restoration given noise vs. silence. The target word is luxury (/l^kS^ri/). Top: TISK
+without feedback. Bottom: TISK with feedback. Left: the initial /l/ is presented intact or replaced with
+silence or increasing levels of noise. Middle: the medial /∫/ is replaced. Right: the final /i/ is replaced.
+With feedback, moderate levels of noise (standard deviation ≥ 0.4) drive restoration, although the
+resulting activation is always less than that observed with the intact phoneme. Without feedback, noise
+level matters little, and complete restoration is observed for even modest levels of noise. Note that
+phoneme activations remain at approximately 0 given silence replacement.
+2.5. Simulation 5: Graceful degradation
+The obvious impact of including feedback in a model is that it can provide a mechanism for
+simulating (and explaining) top-down effects. As we discussed earlier, a less obvious but
+crucial consideration is that feedback promotes graceful degradation: gradual rather than
+catastrophic declines in performance given noise or parameter changes. We tested TISK
+with and without feedback for graceful degradation with series of full-lexicon simulations
+(that is, one simulation for every word in the original 211-word TRACE lexicon) while
+gradually increasing the amount of Gaussian noise added to input patterns. At each of 15
+levels of noise (SD 0.01 to 0.15 in steps of 0.01), we conducted 8 full-lexicon simulations
+(with SD > 0, the noise would vary and therefore performance might as well; multiple runs
+allow us to establish more stable performance estimates).
+However, there is no reason to suspect that the default TISK parameters represent
+the best possible performance without feedback; these parameters were originally chosen
+without any consideration for performance under noise. To ensure we were putting the
+autonomous (no feedback) and feedback versions of TISK on maximally equal footing, we
+explored the parameter space more fully both with and without feedback. The details of this
+parameter space explorations are presented in Appendix 1. These explorations led to the
+We present results in Fig. 11 for accuracy and recognition time. With optimized
+parameters, TISK exhibits graceful degradation with or without feedback; that is, with a
+gradual decline in accuracy as noise increases, rather than a collapse (as we see for the
+original parameters without feedback). However, we do observe a significant advantage
+from feedback in terms of accuracy.
+It is also notable that the optimized feedforward variant of TISK differs markedly from
+the other models in Fig. 7, where we plot model RTs relative to various lexical dimensions.
+Specifically, it shows weaker associations with Neighbors and Rhymes, and a reversed
+relationship with ex-embeddings. We have not attempted to determine why this model differs
+from the others in these ways, as we expect the theoretical gain from such inquiry would be
+slight at best.
+Fig. 11: Effects of noise on accuracy and recognition time in TISK with feedback, and three variants
+of the model without feedback: the original, Hannagan et al. (2013) parameters, the no-feedback
+parameters optimized for graceful degradation, and the parameters optimized for feedback but with
+feedback turned off. Feedback maximizes the ability of the model to exhibit graceful degradation:
+feedback preserves accuracy better under higher levels of noise. In contrast to results with TRACE
+(Magnuson et al., 2018), the feedback benefit does not extend immediately to recognition time, though
+an advantage emerges at high levels of noise.
+We noted earlier that Magnuson et al. (2018) conducted similar explorations with
+TRACE. Magnuson et al. (2018) observed catastrophic degradation for TRACE without
+feedback, and graceful degradation with feedback. They also observed a recognition time
+advantage for feedback even without noise (see Magnuson et al., 2024, for a replication
+using raw TRACE activations rather than response probabilities). Curiously, as can be seen
+in the right panel of Fig. 11, recognition times in TISK tend to be longer with feedback until
+we reach the highest levels of noise. What might explain this difference? The most notable
+difference is that the default parameters for TRACE were optimized for running the model
+with feedback. When Magnuson et al. compared TRACE with and without feedback, it was
+a matter of removing feedback from the feedback-optimized parameters. We took a different
+tack here, in terms of finding maximally robust parameters without feedback. A question for
+future research is whether better performance might be possible with TRACE without
+feedback.
+3. Discussion
+We set out to examine whether feedback could be added to the TISK model (a) without
+diminishing its ability to simulate phenomena to which it had already been applied by
+Hannagan et al. (2013) while (b) providing a basis for plausibly simulating classic top-down
+effects in spoken word recognition and (c) making the model capable of graceful degradation
+as inputs become noisy. Our five sets of simulations affirmed that all three of these were the
+case. Simulation 1 confirmed that with feedback added, TISK remains able to simulate
+effects to which it had previously been applied (Hannagan et al., 2013); it continues to
+perform similarly to TRACE (McClelland & Elman, 1986) in terms of the time course of
+activation of targets and categories of phonological relatives, as well as in terms of item-
+specific recognition times, and associations of those recognition times with a variety of
+lexical dimensions (length, numbers of potential competitors, etc.). Simulations 2-4
+demonstrated the ability of TISK with feedback to plausibly simulate the Ganong effect,
+retroactive disambiguation from lexical context, and phoneme restoration, respectively.
+Finally, Simulation 5 demonstrated graceful degradation: as we added increasing levels of
+noise to inputs, and compared TISK with and without feedback, we found that (a) TISK
+exhibits graceful degradation with feedback, (b) without feedback (and with the original TISK
+parameters from Hannagan et al., 2013), TISK exhibits catastrophic degradation (sudden
+collapse of accuracy under modest levels of noise), although (c) we were able to find
+parameter combinations that promote more graceful degradation without feedback, but with
+a concomitant decline in the model’s ability to exhibit human-like time course of lexical
+activation and competition.
+Simulation 5 is particularly critical. Norris, Cutler and McQueen (2000; 2016) have
+argued that there is no logical reason to include feedback in models of spoken word
+recognition. The crucial aspects of their argument are that (a) a system with feedback is
+more complex than one without, (b) any result that can be simulated with feedback can be
+simulated in a purely feedforward ("autonomous") system, and therefore (c) there can be no
+general benefit of feedback; the best a system can do is tune its feedforward connections to
+provide the best estimate of the probability of each phoneme given some stretch of input,
+and appealing to lexical knowledge cannot improve recognition. The details of their
+argument are considered in depth by Magnuson et al. (2018), who also demonstrate that
+feedback in TRACE affords graceful degradation even more dramatically than we saw here
+for TISK. Magnuson et al. (in press) go further and detail how the joint effects of feedback
+and lexical activation selectively reinforce lexically-coherent activation patterns over noise.
+However, Magnuson et al. (2018) did not explore the TRACE parameter space to determine
+whether parameter combinations are possible that would promote more graceful
+degradation in TRACE without feedback. This is a possibility that could be pursued in future
+research, but our primary concern here is the TISK model.
+4. Conclusions
+Our aim was primarily to gauge TISK’s plausibility by increasing its scope to top-down effects
+by adding lexical-to-N-phone feedback. TISK already exhibited remarkable similarity to
+TRACE without feedback (McClelland & Elman, 1986). With feedback, it retains its previous
+similarity to TRACE while providing plausible simulations of classic top-down phenomena.
+These similarities are all the more remarkable given the architectural differences between
+TISK and TRACE. To solve the problems of encoding sequence order, including sequences
+with repeated elements, TRACE employs a "time-as-space" memory with many time-specific
+copies of each feature, phoneme, and word node. These copies allow TRACE to encode
+sequences and repeated elements (whether features, phonemes, or words) because each
+time-specific copy is independent. However, scaling to a realistic size (expanding from 14
+phonemes to 40 and from 200 words to 20,000) would require massive numbers of nodes
+and connections (approximately 1.3 million nodes and more than 40 billion connections). As
+we discussed earlier (see also Hannagan et al., 2013), we would not argue that these counts
+by themselves suggest that TRACE's solution is implausible (e.g., considered in the context
+of estimates of 86 billion neurons and 150 trillion in the typical adult human brain; Azevedo
+et al., 2009). However, they raise the question of whether a more computationally
+economical solution might be possible. TISK (Hannagan et al., 2013) replaces TRACE's
+time-specific phoneme and word nodes with time-invariant nodes – that is, single instances.
+It does this by using not just phonemes at the sublexical level, but also (semi-open) diphones
+(which is why that layer is called the N-phone layer). We describe the diphones as semi-
+open because, as discussed earlier, time-specific phonemic inputs are mapped to time-
+invariant diphones in a graded fashion. The /sa/ node would be slightly more activated given
+sock where its constituents are adjacent than in stock where there is a one-phoneme gap,
+which would activate /sa/ more than strong, where the gap would be two phonemes. Open
+diphone counts provide surprisingly distinctive codes; the gradient activation from symmetry
+coding is even more distinctive, and allows distinctive patterns of activation for ordered
+sequences and sequences including repeated elements. Feedback in TISK differs from that
+in TRACE in one other respect: it uses both positive and negative top-down lexical feedback.
+Positive feedback (to constituents) is much stronger, but we discovered that a small amount
+of negative feedback to non-constituents) promoted stable performance.
+Again, the similarities in performance despite these differences are remarkable. One
+might suppose they are attributable to fundamental aspects of the interactive activation
+architecture used by both TISK and TRACE. However, other models, including simple
+recurrent networks (Elman, 1990) that are not interactive activation models exhibit
+remarkable similarity to TISK and TRACE (Magnuson, in preparation). It may be that the
+information processing constraints of spoken word recognition (mapping sequences "left-to-
+right" onto forms in lexical memory) are such that any system capable of simulating a few
+key aspects of the macrostructure of human spoken word recognition (e.g., the time course
+of activation of words overlapping at onset and offset) will necessarily demonstrate similar
+time course (Fig. 5) and associations with lexical dimensions (Fig. 6). While we cannot
+conclude that there are no significant differences between TISK and TRACE, we have not
+yet discovered any. However, TISK’s successes reported here demonstrate that one key
+criticism of TRACE – concerning its reduplicated, time-specific nodes – does not apply to all
+instances of interactive activation models of human spoken word recognition.
+Acknowledgments
+We wish to acknowledge the tremendous impact Jonathan Grainger has had on us. TH feels
+enormously lucky to have worked with Jonathan, who taught him to take a few select
+computational models really seriously and to base experimental work on them. TH notably
+recalls Jonathan stating modestly on multiple occasions that “Progress in my field has been
+driven by the Interactive Activation model”, a model which he has expanded and helped to
+popularize. JSM recalls sharing an office with Jonathan for several months while on
+sabbatical in 2012 as one of the most intellectually stimulating periods of his career. He is
+very grateful to have been drawn into the original TISK collaboration after overhearing TH
+and Jonathan brainstorming about spoken word recognition. HY has never worked directly
+with Jonathan, but much of his work as a postdoc with JM was directly motivated by
+Jonathan’s contributions to computational psycholinguistics.
+This research was supported in part by U.S. National Science Foundation grants BCS-
+PAC 1754284 and BCS-PAC 2043903 (PI: JSM). This research was also supported in part
+by the Basque Government, Spain through the BERC 2022-2025 program and by the
+Spanish State Research Agency, Spain through BCBL Severo Ochoa excellence
+accreditation CEX2020-001010-S and through project PID2020-119131GB-I00 (BLIS).

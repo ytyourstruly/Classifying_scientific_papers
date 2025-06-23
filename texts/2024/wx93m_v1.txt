@@ -1,0 +1,547 @@
+AI FOR THERAPIST TRAINING 1
+TherapyTrainer: Using AI to Train Therapists in Written Exposure Therapy
+Elizabeth C. Stade1, Johannes C. Eichstaedt1,2, Debra L. Kaysen3,4, Aadesh Salesha5, Alanna
+Greenberger6, Shreya Singhvi1, Shannon Wiltsey Stirman3,4
+1Institute of Human-Centered Artificial Intelligence, Stanford University, Palo Alto, California
+2Department of Psychology, Stanford University, Palo Alto, California
+3Department of Psychiatry and Behavioral Sciences, Stanford University, Palo Alto, California
+4National Center for PTSD, Dissemination and Training Division, VA Palo Alto, Palo Alto,
+California
+5Department of Computer Science, Stanford University, Palo Alto, California
+6Department of Psychology, Palo Alto University, Palo Alto, California
+Author Note
+This work was supported in part by a Stanford Research Development Office Propel
+Grant. Correspondence concerning this article should be addressed to Elizabeth C. Stade;
+betsystade@stanford.edu.
+AI FOR THERAPIST TRAINING 2
+Abstract
+Though evidence-based treatments are effective, existing dissemination efforts are expensive and
+difficult to scale. Novel solutions— especially those that offer active learning strategies, repeat
+skill practice and personalized feedback to therapists — are needed to fill this gap. To address
+this, we developed TherapyTrainer, which uses large language models (LLMs) to allow
+therapists to practice delivering written exposure therapy (WET) for PTSD to AI-Patients while
+receiving expert feedback from an AI-Consultant. Here present initial feasibility, acceptability,
+and usability data for TherapyTrainer gathered from therapists, supervisors, and WET experts
+across iterative rounds of development. In phase 1, we rapidly prototyped and developed
+TherapyTrainer in response to feedback from WET clinicians and experts (n = 4). In phase 2,
+mixed methods data from therapists who just completed a WET workshop (n = 14) indicated that
+the AI-Patient interactions felt realistic and increased therapists’ sense of being prepared to use
+WET with patients. In phase 3, therapists (n = 6) completed structured user testing interviews in
+order to identify key issues impacting usability for subsequent rounds of development. AI and
+large language models hold potential to provide ongoing support to therapists in a cost-effective
+and scalable manner in order to close the research-practice gap.
+Keywords: artificial intelligence, large language models, written exposure therapy, PTSD,
+evidence-based treatments, dissemination
+AI FOR THERAPIST TRAINING 3
+TherapyTrainer: Using AI to Train Therapists in Written Exposure Therapy
+Decades of implementation science research has not bridged the research-practice gap in
+evidence-based psychotherapy. Despite treatments being effective, their uptake in clinical
+settings – even those that invest heavily in training – is low, leading to calls for novel solutions
+(Kazdin & Blase, 2011; Maguen et al., 2020). Existing therapist training practices – such as
+reading a treatment manual or attending a workshop – do not lead to gains in therapists’ uptake
+or delivery of these treatments, including for the exposure-based treatments (Herschell et al.,
+2010; Trivasse et al., 2020; Valenstein-Mah et al., 2020). Methods that may fill this gap include
+providing therapists ongoing support after learning an EBT, such as a consultant providing
+feedback and guidance on the therapist’s treatment delivery; such methods improve therapist
+self-efficacy and fidelity as well as patient outcomes (Edmunds et al., 2013; Valenstein-Mah et
+al., 2020; Wiltsey Stirman et al., 2022).
+However, issues with consultation limit its potential impact. Recruiting and maintaining
+adequate pools of trainer-consultants is resource-intensive (Rosen et al., 2017), consultation can
+be prohibitively expensive (Okamura et al., 2018), and therapists struggle to fit it into their
+schedules (Chard et al., 2012), challenges which together limit access to consultation. Therapists
+who do have access to consultation are typically required to complete a set number of cases, and
+can face challenges recruiting or retaining patients within the required time frame (Stuart et al.,
+2018; Timmer et al., 2016; Worley et al., 2020). This results in therapists facing long waiting
+periods before they can practice the EBT they just learned, or having practice periods that are
+infrequent or interrupted. Consultation also typically involves a delay between delivery of
+treatment and receiving feedback. Due to constraints related to recording and reviewing sessions,
+consultation may rely predominantly or solely on therapist self-report regarding what occurred in
+the session, which is often inaccurate (Caron & Dozier, 2022; Wiltsey Stirman et al., 2013).
+Innovations are needed to increase therapists’ access to expert support, and opportunities to
+practice their new skills and to practice those skills more effectively, after EBT training.
+Desired Qualities of a Novel Therapist-Training Program
+An ideal therapist training technology would allow timely, sustained, and frequent
+practice delivering EBPs, promote active and experiential learning, and facilitate timely and
+direct feedback.
+Active and Experiential Learning
+Experts recommend that therapist training incorporate active learning techniques, such as
+behavioral role plays, which afford therapists opportunities to engage with the material directly
+rather than serving as passive knowledge recipients (Beidas & Kendall, 2010). In education
+generally, active learning improves learners’ motivation, attitudes, and outcomes (Michael, 2006;
+Owens et al., 2020); when used to train exposure therapy, active learning enhances therapist
+AI FOR THERAPIST TRAINING 4
+self-efficacy and treatment perceptions (Frank et al., 2023). Therefore, an ideal therapist training
+solution would involve active learning techniques.
+Repetitive Skill Practice
+Methods that involve repetitive skill practice have been suggested to enhance the
+acquisition of therapy skills (Mahon, 2023). Role play, one skill practice method, is commonly
+used during workshops (Beidas & Kendall, 2010) yet is time consuming and may not predict
+real-world therapist behavior (Decker et al., 2013). Recent efforts have employed “simulated
+patients” – lay people trained to role play a specific case presentation or set of symptoms for
+therapist skill practice (Edwards et al., 2016; Imel et al., 2014), yet this approach can be costly
+and it may be difficult for actors to depict psychopathology authentically (Ay-Bryson et al.,
+2023). An ideal training solution would provide therapists with on-demand access to repeat
+opportunities for skill practice shortly after learning a new treatment.
+Timely Feedback on Full Sessions
+Experts have also highlighted the value of targeted feedback, which is a core part of
+consultation and is theorized to improve therapist skill and understanding vis-a-vis EBTs
+(Edmunds et al., 2013; Mahon, 2023). Yet current models of consultation have gaps with regard
+to feedback. During consultation, therapists commonly receive feedback based on their
+self-reports or self-selected audio segments from sessions (e.g., Johnson et al., 2022; Mallard
+Swanson et al., 2021). More intensive methods like live or retrospective observation of full
+sessions may be too time-consuming to execute at scale. This means that therapists typically
+don’t receive feedback on full sessions, and rarely receive real-time feedback on their
+performance (Westra & Di Bartolomeo, 2024), which may be particularly concerning for
+low-fidelity behaviors that could derail a session. Scalable innovations that deliver real-time
+feedback on a full therapy session may improve therapists’ ability to deliver EBTs.
+To summarize, innovations that provide post-training support for therapists could help bridge the
+research-practice gap. Ideal qualities of this support include active learning strategies, opportunities for
+repetitive skill practice, and timely feedback on full sessions.
+A Generative AI Solution for Therapy Training
+We have previously argued that generative AI – sophisticated computer models which
+can generate human-like text, holds promise to aid EBT dissemination and implementation
+efforts (Stade et al., 2024a). One form of generative AI, large language models (LLMs), with the
+ability to flexibly generate human-like language and obtain domain-specific expertise (Yao et al.,
+2023), could offer training solutions at scale. Researchers have used LLMs for teaching and
+providing practice with interpersonal skills (e.g., Shaikh et al., 2023). This notion could be
+extended to allow the therapist to practice implementing the EBT they just learned, and to
+receive high-quality feedback on their performance.
+AI FOR THERAPIST TRAINING 5
+Generative AI has many properties that make it well-suited for use in a therapist training
+tool. Through realistic simulations of human behavior (Park et al., 2023), it allows for the
+creation of AI-simulated patients (Holderried et al., 2024; Louie et al., 2024). These can be used
+to allow therapists to practice delivering EBTs within a controlled, low-stakes environment,
+facilitating active learning. Given its 24/7 availability, generative AI can also facilitate repetitive,
+on-demand skill practice. Rather than being dependent on role-play partners to practice skills,
+therapists could get practice delivering the EBP immediately, reducing delays in practicing new
+skills. Additionally, AI does not experience fatigue, so therapists can practice full courses of
+therapy and repeat skills as often as needed without being constrained by others’ schedules.
+Models incorporating multiple generative AI “agents” playing different roles—such as an EBP
+expert (Held et al., 2024)—could support training solutions that provide real-time feedback on
+therapist performance.
+Large language models have been used for training basic counseling skills (Louie et al.,
+2024; Tanana et al., 2019), and we are aware of two previous studies employing AI-simulated
+conversation partners to allow users to practice and receive feedback on their delivery of an
+individual therapy skill (Lin et al., 2024; Wang et al., 2024). Here we sought to extend this work
+by creating a therapist-facing program that supports skill practice across an entire EBP protocol
+while offering real-time, expert-level feedback to enhance learning.
+The Current Study
+Here we introduce TherapyTrainer, which allows therapists to practice delivering written
+exposure therapy (WET), a form of cognitive behavioral therapy, with AI-based simulated
+patients, while receiving feedback from an AI-consultant. In WET, patients write about their
+traumatic event in a repeated and prolonged fashion in order to integrate the memory and reduce
+their distress (Sloan & Marx, 2019). We selected WET as there is currently a high demand for
+therapist training in this treatment due to its efficacy, abbreviated format (five sessions), and low
+dropout rate (Sloan & Marx, 2024). Furthermore, WET relies on a more narrow range of
+therapist behaviors than many other EBTs, making it well-suited for a proof-of-concept therapist
+training application. Following a three-phase user-centered design approach, we developed and
+refined TherapyTrainer through iterative feedback from therapists, focusing on usability,
+feasibility, and acceptability.
+Method
+Development of TherapyTrainer
+TherapyTrainer is an AI-powered web-based tool that allows therapists or trainees to
+practice delivering written exposure therapy to simulated “patients” while receiving guidance
+from a “consultant.” The simulated patients (“AI-Patients”) and consultant (“AI-Consultant”) are
+large language model conversational agents (“chatbots”) which we developed using prompt
+engineering, which involves providing written instructions to shape the chatbots’ context and
+AI FOR THERAPIST TRAINING 6
+behavior (for more details on prompt engineering, see Stade et al., 2024a). We present additional
+technical details on the development of TherapyTrainer in the supplemental text.
+Simulated Patient Agents
+The two distinct AI-Patients represent beginner and intermediate levels of clinical
+complexity, respectively. The first AI-Patient is a Latino male combat veteran in his early thirties
+with no psychological comorbidities. The second AI-Patient, a middle-aged Black woman with a
+history of sexual trauma, intimate partner violence, and substance use disorder, presents clinical
+challenges including suicidal ideation, risk of return to substance use, and reluctance to engage in
+writing assignments.
+Consultant Agent
+The AI-Consultant represents an expert in written exposure therapy tasked with providing
+the therapist feedback on their work delivering WET to each AI-Patient. The AI-Consultant was
+instructed to prompt the therapist to do the unique elements of WET (e.g., provide the rationale
+for WET, work with the patient to select an index trauma, provide instructions for writing the
+trauma narrative, provide feedback on the patient’s narrative), and to guide the therapist to
+deliver these interventions in a culturally responsive manner.
+Using TherapyTrainer
+On the TherapyTrainer website, users interact with each AI-Patient at their own pace to
+simulate a full course of treatment, divided into the five manual-defined sessions of WET. When
+the user sends a message (e.g., “How did the writing session go for you?”) the AI-Patient
+generates a custom response in the style of the patient (e.g., “It was really hard… writing it down
+brought back all those feelings and memories... the stress, the regret, the shock”). Users
+simultaneously receive feedback and guidance from the AI-Consultant on their interactions with
+the AI-Patient (e.g., “You did a good job inquiring about the patient's experience with the writing
+session… Remember to end the session with the standard instructions about allowing thoughts
+and feelings related to the trauma to come up”).
+Participants
+Phase 1
+In Phase 1, masters- and doctoral-level clinicians provided feedback on the
+TherapyTrainer prototype. This included E.C.S., A.G., D.L.K., and S.W.S., who ranged from
+having no prior experience with written exposure therapy to being WET trainer-consultants. In
+addition, four other WET clinicians and experts provided impressions and feedback.
+AI FOR THERAPIST TRAINING 7
+Phase 2
+Therapists (n = 14) participating in an otherwise routine WET training workshop, who
+were Masters level therapists or trainees, medical residents, and PhD level therapists, used
+TherapyTrainer during and after a standard workshop. These therapists were predominantly
+female (86%). We did not collect age data, but all therapists had achieved postgraduate levels of
+education. The sample was somewhat racially diverse: 64% of participants were White, 29%
+were Asian, and 7% were Black. Therapists were predominantly from community or
+hospital-based mental health settings (79%), and the remainder were from Veterans Affairs
+settings (21%). Four therapists were native Spanish speakers. Half of the sample (n = 7)
+additionally received consultation in WET; remaining therapists (n = 7) did not receive
+consultation due to capacity issues and were offered support via TherapyTrainer alone.
+Phase 3
+Participants were Masters and doctoral-level therapists (n = 6), non-overlapping with
+Phase 1 therapists, who had varying levels of WET expertise, ranging from no exposure to
+having completed a WET workshop. Therapists were mostly female (67%; n = 4) and had a
+mean age of 34.17 (SD = 6.43). Half of therapists were White (n = 3); 1 was Asian, 1 was mixed
+race, and one was mixed race. Most therapists were from Veterans Affairs settings (67%, n = 4);
+the rest were from community or hospital-based mental health settings (33%, n = 2).
+Measures
+Phase 1
+User Feedback. Following Lyon and Koerner (2016), we gathered feedback from
+clinicians on their experiences with the TherapyTrainer prototype. We asked the Phase 1 group
+of clinicians and experts to provide their general impressions of TherapyTrainer, as well as to
+describe the form they would want TherapyTrainer to take, as WET trainer-consultants.
+Phase 2
+Feasibility. We operationalized feasibility as engagement with TherapyTrainer, including
+the number of therapists who accessed the tool, the number of times TherapyTrainer was used by
+each therapist, and whether one or both simulated patient agents were used.
+Acceptability. We assessed therapist perceptions of TherapyTrainer’s acceptability using
+quantitative rating scales. Three items assessed the perceived realisticness of the two AI-patients
+and the extent to which TherapyTrainer increased users’ preparedness and confidence in using
+WET, respectively. Items were rated from 0 (not at all) to 4 (very great extent). In addition to
+calculating average scores, we also re-coded the items to obtain a binary measure of agreement.
+Scores of 3 (“moderate agreement”) and higher reflected “agreement” with the statement. Using
+these binary-coded items, we present percent agreement for each statement.
+Latency to Deliver WET. We followed therapists over time and recorded if and when
+AI FOR THERAPIST TRAINING 8
+they began treating patients in their own clinical practice with WET as a measure of the extent to
+which TherapyTrainer encouraged therapists to begin using this treatment.
+User Experience. We took detailed notes on verbal, qualitative feedback Therapists
+provided regarding their experiences with TherapyTrainer. Again, therapists were requested to
+provide their general impressions as well as to describe changes that might make TherapyTrainer
+more engaging to use. Additionally, in the post-workshop survey, therapists provided written
+responses in response to the question, “Please share your feedback and suggestions about the
+[TherapyTrainer] exercise and how it influenced your experience using WET with your clients.”
+Phase 3
+User Experience. We interviewed therapists about their experiences with TherapyTrainer
+using a user experience interview guide developed by individuals with experiences spanning
+clinical psychology, product management, and user experience. The interview guide contained
+open-ended questions eliciting both general feedback (e.g., “What were your first impressions
+when you opened the app?”) as well as specific feedback regarding components of the app
+highlighted by users during previous rounds of testing (e.g., “How do you feel about the
+appearance and placement of AI consultant’s feedback on the screen? How about the frequency,
+length, and tone of the feedback?” and “How do you feel about the audio functionality
+(voice-to-text and text-to-voice)? In your ideal world, what would the experience be like if you
+were going to use audio functionality?”).
+Procedure
+This study was approved by the Stanford University Institutional Review Board. The
+WET training program activities described in Phase 2 were considered program evaluation and
+received a determination of non-research.
+Phase 1: Prototyping and Rapid Iteration
+Following human-centered design principles, we conducted prototyping and rapid
+iteration of TherapyTrainer (Lyon & Koerner, 2016). We presented the TherapyTrainer prototype
+to therapists for their review and feedback, and used that information to refine the prototype.
+Specifically, E.C.S., D.L.K., and S.W.S worked with A.S., the software developer, to select and
+scope improvements, which A.S. implemented. We continued this process in an iterative fashion
+– developing the prototype, reviewing it with users, and refining it based on user feedback – until
+two WET trainer-consultants (D.L.K. and S.W.S.) deemed the version of TherapyTrainer
+(version 1) ready to be deployed to a naive group of therapists.
+Phase 2: Proof-of-Concept Deployment of TherapyTrainer to Therapists Following Workshop
+Therapists participating in an otherwise routine WET training workshop were given
+access to TherapyTrainer, version 1, for one week following the workshop. On the day of the
+workshop, therapists were given one hour and asked to familiarize themselves with
+AI FOR THERAPIST TRAINING 9
+TherapyTrainer and to use TherapyTrainer to practice delivering written exposure therapy with at
+least one AI-patient. Therapists tested TherapyTrainer from their personal computers while in a
+group video conferencing call. Therapists provided feedback during and immediately following
+testing of TherapyTrainer to two clinical psychologists and one software engineer (S.W.S.,
+D.L.K., and A.S.), who took detailed notes and rapidly developed TherapyTrainer in response to
+this feedback. Immediately following the workshop, participants were sent quantitative
+acceptability measures. The qualitative and quantitative feedback was used for development until
+ready for subsequent user testing.
+Phase 3: Structured User Testing
+Therapists were recruited to engage in one-hour long user testing sessions, with the goal
+of identifying and prioritizing key features impacting usability for subsequent rounds of
+development. During these sessions, therapists were presented with TherapyTrainer, version 2,
+and asked to use the product as they would if they were encountering it on their own. Following
+this, therapists were interviewed using the interview guide. The user testing sessions were video
+recorded and subsequently transcribed. Common themes were extracted from the therapist
+feedback by two clinical psychologists (E.C.S. and S.W.S) and research coordinator with
+experience in product management and user-centered design.
+Results
+Phase 1
+Here we report high-level themes and improvements made during the prototyping and
+rapid iteration phase of developing TherapyTrainer. A bulk of the comments centered on the
+AI-Consultant’s feedback. Therapists found the AI-Consultant’s messages to be too long-winded
+and formal, and while they appreciated getting positive feedback, they found the AI-Consultant’s
+praise ingratiating. On the other hand, therapists found that the AI-Consultant too frequently
+provided guidance on basic counseling skills and professionalism; therapists suggested this
+feedback be limited to cases where the therapist was harsh, lacked empathy, or gave unclear
+instructions. We also learned that the AI-Consultant frequently gave directions on several therapy
+skills at once, but therapists preferred to receive guidance focused on the immediate next WET
+skill they should implement. These comments formed the basis for changes we made to the style
+of the AI-Consultant via prompt engineering (see Method section and the supplemental text).
+Therapists thought that descriptions of the AI-Patients, as well as the key WET skills
+important for each session, should be easily accessible within TherapyTrainer. In response, we
+embedded patient descriptions on the application homepage and a session-specific “task list,”
+within the chat-based user interface. Furthermore, therapists wanted the ability to speak to the
+AI-Consultant to ask questions or clarify feedback, so we added this functionality and allowed
+users to choose between interacting with the AI-Consultant or AI-Patient.
+AI FOR THERAPIST TRAINING 10
+Lastly, therapists wanted opportunities to handle challenging scenarios, such as managing
+suicidal ideation during WET, and to practice individual skills in an ad hoc manner, like
+providing feedback on trauma narratives. This prompted us to add suicidal ideation the second
+AI-Patinet’s symptoms, and to ensure TherapyTrainer enabled practice of individual skills rather
+than requiring the completion of full sessions.
+Phase 2
+Feasibility
+Of 14 therapists who participated in the pilot program, 100% engaged with
+TherapyTrainer. Users interacted with the tool on 1-7 separate occasions. The majority of
+therapists (86%; n = 12) interacted with both AI-patients. One therapist, a native Spanish
+speaker, interacted with TherapyTrainer in Spanish.
+Acceptability
+Out of the therapists who provided quantitative acceptability data (n = 7), therapists rated
+the realisticness of the AI-patients as a 3.00 (SD = 0.82), representing a “great extent”
+realisticness. Therapists rated the extent to which TherapyTrainer prepared them to start working
+with WET patients also as a 3.00 (SD = 0.82), representing a “great extent” of preparedness.
+Lastly, therapists rated the extent to which TherapyTrainer gave them confidence to start using
+WET as a 2.57 (SD = 0.98), in the “moderate” to “great” range.
+When we examined the same data coded using the binary coding scheme, 71% percent of
+therapists (n = 5) felt that the AI-patients were realistic; 71% (n = 5) felt that TherapyTrainer
+prepared them to start using WET with patients; 57% (n = 4) felt that TherapyTrainer increased
+TherapyTrainer realistic and helpful.
+Incorporating WET into Clinical Practice
+Of the therapists who received access to TherapyTrainer alone (n = 7), the majority chose
+to begin treating patients with WET the week after the workshop (71%; n = 5), providing
+preliminary indication that practicing with TherapyTrainer may help therapists feel adequately
+prepared to begin using WET even in the absence of consultation.
+User Experience
+Here we summarize themes from Phase 2 user testing; selected therapist feedback from
+therapy process factors (e.g., building rapport, checking patient understanding) and its detailed
+understanding of written exposure therapy. However, users also highlighted instances in which
+the AI-Consultant gave guidance that seemed misaligned with the WET approach (e.g.,
+suggesting coping skills or suicidality assessment in response to AI-Patient distress). Users
+AI FOR THERAPIST TRAINING 11
+appreciated the AI-Consultant’s emphasis on culturally competent treatment, and one user liked
+that she could interact with TherapyTrainer in Spanish.
+Some therapists found it unnatural to type messages to the AI-patient, stating a preference
+to communicate via voice. Therapists would have appreciated an option to revise their previously
+sent messages to apply AI-Consultant feedback. Some users found TherapyTrainer difficult to
+learn to use, which limited their practice time. Lastly, therapists expressed a desire for a way to
+access WET training materials (e.g., the manual) from within TherapyTrainer.
+Phase 3
+To gain more insight into usability challenges faced by therapists, particularly their first
+time using TherapyTrainer, we conducted structured user testing interviews. During these
+interviews, several therapists found it unclear how to start using TherapyTrainer and wanted
+clearer introductory guidance. Several therapists found it distracting and cognitively-burdensome
+that the AI-Consultant’s messages appeared at the same time and within the same dialogue as the
+AI-Patient’s messages. Most therapists stated a preference for speaking rather than typing
+messages, but found the voice-to-text feature inaccurate or difficult to use.
+Some therapists stated that TherapyTrainer would be a valuable resource following a
+WET workshop. They found the AI-Patient realistic, and the AI-Consultant fast, accurate, and
+helpful. However, some therapists felt overwhelmed by the volume of feedback (“It always has
+something to point out that I did wrong”), and were unsure whether to address the feedback in
+subsequent messages or move to the next therapy skill.
+Therapists appreciated having access to the session task list, but some wished more
+content was embedded within it, such as the written exposure instructions, details on important
+psychoeducation content to cover, or video recordings of therapists performing each skill.
+Therapists also noted that the order of therapy skills within the task list was misaligned with the
+order in which the AI-Consultant suggested the skills should be carried out.
+Discussion
+Current approaches to training therapists in evidence-based treatments don’t reliably
+impact therapist use of these treatments, hindering efforts to disseminate EBPs. Such findings
+highlight the need for novel therapist training methods that improve rates of EBP delivery and
+therapist fidelity to the treatments as designed. Simulated patient approaches can allow therapists
+opportunities to practice therapy skills, receive feedback, and tackle challenging clinical
+scenarios in a low-stakes environment, which may impact self-efficacy and increase use of
+trauma-focused and exposure-based therapies. Therefore, we developed TherapyTrainer, a
+generative AI tool that enables therapists to experientially learn written exposure therapy through
+interactions with AI-based simulated patients and an AI-consultant. Using a three-phase
+approach, we rapidly prototyped and iteratively developed TherapyTrainer and then gathered
+usability, feasibility, acceptability, and impact-on-using-WET data from both therapists and WET
+AI FOR THERAPIST TRAINING 12
+trainer-consultants. Initial results indicate that TherapyTrainer is a useful training tool that may
+improve therapists’ level of comfort delivering written exposure therapy. More broadly, this
+work highlights the potential for generative AI-based therapist training tools to help disseminate
+EBPs and address the science-practice gap.
+What We Learned Developing an AI-Based Therapist Training Tool
+Much of the feedback we received during the product prototyping and rapid iteration
+phase (Phase 1) centered on the AI-Consultant’s feedback. Therapists wanted feedback that was
+succinct, centered on one skill rather than many, and focused on WET rather than general
+therapy skills. Therapists appreciated having treatment-specific information (e.g., session-level
+overviews) and patient-specific details (e.g., demographics, trauma history) embedded in the user
+interface, perhaps mimicking notes they might bring to session. Feedback also underscored the
+value therapists place on skill practice: Therapists wanted to tackle challenging scenarios, like
+patient suicidality, and to have a venue for repeating individual WET skills outside the full
+therapy simulation. Taken together, this feedback provides valuable insight into therapists’
+values and priorities when practicing EBTs and receiving feedback.
+During Phase 2 and 3 user testing, a central theme that emerged was the challenges
+therapists faced figuring out how to use TherapyTrainer. This underscored the importance of
+enhancing learnability and reducing cognitive load, two aspects of usability identified by the
+human-centered design field ( Lyon & Koerner, 2016). However, prioritizing usability while
+responding to user suggestions at times proved challenging. In response to user suggestions, we
+added a voice-to-text feature, but its usability was poor, owing to our choice to make use of
+quickly-implementable rather than state-of-the-art technology. This tension highlights the
+challenge of maintaining high usability while engaging in rapid, responsive development.
+During earlier rounds of testing, users noted instances in which the AI-Consultant
+recommended content that conflicted with the written exposure therapy protocol, an impact of
+large language models’ pre-training on wide-ranging internet text (Stade et al., 2024b).
+Following prompt engineering refinements, users no longer noted these issues, seeming to
+indicate that our changes improved the AI-Consultant’s fidelity to WET. However, during
+subsequent testing, several users perceived the AI-Consultant as overly critical; though the
+feedback itself was appropriate to WET, the AI-Consultant frequently gave instruction on too
+many different WET skills at once, and didn’t give users a chance to first practice skills
+themselves. This highlights a tension in building AI consultants: They must possess detailed,
+treatment-specific knowledge while also acting to deliver the right amount and type of feedback
+at the right moment in order to effectively guide trainee development.
+The supervision literature emphasizes tailoring teaching to the trainee’s current
+knowledge base, and eliciting trainees’ ideas before providing feedback, a technique known as
+scaffolding (Cummings et al., 2015). Future improvements to TherapyTrainer could align the
+AI-Consultant more closely with this and other supervision techniques believed to encourage
+deeper learning (Reiser et al., 2018). In particular, engineering the AI-Consultant to be more
+AI FOR THERAPIST TRAINING 13
+Socratic would align with user preferences for feedback fostering reflection and discovery, rather
+than merely providing instruction.
+Strengths of an AI-Based Therapist Training Tool
+Ideal Training Qualities Made Scalable
+We developed TherapyTrainer to have qualities expected to improve therapist EBP
+outcomes, including using active learning strategies, allowing for frequent practice, and
+providing therapists with feedback on their work. Given its use of generative AI, TherapyTrainer
+offers training opportunities rarely possible using human consultants or simulated patients, such
+as simulating full EBT cases and receiving detailed, utterance-level feedback on entire recorded
+therapy sessions, rather than on recorded session segments or therapist verbal reports.
+Flexibility of Language
+TherapyTrainer also offers the ability for therapists to interact with it in multiple
+languages. Although further testing is needed to ensure that TherapyTrainer offers accurate and
+culturally-responsive content across languages, this represents a significant advantage as it
+requires far less time and fewer resources than training and identifying consultants who can
+conduct consultation in multiple languages, or translating content in web-based trainings.
+Patient Outcomes
+AI-based therapist training solutions may benefit patients outcomes, especially in light of
+evidence that a therapist’s first patient treated with a given EBT improves less than their
+subsequent patients (Johnson et al., 2022; Mallard Swanson et al., 2021), Thus, models like
+TherapyTrainer that allow therapists to run through full, simulated “practice cases” may
+accelerate therapist skill development and improve outcomes for initial patients treated.
+On Demand Training “Cases”
+In WET training programs, therapists may attend consultation for over a month before
+identifying training cases and may require extensions to complete these cases (Worley et al.,
+2020) which is highly inefficient for both therapists and consultants. TherapyTrainer, if proven to
+be a sufficient replacement for human training cases in building therapist competence, could
+accelerate the process of meeting EBT training requirements. Therapists could complete
+AI-based cases embedded in TherapyTrainer, circumventing the need to recruit and retain
+human patients for training cases and eliminating the risk of drop out.
+Latency to Deliver EBT
+Notably, a high proportion of clinicians in our study who received TherapyTrainer alone
+(without traditional consultation) began seeing WET cases immediately after the workshop. This
+provides preliminary indication that using TherapyTrainer may boost therapists’ confidence in
+AI FOR THERAPIST TRAINING 14
+using WET and could shorten their time to begin using WET with patients (latency). Reducing
+therapist latency without the use of traditional consultation would be particularly impactful, as
+previous work in the cognitive processing therapy (CPT) literature has highlighted that therapists
+who don’t receive consultation are less likely to use CPT with patients (Monson et al., 2018).
+However, research is needed to test whether receiving TherapyTrainer alone actually reduces
+latency, or whether this is an effect specific to WET. CPT requires mastery of more therapist
+behaviors than WET, and it is possible that consultation plays a larger role in therapist-uptake of
+treatments that are relatively complex, like CPT.
+Future Directions
+Improvements to TherapyTrainer
+Usability. The next round of improvements to TherapyTrainer should focus on usability
+issues (Lyon & Koerner, 2016), particularly those highlighted during Phase 3 user testing. Key
+usability improvements we intend to make include improving user onboarding, improving the
+voice-to-text technology, simplifying the user interface, and aligning AI-Consultant feedback
+with the session task list and clarifying the importance of the AI-Consultant’s feedback.
+Assessing Therapist-Level Behavior Change Mechanisms. Prior research has
+identified candidate therapist-level mechanisms that increase provider EBT use and patient
+outcomes, including self-efficacy, skills, and positive expectations about patient outcomes
+(McLean et al., 2024; McLeod et al., 2018; Ruzek et al., 2016). We expect that TherapyTrainer
+may engage these mechanisms, but measurement is needed to ensure this is true. Down the line,
+TherapyTrainer could monitor engagement of these mechanisms using built-in questionnaires or
+more sophisticated language-based assessment methods (Park et al., 2015) and could offer
+tailored content based on results (e.g., offering another beginner-level practice case to a therapist
+with low self-efficacy).
+Automated Fidelity Monitoring. One therapist-level mechanism that may be
+particularly important to monitor within TherapyTrainer is treatment fidelity. Measuring fidelity
+using simulated patients has been tested previously (Imel et al., 2014), and automated fidelity
+evaluation may be possible by applying language-based fidelity assessment (e.g., Shah et al.,
+2022) to therapist language recorded by TherapyTrainer. Adding fidelity monitoring to
+TherapyTrainer could facilitate the identification of therapists needing additional support,
+enabling more parsimonious use of consultation calls in a stepped-care-like model.
+TherapyTrainer could also play a role in provider certification processes by evaluating therapist
+competency during interactions with additional AI-Patients.
+Levels of Feedback. TherapyTrainer allows therapists access to “bug in the eye” style
+(Vezer, 2021) fine-grained feedback on their performance delivering WET. Having access to
+scalable yet intensive feedback raises the question of what the optimal level of feedback is. It
+may be possible to titrate levels of feedback, such that there is a dimension of intensity of
+AI FOR THERAPIST TRAINING 15
+feedback that can be set by a supervisor or trainer or the therapist themself. However, it is an
+empirical question whether titrating levels of feedback will result in improved outcomes.
+Adding Clinical Content. Therapists requested the ability to review treatment specific
+concepts and view video clips of workshops and sample therapy sessions within TherapyTrainer.
+As the WET manual specifies that therapists should read specific scripts aloud, such as the
+psychoeducation content or the introduction to the writing assignments, other users requested the
+WET “scripts” to be built into TherapyTrainer. Additional challenge scenarios (e.g., more acute
+suicide risk, substance use, dissociation, client ambivalence or refusal to continue the protocol,
+difficulties selecting an index trauma) that therapists might feel apprehensive about encountering
+might enhance self-efficacy and intent to provide trauma-focused treatments to more individuals.
+Adding these features could make TherapyTrainer a “one stop shop” for WET training.
+Extension to Other EBTs
+Though we developed TherapyTrainer using written exposure therapy, it could be
+extended to other EBTs. Candidate treatments include brief protocols with clearly defined steps
+for therapists, due to the significant prompt engineering needed to train the AI-Consultant to
+provide high-fidelity, concrete feedback on each treatment element. Behaviorally-focused
+treatments such as CBT for insomnia (Perlis, 2008) or exposure therapy for specific phobia
+(Antony et al., 2006), may be preferable, as the criteria for what constitutes high-quality
+behavioral interventions are often relatively straightforward. However, early evidence suggests
+that large language models can successfully guide therapists to deliver difficult-to-master
+cognitive interventions, like Socratic dialogue (Held et al., 2024).
+Other treatments that require therapists to provide targeted, client-facing feedback may
+integrate well with TherapyTrainer. Here, we created a prototypical client work sample (the
+trauma narrative), outlined ideal feedback a WET therapist should give about the work sample,
+and trained the AI-Consultant to guide therapists towards that ideal feedback. This process could
+extend to treatments like parent-child interaction therapy, where therapists give parents feedback
+on their interactions with their child (McNeil & Hembree-Kigin, 2011).
+Implementation Concerns
+To effectively integrate TherapyTrainer into therapist training efforts, it is essential to
+provide trainees with protected time within workshops to engage with the tool, as lack of
+dedicated time often results in underutilization. One potential solution to encourage usage is to
+offer continuing education (CE) credits for time spent using TherapyTrainer, providing a tangible
+incentive for participation. Additionally, the tool could serve as a replacement for the initial live
+patient interaction, allowing therapists to gain confidence and refine their skills in a simulated
+environment before working with real clients. However, systemic challenges, such as integrating
+the tool into existing workflows and the potential for training activities to reduce clinical
+productivity, may pose barriers to adoption. Incorporating bite-sized simulation modules into
+AI FOR THERAPIST TRAINING 16
+web-based training platforms can help address these challenges by offering flexible, accessible,
+and structured opportunities for skill development.
+Future Empirical Studies
+Down the line, randomized clinical trials will be needed to establish the effectiveness of
+TherapyTrainer. Assessing several different outcomes will be important. Ideally users would
+show improvement in subjective metrics, like therapist's sense of preparedness and confidence in
+delivering the EBT, as well as objective metrics related to EBT usage, like number of EBT cases
+initiated, number of EBT cases completed, and latency. More distal metrics, such as patient
+symptom reduction, would also be of interest. Because therapists’ second and subsequent
+patients in an EBT improve more than their first (Wiltsey Stirman, 2022), we might hypothesize
+that therapists who use TherapyTrainer might have their patients show greater improvement (as
+compared to therapists who do not use TherapyTrainer).
+Ideal comparison conditions will need to be determined. In one sense, it would be ideal to
+randomize therapists to use TherapyTrainer or consultation-as-usual, with the expectation that
+TherapyTrainer could achieve noninferiority with far fewer resources. A robust investigation of
+the effects of TherapyTrainer would also compare this product to access to a non-specialized
+generative AI chatbot (i.e., one that has not been tailored to provide specialized training and
+consultation in an EBP). This would allow us to rule out the possibility that effects of
+TherapyTrainer are attributable to nonspecific aspects of generative AI, such as 24/7 accessibility
+or the helpful nature of generative AI.
+Conclusion
+In conclusion, TherapyTrainer represents a promising advancement in therapist training,
+leveraging generative AI to address persistent gaps in the dissemination and implementation of
+evidence-based treatments for PTSD. By enabling therapists to practice delivering written
+exposure therapy in a realistic, low-stakes, and flexible environment, TherapyTrainer addresses
+critical barriers such as insufficient ongoing consultation and limited opportunities for skill
+practice. Initial results demonstrate that TherapyTrainer is feasible and acceptable and may have
+the potential to reduce the latency between training and clinical implementation. Future research
+will be essential to rigorously evaluate its efficacy, including its impact on therapist fidelity, EBP
+adoption rates, and patient outcomes. TherapyTrainer holds promise as a scalable, cost-effective
+solution for bridging the science-practice gap and ultimately improving patient access to
+effective treatments.
+AI FOR THERAPIST TRAINING 17

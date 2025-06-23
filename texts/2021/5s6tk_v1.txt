@@ -1,0 +1,1348 @@
+Running head: SGLRT FOR MONITORING ITEM PARAMETER DRIFT 1
+Sequential Generalized Likelihood Ratio Tests for Online Item Monitoring
+Hyeon-Ah Kang
+University of Texas at Austin
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 2
+Abstract
+The study presents statistical procedures that monitor functioning of items over time. We
+propose generalized likelihood ratio tests that surveil multiple item parameters and
+implement with various sampling techniques to perform continuous or intermittent
+monitoring. The procedures examine stability of item parameters across time and inform
+compromise as soon as they identify significant parameter shift. The performance of the
+monitoring procedures was validated using simulated and real-assessment data. The
+empirical evaluation suggests that the proposed procedures perform adequately well in
+identifying the parameter drift. They showed satisfactory detection power and gave timely
+signals while regulating the error rates reasonably low. The procedures also showed
+superior performance when compared with the existent methods. The empirical findings
+suggest that multivariate parametric monitoring can provide an efficient and powerful
+control tool for maintaining the quality of items. The procedures allow joint monitoring of
+multiple item parameters and achieve sufficient power by dint of likelihood-ratio tests.
+Based on the findings from the empirical experimentation, we suggest some practical
+strategies for performing online item monitoring.
+Keywords: item parameter drift, online monitoring, sequential generalized likelihood ratio
+test, cumulative sum control chart, response time
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 3
+Sequential Generalized Likelihood Ratio Tests for Online Item Monitoring
+1. Introduction
+Many testing programs use items iteratively for multiple test forms or continuous
+testing. When an item is used repeatedly, it can sometimes exhibit differential
+performance, displaying fluctuations in the item parameters. A systematic change in the
+item parameters—a phenomenon called item parameter drift (Goldstein, 1983)—can
+adversely affect validity and comparability of test scores (Huggins-Manley, 2017; Wells,
+Subkoviak, & Serlin, 2002). To minimize adverse ramifications on the testing outcomes,
+any significant parameter change must be identified as soon as it develops.
+While the root cause of parameter drift is difficult to ascertain, studies have
+examined some probable reasons that can be offered to the drifts in real assessments (see
+Clark (2013) for review). One of the commonly cited reasons has been security breach
+(e.g., item-sharing, test collusion, fraud, cheating). For example, when an item is leaked to
+prospective examinees as a result of earlier test-takers’ item-sharing, beneficiaries of the
+item preknowledge tend to exhibit distinct behavioral patterns, such as increased chance of
+item success and shorter response time. The consistent change in the examinee behaviors
+can alter item’s operational properties and lead to systematic shift in the item parameters.
+Other reasons have also been contemplated to account for parameter drift in real tests. At
+other times, parameter drift has been attributed to change in the test’s properties, such as
+evolution of constructs or content areas, and adjustments made to items (e.g., format,
+presentation mode, position). Temporal factors, such as seasonality and demographic
+variation, have also been suggested as plausible sources of drift.
+While different reasons have been explored to account for drift in the item
+parameters, detection of drift has been achieved by similar methods. One salient approach
+has been recurrent item calibration. It re-estimates item parameters several times and
+compares new parameter estimates with the known values (e.g., Donoghue & Isham, 1998;
+Veerkamp & Glas, 2000). If the new estimates are significantly different from the known
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 4
+values, it is claimed that the item parameters have drifted. In other studies, fluctuation in
+the item parameters has been directly modeled within the item response model (e.g., Bock,
+Muraki, & Pfeiffenberger, 1988; Liu, Han, & Li, 2019; Segall, 2002, 2004; Shu, Henson, &
+Luecht, 2013). These models include an additional term that reifies uncertainty in the item
+parameters and explicitly accounts for the impact of the fluctuation when scaling the trait
+levels. Another relevant approach is statistical testing of descriptives of the observable
+variables (e.g., Choe, Zhang, & Chang, 2018; Guo, Robin, & Dorans, 2017; Lee & Lewis,
+2021; Zhang, 2014; Zhang & Li, 2016; Wang & Liu, 2020). These procedures examine
+patterns of summary statistics of the indicator variables (e.g., proportion of correct
+responses) and test if the statistics indicate radical change in the manifest variables. The
+analysis can be performed without reference to a measurement model and thus can be
+applied to nonparametric settings.
+We note that prior work on the drift detection was mostly designed for response data
+or simple item response models. When an item is modeled by multiple parameters or
+multiple variables, the existent methods become less applicable and lose practicability. For
+example, in the recalibration approach, when an item involves p parameters, one needs to
+concurrently examine 2 drift statistics to probe all probable drift scenarios. Evaluating
+multiple statistics not only induces operational burden but it can also lead to incompatible
+results (e.g., flagging of an item by two statistics that examine the same parameter in
+opposite directions). The second approach, the direct modeling of parameter drift, suffers
+from the inherent overfitting problem. In real settings, parameter drift occurs only
+occasionally and many items tend to remain stable across the groups and over time. Using
+drift models in these settings overly complicates the model estimation as well as
+interpretation of the outcomes. If items involve multiple parameters, the complications in
+the model estimation will further intensify and obscure the drift evaluation. Lastly, the
+nonparametric procedures are not originally developed for drift detection and will likely
+come short of necessary power. In real assessment, item parameter drift does not typically
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 5
+entail drastic change in the manifest variables, especially if the drift has confounding effects
+(e.g., an item decreases in difficulty but increases in guessing). When an item involves
+multiple parameters, it can also drift partially in a subset of parameter domains with no
+visible change in the indicators. The use of nonparametric procedures in these situations
+can face deficient power, leaving nuanced changes unnoticed.
+The purpose of this study is to present a multivariate monitoring framework that
+overcomes the limitations of the current development. We explore statistical procedures
+that can jointly surveil multiple item parameters and evaluate drift directly under a
+presumed measurement model. We in particular take note of a recent testing trend that
+employs complex measurement models (e.g., three-parameter, polytomous,
+multidimensional, cognitively diagnostic, multi-level models) and auxiliary variables (e.g.,
+response time, answer change, frequency in behavior). These applications typically involve
+multiple item parameters and require simultaneous monitoring of multiple parameter
+domains. As described above, using existing methods in these settings will likely induce
+operational drudgery and statistical problems. In this study, we explore a multivariate
+parametric monitoring scheme that steps over the limitations of the current methods. Our
+strategy is to perform direct monitoring of individual item parameters through online
+calibration and parametric likelihood-ratio tests. We recurrently recalibrate items and
+conduct generalized likelihood ratio tests to determine instance of parameter drift. All
+procedures are executed during test administration so that drift can be informed in real
+time.
+Under the general scheme of multivariate parametric monitoring, we propose a
+number of monitoring statistics that accommodate various settings and objectives. The
+statistics are developed in different forms according to the sampling design, weighting,
+likelihood function, and summarization of drift information. Broadly, the procedures are
+designed to perform two sorts of monitoring: continuous and intermittent monitoring.
+Continuous monitoring evaluates items continuously after every use or at very frequent
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 6
+time intervals. Intermittent monitoring evaluates items every once in a while when
+sufficient data are collected that enable new recalibration. Within each scenario, we
+propose a variety of decision statistics that take into account unique monitoring settings.
+We highlight that the monitoring procedures presented in this study demonstrate clear
+distinction from the existent methods. They (i) allow monitoring of multiple item
+parameters using singular indicating statistics, (ii) adopt powerful parametric techniques
+such as online calibration and likelihood-ratio tests, and (iii) perform real-time monitoring.
+When evaluated empirically in the simulated and real data, they showed greater sensitivity
+and speediness than the existing methods. The empirical evaluation suggested that the
+proposed monitoring schemes can be used as a powerful control tool for maintaining the
+quality of items.
+In the following, we detail specific monitoring strategies and their empirical
+performance in the simulated and real data. In Section 2, we present hypotheses and online
+calibration technique primed for the monitoring procedures. We then discuss strategies for
+continuous and intermittent monitoring in Sections 3 and 4. For the former, we propose
+sequential generalized likelihood ratio tests (SGLRTs); for the latter, we propose
+cumulative sum (CUSUM) control charts. Each technique uses unique indicating statistics
+and sampling methods to accommodate different monitoring settings and objectives.
+Section 5 presents a simulation study that validated performance of the monitoring
+procedures under known settings. Section 6 gives an illustrative example of applying the
+monitoring procedures in the real assessment data. Section 7 concludes with a summary of
+the findings and presents some practical suggestions for operational use.
+2. Online Item Monitoring
+Our approach to item monitoring is to conduct parametric evaluation under the
+presumed measurement model. We re-estimate item parameters each time and compare
+new estimates with the known values. Let ξ denote the parameter vector known for the
+studied item. At evaluation time t, the monitoring procedure recalibrates the item and
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 7
+obtains a new parameter vector, ξ . The procedure then conducts a statistical test to
+compare the two parameter vectors:
+H : ξ = ξ vs. H : ξ 6= ξ . (1)
+3 0 a
+t 0 t 0
+Note that ξ in (1) does not necessarily equal the true parameters. The monitoring
+procedure is aimed to detect digression from the known parameter values rather than from
+the true parameters. If ξ was not accurate, the program will signal the disagreement,
+suggesting the need for parameter update or item re-appraisal.
+In (1), the hypotheses are evaluated based on the estimated parameter values. The
+initial parameter vector, ξ , can be obtained from existent data, for example, using a
+reference sample, or when developing an item pool (e.g., field-testing). For the new
+parameter vector, ξ , we perform online calibration to obtain brand-new parameter
+estimates at each evaluation time. Let S denote the calibration sample obtained at
+12 t
+evaluation time t. The specific sampling scheme for S is determined by the monitoring
+13 t
+procedure. Given S , the new item parameter vector is obtained as the mode of the item’s
+14 t
+posterior probability distribution:
+ZZ
+ξ = arg max log L(ξ | X) = arg max log f (x | η, ξ)f (η | Θ ) dη + log f (ξ | Θ ),
+16 i η ξ
+ξ ξ
+i ∈ S
+where X = (x : i ∈ S ) contains the calibration data, η is a latent variable vector, and Θ
+17 i t η
+and Θ each give the hyperparameters of the person and item parameters. Note that in
+18 ξ
+real settings the calibration data may exhibit extra variation owing to test design (e.g.,
+adaptive item assignment) or samples (e.g., seasonality, demographics). We address this
+issue by using the posterior probability density, f (η | x , Θ ), in lieu of the prior density,
+21 i η
+f (η | Θ ). This adjustment better reflects the characteristics of the calibration samples and
+22 η
+also places the item parameter estimates readily on the scale of the item pool without
+requiring additional linking (Ban, Hanson, Wang, Yi, & Harris, 2001).
+ˆ ˆ
+As we obtain a pair of parameter vectors, (ξ , ξ ), we conduct a statistical test to
+0 t
+determine existence of parameter drift. A natural test that can be used in this setting is a
+generalized likelihood ratio test. Since the new parameter values are obtained as the
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 8
+maximizer of the likelihood of H , one can examine the generalized log-likelihood ratio to
+1 a
+compare likelihoods of the known and current parameter values. Specifically, the test
+statistic that evaluates (1) is constructed as
+max L(ξ; H )
+log ,
+L(ξ; H )
+where L(ξ; ·) gives the likelihood of ξ under the given hypothesis. A large ratio suggests
+that the two parameter vectors implied distinctly different likelihoods for the same
+indicator data in S . A significantly large statistic beyond a critical value casts evidence for
+7 t
+item parameter drift.
+The use of a likelihood-ratio statistic is especially advantageous in the present setting
+because it can succinctly summarize the heterogeneity present across the multiple
+parameter domains. As will be shown below, it also allows sequential testing under various
+sampling designs. The following two sections discuss specific strategies for formulating the
+likelihood-ratio test statistics under each continuous and intermittent monitoring setting.
+All statistics are formulated as generalized log-likelihood ratios. They take different forms
+depending on the sampling design and likelihood function.
+3. Continuous Monitoring
+The first monitoring scenario we consider is continuous monitoring where an item is
+evaluated after every use. We assume that evaluation samples of the items increase by one
+unit each time and the monitoring procedure can utilize all data gleaned up to the
+evaluation point. Our strategy for this scenario is to obtain the first evaluation data and
+perform sequential continuous monitoring using the augmenting data. That is, the process
+requires preparatory downtime to initiate monitoring. Once the item is administered to a
+minimal admissible sample, it continuously evaluates the item after every collection of a
+new observation. The monitoring process continues until the item retires (e.g., maximum
+use) or until the item is flagged as drift.
+Since the evaluation data augment over time, some sampling techniques can be used
+to reflect recency of the observations. In this study, we explore three sampling strategies
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 9
+for conducting the SGLRTs. The first strategy is to make use of all data available at the
+time of evaluation. The second strategy similarly utilizes all available data but applies
+temporal weights to enhance sensitivity to the item’s current state. The third strategy
+discards old observations and uses only limited sets of most recent observations in the
+interest of time sensitivity. Below expounds details of each method.
+3.1. SGLRT
+The first sampling strategy uses all observations accrued from the outset of
+monitoring. Let x = (x , x , . . . , x ) represent the set of observations available at time t.
+8 1 2 t
+Each element of x consists of multivariate cross-sectional data. The likelihood ratio
+statistic that evaluates parameter drift is calculated as
+f (x; ξ )
+L = ,
+11 t
+f (x; ξ )
+where ξ is the null item parameter vector, ξ is the new item parameter vector estimated
+0 t
+from x, and f (x; ξ) gives joint likelihood of x under ξ. The functional form of f is
+determined by the measurement model. If the model contains latent variables, f is
+evaluated as marginal likelihood.
+Suppose the item experienced parameter drift at time υ (1 ≤ υ ≤ t) with the
+parameter shift to ξ . The measurement likelihood can be then re-evaluated as
+   
+υ−1 t
+Y Y
+f (x; ξ , υ) = f (x ; ξ ) f (x ; ξ ) .
+   
+18 j j
+t 0 t
+j=1 j=υ
+The change point is one of the parameters that need be estimated by the monitoring
+procedure. We replace the unknown parameters (i.e., ξ and υ) by the maximum likelihood
+(ML) estimates and obtain a generalized log-likelihood ratio:
+f (x ; ξ )
+G : G = max l (s) = max log , (2)
+22 t t
+1≤s≤t 1≤s≤t f (x ; ξ )
+j=s j 0
+ˆ ˆ
+where ξ and ξ each represent item parameter vectors that maximize the likelihood of the
+0 t
+null and alternative hypotheses. The statistic (2) is defined such that a large value
+indicates large deviation from the known values. If G exceeds a decision limit, h, it is
+25 t
+concluded that ξ better represents the current evaluation sample. In usual settings, h is
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 10
+determined based on the asymptotic behavior of the test statistic (e.g., Lai, 1991). In this
+study, we obtain h via simulation to address the error inherent in the sampling and item
+calibration. The threshold, h, is obtained as the value that satisfies P (G ≥ h) = α,
+3 H t
+where α is the significance level. If H is decided, the drift point is estimated as
+4 a
+ 
+f (x ; ξ )
+ 
+υˆ = inf s : max log > h .
+1≤s≤t f (x ; ξ )
+ 
+j=s j 0
+3.2. Exponentially-Weighted SGLRT
+In (2), the likelihood ratios from the different observations are treated equally. The
+indicating statistic can be made more sensitive to the item’s current state if the ratios are
+weighed differentially according to the recency of data. The second sampling method
+applies the weighting technique to better reflect the item’s latest state. Specifically, we
+apply the exponential weighting scheme that has been widely used and substantiated in the
+statistical process control (Basseville & Nikiforov, 1993; Lowry, Woodall, Champ, &
+Rigdon, 1992). It assigns exponentially increasing weights to newer log-likelihood ratios
+and exponentially decreasing weights to old ones so that the impact of old null observations
+can be cast out at an exponential rate. In the present setting, the exponentially-weighted
+monitoring statistic is constructed as
+f (x ; ξ )
+t−j
+ew t
+G : G = τ log , (3)
+17 t j
+f (x ; ξ )
+j=0 t−j 0
+with τ weighing the jth log-likelihood ratio. The functional form of τ is determined by
+18 j j
+the smoothing parameter that indicates the rate of information decaying. In this study, we
+apply τ = ω(1 − ω) where ω ∈ (0, 1]. The specific value of ω is determined in line with
+20 j
+the monitoring settings. For example, if the monitoring is aimed to detect small shift,
+small ωs may be used that heavily smooth the indicating statistics. If the goal is to detect
+large shift quickly, large ωs are appropriate that degenerate old information at faster rate.
+As with (2), the significance of (3) is determined by comparing against a pre-defined
+ew
+decision limit—G larger than the threshold gives evidence for parameter drift and
+terminates the monitoring process.
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 11
+3.3. Moving-Sample Based SGLRT
+Another way to conduct SGLRTs is to use moving samples that evolve over
+time (Choe et al., 2018; Zhang, 2014; Zhang & Li, 2016). Unlike the other two procedures,
+which utilize all accumulated data, the moving-sample based SGLRT applies limited sets of
+most recent observations. Let M = {i : i = t − m + 1, . . . , t} denote the moving sample
+5 t
+obtained at time t (i.e., the group of m examinees who received the item most recently).
+The monitoring algorithm calibrates an item using M and compares the new parameter
+7 t
+estimates with the values obtained from the reference sample. Let ξ denote the item
+parameter vector calibrated from M , and ξ the parameter vector obtained from the
+9 t
+reference sample, R = {i : i = 1 . . . r}, where r denotes the reference sample size. The
+generalized log-likelihood ratio statistic based on M is obtained as
+11 t
+f (x ; ξ )
+ms t
+G : G = log . (4)
+12 t
+f (x ; ξ )
+i ∈ M i 0
+ms
+As with the other SGLRTs, (4) signals parameter drift when G exceeds the decision
+limit. A drift point is estimated as the infimum of ts that satisfy G > h.
+14 t
+4. Intermittent Monitoring
+The second monitoring scenario we consider is intermittent monitoring. This
+situation occurs in practice when tests are administered at time intervals or when data are
+collected in batches. Suppose an item has been administered to a sufficiently large sample
+since the last evaluation and the item can be calibrated using the newly collected data.
+Unlike continuous monitoring, intermittent monitoring is performed on nonoverlapping
+samples and an item can be calibrated independently each time. Let ξ represent the new
+parameter vector estimated from the latest sample and ξ denote the known parameter
+vector. The instance of parameter drift can be then evaluated in two ways. One is to
+ˆ ˆ
+compare measurement likelihoods of ξ and ξ under the presumed model. This strategy is
+0 t
+akin to conducting a generalized likelihood ratio test based on the latest moving sample.
+Previous studies defined the reference sample as R = {i : i = 1, . . . , t − m} such that it increases as
+the monitoring progresses. This study uses a fixed reference sample to alleviate the probable impact of false
+negatives in the expanding reference sample.
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 12
+The other way is to compare parameter vectors directly as in the two-sample t-test. This
+strategy is especially appropriate in the current setting because evaluation samples are
+obtained as exclusive independent samples. Since the SGLRT approach was discussed
+above, this section focuses on the latter strategy.
+Observe that in the current setting, only one pair of item parameter vectors is
+compared each time. For determining the occurrence of drift, it is essential to draw upon
+the asymptotic properties of the estimator. Let us apply a standardized distance measure
+that evaluates heterogeneity between the parameter vectors:
+−1/2 ˆ ˆ
+γ = Σ (ξ − ξ )
+9 t t t 0
+ˆ ˆ
+with Σ = Var(ξ − ξ ). The variance of each parameter estimate is obtained as an
+10 t
+t 0
+asymptotic estimate, i.e., the inverse of the observed Fisher information matrix. Since both
+the parameter vectors are obtained from the ML estimator, γ is expected to follow an
+approximate multivariate normal distribution:
+app
+γ ∼ N (µ, Σ), (5)
+with µ = 0 and Σ = I . Significant deviation of γ from 0 casts evidence for parameter
+15 p p p
+shift. The approximate normality in (5) can be evaluated by conducting a generalized
+likelihood ratio test. In the null case of no significant parameter drift, a test statistic,
+2 > −1
+T = γ Σ γ , (6)
+t t
+follows a χ -distribution with p degrees of freedom when Σ = I (Wilks, 1938). The test is
+18 p
+called a generalized likelihood ratio test because T is obtained as a general statistic that
+maximizes the likelihood of H (i.e., by replacing the unknown µ under H by the ML
+20 a a
+estimate). In multivariate hypothesis testing, the test is known as Hotelling’s T
+test (Hotelling, 1931). If the test is conducted sequentially to monitor quality of a
+statistical process, it is called Shewhart control chart.
+The Shewhart chart is of interest in the present setting because item monitoring can
+be seen as tracking a statistical process of an item across time. Our simulation study
+however suggests that application of the Shewhart chart in the current setting can result in
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 13
+inadequate monitoring outcomes because of the sampling and calibration error. One
+effective alternative that alleviates the oversensitivity is the CUSUM control chart (Page,
+1954). Instead of charting raw fluctuations, the CUSUM chart tracks only the practically
+meaningful changes and signals when the cumulated evidence suggests systematic shift in
+the underlying process. In this study, we apply this CUSUM technique to monitor item
+parameter drift.
+The CUSUM control chart has been used in the measurement settings to detect item
+compromise (e.g., DeMars, 2004; Lee & Lewis, 2021; Veerkamp & Glas, 2000; Yang,
+Ferdous, & Chin, 2007) and aberrant test-takers (e.g., Armstrong & Shi, 2009; Tendeiro,
+Meijer, Schakel, & Maij-de Meij, 2013; van Krimpen-Stoop & Meijer, 2001). Among others,
+Veerkamp and Glas (2000) has most relevance to the current study in that the chart was
+used to monitor change in the item parameters. This pioneering work however examined
+only a few item response parameters and assumed a particular direction when formulating
+the chart. When items involve multiple parameters, the existent procedure becomes
+operationally burdensome and can also lead to indecisive conclusions. In this study, we
+present multivariate alternatives that perform exploratory monitoring of multiple item
+parameters. The charts are developed using likelihood-ratio statistics and warrant clear
+decisions on the drift status. Additionally, they do not require any prior specification on
+the drift appearance and can be used for exploratory monitoring.
+Below we give an example of a univariate chart to illustrate the key idea of a CUSUM
+control chart. We then present three multivariate charts that serve different functions. The
+first two charts monitor the location of an item (i.e., parameter values) each using a scalar
+and vector charting statistic. The third chart monitors both the location and dispersion
+(i.e., parameter values and error variance) based on a vector charting statistic. Within each
+2 2
+Under the simulation design in Section 5, sequential testing based on T showed average false positive
+rate of 16.88%. The procedure also tended to flag drift items prematurely before the actual parameter shift,
+exhibiting early detection rate of 9.70%. The chart seemed overly sensitive to small fluctuations that occur
+from the sampling and calibration error. Note that, unlike standard Shewhart control charts, which examine
+manifest variables, the Shewhart chart based on T examines estimable parameters and can be influenced
+by the sampling and estimation error.
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 14
+procedure, we explore a weighting scheme to improve time sensitivity. We note that the
+control charts developed in this study are intended for estimable item parameters. The
+control charts are originally designed for observable variables, and as alluded to above, they
+are not generally suitable for identifying subtle change in the item parameters. Exploiting
+the online calibration technique, the current study directly estimates item parameters and
+monitors the multiple parameter domains via multivariate CUSUM control charts.
+4.1. Univariate Control Chart
+Let us consider a control chart that monitors decrease in the item difficulty. Let b
+8 0
+denote the difficulty level known for a studied item. At time t, a new estimate is obtained
+as b from recalibration. The monitoring procedure then evaluates difference between the
+10 t
+ˆ ˆ
+b − b
+0 t
+two values on the standardized scale, η = , and compares with a reference
+11 t (cid:16) (cid:17)
+ˆ ˆ
+SE b − b
+0 t
+value, k, to determine significance of the difference. If η > k, the procedure deems the
+12 t
+deviation noteworthy and charts the difference, η − k. If η < k, it resets the chart to zero
+13 t t
+and keeps positive shift only (i.e., decrease in difficulty). The fluctuation in the difficulties
+is tracked across time via a control chart:
+C = max{0, C + η − k} (7)
+16 t t−1 t
+with C = 0. The monitoring continues until C exceeds an upper control limit, h, or until
+17 0 t
+flagged as drift at the 23th evaluation point.
+4.2. Multivariate Control Chart Based on a Scalar Charting Statistic
+The univariate chart (7) is of service when a single parameter is monitored in a
+particular direction. When multiple item parameters need be monitored concurrently
+without direction, a more flexible chart must be used. In this study, we present three
+multivariate charts that serve different functions. The first chart monitors overall deviation
+in the parameters using a scalar charting statistic. Let µ and Σ each denote the mean
+25 0
+vector and covariance matrix assumed for γ . In the null case of no parameter drift, the
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 15
+The chart tracks positive shift, η − k (i.e., b-decrease larger than k) and cumulates deviations over time.
+The process continues until C exceeds the decision limit, h = 2, (i.e., 23th evaluation point).
+parameters are expected to follow a normal distribution with µ = 0 and Σ = I . To
+1 p 0 p
+assess likelihood of the null distribution, we apply the Mahalanobis distance measure,
+−1
+η = (γ − µ )>Σ (γ − µ ),
+3 t t 0 0 t 0
+that transforms the vector distance into a scalar. The squared value, η , becomes the
+generalized log-likelihood ratio that evaluates H : µ = µ under known Σ . As mentioned
+5 0 0
+earlier, simple significance testing on η (i.e., Shewhart chart) is subject to Type I error
+inflation. To mitigate this problem, we track only the practically significant deviations
+using a cumulative sum chart:
+C : C = max{0, C + η − k}, (8)
+9 t t−1 t
+where k is the reference parameter that prescribes the size of η worth charting. The control
+10 t
+chart (8) records the deviations that represent practically meaningful changes. As with the
+regular control chart, it begins with C = 0 and signals parameter drift when C > h.
+12 0 t
+In (8) all η s are treated indifferently across the evaluations. If desired, η s can be
+13 t t
+weighed differentially to better reflect the item’s current state. Applying exponential
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 16
+weights, for example, a weighted control chart can be obtained as
+s−ew
+C : C = ωη + (1 − ω)C , (9)
+2 t t t−1
+where ω (∈ (0, 1]) is a smoothing constant that weighs the latest η . A specific value of ω is
+3 t
+again determined according to the monitoring design. If an item is evaluated frequently,
+small ωs are desirable that spread across the large number of evaluation points. If an item
+is seldom monitored, relatively large ωs are appropriate that span across several
+evaluations.
+4.3. Multivariate Control Chart Based on a Vector Charting Statistic
+The scalar-based control chart summarizes the deviation in the multiple parameters
+using a scalar statistic. In other situations, it may also be advantageous to track deviance
+in the individual parameters separately using a vector statistic. The vector statistic
+provides diagnostic information that can help identify the cause of drift while allowing a
+categorical decision on the drift status.
+The second control chart is developed in this view. We propose a multivariate
+CUSUM chart that monitors multiple item parameters based on a vector-valued statistic.
+The chart is developed applying the Croiser’s (1988) formulation. Croiser’s approach is to
+use a vector charting statistic when monitoring the process behavior and convert the
+statistic onto the Mahalanobis metric when comparing with the scalar benchmark values
+(e.g., k, h). In the present setting of drift evaluation, a control chart is formulated as
+0 if S ≤ k
+ t
+C : C = (10)
+20 t
+(C + γ )(1 − k/S ) if S > k,
+t−1 t t
+(cid:16) (cid:17)1/2
+> −1
+where C = 0 and S = (C + γ ) Σ (C + γ ) . The coefficient S transforms
+21 0 t t−1 t−1 t
+t 0 t
+the vector charting statistic into a scalar so that it can be compared against the scalar
+reference (k) and threshold (h) values. The process signals parameter drift when the
+We note that there are other ways of constructing a multivariate chart (e.g., Healy, 1987; Pignatiello
+& Runger, 1990; Woodall & Ncube, 1985). These procedures however make impractical assumptions (e.g.,
+known directions or multiple univariate charts) or make little difference in the monitoring statistics in the
+present setting because only one observation is evaluated each time.
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 17
+> −1 1/2
+Mahalanobis distance of the charting statistic, (C Σ C ) , exceeds a decision limit, h.
+1 t
+t 0
+If swift drift detection is of interest, differential weights can be applied to make the
+charting statistic more sensitive to the current item state. Let Ω = diag(ω , . . . , ω )
+3 1 p
+represent the weight matrix that signifies the importance of the parameter domains. Since
+item parameters are evaluated individually, the parameter domains can be weighed
+differentially on the condition that ω = 1. The weighted control chart is then
+6 p
+constructed as
+v−ew
+C : C = Ωγ + (I − Ω)C , (11)
+8 t p t−1
+where I is the p × p identity matrix. The chart begins with an initial value, C = µ = 0 ,
+9 p 0 p
+> −1
+and terminates when C Σ C > h, where Σ is covariance matrix of C . In the present
+10 t C t
+t C
+setting, Σ is calculated as
+11 C
+t−j t−j
+Σ = Var(C ) = Ω(I − Ω) Var(γ )(I − Ω) Ω.
+12 C t
+j=1
+If the same weights are used across the domains (i.e., ω = . . . = ω = ω), Σ is simplified
+13 1 p C
+to
+2t
+ω(1 − (1 − ω) )
+Σ = Var(γ ).
+15 C
+t 2 − ω
+When the number of evaluation points, t, approaches ∞, Σ is approximately obtained as
+16 C
+Σ = Var(γ ) (Lowry et al., 1992).
+17 C
+t 2 − ω
+4.4. Multivariate Control Chart for Dual Monitoring
+While parameter drift is generally manifested by change in the item location,
+increased uncertainty in the parameter estimates can also signify drift. If this is the case,
+evaluating both the parameter estimates and error variance can improve the monitoring
+performance. The third control chart is developed in light of this and monitors both the
+mean and variance of γ . The procedure is called a dual control chart as it evaluates two
+aspects of an item using a single charting statistic. As with the other charts, the dual chart
+uses a generalized log-likelihood ratio to evaluate heterogeneity in the parameter estimates
+and error variance. Replacing the unknown values in H by the ML estimates, a drift
+26 a
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 18
+statistic is obtained as
+g = tr(Σ ) − log |Σ | − p + ||γ ||,
+2 t t t
+where | · | denotes the determinant of a matrix and || · || gives an L norm of a vector. A
+3 2
+large g implies that significant change has occurred in either the item location or error
+4 t
+variance (i.e., H : µ 6= 0 or Σ 6= I ). If g is larger than a threshold value, the shift is
+5 a p t
+considered practically significant and is documented in the control chart:
+C : C = max {0, C + g − k} (12)
+7 t t−1 t
+where C = 0. The process signals compromise when C > h.
+8 0 t
+In (12), the weighting technique can be realized in two ways: by weighing (i) g s, or
+9 t
+(ii) γ s and Σ s separately. The first method differentially weighs the current generalized
+10 t
+log-likelihood ratio and the previous charting statistic:
+C = ωg + (1 − ω)C .
+12 t t t−1
+The second method reweighs γ s and Σ s when calculating the generalized log-likelihood
+13 t
+ratio (e.g., Zhang, Li, & Wang, 2010). Let y and z each denote the weighted form of γ
+14 t t
+and Σ :
+15 t
+y = Ωγ + (I − Ω)y
+16 t p t−1
+z = ΩΣ + (I − Ω)z ,
+17 t p t−1
+∗ >
+with Σ = (γ − y ) (γ − y ). A charting statistic is then constructed as
+19 t t
+t t t
+d−ew 2
+C : g = tr(z ) − log |z | − p + ||y || , (13)
+20 t t t t
+with g = 0. The process continues until G > h—i.e., when there exists evidence of
+21 0 t
+significant change in y or z . Observe that the latter approach allows unique weight for
+22 t t
+each parameter domain. This study adopts the second approach for generality.
+5. Simulation Study
+A simulation study was conducted to evaluate performance of the monitoring
+procedures under known settings. We in particular considered a scenario an item is
+characterized by two indicators: the response and response time. These variables have been
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 19
+used as primary indicators of test-taking process (Klein Entink, Kuhn, Hornke, & Fox,
+2009) and can be immediately obtained from computer-delivered tests. They can also
+mirror operational functioning of items and indicate item parameter drift. Below we
+present simulation settings, evaluation criteria, and analysis results.
+5.1. Design
+Model. We applied the three-parameter logistic (3PL) response model (Birnbaum,
+1968) and the log-normal response-time model (van der Linden, 2006) to model each
+indicator variable. The 3PL model defines the probability of a correct response as
+−1
+P = Pr(U = 1; θ , a, b, c) = c + (1 − c) logit (Da(θ − b)), (14)
+9 i i i i
+where U = u ∈ {0, 1} is a response from examinee i; θ (∈ ) is the examinee’s ability
+10 i i i
+R+ R
+level; and a (∈ ), b (∈ ), and c (∈ [0, 1)) each denote item’s discrimination, difficulty,
+and lower-asymptote parameters. The scaling coefficient D approximates the logistic
+function to normal ogive. The log-normal response-time model applies the log-normal
+distribution to characterize a response-time variate:
+α α
+(cid:16) (cid:17)
+f (T = t ; τ , α, β) = √ exp − log t − (β − τ ) , (15)
+15 i i i i i
+t 2π 2
+R R+
+where t is an observed T ; τ (∈ ) is examinee i’s latent speed level; and α (∈ ) and β
+16 i i i
+(∈ ) are item’s time-discrimination and time-intensity parameters, respectively.
+The parameters of the measurement models are linked at the second level to jointly
+monitor the item parameters under the unified framework. We applied the van der
+Linden’s (2007) hierarchical framework to link the parameters. The person parameters
+were modeled by a bivariate normal distribution, (θ , τ ) ∼ N (µ , Σ ), where µ and
+21 i i 2 P
+P P
+Σ are the mean vector and variance-covariance matrix of the trait variables. The item
+22 P
+parameters were analogously linked by a multivariate normal distribution but the
+normality was imposed on the transformed parameters so that the parameters appear in
+the proper domains (e.g., a > 0, α > 0, 0 ≤ c < 1). Let ξ denote the vector of transformed
+item parameters, (log a, b, log α, β) . The item parameters were then assumed to follow
+ξ = (log a, b, logit c, log α, β) ∼ N (µ , Σ )
+27 5 I
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 20
+with µ and Σ containing the mean and variance hyperparameters of the item parameters.
+1 I
+Item Pool. The study assumed continuous testing for evaluating the performance of
+the monitoring procedures. The tests were administered continuously using an item pool
+that consists of 100 items. The parameters of the items were generated from a quadvariate
+normal distribution, (log a, b, log α, β) ∼ N (µ , Σ ) with µ = (−.0431, 0, −.0431, 0) and
+5 4 I
+I I
+ 
+.0862
+ 
+ 
+ 
+.0881 1 
+ 
+Σ = . These hyperparameters correspond to the means of (1, 0,
+ 
+6 I
+ 
+.0259 .0881 .0862 
+ 
+ 
+ 
+.0881 .3 .0881 1
+1, 0) and standard deviations of (.3, 1, .3, 1) on the original metric and characterize typical
+values in the well-designed norm-referenced educational assessments. The correlation
+among the item parameters was uniformly set at .3 on the original scale to mimic a
+moderately correlated multivariate process. The c-parameter values were fixed at .2
+throughout.
+Initial calibration. Prior to item monitoring, we calibrated items to obtain initial
+item parameter values. The pre-calibration was implemented under spiraled-block linking
+design. Given a pool of 100 items, we created four overlapping booklets—first consisting of
+items from 1 to 50, second from 26 to 75, third from 51 to 100, and fourth from 76 to 100
+and from 1 to 25—and administered each booklet to random samples of n (= 250, 500,
+16 0
+1000) simulees. The simulees’ trait levels were sampled from a bivariate normal
+ 
+1 .3
+ 
+distribution with µ = (0, 0) and Σ = . As we obtain the item and person
+ 
+18 P
+ 
+.3 1
+parameters, we generated indicator data following (14) and (15) and applied this data to
+estimate item parameters. The item parameters were estimated by the marginal ML
+estimator with Bayesian prior (Kang, Zheng, & Chang, 2020).
+Continuous testing. Continuous testing was simulated by sequentially
+administering parallel tests to a large population of fictitious test-takers. The examinees’
+trait levels were drawn from the same bivariate normal distribution assumed in the
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 21
+pre-calibration. For each examinee, we administered a unique set of 30 items that were
+randomly sampled from the pre-calibrated item pool. Items were used N = 2000 times
+across the continuous testing.
+Item parameter drift. The item parameter drift was simulated assuming item
+leakage. We randomly sampled five items from the item pool (i.e., 5%) and introduced
+drift when the items were assigned to the 1001th examinee (i.e., υ = 1001). The
+parameters of the drift items (i.e., (a, b, α, β)) were shifted toward the left to affect a
+scenario where items become easier and facile after the breach (e.g., Marianti, Fox,
+Avetisyan, Veldkamp, & TijmstraFirs, 2014; Sinharay & Johnson, 2020; van der Linden &
+Guo, 2008; Zopluoglu, 2019). The size of drift was varied as ∆ = .25 and .50 to model
+small and large drift, respectively. Note that in real settings item leakage can occur
+gradually or impact only small examinee groups. The monitoring performance will
+naturally degenerate in these settings.
+Item monitoring. The study examined both the classes of monitoring procedures:
+ew
+the SGLRTs and the CUSUM control charts. The SGLRT-based procedures (i.e., G, G ,
+ms
+G ) performed continuous monitoring at frequent time intervals. The CUSUM control
+s v d s−ew v−ew d−ew
+charts (i.e., C , C , C ; C , C , C ) performed periodic monitoring every once in
+a while. Within each scenario, we additionally implemented the sequential F -test (Choe et
+al., 2018) and the response-based bivariate control chart (Veerkamp & Glas, 2000; C
+hereafter) to evaluate relative performance of the proposed monitoring procedures. For
+ease of illustration, the procedures are called by their symbolic notations in the following.
+The online item monitoring was achieved as follows. The SGLRT-based procedures
+were initiated when items were administered to minimal samples of n = 300, 500, or 800
+23 1
+examinees and performed continuous monitoring every after 100 new observations.
+Although SGLRTs can conduct assessment after every observation in principle, doing so
+induces heavy computational load while bringing little practical significance. In this study,
+the evaluation frequency was adjusted to achieve adequate computation but kept properly
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 22
+high to allow continuous item monitoring. Under the adjusted setting, items could be
+evaluated up to 18, 16, and 13 times under each n condition. The moving-sample based
+2 1
+SGLRT was similarly designed to perform 18, 16, and 13 evaluations. For example, when
+the monitoring began at n = 500, an item was assessed sequentially based on 16 moving
+4 1
+samples that shift with the window size of 100 (i.e., 1-500, 101-600, . . ., 1501-2000). In the
+case of the F -test, we used the first 250 observations as a reference sample and subsequent
+251-500th, 351-600th, . . ., and 1751-2000th observations as moving samples to perform 16
+evaluations.
+The control charts used exclusive moving samples of n = 250, 500, and 1000
+observations to perform periodic monitoring. For example, when n = 500, the charts began
+monitoring as items were administered to 500 examinees and repeated the evaluation every
+time the items were assigned to a new sample of 500 examinees. The current setting
+resulted in maximums of 8, 4, and 2 evaluations under each sample condition.
+Reference parameters. The CUSUM charts require pre-defined reference
+parameters (k) to track practically meaningful shifts. This study obtained the reference
+values from the empirical sampling distributions of the null monitoring statistics. We
+obtained the null testing outcomes using the uncompromised item pool and examined the
+distributions of the monitoring statistics to identify critical points. Specifically, we
+identified three critical values that represent small, moderate, and large deviation for each
+chart and used these values as reference parameters. In the control charts that monitor
+item location, k = .5, 1.0, and 2.0 were used as reference values. In the dual chart that
+examines both the item location and error variance, we applied k = 5, 10, and 15.
+Smoothing parameters. The study also examined the impact of applying the
+weighing technique in each procedure. The smoothing parameters (ω) were decided in line
+with the monitoring settings. In SGLRTs, we applied small values
+(ω = .001, .003, . . . , .009) to accommodate large numbers of readings (i.e., minimum of
+250). In control charts, relatively large smoothing constants were used (ω = .1, .3, . . . , .9)
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 23
+because of the low evaluation frequency. For those charts that permit differential weights
+v−ew d−ew
+across the parameter domains (e.g., C , C ), we applied the same weights across the
+domains to make them comparable to other procedures.
+Decision limits. All monitoring procedures apply thresholds (h) for determining
+the significance of parameter shift. The current study obtained the decision limits through
+Monte Carlo simulation of null tests. We defined familywise Type I error, α (set at .05
+throughout), as the probability of flagging an item among the evaluated items. We then
+constructed an empirical sampling distribution by drawing the maximum charting statistics
+of the items and determined the threshold values as the (1 − α)th quantiles of the sampling
+distributions.
+Replication. All simulation conditions were replicated 100 times, each with a
+unique set of items and a sample.
+Remark. We note that the simulation study was aimed to evaluate empirical
+performance of the monitoring procedures in an example testing scenario and some
+simplifications were made to keep the scope of work manageable (e.g., a certain drift
+scenario, fixing c at a constant). Assuming more complex settings (e.g., adaptive testing,
+complex models) will naturally necessitate larger samples and computation time. Although
+the current simulation was carried out in the controlled settings, we anticipate that the
+monitoring procedures would yield similar relative performance in other settings. Our
+additional simulations under other settings suggested that, although the absolute
+performance of the procedures can differ by the monitoring settings, the relative
+performance generally remains consistent.
+5.2. Evaluation
+The performance of the monitoring procedures was evaluated by four criteria: (i)
+Type I error rate, (ii) detection power, (iii) average run length (ARL), and (iv) premature
+signal. The Type I error rate evaluates the null behavior of the monitoring procedures. It
+In sequential testing, Type I error can be defined in three ways—across the event times, the items, and
+across both the events and items.
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 24
+was defined as the proportion of non-drift items that were erroneously flagged as drift. The
+study examined the error rate among the null items that were administered with the drift
+items (i.e., tests created with the contaminated item pools). Since drift items adversely
+affect online calibration and drift evaluation, we anticipate that the monitoring procedures
+would display inflated error rate in flagging the null items. With this point in view, the
+next section pays close attention to the magnitude of Type I error inflation.
+The other criteria evaluate performance on the drift items. The power and ARL
+evaluate effectiveness of the monitoring procedures in identifying the drift items. The early
+detection rate evaluates false alarm in the drift items. The power rate was defined as the
+correction identification of a drift item after the actual parameter shift. We applied the
+Cohen’s criterion (Cohen, 1992) to determine excellent (≥ .80) and moderate ([.60, .80))
+power rate. The timeliness was evaluated by lag between the drift point and detection
+time. In the current setting, SGLRTs can have a minimum of zero and maximum of nine
+lags. Control charts can have a minimum of zero and maximum of one or three lag(s)
+depending on the number of evaluations. The zero lag means that the monitoring
+procedure identified the drift at the earliest possible time. The positive lags mean that
+there was delay in identifying the drift. Note that in sequential testing, the timeliness of
+detection is commonly evaluated by average run length—i.e., the average number of
+samples observed before a false alarm (called in-control ARL) or before a correct detection
+(called out-of-control ARL). The current study treated all false alarms in the drift items as
+premature identification and evaluated such instances using a separate criterion. That is,
+whenever a drift item was flagged before the actual development of parameter drift, it was
+counted as early detection and excluded from the power.
+5.3. Results
+Below presents simulation results for each evaluation criterion. Since monitoring was
+performed in two scenarios using unique procedures, the results are presented separately
+for each scenario. Where appropriate, we also present significance test results from the
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 25
+variance analysis to draw distinction among the evaluated procedures.
+5.3.1. Continuous Monitoring. The following evaluates four procedures, F , G,
+ew ms
+G , G , that performed continuous monitoring.
+Type I error. The SGLRT-based procedures overall showed adequate performance
+in regulating the Type I error. The error rates remained close to the nominal level and
+showed little variation across the simulated conditions. We could not identify any patent
+pattern in the error rates; we therefore report average statistics without tabulation. The
+ew
+three SGLRT-based procedures yielded average rejection rates of .048 (G), .048 (G ), and
+ms
+.049 (G ). The nonparametric F -test showed slightly inflated error rate, producing .055
+on average. We restate that the present results were obtained from the compromised tests
+that included drift items. Despite the negative bearing, the parametric monitoring
+procedures demonstrated robust performance in general.
+ew
+G were presented for three strata that represent small, medium, and large smoothing.
+identifying the drift items. Despite the small drift size and small evaluation samples, the
+ew ms
+procedures constantly produced excellent power—.902 (G), .934 (G ), and .965 (G ) on
+average. The moving samples and exponential weights were shown to improve detection
+ms ew
+performance. Compared to G, G and G led to significantly higher power rates
+(p < .001) and delivered more stable performance against the variation in the design
+variables. Comparison between the SGLRTs and the F -test suggests that parametric
+monitoring indeed achieved higher power. Throughout the evaluations, the F -test showed
+constantly lower detection power (p < .001; .645 on average) and at times suffered from
+insufficient power especially when drift occurred to a small degree.
+drift size and evaluation sample led to higher power in all procedures (average power =
+(.828, .891, .937) when n = (300, 500, 1000), , p < .001; (.802, .969) when ∆ = (.25, .50),
+27 1
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 26
+Correct Detection Rates of SGLRTs
+ew
+G (ω)
+ms
+n ∆ F G .001 .005 .009 G
+300 .25 .258 .686 .810 .792 .788 .914
+.50 .800 .988 .986 .972 .968 .976
+500 .25 .392 .836 .906 .906 .882 .952
+.50 .928 .988 .980 .976 .970 .980
+800 .25 .496 .916 .976 .978 .970 .982
+.50 .994 .996 .980 .984 .980 .988
+Note. n : Sample size at the first evaluation. Items could be evaluated
+18, 16, and 13 times at maximum under each n condition. ∆: Drift size.
+All four parameters (a, b, α, β) were shifted to the left. ω: Smoothing
+ew
+parameter. G: Regular SGLRT. G : Exponentially-weighted SGLRT.
+ms
+G : Moving-sample based SGLRT.
+ew
+p < .001). In G s, the power rates declined in reverse to the smoothing constants ((.940.
+.935, .926) when ω = (.001, .003, .005), p = .133). This tendency was expected because
+small ωs were indeed intended to detect small shift (i.e., greater sensitivity). As we
+examine ARLs below, we confirm that large ω expectedly led to faster detection of large
+parameter shift.
+show that the procedures adequately identified the drift items in a timely manner. Among
+ms ew
+the four procedures, G and G achieved the most rapid detection, each producing 1.341
+and 1.500 ARLs. G and F identified the drift relatively slowly, yielding 2.870 and 2.882
+ms ew
+ARLs. The significantly shorter ARLs in G and G (p < .001) suggest that the
+moving-sample and weighting techniques effectively expedited the drift detection. Between
+ms ew ms
+G and G , G appeared more effective in improving the speed (p < .01). The
+performance between G and F appeared indifferent (p = .418).
+ms
+moving samples enlarged. This is due to different proportions of the null and drift
+observations. For instance, when the moving sample size (n ) is conditioned at 300, the
+16 m
+impact of parameter drift begins to appear at the 9th evaluation with the sample
+containing 100 observations from the drift items and 200 observations from the non-drift
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 27
+Average Run Length of Drift Items Correctly Flagged by SGLRTs
+ew
+G (ω)
+ms
+n ∆ F G .001 .005 .009 G
+300 .25 3.29 4.66 3.58 2.53 2.58 1.81
+.50 2.20 2.09 1.05 .52 .48 .35
+500 .25 3.55 4.34 3.19 2.41 2.36 2.21
+.50 2.00 1.46 .78 .37 .31 .56
+800 .25 4.38 3.73 2.64 1.76 1.70 2.54
+.50 1.88 .94 .47 .15 .11 .58
+Note. n : Sample size at the first evaluation. Items could be evaluated
+18, 16, and 13 times at maximum under each n condition. The
+maximum possible ARL equals 9 in the current simulation design. ∆:
+Drift size. All four parameters (a, b, α, β) were shifted to the left. ω:
+ew
+Smoothing parameter. G: Regular SGLRT. G : Exponentially-weighted
+ms
+SGLRT. G : Moving-sample based SGLRT.
+items (recall that continuous monitoring was performed at every 100 new observations). As
+the monitoring progresses, the moving samples gradually cast out the null observations,
+and after two subsequent evaluations (i.e., at the 11th evaluation), the samples no longer
+include the null observations, fully embodying the effect of parameter shift. When n =
+4 m
+800, the null observations diminish at slower rate. The impact of parameter drift is
+materialized at the 4th evaluation point with the sample containing 100 observations from
+the drift items and 700 null observations, and only after seven additional evaluations, the
+samples no longer include the null observations. The prolonged existence of the null
+observations in the large moving samples confounds the impact of parameter drift and
+decelerates the identification. For this reason, the large moving samples tended to entail
+The other patterns relating to the design variables were consistent with the
+expectations. The greater the parameter shift or the larger the evaluation sample, the faster
+ew
+the drift detection. In G , large ωs expectedly led to shorter ARLs and faster detection.
+procedures. The monitoring procedures on the whole demonstrated good timeliness,
+maintaining false alarms within a tolerable range. Among the four procedures evaluated, G
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 28
+Early Detection Rates of SGLRTs (%)
+ew
+G (ω)
+ms
+n ∆ F G .001 .005 .009 G
+300 .25 7.83 .50 2.48 4.57 4.62 2.40
+.50 .90 .60 1.00 2.40 2.80 2.20
+500 .25 5.50 .45 2.50 3.60 3.93 2.80
+.50 .85 1.00 2.00 2.40 3.00 2.00
+800 .25 1.58 .80 1.20 1.20 1.20 1.60
+.50 .40 .40 2.00 1.60 2.00 1.20
+Note. n : Sample size at the first evaluation. ∆: Drift size. All four
+parameters (a, b, α, β) were shifted to the left. ω: Smoothing parameter.
+ew ms
+G: Regular SGLRT. G : Exponentially-weighted SGLRT. G :
+Moving-sample based SGLRT.
+showed the most timely behavior, with early detection rate .63% on average. Followed by
+ms ew
+were G (2.03%), G (2.47%), and F (2.84%), showing comparable performance.
+Patterns relating to the design variables were consistent with expectations. Increase in the
+drift size and the evaluation sample size resulted in fewer erroneous detections (average
+error rate = (2.69%, 2.50%, 1.27%) when n = (300, 500, 800), p < .001; (2.71%, 1.60%)
+5 1
+ew
+when ∆ = (.25, .50), p < .001). Using smaller smoothing coefficients in G led to lower
+error rates though the differences were generally marginal (p = .156).
+5.3.2. Periodic Monitoring. Below we present results of the control charts (i.e.,
+b s v d
+C , C , C , C ) that performed periodic monitoring. The results of the weighted charts
+were omitted because they showed similar performance with the unweighted charts.
+Type I error. The control charts showed acceptable performance in regulating the
+Type I error. We report average false rejection rates without tabulation. The four charts
+b s v
+under evaluation produced average rejection rates of .044 (C ), .053 (C ), .051 (C ), and
+.052 (C ). As mentioned earlier, the inflation in the error was expected because the results
+were obtained from the compromised tests that include drift items. Notwithstanding, the
+procedures seemed to maintain close adherence to the nominal level. Among the control
+charts, the multivariate charts appeared more prone to error. This is because the
+procedures were implemented with little information. Recall that C was performed
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 29
+applying correct knowledge about the drift appearance (e.g., the type of parameters
+drifted, direction of shift). When C was implemented under incorrect priors, it showed
+higher false rejection rates and near-zero detection power.
+performed adequately well in identifying the parameter drift. The bivariate chart that
+examined ab-drift showed moderate power of .628. The quadvariate charts that examined
+s v d
+all four parameters demonstrated excellent power—.992 (C ), .975 (C ), and .993 (C ).
+d s v
+Among the multivariate charts, C and C achieved clear outperformance over C
+(p < .001). Although C showed somewhat lower detecting power, the overall power rates
+were still within the excellent range. We also note that C may lend better utility in
+applied settings. Unlike the other charts, which give only summary information, C
+provides more formative information about drift status (e.g., parameter type, degree of
+drift) and can be more instrumental in conducting cause analysis.
+expected, increase in the drift size and the evaluation sample led to enhanced power ((.855,
+.903, .933) when n = (250, 500, 1000), p < .001; (.832, .962) when ∆ = (.25, .50),
+16 1
+p < .001). Increase in the reference parameter (k) entailed mixed results. Recall that the
+reference parameter was designed to indicate the amount of change worthy of note. Large
+Correct Detection Rates of CUSUM Control Charts
+b s v d
+C C C C
+n ∆\k .5 1 2 .5 1 2 .5 1 2 5 10 15
+250 .25 .256 .292 .358 .958 .958 .960 .834 .884 .946 .968 .966 .964
+.50 .676 .744 .800 1 1 .994 .998 .996 .988 1 .998 .992
+500 .25 .304 .336 .454 1 1 .996 .960 .980 .988 1 1 1
+.50 .856 .884 .916 1 1 .998 1 1 .996 1 .998 .998
+1000 .25 .492 .514 .596 1 1 .998 .990 1 .998 1 1 .998
+.50 .928 .942 .948 1 1 .998 1 .998 .994 1 .998 .998
+Note. n : Sample size at the first evaluation. ∆: Drift size. All four parameters (a, b, α, β) were
+shifted to the left. k: Reference parameter that decides practically meaningful change. C :
+Response-based bivariate control chart that monitors decrease in (a, b). C : Scalar-based multivariate
+v d
+control chart. C : Vector-valued multivariate control chart. C : Dual control chart.
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 30
+ks give greater assurance on the parameter shift and are thus expected to lead to higher
+increased, the power rates increased. When the control charts achieved near perfect power,
+however, a reverse trend appeared. As k increased, the power rates declined slightly. The
+latter pattern can be explained by the way the power was calculated. As described above,
+when a monitoring procedure flags a drift item before the actual change, we treated this
+instance as premature detection and counted out from the power calculation. It appeared
+that when a control chart employs a large reference value, the decision limit from the
+empirical sampling distribution tended to take a small value and it consequently makes the
+chart more sensitive to the small fluctuations. The increased sensitivity induced by the
+small decision limit made the chart more susceptible to small fluctuations and gave false
+alarms even before the development of drift. We note that the untimely detection of the
+control charts occurred only rarely and did not appear as critical practical concern. On the
+whole, the multivariate charts seemed to adequately identify drift items with excellent
+power without serious false signals.
+16 1
+omitted because all ARLs equaled zero. The reported values suggest that the control
+charts demonstrated adequate timeliness in drift detection. All procedures identified the
+drift far before they reach the maximum lags (3 when n = 250; 1 when n = 500).
+19 1 1
+Comparison between the bivariate and quadvariate charts suggests that the latter led to
+much quicker detection (on average 1.158 (bivariate), .551 (multivariate) ; p < .001).
+d s
+Among the multivariate charts, C identified the drift most rapidly (.284), followed by C
+v d
+(.614) and C (.754) (all pairwise comparisons were significant at p < .001). C also
+performed most stably, showing least variation across the design variables (SD = .427).
+The impact of the design variables was generally consistent with the expectations.
+The large drift size and evaluation samples led to faster drift detection ((.970, .435) when
+Recall that the charting statistics are obtained by subtracting the reference values (k). The larger the
+k, the smaller the null charting statistics, and thus, the smaller the decision limit.
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 31
+Average Run Length of Drift Items Correctly Flagged by CUSUM Control Charts
+b s v d
+C C C C
+n ∆\k .5 1 2 .5 1 2 .5 1 2 5 10 15
+250 .25 2.08 1.97 1.52 1.81 1.71 1.39 2.10 1.93 1.42 1.21 1.07 .89
+.50 2.07 1.79 .95 .76 .65 .30 1.07 .88 .34 .06 .04 .03
+500 .25 .74 .71 .61 .35 .28 .14 .59 .48 .19 .05 .04 .03
+.50 .67 .55 .24 0 0 0 .04 .02 .00 0 0 0
+Note. n : Sample size at the first evaluation. The maximum possible ARLs under each n equals 3
+1 1
+(n = 250) and 1 (n = 500). When n = 1000, the maximum possible ARL equals zero. ∆: Drift size.
+1 1 1
+All four parameters (a, b, α, β) were shifted to the left. k: Reference parameter that decides
+practically meaningful change. C : Response-based bivariate control chart that monitors decrease in
+s v d
+(a, b). C : Scalar-based multivariate control chart. C : Vector-valued multivariate control chart. C :
+Dual control chart.
+∆ = (.25, .50), p < .001; (1.167, .238) when n = (250, 500), p < .001). The use of large
+1 1
+reference values likewise resulted in quicker identification by virtue of small decision limits
+(p < .001).
+Premature detection. The control charts showed adequate timeliness in signaling
+b s v
+the parameter drift. The early detection rates equaled 1.28% (C ), .11% (C ), .19% (C ),
+d b
+and .14% (C ) on average. Among the four procedures evaluated, C made false alarms
+most frequently (p < .001) while other charts performed alike (p > .529). The design
+variables had marginal impact in general. Only the reference parameter was found to have
+significant impact (p < .001) with large ks entailing larger error rates.
+Remark on the complete and partial drift. We note that the present results
+were obtained when the items drift in all parameter domains. In real settings, items can
+drift partially in a subset of parameter domains, and the performance of the monitoring
+procedures can degenerate in line with the drift effect size. For example, our additional
+simulation study suggests that when items drift in (a, b) parameters at the size of ∆ = .5,
+ew ms
+average power rates of SGLRTs decline to .319 (G), .404 (G ), and .563 (G ), and those
+s v d
+of control charts drop to .498 (C ), .391 (C ), and .571 (C ). While the procedures
+regained power as they use larger samples and center on the relevant domains, the overall
+power rates were lower than those reported above. This experimentation suggests that
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 32
+multivariate monitoring is most effective when all evaluated parameter domains are subject
+to drift. In real settings, one may explore probable drift using the multivariate procedures
+and obtain supporting information using the simpler procedures. We apply this strategy
+when analyzing the real data below.
+6. Application to Real Data
+Based on the results from the simulation study, we applied the monitoring procedures
+to real-assessment data to examine relevance to applied settings.
+6.1. Data
+The data were obtained from a credential assessment program in the U.S. The data
+set contained 60,718 examinees’ responses and response times collected over a quarter.
+During testing, examinees received unique sets of items that were adapted to their ability
+levels. The tests were drawn from a fixed pool of 1,472 items and administered at varying
+lengths. Across the time the item pool was in use, the items were used 4032.34 times on
+average (SD = 3287.87) with a maximum of 11,284 and a minimum of 8.
+6.2. Analysis
+Initial item calibration. We obtained initial item parameter values by calibrating
+the items prior to monitoring. The initial calibration samples were drawn from the 1000
+reference test-takers (i.e., the first-time attempters) who received the items at the earliest
+dates. The item parameters were estimated jointly under the two-parameter logistic
+response model and the log-normal response-time model through marginal maximum a
+posteriori. As with the simulation, the estimation applied the posterior density in lieu of
+the prior density in order to redress the central tendency of the calibration samples toward
+the item difficulties—the criterion on which the items were administered. The initial item
+calibration resulted in a battery of 814 items that converged within the tolerance criteria.
+The ensuing analysis conducted sequential monitoring of these items to examine existence
+of parameter drift. Although the analysis was performed a posteriori, the monitoring was
+implemented mimicking continuous online testing. Once the monitoring was set off, we
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 33
+calibrated the items online and evaluated parameter drift in real time.
+Monitoring procedures. The performance of the items was monitored both
+continuously and periodically. For continuous monitoring, we applied the three SGLRTs
+ew ms
+(i.e., G, G , G ) and the F -test. The periodic item monitoring was performed applying
+s v d
+the control charts, including the regular multivariate charts (C , C , C ) and their
+s−ew v−ew d−ew
+weighted variants (C , C , C ). Within each scenario, we additionally applied
+the procedures that examine partial drift in the response or response-time parameters. For
+example, in the control-chart approach, we implemented three types of control charts: one
+that monitors all item parameters (a, b, α, β) and two others that monitor each response
+(a, b) and response-time (α, β) parameters only. Where appropriate, we also applied the
+univariate procedures that monitor a specific item parameter in a particular direction. The
+SGLRTs and F -test were similarly reduced for each measurement model or for each
+indicator variable (e.g., Choe et al., 2018; Zhang, 2014).
+Design parameters. The design parameters of the monitoring procedures were
+ew
+determined in line with the monitoring settings. The smoothing parameters in G were
+−3
+set at small values, ω = (.1, .3, .5, .7, .9) × 10 , to accommodate large evaluation
+−1
+samples. Those of the control charts were set as (.1, .3, .5, .7, .9) × 10 considering the
+number of evaluation points. The reference parameters in the control charts were varied
+between .25 to 3 with increment of .25.
+Sequential monitoring. The online item monitoring was implemented as follows.
+All procedures began monitoring when items were assigned to minimal samples of 1000
+examinees and performed sequential monitoring thereafter. The SGLRT-related procedures
+(including the F - and z-tests) evaluated items continuously as the items were administered
+to 100 new additional examinees. Depending on the usage, an item could be evaluated up
+to 103 times in continuous monitoring. In the control charts, items were evaluated
+periodically each time they were assigned to a new sample of 1000 examinees (i.e., window
+size = 1000) and could be evaluated up to eleven times depending on the usage.
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 34
+Decision limits. Significance of parameter drift was determined by comparing the
+charting statistics with the decision limits. We obtained an empirical sampling distribution
+of the drift statistics by bootstrapping 3000 resamples of the observed values and
+determined the decision limit as the average of quantiles. For the two-sided tests (e.g.,
+z-test), the threshold values were obtained as the averages of each 2.5th and 97.5th
+quantiles of the resamples. Those for one-sided tests were obtained as the average of the
+95th quantiles of the sampling distributions.
+Given a large number of monitoring procedures evaluated, we determined the
+instance of parameter drift by considering multiple procedures collectively. Specifically, we
+flagged an item as drift when the item was flagged at least once under the different design
+parameter values (e.g., reference parameters, smoothing constants) within the same
+monitoring procedure (e.g., C ). The flagged items were then subsequently examined in
+greater depth to determine the specific drift pattern.
+6.3. Results
+results were categorized by the measurement models to highlight different kinds of the
+to the nominal level. This is because drift was determined leniently (i.e., considered drift if
+flagged at least once under the different design levels). Despite the liberal flagging, the
+drift item sets were generally small in size and they mostly overlapped across the different
+procedures (e.g., among the items flagged by the joint procedures, 31 items were the same
+items to investigate specific drift patterns. Below we present two example items that were
+found to drift in (a, b, α, β) and (a, b).
+We also contemplated simulation for attaining the threshold values. The resulting values however did
+not generally accord with the statistics in the real data possibly due to disparity in sampling (e.g., content-
+balancing and item exposure control in real testing.)
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 35
+Number of Items Flagged in Real Data
+SGLRT Control Chart
+Method JM IRM RTM Method JM IRM RTM
+G 41 39 40 C 58 56 50
+ew v
+G 59 57 53 C 75 68 68
+ms d
+G 41 41 41 C 59 53 53
+s−ew
+C 70 65 69
+v−ew
+C 77 65 62
+d−ew
+C 89 85 84
+Note. JM: Joint model. IRM: Item response model. RTM: Response time
+ew ms
+model. G Regular SGLRT. G : Exponentially-weighted SGLRT. G :
+s v
+Moving-sample based SGLRT. C : Scalar-based multivariate control chart. C :
+d s−ew
+Vector-valued multivariate control chart. C : Dual control chart. C :
+v−ew
+Scalar-based control chart applying exponential weights. C : Vector-valued
+d−ew
+control chart applying exponential weights. C : Dual control chart applying
+exponential weights. The total number of items monitored was 814. For the
+procedures that involve effect sizes or smoothing constants, the union of the
+flagged items was considered.
+plots give parameter estimates; the last three plots report average absolute difference
+between the initial and re-estimated parameter values, proportion correct, and average
+response times observed at each evaluation point. The plots were presented for the three
+procedures that entailed new calibration at each evaluation. The item under study was
+administered to 9,928 examinees and monitored 90 times by the SGLRTs and 9 times by
+the control charts. In normal settings, the monitoring process terminates when it senses
+significant parameter drift. In this study, we enforced the monitoring to continue until the
+end of item assignment in order to examine the functioning of the item across the entire
+lifespan. The time-series plots show that the item began with moderate discriminating
+power and medium difficulty, but became gradually easier over time and faltered in
+discrimination. The response-time parameters similarly showed fluctuations. The
+time-discriminating parameters shifted gradually to the right, suggesting greater
+differentiation among the fast and slow test-takers. The time-intensity parameters
+decreased slightly, suggesting that examinees who received the item at the later stage
+tended to spend less time than those who received at the earlier stage.
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 36
+parameter drift. When the procedures were implemented under different design levels, we
+reported the earliest alarm points. The two monitoring techniques indicated similar
+ew
+patterns. The SGLRTs suggested 8800 ∼ 8900 (G), 7700 ∼ 7800 (G ), and 4900 ∼ 5000
+ms
+(G ) as the potential drift window. The control charts suggested 4000 ∼ 5000 or 7000 ∼
+8000 as the potential drift interval. As was the case in the simulation study, the procedures
+that applied the exponential weights and moving samples pointed to earlier times as the
+drift point.
+monitoring procedures that used both the response and response-time data tended to
+signal parameter drift at earlier times than those response and response-time based
+procedures. The procedures evaluating (a, b)-drift occasionally failed to flag the item
+despite the apparent change in b.
+The univariate and bivariate control charts indicated similar patterns. Among the
+eight univariate charts evaluated, the charts that evaluated decrease in b, increase in α, and
+decrease in β signaled drift at the 9th, 8th, and 8th evaluation points, respectively. The
+exponentially-weighted univariate charts suggested the same results. The bivariate control
+Estimated Drift Points in Real Data
+SGLRT Control Chart
+Method JM IRM RTM Method JM IRM RTM
+G 80 - 83 C 8 - 8
+ew v
+G 69 85 78 C 8 - 8
+ms d
+G 41 76 69 C 5 - 6
+s−ew
+C 5 - 5
+v−ew
+C 5 - 5
+d−ew
+C 8 - 8
+Note. JM: Joint model. IRM: Item response model. RTM: Response time
+ew ms
+model. G Regular SGLRT. G : Exponentially-weighted SGLRT. G :
+s v
+Moving-sample based SGLRT. C : Scalar-based multivariate control chart. C :
+d s−ew
+Vector-valued multivariate control chart. C : Dual control chart. C :
+v−ew
+Scalar-based control chart applying exponential weights. C : Vector-valued
+d−ew
+control chart applying exponential weights. C : Dual control chart applying
+exponential weights. For the procedures that involve effect sizes or smoothing
+constants, the earliest alarm point was reported. The unit of analysis was 100
+in SGLRTs and 1000 in control charts.
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 37
+charts suggested drift in (a, b) and (α, β), each in the direction of (−, −) and (+, −). The
+(a, b)-drift was signaled at the 9th evaluation (by C ), and the (α, β) drift was signaled at
+b b−ew
+a-estimates tended to fluctuate rather than to decrease. It seemed that the (a, b)-chart
+flagged the item chiefly because of the drift in b and not really due to any substantive
+change in a.
+was administered to 11,155 examinees and evaluated 102 times by the SGLRTs and 11
+times by the control charts. The plots suggest that the item remained fairly stable in
+(α, β) but fluctuated a bit in (a, b). When evaluated by the monitoring procedures, several
+joint procedures and all response-based procedures flagged the item. The response-based
+s v s−ew d−ew d
+procedures signaled drift relatively at earlier times (C , C , C , C at 8; C and
+v−em ms ew
+C at 9; G at 93; G at 83; G at 82), suggesting between the 7000th and 8000th
+examinees (control charts) or between the 8900th and 9200th examinees (SGLRTs) as a
+potential drift point. The joint procedures flagged the item at later times (C at time 10,
+v d
+C and C at 11), suggesting the window between 9000th and 10,000th examinees as a
+potential drift interval. Among the univariate and bivariate control charts, the univariate
+ew
+chart signaled b-decrease at the evaluation points 4 (C) and 5 (C ). The bivariate charts
+gave confounding results, suggesting that (i) both the (a, b) parameters decreased (C and
+ew ew
+C at 8) or (ii) a increased while b decreased (C at 5; C at 4).
+The present examples suggest that the monitoring procedures must be used with
+care. While multivariate joint monitoring can improve power and timeliness, the
+mechanical use can result in loss of power and slower detection when an item is drifted
+partially in the subset of parameter domains. The bivariate control charts, on the other
+hand, though useful when an item is monitored with a prescribed direction, can lead to
+inconsistent conclusions when no specific direction is predicated. Our simulation study and
+real data analysis suggest that in practice one may want to appraise an item holistically
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 38
+using the multivariate procedures and then scope out specific parameter sets or individual
+parameters to obtain detailed information. Such a top-down approach can gradually reveal
+greater information about drift specifics (e.g., type, degree, direction) while allowing
+decisive conclusions on the presence of drift.
+7. Discussion
+As many testing programs use item pools these days, a quality control tool that
+monitors functioning of items has been greatly needed. This study is presented in an effort
+to provide flexible and efficient online item monitoring tools for continuous testing. We
+proposed multivariate parametric monitoring procedures that simultaneously examine
+multiple item parameter domains. All proposed procedures performed online monitoring so
+that drift in the item parameters can be informed in real time during test administration.
+Specifically, two techniques were proposed for online monitoring: SGLRTs for continuous
+monitoring and control charts for intermittent monitoring. The SGLRTs evaluate items
+continually as items are administered to new examinees. The control charts conduct
+monitoring once in a while based on a new batch of data. Both the techniques drew on the
+likelihood-ratio statistics to determine appearance of parameter drift. The SGLRTs
+examined measurement likelihood of the item parameters; the control charts evaluated
+likelihood of normality of a distance statistic. For each technique, we contemplated various
+monitoring statistics to accommodate different monitoring settings and objectives (e.g.,
+availability of data, sensitivity to recent data, how to summarize information across
+multiple domains).
+Empirical experimentation on the simulated and real data suggested that the
+proposed procedures perform effectively well in identifying the parameter drift. Compared
+with the existent methods (e.g., Choe et al., 2018; Veerkamp & Glas, 2000; Zhang, 2014),
+the present procedures achieved higher power and faster identification of drift items.
+Despite the greater complexity and uncertainty in item evaluation, the suggested methods
+appeared to bring clear benefit to item monitoring.
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 39
+While our study has shown great promise for multivariate monitoring, it also
+suggested that the procedures must be used with prudence. In particular, when items drift
+partially in the parameter domains, the multivariate procedures can show degraded
+monitoring performance. In real settings, item monitoring is typically performed in an
+exploratory fashion, and it is sensible to examine multiple procedures concurrently. For
+example, one may apply multivariate procedures to conduct a holistic assessment and use
+reduced procedures for detailed review. Such a top-down approach can gradually reveal
+greater information about drift appearance while allowing clear decisions on the existence
+of drift. We note that the procedures that are reduced to specific parameter domains still
+maintain practical advantages over the existing methods. They use singular indicating
+statistics without assuming a particular drift direction. They also provide detailed
+information about drift profiles that can help inform cause analysis.
+We conclude with some limitations of the study. We mention that our simulation
+study focused on a few main factors to maintain the discussion adequately focused. The
+monitoring procedures can however be affected by other variables, such as the proportion of
+drift items, drift time points, parameter type, etc. The change in these variables naturally
+leads to different monitoring outcomes. Our additional studies suggest that, although the
+absolute performance may vary depending on the monitoring settings, the relative
+performance of the monitoring procedures tends to remain consistent. We also add that
+the present study assumed homogeneous samples throughout the empirical evaluations.
+While we attempted to address the sampling variation during item calibration, a future
+study may explore methods that can explicitly address the seasonality in drift evaluation.
+SGLRT FOR MONITORING ITEM PARAMETER DRIFT 40

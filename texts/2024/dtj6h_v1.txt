@@ -1,0 +1,444 @@
+Evaluating the Potential of LLMs for Thematic Analysis in Czech
+History Curricula
+Juda Kaleta
+Institute of Czech History, Faculty of Arts, Charles University, Prague, Czech Republic
+ARTICLE HISTORY
+Compiled December 23, 2024
+ABSTRACT
+Analyzing Czech school curricula is often difficult due to structure, layout, and ter-
+minology inconsistencies. This study examines how Large Language Models (LLMs)
+can help address these issues, using History curricula as a case study. We evaluated
+the LLMs’ abilities to (a) extract relevant data, (b) divide historical content into
+clear topics, and (c) assign accurate historical era labels. Our findings show that
+while LLMs have trouble extracting data from large PDF files, they perform very
+well in dividing content and labelling, achieving results similar to those of human
+coders.
+KEYWORDS
+Thematic Analysis; Czech School Curricula; Large Language Models; History
+Content; Educational Data Processing
+The authors report there are no competing interests to declare.
+The data that support the findings of this study are openly available in
+Dataset for Evaluating LLMs in Thematic Analysis of Czech History Curricula at
+1. Introduction
+In recent years, the performance of Large Language Models (LLMs) has significantly
+improved across many tasks. These models have shown strong abilities not only in
+simple everyday tasks but also in complex text data analysis and processing. As a
+result, research into their potential for thematic analysis in various fields and domains
+has grown quickly. Building on these efforts, our study examines the capabilities of
+LLMs for domain-specific research, particularly their use in the thematic analysis of
+school curricula, focusing on the history content of Czech school curricula.
+1.1. Context and Background
+The Czech Republic is currently transforming its national curricula. Initially approved
+in 2004 and implemented in 2005, the national curricula were last revised in 2023
+(R´amcov´y vzdˇel´avac´ı program pro z´akladn´ı vzdˇel´ava´n´ı, 2023). Labischov´a and Gracov´a
+CONTACT Juda Kaleta. Email: juda.kaleta@ff.cuni.cz
+(2016) describe the main focus of the current curricula: politically motivated develop-
+ment to overcome the lingering influence of communism and to cultivate democratically
+minded citizens, alongside educational goals linked to a shift towards constructivist ap-
+proaches and a skills-based curriculum. These curricula defines both key competences,
+which include broader transferable skills, and subject-specific competences aimed at
+developing expertise in individual subjects.
+The educational system operates on a two-level curriculum model—national and
+school-based. Each school creates its own curriculum based on the national framework,
+implementing required outcomes while adapting them to fit specific school orientations.
+The national curriculum provides a set of recommended subject content, but it is not
+mandatory; schools can choose to cover it partially or not at all.
+However, as Jireˇcek (2023a) notes, teachers adopted the new curricula reluctantly,
+mainly due to a lack of methodological support. As a result, Czech schools did not
+change their approaches as much as the curriculum’s authors had hoped. Although each
+school was required to develop its own curriculum based on the national framework,
+many simply transferred old content into the new format.
+Recently, the Czech Ministry of Education began creating new national curricula to
+streamline content, allowing schools to focus on important areas and explore them in
+depth (NPI, 2023, 2024). The curricula remain competency-based, and the two-level
+curricular system is unchanged.
+However, the process of creating new national curricula faced criticism in 2024. The
+main issues were the reassignment of nearly completed curricula without enough public
+and expert discussion, and the lack of consideration for the practical context of Czech
+schools, potentially creating conditions that schools may struggle to implement. This
+issue arises from insufficient familiarity within the Ministry of Education with the real
+implementation of school curricula and data-driven decision-making. One knowledge
+gap is caused by the difficulty in processing and analysing school curricula due to their
+non-unified form and content. The lack of analysis of school curricula also hinders the
+evaluation of changes following the implementation of new national curricula.
+1.2. Objective
+Given the complexity of Czech school curricula and the lack of systematic tools for
+post-implementation analysis, this study aims to evaluate the potential of using Large
+Language Models (LLMs) to support specific stages of thematic analysis in school
+curricula. We have formulated the following research questions:
+(RQ1) How effectively can an LLM extract history-related content from different
+school curricula?
+(RQ2) To what extent can an LLM identify and distinguish distinct history content
+topics compared to a human coder?
+(RQ3) How accurately can an LLM label school curricula content using predefined
+codes from the Czech National Curriculum?
+These research questions address multiple phases of the thematic analysis process
+as described by Braun and Clarke (2006). Extracting data (RQ1) helps in understand-
+ing the data, identifying content topics (RQ2) involves generating initial codes, and
+labelling content (RQ3) corresponds to the search for themes.
+We will use and compare two LLM models by OpenAI, focusing on the tasks of
+topic splitting and labelling. Our study is limited to the history content from school
+curricula.
+2. Literature Review
+The use of large language models (LLMs) in thematic analysis has shown promising
+results. Studies by De Paoli (2023, 2024) and De Paoli and Mathis (2024) demon-
+strated that GPT-3.5 can effectively perform thematic analysis on semi-structured
+interviews, including those in non-English languages, with results comparable to hu-
+man researchers. Similarly, Dr´apal, Westermann, and Savelka (2023) successfully ap-
+plied LLMs to generate and assign thematic codes for Czech criminal court opinions.
+Tabone and de Winter (2023) used ChatGPT to evaluate open-ended questions from
+questionnaires, interview transcriptions, and Think-Aloud protocols, achieving suc-
+cessful outcomes. Hamilton, Elliott, Quick, Smith, and Choplin (2023) compared the
+results of LLMs in qualitative analysis with those of human coders, indicating promis-
+ing results.
+Despite these successes, researchers consistently advise against the unsupervised
+use of LLMs. The consensus is that LLMs should complement, not replace, human
+analysis, especially in tasks requiring cultural or linguistic nuance.
+There is rapid progress in implementing AI and LLMs in education, driven by the
+need to respond to students’ use of AI and attempts to create AI-aligned curricula.
+Ipek, G¨ozu¨m, Papadakis, and Kallogiannakis (2023) provides a systematic review of
+the potential benefits and challenges of using AI in educational contexts. Yang, Kim,
+and Lee (2023) analysed the creation of AI-aligned curricula and textbooks.
+However, the use of LLMs in educational research is still developing. Rodrigues dos
+Anjos, De Souza, Serrano de Andrade Neto, and Campello de Souza (2024) explored
+the use of LLMs in qualitative research within science education. Henkel, Hills, Robert,
+and McGrane (2024) and Henkel, Hills, Boxer, Roberts, and Levonian (2024) compared
+the performance of LLMs in grading student assessments. Padovano and Cardamone
+(2024) explores how AI can assist in creating competency-based curricula.
+Both qualitative and quantitative curricular research have a long tradition in Czech
+research. Kaleja (2019) describes the main issues of the current Czech National Cur-
+ricula. K´acovsky´ et al. (2021, 2023) compare mathematics curricula of selected Euro-
+pean countries. Similarly, Stratilov´a Urv´alkov´a, Tepl´a, and Janouˇskov´a (2019) compare
+chemistry curricula.
+Jireˇcek (2023a, 2023b) analysed the position of history education within the school
+curricula of general secondary schools (ISCED 2) following minor changes to the na-
+tional curriculum. He examined 200 school curricula that were publicly accessible on-
+line through school websites. His findings provide valuable insights into the updated
+allocation of history lessons and reveal a significant overloading of the final grade
+with extensive content related to modern history. However, his findings are limited to
+schools with publicly accessible curricula. Our findings show that many schools are
+unwilling to share their curricula, and selecting only an easily accessible population of
+curricula may lead to biased input data. Schools that share their curricula tend to be
+more modern and open-minded, whereas those unwilling to do so are often more tra-
+ditional and conservative. This discrepancy may distort interpretations of curriculum
+implementation and innovation.
+There is a gap in research connecting the use of LLMs for thematic analysis and
+curricular research. Our study aims to fill this gap and provide initial insights into the
+possible use of LLMs in this field.
+0 400 800 1200
+Total Number of Students in Schools
+sloohcS
+fo
+tnuoC
+Distribution of Number of Students in Schools Stratified by Jenks Breaks
+determined using Jenks Natural Breaks.
+3. Methodology
+3.1. Dataset Description
+The data used in this study were collected as part of our research on the distribution of
+history content within Czech school curricula at the lower secondary level. To achieve
+this, we aimed to gather curricula from a representative sample of all Czech schools
+that met the following criteria:
+(1) The school is listed in the Czech Ministry of Education School Register and is
+required to follow the national curricula. This requirement applies to all types of
+schools in the Czech educational system, including public, private, and religious
+schools.
+(2) The school is fully organised and includes all grades of ISCED 2.
+(3) The school had a non-zero number of students enrolled during the most recent
+academic year.
+(4) The school qualifies as a standard institution according to the Czech educational
+B10
+system (i.e., the school type in the M3 report is ).
+Data on schools were obtained from the spring 2024 edition of the M3 report,
+which is published twice a year (once in spring and once in autumn) by the Ministry
+of Education, Youth and Sports. Based on these criteria, the final population consisted
+of 2,486 schools.
+From this population, we constructed a proportional stratified sample based on the
+number of students enrolled at each school. To define the strata, we applied Jenks
+Natural Breaks, a method designed to minimise variance within strata while maximis-
+groups, reflecting differences in school sizes. The required sample size for each stratum
+was calculated using Cochran’s equation, which ensures that population parameters
+This report, along with all school curricula, scripts, and outcome data, is accessible in Kaleta (2024).
+Stratum Number of schools Sample size Median students
+1 (small schools) 1, 182 158 164.00
+2 (medium schools) 864 116 400.50
+3 (large schools) 440 59 641.00
+Total 2, 486 333
+Source Count Percentage
+Website 198 59.46%
+Mail Request 43 12.91%
+Official Request 80 24.02%
+Returned Curricula 321 96.40%
+Refused 2 0.60%
+No Response 10 3.00%
+Total 333 100.00%
+can be estimated with a specified level of precision, confidence, and variability. This
+systematic approach allowed us to create a representative sample while accounting for
+the varying sizes of schools in the population.
+To maintain reproducibility, we used an R script with a fixed random seed to select
+the schools included in the sample. Details of the strata distribution, including the
+In the following steps, we aimed to obtain the curricula from all schools in the
+sample, or at least the section related to the content of History. According to Czech
+law, school curricula must be publicly accessible; however, the law does not specify
+how they should be made accessible. Initially, we tried to locate the curricula on the
+schools’ websites. Next, we contacted the schools via email, requesting either their full
+curriculum or the relevant sections. Finally, we submitted an official request under
+Czech Act No. 106/1999 Coll. on Free Access to Information. Based on this law, pub-
+licly funded schools are required to provide remote access to their curricula. However,
+this obligation does not apply to private or religious schools.
+From July to November 2024, we successfully obtained 321 curricula. Two schools
+declined our request (the Law on Free Access to Information did not apply due to their
+status as non-public schools), and ten schools did not respond to our official request.
+For details regarding the sources from which the school curricula were obtained, see
+for the returned curricula.
+Schools provide curricula in various formats (e.g., PDF, HTML, DOCX, DOC,
+XLSX), often separated by subjects or grades across multiple files. To standardise the
+input data, we converted all curricula into PDF format, combining multiple files when
+necessary.
+3.2. Human and LLM Coding Processes
+The aim of this study was twofold: (1) to validate LLMs as a viable alternative to
+human coders for analysing school curricula, and (2) to identify their limitations and
+highlight specific contexts where LLMs can be effectively applied. To achieve this, we
+evaluated LLM performance on three tasks:
+(1) extracting relevant history content from school curricula PDFs,
+(2) splitting extracted content into distinct topics, and
+(3) labelling topics into broader historical themes aligned with the Czech National
+Curriculum.
+We compared LLM outputs with those produced by a human coder, who served as
+the benchmark. The human coder was an experienced lower-secondary history teacher
+familiar with the structure, terminology, and content of Czech school curricula.
+For LLM processing, we used two versions of GPT-4: gpt-4o-2024-08-06 and
+gpt-4o-mini-2024-07-18. These models were chosen due to GPT-4’s widespread pop-
+ularity and accessibility. The gpt-4o-mini version offered faster processing and lower
+costs but had a smaller contextual window compared to the full version. This trade-off
+is discussed further in the results section.
+We evaluated LLM performance based on the following criteria:
+(1) Accuracy: How closely LLM outputs matched human-coded results.
+(2) Processing time: Measured as the total runtime of the LLM processing scripts.
+(3) Cost: Derived directly from OpenLLM’s administrative console based on token
+usage.
+The following subsections describe each of the three tasks in detail, including the
+methods applied and the criteria for evaluation.
+3.2.1. Data Extraction
+Due to the absence of a unified format for Czech school curricula, we encountered sig-
+nificant variability in document styles, file sizes, content organisation, and terminology.
+The primary objectives of this task were twofold:
+(1) To identify the section of the curriculum dedicated to the History subject, and
+(2) To extract the relevant content for each grade level.
+Both the LLM models and the human coder were tasked with examining each docu-
+ment, locating the History section, and systematically extracting and categorising all
+relevant content by grade. These extracted content chunks were later used in subse-
+quent processes, such as topic splitting and labelling.
+This step was anticipated to be the most challenging in the data extraction process.
+relevant History section. Furthermore, the organisation and presentation of history
+content varied significantly between schools. Examples of this variability included:
+• Curricula presenting the expected learning outcomes and content in a structured
+• Curricula providing content as narrative paragraphs beneath tables listing ex-
+pected outcomes.
+These structural differences posed challenges for both the LLM models and the
+human coder, as they had to locate, interpret, and extract consistent information
+across diverse document formats.
+To evaluate the quality of the extracted chunks, we planned to compare the outputs
+of the LLM models and the human coder using two key metrics:
+• Total count of extracted chunks: This metric assesses whether the LLM and
+200 400 600 800 1000 1200
+Number of Pages
+sFDP
+fo
+tnuoC
+Distribution of Number of Pages in complete School Curricula
+Note: Only complete curricula were included in the dataset, excluding extracted parts.
+been excluded).
+human coders extracted a similar number of meaningful units.
+• Character length of extracted chunks: To evaluate the granularity of ex-
+tractions, we measured the average and total character lengths of the chunks.
+To conduct this comparison, a random sample of extracted chunks was selected for
+detailed analysis. This sampling ensured a fair and representative evaluation of the
+LLM and human performance in this step of the process.
+However, during initial trials of LLM processing of the school curricula, we identi-
+fied significant limitations that made LLM unsuitable for this task without extensive
+customisation. These limitations included:
+• High costs: Processing the large PDF files using LLM proved financially pro-
+hibitive. On average, the school curricula PDFs were 252.23 pages long (see
+• Low extraction accuracy: LLM frequently failed to correctly extract the His-
+tory section of the files. This issue was compounded by the inconsistent organi-
+sation of the curricula and the lack of a uniform structure across documents.
+Addressing these challenges would require advanced preprocessing, fine-tuning of
+the LLM models, the use of vector stores, and the development of extensive custom
+scripts. As a result, we were unable to compare extracted content chunks between
+LLM and human coders. For the subsequent stages of the project, only the chunks
+provided by the human coder were used.
+3.2.2. Topic Splitting
+To enable a meaningful comparison of school curricula, we needed a robust method
+for identifying and distinguishing individual content topics. Typically, these topics are
+presented on separate lines in curricula; however, some schools did not clearly separate
+them, and topics were sometimes embedded within broader sections. Additionally, the
+definition of what constitutes a single topic varies across curricula, with some topics
+being more general, while others are more specific.
+To address this, we split the content into meaningful units. The human coder was
+used as the baseline for this task, with instructions to follow traditional topic divisions
+found in Czech history textbooks when determining what constitutes a single topic
+unit.
+For LLM processing, we used a single-shot strategy and provided the following
+prompt in Czech. The English translation is provided here. See the referenced reposi-
+tory for original prompts:
+The user will provide history curriculum content for a primary school, which may con-
+tain inconsistent formatting, transcription errors, and other issues. Reformat the content
+so that each line corresponds to a distinct and meaningful unit, aligned with the curricu-
+lum.
+We decided to merge this step of topic splitting with the following (labelling) to
+reduce costs and increase efficiency. It also simplified providing the required topic
+context in the next step.
+We let the LLM process all school curricula, but because this task would be very
+time-consuming for the human coder, we decided on a smaller sample, even at the cost
+of a lower confidence level. We used stratified sampling with grades as individual strata
+and randomly chose five content chunks for each grade, resulting in a total sample of
+20 content chunks. With 2,186 extracted chunks from previous steps, using a sample
+size of 20 chunks provides an acceptable balance between confidence for this type of
+analysis, ensuring representativeness and reliability, and the human coder’s time.
+We compared the performance of the LLM models against the human coder’s base-
+line using the F1-score, which measures both precision and recall to evaluate how well
+the models split topics.
+3.2.3. Topic Labelling
+To evaluate the LLM’s ability to label topics, we used predefined labels (referred to
+as ”codes”) based on the Czech National Curriculum. Each distinct topic from the
+school curricula was matched with two labels: one broader history theme label (e.g.,
+’Earliest Civilisations. Roots of European Culture’) and one more specific topic label
+(e.g., ’The Oldest Ancient Civilisations...’ or ’Ancient Greece and Rome’). A complete
+list of these codes can be found in Appendix A. If no predefined label was applicable,
+the label other was used.
+Both the human coder and the LLM models used the content chunks generated by the
+GPT-4 model in the previous step as input for labelling.
+To ensure accurate labelling, additional context was provided for each content
+chunk. This included information about the grade level and the original content chunk
+from the school curriculum. Preserving this contextual information was essential for
+both the human coder and the LLM models to interpret topics that might otherwise
+appear ambiguous or dependent on surrounding content. To simplify this contextu-
+alisation, content topics from joined grades were excluded as they were less directly
+attributable to a single grade level.
+To create a manageable dataset for human labelling while maintaining representa-
+tiveness, we employed a stratified sampling approach. The content topics were divided
+into strata based on grade levels (grades 6 to 9), and a number of topics proportional
+to their overall representation was randomly selected from each grade. Using a 5%
+margin of error and a 95% confidence level, the required total sample size was cal-
+culated as 381 topics. The distribution of topics and corresponding sample sizes is
+Grade Total Number of Topics Proportion Sample Size
+6 8,242 .23 88
+7 9,415 .26 101
+8 8,018 .23 86
+9 9,888 .28 106
+Total 35,563 1.00 381
+The LLM was tasked with labelling the entire set of content topics, while the human
+coder labelled only the sampled dataset. Importantly, the human coder did not have
+access to the LLM’s labelling results, ensuring that the evaluation remained unbiased.
+To assess the agreement between human and LLM labels, we initially computed
+Cohen’s Kappa, a statistical measure of inter-rater reliability. However, upon observ-
+ing high inter-rater agreement, we decided to compute Fleiss’ Kappa instead. While
+Cohen’s Kappa is typically used for two raters, Fleiss’ Kappa is more robust in cases of
+high agreement, as it is less sensitive to the influence of chance agreement when there
+is little disagreement. This measure accounts for agreement that may occur by chance,
+providing a reliable metric for evaluating labelling consistency. A higher Kappa value
+indicates stronger agreement. Fleiss’ Kappa was applied to assess both broader theme
+and specific topic labels, enabling us to evaluate the reliability of the LLM models in
+comparison to the human coder.
+4. Results
+4.1. LLM Costs
+In our cost analysis, the gpt-4o-mini-2024-07-18 model emerged as the more eco-
+nomical choice, completing tasks in approximately six hours at a cost of 1.56 (see
+costing 31.24 and requiring about nine hours. These processing times are approxi-
+mate, influenced by network conditions and server load.
+4.2. Topic Splitting: Performance Comparison
+The task of topic splitting from content chunks showed that the gpt-4o-2024-08-06
+model performed well across precision, recall, and total F1-Score, indicating a good
+LLM Model Processing Time Cost (USD)
+gpt-4o-2024-08-06 9 hours 31.24
+gpt-4o-mini-2024-07-18 6 hours 1.56
+Different LLM Models
+LLM Model Precision Recall F1-Score
+gpt-4o-2024-08-06 .89 .90 .90
+gpt-4o-mini-2024-07-18 .84 .51 .64
+tional Curriculum Theme Labelling by Grade
+κ(p)
+Grade gpt-4o-2024-08-06 gpt-4o-mini-2024-07-18
+Themes Topics Themes Topics
+6 .82 (< .001) .78 (< .001) .77 (< .001) .62 (< .001)
+7 .79 (< .001) .77 (< .001) .51 (< .001) .47 (< .001)
+8 .88 (< .001) .61 (< .001) .52 (< .001) .46 (< .001)
+9 .89 (< .001) .76 (< .001) .76 (< .001) .30 (< .001)
+Overall .90 (< .001) .76 (< .001) .76 (< .001) .59 (< .001)
+balance between precision and recall. The gpt-4o-mini-2024-07-18 model, while
+achieving similar precision, had significantly lower recall, resulting in a moderate F1-
+Score.
+4.3. Topic Labelling: Performance Comparison
+the human coder in labelling broader history themes based on the Czech National
+Curriculum, and substantial agreement in labelling more specific topics. All individual
+grade agreements were at least substantial.
+In contrast, gpt-4o-mini-2024-07-18 performed as expected, yielding lower results
+due to its smaller context window. It achieved substantial agreement on broader themes
+but only moderate agreement on specific topics, with some grades dropping to fair
+agreement.
+5. Discussion
+Our findings indicate that, beyond extracting data from school curricula PDFs, the
+gpt-4o-2024-08-06 model can perform high-quality thematic analysis of school cur-
+ricula, producing results comparable to those of a human coder. It demonstrated strong
+performance in both topic splitting and topic labelling using codes from the Czech Na-
+tional Curriculum. The primary drawback of this LLM model is its higher cost com-
+pared to less advanced models, although the cost remains manageable for analysing
+hundreds of curricula at a reasonable price.
+In contrast, the more economical and faster gpt-4o-mini-2024-07-18 model did
+not achieve the same level of performance. It missed many topics in the topic splitting
+task and showed significantly lower agreement with human coders in topic labelling.
+We hypothesise that with prompt optimisation, this model could be suitable for la-
+belling broader themes, but its performance in labelling more specific topics is currently
+unreliable.
+We attribute the performance disparity between these two models primarily to
+the smaller context window of the gpt-4o-mini-2024-07-18. Despite using a fixed
+to interpret. The gpt-4o-2024-08-06 model’s access to a more extensive knowledge
+base in the field of History likely contributed to its ability to produce more relevant
+results.
+We expected good results from LLMs based on previous research on using them
+for different parts of thematic analysis. We also supported the use of non-English
+data, as De Paoli (2024) did. The strong performance of more advanced LLM models
+suggests their potential utility in analysing larger datasets more efficiently, thereby
+reducing both the time and costs associated with research. Given their capability to
+process non-English data, as demonstrated with Czech curricula, these models could be
+particularly valuable for comparative studies of school curricula across different states
+and cultures. However, it is crucial to remember the necessity of researcher oversight
+and supervision throughout the LLM process to ensure accuracy and reliability, as
+Dr´apal et al. (2023) and De Paoli and Mathis (2024) remind.
+Many areas of education can benefit from using LLMs to analyse educational docu-
+ments. Government educational policy should rely on well-analysed and processed data
+from schools, but it often lacks reliable research due to limited funds. Utilising LLMs
+to process and analyse these documents can reduce costs and help make education
+policy more data-driven.
+We acknowledge, however, the limitations of this study and suggest paths for future
+research. First, in our study, we were unable to use LLMs to extract data from school
+curricula PDFs and relied entirely on human extraction. This approach is neither
+economical nor reliable, as we lacked a control mechanism for this part of the process.
+We suggest exploring AI-based methods for data extraction from school curricula, such
+as AWS Textract, Google Document AI, or Azure Document Intelligence.
+Second, we employed only one human coder for the splitting and labelling tasks.
+Although the coder was an experienced teacher, incorporating a validity check for the
+splitting and labelling results would enhance reliability. Due to limited resources, the
+sample size for content splitting was kept as small as possible, which may reduce the
+confidence in the results.
+Third, we exclusively used OpenAI LLMs, excluding other high-quality competing
+models. Future research could explore the use of alternative models such as Google
+Gemini, Meta LLaMa, and Anthropoid Claude.
+Fourth, while the F1-score provided basic insights into topic splitting, it only ac-
+counted for exact topic matches. Some matches may have been missed due to the
+use of synonyms by LLMs or different topic wording. We recommend employing more
+advanced metrics in future research, such as comparing vector distances.
+In some cases, open coding might be a better option, as it could cover a wider range
+of topics and differences between schools. Exploring the potential of using LLMs for
+open coding of curricular content would be an interesting avenue for future research.
+6. Conclusion
+In our research, we were unable to use LLMs for direct extraction of curricular content
+from school curricula. However, we found that LLMs, particularly more advanced
+and higher-quality models, are highly capable of content splitting and topic labelling,
+producing results comparable to those of a human coder. These findings highlight the
+potential of LLMs for both curricular research and data-driven educational policy.
+Our study contributes to the growing body of evidence supporting the integration
+of LLMs in educational analysis, suggesting that with further refinement, these tools
+could significantly enhance the efficiency and accuracy of curriculum analysis. Future
+research should explore the integration of diverse LLM models and advanced metrics
+to further validate and expand upon these findings.

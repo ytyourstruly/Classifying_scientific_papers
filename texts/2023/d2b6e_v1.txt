@@ -1,0 +1,872 @@
+THE PROBLEM OF DEPENDENCY
+The Problem of Dependency
+1,2 3 1
+Toby D. Pilditch , Ulrike Hahn and David Lagnado
+University College London, London
+University of Oxford, Oxford
+Birkbeck, University of London, London
+Author Note
+All authors contributed to the conceptualisation and writing of this manuscript, and thus the
+order of authorship should be considered arbitrary.
+Correspondence concerning this article should be addressed to Toby D. Pilditch, 26
+Bedford Way, London, WC1H 0AP, UK. Electronic mail can be sent to t.pilditch@ucl.ac.uk.
+THE PROBLEM OF DEPENDENCY
+Abstract
+It is a wide-spread assumption that multiple pieces of evidence, whether they involve
+measurements or testimony, provide stronger evidential support when they are independent
+than when they are not. The standard view is that non-independence creates redundancy and
+leads to over-confidence (see e.g., Soll, 1999; Nisbett & Ross, 1980). In keeping with this,
+fields as diverse as law, statistics, and philosophy have sought to understand the implications
+of non-independence and set out rules for dealing with it. In this paper, we set out how the
+challenges posed by non-independence are both far more wide-spread and more challenging
+than typically assumed. Specifically, we review how Bayesian probabilistic analysis reveals
+“simple” inference cases that conflict with wide-spread assumptions about the value of
+independence. These suggest that mere intuition is not a reliable guide in this arena. However,
+we then show that the same framework cannot (in its current form) be scaled to common real-
+world situations even in principle. We conclude with a discussion of the more modest, partial,
+solutions that are currently available and outline possible future directions.
+Keywords: dependencies, reasoning under uncertainty, testimony
+THE PROBLEM OF DEPENDENCY
+1. Dependence and Independence
+Consider the following: You are trying to judge whether there will be a thunderstorm
+tomorrow. You already have an initial sense of how likely this is, but seek out further
+information. You bump into your friend Alex who says that he thinks there will be a
+thunderstorm. You believe Alex to be trustworthy (he’s your friend!), but he’s not an expert
+meteorologist. Intuitively, you somewhat increase your belief in the possibility of a
+thunderstorm in response. Carrying on down the street, you bump into a second friend, Jessie,
+who also thinks there will be one. This corroboration, intuitively, further bolsters your belief
+in a thunderstorm tomorrow.
+Already, there are a number of relevant factors to consider in your evaluation. Are
+thunderstorms commonplace in your area? How difficult is it for lay people to accurately
+predict thunderstorms a day in advance? Neither Alex nor Jessie are experts, but they do live
+in the area, so what weight should you give to their judgments? Such questions must be
+addressed (implicitly or explicitly) whenever we adjust our views in response to those of others.
+However, there is an important further issue here: how are Alex’ and Jessie’s judgments
+related to each other? Does it matter whether they each came to their own separate conclusion
+or just both heard the same radio forecast? And, if they both had their own reasons and heard
+the same forecast, is there some way to factor out the common forecast so as to count it only
+once and avoid ‘double-counting’? This is the central problem posed by the non-independence
+of evidence sources. It applies not just to testimony (Alex and Jessie) but also to measurement
+devices. For example, should we prefer a second measurement with the same device or should
+we prefer to receive a measurement from a second, different device?
+The question of whether to prefer repeat measurements or a second device has seen
+decades of discussion in the philosophy of science and epistemology under the header of the
+THE PROBLEM OF DEPENDENCY
+‘variety of evidence thesis’ (e.g., Fitelson, 1996) and impacts everything from choice of
+physical devices to discussions about the value of replication within psychology (Oberauer &
+Lewandowsky, 2019). It is, at heart, a question about the value of independence. At the same
+time, there are many practical contexts where some degree of non-independence is simply a
+fact one can do little about: current climate models, for example, share components raising
+questions about how to account for this fact in evaluating ensemble predictions; scientists share
+education, training and methods; court cases are stuck with the actual witnesses that could be
+found.
+Working out how we should respond to non-independence is a normative question, that
+is, a question about how we ought to behave. In response, there have been many proposals of
+both informal and formal rules –in legal systems, science, and everyday life. Ideally,
+prescriptions of how we should form beliefs should rest on more than mere intuition or say so,
+but rather have some independent justification. As a consequence, there has been widespread
+application of a Bayesian probabilistic framework to these questions. In this paper, we detail
+both what marks out the Bayesian framework as a suitable tool, and some of the insights its
+applications have afforded. Those applications, in effect, treat people and testimony just like
+any other evidence source such as physical measurement devices. The main contribution of
+this paper, however, is to make clear the limits of such an approach. Specifically, we show how
+and why the current Bayesian tool kit, in particular Bayesian Belief Networks (BNs) fails to
+deal with the fundamental fact that much human exchange involves communication across
+social networks. In other words, even where we ostensibly exchange information in pairwise
+exchanges (such as with Alex and Jessie), we are part of a wider network of social exchange
+because (some of) those we speak to also speak to each other. We are, in effect, individuals in
+collectives (see Hahn, 2023).
+THE PROBLEM OF DEPENDENCY
+Given that violations of independence may lead to over-weighting of evidence, and that
+there is considerable concern about the way online social networks, in particular, may fuel the
+development of extreme opinions, it is revealing that the same Bayesian tools that work well
+with a small number of sources, do not work in this more general case. Furthermore, the reasons
+for those are not just practical or computational considerations, but rather fundamental
+representational limitations. This, in turn, shows the challenges posed by non-independence to
+be deeper than previously assumed.
+Specifically, the paper proceeds in four main parts. We first briefly detail ways in which
+the Bayesian framework is seen as particularly suited for answering the normative questions
+posed by non-independence. We then review some of the success its application has had in
+clarifying the role of non-independence and providing appropriate guidance. We then outline
+how and why the same tools fail once we extend sources to even a small social network. In the
+final part, we describe how a more restricted answer to the normative challenge might be
+derived by retreating to thinking about social networks as unanalysed aggregates. We conclude
+with thoughts on future directions.
+2. Bayesian Tools for the Normative Question
+As already indicated, this paper draws on the Bayesian framework to explicate the
+challenge of non-independence (Bayes, 1763). One might consider the Bayesian framework to
+be sufficiently established that no further words on its suitability for conceptualising normative
+questions are required. Bayesian models as computational level theories (see Marr, 1982) for
+the study of cognition exist across many domains including learning (e.g., Kruschke, 2006;
+Bramley, Dayan, Griffiths, & Lagnado, 2017), reasoning (e.g., Sloman & Lagnado, 2015;
+Oaksford & Chater, 1994), argumentation (e.g., Hahn & Oaksford, 2007), and prediction (e.g.,
+Griffiths & Tenenbaum, 2006), among others. Bayesian approaches have also seen a
+resurgence in statistics (see e.g., Wagenmakers, 2007), gaining territory on more traditional,
+THE PROBLEM OF DEPENDENCY
+frequentist statistical techniques in deriving statistical inferences from empirical observation.
+Furthermore, the Bayesian framework has been widely used in both the philosophy of science
+and in epistemology in order to elucidate questions about how humans can arrive at secure
+knowledge (e.g., Bovens & Hartmann, 2003).
+We think it is nevertheless useful to be more explicit about the reasons for focussing on
+the Bayesian framework in the present context and to consider some common critiques. One
+such line of critique within cognitive science has taken issue, in one form or another, with the
+value of rational models of cognition and the way they draw on Bayesian probability (see, e.g.,
+Elqayam & Evans, 2011; Jones & Love, 2011 Bowers & Davis, 2012). Our goals in this paper,
+however, lie firmly with the normative issue of how we should behave, not with the descriptive
+question of how humans actually behave (though we very much consider the answer to the
+normative question to be informative regarding descriptive matters). Whether or not rational
+analysis is a useful method for studying human behaviour, or what value Bayesian models of
+cognition have relative to process-level accounts or mechanism explanations is consequently
+neither here nor there for the current paper. A second line of criticism rests on the idea that the
+normative standard of ‘being Bayesian’ is too demanding computationally (Gigerenzer, 2008)
+and/or it is unclear in practice ‘where the numbers come from’ (e.g., Walton, 2004). We are
+sympathetic to these concerns, but again, we consider them irrelevant to the specific aims of
+this paper. As outlined in the introduction, this paper seeks to identify both circumstances
+where a Bayesian framework clarifies the problem of non-independence, and, more
+importantly, cases where it can not. That even an ideal agent model cannot (currently)
+adequately capture these circumstances is, we think, informative with respect to understanding
+the full scale of the challenge human cognitive agents are trying to solve and it helps see clearly
+the difficulties for finding practical solutions. In short, for sceptics, the Bayesian framework
+may very much be treated in this paper as a crutch that is ultimately thrown away.
+THE PROBLEM OF DEPENDENCY
+Nonetheless it is clear that a formal framework for addressing the normative question
+is necessary, and that such a framework has to be quantitative. There have been many informal,
+qualitative rules proposed for dealing with witness testimony, such as legal rules on hearsay or
+rules proposed in the argumentation literature (see Walton, 2007). Unless one wants to simply
+discard any type of evidence with dependence (a step which is arguably neither desirable nor
+possible in many circumstances as will become clear), the normative question itself calls for a
+quantitative answer. It may be intuitive that dependence is a kind of redundance as widely
+assumed (e.g., Nisbett & Ross, 1980), but that alone doesn’t answer by how much we should
+adjust our conclusions in response.
+The Bayesian framework also recommends itself in as much as its prescriptions
+generally accord with intuition. LaPlace famously noted that “the theory of probabilities is
+basically only common sense reduced to a calculus” (LaPlace, 1825, pg. 124). But what about
+cases where intuitions and probabilistic prescriptions depart? Why then follow probability
+theory? It is here that it matters that ‘being Bayesian’ can be linked to instrumental goals of
+human cognitive agents such as a desire for accurate beliefs and good decisions. Specifically,
+‘being Bayesian’ minimises the expected inaccuracy of one’s beliefs (when accuracy is
+measured by the Brier score, Pettigrew, 2016), and allows one to avoid bets that are guaranteed
+to generate a loss (so-called ‘Dutch Books’, Hajek, 2008). Although there is ongoing debate
+about the adequacy of both of these normative foundations, it seems important that there exists
+at least some grounding of normative claims in goals reasoners might actually have.
+The final, and possibly most important, reason for adopting the Bayesian framework
+for the current investigation, however, is that the problem of non-independence has long been
+one of its central concerns. Much of the scepticism toward probability theory within computer
+science and articifial intelligence in the 1970’s and 80’s arose specifically from the fact the
+problems non-independence pose for the application of Bayes’ rule in practice. The use of
+THE PROBLEM OF DEPENDENCY
+Bayes’ rule as a means of belief revision is one of the central planks of what it means ‘to be
+Bayesian’ (the other is assigning subjective degrees of belief in line with the probability
+calculus).
+Bayes’ rule allows one to calculate a posterior degree of belief in light of evidence. This
+poses problems once there are multiple pieces of evidence to consider. As long as those pieces
+of evidence are independent (e.g., multiple draws from an urn with replacement), the
+multiplication rule for the probability of independent events provides an easy solution:
+𝑃(𝑎 & 𝑏) = 𝑃(𝑎) ∗ 𝑃(𝑏) Eq. 1
+If they are not independent, however, because the probability of one is affected by the
+occurrence of the other (e.g., sampling without replacement), then that relationship must be
+factored in:
+𝑃(𝑎 & 𝑏) = 𝑃(𝑎) ∗ 𝑃(𝑏|𝑎) Eq. 2
+This quickly leads to combinatorial explosion:
+𝑃(𝑎&𝑏 &𝑐) = 𝑃(𝑎) ∗ 𝑃(𝑏|𝑎) ∗ 𝑃(𝑐|𝑎&𝑏) Eq. 3
+In order to apply Bayes’ rule, one needs the so-called likelihood ratio, that is, one needs to
+know how likely the evidence would be in the case that the claim of interest were true and how
+likely it would be if that claim were in fact false (the likelihood ratio is just the former divided
+by the latter quantity); but in order to calculate that, one needs to know all of the joint
+probabilities. This combinatorial explosion made many Bayesian calculations unworkable in
+practice.
+A key turning point in the theoretical and practical application of Bayesian statistics
+was, consequently, the development of so-called Bayesian Belief Networks (BNs) (see g.,
+Pearl, 1988). BNs provide a graphical representation of probabilistic independence
+THE PROBLEM OF DEPENDENCY
+relationships between variables which allows one to identify large parts of the joint probability
+contains a simple three-variable example.
+Simple three variable Bayesian Belief Network, with underlying probability tables.
+Note: Nodes represent variables, and the directed arrows represent dependence relationships.
+The three tables are the conditional probability tables for the variables ‘sprinkler’, ‘rain’, and
+‘lawn’ respectively.
+depends both on the the state of the sprinkler (on/off) and whether or not it is raining. As a
+consequence, calculating the probability of the lawn being wet (or, for example, inferring the
+probability that it is raining, given that we have observed a wet lawn) requires one to know the
+THE PROBLEM OF DEPENDENCY
+probabilities for four distinct cases: sprinkler on & rain; sprinkler on & no rain; sprinkler of &
+rain; sprinkler off & no rain. These probabilities must be specified in a so-called conditionl
+need to know. Specifically, there is no (direct) link between ‘sprinkler’ and ‘rain’ which
+indicates that (in this particular back yard, at least) whether or not the sprinkler is on or off is
+independent of whether it is raining (e.g., because it is simply on a timer). As a result, we do
+not need to specify (or even know) how likely it is that the sprinkler will be on at the same time
+that it is raining. We only need to know how likely it is that the sprinkler is on or off, and how
+likely it is that it is or is not raining. As a result, the CPTs for ‘sprinkler’ and ‘rain’ contain
+only two entries each, in contrast to the four required for ‘lawn’.
+This may not seem like a great simplification, but the potential savings become drastic
+as the number of variables increases (i.e., n binary variables give rise to 2 possible
+combinations of states). As a result, the introduction of BNs fuelled a dramatic subsequent rise
+in the application of the Bayesian framework across a wide range of disciplines and practical
+applications (Pourret, Na & Marcot, 2008). It is worth noting, however, that even with BNs
+belief revision has a computational complexity (NP hard, Cooper, 1990) that means that exact
+calculation rapidly becomes practically impossible as the number of variables increases and
+approximation algorithms must be used (see e.g., Korb & Nicholson, 2010, for an introduction).
+In short, BNs allow the application of Bayes’ rule for belief revision across a causally
+structured Directed Acyclic Graph (DAG) that exploit independence relations in order to allow
+the calculation of optimal inferences (Pearl, 2009) despite the combinatorial explosion of multi-
+variate problems. It is thus no accident that in the domain of evidential reasoning specifically,
+BNs have been successfully used to clarify reasoning errors and fallacies, including evaluating
+testimony (Madsen, Hahn, & Pilditch, 2018; 2019; Phillips, Hahn, & Pilditch, 2018; Pilditch,
+THE PROBLEM OF DEPENDENCY
+Lagator, & Lagnado, 2020), zero-sum reasoning (Pilditch, Fenton, & Lagnado, 2019; Pilditch,
+Liefgreen, & Lagnado, 2019), and various errors in legal reasoning (see e.g., Lagnado, Fenton,
+& Neil, 2013; Dawid & Evett, 1997; Schum, 1994).
+Nor is it an accident that this explicitly normative framework that has been developed
+around the issue of dependence/independence provides a useful tool for shedding conceptual
+light on how we should deal with dependent evidence in forming our beliefs. We next describe
+some of the ‘success stories’ in this regard.
+3. Bayesian Success: Dependence and the Role of Structure
+The Limits of Intuition
+The first area where the Bayesian framework has been helpful is in identifying errors
+in qualitative and semi-quantitative evaluation rules proposed in the literature. As an example,
+we take the way argumentation scholars have sought to apply putative evaluation rules for
+argument to cases of testimony (Walton, 2007). In the informal argument literature, there is a
+long standing distinction between convergent and linked arguments. The former involves cases
+where multiple, independent arguments are used to support the same claim. The latter involves
+cases where arguments somehow ‘work together’ to generate support. The so called MAX-
+MIN rule recommends that for convergent arguments, the strength of the conclusion should
+equal that of the strongest premise (MAX), whereas for linked arguments, conclusion strength
+should be determined by the strength of the ‘weakest link’. The MAX-MIN rule has explicitly
+been endorsed for independent and dependent cases of testimony, but it is normatively
+appropriate for neither. In both cases, its recommendations conflict with Bayesian prescriptions
+(see Hahn, Oaksford & Harris, 2013). The MAX rule ignores any further evidence that is
+(arbitrarily) less strong than the strongest piece of evidence, so will treat as equivalent the case
+of a single witness and that single witness plus thousands of additional, independent, only
+THE PROBLEM OF DEPENDENCY
+marginally less reliable witnesses. The MIN rule ignores the fact that Bayesian inference across
+chains (e.g., a three variable BN A -> B -> C) can give rise to support for C that exceeds the
+strength of the weakest link (see Hahn & Oaksford, 2007) and ignores that fact that inference
+across such a chain may lead to numerically different results depending on the order in which
+the relative strengths occur (Phillips & Hahn, subm.). The rule consequently does not correctly
+deal with these kinds of dependent and independent evidence (though related errors can be
+found in lay reasoners judgments, for convergence/independent evidence see Phillips Hahn &
+Pilditch, 2018, 2023; Phillips & Hahn, subm.).
+Variety of Evidence
+The second place where the Bayesian framework has been clarifying is with respect to
+the variety of evidence thesis. As noted earlier, the variety of evidence thesis has seen
+widespread discussion within the philosophy of science (Horwich, 1982; Earman, 1992, Borm
+et al., 2009) and has implications for everything from choice of measurement devices to
+experimental replication (Oberauer & Lewandowsky, 2019).
+There has been a considerable amount of Bayesian analysis of the variety of evidence
+thesis (Fitelson, 1996; Bovens & Hartmann, 2003; Landes, 2021). One, to many surprising,
+insight to come out of such analysis is that the intuition that more diverse evidence provides
+stronger support has boundary conditions, and is not always true. As Bovens and Hartmann
+(2003) demonstrate, whether multiple tests with the same measurement measurement device
+or whether the same number of tests with multiple devices is preferrable depends on the
+reliability of the device. This has non-obvious implications where the reliability of the device
+is not fully known. In this case, there are two opposing forces at work: positive tests from two
+different measuring devices are, all other things equal, more confirming; but repeated positive
+tests from the same measurement device increase confidence in its reliability (i.e., confidence
+that it doesn’t just generate noise), and that benefits the confirmation a positive test confers on
+THE PROBLEM OF DEPENDENCY
+the hypothesis. As a consequence, whether repeated tests with same device or tests with the
+same outcome taken from different devices increase the probability that the hypothesis at issue
+is correct depends on the perceived reliability of the device.
+Not only do these analytic results refine our understanding of the variety of evidence
+thesis, they also make clear a fundamental point about independence/dependence. On a
+superficial analysis, one might not take the above result (or the variety of evidence thesis) to
+be about dependence at all, because there is a vantage point from which repeated measurements
+with same device (or replications of the same experiment) might be construed simply as
+independent events, in the same way as repeated tosses of a coin or throws of a die. That,
+however, ignores the fact that the outcomes of multiple tests of the same device or the same
+experimental procedure are likely to exhibit greater correlation because of the shared design
+(which is the driving factor underlying the variety of evidence hypothesis in the first place).
+That shared design may be a source of dependence, much in the same way that an actual
+physical coin may not give rise to wholly independent trials (Bartos et al., 2023) in the same
+way that an idealised, hypothetical coin does.
+This, in turn, highlights two things: The first is that the Bayesian framework (and with
+it BNs) provides a formalism; the extent to which its application affords actual normative
+insight depends on the adequacy of the model of the situation that we build with that formalism.
+It doesn’t magically follow just from the use of the formalism itself. Second, seeking to build
+such models leads to the identification of conceptually distinct forms of influence or
+dependence. Moreover, those different forms of dependence have different structural
+implications in the context of BN models. We describe this in more detail next.
+THE PROBLEM OF DEPENDENCY
+Beyond Correlation
+Before proceeding further, it is worth thinking about how the observation that more or
+less direct replications of an experimental study, for example, share methods or materials
+applies to cases of testimony. To this end, consider a new example. You are awaiting a
+diagnosis at the hospital regarding whether you have a disease, “Conferrus Confusa”, having
+had a series of tests conducted independently by two doctors, Crusher and McCoy. As in our
+earlier example of Alex and Jessie, we are put in the position of considering several reports
+(diagnoses) in relation to a hypothesis (our potential disease). Of critical interest is the
+relationship between these two reports: are they truly derived independently? Should we
+account for the two doctors having similar training (shared reliability)? Or using the same test
+results (shared evidence)? Or have the two doctors passed information between them (direct
+dependence)?
+Bayesian analysis of the kind conducted by Bovens and Hartmann (2003) on the variety
+of evidence thesis forces one to be clear about these distinctions, because they need to be
+modelled in different ways. As a result, Bayesian Networks force one to be explicit about the
+structure of different forms of dependence. Separating the influence of structure from
+observation – the latter being used in determining dependencies via correlation-based measures
+(e.g., Berg, 1993) – in this way, in turn, clarifies the impact of structural roles (and their
+influences) across a wide-range of possible circumstances. This includes counter-factual
+possibilities and greatly increases the analytic precision over that of a merely correlational
+framework. By focussing on structure we can disentangle how different causal structures could
+explain the same set of observations in one instance, but predict different sets of observations
+in another. For example, if we consider three sources / reporters (Rep , Rep , and Rep ) are all
+1 2 3
+observed reporting the same thing, we could take the high correlation between these reports as
+THE PROBLEM OF DEPENDENCY
+could in fact be due to one or more structural forms.
+Graphical network structure of a reasoning problem.
+Note: Problem structure shows three sources (Rep ), items of evidence used in their reports
+1-3
+(E ) concerning a hypothesis (H), along with reliabilities for each source (Rel ), and a shared
+1-2 1-3
+background (SR) informing those reliabilities.
+Although (a) shared evidence, (b) direct conferring, and (c) shared backgrounds could
+all give rise to correlations, they may give rise to very different effects across circumstances.
+For example, whilst we have shown that lay reasoners fail to appreciate the redundancy entailed
+by sources sharing evidence (Pilditch, Hahn, & Lagnado, 2019), in line with findings from
+other frameworks (e.g., Gilliland & Schmitt, 1993; Heller, Saltzstein, & Caspe, 1992; Maines,
+1990; Kahneman & Tversky, 1973), they seem more accurate in their estimations of the impact
+of shared backgrounds (Madsen, Hahn, & Pilditch, 2018; 2019; 2020) relative to normative
+THE PROBLEM OF DEPENDENCY
+predictions (see Bovens & Hartmann, 2003). Critically, these forms of dependence could be
+masked by the same correlation-based pattern of observations, yet in fact may not only be
+underpinned by different structural forms of dependence, but that these structures may produce
+inferences of differing accuracy.
+useful to disentangle structure from observation, and it also serves as a good example of the
+insights that can be gained using BNs to map idealised cases of dependence. In recent work
+using a simple hypothetical plane crash scenario (Pilditch et al, 2018; Pilditch et al., 2020), lay
+reasoners were presented with a dependence case where the possibility is raised that one of two
+(otherwise equally reliable) sources had passed information to the other (versus an independent
+case where this information passing did not occur) during their otherwise independent analysis
+of the plane crash (and thus prior to your observation of their final reports). Participants then
+provided conditional probabilities that mapped onto the modulation of the reliability (i.e.,
+chance of making errors) of the receiving source when given correct vs incorrect information
+from the “sending” source. This allowed for differences in individual interpretation of the
+nature of the dependency relationship (something outside of normative prescription) to be taken
+into account for fitted (i.e., soft) normative model predictions.
+As expected by traditional, correlation-based accounts, when the two sources are
+observed in agreement, participants determine independence as providing superior support for
+the hypothesis in question than the aforementioned dependency case. However, as dependence
+was in fact a manipulated via the presence or absence of a structural relation, it was possible
+to assess normative predictions for cases besides corroboration. These included when only the
+receiving source has so far reported (i.e., partial observation – insufficient for inferring
+dependence by itself). It included also the case when the sources actually disagreed (i.e.,
+contradictory observations – anti-correlation being a traditional indicator of independence). By
+THE PROBLEM OF DEPENDENCY
+mathematical proof, Pilditch et al. (2020) demonstrate how, in all of these cases, dependencies
+may normatively give rise to an information advantage over independence – something that
+lay reasoners fail to appreciate. This both echoes the Bovens and Hartmann (2003) insight on
+the variety of evidence thesis, and it extends it to other, novel combinations.
+A Closer Look at Modelling Considerations
+We have so far touched on two sets of modelling considerations that apply when trying
+to use the Bayesian Framework to clarify the normative impact of dependence. The first,
+mentioned in the introduction above, is the question of ‘where do the numbers come from’.
+The second, first raised in the context of the variety of evidence hypothesis, concerns the
+appropriateness of a problem formalisation vis-à-vis the real world phenomenon of interest.
+Neither of these is unique to the question of independence; rather these are general issues that
+will arise in any Bayesian modelling context (and many non—Bayesian models as well).
+As a result, there are several generic responses to these issues. The first is simply to
+appreciate that whatever normative prescription a BN explication of a scenario involving
+dependence contains is, in first instance, limited to that specific explication: that is, it is a
+statement about that network structure, given those conditional probabilities in the CPT, and
+those priors. From a theoretical perspective, such a single demonstration may be enough if the
+theoretical conclusion is meant to be that a particular phenomenon exists: for example, there
+exist cases where dependent witnesses have greater evidential value than independent
+witnesses. It is for this reason that simple, extremely idealised, scenarios can be informative.
+Theoretical generalisations, by contrast, need a firmer basis, and the strategy here is to show
+that a particular conclusion (e.g., dependent evidence more confirming) holds over a broad
+range of possible numbers, or possible structures. This is achieved either by systematic
+exploration of a parameter space and/or mathematical proof (see e.g., Bovens & Hartmann,
+2003; Pilditch et al, 2020 for examples).
+THE PROBLEM OF DEPENDENCY
+In order to understand fully the limitations of the Bayesian framework in capturing
+dependence that will become the focus of the following main part of the paper, it is also
+important to be fully clear on what the numbers in BNs do and, more importantly, do not
+is to calculate, given a bunch of numbers that we specified, what other numbers follow. This is
+of use because the ‘other numbers that follow’ may cover a broad range of circumstances, and
+we need to enter the respective probabilities associated with the possibility of the sprinkler
+being on or off, and the probability of rain. These probabilities do not depend on other variables
+(‘sprinkler’ and ‘rain’ do not have any arrows coming in to them), so these are not conditional
+probabilities but priors. We also have to specify the conditional probabilities of a wet lawn,
+given the various possible combinations of sprinkler status and rain. Given these specifications
+in the CPT, the BN then allows us to calculate how probabilities change under a range of
+observations. Some of these are wholly unsurprising: the network will tell us that, given that
+the sprinkler is off and there has been no rain, there is a .01 probability that the lawn is wet.
+This is wholly unremarkable, because we basically put that there with our entry in the top, far
+right, cell of the ‘sprinkler’ CPT. However, the BN also tells us about the respective
+probabilities of ‘sprinkler’ and ‘rain’ given that the lawn is wet, and these are not probabilities
+that we specified. Furthermore, the BN tells us how our belief that the sprinkler was on should
+change when we additionally discover that it rained. This additional observation should reduce
+our degree of belief in the sprinkler having been on, a phenomenon known as ‘explaining
+away’, and the details of that phenomenon are suffienctly complex that there exists a sizeable
+empirical literature examining the extent to which lay reasonsers correctly understand such
+inferences (e.g., Rottman & Hastie, 2016; Tesic, Liefgreen & Lagnado, 2020). The BN clarifies
+not just that additionally learning that it rained should influence what our beliefs are, it tells us
+THE PROBLEM OF DEPENDENCY
+exactly what that new belief should be, even though we did not specify any direct relationship
+(conditional probabilities) between ‘sprinkler’ and ‘rain’ (because no direct relationship
+exists).
+How our beliefs concerning the sprinkler should change in those circumstances will
+depend on the exact numeric values entered in the CPT. Those conditional probability values,
+like the causal structure itself, reflect our assumptions about the situation. Those assumptions
+might or might not reflect objective probabilities (to the extent that such probabilities even
+exist, e.g, Nau, 2001). That is, they might or might not accurately reflect how reliably turning
+the sprinkler on makes the lawn wet. Most importantly, for what follows, they represent
+something about the way the sprinkler is, not about how the sprinkler ought to be. This may
+seem wholly unnessary to emphasis with respect to a physical device like a sprinkler, but it
+becomes relevant (as we will see) when we move to considering testimony. This is because
+human agents (unlike sprinklers) might take actions that affect their reliability, and this
+includes (potentially recursively) factoring in informational dependence when forming their
+beliefs.
+We next clarify how and why this sets hard limits on the extent to which the Bayesian
+framework can capture certain common, naturally arising, cases of dependence, even under
+extreme idealisation.
+4. Bayesian Failure: The Fundamental Problem of Social Networks
+So far, we have considered cases with few evidence sources (measurement devices or
+human testimony). And we have, so far, seen nothing that would make one suspect this type of
+formal treatment does not scale. In particular, it might seem possible (at least in principle) to
+apply it to entire social networks of communicating agents. Both social networks and BNs are
+graphs, so it seems plausible that we could capture entire social networks with BNs. This seems
+THE PROBLEM OF DEPENDENCY
+all the more important given that recent years have made clear that humans, as cognitive agents,
+are typically agents within a wider social network. Online social networks have arguably
+changed the scale and density of such embedding, but, in first instance, they have simply made
+clear the extant to which such embedding is ubiquitous. This means also that dealing with
+evidential dependence is one of the fundamental challenges human beings need to navigate in
+everyday life, whether they are actively aware of that challenge or not.
+In fact, there are already known limitations on combining the Bayesian framework and
+social networks. The first, and most obvious, is that in the real-world, we typically do not know
+Comparison of social network and Bayesian Belief Network model structures
+Note: In Social network models (a) communication passes between agents (nodes/circles) via
+connection (red arrow relations), versus a Bayesian Belief Network (b) representation of an
+expanded sprinkler problem (nodes reflect variables, and arrows the direction of inferences
+between those variables).
+THE PROBLEM OF DEPENDENCY
+The focal agent in that network (indicated by the yellow node in a)) is trying to form
+normatively accurate beliefs based on the communication received from other agents. That
+communication includes informational dependence that stems from the fact that the two agents
+that ‘Yellow’ communicates with (the two ‘neighbours’ to whom yellow has direct links) also
+indirectly communicate with each other, because there are paths through the wider social
+network that link them. In the real world, however, `Yellow’ doesn’t know those other agents
+beyond its neighbours, nor does it know exactly who among them does and does not
+communicate directly. Without knowing that, however, an appropriate BN cannot be
+constructed (see also Merdes, Hahn & von Sydow, 2020).
+A second practical limitation stems from the computational complexity of inference on
+Bayesian Networks, already mentioned earlier in the face of the fact that real-world social
+networks (in the age of online social media) may comprise billions of nodes (Silberling, 2023).
+That latter fact, incidentally, also magnifies the scale of the dependence problem itself, because
+billions of nodes make for a lot of potential dependence.
+A third limitation stems from the fact that BNs in the form used here are based on
+directed acyclic graphs, that is, they must not allow cycles –that is, paths that return to the
+originating node. Such cycles are already present with bi-directional communication links
+to the problem of ‘loops’ or cycles in Bayesian networks (see e.g., Ghahramani, 1997).
+These familiar limitations mean that, for example, Bayesian agent-based models
+(Olsson, 2011; Madsen, Bailey & Pilditch, 2018) that simulate communication across social
+networks make the simplifying (strictly false) assumption that all sources from which a node
+receives communication are independent. This, demonstrably, can lead to ‘double counting’ of
+THE PROBLEM OF DEPENDENCY
+evidence and resultant beliefs that are more extreme than justified by the actual data (see Hahn,
+2023 for examples).
+The key point of the current paper, however, is that there exist even more fundamental
+limitations that stem from the fact that, in a sense, BNs are the wrong kinds of objects for
+capturing social networks. In short, there is a deeper problem that prevents the mapping,
+limitations plays a role. In other words, the Bayesian framework fails to provide a normative
+answer for certain simple dependence problems even where all relevant nodes and paths are
+known, their number is so small as to otherwise allow exact computation, and there are no
+loops or cycles. In the following, we demonstrate exactly how and why.
+Returning to our original example let us imagine that instead of receiving information
+from Alex and Jessie about a potential storm, we instead hear from a third person, Danny. In
+this version, it is Danny who has spoken to Alex and Jessie, whilst we only hear Danny’s report.
+Crucially, whether Alex and Jessie derived their reports a) independently of one another, or b)
+through a form of dependence (e.g., conferring) still intuitively matters just as much as it did
+before. However, whereas previously we integrated Alex and Jessie’s reports ourselves, it is
+now Danny that does this for us. So, our question now becomes: Given that we have only seen
+a report from Danny (i.e., Danny has told us there will be a storm tomorrow), how should we
+differentiate our belief in there actually being a storm tomorrow, based on whether Danny got
+his information through case a) or case b)? How should our predictions differ regarding for
+cases a) and b) given Danny’s report?
+The problems that arise here reflect the just discussed difference between probabilities
+a BN allows us to calculate, and the probabilities we ourselves need to supply. As we will see,
+adding in Danny transforms the problem from one in which the BN calculates for us the effects
+THE PROBLEM OF DEPENDENCY
+of dependence to one where we have to specify those effects ourselves: the very thing, in fact,
+that we wanted to use the model for in the first place. We are left stranded here because the
+probabilities that determine the (normative) effect of Danny’s testimony in both cases depend
+on the values entered in Danny’s CPT. But those values represent a statement about how Danny
+actually is, not about what Danny ought to do –in the same way that the CPT for ‘wet lawn’
+implements (assumptions/beliefs about) the way our sprinkler works, not about how it ideally
+should work in watering the lawn.
+To make these points and their implications clearer, we next discuss them with a
+concrete, reference BN.
+The Representation Problem
+To better understand this problem, we will explore it in more detail through the
+Bayesian Network formalism. To do so, let us flesh out the two cases: one in which Source 1
+(Alex) and Source 2 (Jessie) each receive independent evidence from the world, and the other
+where they each observed the same piece of evidence (E; e.g., the same weather report).
+underlying state of affairs (Hypothesis = there will be a storm tomorrow) and evidence for that
+state of affairs dispensed ‘from the world”. This is not observed by you directly - rather, you
+receive reports from two sources. Let us assume that the evidence observed (i.e., the weather
+report(s)) is highly diagnostic, but not perfectly so (P(E|Hypothesis) = 80%, P(¬E|¬Hypothesis)
+= 80%). Using our main example, the weather reports (E) correctly predict a storm occurring
+is just one such piece of evidence on which both sources (Alex and Jessie) report (reduplication
+condition), whereas in the second case each source passes on their own independent
+observation. Remember also that your beliefs in the hypothesis are represented by the values
+THE PROBLEM OF DEPENDENCY
+of the variable Hypothesis, which you are looking down on as an external observer. Your belief
+in there being a storm tomorrow is represented in the network via the Hypothesis nodes in Figs.
+4a and 4b, but you yourself are not a node in the network.
+A (left). Shared route of information to sources (no reports observed). B (right). Separate
+routes of information to sources (no reports observed).
+C (left). Shared route of information to sources (first report observed). D (right). Separate
+routes of information to sources (second report observed).
+E (left). Shared route of information to sources (both reports observed). F (right). Separate
+routes of information to sources (both reports observed).
+THE PROBLEM OF DEPENDENCY
+Now let us contrast your (normatively derived) belief in the hypothesis in both cases.
+In each case, the first report (Source 1 / Alex) boosts the posterior degree of belief in the
+hypothesis from 50% to 68% (Figs. 4a to 4c for dependent case, and Figs. 4b to 4d for
+independent case). In other words, when we have only seen Alex’s report, we retain the same
+degree in belief in their being a storm tomorrow in either case. The second report (Source 2 /
+greater confidence in the state of the evidence itself (i.e., given Alex and Jessie are using the
+same weather report, you can be even more confident in the contents of that report), but this is
+outweighed in the independent case by the fact that there are two pieces of evidence in
+agreement (i.e., Alex and Jessie, using different weather reports, have still arrived at the same
+conclusion).
+However, what if we now want to introduce a third source (Danny, from the above
+example)? Consider that both Sources 1 and 2 (Alex and Jessie) report to a third source
+(Danny), and it is only the report of this third source that is directly observed.
+THE PROBLEM OF DEPENDENCY
+First, we need to assign conditional probabilities to the third source as a function of the
+two reports (from S / Alex, and S / Jessie). Let us keep this the same in both cases: Source 3
+1 2
+(Danny) has a 70% chance of saying “true” when both the sources it hears from (Alex and
+Jessie) say “true”, and likewise a 70% chance of saying “false” when both say “false”. In the
+remaining cases (i.e., when the two sources disagree), it responds randomly (50/50), as
+S = True, S = True, S = False, S = False,
+1 1 1 1
+Source 3
+S = True S = False S = True S = False
+2 2 2 2
+True 70 50 50 30
+False 30 50 50 70
+Now, as in our previous example, we then represent this new (network) structure as follows:
+Shared (left) versus Independent (right) route models, no reports observed.
+THE PROBLEM OF DEPENDENCY
+If this is what we do, however, we will get the same degree of confirmation for the
+hypothesis in both cases on observing Danny’s (Source3’s) positive report. This is trivially the
+case precisely because we specified the same CPT for Source3 in both cases. We can obtain a
+difference that reflects the upstream dependence/independence only through those 8 values in
+Source3’s CPT. And, fundamentally, those numbers are input to the Bayesian Network whose
+determination is wholly outside the BN itself.
+Danny/Source3’s CPT does not ‘see’ the rest of the network (and that was in fact the
+point of capitalising on independence structure to enable BN calculations in the first place, see
+section 3 above). Danny’s report only depends upon the reports of Alex and Jessie – not the
+preceding dependent/independent structure that feeds into their reports. That leaves the CPT
+blind to the potential effects of a dependency – as Danny is blind to it himself—in any way
+other than by entering appropriate, dependency reflecting, conditional probabilities for Danny
+that differ across the two cases. This requires taking an external, “gods-eye”, view of the
+situation (that implicitly incorporates in Danny’s CPT structural information beyond his
+available knowledge). It also, obviously, requires us to know what probabilities would
+appropriately reflect the dependence, which was the very question we were trying to use the
+BN to address. Simply adding Danny/Source3 transforms the problem from one where the BN
+tells us something about the normative impact of dependence, to one where a normatively
+appropriate impact will only emerge because we directly put it in.
+Even though we have now realised that the BN itself now no longer helps us derive an
+appropriate answer to what weight we should give to dependence, we might still hold out hope
+that there could be a clever solution that would allow us to derive the CPT with which we must
+THE PROBLEM OF DEPENDENCY
+In fact, we cannot. We are stopped by a fundamental representation roadblock, which,
+in fact, is a more deep-rooted problem that the inclusion of Danny has exposed. Put simply,
+communication across a social network (Alex and Jessie to Danny) is not the same
+(representationally) as probabilistic dependence (evidence to Alex/Jessie) –even though what
+is being communicated across a social network is evidence. In an agent-based model of
+communication across social networks (such as Olsson, 2011; Acemoglu et al., 2013; Madsen,
+Bailey & Pilditch, 2018), the Bayesian machinery is used to calculate agents’ degrees of belief
+in the claim at issue, not whether or not they choose to communicate or what they communicate
+if the do. Though an agent’s degree of belief may influence what they choose to say, there still
+needs to be a communication rule that determines what agent’s say and that is not part of their
+degree of belief per se (see Assaad et al., 2023 for discussion). For example, in the Olsson
+(2011) model there is a fixed probability that, at a given time step an agent will communicate
+with a neighbour, and the content of that communication is determined by the agent’s
+‘threshold of assertion’. Specifically, the agent asserts that the hypothesis under discussion
+across the simulated network is true if the agent’s current degree of belief exceeds a threshold
+probability p. Conversely, if the agent’s belief is below 1-p the agent asserts that the hypothesis
+is false; and in all other cases, the agent remains silent.
+When we think about Bayesian agents in a social network (whether these be ‘Yellow’
+beliefs. Instead, everything about Source3 represents the beliefs of an external observer. The
+CPT represents our assumptions about the evidential value of Source3’s report. That might
+depend on choices Source3 makes (i.e., if Source3 is human, how it aggregates evidence), but
+THE PROBLEM OF DEPENDENCY
+that underlying process is nowhere represented. All that is recorded is our assumptions about
+how reports will be true or false as a function of the states of other variables (Source1 and
+Source2). Likewise the marginal probability associated with Source3 at any given time
+represents our uncertainty about Source3, not anything about Source3 itself.
+If *we* learn that Alex (Source1) provided a positive report, that will change the
+probability of the node/variable `Danny’ (provided we have not yet received Danny’s report),
+but the probability represents our remaining uncertainty about whether or not Danny will
+provide a positive report, not anything about Danny’s own beliefs or how they might change.
+Our beliefs about Danny change as we learn the values of other variables both upstream and
+downstream from Danny.
+In short, when we are trying to use a BN to form normatively appropriate beliefs about
+the situation we are necessarily external to that BN, and that BN represents how our beliefs
+change in response to different combinations of evidence for us as external observers. Trying
+to solve the problem of how to respond to Danny’s reports recursively would entail having
+Danny simultaneously be an observer and a node in the network.
+And even if we could condense Danny’s belief formation and communication rules
+with a hypothetical Danny as we think he ought to be. This means for a wider network, such
+as that experienced by ‘Yellow’, that rather than enabling ‘Yellow’ to draw a normatively
+appropriate conclusion based on the reports ‘Yellow’ receives from its neighbours, we have
+simply constructed a counterfactual, hypothetical communication network involving what
+reports ‘Yellow’ should have received, as opposed to the communication across the network
+that actually unfolded as it did.
+THE PROBLEM OF DEPENDENCY
+So where does this leave us? Seen from one vantage point, this is simply a Bayesian
+Network representation problem. It is somewhat bad news for the Bayesian afficionado, but
+who cares if one already doesn’t consider oneself part of that crowd. Such a response overlooks
+what we were at pains to articulate in the early parts of this paper. Namely that the Bayesian
+framework is our current best tool for elucidating dependence. Moreover, application of that
+tool revealed the normative implications of dependence (as far as we can track them using the
+framework) to be oftentimes counter-intuitive and suprising. This makes it bad news all round
+that the only tool we effectively have has such a fundamental limitation.
+This is made worse by the fact that the problem we need a normative tool (Bayesian or
+other) to solve is not some niche possibility, but rather a fundamental feature of our daily
+human existence.
+Given that we wish to use testimony as evidence (i.e., communication), and we know
+that informational dependence does affect the accuracy (and thus evidential value) of held
+beliefs to gain any normative purchase on this issue requires us to capture and quantify those
+changes in accuracy. The (current) limit on a Bayesian solution means we have no general
+solution here.
+This problem is even more damning than it first appears. The passing of communicated
+testimony is ubiquitous, not just in formal social networks, but in almost all forms of (social)
+learning (i.e., rarely do we rely on first-hand observation alone). The problem we have exposed
+here in fact means we cannot understand how impactful dependence (and therefore
+redundance) is on the strength of such testimony on an individual level. Therefore, given the
+omni-presence of various dependence structures (i.e., extremely rarely can we assume
+complete independence), we simply cannot, in general, know the strength of testimony
+accurately.
+THE PROBLEM OF DEPENDENCY
+The above example is not unusual, nor the consequence of modern phenomena (e.g.,
+social networks), but is in fact present in all forms of communication. Information passing
+through word of mouth, written accounts, traditional media (radio, tv), and the internet age, all
+invoke hierarchical networks of sources stretching back through time. In any such instance,
+each “layer” of sources adds an exponential degree of complexity (e.g., from one source
+integrating the testimony of two antecedent sources, to in turn having to “grandfather” in the
+sources of those antecedent sources).
+Of course, when we consider the implications of this problem, social networks are an
+increasingly relevant example of the potential impact of dependencies in belief updating.
+Whether as a tool for the spread of misinformation (e.g., Wang, McKee, Torbica, & Stuckler,
+2019), or as a cascading force of rapid opinion change (e.g., Watts, 2002), the multiply-
+connected nature of social networks speaks directly to the dangers of underappreciating the
+impact of dependencies. For example, to underappreciate the degree to which seemingly
+independent, yet coherent, opinions may in fact be the product of information flowing through
+the same shared route can lead to overconfidence. This in turn may explain the efficacy of
+various dis/misinformation phenomena.
+Although this paints a pessimistic picture of the prospects for gaining normative
+purchase on the effects of dependencies in chains of reasoning, work on areas like the Wisdom
+of Crowds has used the power of aggregation to make inroads: What if we had 1000 reporting
+Dannys, or access to the votes of a social network as a whole, would that allow us to make
+inroads?
+5. Extant Solutions: The Wisdom of Crowds
+The social network example opens the door to the notion of collective
+judgments/inference – i.e., what does the population of individual network members conclude
+THE PROBLEM OF DEPENDENCY
+when aggregated. Using aggregation, statistical methods might be brought to bear to deal with
+the possibility of dependencies. In other words, we established in the previous section the
+difficulties faced by ‘Yellow’ in forming an accurate belief given the informational dependence
+within the social network. ‘Yellow’ can’t trace those dependencies and factor them out, either
+practically or theoretically, but maybe ‘Yellow’ could have based their beliefs on a different
+quantity, namely the aggregate judgment of a collective as a whole. What if, instead of trying
+to fine tune responses to ‘Yellow’s immediate neighbours, ‘Yellow’ simply asks the entire
+network to vote, and then bases their belief on that.
+An agent looking to elicit and use such group judgments might lean on the literature
+on collective intelligence. Here, past research has not only identified the “miracle of
+aggregation” (also referred to as “wisdom of crowds,” Surowiecki, 2004), that is, the way
+collective estimates may exceed individual accuracy, but also examined the relationship
+between individual accuracy, collective accuracy, and informational dependence among
+individuals. Specifically, while the original formulation of Condorcet’s Jury theorem
+(Condorcet 1976/1785) assumed independence, more recent versions (e.g., Ladha, 1995) allow
+for non-independence and make clear that collective accuracy increases with individual
+accuracy and decreases with dependence between individuals. Crucially, it is only the means of
+these quantities, that is, average individual accuracy and average pairwise correlation
+between estimates that determine collective accuracy. To place this into more concrete terms,
+the collective accuracy of Danny’s, ours, or ‘Yellow’s network peers’ estimates of how likely
+it is there will be a storm tomorrow can be calculated from the mean of how accurate each
+individual report is, and the average correlation between each pair of reports. Estimating either
+of these quantities will, in practice, still be difficult, but may nevertheless provide
+approximations. In particular, we no longer need to know anything more specific about network
+structure or information flow.
+THE PROBLEM OF DEPENDENCY
+One immediate limitation is that the non-independence versions of Condorcet’s Jury
+theorem detailed by Ladha (1993, 1995) provide quantification only of a threshold level of
+non-independence beyond which group accuracy is guaranteed to exceed individual accuracy.
+They do not provide direct estimates of that collective accuracy. For example, that theorem can
+provide a threshold amount of correlation between the reports about a storm tomorrow among
+Danny’s network peers, below which Danny can expect the collective accuracy (i.e., averaged
+report estimates) to be greater than that of individual network member accuracy. What we don’t
+get from this is what the original (independence-based) version of Condorcet’s Jury Theorem
+gave us, namely a probability that the majority vote is correct.
+Subsequently, Dietrich and Spiekermann (2013) provided a different extension of
+Condorcet’s theorem in order to deal with the likely presence of non-independence based on
+Ladha’s (1993) work. They start by identifying the ways in which a deliberating group will
+likely deviate from independence, ways that are already familiar from preceding sections of
+this paper. Voters share background, share evidence and, during deliberation, may persuade
+one another through communication. A shared sociological or educational perspective, for
+example, might mean that some voters are prone to make similar determinations. This means
+that learning how one voted allows us to refine our predictions about the votes of the others (as
+we already saw with the coin or the experimental replication in section 3 above). This means
+their votes are not (unconditionally) independent (i.e., P(vote 1) is not equal to P(vote 1|vote
+2)), but they do become (conditionally) independent once the common cause of that
+as an explication of shared background (SR)). The twist introduced by Dietrich and
+Spiekermann (2013) is that we can use the same kind of approach with respect to the effects of
+the deliberation itself. If, at the time of voting, our network members cast their votes
+individually and separately, there are no causal arrows we need to include in our model between
+THE PROBLEM OF DEPENDENCY
+mutual persuasion during the deliberation in the same way that we thought about shared
+backgrounds. The deliberation itself becomes a common cause that gives rise to unconditional
+dependence among those votes, but once that is conditioned on, the invidual votes are
+conditionally independent. In fact, Dietrich and Spiekermann roll all such common causes
+(shared background, the deliberation etc.) into a single variable (cause) that represents the
+problem at issue (with all its specific features). Given a specification of that model, the
+probability that the majority vote is correct, once again, follows.
+Such a model is far more coarse-grained than the models we considered in the preceding
+sections. It replaces detailed representation of what is shared and what influence exists with a
+rough summary estimate of its effects. With that step, we still need to provide CPTs for the
+individual voters, but those CPTs contain only two cells: the probability that a voter votes “yes”
+(votes “no”) depending on the state of the summary problem variable. And that probability
+reflects a purely descriptive quantity (the way the ‘sprinkler’ is, not the way it ought to be).
+This representational move comes with a cost in as much as the main use of this model
+will probably not lie in using it as a tool to derive concrete estimates in specific real world
+contexts. It does allow insight into how competence, dependence, and group size interact,
+including when and when not large groups will do better than small ones (and when not), and
+when majority votes will approach infallibility.
+Dietrich and Spiekermann’s Condorcet reconstruction using a causal network.
+THE PROBLEM OF DEPENDENCY
+Note: The model illustrates true state of the world (x, what we have elsewhere called the
+‘hypothesis’), shared factors such as voter background, shared evidence, or persuasive effects
+during deliberation (c3, c4), and private (non-evidential) factors (c1, c2, c5, c6) that might
+influence a hypothetical voter (voter1, voter2) such as what they had for breakfast.
+Finally, because we started by outlining ways in which the move to BNs allows one to
+go beyond what can be captured by thinking purely in terms of correlations, it seems
+appropriate to finish by returning to them. The 1960’s and 1970’s saw much work in social
+psychology trying to make sense of seemingly divergent results concerning the accuracy of
+group judgments (for a review see e.g., Peterson & Beach, 1967). In this context, Hogarth
+(1978) pointed out the importance of an organizing, quantitative framework that allowed one
+to capture key determinants of group performance, in particular group members’ individual
+accuracy and the degree of correlation between members. Drawing on formal results from test
+theory (Ghiselli, 1974), Hogarth showed that the predictive validity of the mean of group
+judgments (as a representation of the collective group answer) in the sense of the correlation
+THE PROBLEM OF DEPENDENCY
+between that mean and the true value of the estimate is a function of the average validities of
+the individual group members and their average pairwise correlation. This echoes the Ladha
+(1993) result discussed earlier, but replaces Ladha’s in principle threshold with a specific
+correlation. It reiterates, from a different angle, the main theme emerging from this section:
+namely, that thinking about agents in networks as aggregates allows one to proceed with
+dramatically reduced specifications. It seems far more realistic to provide a reasonable estimate
+of an average competence or an average degree of dependence or correlation than it does to
+provide individual estimates for all members of a group. That loss of detail in specification
+comes with a loss of detail in outcome, that is, with respect to exactly what we, Danny, or
+“Yellow’ should think in any concrete situation. However, it does allow one to gain insight
+into the inter-play between individual competence, inter-dependence, group size and collective
+accuracy.
+Those insights can guide empirical work investigating the effect on group vs. individual
+accuracy of communication such as undermining effects of social influence (Lorenz, Rauhut,
+Schweitzer, & Helbing, 2011), the benefits of diversity (Shi, Teplitskiy, Duede, & Evans,
+2019; Oliveira & Nisbett, 2018) or the influence of social network structures (Jönsson, Hahn,
+Olsson, 2015; Becker, Brackbill & Centola, 2017). Both those theoretical insights and resultant
+empirical work can help sharpen intutions (particularly as research with lay reasonsers suggests
+the ability to appreciate the impact of dependence on collective accuracy is rather limited, see
+e.g., Yousif, Aboody & Keil, 2019, even when participants have been part of the crowd being
+assessed, e.g., Hahn, Pilditch, & Cruz, 2019). And, finally, such insights might be drawn on
+when making design decisions about online systems.
+In sum, the study of wisdom of the crowd effects, and the relationship between
+correlation (dependence) and accuracy as group size and individual accuracy change has
+yielded promising insights, both in terms of normative solutions and empirical findings. Such
+THE PROBLEM OF DEPENDENCY
+insights are necessarily constrained to the aggregate level, and thus, while useful, side-step
+earlier problems detailed in this paper, and the more limited resolution they afford nevertheless
+furthers general understanding of the role of dependence. Placing this back into our original
+example of Danny and the likelihood of a storm tomorrow, the normative solutions surrounding
+the wisdom of crowds would allow us to determine the relationship between the accuracy of
+individual network members (e.g., Alex, Jessie), their collective accuracy, the number of
+network members providing estimates of storm likelihood (e.g., more than just Alex and
+Jessie), and the estimated dependence between those estimates. This is useful (when we can
+make such aggregations) even if it still tells us nothing about how Danny should deal with
+dependence at the individual inference level (i.e., inference based on the report of just Alex,
+and/or Jessie as discussed in the preceding section).
+6. Conclusions
+The question of how we should deal with dependencies is hard to avoid, given an
+increasingly interconnected world it is also more and more pressing, and the dangers of falsely
+assuming independence have been well covered in both theoretical (Hogarth, 1989; Pearl,
+2009; Rehder, 2014; Schum, 1994) and applied domains (Kononenko, 1993; Bex & Prakken,
+2004; Spellman, 2011).
+We showed how the Bayesian framework can be used to ward of those dangers by
+sharpening understanding of when, where and why dependencies matter. Specifically, the
+framework can be used to identify cases that violate our unrefined, pre-analytic, intuitions by
+revealing both cases where dependency hurts and cases where dependent measurement devices
+or testimony actually provide stronger evidence.
+With respect to testimony, however, our analysis revealed an a fundamental difference
+between measurement devices and people. People, unlike measurement devices, are typically
+THE PROBLEM OF DEPENDENCY
+part of wider social networks of communication in which they actively make choices both
+about what to believe and what to say. Given the ubiquity of testimony and this basic
+configuration in our daily lives it thus matters that we identified a suprising limitation to
+normative insight that arises simply from hearing from Danny instead of his two sources Alex
+and Jessie. Specifically we saw that what seems like an obvious step, using a BN to represent
+agents in a social network, fails for fundamental representational reasons. BNs represent our
+beliefs about sources, and how those change when we learn that something has been
+communicated to them. They do not represent sources’ own beliefs as they are shaped by
+communications. Our representation of such sources (e.g., Danny) reflects our uncertainty
+about them. They do not represent those agents’ (e.g., Danny’s) own beliefs as we would need
+to represent in a Bayesian agent-based model of social network communication. The inferential
+problem we face when confronted with Danny’s report is not about what Danny believes, but
+about the evidential value of Danny’s report, and that is a function of what Danny does, not of
+what he ought to do. To the extent that ‘oughts’ should factor in to those actions, BNs are no
+help in making the appropriate determination. Instead, we need that determination to make use
+of a BN. Thus, although we know beliefs should update in light of testimony, and the evidential
+value of that testimony will be affected by informational dependencies, capturing that impact
+as communications pass between sources remains out of reach.
+This rules out fine-grained accounts of what a given individual should believe in a
+dynamically unfolding communication context. We also considered, however, whether an
+individual faced with a group of connected sources could circumvent (to some extent) those
+difficulties by seeking to derive a judgment based on an aggregate, collective output of such
+sources. Techniques employed within Wisdom of Crowd effects have had some theoretical
+success in deriving normative solutions (Ladha, 1995; Dietrich & Spiekermann, 2013), but, as
+we saw, those remain limited in other ways.
+THE PROBLEM OF DEPENDENCY
+Given the centrality of testimony to our lives, and the challenge posed by seemingly
+ever increasing inter-connectedness, it is important, in conclusion, to consider possibilities for
+bypassing a (currently non-existent) normative solution and instead move straight to practical
+solutions. In particular, what exactly we communicate greatly influences the impact of
+dependence in practice. Providing context and detail about a source may make transparent
+when the same information reaches us via different routes and stop us from double counting:
+being told that John saw a bear in the neighbourhood on Tuesday at 10pm, allows us to avoid
+over-weighting the evidence when we hear that same thing from Sue, Janice, and Steve, in
+ways we cannot when they simply tell us that ‘someone saw a bear’ (see Hahn, 2023). At the
+same time, societies have at least some control over the density and scale of online social
+networks. A project such as Facebook, didn’t merely move extant networks on line, it sought
+explicitly to forge novel connections on an unprecedented scale. Potential downsides of
+informational dependence is something societies might wish to consider with respect to such
+projects. There may also be other tools that prove useful in trying to minimise the role of
+dependence. There is some indication, for example, that prediction markets (Ahlstron-Vij,
+2016) involve incentives that make them at least somewhat robust to informational dependence.
+For example, if the indicator is average market price, and an individual believes themselves to
+be in possession of highly diagnostic information that suggests it may be inaccurate, that
+individual should be willing to place a substantial stake on the indicator being wrong. The
+direction (high/low) and weighting (i.e., size of bet) allows for a signalling function /
+mechanism that helps compensate for the dependence, and thus one can build a pragmatic
+solution without requiring a normative one. In short, we may find a range of practical tools or
+measures to de-correlate individual judgments in order to reduce the deleterious impact of
+dependence.
+THE PROBLEM OF DEPENDENCY
+Finally, it is entirely possible that normative tools, such as the Bayesian framework,
+might yet be expanded in ways that broaden their applicability. In an increasingly
+interconnected world, where it is progressively more common place that information travels
+via multiple routes, failing to appreciate the influence of dependencies carries greater risk than
+ever. So increased research focus on these issues seems important. Although this paper could
+only point to partial solutions, we hope that naming and describing the challenges raised may
+prompt further work to rectify this situation.
+Acknowledgements
+The authors declare no conflicts of interest. UH was supported by a Mercator Fellowship
+through Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) – Project
+number 674439.
+THE PROBLEM OF DEPENDENCY

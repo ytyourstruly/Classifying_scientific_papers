@@ -1,0 +1,1130 @@
+A. V. Reddy, et al Page 1 of 30
+TRB Paper Manuscript #11-2016 (Revision 051A)
+Measuring and Controlling Subway Fare Evasion:
+Improving Safety and Security at New York City Transit Authority
+Alla V. Reddy*, Jacqueline Kuhls, and Alex Lu
+* Corresponding author
+Alla Reddy
+Senior Director, System Data & Research (SDR), Operations Planning
+New York City Transit
+2 Broadway, Office A17.92, New York, N.Y. 10004-2207
+Tel: (646) 252-5662
+Email: Alla.Reddy@nyct.com
+Jacqueline Kuhls
+Unit Chief, Resource Review, Office of Management and Budget (OMB)
+New York City Transit
+2 Broadway, Office D17.95, New York, N.Y. 10004-2207
+Tel: (646) 252-2377
+Email: Jacqueline.Kuhls@nyct.com
+Alex Lu
+Principal Transportation Planner
+New York City Transit
+2 Broadway, Cubicle A17.111, New York, N.Y. 10004-2208
+Tel: (646) 252-5664
+Email: Alex.Lu@nyct.com
+Submitted for Publication in
+Transportation Research Records: Journal of the Transportation Research Board
+Word Count: 195 (Abstract) + 6,115 (Text) + 6 × 250 (Figures) = 7,810 Words
+Submission Date: March 5, 2011
+Note to Editors: Photos embedded in this document are not publication-resolution. Higher
+resolution artwork will be supplied separately to TRB.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 2 of 30
+BSTRACT
+New York City Transit (NYCT) has a comprehensive framework for assessing, managing, and
+combating subway fare evasion. The automated fare collection (AFC) system, implemented
+1994~97, features lessons learned from field trials of prototypes specifically designed to limit
+fare abuse. Subway crime has decreased 68% since 2000, and annual average subway evasion
+rate remains low at approximately 1.3%. Today, the Authority measures fare evasion with
+independent silent observers using stratified random sampling techniques, classifying passenger
+entries into 19 categories. Evasion rate peaks at 3pm due to students dismissal, otherwise hovers
+around 0.9% peak, 1.9% off-peak. Busy times and locations have higher evasions per hour but
+lower evasions per passenger. More evasions occur in lower-income neighbourhoods. Staff
+presence apparently doesn’t reduce evasions. Results are released to the press on request,
+promoting transparency and accountability. To combat evasion, NYCT increased fines from $60
+to $100 in 2008. Police issued 68,000 summonses and made 19,000 evasion arrests in 2009.
+Arrests are a more effective deterrent than summonses; the proportion of arrests versus
+summonses increased in 2010. Video monitoring equipment is used to identify and apprehend
+chronic fare abusers, particularly “swipers” who sell subway entries by abusing unlimited fare
+media.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 3 of 30
+Fare evasion is a chronic problem in transit systems, especially large systems like New York’s.
+From classic turnstile “vaulting” and “slugs” instead of legitimate tokens to elaborate schemes
+involving stolen faregate keys, fraudulent electronic fare media, “forgetting” proof-of-payment
+(POP) receipts, or “two card monte” that takes advantage of fare system features, many ways
+exist to avoid paying fares. Indeed, industry standard revenue ‘leakage’ is reportedly 3%~6%
+(1). If there’s a way to evade, criminals will exploit it. Evasion is so rampant in some cities that
+conversion from POP to turnstiles is being proposed (2) or seriously considered (3).
+Prior research focused on measuring evasion (4), relationships between automatic fare collection
+(AFC) and fare evasion (5,6,7), between evasion and enforcement strategies under POP (8,9),
+where evasion rate estimates ranged from 1%~9% (10,11,12). The many-faceted efforts made
+by New York City Transit (NYCT) recently to identify, detect, and combat subway fare evasion
+and associated issues is the subject of this paper. Non-paying bus ridership in New York is
+discussed elsewhere (14).
+Why Publicly Discuss Fare Evasion?
+Discussions of evasion amongst transit professionals have traditionally been controversial. Often
+considered adjunct to research in law enforcement (5), security (15), or fare collection (6,7),
+published papers aren’t widely known amongst transit planners. However, measurement of and
+strategies to quell evasion are important topics in transit management because:
+1. Poorly controlled evasion creates perceptions of an unsafe or insecure transit system
+amongst some patrons, leading to ridership declines
+2. Effective fare enforcement has incidental benefits besides reducing evasion, like chance
+arrests of wanted criminals
+3. Understanding evasion and fraud methods helps to reduce abuse by improving operating
+procedures, legal framework, and fare collection equipment design
+4. Apprehension of “professional swipers” significantly reduces fare system vandalism and
+revenue leakage, improving farebox recovery
+5. Some law-enforcement personnel believe tackling “quality of life” issues like evasion
+and panhandling creates an orderly environment and may deter more serious crimes
+In the transit world, fare abuse studies are sometimes shrouded in utmost secrecy and treated like
+classified information, when it is widely discussed in popular press (16–20), local television
+news (21,22), criminal justice literature (5,9,23), economics research (24), and internet blogs
+(25); in New York (14,16,17), New Jersey (2), Boston (1,20), Chicago (21), Atlanta (22), San
+Francisco (12,19,25), Los Angeles (3,18), Seattle (11), Vancouver (4), Edmondton (9,26),
+London (5), and Paris (27). Three agencies (4,11,26) made evasion audit findings public, San
+Francisco presented a paper (12), while Toronto addressed evasion in a fare collection study (6),
+at least one confidential international benchmarking study was published (8), and Federal Transit
+Administration has even requested special studies of non-farebox passengers (14) within the
+context of National Transit Database ridership reporting.
+Different observation methodologies were used to estimate evasions: staff interviews (26),
+operator counts (11), surveyor counts (12,14), and third party audits (4). Vendor patents (28)
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 4 of 30
+provide fare system technical data, potential weaknesses are published in computer security
+literature (29–31), and exploits are widely disseminated on the internet (29,32,33) together with
+stern warnings and candid discussion of legal frameworks and contextual security making it “not
+worth it” (32).
+Evaders can already learn to beat the system by consulting public sources (34–36) or observing
+others. Benefits from greater understanding of these issues and effective preventive measures
+seem to outweigh risks that potential offenders can learn from such research. The Dutch Arnhem
+Court said it best, denying an injunction sought by vendors looking to obscure security failures:
+“… publication of scientific studies carries a lot of weight in a democratic society, as does
+informing society about serious issues in the [smartcard], because it allows for mitigating of
+risks.” (37)
+Rather than attempting unsuccessfully to obscure information regarding evasion and fraud
+tactics, encouraging its open exchange will actually make enforcement more effective and next
+generation AFC more secure.
+H F E N Y C
+ISTORY OF ARE VASION IN EW ORK ITY
+New York City’s transit system in the 1970s was in disarray. Subway ridership was spiraling
+downwards, while private express buses mushroomed (38), exacerbating Transit Authority’s
+(TA) problems. Crime was rampant; derailments, fires, breakdowns, and assaults were
+commonplace. Trains and stations were covered in graffiti. Passengers were actually afraid to
+ride the subway. To attract passengers, TA even introduced a premium fare “Train to the Plane”
+– staffed by a Transit Police officer at all times. Comparatively, fare evasion seemed a small
+problem. However:
+Brazen forms of fare evasion may be especially harmful in evoking fear of crime among riders.
+Legitimate passengers may perceive […] that the transit system has no control over these
+lawbreakers. The literally free access […] could lead to increased use by vagrants and encourage
+criminals to favour subways over streets […] one in six fare evaders arrested is wanted on an
+outstanding warrant for another crime. (23)
+TA’s strategy for restoring riders’ confidence took a two-pronged approach. In 1981, MTA’s
+first capital program started system’s physical restoration to a State-of-Good-Repair. Improving
+TA’s image in riders’ minds is as important as overcoming deferred maintenance. Prompt
+removal of graffiti (39) and prevention of blatant fare evasion would become central pillars of
+the strategy to assure customers that the subway is “fast, clean, and safe” (40):
+In February 1984, one of our first publicly announced goals was to clean graffiti off our rolling
+stock. Virtually nobody, inside or outside the Authority, believed it could be done. Yet on May
+12, 1989, the last graffiti covered train [was] taken out of service, marking a 100% clean and
+graffiti free subway car fleet. (41)
+Similarly, fare evasion was taken seriously. The TA began formally measuring evasion in
+November 1988. When TA’s Fare Abuse Task Force (FATF) was convened in January 1989,
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 5 of 30
+evasion was 3.9%. After a 15-cent fare increase to $1.15 in August 1990, a record 231,937
+people per day, or 6.9%, didn’t pay. The pandemonium continued through 1991:
+The Authority’s [booth clerk estimate of nonpaying riders] found 187,160 people, or 5.9%, did not
+pay […] Fare evasion had become such a major problem that [the FATF was] turned over to
+Transit Police, headed by Chief William Bratton. (42)
+To combat the mounting problem, FATF designated 305 “target stations” with most evaders for
+intensive enforcement and monitoring (43). Teams of uniformed and undercover police officers
+randomly conducted “mini-sweeps”, swarming and arresting groups of evaders (44). Special
+“mobile booking centers” in converted citybuses allowed fast-track offender processing (17).
+Fare abuse agents covered turnstiles in shifts and issued citations. Plainclothes surveyors
+collected data for five hours per week at target locations, predominantly during morning peak
+hours. Finally, in 1992, evasion began to show a steady and remarkable decline, dropping to
+about 2.7% in 1994:
+Two hundred additional daily patrols were added in 1990 and special procedures established to
+expedite processing of summonses and fines […] Fare evasion arrests soared from 10,268 in 1990
+to 41,446 in 1994, a 304% increase, while felonies dropped 50% during the same period. (45)
+The dramatic decrease in evasion during this period coincided with a reinvigorated Transit
+Police, a 25% expansion of City police, and a general drop in crime in U.S. cities. In NYC,
+crime rate decline begun in 1991 under Mayor Dinkins and continued through next two decades
+under Giuliani and Bloomberg. Some observers credited the “broken windows” approach of law
+enforcement (46) where minor crimes like evasion are routinely prosecuted, and statistical crime-
+fighting tools, whereas others have indicated different reasons for crime reduction (47,48).
+Regardless of causality, evasion checks resulted in many arrests for outstanding warrants or
+weapons charges, likely contributing somewhat to public safety improvements.
+Arrests weren’t the only way to combat evasions. The early 1990s TA was examining methods
+to improve fare control passenger throughputs, reduce fare collection costs, and maintain control
+over evasions and general grime. Their secret weapon – the AFC system – was being designed,
+and evasion-preventing capability was a key consideration.
+Designing the Automated Fare Collection (AFC) System
+TA’s queuing studies concluded purchasing tokens from clerks wasn’t efficient (49). Preventing
+‘slug’ use required sophisticated measures like tokens with metal alloy centers and electronic
+token verification devices. To provide better access control, TA experimented with floor-to-
+ceiling gates and “high wheel” turnstiles. Prototypes installed at Lexington Av-110 St in East
+Harlem during a “target hardening” trial reduced evasions compared to nearby “control” stations
+(23). However, controls consisting entirely of “high-wheels” created draconian, prison-like
+environments, with detrimental effects on station aesthetics. Compromises with more secure
+low-turnstile designs were difficult:
+Despite transit officials’ promises new turnstiles would virtually eliminate fare evasion [… riders
+used] all the old tricks to slip through the prototype […] Within a few minutes, an investigator
+watched three cheats beat the turnstile [at 18 St-7 Av…] One evader hurdled the bar, one limbo-
+danced under it, and the third “back-cocked” it, pulling the bar back slightly and slipping through.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 6 of 30
+Richard Trenery, TA’s program manager for AFC, said the agency’s investigators had never seen
+anyone back-cock the T200 turnstile, which has a mechanism meant to prevent that […] the
+turnstile is built narrow at knee-level to make crawling under harder, and has slanted edges at
+waist level to make getting a handhold to hop over harder. (34)
+Production AFC implementation began in 1994. New turnstiles, including unstaffed high
+wheels, and floor-to-ceiling service gates, featured lessons learned from trials. As AFC
+equipment was rolled out, evasion plummeted. Fare abuse agents, together with independent
+monitoring, were eliminated.
+Station Agents and Customer Assistants
+NYCT had tried to reduce station agent positions since full MetroCard vending machine (MVM)
+deployment in 1997. Agents, whose primary responsibility was selling tokens, now sell
+MetroCards. However, AFC eliminated long booth queues, so fewer clerks were needed.
+Passengers now interact with agents only for requests like mutilated farecards, concessionary
+fares, or travel directions. Clerks weren’t cross-trained for AFC maintenance; that function was
+assigned to turnstile maintainers. NYCT determined that each station required only one full-time
+booth, serving dominant (or both) travel directions.
+Some thought the station destaffing plan would lead to potential evasion increases, and
+consequently more general crime. The original FATF (1988-1997) was reconvened in 2009 to
+review trends and coordinate mitigation strategies between NYCT and New York City Police
+Department’s Transit Bureau (NYPD). Further confusing the issue, agents themselves
+historically provided evasion counts in their normal course of duty.
+Decision to eliminate agents turned out controversial with both riding public and elected
+officials. Representatives were concerned about constituents’ jobs, whereas riders were
+concerned about susceptibility to crime:
+“We don’t need those booths now because machines are doing the work of extra clerks,” said
+Albert W. O’Leary, a spokesman for the MTA. […] cutbacks will save $6 million each year. […]
+neighborhood groups, rider advocates and the Transport Workers Union, Local 100, which
+represents the City’s 3,500 token booth clerks, say the closings will mean fewer eyes and ears to
+deter crime. (50)
+A 2004 compromise converted low volume booths to high-wheels, high volume booths to part-
+time entrances called “kiosks” (51) staffed by Station Customer Assistants (SCAs).
+Affectionately called “burgundy jackets”, SCAs don’t sell farecards, instead they walk around
+solving customers issues, including fare machine usage.
+Naturally, both sides put their story out in the press. Those favouring elimination frequently cite
+a civil suit concerning the 2005 sexual assault at 21 St-Van Alst station, which occurred despite
+alarm having been raised by the agent. The lawsuit was dismissed (52). The agents’
+contributions are clear to some:
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 7 of 30
+In 2006, a crazed man wielding two power hacksaws attacked [Michael Steinberg, in 110 St-
+Cathedral Parkway station.] If it wasn’t for a quick-thinking station agent, [he would have died.]
+“They do more then just sell MetroCards and give directions. They saved my life.” (53)
+The 2009 fiscal crisis necessitated more agent reductions, leaving only one 24-hour booth per
+station complex (54). Planned attrition program was converted to layoffs when fiscal situation
+deteriorated further in 2010.
+Issues with Station Agent Evasion Data
+All clerks counted evaders for one day each month, and systemwide evasion rates estimated.
+However, this data wasn’t independently verifiable. Based on the 2008 pilot study (24,175
+observed entries), overall evasion rate was six times the station agent rates. The booth clerk
+data, collected for the last time in March 2010, showed ludicrously low systemwide evasion rates
+of 0.2%, even though monitoring program estimated rates of between 0.9% and 1.6%. What
+might account for these differences?
+Agents have other duties (selling farecards, providing customer information) simultaneously as
+counting evaders. While definitive reasons were never conclusively determined, since many
+evaders are regulars and have fast technique, distracted clerks could easily miss a few evaders.
+Even though agents aren’t supposed to engage evaders and have little power to stop evasions,
+some may nevertheless see it as performance measurement of how effectively they are
+“watching” fare controls – introducing subconscious reporting biases. Decreasing agent
+positions further exacerbated under-counting problems.
+N M F E
+EW EASURE OF ARE VASION
+Evasion measurements are difficult for several reasons. Studies from the 1990s indicated
+evasions are clustered and shows large time/location variability, requiring stratified sampling for
+accurate estimation. Measurements must be discreet to get true rates, as observer presence may
+discourage it. First “pilot” sample used 100 one-hour observation periods, considered too long
+and easily detected by potential evaders. Second “pilot” survey used 700 12-minute observation
+“bursts”, found to be inefficient. The production compromise was 300 half-hour periods.
+The two pilots in 2008 determined stratification parameters. Observations correlated most
+strongly with passenger entry rates (activity levels) and adjacent neighbourhood income levels
+(55). Using these variables, a 40-strata random sample was selected (two income brackets by 20
+activity strata). Other variables like fare control equipment configuration, time-of-day, day-of-
+week, and subway operating division were deemed secondary correlation variables. Survey
+forms and methods were incrementally improved during these pilot studies.
+NYCT designed a random sample capturing 300 locations-time combinations per quarter using
+dedicated surveyors, to yield approximately 25,000 system entry observations. Sequential
+observations within half-hour periods were assumed to be independent, even though this isn’t
+strictly true because criminal activity (e.g. petty theft) might be subject to coactor effects of
+social facilitation (see, e.g. Laming (56)). Careful sample stratification is believed to provide
+sufficient coverage representative of the underlying population. Based on these assumptions,
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 8 of 30
+25,000 observations provide evasion estimates significant at 95% ± 0.2% level, although actual
+confidence levels might be somewhat lower. Pilots found evasion rates of approximately
+1%~2%, necessitating measurements down to ± 0.2% significance to determine quarterly
+variations.
+What is Fare Evasion?
+To understand evasion, it is imperative to first understand interactions between fare control
+hardware, fare tariff, and passengers. Evasion occurs when passengers gain access from unpaid
+to paid side by interacting with fare controls in manners inconsistent with tariff. Transit’s tariff
+is complex, sometimes requiring legitimate revenue passengers to defeat fare controls with
+behaviors that resemble evasion to casual observers. Additionally, entry procedures aren’t
+always strictly followed, though usually no actual revenue losses takes place. There are,
+therefore, real debates about what constitutes evasion. Are common behaviors that result in no
+revenue loss considered “evasion”?
+Fare Collection Hardware
+NYCT has four basic types of fare control equipment: low turnstiles (including agent-operated
+special entry turnstiles, SETs), high entrance-exit turnstiles (HEETs), high exit turnstiles
+(HXTs), and gates (including emergency exit gates (EXG), agent-operated gates (AOG), and
+Autonomous Farecard Access System (AFAS) gates for wheelchair access). Passengers enter
+emergency regulations (57).
+Systemwide EXG installations since 2006 (58) introduced a weakness into otherwise secure AFC
+systems. Gates were originally only unlocked via booths buzzers or employees’ keys. After
+London Underground’s 2005 terrorism attacks, fire codes required “panic bars”, allowing each
+gate to be opened from paid side, expediting emergency evacuation. While a loud, piercing, and
+warbling alarm sounds whenever EXGs are opened, general public took to using gates for exiting
+(substantially reducing queues), especially at unstaffed locations. Panic bars were also installed
+on Massachusetts Bay Transportation Authority (MBTA) in Boston and on Chicago Transit
+Authority (CTA) (21). This provided an impetus for renewed interests in evasion, because
+evaders could enter through gates when already opened by exiting passengers (36).
+Transit Fare Tariff
+Per NYCT tariff (59), exceptions to normal turnstile operations abound. Children under 44”
+(turnstile machines’ top height) must crawl under when entering with fare-paying adults (not
+permissible when travelling alone). Those with bulk items (bicycles, strollers, packages) must
+request station agent witness their swiping farecard, rotating turnstile without entering, then enter
+through AOG with their items. Passengers with paper half-fare or “block” tickets must
+relinquish them to agent and enter through SET. School groups traveling with authorization
+letters may be admitted through AOG.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 9 of 30
+An added complication is several unofficial system entry methods resulting in no revenue loss
+but forbidden by tariff are frequently practiced. At unstaffed locations, fellow passengers often
+open EXGs for entry by customers with bulk packages after witnessing them rotate turnstiles
+without entering. Good Samaritans occasionally pay fares for others – technically a tariff
+violation. Children often squeeze through HEETs with paying adults (if under 44”, no revenue
+loss occurred). At token booths, agents often admit passengers through AOG or SET for
+operational reasons. Police in uniform, construction workers, contractors in safety vests,
+employees, and concession vendors often enter with keys or agent’s permission. Police officers
+sometimes allow student groups to enter through gates.
+Fare Evasion Methodologies and Data Collection
+(PID) cameras. Classification provides intelligence that help formulate prevention strategies.
+Transit developed a systematic method of classifying system entries as illegal, questionable, and
+surveyors aren’t overwhelmed by high volumes of normal turnstile entries. Hash marks reduce
+miscounting in busy areas. Training includes accurate categorizations of entries. Information
+about police/station agent presence, whether gate is locked/alarm is heard is also collected,
+providing contextual information allowing later data analysis. Surveyors record any unusual
+circumstances on the form’s reverse side. NYCT is currently developing a hand-held computer
+data collection application, to replace paper forms.
+To determine if surveyors were discouraging potential evaders despite their discreet posture, and
+to verify field counts, NYCT obtained sample footage at times when surveyors were present at
+PID-equipped locations, and at comparable times (e.g. same time next day) when no surveyors
+were present. Field counts were compared with same-day and next-day video counts. No
+significant discrepancies were found, validating data collection methods.
+PIDs are fairly expensive to install and maintain. About half the subway stations – identified as
+high terrorism risk for large passenger volumes or other reasons – have PID coverage. Since
+PIDs aren’t available at all stations, video couldn’t be used to obtain systemwide counts.
+Potential Issues with Observation Methodology
+Surveyors don’t have authority to stop passengers and examine fare media or identifications, and
+must remain discreet. Thus, only observable evasion behaviours are recorded. Several sources
+of revenue losses cannot be monitored this way. Fare media fraud and electronic evasion is
+believed to be small but not insignificant. Unlimited MetroCard misuse (e.g., “swiping in”
+fellow passengers) occurs, but is difficult to track through silent observations. While surveyors’
+comments occasionally indicate these activities, this anecdotal information doesn’t form part of
+survey dataset.
+NYPD has arrested “professional swipers” and “key sellers” who sell “discounted” system
+entries for about $1, or gate keys for between $25 and $100. Organized fare abuse operatives
+disable MVMs then sell “swipes” to customers prevented from purchasing MetroCards. MVM
+vandalism rates are captured using machine repair staff’s fault codes, but associated evasions and
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 10 of 30
+revenue losses are difficult to estimate. Nevertheless, vandalism rates serve as proxy for swipe-
+selling hotspots.
+F E T
+ARE VASION RENDS
+The new evasion monitoring program has been effective for over one year, collecting 255,436
+entry observations in 1,741 assignments totalling 870 hours. For this tabulation, questionable
+entries are ignored. Evasion rate per passenger is observably illegal entries divided by AFC
+entries, producing straightforward inflation factors for adjusting AFC ridership statistics.
+Evasion rates per hour are evader counts enforcement personnel expects to find during a one-
+hour “sweep.”
+Hourly Distribution
+wisdom suggests evasion peaked during late nights when lawbreaking activity is thought to be
+most prevalent. Peak hours should have lower rates because large passenger volumes (high
+activity levels) provided “more eyes and ears”, previously described (60) as higher street crime
+probabilities on deserted sidewalks. Data supports this hypothesis somewhat as rates average
+about 1.6% in middays (10:00~14:59) and 1.3% in evenings (20:00~23:59), whereas it’s 0.9% in
+peak hours (6:00~9:59 and 16:00~19:59).
+However, evasion rate spiked to almost 3.0% during 15:00~15:59. Investigation revealed
+students leaving high schools together evading in large groups cause this peaking – likely
+explained by increased social facilitation. Indeed, AFC ridership at stations near schools
+anecdotally show unexpected upward surges when police officers are present during afternoon
+school hours (61). Subway incident logs even use the term “school condition” to describe
+problematic service interferences resulting from concentrations of students.
+Most students are allowed three daily trips with Student MetroCards; evasions allow those with
+exhausted quota to gain extra trips. Because of distinct student evasion patterns, different
+juveniles enforcement strategies required, and low potential revenue recovery, evasions during
+15:00~15:59 are excluded from remaining analyses, to focus on general evasion trends.
+System Entry Distribution
+hour. As stations become busier, per-passenger rates trend down while per-hour rates trend
+upwards. Per-passenger rates of 5.5% are observed at quietest locations and slowest times
+passengers per hour – like Beach-105 in the Rockaways at 03:00. Despite high per-passenger
+rates, per-hour rates are low (<1.0 evaders/hour), suggesting enforcement at these
+times/locations isn’t cost-effective. One possible solution is to simply close fare controls during
+low-traffic, high-evasion hours. Precedents exist: Dean St (Franklin Shuttle, between IND
+Franklin Av/BMT Park Place, Brooklyn) was closed in the 1990s due to rampant evasion; more
+evaders were recorded than revenue passengers.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 11 of 30
+Conversely, per-passenger rates are low at largest stations and busiest times, averaging around
+0.5%. But sheer volumes give rise to high per-hour rates hovering around 8.0 evaders/hour.
+Random enforcement at busy locations during rush periods is thus an effective way to apprehend
+evaders. Indeed, police are often seen at busy stations like Grand Central and Herald Square.
+Evasion by Median Income
+Median income of adjacent Census tracts was attached to stations, providing results by income
+income of about $30,000 (not adjusted for inflation), then essentially flatlines – consistent with
+conventional wisdom that more evasion activity occurs in lower income areas.
+Seasonality of Fare Evasions
+summer months can reach 1.7%, dropping to 0.9% during winter months, consistent with general
+seasonality of crime. Systemwide evasion rates may also correlate with ridership, as both are
+influenced by weather conditions.
+Revenue Loss Estimation
+While subway “menu fare” is $2.25, frequent rider discounts, concessionary fares, and periodic
+passes are available. Some evaders are students; others hold valid passes but use gates simply
+for convenience, thus no monetary losses occur. Conversely, if evasion were difficult, regular
+evaders might divert to multi-ride fares or purchase passes. Clearly, stolen rides have some
+value.
+Originally, NYCT conservatively assumed evaders would pay $1.33 blended subway average
+fare (including student discounts) if they paid. Losses could be higher if evaders were actually
+occasional cash riders who otherwise might pay $2.25. However, both time-of-day distribution
+and anecdotal evidence suggests students are overrepresented amongst evaders, thus NYCT
+recoupable losses may be lower. Conversely, free subway-bus MetroCard transfers meant even
+if evaders beat the $2.25 subway fare, fares might still be collected when transferring to buses
+(free if subway fares were paid). If evaders don’t successfully skip bus fares, Transit may
+actually recoup some losses. Using $1.48 adjusted average fare and 1.0% evasion rate, this
+translates into annual losses of about $23.6 million.
+Methods of Evasion
+Predominant mode of evasion is children over 44” ducking under turnstiles, accounting for 43%
+of observably illegal entries. Remaining methods are more or less evenly divided, with gate
+contributing 24%, and other turnstile violations, 32%. For non-student evasion enforcement,
+police should focus equally on gate and turnstiles. When monitoring began, perception was that
+gates accounted for most evasions. As gate discipline improved, questionable entries declined
+Another unexpected finding was that two-thirds of gate entries may actually be legitimate despite
+their questionable appearance to casual observers, e.g. school groups with authorization letters.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 12 of 30
+In some cases, group entries observed actually matched authorization letter records in
+retrospective audits.
+C F E
+OMBATING ARE VASION
+Properly Locking Emergency Gates
+In pilot studies, surveyors discreetly checked prior to leaving each location whether gates were
+properly locked from unpaid side. Evasion rates were computed by gate locking status. Gate
+evasion rate was 1.5% unlocked, and only 0.8% when locked. Interestingly, unlocked gates also
+invite more “questionable” entries; rate was 1.8% unlocked, but only 0.9% locked. Keeping
+gates locked potentially halves gate-related evasions!
+Following this finding, NYCT reinstructed station supervisors and agents on importance and
+revenue impacts of keeping gates locked. Questionable gate entries decreased from 1.5% to
+decrease when seasonality effects are accounted for. This measure seems to target mostly casual
+evasions.
+Fare Control Area Configuration
+Originally fare control hardware and staff presence was thought to affect evasions. Unstaffed
+HEETs (with emergency exits), a generally unsupervised environment, might invite rampant
+evasions. However, pilot studies indicated these locations had similar gate evasions (0.9%) to
+staffed locations (1.0%). At least in New York, agents don’t seem to deter evaders.
+Unsupervised HEETs had similar turnstile evasions (1.2%) to staffed locations (1.0%).
+Unsupervised exit-only locations have lower gate evasions (0.6%) than elsewhere, suggesting
+evasion is a crime of opportunity. Exit-only gates are only opened when trains arrive and
+passengers open them from paid side; evaders likely find it more time-efficient to evade through
+entrances. Only the most determined evaders would wait at exit-only locations for others to exit,
+to enter.
+Communication of Child Height Restrictions
+Passengers may be unaware of height guidelines determining when children must begin to pay,
+are now being tested near turnstiles at the Bowling Green station.
+Tackling Organized Fare Abuse Operations
+MVM vandalism costs NYCT both in lost revenues and repair expenses. NYCT provides MVM
+vandalism intelligence to NYPD, which utilizes hidden portable wireless digital video cameras in
+“sting” operations to gather evidence against organized fare abuse rings and identify leaders.
+These “professional swipers” can be difficult to apprehend because they are very mobile and
+requires strategic and determined law enforcement efforts to monitor MVM vandalism patterns,
+prioritizing stations with highest vandalism rates.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 13 of 30
+In years past, theft-of-service crimes were often dismissed with time served (several days in
+Riker’s Island), but by working with the Manhattan District Attorney’s Office and Midtown
+Community Court, FATF achieved escalating sentences for recidivists. The coordinated efforts
+resulted in a five-swiper ring being disbanded and sentences of over one year being imposed.
+Measuring impacts of taking down fare abuse operations is diffuclt, because even large swiper
+rings ‘sell’ very few fares compared to natural day-to-day fluctuations of the 8.0 million riders
+on NYC’s system due to reasons like weather or special events.
+Legal Framework and Enforcement
+Most important evasion fighting tool is arguably comprehensive and functioning legal
+frameworks to deal with evaders and counterfeiters. NYCT’s Rule of Conduct (62) has banned
+evasions since the 1980s, rules having been established mainly for arresting persons likely to
+commit other crimes (assault, graffiti). With appropriate legal framework, like traffic stops,
+evasion checks can be effective in identifying and arresting criminals wanted on outstanding
+warrants (63).
+To round-up evaders, MTA fare inspectors continue to use the “surge” strategy first developed
+by Transit police. Renewed enforcement interests led to several high profile cases. Swiss
+tourists with allegedly valid passes were ticketed for bumping turnstiles (64). One passenger
+was arrested for exiting, not entering, through an emergency gate (65).
+Legal framework is more than prohibition of illegal acts and prescription of fines. Complete
+regulations should address issues like: arrests versus summonses; arresting/summons issuing
+powers; whether undercover enforcement is permitted; disputes/appeals process (e.g. “my
+monthly MetroCard isn’t working, so I went through gate”); dealing with genuinely confused
+tourists (e.g. “I flashed my pass, so going through gate is okay?”); required evidence for
+conviction (e.g. whether video evidence are admissible). New York allows certain non-police
+employees to issue evasion citations, and utilizes both uniformed and undercover police
+enforcement.
+Contextual security – expressly forbidding nonpayment and offering ways to punish rulebreakers
+– is potentially as important as having secure hardware. In Boston, students used well-known
+methods (29,30) to defeat Mifare Classic farecard’s proprietary encryption, publicly
+demonstrating proof-of-concept forgeries (31). However, they didn’t acknowledge the highly
+illegal nature of using forged cards, making cloning not worthwhile for $1.70 fares. Chips
+implementing stronger open-standard encryption algorithms have now largely superseded Mifare
+Classic.
+Evasion Detection and Prevention Hardware
+Video recording equipment may deter criminal activity, including evasion. Cameras are widely
+deployed in modern Asian and European transit systems. Like other U.S. agencies, NYCT
+installed counter-terrorism cameras at key stations. PIDs covers fare controls from every
+conceivable angle with high fidelity video, positively identifying terror suspects. They also
+produce clear pictures of entering and exiting passengers, including evaders. MBTA, CTA (21),
+and Port Authority Trans-Hudson (PATH) also use sophisticated camera equipment, and MBTA
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 14 of 30
+even apprehended vandals damaging AFC equipment while evading, publishing the video
+footage (20).
+On PATH (and some NYCT stations), hidden rooms with half-silvered glass or surveillance
+portals are provided for covert police observation. Perpetrators are apprehended by police that
+suddenly appear from behind closed doors when illegal acts occur.
+Fare Evasion Fines
+Transit’s $60 penalty was internally set by Transit Adjudication Bureau (TAB) with delegated
+levy without further approvals, to support conversion to POP fare collection on a Bronx bus line
+(67). In Boston, prior to CharlieCard AFC implementation and conversion of booth clerks to
+roving agents, MBTA quietly asked Massachusetts State Legislature to make evasions a civil
+offense (68) punishable by progressive fines ($15 first offense; $100 second; $250 third or
+subsequent). On Newark City Subway, where POP is in effect, evasion penalty was initially
+$75, but increased to $100 in 2008. On Metropolitan Atlanta Rapid Transit Authority
+(MARTA), evasion fines range from $85 to $235 (22), whereas they “start at $50” on the San
+Francisco Municipal Railway (19).
+Economics of Casual Fare Evasion
+NYPD focuses on arrests rather than summonses, because mandatory arrests of wanted criminals
+are more critical to general crime reduction. Consequently, evasions-to-summonses ratio is low.
+In 2009, 18.5 million estimated evasions occurred. A total of 120,000 summonses were issued,
+thus routine evaders might expect one summons every 100~200 evasions. Average weekday
+riders requiring three daily evasions would receive one $100 summons every 6 to 13 weeks.
+Considering weekly subway passes retails at $27, evaders could save $162 in 6 weeks but pay
+$100 in fines. Additionally, not all summonses are legally feasible to collect.
+For occasional cash riders, evasion economics is quite different. With 0.7% risk of $100
+summons, expected “price” per evasion is only 70 cents, compared to $2.25 cash fare. This basic
+street economics might explain observed evasion behaviours. Higher fines or arrests may have
+better deterrent effects.
+Difficulty Evaluating Enforcement and Countermeasures Cost-Effectiveness
+A straightforward method for evaluating cost-effectiveness would trade-off fare revenue losses,
+enforcement impacts on evasion rates, fines revenues, and police costs. However, law
+enforcement economics is complex: uncontrollable factors affect evasions besides enforcement;
+evasion checks may have other benefits like preventing crime and confiscating drugs or
+weapons, whose monetary benefit are difficult to estimate; police costs are subject to complex
+deployment and overtime rules, and cost-allocation issues relating to critical coverage versus off-
+peak utilization of available resources; fines revenues may be offset by court and administration
+costs.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 15 of 30
+P R
+UBLIC ELATIONS
+Transit agencies’ active efforts is sometimes required to correct misinformation from special
+interest groups. Due to impending station agent layoffs, the New York Daily News decided to
+look into the fare abuse issue. Initially, they developed a draft about changes in human presence
+at stations over the last decade, highlighting agent position reductions. They requested from
+NYCT evasion data, frequency of emergency assistance requests, and an interview regarding
+rider perception and safety.
+In response, Transit compiled statistics showing significant reductions in serious subway crime,
+mayhem, destaffing actually occurred against an improving picture of public safety in the City.
+Subway crime has decreased 68% since 2000, and annual average evasion rate remains low
+(~1.3%).
+However, evasion statistics was problematic. NYCT was aware of differences between
+independent survey data (1.3%) and station agents’ one-day counts (0.2%). To forestall
+appearance of instituting methodology changes purely to avoid negative press, Transit released
+discrepancy. Simultaneously, NYCT announced future public reporting will use the more
+accurate independent surveys.
+While expected confusion about methodology adjustments arose, since data showed recent
+destaffing hasn’t led to rampant evasions (still only 1.3%), and no reasonably accurate estimates
+exist for historical evasions, Daily News chose not to focus on station agent issues. Instead, the
+story highlighted that accurate measurements revealed more evasion than previously thought
+(16). By keeping communication channels open with the press, and supplying accurate and
+timely data, NYCT reduced a potential public relations disaster to a headline article about
+focus shifted to illegal use of stolen keys (69) to unlock gates from unpaid side.
+ONCLUSIONS
+NYCT developed a multi-pronged approach for managing subway fare evasion. AFC was
+designed with security features to physically prevent abuse, allow silent observations, and
+facilitate audits. Legal framework gives transit police tools to enforce law and order. Data
+collection and analysis keeps an accurate picture of evasion trends and MVM vandalism.
+Taskforce-based multidisciplinary approach ensures participation by normally disparate
+departments within Transit. A comprehensive press strategy ensures NYCT’s efforts in
+clamping down evasion are publicly communicated – both as caution to evaders, and
+demonstrating judicious use of resources.
+Fare evasion is likely a crime of opportunity. Allowing it may have implications on system
+security perceptions far beyond lost revenues. Riders are particularly irked by blatant evasions –
+out of basic notion of fairness, also because abuses can symbolize unaccountability and
+“nobody’s in charge”. An accurate, comprehensive, and transparent fare abuse measurement and
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 16 of 30
+enforcement mechanism is a must for transit agencies – whether or not POP fare collection is
+used.
+Curiously, the hacker community is quite willing to share information about fare abuse (even
+publicize its illegality), while the mainstream press is awash with opinions about evasions and its
+prevention, whereas discussions amongst transit professionals seem taboo. Encouraging open
+information exchange could allow agencies to learn about evasion from each other, and even
+from evaders themselves.
+Future Work
+This study raised interesting questions, some beyond the traditional realm of transit research.
+What are ancillary security benefits of clamping down on fare evasion? More importantly, can
+they be quantitatively measured? Can correspondence between fare evaders and subway
+criminals be conclusively demonstrated? What are evaders’ motivations? Trip purposes? How
+do tariffs or fines discourage evasion? How much fines are actually collected? Do they cover
+collection costs? What are “uncontrollable” factors affecting evasion rates? (e.g. weather,
+poverty, special events?) What countermeasures are most effective? What factors determine
+optimal enforcement rates? How much casual evasions are recurrent or habitual? What other
+patterns are seen in evasion data and evader demographic? What explains high evasion rates
+amongst students? How do evasions relate to social issues like homelessness? What about
+evasions on other modes? What changes in legal frameworks could impact evasion rates?
+Fare evasion, often thought of as a simple audit matter, is actually a complex phenomenon that
+transcends transportation operations, fare equipment design, transit tariff, and law enforcement.
+Far from being a black-and-white matter of either you paid your fare or you didn’t, each evasion
+tactic can be linked to specific AFC design features and enforcement strategies. Aside from
+being academically fascinating, this area deserves further research for its practical implications
+and very real impacts on transit authorities’ bottom lines. A multidisciplinary approach bringing
+together sociology, legal, enforcement, economics, transit management, and psychology
+expertise will be necessary to answer these questions.
+CKNOWLEDGEMENTS
+The authors gratefully acknowledge Benjamin Lonner, Kishor Sharma, Justin Serina (MTA),
+Chief Raymond Diaz, Captain Edward O’Brien, Sergeant Jim Donovan (NYPD), Antonio
+Suarez, Matthew Holland (AFC), Larry Hirsch, Robert Hickey, William Amarosa, Qifeng Zeng
+(OMB), Anthony Cramer, and Tewfik Berri (OP) for their contributions to this research.
+Responsibility for errors or omissions remains with the authors. Opinions expressed are the
+authors’ and do not reflect official policy of Metropolitan Transportation Authority, New York
+City Transit, New York City Police Department, or any other organization.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 17 of 30
+EFERENCES
+(1) Kahn, Ric. No Fare – the MBTA Says its $203 Million System will Make Freeloaders Pay.
+In Boston Globe, July 2, 2006.
+(2) Davis, Tom. Hudson-Bergen Light Rail Loses Millions Each Year. In the North Jersey
+Bergen_Light_Rail_loses_millions_each_year.html on June 8, 2010.
+(3) Los Angeles Metro to Test Turnstile-Gate Waters at Four Subway Stations. In Progressive
+article.asp?id=21115 on March 31, 2010.
+(4) PriceWaterhouseCoopers. TransLink Fare Evasion Internal Audit, September 2007.
+fare_evasion_pwc.pdf on October 5, 2010.
+(5) Clarke, Ronald V. Fare Evasion and Automatic Ticket Collection on the London
+Underground. In Crime Prevention Studies, Vol. 1, Criminal Justice Press, Monsey, N.Y., 1993.
+(6) Toronto Transit Commission. Section 3.3: Fare Evasion. In TTC Fare Collection Study.
+(7) Stern, Richard. Ch.3: Fare Evasion Issues. In Bus Transit Fare Collection Practices, TCRP
+Synthesis 26, Transportation Research Board, 1997.
+(8) Dauby, Laurent and Z. Kovacs. Fare Evasion in Light Rail Systems. In Transportation
+Research E-Circular EC-112: Light Rail Transit: A World of Applications and Opportunities,
+Transportation Research Board of the National Academies, 2007.
+(9) Clarke, Ronald V., S. Contre and G. Petrossian. Deterrence and Fare Evasion: Results of a
+Natural Experiment. In Security Journal, Vol. 23, pp. 5~17, October 19, 2009.
+(10) Transit Cooperative Research Program. Ch.3: Policy and Enforcement Issues. In TCRP
+Report 80: A Toolkit for Self-Service, Barrier-Free Fare Collection. Transportation Research
+Board of the National Academies, 2002.
+(11) King County Department of Transportation. Report on Fare Evasion on Metro Transit,
+on October 5, 2010.
+(12) Lee, Jason. “Passes and Transfers, Please”: Uncovering Proof-of-Payment Patterns to
+Reduce Fare Evasion. In Press. TRB Paper #11-1589, Submitted for Publication at the
+Transportation Research Board 90th Annual Meeting, Washington, D.C., January 23-27, 2011.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 18 of 30
+(14) Lu, Alex and A. Reddy. An Algorithm to Measure Daily Bus Passenger Miles Using
+Electronic Farebox Data for National Transit Database (NTD) Section 15 Reporting. In Press.
+TRB Paper #11-0368, Submitted for Publication at the Transportation Research Board 90th
+Annual Meeting, Washington, D.C., January 23-27, 2011.
+(15) U.S. Department of Transportation. Ch. 4: Fare Evasion. In Transit Security: A Description
+of Problems and Countermeasures, Report No. UMTA-MA-06-0152-84-2, Final Report,
+October 1984.
+(16) Donohue, Peter. Cheaters Cost MTA Millions – Fare Beaters Underestimated for Years. In
+New York Daily News, March 16, 2010.
+(17) Sims, Calvin. Fare Beaters in Subway Pay in the End, in Sweat. In New York Times,
+February 18, 1991.
+(18) Doyle, Sue. Metro Fare Evasion a Problem. In Los Angeles Daily News, October 25, 2007.
+(19) Gordon, Rachel. MUNI Catching 50 Percent More Fare Evaders. In San Francisco
+Chronicle, January 7, 2009.
+(20) Haggerty, Ryan. MBTA Cracks Down, Fines Fare Evaders – says Gate Vandals Caught on
+Camera. In the Boston Globe, July 26, 2007.
+(21) Levine, Jay and E. Marshall. CTA Cheaters: People Ride Free At Brown Line Stop. In
+CBS2 Chicago Area Local News, 10:39 pm Central, Feb 16, 2010. Retrieved from
+(22) Shaw, Chris. MARTA Jumpers Costing MARTA $3 Million a Year. In My Fox Atlanta,
+10:27 pm Eastern, July 12, 2010.
+(23) Weidner, Robert R. Target-Hardening at a New York City Subway Station: Decreased Fare
+Evasion – at What Price? In Crime Prevention Studies, Vol. 6, Criminal Justice Press, Monsey,
+N.Y., 1996.
+(24) Kooreman, Peter. Fare Evasion as a Result of Expected Utility Maximization – Some
+Empirical Support. In Journal of Transport Economics and Policy, January, 1993. Retrieved
+(25) Rhodes, Michael. Fare Evasion is Down as Muni Steps Up Collection Effort. In
+is-down-as-muni-steps-up-collection-effort/ on July 30, 2010.
+(26) Office of the City Auditor, Edmondton. 05148 – ETS Fare Evasion Review, May 10, 2005.
+05148_Fare_Evasion_Final_Report.pdf on October 5, 2010.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 19 of 30
+(27) Chu, Henry and D. Lauter. Paris Metro’s Cheaters Say Solidarity is the Ticket. In Los
+Angeles Times, 8:58 pm Central, June 22, 2010.
+(28) Cubic Corporation. U.S. Patent 6,789,736: Distributed Architecture for Magnetic Fare
+Card Processing.
+(29) Nohl, Karsten. Lost Mifare Obscurity Raises Concerns Over Security of OV-Chipkaart.
+(30) Siekerman, Pieter and M. van der Schee. Security Evaluation of the Disposable OV-
+Chipkaart, v1.7. Computer and Network Group, Universiteit van Amsterdam, 2007. Retrieved
+(31) Ryan, Russell, Z. Anderson, and A. Chiesa. Fare Collection Vulnerability Assessment
+Report – Analysis and Recommendations. Civil Action 08-11364-GAO, Document 10-2, Filed
+08/09/2008 with United States District Court of Massachusetts. Retrieved from
+em.pdf on June 30, 2010.
+(32) Battaglia, J. The MetroCard Project. In 2600 Magazine, Spring Volume, Middle Island,
+(33) Tanenbaum, Andrew S. Dutch Public Transit Card Broken – RFID Replay Attack Allows
+Free Travel in the Netherlands, Department of Computer Science, Vrije Universiteit Amsterdam.
+(34) Strom, Stephanie. Cheats Outfox New Turnstile For Subways. In New York Times, May
+16, 1991.
+(35) Donohue, Pete. Millions of Fare-Beaters Take MTA for an $8 Million Bus Ride. In New
+York Daily News, March 18, 2010.
+(36) Lysiak, Matt and D. Goldiner. Exit Gates as MTA’s ‘Free’ Way, Farebeaters Use Busy
+Stops to Advantage. In New York Daily News, April 30, 2009.
+(37) De Winter, Brenno. Judge Denies NXP’s Injunction Against Security Researchers. In the
+2008/07/18/judge-denies-nxps-injunction-against-security-researchers on August 22, 2008.
+(38) Cohen, Alexander. The “Other” New York Bus System – Subsidized Private Buses in New
+York City, 1974-2003. 1.259 Term Paper, Department of Urban Studies and Planning,
+Massachusetts Institute of Technology, Cambridge, Mass., 2003.
+(39) Rivera, Joseph. Vandal Squad – Inside the New York City Transit Police Department 1984-
+2004. Brooklyn, N.Y., 2008.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 20 of 30
+(40) Metropolitan Transportation Authority. The 1980 “Train to the Plane” TV Commercial,
+from the Transit Museum Archives, New York, N.Y., 1980. Retrieved from
+(41) Gunn, David L. New York’s Transit Rebound. In Progressive Railroading, August, 1989.
+(42) Sims, Calvin. Despite Curbs, Fare Beating Is Surging Again in Subways. In the New York
+Times, August 16, 1991.
+(43) New York City Transit Authority, Operations Planning. Methodology for Estimating the
+Systemwide Number of Rapid Weekday Fare Evaders, New York, N.Y., August, 1992.
+(44) Bratton, William and P. Knobler. Ch. 9. In The Turnaround: How America's Top Cop
+Reversed the Crime Epidemic. Random House, New York, N.Y., 1998.
+(45) Hom, Keith J. Reinventing Transit: the Twenty-Year “Overnight” Success Story of NYC
+Transit. Presented at the Metropolitan Conference on Public Transportation Research, Chicago,
+Ill., June 11, 1999.
+(46) Kelling, George L. and J.Q. Wilson. Broken Windows: The Police and Neighbourhood
+Safety. In Atlantic Monthly, March, 1982.
+(47) Levitt, Steven D. and S.J. Dubner. Ch. 4: Where Have All the Criminals Gone. In
+Freakonomics: A Rouge Economist Explores the Hidden Side of Everything. New York, N.Y.
+2005.
+(48) Langan, Patrick A. and M.R. Durose. The Remarkable Drop in Crime in New York City.
+Presented at the International Conference on Crime, the Italian National Institute of Statistics,
+relazioni/Langan_rel.pdf on October 4, 2010.
+(49) New York City Transit Authority. Operations Planning Weekday Token Booth Queuing
+Report. Unpublished Manuscript, May 24, New York, N.Y., 1990.
+(50) Lee, Denny. Does a Plan to Shut Token Booths Turn a Blind Eye to Crime? In New York
+Times, Neighbourhood Report: New York Up Close, July 22, 2001.
+(51) Luo, Michael. Subway Riders Master The Art of the Swipe; Fewer MetroCard Glitches
+Reported As Public and Transit System Adapt. In New York Times, July 18, 2004.
+(52) Parker, Billy. G Train Platform Rape Victim Loses MTA Negligence Suit. In The
+g_train_platform_rape_victim_loses.php on July 4, 2010.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 21 of 30
+(53) Haddon, Heather. ‘They Saved My Life’: Rider Who Was Attacked in Subway Station
+Protests Layoffs. In Urbanite Section, amNewYork, March 3, 2010. Retrieved from
+station-protests-layoffs-1.1791593 on June 8, 2010.
+(54) Reddy, Alla, T. Chennadu, and A. Lu. Safeguarding Minority Civil Rights and
+Environmental Justice in Service Delivery and Reductions – Case Study of New York City
+Transit Authority Title VI Program. In Transportation Research Record: Journal of the
+Transportation Research Board No. 2163, National Academies, Washington D.C., 2010, pp.45-
+56.
+(55) Hickey, Robert L., A. Lu, and A. Reddy. Using Quantitative Methods in Equity and
+Demographic Analysis to Inform Transit Fare Restructuring Decisions. In Transportation
+Research Record: Journal of the Transportation Research Board No. 2144, National Academies,
+Washington D.C., 2010, pp.80-92.
+(56) Laming, Donald R.J. Understanding Human Motivation: What Makes People Tick. Wiley-
+Blackwell, Oxford, England, 2003.
+(57) Sclafani, Tony. ‘Panic Bar’ Exits OK’d for all Subway Stops. In New York Daily News,
+June 29, 2006.
+(58) Chan, Sewell. Anxiety Over Transit System’s Security Adds to Tensions at Negotiating
+(59) New York City Transit Authority. New York City Transit Authority (including Affiliates)
+and MTA Bus Company – Local Rates of Fare and Regulations Governing the Furnishing of
+Passenger Transportation on Regular Scheduled Service, Effective December 30, 2010, New
+York, N.Y.
+(60) Jacobs, Jane. Ch. 2: The Uses of Sidewalks – Safety. In The Death and Life of Great
+American Cities. Random House, New York, N.Y., 1961.
+(61) Hirsch, Lawrence R. Unpublished Data. Office of Management and Budget, New York
+City Transit Authority, New York, N.Y., 2008.
+(62) New York City Transit Authority. Rules Governing the Conduct and Safety of the Public in
+the Use of the Facilities of the New York City Transit Authority and Manhattan and Bronx
+on June 9, 2010.
+(63) Travayiakis , Lefteris K. Dorchester Man Arrested for Evading Fare at MBTA, Had 11
+Outstanding Criminal Warrants. In Boston Criminal Lawyers’ Blog, May 6, 2010. Retrieved
+on June 8, 2010.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 22 of 30
+(64) Newman, William, S. Cheema and C. Moynihan. A Bigger Penalty for Riders Who Cheat
+on the Fare. In New York Times, July 8, 2008.
+(65) Boyle, Christina. Cops Cuff and Stuff Queens Man Todd Zielinski in Cell for 28 Hours for
+Using Subway Emergency Exit. In New York Daily News, March 10, 2009.
+(66) New York State Public Authorities Law, Title 9 New York City Transit Authority, Section
+1204 General Powers of the Authority, Paragraph 5(a), and Section 1209-a, Transit Adjudication
+Bureau, Paragraph 4.
+(67) NYC Transit Increases Fare Evasion Penalty. In Transit Blogger, June 25, 2008. Retrieved
+on March 31, 2010.
+(68) Massachusetts General Laws, Title XXII: Corporations, Chapter 159, Section 101.
+(69) McLaughlin, Mike, P. Donohue, E. Einhorn, D.E. Rosen and B. Paddock. N.Y. Key Party –
+Angry Riders, Pols Rips MTA on Subway Gate Breach. In New York Daily News, April 26,
+New York, N.Y., 2010.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 23 of 30
+L F
+IST OF IGURES
+Note to Editors: Photos embedded in this document are not publication-resolution. Higher
+resolution artwork will be supplied separately to TRB.
+variety of fare control hardware developed in response to the rampant fare evasion problem of
+the 1980s: (a) The fare controls at Cortelyou Road Station on the Brighton Line (paid side)
+features three low turnstiles and two emergency exit gates (EXGs); (b) One unstaffed control
+area at Howard Beach-John F. Kennedy Airport on the Rockaway Line (unpaid side) features
+two high entrance-exit turnstiles (HEETs) and one EXG; (c) This exit-only fare controls (unpaid
+side) features one stainless-steel high exit turnstile (HXT) and one EXG; (d) The exit-only
+control-area (paid side) features an older-style painted HXT and one EXG.
+counter-terrorism purposes offers a clear view of different methods of fare evasion practiced by
+passengers: (a) Adolescent passenger not accompanied by adult crawls under turnstile to obtain
+system access; (b) Two teenagers share one swipe by “bumping” the low turnstile; (c) Passenger
+jumps over the low turnstile; (d) Passenger “backcocks” the turnstile by pulling it back while
+entering. PID cameras also covers emergency exit gates, capturing examples of each type of
+gate-related fare abuse: (e) Child backcocks to enter the station; (f) Moments later, child returns
+to the emergency exit gate to allow parent to enter with stroller, allowing three passengers to
+enter without paying a single fare; (g) Commuter entering the system by catching the gate left
+open by passengers illegally using the gate to exit in a non-emergency situation; (h) Emergency
+gates are occasionally left ajar or closed but not locked, allowing unpaid passengers to enter the
+system; (i) A police officer opens the combined service exit/emergency exit for a stroller to exit,
+a legitimate use of the gate, however, a bystander is waiting outside in the unpaid area; (j) For
+reasons unknown, the policeperson allows the bystander to enter without paying, resulting in a
+“questionable” entry.
+Completed form from the Myrtle-Wyckoff station in Eastern Brooklyn, the local high school
+dismissed students at around 15:06, causing the large number of opportunistic evaders and
+turnstile jumpers. The revenue impacts of this incident is likely minimal, though, because most
+students who ride the subway to school have free passes for system access; (b) Surveyor
+instructions illustrate precisely how system entries are classified into one of 19 categories.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 24 of 30
+data, and strategies to reduce evasion: (a) Evasion rates by system entry rate; (b) Evasion rates
+by time-of-day (hour); (c) Time-series systemwide evasion rates showing seasonality effects; (d)
+Evasion rates by Census 2000 median income of adjacent neighbourhoods; (e) Prototype signs
+being tested near turnstiles at the Bowling Green station to indicate height guidelines
+determining when children must begin to pay fare; (f) Fare evasion fines were increased to $100
+in July 2008, and communicated to the public via informational posters.
+mass media, supplying data to minimize averse press where possible: (a) Ten year trends
+supplied to Daily News on major felonies, evasion rates (both methodologies), police activity,
+and fine collection activity; (b) The resulting New York Daily News/Peter Donohue coverage on
+NYCT fare abuse issue, including the misuse of Firemen’s keys to illegal gain access to the
+subway (reprinted with permission).
+Note to Editors: Photos embedded in this document are not publication-resolution. Higher
+resolution artwork will be supplied separately to TRB.
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 25 of 30
+(a) (b)
+(c) (d)
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 26 of 30
+(a) (b)
+(c) (d)
+(e) (f) (g)
+(h) (i) (j)
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 27 of 30
+(a)
+(b) Instructions for Subway Fare Evasion Data Collection 3. Police Badge: Passengers permitted to enter system by
+approaching clerk and shows and does not give up some form of
+Seven most common methods of illegal entry to the system have been identification that isn’t a transportation employee ID.
+identified. Surveyors should classify each evasion as one of the following 4. Flash Pass: Passengers permitted to enter by approaching
+categories: agent and shows and does not give up some form of
+transportation employee identification (regardless of whether the
+1. Crawling: Passengers not accompanied by fare paying adult, or employee class is authorized to ride).
+over 44” in height, obtains system access by crawling under low 5. Key: Unauthorized passenger(s) entering via locked EXGs or
+2. Bumping: Two or more passengers enter while turnstile employees, police, and firepersons.
+mechanisms rotate once (i.e. 120 degrees or ⅓ of a turn), allowing
+4. Backcocking: Passengers pulling back low turnstile mechanism (as measurement.
+if to exit) but steps over or slip between turnstile’s lower legs to enter
+5. Deliberate: Passenger(s) entering through EXGs or AOGs opened 44” in height, obtains system access by crawling under low
+6. Opportunistic: Passenger(s) entering through already open EXGs 2. Paper Ticket: Passengers gives up to token clerk certain
+or AOGs while others are exiting through same, without deliberate authorizing materials (e.g. block ticket), entering system through
+7. Left Open: Passenger(s) entering via closed, but unlocked EXGs or 3. Bulk Item: Per tariff, passengers pay then rotate turnstile without
+and bulk item through service gate.
+Data is also collected on “questionable” entry categories, to understand
+information is downloaded from the MetroCard AFC database. Data is
+1. School Group: Large organized group of teachers, chaperones, collected in six-minute increments. AFC data (from which normal turnstile
+and children shows or gives up to token clerk authorizing materials entry passenger counts are derived) is recorded to nearest six minutes.
+(e.g. letter), entering through gate. Surveyors must synchronize their watch with local AFC Card Reader
+2. Police Uniform: Passengers enter subway by approaching clerk machine prior to commencing survey.
+while wearing full police, fire, court officer, postal, military, and other
+public service uniform (regardless of whether the uniform is
+authorized or not).
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 28 of 30
+2.5%
+Weekday Evasion by Median Income
+2.0%
+1.5%
+1.0%
+0.5%
+0.0%
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+81~6 42~81 82~42 23~82 63~23 24~63 84~24 26~84 07~26 68~07 671~68
+Station Median Income Range ($ Thousands)
+)rgsP
+rep(
+etaR
+noisavE
+eraF
+8.0
+7.0
+6.0
+5.0
+4.0
+3.0
+2.0
+1.0
+0.0
+)ruoH
+rep(
+etaR
+noisavE
+eraF
+2.0%
+Seasonality of Fare Evasion
+1.8%
+* Excludes afternoon school
+1.6%
+discharge hour (15:00-15:59)
+1.4%
+1.2% Evasion per Psgr
+Evasion per Hour
+1.0%
+0.8%
+0.6%
+0.4%
+0.2%
+0.0%
+Sample size = 167,817 entries
+60/90~40/90 70/90~50/90 80/90~60/90 90/90~70/90 01/90~80/90 11/90~90/90 21/90~01/90 10/01~11/90 20/01~21/90 30/01~10/01 40/01~20/01 50/01~30/01 60/01~40/01 70/01~50/01 80/01~60/01
+Reporting Period (Rolling Average)
+)rgsP
+rep(
+etaR
+noisavE
+eraF
+8.0
+7.0
+6.0
+5.0
+4.0
+3.0
+2.0
+1.0
+0.0
+)ruoH
+rep(
+etaR
+noisavE
+eraF
+6.0% Weekday Evasion by System Entries*
+5.0%
+4.0%
+3.0%
+2.0%
+1.0%
+0.0%
+Evasion per Psgr
+Evasion per Hour
+Sample size = 37,269 entries per period
+)20.0~10.0(
+20.0
+)40.0~30.0(
+40.0
+)70.0~50.0(
+60.0
+)01.0~80.0(
+90.0
+)31.0~11.0(
+21.0
+)81.0~41.0(
+61.0
+)22.0~91.0(
+12.0
+)72.0~32.0(
+62.0
+)33.0~82.0(
+13.0
+)24.0~43.0(
+93.0
+)25.0~34.0(
+84.0
+)96.0~35.0(
+16.0
+)00.1~07.0(
+48.0
+)65.5~10.1(
+66.1
+Avg & Range, System Entries per Hour (Thousands)
+)rgsP
+rep(
+etaR
+noisavE
+eraF
+9.0
+8.0
+7.0
+6.0
+5.0
+4.0
+3.0
+2.0
+1.0
+0.0
+)ruoH
+rep(
+etaR
+noisavE
+eraF
+Evasion per Psgr
+Evasion per Hour
+* Excludes afternoon school
+discharge hour (15:00-15:59)
+Sample size = 170,615 entries
+snoitats
+teiuQ
+snoitats
+ysuB
+3.5%
+Weekday Evasion by Hour
+3.0%
+2.5%
+2.0%
+1.5%
+1.0%
+0.5%
+0.0%
+4 5 6 7 8 9 01 11 21 31 41 51 61 71 81 91 02 12 22 32 0
+Hour of Day
+)rgsP
+rep(
+etaR
+noisavE
+eraF
+1,000
+)ruoH/rgsP(
+etaR
+yrtnE
+metsyS
+(a)
+Evasion per Psgr
+Entries per Hour
+(b)
+Sample size = 124,069 entries
+(c) (d)
+(e) (f)
+A. V. Reddy, et al Page 29 of 30
+, New York City Transit D R A F T -- Preliminary Use Only
+Station Entry Count Study Issue Date: 2010/05/05
+Monitoring Report for 1st Quarter 2010
+2009Q2 2009Q3 2009Q4 2010Q1 Overall 2009Q2 2009Q3 2009Q4 2010Q1 Overall
+I Station Entry Observation Detail Psgrs Psgrs Psgrs Psgrs Psgrs % Total % Total % Total % Total % Total
+Children Over 44" Entering Under Turnstile 204 155 85 104 548 0.64% 0.63% 0.36% 0.30% 0.48%
+Passengers Jumping Over Turnstile 34 17 37 63 151 0.11% 0.07% 0.16% 0.18% 0.13%
+Passengers Backcocking Turnstile 8 10 9 16 43 0.03% 0.04% 0.04% 0.05% 0.04%
+Passengers Bumping Turnstile 32 21 21 21 95 0.10% 0.08% 0.09% 0.06% 0.08%
+L More than One Passenger Entering HEET on One Fare 26 42 31 22 121 0.08% 0.17% 0.13% 0.06% 0.11%
+Opportunistic Gate Entries 30 33 22 51 136 0.09% 0.13% 0.09% 0.15% 0.12%
+Deliberate Fare Evasion Through Service Gate 31 24 25 21 101 0.10% 0.10% 0.11% 0.06% 0.09%
+Passenger Entering while Service Gate is Unlocked 20 29 19 9 77 0.06% 0.12% 0.08% 0.03% 0.07%
+Total - Illegal Entries 385 331 249 307 1,272 1.2% 1.3% 1.1% 0.9% 1.1%
+U Passengers Entering Through Gate without Authorization 59 49 14 9 131 0.19% 0.20% 0.06% 0.03% 0.11%
+Agent Authorized Entry by Large School Groups 239 0 27 6 272 0.75% 0.00% 0.11% 0.02% 0.24%
+Agent Authorized Entry by Holders of Official Badges 9 5 11 7 32 0.03% 0.02% 0.05% 0.02% 0.03%
+Authorized Entry by Persons Wearing Official Uniform 52 22 21 13 108 0.16% 0.09% 0.09% 0.04% 0.09%
+Agent Authorized Entry by Holders of Employee Passes 119 110 54 71 354 0.38% 0.45% 0.23% 0.20% 0.31%
+Entry by Holders of Gate Key 23 35 58 0.10% 0.10% 0.05%
+A Total - Questionable Entries 478 186 150 141 955 1.5% 0.8% 0.6% 0.4% 0.8%
+Fare Evasion by Entry Type
+Turnstile Related 278 203 152 204 837 0.9% 0.8% 0.6% 0.6% 0.7%
+HEET Related 26 42 31 22 121 0.1% 0.2% 0.1% 0.1% 0.1%
+Agent, Gate, or Panic-Bar Related 559 272 216 222 1,269 1.8% 1.1% 0.9% 0.6% 1.1%
+TOTAL - Illegal and Questionable Entries 863 517 399 448 2,227 2.7% 2.1% 1.7% 1.3% 1.9%
+Children Under 44" Entering Under Turnstile 244 163 85 88 580 0.8% 0.7% 0.4% 0.3% 0.5%
+Authorized Entry by Persons Giving Up Paper Tickets 28 30 19 30 107 0.1% 0.1% 0.1% 0.1% 0.1%
+Authorized Entry by Fare-Paying Persons with Bulk Items 256 258 153 200 867 0.8% 1.0% 0.6% 0.6% 0.8%
+Legal Non-AFC Entries 528 451 257 318 1,554 1.7% 1.7% 1.1% 0.9% 1.4%
+Normal Turnstile Entry 28,800 22,581 21,950 32,820 106,151 90.8% 91.4% 92.9% 93.9% 92.3%
+Normal HEET Entry 1,523 1,161 1,013 1,369 5,066 4.8% 4.7% 4.3% 3.9% 4.4%
+Legal AFC Entries 30,323 23,742 22,963 34,189 111,217 95.6% 96.1% 97.2% 97.8% 96.7%
+TOTAL - Legal Entries 30,851 24,193 23,220 34,507 112,771 97.3% 97.9% 98.3% 98.7% 98.1%
+TOTAL - by Entry Type (All Control Areas, All Hours) Psgrs Psgrs Psgrs Psgrs Psgrs % Total % Total % Total % Total % Total
+Turnstile 29,322 22,947 22,187 33,112 107,568 92.5% 92.5% 93.9% 94.7% 93.5%
+T High Entrance-Exit Turnstile (HEET) 1,549 1,203 1,044 1,391 5,187 4.9% 4.9% 4.4% 4.0% 4.5%
+Service Gate and Agent-Authorized Entries 843 560 388 452 2,243 2.7% 2.7% 1.6% 1.3% 2.0%
+Total Number of Station Entry Observations 31,714 24,710 23,619 34,955 114,998 100% 100% 100% 100% 100%
+Control Area Observation Detail Periods Periods Periods Periods Periods % Total % Total % Total % Total % Total
+Police Present 109 70 50 83 312 10.6% 8.2% 6.5% 7.6% 8.3%
+Station Customer Assistant Present 63 78 30 40 211 6.1% 9.1% 3.9% 3.7% 5.6%
+Panic Bar Alarm Sounded 172 125 120 177 594 16.8% 14.6% 15.7% 16.2% 15.9%
+Total Number of Six-Minute Periods Observed 1,026 857 764 1,095 3,742
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+A. V. Reddy, et al Page 30 of 30
+2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2000-09 Chg
+Annual Ridership (millions) 1,381 1,405 1,413 1,384 1,426 1,449 1,499 1,563 1,624 1,580 14.39%
+Subways Major Felonies 4,262 3,756 3,705 3,218 3,286 3,100 2,707 2,359 2,291 2,034 -52.28%
+# of Major Felonies per 1,000,000 Riders 3.09 2.67 2.62 2.33 2.30 2.14 1.81 1.51 1.41 1.29 -58.28%
+Subways Percent Change from Prior Year -13.39% -1.91% -11.32% -0.89% -7.16% -15.58% -16.40% -6.55% -8.74%
+NYC Population (millions) 8.008 8.062 8.084 8.086 8.104 8.143 8.214 8.275 8.364 TBD
+NYC Major Felonies 252,107 234,229 223,597 212,587 205,804 198,751 189,586 186,685 185,979 TBD
+# of NYC Major Felonies per 1,000,000 Population 31,481 29,053 27,658 26,292 25,395 24,407 23,080 22,561 22,236
+NYC Percent Change from Prior Year -7.71% -4.80% -4.94% -3.41% -3.89% -5.44% -2.25% -1.44%
+Major Felonies: Murder, Rape, Robbery, Fel.Assault, Burglary, Grand Larceny Source: NYPD, NYCT, NYS DCJS, NYS DOH
+2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2000-09 Chg
+Reported Fare Evasion Rate 0.40% 0.32% 0.36% 0.38% 0.38% 0.37% 0.33% 0.32% 0.32% 0.32% -20.00%
+Absolute Fare Evaders* 209,505 168,176 201,331 213,416 214,141 205,316 186,071 188,328 193,941
+Revenue Loss from Evasion (millions) $6.1 $4.6 $5.3 $6.4 $6.8 $7.0 $6.4 $6.6 $7.0
+Annual Subway Revenue (millions) $1,528 $1,526 $1,506 $1,667 $1,795 $1,857 $1,947 $2,030 $2,176
+Fare Evasion Rate - New Methodology** 1.20%
+* no data available for September 2001 fare evasion
+2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2000-09 Chg
+Fare Evasion Arrests 20,126 15,569 12,306 16,180 16,490 12,985 13,068 16,248 1 6,315 19,061 -5.29%
+Fare Evasion Summonses 98,830 83,038 91,101 95,877 103,139 86,029 89,430 84,955 7 8,001 68,225 -30.97%
+Total 118,956 98,607 103,407 112,057 119,629 99,014 102,498 101,203 9 4,316 87,286 -26.62%
+Transit Adjudication Bureau (TAB) Activity
+2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2000-09 Chg
+Revenues Accrued (All Categories) $8.4 $9.5 $6.2 $6.3 $7.0 $9.1 $11.8 $11.9 $10.6 $10.1 20.24%
+Notice of Violations (All Categories) 223,036 185,676 195,214 170,955 165,743 125,657 131,624 137,971 125,155 115,404 -48.26%
+PRE-PUBLICATION DRAFT – March 5, 2011
+subway_evasion_paper_051a.doc (1/31/2012; 207k)
+dohteM
+dlO
+NYCT Subways Major Felony Statistics
+Subways Fare Evasion Rates
+** In response to MTA Audit Subway Fare Evasion Study, a new sampling method was developed to monitor fare evasion independently. Data collection started in April 2009.
+Police Activity
+(a)
+(b)

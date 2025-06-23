@@ -1,0 +1,854 @@
+The Database of Religious History (DRH): Ontology, Coding Strategies and the Future of
+Cultural Evolutionary Analyses
+Edward Slingerland, Department of Philosophy, University of British Columbia
+(edward.slingerland@ubc.ca)
+M. Willis Monroe, Department of Philosophy, University of British Columbia
+(willismonroe@gmail.com)
+Michael Muthukrishna, London School of Economics and Political Science
+Canadian Institute for Advanced Research (michael@muthukrishna.com)
+Abstract
+Perhaps the biggest challenge facing designers of large-scale, cross-cultural databases is that of
+ontology, both in terms of defining the unit of analysis and the construction of an appropriate
+back-end architecture. These decisions are also impacted by the coding strategies adopted,
+envisioned users, and funding limitations. This article explores how one particular database
+project, the Database of Religious History (DRH), has addressed these issues, the advantages and
+drawbacks of the approaches adopted, and the potential of the DRH as a data resource for
+exploring the cultural evolution of religion.
+Keywords
+large-scale cultural databases, big data, cultural evolution, evolution of religion
+Data Sharing Statement
+All of the data discussed in this paper can be freely accessed at religiondatabase.org.
+Funding Statement
+This work was funded by a grant from the John Templeton Foundation (Grant ID# 61837) to the
+first and second authors, “Exploring the Cultural Evolution of Religion Employing a Large-
+Scale, Quantitative-Qualitative Historical Database” (2021-2024)
+Conflict of Interest Disclosure
+The first author is Director, second author Associate Director, and third author Technical
+Director of the Database of Religious History
+The Database of Religious History (DRH): Ontology, Coding Strategies
+and the Future of the Study of the Cultural Evolution of Religion
+Originally created in 2012, as part of a larger grant on the cultural evolution of religion and
+morality, the Database of Religious History (DRH; religondatabase.org) is an open access, online
+resource for the study of religion and cultural evolution. A flexibly-designed temporal and geo-
+coordinated system, built on a relational database that can also be browsed like an encyclopedia,
+the DRH has pioneered a distinctive approach to the design, coding strategies, and function of
+cultural databases, while also slowly building a new form of scholarly community. As of
+September 23, 2022, the DRH has 832 entries and 445 expert contributors,1 which can be
+browsed and searched in various ways through powerful built-in tools. Thanks to our latest
+infusion of funding,2 our coverage is rapidly growing and our technical features expanding.
+In this paper we discuss the challenges involved in creating cultural database ontologies, the
+theoretical and practical rationales behind DRH ontology and design decisions, current and
+future uses of the DRH, and strategies that we have adopted for mitigating the downsides of
+pursuing an expert-based coding approach. In the case of the DRH, the evolution of our database
+ontology and technical features has often been in response to the unique demands of expert-
+based coding (Slingerland & Sullivan 2017, Sullivan et al. 2015/2017), which we believe—
+despite the difficulties involved—is the only sustainable way forward when it comes to
+converting qualitative knowledge about cultural history into quantitative data, especially when it
+comes to large-scale societies. We hope here to not only introduce scholars of religion and
+cultural evolutionary theorists to an important new data resource, but also advance the more
+general conversation concerning cultural database design and coding strategies.
+The Ontology of Cultural Databases
+As recent methodology papers on large-scale cultural databases (Slingerland et al. 2020a,
+Watts et al. 2021) have pointed out, perhaps the central challenge designers face is determining
+the unit of analysis.3 In theory, these could range quite widely both geographically and
+temporally. At one extreme we can imagine a database built around very large units, such as
+“Western” vs. “Eastern” or “ancient” vs. “modern” cultures, that radically collapse either space
+or time in the interest of documenting extremely broad trends. At the other, a very fine-grained
+database might document the cultural beliefs and behaviors of a single individual, or even sub-
+divide the individual depending on life-stage or activity (e.g., individual X when worshiping at a
+Shinto shrine as opposed to a Buddhist temple, or pre- and post-child rearing). Apart from scale,
+there is also the question of whether units of analysis should be artificially imposed upon the
+evidence or derive from emic distinctions (i.e. standard geographic sample or historically
+contingent polities; 200 year spans or historical political divisions).
+A summary of current DRH coverage can be found on our landing page and entries can browsed at
+The DRH was originally created as part of a Canadian Social Sciences and Humanities Research Council (SSHRC)
+grant to PI Slingerland in 2012, with further development funded by a grant by Templeton Religious Trust to
+Slingerland and Muthukrishna in 2017. Current DRH development and operations is funded by a John Templeton
+Foundation grant to Slingerland and Monroe from 2021-2024.
+See, especially, Slingerland et al. 2020a: 4-5 and Watts et al. 2021: 65-68.
+Until recently, the databases employed in cultural evolutionary analyses have, for the most
+part, been limited to the Human Relations Area Files (HRAF; cite), the Standard Cross-Cultural
+Sample (SCCS; Murdock and White 1969) and the Ethnographic Atlas (EA; Murdock 1967).4
+These are all derived from ethnographic data, are temporally “flat” (typically coding a single
+slice of time, or at most two), and focus on the “culture” or “society” as their unit of analysis. As
+Watts et al 2021 observe, one problem with this approach is that “people live in communities
+that change in structure and features over time, contain internal variation, and have fuzzy and
+layered boundaries,” which makes it difficult to define a “culture” or a “society” in such a
+manner that the resulting units of analysis are “meaningfully comparable” (65-66). Commonly-
+used databases, such as the Ethnographic Atlas, do a poor job of responding to this challenge,
+typically homogenizing different subgroups within a larger unit, or simply choosing a particular
+subgroup as representative, often without explicitly noting or defending this decision.
+With regard to the EA unit labeled “Sumatra,” for instance, “the terms ‘society’ and
+‘culture’ could conceivably refer to the group of villages that make up a district, the Toba
+Batak, the Batak peoples, or the broader political state of the Island of Sumatra. In
+practice, the Ethnographic Atlas identifies the Toba Batak as their unit of analysis, but it
+remains unclear how and why the authors chose this particular grouping (Watts et al.
+2021: 67).
+More recent databases have tried to be more specific and consistent. The Pulotu Database of
+Pacific (Watts et al. 2015), for instance, defines their unit of analysis, the “culture,” as “a group
+of people living in a similar physical, social and economic environment that speak mutually
+intelligible languages and have relatively homogenous supernatural beliefs and practices” (Watts
+et al., 2015). This represents a great improvement over the traditionally dominant databases, but
+analysts are still left with a lack of historical depth and a focus mostly on small-scale societies.
+Besides the DRH, the only existing database attempting to tackle the challenge of coding
+large-scale societies with real historical depth is the Seshat Databank project
+Geographical Areas (NGAs) as a sampling technique, Seshat then employs as its unit of analysis
+a particular polity within that NGA, temporally slicing that polity into intervals that can range
+from 50 to several hundred years. This serves as a good example of how choosing the “right”
+level of analysis can very much depend on what sorts of research questions one intends to ask,
+and therefore which particular aspects of culture one wishes to capture. Seshat was originally
+focused on coding aspects of political organization, technology, warfare and economics, which
+means that it found a natural unit of analysis in the administrative district or polity. When it
+comes to a large geographic region, such as the Middle Yellow River Valley, one can reasonably
+expect to be able to formulate coherent codes for these sorts of variables over a time period of
+roughly two hundred years.
+Such large geographical and temporal units are less helpful, however, when it comes to
+aspects of culture such as religion, where a geographical and temporal range of this size should
+be expected to host a myriad of religious groups, places and circulating written texts, all enjoying
+Exceptions to this trend include studies that have created their own, bespoke databases, such as Sosis & Bressler
+2003.
+various degrees of political support, developing rapidly over time, and perhaps existing in
+competition with one another. We would also argue that this structure is best suited to capturing
+those aspects of historical culture that are associated with clearly-defined and relatively dominant
+polities, which could include aspects of state cults or officially-sponsored religions, but will
+inevitably erase the sort of diversity and complexity that typically characterizes human religious
+life in large-scale societies.
+DRH Technical Architecture, Coding Strategies and Ontology: Let a Hundred
+Flowers Bloom
+The DRH approach to defining units of analysis was very much influenced by research on
+cultural evolution, and in particular by models of cultural-group selection (Richerson, et al. 2016;
+Zefferman & Matthew, 2015). Building on seminal work by David Sloan Wilson (1975),
+cultural-groups are defined as collections of traits rather than groups of people. For example,
+models often define a group of those who possess altruistic beliefs and a group of those who
+possess selfish beliefs. These groups may be structured in a variety of ways, from being fully
+intermixed within the same geographic location to being structured and separate, maintaining
+cultural boundaries through geography (e.g. separated by a mountain range) or through
+differential levels of norm enforcement (punishment for norm violation or rewards for following
+norms). New advancements in empirical research confirm the value of measuring with a focus on
+distribution of cultural traits, since people belong to multiple overlapping and embedded groups
+(Muthukrishna et al 2020; White, Muthukrishna, & Norenzayan, 2021). For instance, a person
+may be Buddhist with animist practices and have cultural traits that are also shared with their
+fellow Californians. It is important therefore to study the overlapping influence of a variety of
+cultural (including religious) groups in time and space on historical populations through the
+detailed and intricate web of traits that make up these groups.
+Given this theoretical foundation, the DRH was designed with a focus on flexibly storing
+answers to questions about specific cultural traits—beliefs, behaviors, practices, and traditions—
+attached to space-time coordinates rather than traditions or groups of people. The space-time
+coordinates are defined by a Geographic Information System (GIS) polygon mapping an area
+and a time range. Of course, even if people can hold multiple traits or change their beliefs,
+ultimately it is groups of people, defined in various ways, who are seen as the origins of these
+traits. Indeed, it may be more natural to think of groups of people than of groups of traits
+possessed by people. Experts therefore characterize these traits as features of an aggregate unit of
+analysis, the original one being the Religious Group. When the DRH began, experts were asked
+to answer questions about religious beliefs and practices that were characteristic of a particular
+group of people who could be located in space and time. We have since introduced other units of
+analysis as alternative lenses through which experts can characterize cultural traits, including the
+Religious Place and Religious Text.5
+From the perspective of a reader, analyst or expert contributor, this freedom in defining units
+of analysis is one of the primary ways in which the flexibility of the underlying database
+structure is most clearly experienced. The key to this architectural design is that the fundamental
+unit of data is a trait located in time and space, with the ability to assign these traits to a variety
+For an overview of current polls, see Overview of Polls.
+of units of analysis. The design of the DRH’s backend database allows for new poll types to be
+continually introduced while also maintaining discoverability and coherence in our dataset. The
+centrifugal force of proliferating units of analysis—which could potentially spawn a chaotic or
+incoherent collection of data—is counterbalanced by the centripetal force of linked questions,
+named units of analysis and shared tagging systems grounded in the idea of cultural-groups as
+groups of cultural-traits.
+The balancing of these two forces is a good example of how early design decisions can have
+significant downstream effects on the flexibility and adaptability of a technical platform, because
+multiple units of analysis was not at all part of the original conception of the project. The DRH
+began with its original unit of analysis, the “Religious Group,” as the sole poll type. This unit
+was defined as “a community or network of people (locatable in space and time) who share
+common practices, beliefs, and/or institutions, but who are not necessarily conscious members of
+an explicitly recognized group. The group can be an emic (indigenous) name or category or an
+etic (scholarly attributed) one” (see Tappenden 2017).
+This was sometimes construed by our expert coders quite broadly, especially in the early
+days of the project. For instance, one early entry by the eminent historian of religion Stanley
+Stowers, on “Mediterranean Religion” (Stowers 2019), took as its scope the greatest extent of the
+While such broad-brush entries may, indeed, capture some important shared aspects of religious
+culture across broad swaths of space and time, we tried to actively steer experts away from such
+expansive understandings of “groups” and focus, instead, on distinct communities. The mantra
+that we have encouraged our editorial team to employ when advising new contributors, and that
+Religious Groups that are, from our perspective, overly broad, such as Stowers’ Mediterranean Religion entry, is
+one way in which our deference to the preferences of our experts has affected the structure of our data, a topic to
+which we will return below.
+still guides our strategy, is “smaller is better.” Rather than coding “Tang Dynasty Buddhism,” for
+instance, editors encourage an expert in this period to focus on a specific Buddhist sect in a
+specific location over a relatively short time period. The idea is that, as such smaller entries
+proliferate, an analyst interested in the broader construct of “Tang Dynasty Buddhism” as a unit
+of analysis can derive it by combining all of the relevant smaller entries, resulting in a more
+accurate and nuanced generalization. This bottom-up approach to broader religious categories
+also allows us to assess the coherence of the categories themselves: does the label “Tang
+Buddhism” actually capture anything analytically useful, or do we need to revise our categories?
+We could discover, for instance, that “Tang capital-region religions” or simply “Tang religion”
+captures more variance in poll questions answers than more traditional labels such as
+“Buddhism.” This focus on small units also directly responds to one of the research desiderata
+suggested by Watts et al. 2021: by encouraging experts to focus on smaller units of analysis, we
+“[enable] variation to be studied in its own right” (71). It is impossible to capture this level of
+granularity with the broad units of analysis employed by Seshat or the various ethnographic
+cross-cultural databases.
+To be sure, broad entries from earlier periods of the project remain in the DRH, and newer
+ones have been added in cases where RAs or experts have attempted to import data from existing
+ethnographic or archaeological databases into the DRH. One entry singled out by Watts et al.
+2021 in their discussion of the DRH is Central Africa Iron Age (Carleton 2017), which has a
+very broad geographical and temporal range compared to a more typical DRH Religious Group
+represent the perspectives of scholars working with historical evidence, and serve as a test for
+future studies of coherence of regional generalizations.
+
+Watts et al. present the simultaneous presence of groups defined on such different scales as a
+serious flaw in the DRH design. “This [difference] presents a challenge to systematic cross-
+cultural comparisons,” they argue, “as researchers must account for differences in scale when
+comparing the traits of religious groups” (68). We believe that this concern is unwarranted. An
+analyst wishing to focus solely on more clearly defined Religious Groups could simply exclude
+from their analysis entries with geographical or temporal ranges above a certain threshold. Broad
+entries such as Central Africa Iron Age—which are generally Secondary Source entries pulled
+from external data sources7—currently serve in the DRH as placeholders of a sort, providing sub-
+optimal coverage of what would otherwise be gaps in the database. The plan is that they will
+eventually be supplemented (and, if the analyst desires, supplanted) by more narrowly focused
+entries as our contributor base expands.
+A separate concern of Watts et al. concerning DRH structure has to do with the variety of our
+units of analysis, which gets to the heart of the central challenge for database designers. As
+explained above, the DRH began with a single unit of analysis, the Religious Group. From the
+very beginning of the project, however, we received feedback from certain experts, primarily
+archeologists, that they were uncomfortable working with Religious Group as their analytic lens.
+They might, for instance, work on a temple site in a pre-literate culture, with limited ability to
+make claims about a purported group that might have used the site. They argued that a different
+poll would better suit their subject matter, one that dispensed with certain group-specific
+questions that they found difficult or impossible to answer, and that instead added questions
+relevant to physical remains that might shed at least indirect light on religious beliefs and
+practices.
+After several workshops on the topic, this resulted in the introduction of a new unit of
+analysis to the DRH, the Religious Place, with its own dedicated poll type
+designed to overlap when possible with the Group poll, often with minor wording changes to
+better reflect the relevant unit of analysis. In addition, it includes bespoke sections on the built
+environment and decoration that are not present in the Group poll, allowing an important
+contingent of our contributors to code aspects of the object of their scholarship that are specific
+to both its physicality and the concerns of physical archeology. A similar expert-driven process
+resulted, in 2020, in a third unit of analysis and poll type, that of Religious Text
+to experts who had no interest in speculating about the nature of the group that might have
+produced or used this text, or who study texts used by multiple, incompatible religious groups.
+Like the Place poll, it was designed to overlap with the original Group poll where possible, again
+with appropriate wording changes. Also like the Place poll, it contains bespoke sections on, for
+Secondary Source entries are prepared by advanced graduate student or postdoc RAs using existing published
+sources. Carleton (2017) was the product of an attempt to incorporate data from Peregrine and Ember 2001. Every
+entry in the DRH is tagged with its entry type and, in the case of entries drawn from external sources, the name of
+their source. Entries from external sources often possess their own branding (a distinct color and logo) and link to
+the original source. Also, analysts dubious about the value of such entries can easily, with the click of a button,
+exclude either Secondary Source entries or entries based on a particular external source or both.
+instance, audience and production, that allow it to capture distinctive aspects of texts, as opposed
+to groups or places.
+A separate driver of poll proliferation in the DRH is collaboration with external research
+groups. One important function of the DRH is to serve as an open technical platform, one that
+makes it easier for other teams interested in the cultural dynamics of religion to gather, analyze
+and publish their data. We are well-positioned to provide this service to the field because we
+have invested an enormous amount of time and money into our technical stack, and because our
+home institution, the University of British Columbia, has committed to providing technical
+support to the DRH in perpetuity. In the absence of external funding, UBC will cover DRH cloud
+hosting costs and provide in-kind support to keep the website up-to-date and functioning. The
+benefit for external research groups, then, is potentially significant savings in both time and
+money in not having to build their own, bespoke database, as well as preventing their hard-
+gathered data from meeting the all-too-common fate of becoming inaccessible—or simply
+disappearing—once current grant funding is exhausted. The benefit for the DRH is becoming
+host to new streams of data, albeit typically in the form of new polls tailored to the specific
+research interests of the scholars in question.
+The first external poll hosted on the DRH, “Practitioners of Mystical Harm”
+researcher, Manvir Singh, for a particular research project. We are now in the process of
+developing two new more extensive, expandable polls to meet the needs of two larger, ongoing
+research initiatives. The New Religious Movements (NRM) poll is based on the DRH Group poll
+but includes new sections on charismatic founders, funding mechanisms, relationship to local
+legal codes, and other data more specific to NRMs. It is being created in collaboration with the
+who specialize in NRMs. Its purpose is both to allow the importation of Inform data into the
+DRH and, by responding to concerns of scholars who specialize in NRMs that the existing Group
+poll is not ideal for their purposes, facilitate future DRH contributions on this important topic.
+We are also in the early stages of collaboration with a team wishing to create a poll on
+“Communication with the Supernatural World,” which would zero in on details of prayers,
+curses, and divinations, and may become wrapped into a larger, new poll on “Religious Ritual.”
+So, in response to both expert feedback and the needs of collaborators, the DRH has ended
+up employing multiple units of analysis, all containing core areas of overlap, but each containing
+its own distinct information. These distinct polls provide the project with a method for analyzing
+religious variables according to different lines of evidence. For instance, we can investigate
+which questions are more easily answered by experts who specialize in texts rather than
+archaeology. This type of observation is useful for anticipating gaps or areas of missing coverage
+when the historical record is imperfectly preserved. At the same time, the analytic coherence of
+the DRH—the centripetal force counteracting the centrifugal forces of continually growing poll
+types—is ensured through two primary mechanisms: overlap and backend linkage between polls
+and a single, shared tagging system.
+All DRH polls, including external ones, are designed to possess significant areas of overlap,
+especially with regard to questions that tend to be of interest to those testing hypotheses about
+cultural evolutionary dynamics. Conceptually identical questions are linked in the database
+backend and deliver similar results in searches and analyses. For instance, the Group poll
+question, “Is there special treatment of adherents’ corpses?”, is linked to a similarly-worded
+question in both the Place (“Is this a place for treatment of the corpse?”) and Text (“Are there
+special treatments for adherents’ corpses dictated in the text?”) polls. This means that searching
+the Text and Place polls
+An analyst interested in the presence of special treatment of corpses will therefore be able to pull
+results from across the various polls in the DRH—including subquestions relating to cremation,
+mummification, exposure to the elements, etc.—that reflect not only the existence of groups that
+are doctrinally committed to such a practice, but also the presence of physical sites where such
+practices were carried out or the circulation of texts that advocate such practices. Similarly, the
+great deal of overlap between new polls created by outside research teams and the DRH Group
+poll will help to grow a shared, core set of data about the history of religion.
+A second type of “glue” that holds together the various DRH units of analysis is the
+requirement that experts apply to all entries religious tradition tags drawn from a tagging tree
+that is shared across poll types.8 An analyst interested, for instance, in “Korean Christianity,” can
+instantly pull all entries relevant to that tag or a parent tag (“Korean religion,” “Christianity,”
+“Evangelicalism,” “East Asian religions”), whether they are Groups, Places, Texts or external
+research team polls. External research groups interested in a particular corner of religious
+cultural space, such as New Religious Movements, also play an important role in expanding and
+improving our tagging tree.
+Finally, the fact that all entry answers are grounded in space and time also creates a different
+dimension of order in the DRH dataset: any specific question, regardless of poll type, can be
+queried by an analyst whose main focus is a specific geographic area and time range, or by a
+researcher interested in a particular topic. In other words, although our analytic unit of analysis
+might be a Religious Group, Place or Text, specific cultural traits—discoverable through
+keyword searches—can be explored individually, disaggregated from the larger unit of analysis
+with which they are associated.
+In conclusion, while Watts et al. 2021 portray the promiscuity when it comes to allowable
+units of analysis as a structural flaw in the DRH,9 it is, in fact, a design feature—albeit one that
+strikes a balance between the ideal desires of cultural evolutionary analysts and the experts from
+whom they must get their data. To concede a point to Watts et al., it is fair to say that the
+proliferation of poll types in the DRH is not what someone solely concerned with cultural
+evolutionary analysis would desire. The DRH began with the Religious Group as its only unit of
+analysis, and there is a certain structural elegance and analytic simplicity that would have been
+gained by forcing scholars interested in particular sites or texts to shoehorn their characterization
+of these aspects of religious culture into a purported group that could have been said to have used
+these sites or texts. The problem is simply that scholars of religion do not like to do this. Clicking
+radio buttons to convert their qualitative judgements into data is already extremely jarring and
+group/3. Experts are allowed, with editor approval, to add new tags, so the tree is always growing, and one editorial
+challenge faced by the DRH is maintaining consistency and coherence in the tree. This is one of the areas where top-
+down editorial management is required. Tag hierarchies are represented in entry set-up (during the tagging process),
+but experts can also pull laterally by simply searching for other relevant tags they might like to apply. Representing
+the entire tree in a single hierarchy is extremely challenging considering the various ways in which religions could
+be classified (e.g., a form of Chinese Buddhism might be a sub-tag in a tree headed by “Buddhism,” or in a tree
+headed by “Chinese religion”; “Buddhism” itself might be classed under “Indic religions”). Our response to this
+problem is allowing a plethora of tagging decision-trees and relying on the search feature of the site to pull all
+relevant tags in browsing or analyzing. We see the tags as capturing (with editorial oversight) the intuition of
+scholars about the relationship between their entry and other entries on the site; generally these intuitions are held
+within and between related disciplines representing top-down forms of categorization.
+“The variables coded are different across unit categories, limiting the ability to draw comparisons between them”
+(67). A perhaps related problem is that Watts et al. 2021 seem to conflate DRH tags (which include regions and
+religious traditions) with poll types (“The predefined categories of units in [the DRH] include regions, religious
+groups, religious places, places, and polities”; 67).
+foreign for them. Forcing them to recharacterize their topics of research would create an even
+greater barrier to recruitment.
+This is perhaps the most dramatic way in which the basic structure of the DRH has evolved
+in response to the desires of our experts, a topic we will return to below. Similarly, requiring
+external research groups to use one of our own polls to collect their data would be unappealing to
+them and ultimately counterproductive: both external teams and the DRH benefit when we can
+meet them halfway, providing the control, authorship and specificity they require to pursue their
+research interests while also ensuring enough overlap that—especially combined with the
+employment of a shared tagging tree—the expansion of a coherent set of data will be ensured.
+The Benefit of Promiscuity: A Comparison of Units of Analysis Across
+Cultural Databases
+Before moving on to the particular methods and features of the DRH, it would be helpful to
+add some flesh to the bones of the rather abstract discussion of units of analysis above.
+Imagine an analyst interested in religious cultural evolution in the area corresponding to
+modern Vietnam. HRAF contains an entry on “Vietnam: Vietnamese,” covering the full span of
+Vietnamese history, from prehistoric archaeology to the modern state. It provides an excellent
+short overview of religious history in the region, and notes the co-existence of world religions
+like Mahayana Buddhism and Christianity with local animist beliefs, but is of little or no help to
+a scholar interested in coding or tracking the development of religious belief and behavior over
+time. The SCCS covers two cultures in this region, “Annamese/Vietnamese” (SCCS73) and
+“Rade” (SCCS74).10 Both entries are based on ethnographic data gathered in a single time slice
+from near-contemporary societies, the former in the 1930s and the latter in 1960s. The entry on
+Annamese contains a few codes for religion, identifying the local religion as Mayahana
+For the Rade, filtering for religion we find two codes, identifying the local religion as
+The Ethnographic Atlas code for “high gods” (EA034) is quite specific and culturally particular,
+including the requirement that the supreme being created the world, which might account for
+why Mahayana Buddhism is coded as not possessing a high god.
+Overall, the data on religious belief and practice is not extensive—not surprising considering
+that the focus of the SCCS is not religion in particular—and we only have two, temporarily flat
+slices of “culture” in Vietnam. Two deeper problems with databases such as these are expressed
+well by Turchin et al. in a forthcoming article (2022: 3):
+First, these databases promote a global “ethnographic present” that largely excludes
+modern European populations and large-scale complex societies of the past. Many entries
+draw exclusively on dated summaries of contact-era accounts, or ethnographic research
+conducted with indigenous populations living under colonial rule, strongly influenced by
+the scholarly discourse of the mid-twentieth century. Second, synchronic or static
+databases, such as the SCCS and the Ethnographic Atlas, cannot tell us how societies
+change over time, and thus provide only limited insight into the causal mechanisms at
+work in cultural evolution. (Turchin et al. 2022: 3).
+A dataset composed exclusively of single snapshots of the “ethnographic present,” however
+detailed, will be of limited use in discerning dynamics of cultural evolution over long time
+scales.
+Turning to the DRH, filtering current coverage using a map of contemporary Vietnam returns
+for “A supreme high god is present”
+Certain extremely broad groups, with worldwide extent, were excluded.
+The earliest entries primarily relate to groups and texts from early and imperial China, when the
+north of Vietnam was firmly part of a broader Chinese cultural sphere, heavily subject to Chinese
+cultural influence. They also include, however, an early Hindu movement, Pāśupatas (Acri
+2018), that originated in India but spread as well to Southeast Asia. Later entries include broadly
+circulating texts and widely dispersed groups—Confucian, Daoist, Buddhist and even Christian
+(Nestorian Christianity, )—that influenced Vietnamese culture in the medieval period. We also
+find two place entries (The Ppo Romé temple-tower complex and Đồng Dương Temple), dating
+from 500 CE-1400 CE, that give insight into, respectively, local Buddhist and Hindu sects of the
+Cham people, both of which represent distinctive blends of local and world religious traditions.
+Finally, a scholar interested in near-contemporary indigenous religion is given two entries,
+Raglai (Quang 2019) and Haroi (Quang 2020), local syncretic sects such as Cham Bani and
+Cham Ahiér (Noseworthy 2018, 2021)12 that combine elements of Islam, Hinduism and Mahayan
+Buddhism (), as well as specifically local forms of Mahayana Buddhism (Buddhism in the
+Mekong Valley, Truong 2020) and Christianity (Hmong Christianity, Rumsby 2019)—the latter
+of which has traveled with the Hmong diaspora to North America and Europe. It should also be
+noted that, although the DRH definition of a supreme high god13 differs somewhat from “high
+god” as defined in the EA, the plethora of “Yes” answers in this region should make an analyst
+nervous about accepting the SCCS coding on this topic.
+Not all of these entries will be relevant given the goals of a given study, and can be easily
+excluded from an analysis. As this eclectic mix suggests, however, religious cultural history is
+complicated, with multiple strands of indigenous and imported religions evolving, competing,
+blending and borrowing from one another with bewildering speed (see, for example, Hansen
+2020 and Kitiarsa 2005). Given our still minimal coverage, there are clearly many pieces missing
+in the DRH portrayal of religion in Vietnam. However, it is difficult to see how one could
+assemble the full mosaic of these cultural evolutionary processes without something very much
+like the approach we have adopted: multiple small, focused, detailed accounts of groups, places
+and texts, all grounded in space and time, and covering the full course of archeological and
+recorded history.
+The only other cultural database besides the DRH that addresses the need to provide
+diachronic coverage is the Seshat Databank. Seshat does not provide coverage of Vietnam, but
+we can move northward to look at their coverage of the Middle Yellow River Valley (MYRV) to
+get a sense of the difference in granularity of coverage. As mentioned earlier, Seshat slices the
+polities present in their Natural Geographic Areas (NGAs) into roughly 50-200 years slices. In
+this region of China, this generally corresponds to distinct dynasties, although longer dynasties
+For instance, in the early medieval period the MYRV is divided into four polities in Seshat:
+25-219 CE Eastern Han
+265-317 CE Western Jin
+386-557 CE Northern Wei
+For Cham Ahiér, the Group entry is supplemented with a place entry, The Ppo Romé temple-tower complex
+(Noseworthy 2019), and a text entry, Dalikal Ppo Klaong Garai (Noseworthy 2022).
+“High god” “refers to a supernatural being who is identified by the religious group as qualitatively more important
+and powerful than any other supernatural being, even if not all-powerful.”
+581-617 CE Sui
+For each polity Seshat provides sixteen codes related to “Religion and Normative Ideology,”
+some with justifications. Users are also directed to a backing “Moralizing Supernature
+Punishment Narratives14 (hereafter “Narratives”) to further understand the coding process.
+The Narratives for this period (pp. 106-108) do a nice job of briefly describing what, in
+qualitative terms, the situation was with native ways of thought, the introduction of Buddhism,
+and the interaction of the various traditions. Turning to the Databank itself, however, it is not
+clear how the Narrative relates to the actual codes assigned. For the codes that have justifications
+(the first seven, having to do with deification of rulers and normative ideas concerning equity
+and prosociality), the codes and coding justifications are identical from the Western Jin to
+Northern Wei, an over 350 year period characterized by great religious innovation and upheaval
+Western Jin (265-317 CE)
+Northern Wei (386-557 CE)
+Focusing on one of the sets of codings without justifications, “Moralizing enforcement in
+afterlife,” this is coded in the Eastern Han as “absent,” even though the Narratives note that, in
+the Eastern Han, Buddhism introduced to China the idea of punishments in the afterlife (106-
+107). The Narratives also note that Buddhism was not recognized as an official ideology in the
+Eastern Han, which perhaps explains the “absent” coding—since we are getting only a single
+code for the period, perhaps by default it is the official ideology. One can see, however, how this
+overly simplifies the religious cultural reality on the ground. Entering the Western Jin, this
+variable is still coded as “absent,” even though the Narratives identify Mahayana Buddhism,
+which certainly endorses moralizing enforcement in the afterlife, as an official state ideology
+(107). The coding then switches to “present” for the Sui and Northern Wei, again without
+explanation.
+that overlap geographically with the Seshat MYRV map. For the sake of simplicity, entries for
+earlier groups or texts with long date ranges (such as transmitted classics, e.g., the Book of
+Documents or the Analects of Confucius) are not included.
+MYRV NGA, as of August 3 2022, excluding circulating texts from earlier periods, and showing
+answers to the question, “Supernatural punishments are meted out in the afterlife.”
+Here we find a rich mix of folk, Daoist, Confucian, Buddhist and even Christian groups or texts.
+An analogous variable in the DRH to the Seshat “moralizing enforcement in afterlife”15 returns a
+variety of answers, including a mixture of “yes” and “no” answers even within what we might
+think of as monolithic “traditions” like Daoism, Confucianism or Buddhism. This suggests that
+the actual situation on the ground with regard to these sorts of religious beliefs is considerably
+more complex than the Seshat unit of analysis or coding strategy is able to reflect.
+To be sure, current DRH coverage is merely a fraction of what we anticipate it will become
+over the next several years. Even these snapshots of two corners of the database, however, give a
+sense of how utilizing many small units of analysis (groups, places, texts), all grounded in space
+and time, can allow an analyst to build up a picture of cultural evolutionary processes in a given
+region of the world in way that preserves the complexity of history and provides real diachronic
+depth. This approach also supports the study of historical psychology (Muthukrishna, Henrich,
+Slingerland, 2021), reconstructing data from dead minds to understand the historical origins of
+present-day psychology, the psychology of the past, and what causes psychology to change over
+time. It similarly reconciles high-level, more natural units of analysis with low-level
+theoretically-grounded groups of cultural-traits, allowing analysts to apply statistics which have
+thus far been limited to contemporary data—such as the calculation of cultural fixation (CFst;
+Muthukrishna, et al. 2019; White et al. 2021; Obradovich et al.)—to historical data.
+There are certainly costs to an expert-centered approach, not least of which is the extremely
+slow and unpredictable nature of the data gathering. The payoff, however, is much greater detail
+and nuance than any other existing architecture of which we are aware. It is our firm belief that
+there is no way to ensure high-quality and accurate data concerning the cultural historical record
+without something like this kind of flexibility in units of analysis combined with fine granularity.
+In the Group poll we have two separate questions for afterlife reward and punishment (“Supernatural punishments
+are meted out in the afterlife”; “Supernatural rewards are meted out in the afterlife”), with analogous questions in the
+The difficulty, of course, is getting humanities experts on board. While challenging, this barrier
+is not impossible to overcome, and there are also ways to mitigate the downsides of the expert-
+centered approach. We will address both the challenge and mitigation strategies below.
+DRH Coding Strategies and Feature Development
+In previous publications we have compared expert-based and research assistant (RA)-based
+data collection strategies when it comes to constructing cross-cultural databases (Slingerland and
+Sullivan 2017, Sullivan et al. 2018). Both approaches have their advantages and disadvantages,
+and both can produce (in ideal circumstances) high quality data for later analysis. RA-based
+coding is usually performed by full-time personnel directly hired by database directors for the
+express purpose of filling out database coverage. Advantages include predictable, targeted data
+collection and the ability to impose a clearly-understood and consistently-applied coding rubric
+(see Turchin et al. 2020: 46-48, for a description of an RA-based coding method). Downsides
+include the need for significant funding for the RAs, as well as coding quality concerns that arise
+when RAs are working outside of their domains of expertise (Slingerland et al. 2017, Slingerland
+et al. 2020b). This approach is also difficult to scale up, and risks potentially negative reactions
+from humanities scholars if they feel that their own expertise is not being taken seriously by the
+scientific community.
+Expert-based coding provides the highest levels of expertise and nuance, as the decisions
+concerning how to convert qualitative judgements into quantitative codes are being made by the
+people who best understand the relevant material. A potential downside is idiosyncracies in
+interpreting coding rubrics. This can be somewhat mitigated by tight editorial control, as well as
+allowing experts access to discussions of particular coding decisions made by previous experts.16
+The challenges when it comes to expert-gathered data, however, are much more serious than this.
+Humanities scholars not only have little to no interest in providing quantitative codes for their
+qualitative knowledge, they are also typically actively and theoretically opposed to doing so,
+being suspicious of scientific approaches to the study of culture. There is also currently very little
+agreement on the value of digital humanities or digital-native publications, as opposed to
+traditional monographs, edited volumes or journal articles in issues of hiring and promotion. This
+means that expert coverage accumulates slowly, and is both hard to target and impossible to
+accurately predict.
+As we will explain below, the principled resistance to coding qualitative data can be at least
+partially overcome by emphasizing the more traditionally humanistic functions of the DRH
+platform. The other central drawbacks to the expert-based approach—slowness and
+unpredictability in data coverage—can, however, not only be surmounted but, ideally,
+transformed instead into a strength. If one can successfully create a new scholarly culture within
+which contribution to an online platform such as the DRH becomes normative, one can
+completely bypass the data-gathering bottleneck inherent to the top-down, RA-based method.
+Were this cultural shift to take hold, data gathering could potentially ramp up exponentially as
+contributors attract new contributors through word of mouth, publishing a DRH entry on
+Inspired by a similar feature in Glottolog (glottolog.org), we are planning to introduce a new feature to the DRH
+where experts can click a button on a particular poll question to see guidelines on coding (clear yes and no
+examples, borderline cases), as well as any discussion on the topic from previous experts.
+religious group X comes to be seen as a badge of expertise on that topic, and DRH publications
+on a CV begin to mean something to hiring and promotion committees.
+In order to help this cultural shift to happen, we became aware quite early on that it would be
+necessary for the DRH to become a useful resource to humanities scholars themselves, for their
+own purposes. Partly, this involved emphasizing to humanities scholars that the quantitative
+aspect of the DRH was not only useful to scientists studying cultural evolutionary dynamics, but
+also to humanities scholars themselves. We have argued (e.g., Slingerland 2019) that scholarly
+generalizations in the humanities (“Early Chinese religion did not place a great emphasis on the
+afterlife”) have, up to now, been essentially reports of gut feelings about scholarly consensus in
+one’s field. Such intuitive judgement may have been adequate when fields were small and
+changed slowly, but are no longer able to keep up with the information explosion that every
+branch of the university has undergone with the advent of online publications, proliferating
+journals, and increased production of high-quality non-English scholarship. The ability of the
+DRH to provide an instant overview of scholarly opinion on a given question is thus an
+invaluable tool for any humanities scholar or classroom instructor.
+In addition to explaining the humanistic importance of the central function of the DRH—
+turning qualitative into quantitative—our recognition that we needed to appeal to fellow
+humanists has motivated us to create an architecture and technical platform that has, in certain
+regards, prioritized humanistic desiderata over what might be desirable from the point of view of
+a scientist interested in performing a cultural evolutionary analysis. For instance, APIs, data
+download, and analytic features have taken a back seat to visualization functions that can
+enhance classroom experiences and bibliographic functions useful to humanities researchers.
+Below we note some of this more humanities-friendly functionality, as we believe this sort of
+appeal will be crucial to any successful cultural database.
+Rich Qualitative Data and DOIs
+Early attempts to get entries for the DRH emphasized poll completion as simply clicking a
+radio button for each question and moving on to the next. This resulted in shorter entry
+completion time, but left both the experts unsatisfied with their experience and the project
+without relevant contextual data for each answer. More recently, our guidelines for experts have
+emphasized the desirability of writing qualitative comments to contextualize each answer and
+including rich-media (images, text, video, audio) alongside their qualitative comments to give
+the reader (or analyst) a fuller picture and justification for their choice of quantitative answer.
+This emphasis has two purposes. To begin with, the narrative justification is useful for both
+analysts and historians interested in understanding the background sources and decision-making
+process for a particular coding decision. Secondly, it also allows the historian to express their
+fuller understanding of the particular source material, which in turn contributes to their
+satisfaction with the entry itself. Additionally, the ability to add rich media allows experts who
+have personal photographs or otherwise unpublished material a venue for making this material
+available to the wider scholarly community.
+Adding qualitative comments throughout means that, when searching the database, the user
+will get what are essentially mini-encyclopedia articles on the topic by a wide range of experts,
+which can be extremely useful entirely apart from whatever categorical answers might be
+attached to them.
+body distinction present?”
+Aside from the rich qualitative comments and media added by the expert, they do in the end
+actually have to come down on a quantitative answer: “Yes”, “No”, “Field doesn’t know”, or “I
+don’t know.” Early versions of the database included only the first two, while the latter two were
+added over time. These answers options (“Field doesn’t know” and “I don’t know”) provide two
+main benefits to the project. The first is purely a psychological benefit for our experts: rather
+than leave a question unanswered, and therefore the entry incomplete, they can choose one of
+these two options, which has resulted in a much higher rate of completion. These answer options
+also provide important data to analysts and future researchers—for instance, a concentration of
+“Field Doesn’t Know” answers might help identify promising lines of scholarly investigation.
+Digital projects also have to keep in mind the legacy of their data and design sustainability
+guidelines for archiving and dissemination. The DRH currently takes completed entries that have
+passed through editorial oversight and archives a PDF version of the entry with the UBC library
+%20of%20Religious%20History%20(DRH)%22). As part of this process DOIs are minted for
+the entries as well, which allow for easier citation and discoverability for the material in the
+DRH. The process of minting DOIs and archiving data is one step in an on-going effort to enroll
+the DRH in a standard indexing service, a development that will both benefit our experts and
+increase the appeal of contributing to the DRH.
+Bibliography Function
+Previous versions of the DRH allowed experts to add citations to their entries and individual
+entries with the rich qualitative comment fields. This was sufficient for capturing the sources and
+references used by the expert, but lacked integration with standardized citation tools or
+systematic integration within the database. A recently designed feature now allows experts to add
+one or more references per answer (and general citations for the entry) through a rich citation
+interface. This makes it much easier for experts to add citations (and cite previously mentioned
+material). From an analyst’s perspective, since these citations are integrated within the database
+and linked to specific answers and entries, they can also be added to existing query methods and
+serve as an important data-point for meta-analysis.
+This citation-querying ability is not merely a benefit to quantitatively-oriented analysts.
+Humanities researchers can also use it to find relevant citations on a per question basis rather
+than the traditional top-down search for comporanda (recent encyclopedia entry, secondary
+sources, relevant primary work). For example, researchers interested in foodways can find
+citations that directly reflect their discrete questions from neighboring (or even global)
+perspectives. Similarly, a researcher could look for very recent citations across the database
+dealing with particular questions. Within the scope of meta-analysis, this type of data opens up a
+wide range of interesting topics, for example: which fields are relying on publications from a
+small group of scholars, or which questions lack any recent citations and are therefore likely in
+need of more study.
+Pedagogical Uses and Supervised Entries
+The DRH team has also received separate grant funding to create a suite of pedagogical
+resources, in the form of lesson plans and instructor guides, for use in a variety of classrooms
+ranging from secondary to post-secondary and graduate level classes. These lesson plans start by
+introducing students to the basic concepts at the core of quantifying qualitative information
+(falling under the popular pedagogical category of “digital literacy”). Later lessons task the
+students with comparing discrete entries in the DRH, visualizing questions across time and
+space, and finally using sample data to explore the analytical power of the dataset. All of the
+lesson plans and instructor guides are available on the website under Creative-Commons
+Additionally, the DRH has created a separate entry type, Supervised Entry, and
+accompanying documents for instructors. This entry type is intended to facilitate a collaborative
+student experience wherein a single student (or group) works with their instructor to create an
+entry based on material relevant to their classroom experience. This introduces the student to
+crucial research skills—what resources to explore, how long to search before concluding “Field
+Doesn’t Know,” etc.—and students are encouraged to seek the input of an expert to oversee their
+work and vet the final product.17 It is important to note that entries created through this process
+are clearly labeled in the DRH as such and can be omitted from a data sample if desired.
+17 For an example see the entry on Tel Arad by Kristina Shishkova (2022).
+Some members of the project also recently published an article in the journal Religions
+focused on using the DRH for pedagogy. The piece, Daniels et al 2022, takes core questions
+from Religious Studies (namely the existence of supreme high gods) as a starting point and
+shows how to visualize results from the DRH with an eye towards having students investigate
+these questions in a variety of cultural contexts.
+Social Media Strategy and Multilingual Access
+The DRH twitter feed is quite active, with our postdocs featuring new entries as they are
+published. They are not only able to reach a broad and discipline-specific audience, but can tailor
+the thread to feature the sort of information their followers would find interesting. For instance,
+postdoc Diana Moreiras posted a thread on one of her own entries on the “Formative Olmec”
+
+Besides garnering multiple likes and re-tweets, and therefore at least indirectly expanding
+awareness of the DRH, Moreiras was contacted by several experts in her field who had never
+heard of the DRH, but are now interested in contributing entries of their own.
+Dr. Moreiras has also translated DRH recruitment documents into Spanish, and is in the
+process of translating all of the polls and the interface into Spanish. Spanish will join Chinese,
+soon to be followed by an updated French version (to be supervised by new postdoc Dr. Julian
+Weideman) and future expansions to Arabic, Japanese and other languages. The ability of
+experts to interact with the DRH in their language of preference involves a great deal of both
+technical development—we are currently working on a system to organize the various language
+versions of the site and the polls—and highly-skilled work. It also entails a certain degree of
+analytic risk: the possibility that technical terms in other languages might not be perfect
+analogues for English terms, thereby limiting the inter-usability of data gathered in various
+languages, is a constant worry. This is one reason we only expand into languages where core
+team members, such as postdocs, have both native fluency and knowledge of the scholarly
+literature, to ensure that translations are as accurate as possible and to flag potential translation
+problems. The payoff is not only the ability to tap into new and extensive pools of international
+experts, but also potentially to correct any biases that might result from an over-dependence on
+English-language scholarship.
+Dual-Use Platforms: The Only Way Forward for Cultural Databases
+Turning the DRH into a platform that is intuitive and pleasant to use, useful in the classroom,
+and that serves the specific needs of humanities scholars as well as cultural evolutionary
+analysts, has involved an enormous amount of development time and expense. We feel that this
+sort of investment is not only worth it in the long run, but essential for any successful cultural
+database. Projects which attempt to realize only one of these aims will encounter difficulty
+succeeding due to lack of funds, audience, and analytic capability. Data-heavy sites can lose the
+interest of their humanities constituency and co-partners, RA-based data gathering is dependent
+on regular funding and constant oversight, and projects without pedagogical components lose the
+important methodological influence of student and classroom-led thinking.
+The only way to break out of data-gathering bottlenecks, and to produce a large and
+continually-growing cultural dataset, is to tap into the expanding community of experts who
+actually study the cultural historical record. The promise is potentially exponential growth, as
+experts encourage their colleagues to sign up via social media and word of mouth, and
+contributing to the platform becomes a new sort of scholarly norm. The DRH is still some way
+from reaching this breakthrough point, which we believe will ultimately require being listed on a
+major indexing service (crucial especially to scholars in Europe and Asia) and having our data
+used in more scholarly publications in the humanities. There are, however, promising signs that
+large bump in Fall 2020, caused by a specific targeted recruitment drive, the rate DRH entry
+publication dipped back to historical norms but then began to grow more steadily in winter of
+2021 when the project began relying more on incoming postdocs for expert recruitment.
+Continuing on this trajectory will give us a critical mass of entries, all deposited with UBC
+library and issued DOIs, which in turn should help make the case for our being listed on
+scholarly indexes. Once publishing a DRH entry becomes a clear positive on a scholar’s CV,
+useful for both promotion and merit purposes, we anticipate a rapid and continuous increase in
+our coverage.
+Having and Eating of the Cake: Targeted Postdoc Recruitment and the
+Standard Religious Cross-Cultural Sample (SRCCS)
+In addition to trying to maximize expert recruitment, there are other ways in which the DRH
+endeavors to continue to enjoy the benefits of an expert-centered coding strategy while also
+adopting strategies to mitigate the downsides, paramount among them the opportunistic and
+unpredictable nature of new contributions and the resulting patchy coverage.
+Our primary and preferred mode of contribution is the Expert entry, which is completed by
+the expert themself and reviewed by an editor before publication. We have also, however,
+created other entry types to allow us to engage more targeted data gathering. The Secondary
+Source entry is generally created and completed by an RA (an advanced graduate student) using
+a variety of secondary sources, or drawing from an external resource—such as another cross-
+cultural database. These sorts of entries have allowed us to, in collaboration with Carol Ember of
+HRAF, import to the DRH religion-relevant data from that resource. This process has been on-
+going over the past several years, with our goal to replicate the SCCS sample of 186 small-scale
+cultures. A similar, earlier effort focused on replicating some of the coverage of the Peregrine
+and Ember’s Encyclopedia of Prehistory (Peregrine and Ember 2001). In collaboration with the
+some of their entries in the DRH with a mix of standard Expert entries and Secondary Source
+entries. Another entry type, Expert Source, involves an RA completing an entry on behalf of a
+given expert, using their own published works. The expert in these cases is typically a senior
+scholar (often one uncomfortable with using digital media), and the RA one of their advanced
+graduate students. When the entry is complete it is reviewed, edited and finally approved by the
+expert. As with Supervised Entries, all entry types are clearly identified, and analysts concerned
+about the usefulness of any given entry type can easily exclude it from their analysis.
+More ambitiously, and more recently, we have adopted a targeted postdoc recruitment
+strategy. The DRH currently employs six postdocs
+geographic and temporal expertise. Over their two to three years of employment with the project,
+they first design, in consultation with an external senior scholar in their field, a plan for both
+“minimum” and “ideal” coverage in their area of expertise. They are then tasked with completing
+this coverage through a mixture of recruitment of colleagues, producing their own entries, target
+Expert Source entries, and—as a last resort—Secondary Source entries.
+The goal is to, by the end of our current grant funding cycle in 2024, have a diverse set of
+regions/time periods across the globe completely covered, which together can serve as a
+standardized sample for cultural evolutionary analysts. Analysts can choose to work with one of
+what we anticipate will be a series of frozen, time-stamped versions of this sample, or to work
+with the latest iteration of what we anticipate will be a constantly-growing dataset. This sample,
+the DRH Standard Religious Cross-Cultural Sample (SRCCS), will essentially represent a new
+version of the SCCS, but including large-scale societies—where much of the cultural
+evolutionary action is to be found—and having infinitely more nuance, detail and geographical
+and temporal resolution. The current regions of priority include Yellow and Yangzi River
+Valleys (Dr. Hamm), Ancient Egypt (Dr. Arbuckle), Mesoamerica/South America (Dr.
+Moreiras), Ancient Greece and Rome (Dr. Canlas), Ancient Near East (Dr. Danielson), Late
+Antique/Early Medieval East Mediterranean (Dr. Randall), and Islam in the Middle East and
+North Africa (Dr. Weideman).18 We hope to devote our remaining postdoc slots to South Asia,
+Subsaharan Africa, North America and/or Oceania.
+In addition to providing us with some top-down control and predictability of coverage, this
+postdoc strategy will, over time, help to change the culture around large databases in various
+circles of the humanities. The postdoc employment calls themselves have greatly enhanced the
+visibility of the DRH and piqued widespread interest in the project. Being recruited by a trusted
+colleague in one’s field makes it more likely that an expert will get involved. Moreover, as
+postdocs cycle off the project, they will ideally become assistant professors at institutions around
+the world, training their own generation of graduate students who will use the DRH in their own
+research, employ it in the classroom, and create DRH entries themselves.
+18 Responsible postdocs, external advisors and coverage plans can be viewed at Public Postdoc
+Progress.
+Conclusion
+The DRH has existed in some form since 2012—in other words, for roughly a decade. It has
+only now, in 2021-22, reached the point where it has enough data coverage for at least
+preliminary analyses. Our first internal project utilizing DRH data, constructing a bottom-up
+religious taxonomy from individual DRH entry answers, is forthcoming in the Journal of the
+American Academy of Religion (Monroe et al., forthcoming). Another paper on religion and
+ecology is under submission (Spicer et al., submitted), and the first paper from an external
+research group drawing on DRH data has recently been published (Wormley and Cohen 2022).
+Nonetheless, we are still some years away from providing either a standardized sample set of
+data or usefully comprehensive coverage of the globe. Coverage in many ways reflects the
+idiosyncratic expertise of the founding director and earlier project postdocs, and outside of our
+postdoc-supervised areas is growing in a haphazard and unpredictable manner. Although an
+expert-based approach has been, on some measures, slow to accumulate data, a decade is barely
+a blip in the thousands of years of data we are parsing, coding, and making available to modern
+analysts. We are optimistic about the future, and remain convinced that the database architecture,
+analytic ontologies, coding strategies and site features that we have created are the best hope for
+the future of cultural historical databases.
+The main lesson we feel the cultural evolutionary community needs to internalize is that
+quality cultural data gathering—especially when it comes to complex, large-scale societies—
+demands time, patience and flexibility. It also requires buy-in from humanities scholars, who are
+the only ones able to provide the highest-quality coding. Slowly and consistently building up
+trust and interest in various branches of the humanities creates a dynamic that benefits both
+scientists and humanities scholars, and ideally makes collaboration across the science-humanities
+border more likely.
+A decade ago, the DRH technical platform was created by one of us with a shoestring budget
+and spare time during graduate school. The first two entries—from prominent scholars of early
+Chinese religion—were solicited in person and recorded on paper by another of us, in one case
+involving a bribe of specially-selected New York State Riesling. From two people, a tiny amount
+of money, and a lot of time and favors, the technical platform, contributing experts, editorial
+team, and budget slowly grew. It is difficult to predict with any certainty where the DRH will be
+in another decade, but with our team of postdocs, a growing set of technical features, network of
+external collaborating teams, and new entries pouring in every day, we hope by then the project
+will have grown as dramatically and transformatively as it has over the past decade.
+References:
+Acri, Andrea. 2018. "Pāśupatas". Database of Religious History, Retrieved September 29, 2022,
+Carleton, Chris. 2017. "Central African Iron Age". Database of Religious History, Retrieved
+Danielson, Andrew J., Caroline Arbuckle MacLeod, Matthew J. Hamm, Gino Canlas, Ian E.
+Randall, Diana K. Moreiras Reynaga, Julian Weideman, and M. Willis Monroe. 2022. "Testing
+and Disrupting Ontologies: Using the Database of Religious History as a Pedagogical Tool"
+Hansen, Anne. 2020. “Buddhist Religion-making in Colonial Cambodia,” in Liber Amicorum.
+Mélanges réunis en hommage à Ang Chouléan, edited by Grégory Mikaelian, Ashley Thompson,
+and Siyonn Sophearith, pages 391-411.
+Kitiarsa, Pattana. 2005. “Beyond Syncretism: Hybridization of Popular Religion in
+Contemporary Thailand.” Journal of Southeast Asian Studies 36, no. 3: 461–87.
+Murdock, George Peter. 1967. “Ethnographic Atlas: A Summary.” Ethnology 6, no. 2: 109–236.
+Murdock, George P., and Douglas R. White. 1969. “Standard Cross-Cultural Sample.”
+Muthukrishna, M., Bell, A. V., Henrich, J., Curtin, C., Gedranovich, A., McInerney, J. & Thue,
+B. 2020. Beyond Western, Educated, Industrial, Rich, and Democratic (WEIRD) Psychology:
+Measuring and Mapping Scales of Cultural and Psychological Distance. Psychological Science,
+31(6), 678-701.
+Muthukrishna, M., Henrich, J., & Slingerland, E. (2021). Psychology as a Historical Science.
+Annu Rev Psychol, 72, 717-749. doi: 10.1146/annurev-psych-082820-111436.
+Monroe, M. Willis, Spicer, Rachel, Arbuckle MacLeod, Caroline, Canlas, Gino , Chilcott, Travis
+, Christopher, Stephen , . . . Slingerland, Edward (Forthcoming). On the Category of “Religion”:
+A Taxonomic Analysis of a Large-Scale Database. Journal of the American Academy of
+Religion.
+Noseworthy, William. 2018. "Cham Ahiér". Database of Religious History, Retrieved November
+9, 2021. doi:10.14288/1.0373465
+Noseworthy, William. 2019. "The Ppo Romé temple-tower complex (Bimong Kalan Ppo Romé,
+Tháp Ppo Romé)". Database of Religious History, Retrieved June 2, 2022.
+doi:10.14288/1.0385822
+Noseworthy, William. (2021). "Cham Bani". Database of Religious History, Retrieved August
+10. 2022. doi:10.14288/1.0416064
+Noseworthy, William. 2022. "Dalikal Ppo Klaong Garai". Database of Religious History,
+Retrieved September 3, 2022. doi:10.14288/1.0416065
+Obradovich, Nick, Özak Ömer, Martín Ignacio, Ortuño-Ortín Ignacio, Awad Edmond, Cebrián
+Manuel, Cuevas Rubén, Desmet Klaus, Rahwan Iyad and Cuevas Ángel. 2022. “Expanding the
+measurement of culture with a sample of two billion humans” J. R. Soc. Interface. vol. 19,
+doi:10.3386/w27827
+Peregrine, P. N., & Ember, M. (Eds.). 2001. Encyclopedia of Prehistory Volume 1: Africa.
+Boston, MA: Springer US.
+Prince, Alexandra. 2020. The Oneida Community. Database of Religious History, Retrieved
+Quang, Isvan. 2019. "Raglai". Database of Religious History, Retrieved June 15, 2022,
+doi:10.14288/1.0391871
+Quang, Isvan. 2020. "Haroi". Database of Religious History, Retrieved June 15, 2022.
+doi:10.14288/1.0391873
+Richerson, Peter, Ryan Baldini, Adrian V. Bell, Kathryn Demps, Karl Frost, Vicken Hillis, Sarah
+Mathew et al. 2016. "Cultural group selection plays an essential role in explaining human
+cooperation: A sketch of the evidence." Behavioral and Brain Sciences vol 39.
+Rumsby, Seb. 2019. "Hmong Christianity". Database of Religious History, Retrieved October 1,
+Shishkova, Kristina. 2022. "Temple at Tel Arad". Database of Religious History, Retrieved
+Slingerland, Edward. 2019. Body and Mind in Early China: Beyond Orientalism and the Myth of
+Holism. New York: Oxford University Press
+Slingerland, Edward, Atkinson, Quentin D., Ember, Carol R., Sheehan, Oliver, Muthukrishna,
+Michael, Bulbulia, Joseph, & Gray, Russell D. 2020a. Coding Culture: Challenges and
+Recommendations for Comparative Cultural Databases. Evolutionary Human Sciences, 1-20.
+doi: 10.1017/ehs.2020.30
+Slingerland, Edward, Monroe, M. Willis, Sullivan, Brenton, Walsh, Robyn Faith, Veidlinger,
+Daniel, Noseworthy, William, . . . Spicer, Rachel. 2020b. Historians Respond to Whitehouse et
+al. (2019), “Complex Societies Precede Moralizing Gods Throughout World History”. Journal
+of Cognitive Historiography, 5(1-2), 124-141. doi: 10.1558/jch.39393
+Slingerland, E., and B. Sullivan. 2017 ‘Durkheim with Data: The Database of Religious History’.
+Journal of the American Academy of Religion 85, no. 2: 312–47.
+Sosis, R., & Bressler, E. R. 2003. Cooperation and commune longevity: A test of the costly
+signaling theory of religion. Cross-Cultural Research, 37(2), 211-239.
+Spicer, Rachel , Monroe, M. Willis, Hamm, Matthew, Danielson, Andrew J., Canlas, Gino,
+Randall, Ian, & Slingerland, Edward. (Submitted). Religion and Ecology: A Pilot Study
+Employing the Database of Religious History. Current Research in Ecological and Social
+Psychology.
+Stowers, Stanley. 2019. Mediterranean. Database of Religious History, Retrieved August 11,
+Sullivan, Brenton, Michael Muthukrishna, Frederick S. Tappenden, and Edward Slingerland.
+2018. “Exploring the Challenges and Potentialities of the Database of Religious History for
+Cognitive Historiography”. 2015/2017. Journal of Cognitive Historiography 3 (1-2):12-31.
+Tappenden, F. S. 2017. ‘The Database of Religious History and the Study of Ancient
+Mediterranean Religiosity’. Journal of Cognitive Historiography 3 (1–2): 32–42.
+Truong, Trang. 2020. "Buddhism in the Mekong Delta". Database of Religious History,
+Turchin, Peter, Brennan, Rob, Currie, Thomas, Feeney, Kevin, Francois, Pieter, Hoyer,
+Daniel, . . . Whitehouse, Harvey. (2015). Seshat: The Global History Databank. Cliodynamics:
+The Journal of Quantitative History and Cultural Evolution, 6(1).
+Turchin, Peter, Hoyer, Daniel, Bennett, James, Basava, Kiran, Cioni, Enrico, Feeney, Kevin, . . .
+Whitehouse, Harvey. (2020). The Equinox2020 Seshat Data Release. Cliodynamics: The Journal
+of Quantitative History and Cultural Evolution, 11(1).
+Turchin, Peter, Whitehouse, Harvey, Larson, Jennifer, Cioni, Enrico, Reddish, Jenny, Hoyer,
+Daniel, . . . François, Pieter. (2022). Explaining the rise of moralizing religions: a test of
+competing hypotheses using the Seshat Databank. Religion, Brain & Behavior, 1-28.
+Watts, Joseph, Jackson, Joshua Conrad, Arnison, Chris, Hamerslag, Elise M., Shaver, John H., &
+Purzycki, Benjamin Grant. 2021. Building Quantitative Cross-Cultural Databases From
+Ethnographic Records: Promise, Problems and Principles. Cross-Cultural Research, 56(1), 62-
+94. doi: 10.1177/10693971211065720
+Watts, J., Sheehan, O., Greenhill, S. J., Gomes-Ng, S., Atkinson, Q. D., Bulbulia, J., & Gray, R.
+D. 2015. Pulotu: Database of Austronesian Supernatural Beliefs and Practices. In M. van Elk
+(Ed.), PLOS ONE (Vol. 10, Issue 9, p. e0136783). Public Library of Science (PLoS).
+White, C. J. M., Muthukrishna, M. (equal senior) & Norenzayan, A. 2021. Worldwide evidence
+of cultural similarity among co-religionists within and across countries using the World Values
+Survey. Proceedings of the National Academy of Sciences, 118 (37) e2109650118.
+Wilson, David Sloan. 1975. “A Theory of Group Selection.” PNAS 72: 143-146.
+Wormley, Alexandra S. and Cohen, Adam B. 2022. “Pathogen prevalence and food taboos: A
+cross-cultural analysis” in Current Research in Ecological and Social Psychology vol. 3.
+Zefferman, Matthew R., and Sarah Mathew. 2015. "An evolutionary theory of large‐scale human
+warfare: Group‐structured cultural selection." Evolutionary Anthropology: Issues, News, and
+Reviews 24, no. 2: 50-61.

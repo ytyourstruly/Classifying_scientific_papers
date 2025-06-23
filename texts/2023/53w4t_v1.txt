@@ -1,0 +1,426 @@
+Mortality impact of the Israel-Gaza conflicts (2008-2023): A comparative
+analysis of civilians versus combatants
+1 2,3 2,3,4,5*
+Houssein H. Ayoub , Hiam Chemaitelly , and Laith J. Abu-Raddad
+1Mathematics Program, Department of Mathematics, Statistics, and Physics, College of Arts and
+Sciences, Qatar University, Doha, Qatar
+2Infectious Disease Epidemiology Group, Weill Cornell Medicine-Qatar, Cornell University,
+Doha, Qatar
+3Department of Population Health Sciences, Weill Cornell Medicine, Cornell University, New
+York, New York, USA
+4Department of Public Health, College of Health Sciences, QU Health, Qatar University, Doha,
+Qatar
+5College of Health and Life Sciences, Hamad bin Khalifa University, Doha, Qatar
+Word count: Abstract: 286 words, Main Text: 3,275 words.
+Number of tables: 2.
+Number of figures: 5.
+Running head: Civilian deaths in Israel-Gaza conflicts.
+Disclose funding received for this work: Other
+Correspondence
+Professor Laith J. Abu-Raddad, Infectious Disease Epidemiology Group, Weill Cornell Medicine
+- Qatar, Qatar Foundation - Education City, P.O. Box 24144, Doha, Qatar. Telephone: +(974)
+4492-8321. Fax: +(974) 4492-8333. E-mail: lja2002@qatar-med.cornell.edu.
+ABSTRACT
+Background: There is a need for statistical methodologies that scrutinize civilian casualties in
+conflicts, evaluating the degree to which the conduct of war affects civilians and breaches the
+laws of war. Employing an epidemiological method, this study introduced, developed, and
+applied a novel approach for investigating mortality of civilians versus combatants in conflicts.
+Methods: A deterministic mathematical model, structured by age and sex, was developed to
+describe the process of conflict-related deaths among both combatants and civilians. The model
+was calibrated using demographic and conflict-related data from different Israel-Gaza conflicts.
+To quantify the extent of the impact on civilians and determine whether they are the primary
+focus of a conflict, a statistical metric, the index of killing civilians, along with associated
+criteria, was devised.
+Results: The model-estimated proportion of deaths in Gaza categorized as combatants was
+62.1% (95% uncertainty interval (UI): 57.6-66.2%), 51.1% (95% UI: 47.1-54.9%), and 12.7%
+(95% UI: 9.7-15.4%) in the 2008-2009, 2014, and 2023 Israel-Gaza conflicts, respectively. The
+index of killing civilians was 0.61 (95% UI: 0.51-0.74), 0.96 (95% UI: 0.82-1.12), and 7.01
+(95% UI: 5.50-9.29) in the 2008-2009, 2014, and 2023 conflicts, respectively. These index
+values indicate strong evidence for civilians being an object of war in the 2008-2009 and 2014
+conflicts, but combatants were still identified as the primary focus of the conflict. In the 2023
+conflict, there is robust evidence for civilians being an object of war, with civilians identified as
+the primary focus of the conflict.
+Conclusions: Findings imply a progressive shift in Israel's rules of engagement over time, with a
+trend towards a higher threshold for acceptable civilian casualties. The 2023 conflict stands apart
+from preceding Israel-Gaza conflicts, with civilians identified as the primary focus of the
+conflict.
+Keywords: Epidemiology; war; mortality; mathematical model; Palestine
+Introduction
+Wars have been a recurring aspect of human societies [1, 2]. While modernity has ushered in
+health, social, and economic development, it has also brought about modern warfare, often
+resulting in extensive casualties [3, 4]. The majority of war-related deaths since 3000 BC
+occurred in the 20th century [1]. Throughout history, various human societies and cultures have
+sought to establish norms aimed at mitigating the impact of war on civilians and restraining the
+deliberate targeting of civilians during conflicts [3]. A pivotal milestone in this pursuit was the
+Geneva Convention of 1949, which established modern international laws of war in response to
+the atrocities of World War II [3, 4]. Specifically, the Geneva Convention codified protections
+for civilians during wartime and prohibited violence against them in the context of armed
+conflicts [3, 4].
+While humanity grapples with challenges that necessitate coordinated efforts among nations,
+such as addressing diseases, ensuring access to clean water, alleviating poverty, and combating
+global warming, a substantial portion of national budgets persists in being allocated to military
+capabilities and the conduct of costly wars [5]. Considering the advancements in science and
+technology, envisioning a world where everyone enjoys a decent standard of living, lives under
+the rule of law, and has their civil, political, and cultural rights protected and respected is not a
+far-fetched notion. While these ideals have materialized to a large extent within modern liberal,
+democratic, and developed societies, extending them to interstate relations remains elusive.
+Mitigating the impact of wars on human societies requires stringent enforcement of modern
+international laws of war designed to minimize the toll on civilian populations. However,
+political leaders and military entities rarely acknowledge violations of these laws, even in
+situations where a significant portion of war-related casualties consists of civilians [6, 7]. They
+also often employ justifications such as "collateral damage" to rationalize civilian deaths and
+assert claims about the absence of intentional harm to civilians [8], making verification of true
+intent challenging. Estimating and counting the number of civilian casualties in wars pose also
+different challenges [9].
+Therefore, there is a critical need for scientific methodologies to scrutinize civilian casualties in
+armed conflicts, assessing the extent to which civilians are objects of war, determining whether
+they are the primary focus of the conflict, and evaluating whether the conflict violates the laws of
+war. However, and despite the importance of this matter, there is paucity of quantitative
+empirical analyses of compliance with the laws of war [3]. In this article, we introduce an
+approach to assess the impact of mortality on civilians compared to combatants in conflicts,
+complementing other forms of evidence. The approach is rooted in methods of investigating
+disease and mortality in epidemiology. A strength of this approach is its provision of a statistical
+metric that directly quantifies the extent to which civilians are affected by the conflict and could
+be an object of war. The establishment of more robust methods for scrutinizing and investigating
+violations of the laws of war may improve the conduct of warfare with the additional scrutiny,
+reducing reliance on harming civilians as a means to achieve political objectives.
+Methods
+Mathematical model
+The occurrence of deaths resulting from war can be mathematically represented through a sex-
+and age-structured population-based deterministic model. The population impacted by the
+conflict encompasses both combatants and civilians, who are subjected to a hazard rate of death
+related to the conflict. This dynamic process can be captured through a system of differential
+equations:
+𝑑𝑁(𝑖, 𝑎; 𝑡)
+= −𝛿(𝑖, 𝑎)𝑁(𝑖, 𝑎; 𝑡) − 𝜇(𝑖, 𝑎)𝑁(𝑖, 𝑎; 𝑡)
+𝑑𝑡
+Here, 𝑁 is the population size, 𝛿 represents the combatant hazard rate of death attributed to being
+targeted as a combatant by opposing military forces, while 𝜇 signifies the civilian hazard rate of
+death resulting from this conflict. The subscripts 𝑖 = 𝑓 and 𝑖 = 𝑚 denote females and males,
+respectively. The subscript 𝑎 indicates the age group (𝑎 = 1, … ,20), where each age group
+corresponds to a 5-year age band (0-4, 5-9, 10-14,…, 95-99 years old).
+Assessing whether civilians are objects of war can be done by estimating and comparing the
+likelihoods of civilians and combatants being killed by the conflict. Here, the hazard rates 𝛿 and
+𝜇 serve as direct metrics for the likelihood of conflict-related death, representing the "force of
+killing" experienced by combatants and civilians, respectively. These metrics provide direct
+measures of the effect of the conflict on combatants versus civilians. Mathematically, the 𝛿 and 𝜇
+rates play a role analogous to the "force of infection" in models of infectious disease
+transmission [10, 11]. They can be termed the "force of combatant killing" and the "force of
+civilian killing," respectively, aligning with epidemiology terminology.
+Index of killing civilians
+In an ideal war with perfect adherence to international laws of war, 𝛿 has a non-zero value
+depending on the intensity of the armed conflict, while 𝜇 has a value of zero as only combatants
+are targeted and killed. In reality, such conflicts are not common, and civilians are affected to
+some extent, leading to some non-zero value for 𝜇. Therefore, a metric is needed to quantify the
+extent to which civilians are an object of war by comparing the 𝛿 and 𝜇 rates. The ratio of these
+two age- and sex-population-weighted rates provides such a metric, hereafter labeled as the index
+of killing civilians:
+𝑛 =
+The higher the value of 𝑛, the greater the extent of civilians being an object of war. This
+establishes a summary metric for comparing different conflicts in terms of the impact on
+civilians versus combatants.
+In a conflict that strictly adheres to international laws of war, 𝑛 = 0. However, in realistic
+situations, unintentional civilian deaths may occur. Criteria are necessary to characterize
+different conflicts based on evidence of civilians being an object of war. Ideally, these criteria
+should be established through the analysis of thoroughly-understood conflicts where the potential
+for civilians being an object of war has been adequately investigated. Ethicists' involvement may
+be critical in providing context for setting and defining these criteria. The criteria should also
+consider the terrain and circumstances of the conflict. Unavoidable fighting in densely populated
+urban areas can result in collateral damage, even without intentional targeting of civilians.
+Therefore, the criteria should account for the nature of the terrain and circumstances of the
+conflict.
+Informed by the principle of proportionality in the international laws of war [8] and data on the
+classify conflicts, ranging from those with no/weak evidence of civilians being an object of war
+(𝑛 < 0.1) to conflicts with both robust evidence of civilians being an object of war and civilians
+being the primary focus of the conflict (𝑛 ≥ 1.0). Importantly, when 𝑛 exceeds 1, it indicates
+that the force of killing civilians surpasses the force of killing combatants in the population,
+implying that civilians are the primary focus of the conflict. The threshold indicating strong
+evidence of civilians being an object of war was set at 𝑛 = 0.5. At this point, 𝑛 = 0.5 signifies
+that the likelihood of the conflict causing the death of a civilian reaches 50% of that for killing a
+combatant—a sensible threshold for identifying conflicts with an unacceptable impact on
+civilians.
+Applications to Israel-Gaza conflicts
+This method for investigating civilian deaths was applied to five Israel-Gaza conflicts: the 2008-
+2009 conflict, the 2012 conflict, the 2014 conflict, the 2021 conflict, and the ongoing 2023
+conflict. The parameter 𝜇 was assumed to be independent of sex and age, a reasonable initial
+assumption given that civilian deaths typically occurs in locations where individuals of all age
+and sex groups coexist, such as homes, shelters, and various other civilian settings.
+𝛿 naturally varies based on both sex and age, but its specifics differ across conflicts due to
+variations in the combatant profile. For this study focusing on Gaza conflict-related deaths, 𝛿
+was assumed to be zero for females, as there is no apparent history of Hamas engaging females
+in combat. It was also assumed to be zero for individuals below 15 and above 65 years old, as
+Hamas does not appear to involve children or the elderly as combatants. The values for all other
+male age groups were determined by fitting the model to the conflict data.
+Data sources
+This study relied on the analysis of publicly available data. Data on fatalities in the Gaza Strip by
+age and sex during the ongoing 2023 conflict were obtained by analyzing the list of confirmed
+deaths reported by the Palestine Ministry of Health for the period October 7, 2023, to October
+26, 2023 [12]. This database encompassed 6,745 documented deaths after the removal of entries
+information on fatalities available to the authors for this ongoing conflict.
+Data on fatalities in earlier conflicts were retrieved from the B'Tselem database [13]. B'Tselem is
+an Israeli non-profit organization concerned with documenting human rights violations in the
+Israeli-occupied Palestinian territories. This comprehensive database covers all conflict-related
+fatalities that occurred in the Gaza Strip between September 30, 2000, and September 19, 2023,
+and includes details on individuals' engagement in hostilities.
+The age and sex distributions of fatalities were extracted for specific time periods that defined
+December 27, 2008, to January 18, 2009; the 2012 conflict from November 14, 2012, to
+November 22, 2012; the 2014 conflict from July 8, 2014, to August 26, 2014; and the 2021
+conflict from May 10, 2021, to May 21, 2021.
+The aggregate numbers of conflict-related deaths calculated for these periods closely aligned
+with those reported by the United Nations Office for the Coordination of Humanitarian Affairs
+(UN OCHA) for these conflicts [14]. Engagement in hostilities was defined as the proportion of
+individuals with confirmed participation in hostilities and those subjected to targeted killings
+among those with non-missing information for this variable.
+The demographic distributions of the population of Gaza by age and sex for the years 2009-2021
+were obtained from the Palestinian Central Bureau of Statistics [15]. This distribution was not
+available for the year 2023, and was therefore derived by applying the population distribution by
+age and sex for the year 2022 to the estimated population size of Gaza for 2023 [15]. Statistical
+analyses were performed using Stata/SE version 18.0 (Stata Corporation, College Station, TX,
+USA).
+Model fitting
+The hazard rates 𝛿 and 𝜇 were derived by fitting the sex and age distributions of conflict-related
+deaths in each round of conflict, along with the aggregate numbers of conflict-related deaths.
+Model fitting employed a nonlinear least-square fitting method, minimizing the sum of squares
+between all data points and model predictions. This technique was implemented in MATLAB
+[16] using the Nelder-Mead simplex algorithm [17].
+Uncertainty analysis
+An uncertainty analysis was conducted to estimate the range of uncertainty in the projected
+outcomes. This process involved randomly sampling data points from the 95% confidence
+intervals of the sex and age distributions of conflict-related deaths. The model was then refitted
+to these data points. This process was repeated 1,000 times to generate distributions for the
+estimated outcomes. Subsequently, these distributions were utilized to derive the means and 95%
+uncertainty intervals (UIs).
+Sensitivity analysis
+The demographic composition of the Gaza population is skewed towards a younger age, with
+over 50% of Gazans being under 20 years old [15]. Consequently, the model's estimates
+pertaining to older age groups are less certain due to the sparse numbers of fatalities in these
+categories. Moreover, the assumption that the combatant population comprises males between
+15-64 years old might not accurately reflect reality, as males between 50-64 are likely
+infrequently involved in combat. Consequently, a sensitivity analysis was conducted, wherein all
+model estimates were recalculated, assuming the combatant population consists only of males
+between 15-49 years old.
+Results
+Fig. 1 illustrates the model's fitting to the conflict-related death data for both males and females
+across the different age groups in the five examined conflicts. The model exhibited a good fit to
+the data for the 2008-2009, 2014, and 2023 conflicts. However, statistical uncertainties were
+high in the 2012 and 2021 conflicts, primarily due to the relatively small number of fatalities in
+introduced here is most effective for examining large-scale conflicts, as it provides statistical
+population-level evidence rather than individual-level evidence.
+Notably, the proportion of female deaths across age groups closely mirrored the age structure of
+the population, aligning with the assumption of a 𝜇 that is largely independent of age, as
+assumed in this modeling approach. The distribution of male deaths exhibited a peak among
+young adults, consistent with young adult men being the primary combatant age group in the
+population.
+Fig. 2 shows the model-estimated 𝛿, representing the force of combatant killing, plotted against
+age for the male population. Except for the 2023 conflict, a noticeable peak is evident among
+young adult men in their 20s. This observation aligns with individuals in their 20s being the
+predominant age group within Hamas's combatant force.
+Fig. 3A presents the model-estimated proportion of deaths categorized as combatants versus
+civilians. In the 2008-2009 conflict, the proportion of deaths attributed to combatants was close
+to twice that of civilians. In the 2012 and 2014 conflicts, the proportion of deaths categorized as
+combatants versus civilians was comparable, with a slight elevation for civilians in 2012 and a
+slight increase for combatants in 2014. In the 2021 conflict, the proportion of deaths attributed to
+combatants was approximately half that of civilians. The 2023 conflict stands out as singular and
+distinct from all previous conflicts, with estimated deaths among civilians several times higher
+than that among combatants.
+Fig. 3B illustrates a comparison between the model-estimated proportion of deaths categorized
+as combatants and the actual estimation based on investigating each death by B'Tselem [13]. In
+the conflicts with narrow uncertainty intervals in estimates, the 2008-2009 and 2014 conflicts,
+the model-estimated proportion of combatant deaths substantially exceeded B'Tselem's estimated
+proportion [13]. The reason for this overestimation is likely related to the implicit assumption in
+the model that the increase in the male hazard rate of death relative to females is solely attributed
+to participation in combat. However, young adult men may have a higher civilian hazard rate of
+death than females because they are more likely to be the primary caretakers for their families,
+making them more susceptible to conflict-related fatalities while engaged in civilian activities
+like procuring essential needs. This overestimation of combatants in the model suggests that
+evidence generated by the present method is likely to be conservative and may underestimate the
+toll of conflicts on civilians.
+Fig. 4 displays 𝑛, the index of killing civilians, for the examined conflicts. In the 2008-2009 and
+2014 conflicts, 𝑛 was 0.61 (95% UI: 0.51-0.74) and 0.96 (95% UI: 0.82-1.12), respectively.
+focus of these conflicts was still more on combatants than civilians. In the 2012 and 2021
+conflicts, the uncertainty intervals were wide in the 𝑛 estimates, but the results were still
+consistent with strong, if not robust, evidence for civilians being an object of war. In the 2023
+conflict, 𝑛 was 7.01 (95% UI: 5.50-9.29), much larger than 1, signifying robust evidence for
+civilians being an object of war, and that civilians are the primary focus of the conflict rather
+than combatants.
+Fig. 5 presents a comparison of the results for 𝑛 in the sensitivity analysis, assuming the
+combatant population consists only of males between 15-49 years old, with the results of the
+main analysis across examined conflicts. Both the sensitivity and main analysis results confirmed
+similar findings, indicating that model uncertainties arising from the smaller demographics of the
+older population are not likely to impact the study's conclusions. The analysis also indicated that
+incorporating individuals aged 50-64 into the combatant population led to more conservative
+estimates, thereby underestimating the impact of the conflict on civilians.
+Discussion
+We introduced an approach for the quantitative investigation of civilian deaths in conflicts. This
+methodology represents a step toward developing a broader class of methods tailored for
+scrutinizing civilian casualties in conflict situations, complementing other approaches, such as
+the investigation of conflict incidents, to provide evidence of whether civilians were a target of
+war activity. Further refinement will enhance the approach and broaden its applicability. This
+includes refining the specific criteria for categorizing conflicts using the index of killing civilians
+needed to address potential variations in the civilian conflict-related hazard rate of death based
+on sex and age. This may involve incorporating additional data sources, not available in this
+study, into the model fitting process.
+Applying this approach to Gaza deaths in five distinct rounds of the Israel-Gaza conflict revealed
+key findings. Firstly, the 2023 conflict stands out as distinctly different from all preceding rounds
+of conflict. The results indicate that civilians were an object of war, and importantly, the primary
+focus of this specific conflict—a departure from the pattern observed in earlier rounds of the
+conflict. The findings do not align with civilian casualties being attributed to collateral damage,
+prompting questions about the intent behind the bombardments that resulted in such extensive
+civilian mortality.
+Secondly, the findings suggest a progressive shift in Israel's undisclosed rules of engagement
+over time, transitioning towards a higher threshold for acceptable civilian casualties. The index
+of killing civilians demonstrated an increasing trend across the conflict rounds (Fig. 4), with a
+major surge in the 2023 conflict, reflecting a pronounced change in rules of engagement. Reports
+from human rights organizations and news sources substantiate these findings, confirming
+unprecedented documented attacks on civilians [18, 19]. These attacks have resulted in mass
+civilian casualties, the obliteration of entire families, and extensive destruction of residential
+neighborhoods [18].
+This study has limitations. While we introduced, to our knowledge, a novel approach to
+investigating civilian deaths in conflicts, further refinement of the model can enhance the
+methodology's applicability and improve its capacity to generate precise estimations.
+Nonetheless, the results from applying the model to the Israel-Gaza conflicts are clear-cut,
+particularly in highlighting stark differences between the 2023 conflict and earlier conflicts. This
+suggests that any future refinement is unlikely to alter these findings.
+While the data inputs for the conflict rounds preceding 2023 are complete and well-documented,
+the ongoing nature of the 2023 conflict means that its data are neither final nor complete, and are
+subject to potential changes as the conflict unfolds, particularly in relation to capturing counts of
+deaths and the age and sex distributions of fatalities.
+The model's estimates for older age groups exhibit wide uncertainty intervals, primarily
+attributable to the sparse numbers of fatalities within these small age demographics. Minor
+variations in the number of fatalities within the older age groups can significantly impact the
+model's estimates for these specific cohorts. Nevertheless, the model's predictions, being based
+on the total population, are not likely to be influenced by these uncertainties. This assertion is
+further supported by the results of the conducted sensitivity analysis (Fig. 5). Despite these
+limitations, the model yielded informative results in estimating effects, and there are reasons to
+consider the model estimates as conservative, potentially underestimating the true toll of the
+conflict on civilians.
+In conclusion, this study introduced and implemented a quantitative approach to investigate
+civilian deaths in conflicts, with a specific application examining Gaza deaths in five Israel-Gaza
+conflicts. The approach carries the potential for establishing statistical evidence, complementing
+traditional forms of evidence, in investigating civilian deaths in conflicts. The findings
+highlighted the distinctive nature of the 2023 Israel-Gaza conflict, characterized by extensive toll
+on civilians, where civilians are identified as the primary focus of the conflict. The results also
+suggested a progressive shift in Israel's rules of engagement over time, moving towards a higher
+threshold for acceptable civilian casualties.
+Acknowledgements
+The authors are grateful for support from the Biomedical Research Program and the Biostatistics,
+Epidemiology, and Biomathematics Research Core, both at Weill Cornell Medicine-Qatar.
+Contributors
+LJA conceived and designed the study and analyses and wrote the first draft of the article. HHA
+extracted data and conducted mathematical modeling analyses. HC extracted data, managed
+databases, and performed statistical analyses. All authors contributed to the discussion and
+interpretation of the results, as well as the writing of the manuscript. All authors have read and
+approved the final manuscript.
+Funding
+The authors are grateful for support from the Biomedical Research Program and the Biostatistics,
+Epidemiology, and Biomathematics Research Core, both at Weill Cornell Medicine-Qatar. The
+funders of the study had no role in study design, data collection, data analysis, data
+interpretation, or writing of the article. Statements made herein are solely the responsibility of
+the authors.
+Ethics approval
+This study relied on the analysis of publicly available data, exempt from regulatory review and
+approvals.
+Consent for publication
+Not applicable.
+Data availability statement
+The study is based on publicly available data.
+Competing interests
+We declare no competing interests.
+ORCID IDs
+evidence of civilians being an object of war and determining whether they are the primary focus
+of the conflict.
+Interpretation
+Index of killing
+civilians ( n )
+n  0 . 1
+No/weak evidence of civilians being an object of war; combatants
+are the primary focus of the conflict
+0 . 1  n  0 . 3
+Insufficient evidence of civilians being an object of war; combatants
+are the primary focus of the conflict
+0 . 3  n  0 . 5
+Moderate evidence of civilians being an object of war; combatants
+are the primary focus of the conflict
+0 . 5  n  1
+Strong evidence of civilians being an object of war; combatants are
+the primary focus of the conflict
+n  1
+Robust evidence of civilians being an object of war; civilians are the
+primary focus of the conflict
+Conflict 2008-2009 2012 2014 2021 2023
+Males Females Males Females Males Females Males Females Males Females
+Age
+N=1,181 N=210 N=146 N=21 N=1,694 N=491 N=175 N=58 N=3,843 N-2,902
+group
+% (95% CI) % (95% CI) % (95% CI) % (95% CI) % (95% CI) % (95% CI) % (95% CI) % (95% CI) % (95% CI) % (95% CI)
+0-4 2.1 (1.4-3.0) 1.6 (1.0-2.4) 5.4 (2.5-10.0) 1.8 (0.4-5.2) 3.2 (2.5-4.1) 3.8 (3.0-4.6) 4.3 (2.1-7.8) 1.3 (0.3-3.7) 6.1 (5.5-6.7) 5.4 (4.9-6.0)
+5-9 2.2 (1.5-3.1) 1.7 (1.1-2.5) 2.4 (0.7-6.0) 1.2 (0.1-4.3) 4.0 (3.2-4.9) 2.0 (1.4-2.6) 3.9 (1.8-7.2) 2.6 (1.0-5.5) 6.0 (5.4-6.6) 5.6 (5.0-6.1)
+10-14 5.7 (4.5-7.0) 2.5 (1.8-3.5) 3.0 (1.0-6.8) 1.2 (0.1-4.3) 4.0 (3.2-4.9) 2.2 (1.7-3.0) 3.9 (1.8-7.2) 3.4 (1.5-6.7) 5.9 (5.4-6.5) 4.8 (4.3-5.4)
+15-19 14.2 (12.4-16.1) 1.9 (1.2-2.7) 10.2 (6.0-15.8) 1.2 (0.1-4.3) 10.0 (8.8-11.4) 1.7 (1.2-2.3) 5.6 (3.0-9.4) 2.6 (1.0-5.5) 5.3 (4.8-5.9) 3.8 (3.4-4.3)
+20-24 23.3 (21.1-25.6) 1.3 (0.8-2.0) 18.6 (13.0-25.3) 3.0 (1.0-6.8) 19.6 (18.0-21.4) 2.2 (1.6-2.9) 12.9 (8.9-17.9) 1.7 (0.5-4.3) 5.6 (5.0-6.1) 3.5 (3.1-4.0)
+25-29 13.2 (11.4-15.0) 0.9 (0.5-1.6) 19.2 (13.5-26.0) 0.6 (0-3.3) 12.9 (11.5-14.4) 2.1 (1.5-2.7) 13.7 (9.6-18.8) 2.6 (1.0-5.5) 5.7 (5.2-6.3) 3.9 (3.4-4.4)
+30-34 7.2 (5.9-8.7) 0.8 (0.4-1.4) 10.2 (6.0-15.8) 0.0 (0.0-0.0) 7.0 (6.0-8.2) 1.3 (0.9-1.9) 8.6 (5.3-12.9) 1.7 (0.5-4.3) 6.3 (5.8-7.0) 3.9 (3.5-4.4)
+35-39 4.1 (3.1-5.3) 0.5 (0.2-1.0) 4.2 (1.7-8.4) 0.0 (0.0-0.0) 4.5 (3.7-5.5) 1.2 (0.8-1.8) 7.7 (4.6-11.9) 1.7 (0.5-4.3) 4.2 (3.7-4.7) 2.5 (2.2-2.9)
+40-44 3.7 (2.8-4.9) 0.9 (0.5-1.6) 3.6 (1.3-7.7) 0.6 (0.0-3.3) 2.7 (2.0-3.4) 1.2 (0.8-1.8) 4.3 (2.1-7.8) 2.1 (0.7-4.9) 2.8 (2.4-3.2) 2.0 (1.6-2.3)
+45-49 3.2 (2.4-4.3) 0.7 (0.3-1.3) 3.6 (1.3-7.7) 0.6 (0.0-3.3) 2.4 (1.8-3.1) 1.1 (0.7-1.6) 2.6 (1.0-5.5) 2.1 (0.7-4.9) 2.0 (1.6-2.3) 1.6 (1.3-2.0)
+50-54 2.5 (1.8-3.5) 0.3 (0.1-0.7) 3.0 (1.0-6.8) 0.6 (0.0-3.3) 2.5 (1.9-3.3) 1.0 (0.6-1.5) 1.3 (0.3-3.7) 0.0 (0.0-0.0) 1.8 (1.5-2.2) 1.6 (1.3-1.9)
+55-59 1.2 (0.7-1.9) 0.5 (0.2-1.0) 1.8 (0.4-5.2) 0.0 (0.0-0.0) 1.6 (1.2-2.3) 0.5 (0.3-0.9) 2.1 (0.7-4.9) 0.9 (0.1-3.1) 1.6 (1.3-2.0) 1.3 (1.0-1.6)
+60-64 0.9 (0.5-1.6) 0.5 (0.2-1.0) 1.2 (0.1-4.3) 0.0 (0.0-0.0) 1.1 (0.7-1.6) 0.5 (0.3-1.0) 1.7 (0.5-4.3) 0.0 (0.0-0.0) 1.3 (1.1-1.6) 1.3 (1.0-1.6)
+65-69 0.4 (0.2-0.9) 0.2 (0.0-0.6) 0.0 (0.0-0.0) 0.6 (0.0-3.3) 0.7 (0.4-1.2) 0.6 (0.4-1.1) 1.7 (0.5-4.3) 0.9 (0.1-3.1) 1.0 (0.7-1.2) 0.9 (0.7-1.1)
+70-74 0.2 (0.0-0.6) 0.3 (0.1-0.7) 0.0 (0.0-0.0) 0.6 (0.0-3.3) 0.4 (0.2-0.7) 0.4 (0.2-0.8) 0.0 (0.0-0.0) 0.4 (0.0-2.4) 0.7 (0.5-1.0) 0.4 (0.3-0.6)
+75-79 0.4 (0.1-0.8) 0.2 (0.0-0.6) 1.2 (0.1-4.3) 0.6 (0.0-3.3) 0.6 (0.3-1.0) 0.4 (0.2-0.7) 0.4 (0.0-2.4) 0.0 (0.0-0.0) 0.4 (0.3-0.6) 0.3 (0.2-0.4)
+80+ 0.5 (0.2-1.0) 0.3 (0.1-0.7) 0.0 (0.0-0.0) 0.0 (0.0-0.0) 0.1 (0.0-0.4) 0.3 (0.1-0.6) 0.4 (0.0-2.4) 0.9 (0.1-3.1) 0.3 (0.2-0.5) 0.4 (0.2-0.5)
+CI denotes confidence interval.
+Fig. 1. Model's fitting to the male and female conflict-related death data across age groups in the
+five examined Israel-Gaza conflicts.
+Fig. 2. The model-estimated 𝛿, representing the hazard rate of combatant death (force of
+combatant killing), plotted against age for the male population in the five Israel-Gaza conflicts.
+Females were assumed not engaged in combat.
+Fig. 3. Combatant versus civilian conflict-related deaths in the five Israel-Gaza conflicts. A)
+Model-estimated proportions of combatant and civilian deaths. B) Comparison between the
+model-estimated proportion of combatant deaths and the actual proportion estimated based on
+investigating each death by B'Tselem [13]. No B'Tselem investigation is available for the 2023
+conflict.
+Fig. 4. Index of killing civilians (𝑛) in the five Israel-Gaza conflicts.
+Fig. 5. Comparison of the results for 𝑛, the index of killing civilians, in the sensitivity analysis
+assuming the combatant population consists only of males between 15-49 years old, with the
+results of the main analysis, assuming the combatant population consists of males between 15-64
+years old, across examined conflicts.
+RFERENCES
+1. Eckhardt W: War-related deaths since 3000 BC. Peace Research 1990, 22/23:80-86.
+2. Leitenberg M: Deaths in Wars and Conflicts in the 20th Century: JSTOR; 2006.
+3. Valentino B, Huth P, Croco S: Covenants without the sword international law and the
+protection of civilians in times of war. World Politics 2006, 58(3):339-377.
+4. Lauren Leatherby: Gaza Civilians, Under Israeli Barrage, Are Being Killed at Historic Pace.
+toll.html. Accessed on November 27, 2023. The New York Times 2023.
+5. Rufanges JC: Military spending and global security: Humanitarian and environmental
+perspectives: Routledge; 2020.
+6. Rogers M: Army of Lies: Ethical Considerations of Deceiving Civilians in War. Monterey, CA;
+Naval Postgraduate School; 2020.
+7. Johnson M, Meyeraan J: Military deception: Hiding the real-showing the fake. USAF Joint
+Forces Staff College, Joint and Combined Warfighting School 2003, 7.
+8. Epps V: Civilian casualties in modern warfare: The death of the collateral damage rule. Ga J
+Int'l & Comp L 2012, 41:307.
+9. Khorram-Manesh A, Burkle FM, Goniewicz K, Robinson Y: Estimating the Number of Civilian
+Casualties in Modern Armed Conflicts-A Systematic Review. Front Public Health 2021,
+9:765261.
+10. Anderson RM, May RM: Infectious diseases of humans: dynamics and control: Oxford
+university press; 1991.
+11. Abu-Raddad LJ, Patnaik P, Kublin JG: Dual infection with HIV and malaria fuels the spread of
+both diseases in sub-Saharan Africa. Science 2006, 314(5805):1603-1606.
+12. Palestine Ministry of Health: Detailed report of the victims of Israel's attack on Gaza strip.
+content/uploads/2023/10/here.pdf. Accessed on: November 18, 2023. 2023.
+of-incident?section=overall&tab=overview. Accessed on: November 23, 2023. 2023.
+14. United Nations Office for the Coordination of Humanitarian Affairs: Data on casualties.
+2023.
+15. Palestinian Central Bureau of Statistics: Statistics. Available from:
+2023.
+16. MATLAB®: The Language of Technical Computing. The MathWorks, Inc. 2015.
+17. Lagarias JC, Reeds JA, Wright MH, Wright PE: Convergence properties of the Nelder--Mead
+simplex method in low dimensions. SIAM Journal on optimization 1998, 9(1):112-147.
+18. Amnesty International: Damning evidence of war crimes as Israeli attacks wipe out entire
+families in Gaza. Available from:
+israeli-attacks-wipe-out-entire-families-in-gaza/. Accessed on November 29, 2023. Amnesty
+International 2023.
+19. Loveluck L, George S, Birnbaum M: As Gaza death toll soars, secrecy shrouds Israel’s targeting
+targets-gaza-civilians-hamas/. Accessed on November 29, 2023. 2023.

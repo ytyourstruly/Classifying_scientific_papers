@@ -1,0 +1,724 @@
+Naming unrelated words
+reliably predicts creativity*
+1 2 2
+Jay A. Olson Johnny Nahas Denis Chmoulevitch
+Margaret E. Webb
+1 2 3
+Harvard University, McGill University, University of Melbourne
+1 Abstract
+Several theories posit that creative people are able to generate more divergent ideas. If
+this is correct, the simple act of naming unrelated words and then measuring the semantic
+distance between them could serve as an objective measure of creativity. To test this
+hypothesis, we asked 8,892 participants to name 10 words that are as different from
+each other as possible. A computational algorithm then estimated the average semantic
+distance between the words; related words (e.g., “cat” and “dog”) have shorter distances
+than unrelated ones (e.g., “cat” and “thimble”). We predicted that people producing
+greater semantic distances would also score higher on traditional creativity measures.
+In Study 1, there were moderate to strong correlations between semantic distance and
+two other creativity measures (the Alternative Uses Task and the Bridge-the-Associative-
+Gap Task). In Study 2, with participants from 98 countries, semantic distances varied
+only slightly by demographic variables which suggests that the measure can be used
+without modification across diverse populations. There was also a positive correlation
+between semantic distance and performance on problem solving tasks known to predict
+creativity. Overall, semantic distance correlated at least as strongly with established
+creativity measures as those measures did with each other. Naming unrelated words
+in what we call the Divergent Association Task can thus serve as a brief, reliable, and
+objective measure of creativity.
+*Preprint (2020-12-26). Corresponding author: J. A. Olson (jay.olson@mail.mcgill.ca). The task can be
+tested online at datcreativity.com.
+2 Significance statement
+Many traditional creativity measures require time-intensive and subjective scoring proce-
+dures. Further, the scores are relative to the others in the sample and are not absolute,
+which makes multicultural or international assessments difficult. Our results show that a
+shorter and simpler task with automatic and objective scoring may be at least as reliable
+at measuring creativity. This finding enables creativity assessments across larger and
+more diverse samples with less bias. It also provides support for associative theories of
+creativity which suggest that creative people can generate more remote links in associative
+networks.
+3 Main text
+3.1 Introduction
+Think of three words that are as different from each other as possible. Choosing these
+words relies on generating remote associations, which are at the core of many theories
+of creativity (1–5). Mednick (6), for example, proposed that most creative solutions
+result from the ability to find links between the most remote elements in a network of
+associations. Creative people, then, may more quickly and easily generate these remote
+associations (3, 4). We investigated whether the simple act of naming unrelated words
+could reliably measure creativity.
+Creativity has two main components: convergent thinking and divergent thinking. Con-
+vergent thinking tasks measure the ability to assess several stimuli and arrive at the single
+best solution (6–9). In contrast, divergent thinking tasks typically involve open-ended
+questions that measure one’s ability to generate various solutions (10–12). The most
+commonly used is the Alternative Uses Task (13, 14), in which participants generate uses
+for common objects such as a paper clip or a shoe. In a common method of scoring (15),
+raters then judge the responses based on three components:
+• flexibility, the number of distinct categories of uses generated;
+• originality, how rare each use is relative to the rest of the sample, which is particularly
+important for creativity (16, 17); and
+• fluency, how many uses are generated in total.
+Perhaps fittingly, there are diverse ways to score tests of divergent thinking (10, 18–23).
+Many of the manual scoring methods, however, have several drawbacks. The scoring is
+laborious and time-intensive (10), and multiple judges are required to assess reliability
+which adds to the effort (24). Further, the scoring is sample-dependent (22, 24); originality
+is scored in a relative and not an absolute way. Thus, a participant’s responses will be
+more or less rare (and more or less original) depending on the other responses in the
+sample. Finally, the scoring does not account for cultural differences: uses of objects vary
+in commonality across cultures and at different times. The use of a paper clip to change
+the SIM card in a smartphone, for example, is now one of the most common responses,
+though it was rare a decade ago. Ratings of originality will thus vary by country and
+year. This issue makes it difficult to accurately judge responses from multicultural or
+international samples, or to assess how creativity changes over time.
+To address these limitations, recent efforts have moved towards using computational algo-
+rithms to score responses (10, 16, 25, 26). Computational methods may also improve the
+theoretical grounding of the measures, as the assumptions required to score the responses
+must be made explicit in the program code (10, 12). Researchers have successfully scored
+the Alternative Uses Task using semantic models, achieving scores similar to human
+ratings (10, 16, 25, 26).
+The Alternative Uses Task, however, may not be best suited for computational scoring.
+It requires analysing complex multi-word answers, usually by computing the semantic
+distance between each of the words provided in the response, independent of their order.
+Common methods also remove stop words (e.g., the, which, of ) in order to increase the
+consistency of the scoring (26, 27). These common practices can obscure meaning, which
+is a well-known issue in the field of artificial intelligence. Word meaning depends on
+context and order, as demonstrated by the sentence: “Time flies like an arrow; fruit flies
+like a banana” (28). In the Alternative Uses Task, using a pen to “record a break” is less
+original than using one to “break a record”. Originality can accordingly be more than
+the sum of its parts (29). Additionally, the number of words used to describe a concept
+can also influence semantic distance (27). Using a magazine to “do a collage” versus to
+“cut out pieces to glue on a collage” will result in different scores. Thus, a task that uses
+single-word responses and instructs participants to consider all meanings of the words
+may reduce these problems and result in more reliable scoring.
+Accordingly, we aimed to develop a measure of divergent thinking that focuses on
+remote associations, is more compatible with existing theories, and is optimised for
+computational scoring. We wanted a task that required single-word responses, making it
+easier to compute semantic distance with less ambiguity. More practically, our goal was
+to develop a task that is brief, easy to implement, and offers objective, automatic, and
+absolute scoring.
+3.1.1 The Divergent Association Task
+Our proposed measure, the Divergent Association Task (DAT), asks participants to generate
+10 words that are as different from each other as possible, in all meanings and uses of
+the words. We then compute the average semantic distance between these words using
+an algorithm called GloVe (30). Words that are used in similar contexts have smaller
+distances between them. The words cat and dog, for example, would be close to each other
+since they are often used in similar contexts. The words day and night, though opposites,
+would also be close to each other for the same reason. Importantly, words closer to each
+other are usually more semantically similar.
+We trained the GloVe model with the Common Crawl corpus, which contains the text of
+billions of web pages. In particular, we used a freely available pre-trained model from
+2016 (30), which contains a vocabulary of over 2 million words.
+Using this model, we computed the average cosine distance between each unique pair of
+words and multiplied it by a constant of 100:
+| − |
+W W
+∑ i j
+DAT score 100
+ij
+The minimum DAT score (0) occurs when there is no distance between the words, that
+is, when all the words are the same. The theoretical maximum score (200) would occur
+when the words are as different from each other as possible. In practice, scores commonly
+range from approximately 65 to 90 and almost never exceed 100. As discussed later,
+scores under 50 are discarded. In this way, the score can be intuitively thought of as a
+percentage on a test: under 50 is a fail, the average is between 75 and 80, and 95 is a very
+Lowest acceptable score (50) Average score (78) High score (95)
+55 77 85
+60 58 74 76 102 96
+39 46 57 85 77 61 87 105 109
+37 43 57 44 81 90 86 92 100 97 98 114
+36 63 49 50 52 50 86 86 89 79 90 90 86 95 97
+49 51 61 52 46 51 73 59 86 73 78 80 85 89 94 98 90 95
+mra seye teef dnah daeh gel ydob gab eeb regrub tsaef eciffo seohs eert oppih repmuj yrenihcam elkcirp stekcit otamot niloiv
+arm bag hippo
+eyes bee jumper
+feet burger machinery
+hand feast prickle
+head office tickets
+leg shoes tomato
+body tree violin
+DAT score
+40 60 80 100
+score is the transformed average of the semantic distances between each pair of words.
+This operationalisation of divergent thinking is grounded in associative theories of
+creativity (3, 6, 10). Higher scores would demonstrate a greater ability to draw upon more
+remote associations, indicating greater creativity. In Study 1, we tested this hypothesis
+by comparing the DAT with two other measures of creativity: the Alternative Uses Task
+(14) and the Bridge-the-Associative-Gap Task (31). In Study 2, we tested how these scores
+vary by demographics and whether they correlate with related problem solving measures
+(8, 32). These studies assessed whether semantic distance can be a reliable indicator of
+creativity.
+3.2 Results
+3.2.1 Number of words
+The DAT asks participants to name 10 unrelated words, but we only required a subset of
+these to provide a buffer for mistakes. This way, if participants mistyped a few words
+or chose some that were not in the database, we could still compute an overall score. In
+we used this number of words in all of the samples.
+2 4 6 8 10
+Valid words provided
+dedulcni
+stnapicitrap
+fo
+tnecreP
+0.6
+Flexibility
+0.5
+Originality
+0.4
+0.3
+Fluency
+0.2
+2 4 6 8 10
+Words used in DAT score
+serocs
+TUA
+htiw
+noitalerroC
+A B
+in the DAT score and (B) corresponding correlations with the Alternative Uses Task scores.
+Using 7 out of 10 words balanced high correlations with a high inclusion rate.
+Using these first seven words, the average DAT score for Study 1A was 78.38 (SD = 6.35)
+participants finished the DAT in a minute and a half, with a median response time of
+88.21 s (SD = 66.46). The task is thus shorter than many traditional creativity measures.
+3.2.2 Correlations with other creativity measures
+In Study 1A, using a subset of the data in which participants chose the words arbi-
+trarily (i.e., without following any particular strategy), the DAT correlated well with
+( ) = [ ] < ( ) = [ ] <
+(r 55 .51 .29, .68 , p .001) and originality (r 55 .50 .28, .68 , p .001), but we did
+( ) = [− ] =
+not see the same correlation with fluency (r 55 .21 .05, .45 , p .057). Using the full
+dataset without removing any participants, we saw positive correlations across all three
+= [ ] = [ ] = [ ]
+ratings (flexibility: r .34 .18, .48 ; originality: r .32 .16, .46 ; fluency: r .22 .06, .37 ).
+Participants also completed the Bridge-the-Associative-Gap Task, a test of convergent
+thinking in which participants see two words (e.g., giraffe and scarf ) and need to find
+a third that relates to both (e.g., neck). Raters then judged the appropriateness of the
+provided words. We saw a positive correlation between the DAT and appropriateness
+( ) =
+among participants choosing words without following a particular strategy (r 54
+[ ] = ( ) = [ ] =
+.34 .08, .55 , p .006) as well as in the full dataset (r 136 .22 .06, .38 , p .004).
+Study 1B attempted to replicate these findings in another full dataset. We again saw
+( ) = [ ]
+positive correlations with the Alternative Uses Task (flexibility: r 222 .36 .24, .47 ,
+< ( ) = [ ] < ( ) = [ ]
+p .001, originality: r 222 .33 .21, .44 , p .001, fluency: r 222 .30 .17, .41 ,
+< ( ) =
+p .001) and appropriateness ratings in the Bridge-the-Associative-Gap Task (r 203
+[ ] <
+.23 .10, .36 , p .001).
+To assess test–retest reliability, in Study 1C participants completed the DAT during lab
+( ) = [ ] <
+visits two weeks apart. Test–retest reliability was high (r 48 .73 .57, .84 , p .001);
+this reliability resembled that of completing the same Alternative Uses Task items one
+month later, as scored by raters (r = .61 to .70) or an algorithm (r = .49 to .80) (33).
+In our pre-registered Study 2, a confirmatory test showed a positive correlation between
+( ) =
+the DAT and manually scored originality on a one-trial Alternative Uses Task (r 353
+[ ] =
+.13 .03, .23 , p .006). The magnitude was lower than in Study 1 likely because the
+shortened version of the task had less precision.
+3.2.3 Demographics
+Confirmatory tests also showed that the DAT scores differed by age and gender but
+not the country in which participants lived or whether they spoke multiple languages
+all of these factors combined explained under 1% of the total variation in the model,
+suggesting that the DAT varies little by these demographic measures.
+3.2.4 Problem solving
+Participants also completed various problem solving items known to predict creativity (8,
+32). On average, participants answered 2.11 (SD = 1.03) out of the 4 questions correctly.
+An exploratory test showed that those who correctly completed more problems had
+( ) = [ ] =
+higher DAT scores (r 348 .16 .05, .26 , p .003).
+Women
+Men
+20 40 60
+Age
+erocs
+TAD
+adulthood and women showed slightly higher overall scores than men. Dots show means
+and bands show 95% confidence intervals. Age was approximated by the minimum value
+of each bin.
+3.2.5 Enjoyment
+After each measure of Study 2, participants reported how much they enjoyed it on a 0 to
+5 scale. Participants enjoyed the DAT the most, with an average rating of 3.56 [3.52, 3.59]
+= [ ]
+compared to the Alternative Uses Task items (M 2.65 2.62, 2.68 ) or any of the various
+= [ ]
+3.2.6 Comparison with other correlations
+Across Studies 1 and 2, we saw positive correlations between the DAT and the other
+creativity measures. These sample correlations were generally at least as strong as the
+3.3 Discussion
+We present a surprising finding: asking participants to name 10 unrelated words can
+be a reliable measure of creativity. This novel Divergent Association Task is situated
+in associative processing theories of creativity, which assume that creative people can
+draw on distant nodes in associative networks to generate more semantically remote
+concepts. We compared performance on this task with established creativity measures —
+the Alternative Uses Task and the Bridge-the-Associative-Gap Task — as well as related
+measures of problem solving. In every sample, the correlations between the DAT and
+BAG Problem
+Divergent Association Task
+appropriateness solving
+.51 .50
+.34
+.25 .25
+.21
+.15
+.34
+.32
+.24
+.22 .22
+.21
+.16
+.36
+.33
+.30
+.23
+.18
+.09 .09
+.16
+.13
+−.03
+(cleaned)
+(full)
+Study
+1B
+Study
+Study
+1A
+Study
+1A
+0.50
+0.25
+0.00
+0.50
+0.25
+0.00
+0.50
+0.25
+0.00
+0.50
+0.25
+0.00
+y y y s ) g y y y )
+t t
+i t i t c s r n i t i t c r
+b i l a l e n n e h o v i b i l a l e n h o
+n l n
+x i i u e s o x i i u s
+e g l t ( s e g l (
+f a f
+f l r i T i y m f l r i T y
+o r t o t
+T U p l i e T U l i
+U T A o a l U T A a
+n b n
+A U r A U
+p i o i
+A g A g
+p r
+a r i P r i
+o o
+T T
+A U U
+B A A
+Directional hypothesis decision:
+positive correlation zero correlation
+a a
+showed the strongest correlations (first column) compared to the other measures. Colour
+shows whether correlations were greater than zero in a one-tailed test.
+these measures were at least as high as the correlations among the other established
+measures themselves, demonstrating strong convergent validity. The highest correlations
+were between the DAT and manually scored originality and flexibility on the Alternative
+Uses Task (Studies 1A–1B). Test–retest reliability was also high over a span of two weeks
+(Study 1C). Overall, the evidence supports semantic distance as a reliable measure of
+creativity.
+Performance on the DAT varied little by demographic measures (Study 2). Other studies
+have shown mixed results relating demographics and creativity. For example, studies
+are inconclusive about the impact of gender differences (34, 35). Abraham (36) reports
+highly mixed findings, with approximately half of studies reporting no differences in
+creativity by gender, and the other half reporting mixed results, with possibly higher
+scores in women. There are also mixed findings regarding age; some studies indicate that
+performance on creativity tasks increases as domain-specific knowledge and vocabulary
+increase (37), while others find the opposite (38). Generally, however, studies find that
+creativity declines in late adulthood (35). Overall, the low variation by demographic
+variables suggests that the DAT can be used across different ages, genders, and countries
+without modification.
+3.3.1 Strengths
+The Divergent Association Task resolves a number of limitations in the current creativity
+literature. Compared to manually scored tasks, the DAT scoring is automatic and objective,
+allowing researchers to collect large samples with little effort and no rater bias. Further,
+the scoring is absolute and not sample-dependent, making it conducive to comparing
+participants across times and countries. Compared to other creativity measures using
+computational scoring, the DAT draws more directly on theories of creativity such as those
+related to associative processing and semantic networks (10, 39). This close link provides
+greater face validity and makes the task better suited for computational scoring than
+adapting existing measures. In addition, the DAT may reduce some biases seen in other
+tests of divergent thinking. Experiential bias occurs when one’s past experience influences
+the diversity of the responses (40). When listing uses of a brick in the Alternative Uses
+Task, for example, a brick layer may provide different responses than a lawyer, influencing
+their scores within the sample and leading to more uncontrollable variation. Similarly,
+different words in the Alternative Uses Task can prompt different responses with varying
+reliability between computational scoring and manually scored responses (26). The DAT
+avoids these issues by giving an open-ended prompt and using an international database.
+Relatedly, fluency contamination occurs when high fluency scores can artificially inflate
+originality scores; the more responses that participants list, the more likely some of them
+will be unique (21). The DAT avoids this issue by requiring all participants to generate
+the same number of responses.
+Finally, the task is short — most participants completed it in under 90 s — and rated it
+as more enjoyable than several other creativity tasks. The task can also provide instant
+feedback of the participant’s score, allowing it to be used in contexts such as workshops
+or demonstrations. Enjoyment, brevity, and feedback are especially important for online
+tasks with reduced or no compensation, in which intrinsic motivation plays a central role
+in the desire to participate.
+3.3.2 Limitations
+Although the DAT improves upon a number of issues in the creativity literature, it has
+its own limitations. For instance, the task measures originality with better face validity
+than it does appropriateness, though both are important components of creativity (41).
+Appropriateness is easier to judge in other tasks, such as when naming uses for an object
+or finding the link between words, but it has less relevance when naming unrelated
+words in the DAT. Still, the DAT scores correlated with assessments of appropriateness
+on the Bridge-the-Associative-Gap Task. Another limitation is that participants may be
+able to artificially modulate their scores using different strategies of generating words.
+Intentionally choosing rare words, looking around the room for inspiration, or following
+word-based strategies (e.g., choosing rhyming words) can all influence the overall score.
+The fairly short time limit of four minutes may reduce the likelihood that participants
+will consider and implement these various strategies.
+3.3.3 Future research
+Like all computational scoring methods, the DAT depends on the training model and
+corpus used. We chose the GloVe algorithm and the Common Crawl corpus; this
+combination correlates best with human judgements on the Alternative Uses Task (26).
+For simplicity, we chose a pre-trained model that is freely available and widely used.
+With some effort, researchers could train models using corpora in different languages
+or countries at different times. As particular word associations become more or less
+related, the updated models would automatically account for these changes. Prior to
+the COVID-19 pandemic, for example, the words social and distancing would co-occur
+more rarely and would thus be considered more original. In theory, researchers could
+generate a specific model using content from the same country and month as the sample.
+This would allow the DAT scores to reflect the fluctuations in the cultural lexicon, as
+world events and popular media shape word usage. Still, for simplicity and ease of
+comparison, we recommend that researchers use the corpus tested here unless there is a
+reason otherwise.
+Future research could also use the DAT in experimental contexts requiring simple and
+short tasks. Since the DAT requires brief responses, it may be suited for neuro-imaging
+contexts in which movement must be minimised. Its simplicity may also make it suitable
+for completion in altered states of consciousness conducive to divergent thinking, such
+as pre-sleep states or when using psychedelic drugs (42, 43). Since the task involves
+an open-ended prompt, researchers could also assess whether the responses reflect the
+interests, experiences, or biases of the participants. Finally, future research could also
+explore other predictors of DAT scores, such as education level or intelligence, which
+both generally correlate with creativity (1, 44).
+In sum, we demonstrate that naming unrelated words can be a reliable measure of
+creativity. We hope this finding provides researchers with an easier method of collecting
+and scoring creativity data with larger and more diverse samples.
+4 Materials and methods
+4.1 Study 1
+We validated the DAT against two established measures of creativity: the Alternative
+Uses Task and the Bridge-the-Associative-Gap Task. Study 1 contains three samples of
+participants who completed a demographics questionnaire and then several creativity
+tasks on a computer. The protocol was approved by the University of Melbourne Human
+Research Ethics Committee (1646146.4).
+4.1.1 Participants
+We recruited undergraduates from psychology courses in Melbourne, Australia (Studies
+1A and 1B) and through social media advertisements in Montréal, Canada (Study 1C). In
+each sample of Study 1, most participants were women and between 18 and 20 years old
+they were reported in bins.
+Study 1A 1B 1C 2 Total
+Country Australia Australia Canada 98 countries 98 countries
+N 141 284 50 8551 8892
+% Female 82% 68% 76% 59% 59%
+Age M 20.12 19.22 20.84 43.50 42.57
+Age SD 4.05 2.18 2.68 17.66 17.93
+Age range 18–47 16–47 18–33 6–70 6–70
+4.1.2 Materials
+4.1.2.1 Alternative Uses Task In the Alternative Uses Task, participants were pre-
+sented with common objects in a randomised order: a brick, paper clip, newspaper, ice
+tray, and rubber band (14). The participants were instructed: “This is a test of creativity.
+Please list as many (and varied) uses as you can.” Participants had two minutes to
+respond to each item in a text box; with five items, the task took up to ten minutes.
+Two independent raters later scored the responses using a uniqueness method adapted
+from deYoung and colleagues (15). Originality scores depended on the frequency of the
+response within the sample. Participants received 0 points for responses given by over
+10% of the sample (e.g., using a rubber band to tie up hair), 1 point for responses given by
+3 to 10% (e.g., as a string), 2 points for those given by 1 to 3% (e.g., as a tourniquet), and 3
+points for responses given by under 1% (e.g., as dental floss). Flexibility scores depended
+on the number of different categories of uses mentioned. Using a rubber band as an
+eraser or to grip bottles would represent two distinct categories; using it to tie plastic
+bags or to group wires would represent one category (tying things together). Fluency
+was simply the number of distinct responses given in two minutes. Across the samples,
+the two raters showed high inter-rater reliability (flexibility: r .94 to .97, originality:
+= =
+r .64 to .89, fluency: r .99 to 1.00), so we averaged their scores.
+4.1.2.2 Bridge-the-Associative-Gap Task In the Bridge-the-Associative-Gap Task, a
+test of convergent thinking, participants were presented with pairs of words that were
+either related or unrelated to each other. Participants were asked to write a third word
+that is semantically related to both of the words. For example, if presented with giraffe
+and scarf, participants could write neck as the third word. The participants were given 30
+seconds to respond to each item. In Study 1A, we randomly selected 20 of each type of
+pairs (related or unrelated) from the original set (31). Study 1B used the entire set.
+Two judges then assessed the appropriateness of each response from 1 to 5 based on
+whether it related to both words in the pair. For example, a response of neck would be
+judged as appropriate (5) given giraffe and scarf, but a response of cheese would not be (1).
+The judges generally agreed on their ratings (r .67 to .78), so we averaged their scores.
+4.1.2.3 Divergent Association Task As outlined above, participants were asked to
+generate 10 unrelated words (see Section 6.1 for a pencil-and-paper version of the task).
+The task had the following additional instructions:
+1. Use only single words. We used this rule because computational methods can score
+single words with less ambiguity than phrases. Words such as “cul de sac” were
+accepted and automatically hyphenated.
+2. Use only nouns (e.g., things, objects, concepts). This rule keeps the class of words
+similar, since the distance between words varies based on their part of speech, such
+as whether they are nouns or adjectives.
+3. Avoid proper nouns (i.e., no specific people or places).
+4. Avoid specialised vocabulary (e.g., no technical terms). This rule and the previous one
+prevent participants from using words that are too specific, which is one strategy to
+artificially inflate one’s score. To enforce these rules, only lowercase words from a
+common dictionary (45) were used in the calculation.
+5. Think of the words on your own (e.g., do not just look at objects in your surroundings).
+During pilot testing, many participants would look around their environment for
+inspiration when naming the words. This strategy resulted in lower scores, since
+common objects on one’s desk are often semantically similar.
+6. You will have 4 minutes to complete this task. In our initial testing (46), this amount of
+time was sufficient to complete the task without much time pressure.
+After the task, participants were asked what strategy they used, if any, to choose the words
+(e.g., looking around the room at objects). In Study 1A, two raters coded the responses
+based on whether the 141 participants (1) appeared to correctly follow the instructions
+and (2) whether they reported implementing a strategy such as simply naming the objects
+around them. Disagreements were solved by discussion and raters were liberal in their
+exclusions. Overall, 57 participants appeared to follow the instructions and not use a
+strategy; we used this subset for our analyses. The lowest score in this subsample was
+57.13.
+In Studies 1B and 1C, instead of this manual exclusion procedure, we used an automated
+method. In particular, we removed scores below 50, under which participants almost
+This excluded at most 0.35% of the sample.
+4.1.3 Analysis
+To test the relationship between the creativity measures, we checked for non-linearity
+then did one-tailed tests of linear correlation, with an α of .05 and no family-wise Type I
+error correction. All assumptions were reasonable for the tests. In Studies 1A and 1B, we
+aimed to run at least 90 students per sample, which gave 80% statistical power to detect
+medium correlations of r .3.
+4.2 Study 2
+We also tested how DAT scores vary by age, gender, country, and languages spoken. We
+recruited a larger and more diverse sample as part of a broader study on experiences
+reported during creativity tasks.
+4.2.1 Participants
+Participants were recruited through television advertisements and social media as part
+of a campaign by the Australian Broadcasting Corporation. In total, 8551 participants
+completed the study from 98 countries. Most of the participants were from Australia
+= =
+(n 4759) or the United Kingdom (n 612). Participants reported ages in bins ranging
+= =
+from under 7 years old (n 6) to 70 or over (n 961), with most falling in the 35 to 54
+age range (n 2829) making the sample older than the students in Study 1. Again, the
+4.2.2 Materials
+4.2.2.1 Alternative Uses Task Due to time constraints, we used a shorter version of
+the task in which participants were asked to generate a single “new and imaginative use”
+for two common household objects. These objects were randomly selected from a brick,
+rubber band, shoe, paper clip, cup, or ice tray. Given that participants generated a single
+use, flexibility and fluency could not be evaluated, so we focused on originality. Two
+raters judged originality from 1 to 5 in a random subsample including 389 participants.
+We chose a subsample that included those responding to the same objects as much as
+possible. As in the previous samples, the judges generally agreed on their ratings (r .66),
+so we averaged their scores.
+4.2.2.2 Divergent Association Task We used the standard version of this task, as in
+Study 1, excluding people with scores under 50.
+4.2.2.3 Problem solving Participants then completed a series of creativity-related prob-
+lems. The Compound Remote Associates Test is a convergent thinking task commonly
+used for assessing insight problem solving and creativity (8). Participants saw three cue
+words and tried to find a fourth word that formed a compound word with the cues. For
+example, given the words cube, skate, and cream, participants would suggest the word ice.
+Participants were presented with two trials of the task, randomly selected from a larger
+set (8).
+Participants also completed one insight and one non-insight problem taken from a larger
+set (32). Two raters independently judged the accuracy of the answers to the questions. A
+third rater resolved answers judged as ambiguous. Inter-rater reliability between the two
+raters was high (r .87); we considered answers as correct only when both raters scored
+them as such. After each trial, participants reported their feelings during the problem
+solving (e.g., pleasure) from 0 (nothing) to 5 (strong), as part of the larger study.
+4.2.2.4 Demographic information We collected brief demographic information aimed
+at maintaining anonymity: age (in bins), gender, country (dichotomous Australia or not),
+and whether the participant was multilingual (i.e., whether they spoke a language other
+than English).
+4.2.3 Procedure
+On a website, participants were informed that the purpose of the study was to investigate
+their experiences with several creativity and problem solving tasks. Participants then
+completed the shortened Alternative Uses Task, the DAT, and then the following questions
+in a random order: one insight problem, one non-insight problem, and two Compound
+Remote Associates Test items. For each measure, the items were taken from a larger set to
+reduce contamination (e.g., if several people completed the task in the same room). After
+completing all of the tasks, participants provided demographic information.
+4.2.4 Analysis
+relationship between originality and the DAT scores, we checked for non-linearity then
+did a one-tailed test of linear correlation with an α of .05.
+To assess how scores varied across demographics, we used ANOVA to test for main
+effects of (1) age (estimated by the minimum value of each age bin), (2) gender (female or
+male), (3) country (Australia or not), and (4) multilingualism, as well as interaction effects
+× ×
+of (5) gender age, and (6) country multilingualism. Using the Bonferroni correction,
+a family-wise α of .10 gave a per-test α of .0167. Given our large expected sample size, we
+maintained high statistical power despite the low Type I error rates.
+Acknowledgements
+We would like to thank Elias Stengel-Eskin for help with the conceptualisation of the
+task and the Australian Broadcasting Corporation for assistance with recruiting. We also
+thank Victoria De Braga, Ellen Langer, and Claire Suisman for discussion and feedback.
+JO acknowledges funding from le Fonds de recherche du Québec — Santé (FRQS). Study
+1C was supported by the Canada First Research Excellence Fund, awarded to the Healthy
+Brains for Healthy Lives initiative at McGill University (#3c-KM-10).
+5 References
+1. M. Benedeket al., How semantic memory structure and intelligence contribute to
+creative thought: A network science approach. Thinking & Reasoning 23, 158–183 (2017).
+2. N. Gupta, Y. Jang, S. C. Mednick, D. E. Huber, The road not taken. Psychological Science
+23, 288–294 (2012).
+3. Y. N. Kenett, D. Anaki, M. Faust, Investigating the structure of semantic networks in
+low and high creative persons. Frontiers in human neuroscience 8, 407 (2014).
+4. E. Rossmann, A. Fink, Do creative people use shorter associative pathways? Personality
+and Individual Differences 49, 891–895 (2010).
+5. M. A. Schilling, A "small-world" network model of cognitive insight. Creativity Research
+Journal 17, 131–154 (2005).
+6. S. Mednick, The associative basis of the creative process. Psychological Review 69,
+220–232 (1962).
+7. M. Becker, G. Wiedemann, S. Kühn, Quantifying insightful problem solving: A
+modified compound remote associates paradigm using lexical priming to parametrically
+modulate different sources of task difficulty. Psychological Research 84, 528–545 (2018).
+8. E. M. Bowden, M. Jung-Beeman, Normative data for 144 compound remote associate
+problems. Behavior Research Methods, Instruments, & Computers 35, 634–639 (2003).
+9. C.-L. Wu, H.-C. Chen, Normative data for Chinese compound remote associate
+problems. Behavior Research Methods 49, 2163–2172 (2017).
+10. S. Acar, M. A. Runco, Assessing associative distance among ideas elicited by tests of
+divergent thinking. Creativity Research Journal 26, 229–238 (2014).
+11. M. Benedek, T. Könen, A. C. Neubauer, Associative abilities underlying creativity.
+Psychology of Aesthetics, Creativity, and the Arts 6, 273–281 (2012).
+12. R. W. Hass, Semantic search during divergent thinking. Cognition 166, 344–357 (2017).
+13. J. P. Guilford, Creativity. American Psychologist 5, 444–454 (1950).
+14. M. A. Wallach, N. Kogan, A new look at the creativity-intelligence distinction. Journal
+of Personality 33, 348–369 (1965).
+15. C. G. DeYoung, J. L. Flanders, J. B. Peterson, Cognitive abilities involved in insight
+problem solving: An individual differences model. Creativity Research Journal 20, 278–290
+(2008).
+16. K. Beketayev, M. A. Runco, Scoring divergent thinking tests by computer with a
+semantics-based algorithm. Europe’s Journal of Psychology 12, 210–220 (2016).
+17. M. A. Runco, G. J. Jaeger, The standard definition of creativity. Creativity Research
+Journal 24, 92–96 (2012).
+18. S. Acar, M. A. Runco, Divergent thinking: New methods, recent research, and
+extended theory. Psychology of Aesthetics, Creativity, and the Arts 13, 153–158 (2019).
+19. M. Benedek, C. Mühlmann, E. Jauk, A. C. Neubauer, Assessment of divergent
+thinking by means of the subjective top-scoring method: Effects of the number of
+top-ideas and time-on-task on reliability and validity. Psychology of Aesthetics, Creativity,
+and the Arts 7, 341–349 (2013).
+20. R. W. Hass, M. Rivera, P. J. Silvia, On the dependability and feasibility of layperson
+ratings of divergent thinking. Frontiers in Psychology 9 (2018).
+21. J. A. Plucker, M. Qian, S. L. Schmalensee, Is what you see what you really get?
+Comparison of scoring techniques in the assessment of real-world divergent thinking.
+Creativity Research Journal 26, 135–143 (2014).
+22. R. Reiter-Palmon, B. Forthmann, B. Barbot, Scoring divergent thinking tests: A review
+and systematic framework. Psychology of Aesthetics, Creativity, and the Arts 13, 144–152
+(2019).
+23. P. J. Silvia, Subjective scoring of divergent thinking: Examining the reliability of
+unusual uses, instances, and consequences tasks. Thinking Skills and Creativity 6, 24–30
+(2011).
+24. P. J. Silviaet al., Assessing creativity with divergent thinking tasks: Exploring the
+reliability and validity of new subjective scoring methods. Psychology of Aesthetics,
+Creativity, and the Arts 2, 68–85 (2008).
+25. R. E. Beaty, D. R. Johnson, Automating creativity assessment with SemDis: An open
+platform for computing semantic distance. PsyArXiv (2020).
+26. D. Dumas, P. Organisciak, M. Doherty, Measuring divergent thinking originality with
+human raters and text-mining models: A psychometric comparison of methods.
+Psychology of Aesthetics, Creativity, and the Arts (2020) https:/doi.org/10.1037/aca0000319.
+27. B. Forthmann, O. Oyebade, A. Ojo, F. Günther, H. Holling, Application of latent
+semantic analysis to divergent thinking is biased by elaboration. The Journal of Creative
+Behavior 53, 559–575 (2018).
+28. F. J. Crosson, Human and artificial intelligence (Appleton-Century-Crofts, 1970).
+29. T. K. Landauer, D. Laham, B. Rehder, M. E. Schreiner, How well can passage meaning
+be derived without using word order? A comparison of latent semantic analysis and
+humans in Proceedings of the 19th Annual Meeting of the Cognitive Science Society, (1997), pp.
+412–417.
+30. J. Pennington, R. Socher, C. D. Manning, GloVe: Global vectors for word
+representation in Empirical Methods in Natural Language Processing (EMNLP), (2014), pp.
+1532–1543.
+31. L. R. R. Gianotti, C. Mohr, D. Pizzagalli, D. Lehmann, P. Brugger, Associative
+processing and paranormal belief. Psychiatry and Clinical Neurosciences 55, 595–603 (2001).
+32. M. E. Webb, D. R. Little, S. J. Cropper, Once more with feeling: Normative data for
+the aha experience in insight and noninsight problems. Behavior Research Methods 50,
+2035–2056 (2018).
+33. C. Stevensonet al., Automated AUT scoring using a big data variant of the consensual
+assessment technique (2020).
+34. J. Baer, J. C. Kaufman, Gender differences in creativity. The Journal of Creative Behavior
+42, 75–105 (2008).
+35. H. W. Reese, L.-J. Lee, S. H. Cohen, J. M. Puckett, Effects of intellectual variables, age,
+and gender on divergent thinking in adulthood. International Journal of Behavioral
+Development 25, 491–500 (2001).
+36. A. Abraham, Gender and creativity: An overview of psychological and
+neuroscientific literature. Brain Imaging and Behavior 10, 609–618 (2015).
+37. A. Adnan, R. Beaty, P. Silvia, R. N. Spreng, G. R. Turner, Creative aging: Functional
+brain networks associated with divergent thinking in older and younger adults.
+Neurobiology of Aging 75, 150–158 (2019).
+38. M. Palmiero, D. D. Giacomo, D. Passafiume, Divergent thinking and age-related
+changes. Creativity Research Journal 26, 456–460 (2014).
+39. T. R. Marronet al., Chain free association, creativity, and the default mode network.
+Neuropsychologia 118, 40–58 (2018).
+40. M. A. Runco, S. Acar, Do tests of divergent thinking have an experiential bias?
+Psychology of Aesthetics, Creativity, and the Arts 4, 144–148 (2010).
+41. T. M. Amabile, Creativity in context: Update to the social psychology of creativity
+(Routledge, 2018).
+42. A. Mavromatis, Hypnagogia: The Unique State of Consciousness Between Wakefulness and
+Sleep (Routledge & Kegan Paul, 1987).
+43. L. Prochazkovaet al., Exploring the effect of microdosing psychedelics on creativity in
+an open-label natural setting. Psychopharmacology 235, 3401–3413 (2018).
+44. C. S. Lee, D. J. Therriault, The cognitive underpinnings of creative thought: A latent
+variable analysis exploring the roles of intelligence and working memory in three
+creative thinking processes. Intelligence 41, 306–320 (2013).
+45. L. Németh, Hunspell (2020).
+46. J. A. Olson, L. Suissa-Rocheleau, M. Lifshitz, A. Raz, S. P. L. Veissière, Tripping on
+nothing: Placebo psychedelics and contextual factors. Psychopharmacology 237, 1371–1382
+(2020).
+6 Supplementary information
+enjoyment across different creativity measures. Section 6.1 shows the pen-and-paper
+version of the Divergent Association Task that we labelled for participants as simply a
+“creativity task”. Section 6.2 shows the algorithm code written in Python 3.
+Study 1A 1B 1C 2 Total
+M 78.38 78.15 80.67 78.28 78.29
+SD 6.35 5.40 6.20 6.51 6.48
+Minimum 57.13 56.92 66.44 50.05 50.05
+Maximum 93.05 91.61 91.59 95.74 95.74
+Skew -0.44 -0.38 -0.21 -0.57 -0.57
+Kurtosis 0.96 0.91 -0.78 1.19 1.21
+slightly by demographics. Per-test α .0167.
+Factor df SS F p η
+Age 1 1555.98 38.39 <.001 .006
+Gender 1 422.26 10.42 .001 .002
+Country (Australia) 1 33.93 0.84 .360 .000
+Multilingual 1 67.28 1.66 .198 .000
+Age gender 1 203.98 5.03 .025 .001
+Country multilingual 1 215.95 5.33 .021 .001
+Residuals 6278 254423.69 .990
+3.5
+3.0
+2.5
+2.0
+Measure
+)5
+ot
+0(
+tnemyojnE
+Alternative Uses Task Divergent Association Task Problem solving
+DAT more than any of the other measures. Dots show means and lines show bootstrapped
+95% confidence intervals.
+6.1 Creativity task
+Instructions
+Please write 10 words that are as different from each other as possible, in all meanings and uses
+of the words.
+Rules
+1. Only single words.
+2. Only nouns (e.g., things, objects, concepts).
+3. No proper nouns (i.e., no specific people or places).
+4. No specialised vocabulary (e.g., no technical terms).
+5. Think of the words on your own (e.g., do not just look at objects in your surroundings).
+6. You will have 4 minutes to complete this task.
+Words
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+10.
+6.2 Algorithm code
+(Code forthcoming; contact the author for a copy.)

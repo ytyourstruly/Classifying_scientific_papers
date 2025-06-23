@@ -1,0 +1,1418 @@
+Equivalent Approaches to Dealing with Unobserved Heterogeneity
+in Cross-Lagged Panel Models?
+Investigating the Benefits and Drawbacks of the Latent Curve Model with Structured
+Residuals and the Random Intercept Cross-Lagged Panel Model
+Henrik Kenneth Andersen
+Chemnitz University of Technology
+Institute of Sociology
+henrik.andersen@soziologie.tu-chemnitz.de
+15 July, 2021
+Abstract
+Panel models in structural equation modeling that combine static and dynamic components make it
+possible to investigate reciprocal relations while controlling for time-invariant unobserved heterogeneity.
+Recently, the Latent Curve Model with Structured Residuals and the Random-Intercept Cross-Lagged
+Panel Model were suggested as ‘residual-level’ versions of the more traditional Autoregressive Latent
+Trajectory and Dynamic Panel Models, respectively. Their main benefit is that they allow for a more
+straightforward interpretation of the trajectory factors. It is not widely known, however, that the residual-
+level models place potentially strong assumptions on the initial conditions, i.e., the process that was
+occurring before the observation period began. If the process under investigation is not both stationary
+and at equilibrium then the residual-level models are not appropriate. They then do not control for
+all time-invariant unobserved heterogeneity and can result in biased cross-lagged and autoregressive
+estimates. I demonstrate this using the problem behavior of cigarette smoking amongst adolescents:
+because the mean and variance of this process changes as a young person’s smoking behavior develops,
+early stages of this process should not be examined using the residual-level models. This issue potentially
+exists for a wide variety of psychological and sociological topics, essentially whenever the process under
+investigation is changing over the course of the observation period. This paper discusses strategies to
+help researchers decide which model to use when, and compares some of their relative advantages and
+drawbacks. An amendment to the residual-level models is suggested in which the latent individual effects
+are allowed to covary with the initial residuals. This makes the residual-level models robust to violations
+of the assumptions surrounding the initial conditions, while retaining their other beneficial aspects.
+© 2021, American Psychological Association. This paper is not the copy of record and may not exactly
+replicate the final, authoritative version of the article. Please do not copy or cite without authors’
+permission. The final article will be available, upon publication, via its DOI: 10.1037/met0000285.
+Introduction
+Dynamic linear panel models in the structural equation modeling (SEM) framework that examine (cross-)
+lagged relations while taking time-invariant unobserved heterogeneity into account have become increasingly
+popular over the last 15 years or so. Models like the Autoregressive Latent Trajectory (ALT, K. A. Bollen
+and Curran 2004; Curran and Bollen 2001) and the Dynamic Panel Model (DPM, Allison, Williams, and
+Moral-Benito 2017; Moral-Benito, Allison, and Williams 2019; Williams, Allison, and Moral-Benito 2018), as
+well as the General Cross-Lagged Model (GCLM, Zyphur et al. 2020a, 2020b) combine aspects of static and
+dynamic panel models to allow researchers to control for time-invariant unobserved factors while examining
+within-unit processes; either of a single construct over time, or the reciprocal relations between two or more
+constructs (Voelkle and Oud 2015).
+The Random-Intercept Cross-Lagged Panel Model (RI-CLPM, E. Hamaker, Kuiper, and Grasman 2015) and
+the Latent Curve Model with Structured Residuals (LCM-SR, Curran et al. 2014) were recently suggested
+as novel modifications of the conventional ALT and DPM. These models specify the autoregressive (AR)
+and, if present, cross-lagged (CL) effects at the residual- or disturbance-level, so to speak, i.e., what is left
+over of the time-varying observed variables after they have been regressed on the latent individual effects.
+Their advocates highlight the fact that these models provide the benefit of cleanly separating stable between-
+person differences from within-person fluctuations (Usami, Murayama, and Hamaker 2019), thereby making
+the mean structure easier to interpret (Curran et al. 2014).
+However, the residual-level models are re-expressions of the ALT and DPM, and there are a number of
+different versions of these ‘observation-level’ models depending on the assumptions placed on the initial
+conditions, i.e., the unobserved process prior to the first observation. Ou et al. (2017) explain that there are
+at least three versions of the ALT or DPM, depending on the assumptions regarding the initial conditions.
+The so-called ‘predetermined’ model is the most flexible and general option because it places no restrictions
+on the initial observations, treating them as exogenous. The typical ‘constrained’ model assumes the AR
+process is stationary and that it has been going on long enough to have reached equilibrium (K. A. Bollen
+and Curran 2004; E. L. Hamaker 2005; Ou et al. 2017). The benefit of the constrained models is that if the
+assumptions about the initial conditions hold, they are more parsimonious. Still another version assumes the
+cumulative effects of the earlier realizations are negligible, or that the observation period captures a distinct
+process separate from what came before it (Ou et al. 2017).
+In this paper, I show that while the RI-CLPM and LCM-SR can offer benefits compared to their more
+conventional counterparts, they are re-expressions specifically of the constrained versions of the observation-
+level models. This is shown algebraically and demonstrated with examples using real data. This means that
+the RI-CLPM and the LCM-SR assume that the process being modeled is stationary, and has been going
+on for enough time to have reached its equilibrium state. If this is not the case, then the RI-CLPM and
+LCM-SR can yield misleading results.
+The main goals of this paper are to:
+• emphasize that while it is widely known that observation-level models can be re-expressed as residual-
+level models (see Hsiao 2014, 86f.; Jongerling and Hamaker 2011; E. L. Hamaker 2005; Ou et al. 2017),
+they result in ‘constrained’ versions of the observation-level counterparts,
+• raise awareness about the assumptions inherent to the constrained, and thus also residual-level models,
+• demonstrate the consequences of a violation of the assumptions, and
+• provide some suggestions for dealing with these issues.
+I focus on the ALT and DPM because of they are arguably the closest observation-level analogues to the residual-level
+models introduced below. The GCLM also investigates cross-lagged relationships while controlling for time-invariant unobserved
+heterogeneity but it goes a step further, including a moving average (MA) component (regressing the current observation on
+the previous residuals or ‘impulses’ as they are referred to). The DPM could be thought of a special case of the GCLM in
+which the MA structure is dropped and the individual effects are assumed time invariant, (though relaxing the assumption of
+time-invariant individual effects is always an option, see K. A. Bollen and Brand (2010)).
+The main difference between the DPM and ALT is that the DPM accounts for time-invariant unobserved heterogeneity in
+level, but not in growth. This is the main difference between the RI-CLPM and LCM-SR, as well.
+Hsiao (2014) goes into even more granular detail (p. 87ff.).
+The paper is structured as follows. First, I briefly discuss the synthesis of static (e.g., random and fixed
+effects, latent growth curves) and dynamic (e.g., autoregressive) panel models. Then, I show algebraically
+that the residual-level models (LCM-SR and RI-CLPM) can be rewritten as constrained versions of the
+observation-level counterparts (ALT and DPM). I discuss the implicit assumptions of the constrained and
+residual-level models and demonstrate violations of these assumptions using a brief simulated example. I
+then look at the topic of problem behaviors (specifically smoking) in adolescents as an empirical example
+of a process that is problematic to examine using the constrained and residual-level models. I discuss some
+potential strategies for dealing with a violation of assumptions, focusing on an approach that involves allowing
+the latent individual effects to covary with the initial residuals (i.e., the deviations from those individual
+effects). This accounts for situations in which the process under investigation is not at equilibrium and thus
+makes the residual-level models more robust to violated assumptions. I conclude with a brief outlook and a
+discussion of some potential next steps.
+Background
+The main benefit of longitudinal or panel data is that they allow researchers to control for all time-invariant
+unobserved heterogeneity, i.e., omitted variables that are constant over time, like genetic factors, personality
+traits, intelligence, motivation (K. A. Bollen and Brand 2010). These time-invariant omitted variables
+are sometimes referred to as the ‘individual effects’ (Hsiao 2014, the term I prefer), ‘unobserved effects’
+(Wooldridge 2002), ‘unit effects’ (Skrondal and Rabe-Hesketh 2004; Zyphur et al. 2020a, 2020b), ‘individual
+trajectories’ (Bianconcini and Bollen 2018; K. A. Bollen and Curran 2004), etc. Models that control for
+such time-invariant unobserved heterogeneity are referred to as fixed effects (FE) models. While there is
+typically some confusion surrounding the term, the modern sign of a fixed effects model is that it assumes the
+exogenous model covariates are related to the stable (unobserved) time-invariant component(s) (Wooldridge
+2002). This is often a much more realistic assumption than the alternative, embodied by random effects (RE)
+models, which is to assume there is no correlation between the individual effects and the model covariates
+(Andersen 2021; K. A. Bollen and Brand 2010). For example, if we were looking at the relationship between
+social isolation and subjective well-being (Seifert and Andersen 2020), then an FE regression model would
+allow and control for the possibility that a person’s social isolation at a given point in time is correlated with
+underlying personality traits like extraversion, or neuroticism, even if we do not have observed measures of
+these traits.
+The implementation of basic fixed effects regression in structural equation modeling (SEM) has been dis-
+cussed, for example, in Allison (2009); Andersen (2021); K. A. Bollen and Brand (2010); Teachman et al.
+(2001). It works by specifying a latent variable to represent the individual effects. This latent variable is
+treated as a random variable with a constant effect on the time-varying observed dependent variable (this
+can be relaxed, see K. A. Bollen and Brand 2010; Zyphur et al. 2020a), that is allowed to covary freely
+with the time-varying model covariates (Allison 2009; K. A. Bollen and Brand 2010). In the majority of
+social science applications based on observational data, the model covariates are also treated as random
+variables. By including the latent individual effects along with the time-varying covariates in the equation
+for the time-varying dependent variable, the correlation between the covariates and the individual effects can
+be partialled out, giving the estimated coefficients their interpretation as ‘within-unit’ effects (i.e., cleansed
+of the between-unit component, K. A. Bollen and Brand 2010, 27; Rüttenauer and Ludwig 2020; Zyphur et
+al. 2020b, 7). Note that constraining the correlations between the latent individual effects and the model
+covariates to zero is equivalent to an RE model (K. A. Bollen and Brand 2010).
+Another type of model popular in the SEM framework looks at and accounts for stable differences between
+units not just in level, but also in slope. These are referred to as Latent Growth Curve (LGC), or Latent
+Curve Models (LCM, K. A. Bollen 2006; K. Bollen and Zimmer 2010; Meredith and Tisak 1990). These
+models typically have two latent variables, representing individual intercepts and slopes, thereby allowing
+each unit to have its own trajectory. Often, linear trajectories are assumed, but higher order polynomials
+can also be modeled (Kim et al. 2018). Fixed effects variants of these models that control for time-invariant
+unobserved heterogeneity can be specified by allowing the time-varying covariates to correlate with the latent
+trajectory components.
+So, the FE, RE and LGC models are all examples of panel models that account for time-invariant unobserved
+heterogeneity, a likely and common source of bias (Andersen 2021; Rüttenauer and Ludwig 2020). They
+are sometimes referred to as ‘static’ panel models because they account for stable differences (Zyphur et
+al. 2020b). Another type of panel regression model popular in the social sciences, and within the SEM
+framework in particular, looks at the lagged effects of a covariate on some other dependent variable, while
+holding the level of the dependent variable at a previous point in time constant. Models that include
+the lagged dependent variable in the equation for the current dependent variable, like autoregressive (AR)
+models, are sometimes referred to as ‘dynamic’ panel models (Zyphur et al. 2020b). Cross-Lagged Panel
+Models (CLPM) expand on the idea of AR models by including a second dynamic process and examining the
+bidirectional or reciprocal relations between the two. They work by regressing each of the variables, call them
+x and y, on their own lagged values (the AR components), as well as on the lagged values of the opposite
+variable (the cross-lagged (CL) components). By looking at lagged relations, they have the advantage of
+fulfilling one of the main stipulations of Granger’s concept of causality: that the supposed cause come before
+the outcome (Granger 1969; E. Hamaker, Kuiper, and Grasman 2015; Zyphur et al. 2020b). Typically,
+CLPMs are used to investigate the question of whether x causes y or the other way around. It is common
+practice to compare the standardized coefficients x → y and y → x , declare the stronger of the two
+t−1 t t−1 t
+the ‘causal winner’ (E. Hamaker, Kuiper, and Grasman 2015) and take this as evidence that, say, x ‘causes’
+y, and not the other way around.
+Around 20 years ago, panel models in SEM were suggested that combine both static and dynamic processes;
+“the best of both worlds” (K. A. Bollen and Curran 2004; K. Bollen and Zimmer 2010; Curran and Bollen
+2001). The ALT model examines autoregressive and (cross-) lagged relations while controlling for time-
+invariant unobserved heterogeneity. Again, if we were interested in the effect of social isolation on subjective
+well-being, then we could use a bivariate ALT to look at the lagged effect of one’s degree of social isolation on
+their subjective well-being, holding their previous level of subjective well-being constant, while also allowing
+for the possibility that social isolation is related to a variety of stable omitted variables. Other models
+that can be seen as special cases of the ALT have been suggested in recent years, such as the Dynamic
+Panel Model (DPM, Allison, Williams, and Moral-Benito 2017; Moral-Benito, Allison, and Williams 2019;
+Williams, Allison, and Moral-Benito 2018) and certain versions of the General Cross-Lagged Model (GCLM,
+Zyphur et al. 2020a, 2020b). These, like a traditional FE model, control for individual differences in level,
+but not slope.
+More recently, a new approach to combining static and dynamic models was suggested by Curran et al. (2014)
+with the LCM-SR and E. Hamaker, Kuiper, and Grasman (2015) with the RI-CLPM. Like the ALT, DPM
+and GCLM, these models also look at the lagged relationships between two (or more) variables, controlling
+for each of the variables’ own previous levels while accounting for stable between-unit differences (in level for
+the RI-CLPM and in both level and slope for the LCM-SR). These models provide the benefit of “cleanly
+separating” (Curran et al. 2014, 885) the static from the dynamic processes, thereby allowing for a more
+intuitive interpretation of the between-unit individual effects components. They do so by specifying the AR
+and CL effects at the residual-level, i.e., what is left over of the observed time-varying dependent variables
+after they have been regressed on the latent individual effects. Because of this, I refer to these type of models
+as ‘residual-level’ models, in contrast with the ‘observation-level’ models discussed earlier. The residuals can
+be thought of as within-unit centered scores (Usami, Murayama, and Hamaker 2019, 4), which brings to
+mind the method of ‘demeaning’ or ‘detrending’ observed variables to eliminate between-unit variance, which
+is the typical approach to least-squares based FE estimation Rüttenauer and Ludwig (2020).
+The RI-CLPM is explicitly presented as an extension and improvement of the CLPM, which includes AR and
+CL effects, but does not account for time-invariant unobserved heterogeneity. In the abstract, E. Hamaker,
+Kuiper, and Grasman (2015) write: “if stability of constructs is to some extent of a trait-like, time-invariant
+nature, the autoregressive relationships of the CLPM fail to adequately account for this” (2015, 102) and later
+in the introduction that “not only should we account for stability, but we need to account for the right kind of
+stability” (2015, 102, emphasis in original). And, as noted, the article by Curran et al. (2014) discusses that
+the LCM-SR offers benefits compared to the ALT in terms of the interpretability of the individual effects.
+This raises the following questions: Are the residual- and observation-level models equivalent? Why does
+E. Hamaker, Kuiper, and Grasman (2015) present the RI-CLPM as a solution to the problem of the CLPM
+ignoring time-invariant unobserved heterogeneity when the ALT has been around for decades? Is there any
+reason to prefer the residual-level models to the traditional observation-level counterparts if the within-unit
+effects are of main substantive interest? The following section will begin by reiterating the relationship
+between the observation- and residual-level models (this has been done before elsewhere, for example, K. A.
+Bollen and Curran (2004); Curran and Bollen (2001); E. L. Hamaker (2005); Hsiao (2014); Jongerling and
+Hamaker (2011); Ou et al. (2017)) before moving on to highlight the implications of such.
+Analytical comparison
+The ALT and DPM model the autoregressive effects and the effects of the other covariates at the observed
+variable level. The DPM assumes there are stable differences between individuals while the ALT takes
+individual differences in both intercept and slope (varying trajectories) into account. We can write a simple
+version of the ALT as
+y = η + tη + ρy + ν , t = 1, . . . , T (1)
+it 1 2 it−1 it
+i i
+where y is the observed dependent variable for person i = 1, . . . , N at time t = 0, . . . , T . Notice the initial
+it
+observation is t = 0, but Equation (1) starts at t = 1 because there is no previous observation to regress
+y on. I will come back to this momentarily. η and η are the latent individual intercepts and slopes,
+i0 1 2
+i i
+respectively (although their interpretation as such is not straightforward, as will be discussed below). I will
+refer to these individually as the individual intercepts and slopes, or together as the individual effects (a
+term used in Hsiao 2014). y is the lagged dependent variable and ρ is the autoregressive coefficient,
+it−1
+which will be assumed time-invariant throughout, i.e., ρ = ρ for reasons that should become clear later on.
+ν is the idiosyncratic error with E(ν ) = 0 (K. A. Bollen and Curran 2004). We could easily extend this
+it it
+model to include other time-varying (either contemporaneous or lagged) covariates as well as time-invariant
+covariates (K. A. Bollen and Brand 2010).
+In Equation (1) and throughout, I omit time-specific or ‘occasion effects’ (Zyphur et al. 2020b), sometimes
+written α , τ , µ , etc. These represent shifts in the mean of the observed variable at a given point in time
+t t t
+(Allison, Williams, and Moral-Benito 2017; Zyphur et al. 2020b). Leaving them out of the equations puts
+the focus on the covariance structure, and is equivalent to analyzing centered data (E. Hamaker, Kuiper,
+and Grasman 2015). These effects can be recovered in typical SEM software by simply turning on the mean
+structure (e.g., in lavaan by adding the optional argument meanstructure = TRUE in the fitting function).
+By default, the means of the latent individual effects are fixed to zero to identify an intercept per observed
+timepoint. This is desirable because it places no constraints on the means (E. Hamaker, Kuiper, and Grasman
+2015), but it does go against the usual convention in LCMs and ALT models of constraining the time-specific
+intercepts to zero and attempting to model the mean structure entirely with the latent intercept and slope
+factors, which, as Zyphur et al. (2020b) note, is a problematic assumption. This is likely why the DPM
+explicitly allows for occasion effects (see Equations (1) and (2) in Allison, Williams, and Moral-Benito 2017).
+An analogous DPM would be
+y = η + ρy + ν , t = 1, . . . , T. (2)
+it i it−1 it
+Notice Equations (1) and (2) apply for t = 1, . . . , T , so we have to decide what to do with y since we do not
+i0
+have an observation for y . The most straightforward approach is to simply treat y as predetermined.
+i,−1 i0
+That is, we enter y into the model as an exogenous variable, with an unconditional mean and individual
+i0
+deviations from it (K. A. Bollen and Curran 2004). We make no assumptions about the process before
+the observations began and allow y to covary freely with the individual effects. A four-wave version
+i0
+These models can be extended to include multiple-indicator measurement models, see, for example, Bianconcini and Bollen
+(2018); Mulder and Hamaker (2020).
+of a predetermined observation-level model with individual effects (Equation (1) describes the model for
+The drawback to treating the initial observation as predetermined is that it may use up ‘too many’ degrees of
+freedom, depending on the specific model one is trying to run and number of waves of data one has available.
+For example, a three-wave ALT is not over-identified, even if we constrain the autoregressive effect and error
+variances to be equal over time (K. A. Bollen and Curran 2004; Ou et al. 2017).
+A solution put forth by K. A. Bollen and Curran (2004); Curran and Bollen (2001) and further discussed in
+E. L. Hamaker (2005); Jongerling and Hamaker (2011) is to make some assumptions about the process before
+the observation period began and work out fixed values for the associations between the initial observation
+and the individual intercept and slope. This is referred to as a constrained model. Namely, if we assume the
+autoregressive effect is constant over time, ρ = ρ, and less than one in absolute value, |ρ| < 1, then we can
+begin substituting the equations for the previous unobserved realizations into the first one:
+y = η + 0η + ρy + ν
+i0 1 2 i,−1 i0
+i i
+= η + ρ(η − 1η + ρy + ν ) + ν
+1 1 2 i,−2 i,−1 i0
+i i i
+(3)
+= η + ρ(η − 1η + ρ(η − 2η + ρy + ν ) + ν ) + ν
+1 1 2 1 2 i,−3 i,−2 i,−1 i0
+i i i i i
+= . . .
+and so on, back to −∞, which gives
+∞ ∞ ∞
+X X X
+j j j
+y = ρ η + (t − j)ρ η + ρ ν . (4)
+i0 1 2 i(t−j)
+i i
+j=0 j=0 j=0
+Given that ρ = ρ and |ρ| < 1, this converges to
+−1 −2 j
+y = (1 − ρ) η − ρ(1 − ρ) η + ρ ν . (5)
+i0 1 2 i(t−j)
+i i
+j=0
+The final term can be recognized as a moving average process of infinite order (MA(∞)), which can be
+written as a first-order autoregressive (AR(1)) process in the form of ε = ρε + ν (E. Hamaker and
+it it−1 it
+Dolan 2009). This means we can write Equation (3) as
+−1 −2
+y = (1 − ρ) η − ρ(1 − ρ) η + ε (6)
+i0 1 2 i0
+i i
+where it is usually assumed that ε ∼ N (0, ν i0 ) (Ou et al. 2017). 6 So, we can constrain the factor loadings
+i0
+1−ρ2
+of η → y and η → y to these fixed values, saving two degrees of freedom. For the constrained DPM,
+1 i0 2 i0
+i i
+−1
+we drop the latent slope and are left with just y = (1 − ρ) η + ε . A four-wave version of the constrained
+i0 i i0
+Now, let us keep this result in mind while turning to the residual-level LCM-SR and RI-CLPM. A LCM-SR
+that is analogous to the ALT described in Equation (1) is
+As E. L. Hamaker (2005) mentions in Endnote 2, we do not actually have to go back to −∞ for this approach to make
+sense, because if |ρ| < 1, then ρ approaches zero as j gets larger and we can say at some point, probably not too far in the
+past (especially when |ρ| is not too close to one), the y realization has essentially no effect on y .
+it−j it
+6 If we assume a constant error variance, σ 2 = σ 2 , then we see that Var(ε ) = E[(ρε + ν ) 2 ] − E(ρε + ν ) 2 = . . . =
+ν ν i0 i,−1 i0 i,−1 i0
+j·2 2 2 −1 2
+ρ σ → (1 − ρ ) σ , see Appendix B for a more detailed explanation.
+ν ν
+j=0
+η η
+1 2
+1 1
+−1 1 2
+(1 − ρ) 3
+y y y y
+0 1 2 3
+ρ ρ ρ
+1 1 1
+ε ν ν ν
+1 1 2 3
+(a) Predetermined observation-level
+η η
+1 2
+−2
+−ρ(1 − ρ)
+1 1
+−1 1 2
+(1 − ρ) 3
+y y y y
+0 1 2 3
+ρ ρ ρ
+1 1 1 1
+εε ν ν ν
+10 1 2 3
+(b) Constrained observation-level
+α α
+1 2
+1 0
+1 1
+−1 1 2
+(1 − ρ) 1 3
+y y y y
+0 1 2 3
+1 1 1 1
+ε ε ε ε
+0 1 2 3
+ρ ρ ρ
+1 1 1
+ν ν ν ν
+1 1 2 3
+(c) Residual-level
+y = α + tα + ε , t = 0, . . . , T
+it 1 2 it
+i i
+(7)
+ε = ρε + ν , t = 1, . . . , T.
+it it−1 it
+no latent slope,
+y = α + ε , t = 0, . . . , T
+it i it
+(8)
+ε = ρε + ν , t = 1, . . . , T
+it it−1 it
+where E(ν ) = E(ε ) = 0 (E. L. Hamaker 2005). From these residual-level models, we can see the benefit
+it it
+is that the individual effects are separated from the autoregression, which makes them easier to interpret
+(Usami, Murayama, and Hamaker 2019). For example, the expected value of y in the LCM-SR would be
+it
+E(y ) = E(α ) + t E(α ) + E(ε )
+it 1 2 it
+i i
+(9)
+= E(α ) + t E(α )
+1 2
+i i
+where E(α ) can be thought of as the average intercept and E(α ) can be thought of as the average slope
+1 2
+i i
+(E. L. Hamaker 2005; Ou et al. 2017). For the ALT and DPM, the same is not true, as
+E(y ) = E(η ) + t E(η ) + ρ E(y ) + E(ν )
+it 1 2 it−1 it
+i i
+= E(η ) + t E(η ) + ρ E(η + (t − 1)η + ρy + ν ) + E(ν ) (10)
+1 2 1 2 it−2 it−1 it
+i i i i
+= . . .
+means the expected value of the dependent variable is more complicated than E(η ) and t E(η ) and these
+1 2
+i i
+cannot be interpreted as the intercept and slope factors (see Ou et al. 2017).
+Equivalence of residual-level and constrained observation-level models
+Note that we can take the residual-level models and insert the equation for the residuals into the equation
+for the observations. For the LCM-SR in what we can call reduced-form, we have
+y = α + tα + ε
+it 1 2 it
+i i
+= α + tα + ρε + ν
+1 2 it−1 it
+i i
+= α + tα + ρ(y − α − (t − 1)α ) + ν (11)
+1 2 it−1 1 2 it
+i i i i
+= α + tα + ρ(y − α − tα + α ) + ν
+1 2 it−1 1 2 2 it
+i i i i i
+= (1 − ρ)α + ρα + t(1 − ρ)α + ρy + ν t = 1, . . . , T.
+1 2 2 it−1 it
+i i i
+From here, we define η = (1 − ρ)α + ρα and η = (1 − ρ)α (Hsiao 2014; Ou et al. 2017) to yield
+1 1 2 2 2
+i i i i i
+The following section looks at the situation in which the effects are constrained to be constant over time. The equiva-
+lence/nesting of the models does not hold if we allow the effects to vary over time. However, my own simulations show that the
+andersen/equivalent-approaches-clpm/blob/main/r-files/r-code-nonstationary-riclpm-dpm-simulation.R.
+y = η + tη + ρy + ν , t = 1, . . . , T (12)
+it 1 2 it−1 it
+i i
+which is clearly Equation (1) for the ALT for t = 1, . . . , T . For the initial timepoint, we have
+y = α + ε (13)
+i0 1 i0
+−1 −2
+and, by rearranging the definition above, we have α = (1 − ρ) η − ρ(1 − ρ) η , which we can substitute
+1 1 2
+i i i
+in for
+−1 −2
+y = (1 − ρ) η − ρ(1 − ρ) η + ε . (14)
+i0 1 2 i0
+i i
+This is exactly the equation for the first observation in the constrained ALT from Equation (6). By proceeding
+in the same way, we would see that the same holds for the simplified RI-CLPM, which is equivalent to a
+constrained type of DPM. In fact, the equivalence even holds for cross-lagged or ‘two-sided’ models, but it
+is significantly more complicated, see Appendix A.
+Implications
+For the sake of simplicity, let us focus on the DPM and RI-CLPM outlined in Equations (2) and (8). Most
+of what can be shown for the models with individual intercepts can be shown for those with individual
+intercepts and slopes, but it becomes more complicated and less intuitive. The empirical examples will show
+that the results hold for the ALT and LCM-SR, as well.
+The assumptions used above to derive the constrained versions of the ALT and DPM, ρ = ρ, |ρ| < 1,
+2 2
+σ = σ , refer to a stationary process (Ou et al. 2017). Stationary means that the expected value,
+ν ν
+E(y ), and variance, Var(y ) are constant and that the autocovariance, Cov(y , y ), depends on the
+it it it it+h
+lag, h, but not on the specific point in time, t (E. Hamaker and Dolan 2009; Pickup 2015). Notice that if
+these assumptions hold, we can always choose some arbitrary point in time and begin working backwards,
+substituting the equations for the previous (potentially unobserved) realizations into the current one:
+y = η + ρy + ν
+it i it−1 it
+= η + ρ(η + ρy + ν ) + ν
+i i it−2 it−1 it
+= η + ρ(η + ρ(η + ρy + ν ) + ν ) + ν
+i i i it−3 it−2 it−1 it
+= . . .
+(15)
+∞ ∞
+X X
+j j
+= ρ η + ρ ν
+i it−j
+j=0 j=0
+−1
+= (1 − ρ) η + ε
+i it
+where, again, ε ∼ N (0, ν ) and the expression should apply for any t. From here, we can easily see
+it
+(1−ρ2)
+that the expected value is a constant:
+E(y ) = (1 − ρ) −1 E(η ) (16)
+it i
+and that by proceeding in a similar fashion (see Appendix B for a more detailed explanation), we see that
+the variances and autocovariances are also constants:
+−2 2 −1
+Var(y ) = (1 − ρ) Var(η ) + (1 − ρ ) Var(ν )
+it i it
+(17)
+−2 j 2 −1
+Cov(y , y ) = (1 − ρ) Var(η ) + ρ (1 − ρ ) Var(ν )
+it it−j i it
+where j is the distance in time between the two observations (Ou et al. 2017). A stationary process also
+means that the covariance between the observed variable and the individual intercepts is constant at
+−1
+Cov(y , η ) = (1 − ρ) Var(η ). (18)
+it i i
+Stationarity may not be a particularly problematic assumption in applied situations, because we can think of
+many psychological and sociological constructs (e.g., mood, thought, action) whose temporal measures tend
+to hover around an individual-specific trajectory with deviations that tend to revert back to that underlying
+level over time (E. L. Hamaker, Dolan, and Molenaar 2005). However, to derive each of the constant values
+above, we let j, the number of previous realizations, go to infinity. This embodies the idea that the process
+is an ‘ongoing stationary’ one (Ou et al. 2017), meaning the process as we are modeling it has been going
+on already for a ‘long time.’ If we can say that for the duration of the period of observation — including
+the initial observation — the process is stationary with a constant mean, variance and autocovariance, then
+we can describe it as at equilibrium (Greenberg and Kessler 1982).
+However, processes need not always be at equilibrium. A process that is not at equilibrium is characterized
+by changing means, variances and covariances over time. As we will discuss below, there are examples of
+psychological and sociological constructs that take time to reach their equilibrium state. If the process under
+investigation is not yet at equilibrium, then the constrained and residual-level models are not appropriate,
+because their model-implied moments reflect the assumption that they are. This can be a source of misfit
+if the observed means, variances and autocovariances are changing because the model-implied moments
+are constants. Worse than that, however, the constrained and residual-level models will also return biased
+estimates of the AR and CL effects, which are of central substantive interest. For example, if we are focused
+on the autoregressive effect ρ, then
+Cov(y , y ) = E(y y ) − E(y ) E(y )
+it it−1 it it−1 it it−1
+= E[(ρy + η + ν )y ] − E(ρy + η + ν ) E(y )
+it−1 i it it−1 it−1 i it it−1
+= E(ρy 2 + η y + ν y ) − ρ E(y ) 2 − E(η ) E(y ) − E(ν ) E(y )
+it−1 i it−1 it it−1 it−1 i it−1 it it−1
+= ρ(E(y 2 ) − E(y ) 2 ) + E(η y ) − E(η ) E(y ) (19)
+it−1 it−1 i it−1 i it−1
+= ρ Var(y ) + Cov(η , y )
+it−1 i it−1
+Cov(y , y ) − Cov(η , y )
+it it−1 i it−1
+ρˆ =
+Var(y )
+it−1
+(Hayduk et al. 2003), where ρˆ would be the estimated autoregressive coefficient. In the constrained and
+−1
+residual models, we are fixing this covariance to Cov(η , y ) = (1 − ρ) Var(η ) as if the process was
+i it−1 i
+stationary and at equilibrium. However, if our assumption about stationarity and/or equilibrium does not
+hold, then we will be subtracting off too much or too little from the autocovariance and the estimated
+As discussed in E. Hamaker and Dolan (2009), models with individual slopes are sometimes referred to as having a
+‘deterministic trend.’ Because of this trend, the means of the observed variable are always increasing or decreasing. Such
+processes are referred to as ‘trend stationary’ if, once the trend has been removed (i.e., by differencing or detrending, Brüderl
+and Ludwig 2015; E. Hamaker and Dolan 2009), the means do not change over time, though the variance may still be time-
+varying.
+Though not necessarily back to negative infinity, see Endnote 2 in E. L. Hamaker (2005).
+coefficient for ρ will be biased. From this, we can go so far as to say that the constrained and residual-
+level models are not fixed effects models in the sense that they control for all time-invariant unobserved
+heterogeneity unless the data are stationary and at equilibrium.
+The effects of other covariates will be affected by the issue described above, as well. Say we extended the
+example above by including a lagged covariate, x , that is treated as exogenous and allowed it to covary
+it−1
+freely with η , where E(x ν ) = 0, ∀ t. Now, we would see that the effect β can be biased as well:
+i it−1 it
+Cov(y , x ) = E(y x ) − E(y ) E(x )
+it it−1 it it−1 it it−1
+= E[(η + ρy + βx + ν )x ] − E(η + ρy + βx + ν ) E(x )
+i it−1 it−1 it it−1 i it−1 it−1 it it−1
+(20)
+= Cov(η , x ) + ρ Cov(y , x ) + β Var(x )
+i it−1 it−1 it−1 it−1
+Cov(y , x ) − Cov(η , x ) − ρ Cov(y , x )
+ˆ it it−1 i it−1 it−1 it−1
+β = .
+Var(x )
+it−1
+If we substitute ρˆ from above into this expression and it is biased, then we will be subtracting off too little
+or too much of Cov(y , x ) and β will be biased, as well. In two-sided models, all of this applies equally
+it−1 it−1
+to the other time-varying variable, as well. That means that if x is not both stationary and at equilibrium,
+it
+then we can expect the effects to be biased in the other direction, as well.
+We can easily relax some assumptions and create more flexible constrained and residual-level models. E.g.,
+we can allow the error variance to vary over time and loosen the assumption of constant variances (this can
+even be done without losing the equivalence between the constrained and residual-level models). Or, we could
+allow the autoregressive effect, ρ, to vary over time (this makes the constrained and residual-level models
+no longer equivalent). But we cannot write a residual-level model without at least constraining the initial
+−1
+covariance, Cov(y , η ), to (1 − ρ) Var(η ), which simply is not appropriate unless the process is stationary
+i0 i i
+and at equilibrium. To see why the assumptions about the initial conditions are so important, consider the
+covariance between the individual intercepts and the initial error term, Cov(η , ε ). Usami, Murayama, and
+i i0
+Hamaker (2019) talk about this when they write: “Note that in the RI-CLPM, the initial within-person
+centered scores [. . . ] are not correlated with the stable trait factors [. . . ] by definition. The reason for this is
+that the model is based on decomposing the observed variance into between-person/trait-like variance and
+within-person/state-like variance. There is no reason to assume that an individual’s temporal deviation at
+the first measurement from the person’s trait score is dependent on that trait score (especially not when the
+measurements started at a relatively arbitrary moment in time)” (2019, 640).
+If we have a simple constrained observation-level model like this
+−1
+y = (1 − ρ) η + ε
+i0 i i0
+(21)
+−1
+ε = y − (1 − ρ) η
+i0 i0 i
+then
+Cov(ε , η ) = E[(y − (1 − ρ) −1 η )η ] − E(y − (1 − ρ) −1 η ) E(η )
+i0 i i0 i i i0 i i
+= E(y η − (1 − ρ) −1 η 2 ) − E(y ) E(η ) + (1 − ρ) −1 E(η ) 2
+i0 i i i0 i i
+(22)
+= E(y η ) − E(y ) E(η ) − (1 − ρ) −1 [E(η 2 ) − E(η ) 2 ]
+i0 i i0 i i i
+−1
+= Cov(y , η ) − (1 − ρ) Var(η ).
+i0 i i
+For this equation to equal zero, the covariance between the initial observation and the individual effects
+−1
+must equal (1 − ρ) Var(η ). And so it will not equal zero until the process is at equilibrium. Once it is,
+The notation used in Usami, Murayama, and Hamaker (2019) was removed to avoid confusion.
+the terms cancel each other out and there is no reason to believe the initial deviation, ε , should be related
+i0
+to the individual effects. With this, we see that the assumptions of stationarity and equilibrium are baked
+in to the constrained and residual-level models. The next section will provide a brief simulated example to
+help elucidate what was shown here.
+A brief simulated example
+To demonstrate what has been shown up until now, we can look at a brief example using simulated data
+based on the equation y = η + ρy + ν , with n = 10, 000, t = 15, ρ = 0.5, y ∼ N (0, 1), η ∼ N (5, 1)
+it i it−1 it 0
+and ν ∼ N (0, 0.25). These values were chosen mostly arbitrarily, though the fact that E(ν ) = 0 means
+t it
+there are no occasion effects. Code for this simulated example, as well as the empirical examples to follow
+From the values used in the simulation, and using what was worked out above, the stationary state should
+be
+E(y ) = (1 − ρ) −1 E(η ) = (1 − 0.5) −1 · 5 = 10, (23)
+it i
+Var(ν ) 0.25
+it
+−2 −2
+Var(y ) = (1 − ρ) Var(η ) + = (1 − 0.5) · 1 + = 4.33, (24)
+it i
+1 − ρ2 1 − 0.52
+Var(ν ) 0.25
+it
+−2 −2
+Cov(y , y ) = (1 − ρ) Var(η ) + ρ = (1 − 0.5) · 1 + 0.5 = 4.17, (25)
+it it−1 i
+1 − ρ2 1 − 0.52
+−1 −1
+Cov(y , η ) = (1 − ρ) Var(η ) = (1 − 0.5) · 1 = 2. (26)
+it i i
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+Time
+Case #
+with y ∼ N (0, 1) and, because the process is stationary, quickly moves towards its equilibrium state. This
+i0
+sets in after around the 5th or 6th timepoint. After that, the process is centered around E(y ) = 10, with
+it
+a constant variance. Each individual has their own expected value, based on their own value of η . For
+example, case number 1039, (circle) has a corresponding individual effect of η = 3.989. Thus, their
+i=1039
+−1 −1
+equilibrium state is centered over time around (1 − ρ) η = (1 − 0.5) 3.989 = 7.978.
+Once the process has reached equilibrium, the model-implied moments discussed above are appropriate.
+However, this equilibrium state is not reached immediately, but rather requires a ‘spin-up’ phase. I.e., in the
+−1
+initial phase, up until about t = 6 or so, the covariance, Cov(y , η ), does not equal (1 − ρ) Var(η ). For
+it i i
+−1
+example, at t = 2, the covariance is only around 1.53 ̸= (1 − 0.5) · 1 = 2. Usami, Murayama, and Hamaker
+(2019) even comment on this, saying the “treatment of the initial observation is an important theoretical and
+practical problem for some cross-lagged models like the ALT model that includes common factors but do not
+separate stable between-person differences from within-person fluctuations over time” (Usami, Murayama,
+and Hamaker 2019, 641). This seems to suggest that the RI-CLPM is spared from having to deal with this
+issue, but as we have seen in the above example, it is not. For the residual-level models to be appropriate,
+we must be sure that the process we are modeling is indeed stationary and at equilibrium. If it is not, the
+residual-level models will return biased results for the AR effects as well as potentially those of the other
+model covariates.
+Even though the covariance between the observed variable and the individual intercept is arguably the most
+important for the unbiasedness of the estimated coefficients, it is unobserved, so it is impossible to assess the
+assumption surrounding this covariance in applied settings. But we have seen that if the process is stationary
+and at equilibrium, which can be diagnosed from the observed means, variances and autocovariances, then
+we can decide whether the constraints of the constrained and residual models are appropriate.
+In applied cases with large sample sizes, it may not be feasible to look at the trajectories of each of the
+mation. So, it may be more helpful to simply plot the means, variances and autocovariances of the entire
+The dots represent the observed means and variances, while the horizontal lines represent the model-implied
+means and variances of the residual- and constrained models, which are constants.
+From this as well, we can see that the equilibrium values outlined above set in around the 7th or so timepoint.
+But at t = 3, for example, the observed mean is only 8.74, while the constrained and residual model-implied
+value is E(y ) = 10, the variance is 3.42 (model-implied: Var(y ) = 4.33), the covariance between y and
+it it i3
+the previous timepoint, y , is just 2.84 (model-implied: Cov(y , y ) = 4.17) and the covariance between
+i2 it it−1
+the observed variable and the individual effects (normally not directly observable) is 1.76 (model-implied:
+Cov(y , η ) = 2). The further along in time we go, the closer these values come to the model-implied
+it i
+counterparts, but in the initial phase, these values are still quite far off, leading to misfit and ultimately also
+bias, since we are trying to establish the within-unit effects by removing the covariance between the model
+covariates (e.g., the lagged dependent variable) and the individual effects.
+Empirical example: Use of cigarettes and alcohol in adolescents
+and young adults
+In this section, I use the example of cigarette smoking amongst adolescents and young adults (as well as the
+reciprocal relations with drinking and the effect of parental monitoring) to demonstrate that:
+1. the residual-level models are identical to their constrained observation-level counterparts, and
+2. the implicit assumptions placed on the initial conditions can have consequences for the estimated
+coefficients.
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+Time
+)y(naem
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+Time
+(a) Observed and model-implied means
+)y(rav
+(b) Observed and model-implied variances
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+Time
+)1−ty,ty(voc
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+Time
+(c) Observed and model-implied autocovariances
+)ate,ty(voc
+(d) Observed and model-implied covariances with in-
+dividual intercepts (only observed in the simulation)
+(simulated example, dots are observed, lines are model-implied)
+While smoking amongst adolescents is not necessarily a strictly psychological issue, it and other related be-
+haviors are often looked at in combination with psychological and sociological constructs. Keijsers (2016), for
+example, used the RI-CLPM to examine the reciprocal relations between parental monitoring and adolescent
+problem behaviors, which can encompass substance abuse and smoking, risky sexual behavior, shoplifting,
+etc. Other studies, like that of Barnett et al. (2013); Bierhoff et al. (2019); Nkansah-Amankra and Minelli
+(2016); Tarter et al. (2006) look at the effects of future time perspective, depression, anxiety, ADHD, etc. on
+substance use and problem behaviors in adolescents. Lloyd-Richardson et al. (2002) looked at the effect of
+psychological and social influences at various life-stages on substance abuse and Nelson, Ryzin, and Dishion
+(2015) compared the trajectories of alcohol, marijuana and smoking behavior of 12- to 24-year-olds, based on
+demographic characteristics like sex and race. Another sociological example includes Schuler et al. (2019),
+who looked at perceived substance abuse amongst peers and family members and its influence on adolescents’
+own substance use and abuse.
+I use 14 (but focus on six) waves of the National Longitudinal Survey of Youth 1997 (NLSY97) study,
+spanning the years 1997 to 2011 (Center for Human Resource Research 2006). These are the years for which
+there are yearly data on both smoking and drinking (after 2011, the variables are measured every two years).
+The NLSY study (especially the previous version started in 1979) has been used in some prominent papers
+on panel SEM, see, for example, Allison (2009); K. A. Bollen and Brand (2010), and it is freely available to
+download. The NLSY97 study encompasses a probability sample of 8984 youths between the ages of 12 and
+17 in 1997 in the United States.
+The variable I have renamed cig is a measure of the typical number of cigarettes smoked per smoking
+occasion in the last 30 days, measured on an interval scale from zero (none) to 15, where the final category
+encompasses 15 cigarettes or more per occasion. This variable demonstrates nicely the issue described above.
+It is usually plausible to think that each individual has a relatively stable ‘usual’ pattern of smoking. Some
+tend to smoke more than others, some smoke a lot and some do not smoke at all, and these differences are
+influenced by a range of factors, likely including family norms, childhood experiences, predisposition, etc.
+Individuals may even follow trajectories, where they smoke more or less over time. Some of the influences
+of these stable components may be measurable directly in a survey, but other like, say, potential genetic
+factors, would be difficult or impossible to feasibly observe.
+1997 1999 2001 2003 2005 2007 2009 2011
+Year
+naem
+devresbO
+1997 1999 2001 2003 2005 2007 2009 2011
+Year
+(a) Observed means over time
+ecnairav
+devresbO
+(b) Observed variances over time
+However, young children, except in rare cases, do not smoke cigarettes. An individual’s pattern of smoking
+typically only emerges in adolescence and, for a given youth, this pattern likely changes over time. The
+At ages 12-14, the age at which the majority of the NLSY97 sample was surveyed for the first time, we would
+not expect much variance. Most youths in this age group do not smoke much, if at all. The overall average
+number of cigarettes smoked per occasion will be low at the first timepoint, as well. As these youths become
+older, some of their smoking behavior will change; some start going to parties where they might smoke many
+cigarettes on a given occasion. Therefore, the variance as well as the average number of cigarettes smoked
+per timepoint will both increase over time. We would not necessarily expect these to increase indefinitely,
+but rather settle into a ‘normal’ pattern of behavior. At this point, the process will have reached equilibrium,
+where it could stay for some time, though likely not forever.
+variance over this timespan. As can be seen, the observed variances do, in fact, increase rapidly over the
+years 1997 to about 2001. After that, the variance stabilizes and remains fairly constant. The means
+follow a similar trajectory: the average number of cigarettes smoked per occasion is around 4 in 1997, when
+respondents were between the ages of 12-14. The means increase rapidly to eight or nine cigarettes per
+occasion over the years from about 1997 to 2002. The average remains fairly stable for the rest of the
+observed timespan, with perhaps a slight positive trend.
+This means that over the course of these 14 years, the observed variable cig does not reach equilibrium until
+it would be unfeasible), but plotting the observed means and variances gives us an impression of the overall
+trend. So, what happens when we run an RI-CLPM or LCM-SR on the data from 1997 to 2002?
+To demonstrate what has been discussed up until now, I run four ‘scenarios’: 1) a simple autoregressive
+one-sided model with individual intercepts, 2) an extended autoregressive one-sided model with individual
+intercepts and a time-varying and time-invariant covariate, 3) an extended one-sided autoregressive model
+with individual intercepts and slopes and 4) a full cross-lagged model with individual intercepts. For each
+of these four types of models, I run a residual-level model, a constrained model and a predetermined model.
+I will show that in each case, the residual and constrained model are equivalent. The predetermined model
+differs from the other two in the way it treats the initial observations, and so it will differ, sometimes
+substantially, from the other two. Within each of the four scenarios, the residual and constrained models
+are nested within the predetermined one, so a chi-square difference test will be carried out to help put the
+differences into perspective.
+Throughout, I use full-information maximum likelihood (FIML) to account for missing values and panel
+attrition. I allow the error variances to be estimated freely at each point in time because it is a more
+and residual models. The coefficients, however, are fixed to be time-invariant.
+Scenario 1: Simple autoregressive one-sided models with individual intercepts
+Let us start with the simplest one-sided autoregressive model with individual intercepts and no covariates.
+For the residual-level model, we have:
+cig = α + ε , t = 1997, . . . , 2002,
+it i it
+(27)
+ε = ρε + ν , t = 1998, . . . , 2002
+it it−1 it
+where Cov(ε , α ) = 0 by assumption. For the constrained observation-level model, we have:
+i97 i
+(c) (c)
+−1
+cig = (1 − ρ) η + ν ,
+i97
+i i97
+(28)
+(c) (c)
+cig = ρcig + η + ν , t = 1998, . . . , 2002
+it it−1
+i it
+where we can use the superscript (c) to denote the constrained model. For the predetermined observation-
+level model, we have:
+(p) (p)
+(p)
+cig = ρ cig + η + ν , t = 1998, . . . , 2002 (29)
+it it−1
+i it
+(p)
+where (p) denotes the predetermined model and Cov(cig , η ) ̸= 0, i.e., the individual effects are allowed
+i97
+to covary with the initial observation.
+Residual-level Constrained observation-level Predetermined observation-level
+Estimate Std. Err. Estimate Std. Err. Estimate Std. Err.
+Regression Slopes
+e | cig ←
+t t
+∗∗∗ ∗∗∗ ∗∗∗
+e | cig 0.572 0.013 0.572 0.013 0.352 0.017
+t−1 t−1
+(Residual) Variances
+∗∗∗ ∗∗∗ ∗∗∗
+· e | cig 8.513 0.614 8.513 0.616 15.938 0.557
+97 97
+∗∗∗ ∗∗∗ ∗∗∗
+· e | cig 21.685 0.787 21.685 0.788 17.722 0.721
+98 98
+∗∗∗ ∗∗∗ ∗∗∗
+· e | cig 20.399 0.692 20.399 0.692 16.492 0.657
+99 99
+∗∗∗ ∗∗∗ ∗∗∗
+· e | cig 21.994 0.710 21.994 0.710 18.238 0.690
+00 00
+∗∗∗ ∗∗∗ ∗∗∗
+· e | cig 23.151 0.721 23.151 0.721 20.207 0.714
+01 01
+∗∗∗ ∗∗∗ ∗∗∗
+· e | cig 21.512 0.662 21.512 0.662 18.604 0.641
+02 02
+∗∗∗ ∗∗∗ ∗∗∗
+alpha | eta 8.123 0.593 1.486 0.188 8.504 0.607
+1 1
+(Residual) Coariances
+alpha | eta ←→
+1 1
++ ∗∗∗
+· e | cig 0.00 − − − 4.906 0.391
+97 97
+Fit Indices
+χ (df) 222.240(13) 222.240(13) 37.246(12)
+CFI 0.957 0.957 0.995
+RMSEA 0.058 0.058 0.021
+∗ ∗∗ ∗∗∗ +
+Estimator: FIML, n = 4759, p < 0.05, p < 0.01, p < 0.001. : fixed parameter. A dot (·) indicates a
+residual (co)variance. e is the structured residual for cig. alpha1 and eta1 are latent intercepts for residual- and
+observation-level models, respectively.
+The lavaan code, as well as the fitted models (i.e., detailed summaries of the model results, saved as R objects)
+1 shows the results of this first example. As we can see, the residual-level model (the fitted model is called
+m1a.fit below) is exactly equivalent to the constrained observation-level model (m1b.fit) with 13 degrees
+of freedom, χ = 222.240, p < 0.001, and an estimated coefficient of ρ = 0.572, p < 0.001. This model
+suggests a relatively strong autoregressive effect (standardized coefficients ranged between 0.338 and 0.581)
+that is highly significant.
+The variance of the individual effects in the residual-level model differs from the variance in the constrained
+observation-level model, as it should. We can recover one from the other easily, though. For example,
+(c) (c) 2 2
+we defined above η = (1 − ρ)α, so Var(η ) = (1 − ρ) Var(α) = (1 − 0.572) · 8.123 = 1.488 which is
+the estimated variance of the individual effects in the constrained model (with a slight deviation due to
+rounding).
+The predetermined observation-level model (m1c.fit), on the other hand, differs from the other two in
+exactly one degree of freedom: the covariance between the individual effects and the initial observation is
+estimated freely, using one degree of freedom in the process. Crucially, the estimated autoregressive effect
+(p)
+in the predetermined model is much smaller at ρ = 0.352, p < 0.001 and the model fit is noticeably
+better with a chi-square statistic of just 37.246. A χ difference test shows the difference between the
+predetermined, on the one hand, and residual and constrained models, on the other hand, is significant
+files for the results of the chi-square difference test). From this, we can conclude that fixing the covariance
+(c)
+−1
+between the initial observation and the individual intercept to (1 − ρ) Var(η ) (or, equivalently Var(α ))
+leads to a model that fits significantly worse than a model that simply estimates this covariance freely.
+Scenario 2: Extended autoregressive one-sided models with individual intercepts
+Now let us move on to an extended one-sided model with individual intercepts and two covariates besides the
+lagged dependent variable: drink for the typical amount of alcoholic drinks consumed per session in the last
+30 days (measured similarly to cig on an interval scale ranging from 0: no alcoholic drinks to 15: 15 alcoholic
+drinks or more per session) and mon for the degree of parental monitoring by the respondent’s mother as
+reported by the respondent in 1997 (ranging from 0 to 16, with higher values indicating more parental
+monitoring). Perhaps we are interested testing the hypothesis that drinking is a gateway to smoking, and
+we are also interested in the role of parental monitoring as it affects smoking behavior in adolescents. The
+variable drink is a time-varying covariate, while mon varies only across respondents but not over time. While
+it is plausible that the degree of parental monitoring can change over time, it was not measured throughout
+the entire panel, and it will be treated as time-invariant here.
+For the residual-level, we have:
+cig = α + ε , t = 1997, . . . , 2002,
+it i it
+(30)
+ε = ρε + βdrink + γmon + ν , t = 1998, . . . , 2002
+it it−1 it−1 i it
+again, where Cov(ε , α ) = 0. For the constrained observation-level model, we have:
+i97 i
+(c) (c)
+−1
+cig = (1 − ρ) η + ν ,
+i97
+i i97
+(31)
+(c) (c)
+cig = ρcig + βdrink + γmon + η + ν , t = 1998, . . . , 2002
+it it−1 it−1 i
+i it
+and for the predetermined model, we have:
+(p) (p)
+(p) (p) (p)
+cig = ρ cig + β drink + γ mon + η + ν , t = 1998, . . . , 2002 (32)
+it it−1 it−1 i
+i it
+(p)
+where Cov(cig , η ) ̸= 0.
+i97
+Residual-level Constrained observation-level Predetermined observation-level
+Estimate Std. Err. Estimate Std. Err. Estimate Std. Err.
+Regression Slopes
+e /cig ←
+t t
+∗∗∗ ∗∗∗ ∗∗∗
+e /cig 0.557 0.015 0.557 0.015 0.345 0.017
+t−1 t−1
+drink 0.025 0.020 0.024 0.021 0.043 0.021
+t−1
+∗∗∗ ∗∗∗ ∗∗∗
+mon −0.121 0.019 −0.121 0.019 −0.150 0.024
+(Residual) Variances
+∗∗∗ ∗∗∗ ∗∗∗
+· e /· cig 8.818 0.621 8.818 0.623 16.046 0.564
+97 97
+∗∗∗ ∗∗∗ ∗∗∗
+· e /· cig 21.018 0.766 21.018 0.769 17.263 0.702
+98 98
+∗∗∗ ∗∗∗ ∗∗∗
+· e /· cig 20.235 0.685 20.235 0.686 16.454 0.650
+99 99
+∗∗∗ ∗∗∗ ∗∗∗
+· e /· cig 21.624 0.698 21.624 0.698 18.044 0.677
+00 00
+∗∗∗ ∗∗∗ ∗∗∗
+· e /· cig 22.947 0.713 22.947 0.713 20.093 0.706
+01 01
+∗∗∗ ∗∗∗ ∗∗∗
+· e /· cig 21.493 0.661 21.493 0.662 18.654 0.638
+02 02
+∗∗∗ ∗∗∗ ∗∗∗
+alpha /eta 8.070 0.587 1.582 0.205 8.319 0.591
+1 1
+(Residual) Coariances
+alpha /eta ←→
+1 1
++ ∗∗∗
+· e /· cig 0.00 − − − 4.823 0.389
+97 97
+Fit Indices
+χ (df) 334.438(36) 334.438(36) 147.963(35)
+CFI 0.957 0.957 0.984
+RMSEA 0.032 0.032 0.020
+∗ ∗∗ ∗∗∗ +
+Estimator: FIML, n = 8305, p < 0.05, p < 0.01, p < 0.001. : fixed parameter. A dot (·) indicates a
+residual (co)variance. e is the structured residual for cig. alpha1 and eta1 are latent intercepts for residual- and
+observed-level models, respectively.
+level model (m2b.fit) are equivalent in terms of model fit and degrees of freedom. The estimated coefficients
+are the same as well (except for a discrepancy in the third position after the comma for the coefficient for
+drink and its standard error). As before, the estimated autoregressive coefficient in the residual-level
+it−1
+and constrained model, cig → cig , is much stronger than that of the predetermined model. The residual
+it−1 it
+and constrained models also suggest that the lagged effect of alcohol consumption on cigarette smoking is
+non-significant. The predetermined model (m2c.fit), on the other hand, suggests this effect is significant
+at the 5% level. If we were to compare the three models, we would probably conclude that the lagged
+effect of alcohol is not worth interpreting substantively, since it is small in any case and only significant
+in the predetermined model. But most researchers do not compare the residual with the predetermined
+approach. A researcher who had run the residual or constrained model would conclude the effect of alcohol
+is not significantly different than zero. A researcher who had run the predetermined model could say there
+is a small but significant effect of alcohol consumption on cigarette smoking. As for the time-invariant
+parental monitoring variable, the effect is negative in all models and significant, but slightly stronger in the
+predetermined model. Again, the models differ in only one degree of freedom; the covariance between the
+initial observation and the individual intercept. This one difference has a large impact, however. The results
+of the second chi-square difference test show that the predetermined model displays a significantly better fit.
+Remember before looking at the simulated example that I argued that the residual-level models are not fixed
+effects models in the sense that they do not control for all time-invariant unobserved heterogeneity, unless
+the assumptions concerning the initial conditions hold. This can be shown easily by attempting to allow
+the time-invariant covariate mon to covary with the latent individual intercepts. Afterall, it is widely known
+that in fixed effects models, time-invariant covariates are perfectly collinear with the individual effects (K.
+A. Bollen and Brand 2010). Trying to allow the time-invariant covariates and the latent individual effects
+to covary will cause an error because it is then not possible to get separate estimates for their respective
+effects.
+If we try to estimate the residual and constrained models (called m2ax and m2bx) again using maximum
+likelihood, but where mon is allowed to covary with the individual intercepts, the models run without issue.
+It follows therefore, that these cannot be considered fixed effects models. However, the predetermined model
+(m2cx) — a fixed effects model — rightly returns an underidentification error.
+Scenario 3: Extended autoregressive one-sided models with individual intercepts
+and slopes
+Next, we can add a latent slope to the extended models in the previous scenario. For the residual-level
+model, something akin to a one-sided LCM-SR, we have
+cig = α + πα + ε , t = 1997, . . . , 2002,
+it 1 2 it
+i i
+(33)
+ε = ρε + βdrink + γmon + ν , t = 1998, . . . , 2002
+it it−1 it−1 i it
+and π = t − 1997, so that at the first observation in 1997, the effect of the latent slope is 1997 − 1997 = 0.
+Importantly, Cov(α , ε ) = Cov(α , ε ) = 0. For the equivalent constrained model, we have
+1 i97 2 i97
+i i
+(c) (c) (c)
+−1 −2
+cig = (1 − ρ) η − ρ(1 − ρ) η + ν ,
+i97
+1 2 i97
+i i (34)
+(c) (c) (c)
+cig = ρcig + βdrink + γmon + η + πη + ν , t = 1998, . . . , 2002
+it it−1 it−1 i
+1 2 it
+i i
+where the factor loadings for the initial observation cig are derived in Appendix A. For the predetermined
+i97
+model, we have
+I believe this small discrepancy has something to due with using FIML to estimate the models, as I have not noticed such
+discrepancies before using maximum likelihood.
+(p) (p) (p)
+(p) (p) (p)
+cig = ρ cig + β drink + γ mon + η + πη + ν , t = 1998, . . . , 2002 (35)
+it it−1 it−1 i
+1 2 it
+i i
+(p) (p)
+and Cov(η , cig ) ̸= 0 and Cov(η , cig ) ̸= 0.
+i97 i97
+1 2
+i i
+Residual-level Constrained observation-level Predetermined observation-level
+Estimate Std. Err. Estimate Std. Err. Estimate Std. Err.
+Regression Slopes
+e /cig ←
+t t
+∗∗∗ ∗∗∗ ∗∗∗
+e /cig 0.377 0.025 0.377 0.026 0.256 0.030
+t−1 t−1
+drink −0.038 0.027 −0.038 0.027 −0.038 0.025
+t−1
+∗∗∗ ∗∗∗ ∗∗∗
+mon −0.162 0.025 −0.162 0.025 −0.173 0.028
+(Residual) Variances
+∗∗∗ ∗∗∗ ∗∗∗
+· e /· cig 10.264 1.132 10.265 1.137 15.968 0.560
+97 97
+∗∗∗ ∗∗∗ ∗∗∗
+· e /· cig 19.810 0.790 19.810 0.792 15.328 1.058
+98 98
+∗∗∗ ∗∗∗ ∗∗∗
+· e /· cig 18.469 0.671 18.469 0.672 15.722 0.730
+99 99
+∗∗∗ ∗∗∗ ∗∗∗
+· e /· cig 18.951 0.714 18.951 0.717 17.072 0.683
+00 00
+∗∗∗ ∗∗∗ ∗∗∗
+· e /· cig 19.840 0.769 19.840 0.772 18.443 0.776
+01 01
+∗∗∗ ∗∗∗ ∗∗∗
+· e /· cig 16.737 0.831 16.737 0.837 15.686 1.023
+02 02
+∗∗∗ ∗∗∗ ∗∗∗
+alpha /eta 6.908 1.085 3.066 0.476 12.897 1.993
+1 1
+∗∗∗ ∗∗ ∗∗
+alpha /eta 0.431 0.101 0.167 0.049 0.408 0.149
+2 2
+(Residual) Coariances
+alpha /eta ←→
+1 1
+∗∗ ∗∗∗ ∗
+alpha / eta 0.692 0.262 0.370 0.079 −0.812 0.402
+2 2
++ ∗∗∗
+· e / · cig 0.00 − − − 7.263 0.750
+97 97
+alpha /eta ←→
+2 2
++ ∗∗
+· e / · cig 0.00 − − − −0.477 0.180
+97 97
+Fit Indices
+χ (df) 164.321(29) 164.321(29) 67.240(27)
+CFI 0.980 0.980 0.994
+RMSEA 0.024 0.024 0.013
+∗ ∗∗ ∗∗∗ +
+Estimator: FIML, n = 8305, p < 0.05, p < 0.01, p < 0.001. : fixed parameter. A dot (·) indicates a residual
+(co)variance. e is the structured residual for cig. alpha1, alpha2 and eta1, eta2 are latent intercepts and slopes for
+residual- and observed-level models, respectively.
+and model fit, as well as the estimated coefficients. The predetermined model differs in two degrees of
+(p) (p)
+freedom: Cov(cig , η ) and Cov(cig , η ) are freely estimated in the predetermined model and fixed
+i97 i97
+1 2
+i i
+in the residual and constrained models. Interestingly, the models with individual intercepts and slopes
+differ less substantively: the models agree at least in terms of sign and significance, with a positive and
+significant autoregressive effect, a negative and non-significant lagged effect of alcohol use, and a negative
+and significant effect of parental monitoring. The coefficients still differ, however, and the autoregressive
+effect is still larger in the residual and constrained models compared to the predetermined one. The effect of
+parental monitoring is slightly stronger in the predetermined model, as well. In any case, the predetermined
+model is still arguably preferable to the others, according to the chi-square difference test. While the residual
+and predetermined models are more parsimonious, they fit significantly worse than the predetermined model.
+Scenario 4: Cross-lagged panel models with individual intercepts
+Let us now look at the reciprocal relations between cigarette and alcohol use amongst adolescents in a full
+cross-lagged model. Because the variance of the latent slope for cigarette smoking in models m3a, m3b and m3c
+was fairly low, let us drop the latent slopes and compare a RI-CLPM with a constrained and predetermined
+observation-level CLPM with individual effects, which we could call a two-sided DPM. For the RI-CLPM,
+we have
+(y)
+cig = α + ε
+it it
+(x)
+drink = α + δ , t = 1997, . . . , 2002,
+it it
+i (36)
+ε = ρε + βδ + ν
+it it−1 it−1 it
+δ = φδ + θε + υ , t = 1998, . . . , 2002
+it it−1 it−1 it
+(y) (y) (x) (x)
+and Cov(α , ε ) = Cov(α , δ ) = Cov(α , ε ) = Cov(α , δ ) = 0, i.e., the initial deviations from
+i97 i97 i97 i97
+i i i i
+the individual effects are assumed to be unrelated to the individual effects themselves (Allison, Williams,
+and Moral-Benito 2017). The constrained model is
+(c,y) (c,x) (c)
+(y) (x)
+cig = ϖ α + ω η + ν
+i97
+i i i97
+(c,x) (c,y) (c)
+(x) (y)
+drink = ϖ α + ω η + υ ,
+i97
+i i i97
+(37)
+(c,y)
+cig = ρcig + βdrink + η + ν
+it it−1 it−1 it
+(c,x)
+drink = φdrink + θcig + η + υ , t = 1998, . . . , 2002
+it it−1 it−1 it
+(c,y) (y) (x) (c,x) (x) (y)
+where η = (1 − ρ)α − βα and η = (1 − φ)α − θα and the ϖs and ωs are defined as above
+i i i i i i
+in Equation (4). Finally, for the predetermined model, we have simply
+(p,y)
+(p) (p)
+cig = ρ cig + β drink + η + ν (38)
+it it−1 it−1 it
+(p,x)
+(p) (p)
+drink = φ drink + θ cig + η + υ , t = 1998, . . . , 2002 (39)
+it it−1 it−1 it
+where the superscripts (p, y) and (p, x) denote the individual effects from the predetermined cross-lagged
+model for cigarette smoking and alcohol consumption, respectively.
+Residual-level Constrained observation-level Predetermined observation-level
+Estimate Std. Err. Estimate Std. Err. Estimate Std. Err.
+Regression Slopes
+e | cig ←
+t t
+∗∗∗ ∗∗∗ ∗∗∗
+e | cig 0.567 0.014 0.567 0.014 0.342 0.017
+t−1 t−1
+∗∗∗ ∗∗ ∗∗∗
+d | drink 0.079 0.023 0.079 0.023 0.087 0.022
+t−1 t−1
+d | drink ←
+t t
+∗∗∗ ∗∗∗ ∗∗∗
+d | drink 0.221 0.014 0.221 0.014 0.198 0.013
+t−1 t−1
+∗∗ ∗
+e | cig 0.024 0.009 0.024 0.009 0.007 0.010
+t−1 t−1
+(Residual) Variances
+∗∗∗ ∗∗∗ ∗∗∗
+alphay/etay 8.157 0.589 3.066 0.476 8.592 0.601
+∗∗∗ ∗∗ ∗∗∗
+alphax/etax 2.624 0.142 0.167 0.049 2.063 0.145
+(Residual) Coariances
+alphay | etay ←→
+∗∗∗ ∗∗
+alphax | etax 1.205 0.228 0.164 0.131 0.827 0.240
++ ∗∗∗
+· e | cig 0.00 4.918 0.388
+97 97
++ ∗∗
+· d | drink 0.00 0.917 0.305
+97 97
+alphax | etax ←→
++ ∗∗∗
+· e | cig 0.00 0.793 0.227
+97 97
++ ∗∗∗
+· d | drink 0.00 1.403 0.158
+97 97
+Fit Indices
+χ (df) 366.116(53) 366.116(53) 122.839(49)
+CFI 0.960 0.960 0.990
+RMSEA 0.029 0.029 0.014
+∗ ∗∗ ∗∗∗ +
+Estimator: FIML, n = 8305, p < 0.05, p < 0.01, p < 0.001. : fixed parameter. A dot (·) indicates a residual
+(co)variance. e and d are the structured residuals for cig and drink, respectively. alphay, etay and alphax, etax are
+latent intercepts for cig and drink in the residual- and observed-level models, respectively. Error variances not shown
+due to space constraints.
+covariates. They examine the ‘within-person’ relations between cigarette smoking and alcohol use in ado-
+lescents and young adults. The residual-level model is a true RI-CLPM, the constrained and predetermined
+models are akin to a ‘two-sided’ DPM, though Allison, Williams, and Moral-Benito (2017) only ever really
+discuss the predetermined variant.
+Here, again, we see the autoregressive coefficient for smoking being estimated much higher in the residual and
+constrained models than in the predetermined one. The lagged effect of drinking on smoking is comparable
+between the models, but the effect is slightly stronger in the predetermined one. The autoregressive effect
+of drinking is also comparable between the models, while the lagged effect of smoking on drinking is only
+significant in the residual and constrained formulations. The fit is considerably better in the predetermined
+model, and the chi-square difference is again significant. The models differ in four degrees of freedom. Those
+are the freely estimated covariances in the predetermined model between the initial observations cig and
+i97
+(p,x) (p,y)
+drink and the two latent individual intercept variables, η and η .
+i97
+i i
+These examples all underline the importance of the assumptions surrounding the initial conditions. While it
+is likely not wise to try to compare results between the tables (we do not know which is the ‘best’ modeling
+approach, e.g., with or without a latent slope, in a one- or two-sided formulation), but the residual and
+valid. In each case, the predetermined model fit significantly better than the residual and constrained ones.
+models.
+In one last example, let us compare the residual, constrained and predetermined models using the years be-
+of the residual and constrained models.
+Residual-level Constrained observation-level Predetermined observation-level
+Estimate Std. Err. Estimate Std. Err. Estimate Std. Err.
+Regression Slopes
+e | cig ←
+t t
+∗∗∗ ∗∗∗ ∗∗∗
+e | cig 0.166 0.015 0.166 0.016 0.163 0.015
+t−1 t−1
+d | drink 0.030 0.025 0.030 0.025 0.039 0.025
+t−1 t−1
+d | drink ←
+t t
+∗∗∗ ∗∗∗ ∗∗∗
+d | drink 0.122 0.010 0.122 0.010 0.125 0.010
+t−1 t−1
+e | cig 0.008 0.006 0.008 0.006 0.009 0.006
+t−1 t−1
+(Residual) Variances
+∗∗∗ ∗∗∗ ∗∗∗
+alphay/etay 29.816 0.775 20.657 1.007 21.083 1.013
+∗∗∗ ∗∗∗ ∗∗∗
+alphax/etax 2.661 0.066 2.025 0.078 1.990 0.082
+(Residual) Coariances
+alphay | etay ←→
+∗∗∗ ∗∗∗ ∗∗∗
+alphax | etax 1.820 0.180 1.056 0.245 0.989 0.255
++ ∗∗∗
+· e | cig 0.000 24.429 0.847
+05 05
++ ∗∗
+· d | drink 0.000 1.227 0.252
+05 05
+alphax | etax ←→
++ ∗∗∗
+· e | cig 0.000 1.562 0.279
+05 05
++ ∗∗∗
+· d | drink 0.000 2.368 0.080
+05 05
+Fit Indices
+χ (df) 155.624(53) 155.624(53) 145.882(49)
+CFI 0.994 0.994 0.995
+RMSEA 0.016 0.016 0.016
+∗ ∗∗ ∗∗∗ +
+Estimator: FIML, n = 7418, p < 0.05, p < 0.01, p < 0.001. : fixed parameter. A dot (·) indicates a residual
+(co)variance. e and d are the structured residuals for cig and drink, respectively. alphay, etay and alphax, etax are
+latent intercepts for cig and drink in the residual- and observed-level models, respectively. Error variances not shown
+due to space constraints.
+determined models are very comparable in terms of model fit and estimated coefficients. The predetermined
+model still has a slight advantage in terms of fit; the chi-square difference test is significant, but only at the
+5% level. This should not be surprising since a model that imposes fewer constraints will inevitably tend to
+fit better, even if this is due to largely to sampling error.
+Practical strategies
+In this section I suggest some practical modeling strategies. First, there are likely substantive aspects
+to consider. Is it plausible that the process under investigation is not stationary or at equilibrium? For
+many topics, these assumptions may be unproblematic. But a wide range of topics in, say, developmental
+models should not be applied without careful consideration. For example, Voelkle and Oud (2015) re-analyzed
+studies by Bradway and Thomas (1962); McArdle et al. (2000) on the development of short-term memory
+over time and found a strong nonlinear trend in youths towards their long-term equilibrium memory scores
+of papers citing the E. Hamaker, Kuiper, and Grasman (2015) article are from the field of developmental
+psychology, or at least deal with topic of adolescent development. In fact, as of writing the first few pages
+of citing research on Google Scholar are filled with articles on the development of children and adolescents.
+However, the issue may not be restricted to youth and adolescent development; research on aging or life
+transitions, for example, could potentially also be affected.
+Another difficultly could arise when attempting to examine the effects of interventions. Consider an example
+by Voelkle et al. (2018), in which they examine (among other things) social anxiety as a dynamic process.
+Introducing an intervention to lower anxiety around the time of the initial measurement, such as adminis-
+tering serotonin, could lead to an initial measurement of social anxiety that was well below an individual’s
+long-term ‘usual’ levels. Over the course of the study, anxiety would likely move back towards its equilibrium
+state as the effects of the intervention wore off. For this and other related topics, it is likely wise to spend a
+good amount of time considering the initial conditions.
+It is likely possible to identify potential issues by looking at the observed means and variances over time.
+If these are not stable over time, it would seem unwise to nevertheless place constraints on the model as if
+they were. The autocorrelations can be examined in a simple covariance matrix of the observed data. The
+covariances between the dependent variable(s) should only depend on the temporal distance between the
+two, but not on the specific timepoint.
+At an even more basic level, a researcher should know in advance what the focus of the investigation is. I
+mention this not to be condescending, but only to point out that the between-person components may not
+be of central interest. If the within-person cross-lagged effects are the focus, then the residual-level models
+do not offer much in the way of real benefits compared to the observation-level models, which are much more
+straightforward to code in any case. If the between-unit components are of interest (e.g., examining differing
+levels or trajectories across subgroups), then that is a strong argument for sticking with the residual-level
+approach.
+And notice that we can achieve a type of ‘predetermined residual-level model’ by relaxing the assumptions
+on the initial conditions. Remember from Equation (22) that Cov(ε , η ) was zero only if Cov(y , η ) =
+i0 i i0 i
+−1
+(1 − ρ) Var(η ). If the process under investigation is stationary but not at equilibrium, then the individual
+effects will be correlated with the initial residuals, ε . In the residual-level model, this is equivalent to
+i0
+saying Cov(α , ε ) ̸= 0, so we have to account for this covariance. We can do so by including it (along
+i i0
+with Cov(α , ε ), if necessary, e.g., in the one-sided LCM-SR). This captures the extent to which ε is not
+2 i0 i0
+just a random temporal deviation from the stable characteristics, itself unrelated to those characteristics.
+Doing so gives us exactly a predetermined observation-level model in terms of model fit, degrees of freedom
+and estimated coefficients (though the standardized effects may differ). It also does not change the model’s
+12 −1 −1 −1
+Since y = α + ε = (1 − ρ) η + (y − (1 − ρ) η ) = (1 − ρ) η + ε .
+i0 i i0 i i0 i i i0
+structure, still we just have E(y ) = E(α ), so this type of model may be better for those interested in both
+it i
+the within- and between-unit components.
+change the following two lines of lavaan code from
+alphay ~~ 0*e97 + 0*d97
+alphax ~~ 0*e97 + 0*d97
+to
+alphay ~~ e97 + d97
+alphax ~~ e97 + d97
+in order to allow the initial deviations to correlate with the individual intercepts. Again, this gives us exactly
+the analogous predetermined model.
+Interestingly, the default behavior of the sem wrapper in lavaan as well as Mplus and Stata is to allow
+exogenous latent variables to covary (Muthén and Muthén 1998--2017; Rosseel et al. 2020; StataCorp 2019).
+And, in order to estimate the residual-level models in structural-form (the most common way), new latent
+variables must be generated that are identical to the residuals (e.g., ε = y − α − tα ), while setting the
+it it 1 2
+i i
+variances of the actual residuals to zero. So, estimating the residual-level models in structural-form means
+that the individual effects and the structured residuals are recognized as exogenous latent variables and will
+thus be set to covary by default in the most common SEM software. In order to estimate the residual-level
+model in the intended way (the way it is described in Usami, Murayama, and Hamaker (2019), p. 640, where
+the initial deviations are not meant to correlate with the individual effects), the user must actually override
+this behavior and constrain the covariance(s) to zero.
+Another possibility to make the residual-level models more robust was mentioned by Zyphur et al. (2020a),
+p. 660. There, they note that fixing the factor loadings of the individual intercepts to one at all points in
+time means we are treating the observed variable as “mean stationary” and that to relax this assumption,
+we can simply allow the factor loadings to be estimated freely. The method they suggest is to freely estimate
+all factor loadings except for the final one at t = T (in order to supply the latent variable with a scale).
+This essentially gives us a model that goes above and beyond the flexibility of the predetermined models
+discussed so far, allowing the individual effects to vary at each point in time. The drawback to this is that
+it goes against the point of the residual-level models by making the mean structure less intuitive, since
+E(y ) = λ E(α ), E(y ) = λ E(α ), etc., where λ are the factor loadings. And if one is turning to a
+i1 1 i i2 2 i t
+constrained ALT or DPM to save degrees of freedom, then trying to freely estimate each factor loading
+would be counterproductive.
+Ultimately, when a researcher has enough degrees of freedom, there is no real need to constrain the covariances
+of the initial observations and individual effects. If the process under investigation conforms to the residual-
+level assumptions, then these unrestricted correlations will be estimated accordingly. And due to sampling
+error, the fit of the predetermined model will almost inevitably be at least marginally better. When the
+process violates the assumptions discussed above, the discrepancy in the models can be quite large, both
+in terms of fit and substantive results, as has been shown above. Of course, there is nothing stopping a
+researcher from running both types of models, a residual-level and a predetermined observation-level, and
+comparing the two.
+See, for example, the supplementary matrials from Berry and Willoughby (2017), or the github repository associated with
+Mulder and Hamaker (2020)
+K. A. Bollen and Brand (2010) also discusses freely estimated factor loadings of the individual effects as a way to relax
+assumptions in static panel models in SEM.
+Conclusion
+It has been shown previously with varying degrees of explicitness that the residual-level panel models are
+algebraically equivalent to their observation-level counterparts. However, I believe it is not yet widely
+recognized that they are re-expressions specifically of the constrained observation-level models. The goal of
+this article was to draw attention to this fact and point out the assumptions that go along it.
+So, while the residual-level models provide benefits in terms of allowing for better interpretability of the
+growth trajectory parameters, they come at the cost some perhaps restrictive assumptions. If the process
+being observed is nonstationary, stationary but not yet at equilibrium, or has been temporarily knocked
+out of equilibrium (perhaps due to an intervention), the residual-level models could return biased AR and
+CL estimates which are typically of central substantive interest. In the case of cigarette smoking amongst
+adolescents, it was shown that the estimated autoregressive coefficients tended to be larger in the residual
+and constrained model than in the predetermined one. In the models with only latent individual intercepts,
+the lagged effect of alcohol consumption on smoking was positive and significant in each of the predetermined
+models, while for the residual and constrained models, it was significant only in the cross-lagged specification.
+In most cases, there is nothing stopping one from running both the residual- and analogous observation-level
+model, or alternatively, estimating the residual-level model with and without the covariances between the
+initial deviations and the individual effects fixed to zero. It has been shown here that the residual-level models
+are nested in their observation-level counterparts, so a chi-square difference test can easily be performed to
+assess whether the observed deviation from the model-implied constraints is likely random or systematic. If
+the fit of the predetermined model is significantly better, then it could be an indication that the assumptions
+of stationarity and equilibrium are not met.
+Over a range of substantive applications, the residual-level models are likely well-suited. As Usami, Mu-
+rayama, and Hamaker (2019) say, there is often “no reason to assume that an individual’s temporal deviation
+at the first measurement from the person’s trait score is dependent on that trait score” (2019, 640). In these
+cases, the residual-level models, but also the constrained observation-level models are more parsimonious
+and are thus likely preferable. However, as Ou et al. (2017) note, for many applications the issue of the
+initial conditions is often regarded as a “trivial methodological detail” (Ou et al. 2017, 179). Based on what
+was shown in this article, the assumptions regarding the initial conditions should be of central concern when
+it comes to those dynamic panel models discussed here.
+I end by noting some limitations of this analytical paper and discussing some potential next steps. First, the
+models discussed here included only observed indicators. One of the main strengths of SEM is the ability to
+model latent variables to account for measurement error in observed variables. Adding measurement error
+into the mix means we have to account for another component, i.e., deviations from the individual trajectory
+due to measurement error rather than potentially substantive sources. Secondly, while the equivalence of
+the residual- and constrained observed-level models was established, a full assessment of the various models’
+performance under different scenarios was not conducted. Recent papers by Zyphur et al. (2020a); Zyphur
+et al. (2020b) attempt to formulate a generalized cross-lagged panel model and show that cross-lagged
+panel models with individual effects can be extended even further, for example by including not just an
+autoregressive but also a moving average (MA) structure. The equivalence and/or benefits and drawbacks
+of residual- and observation-level models in this context could be investigated as well.
+As Box famously put it, “all models are wrong” (1976), and care should be taken when specifying any
+statistical model. The goal of this article was not to discredit the residual-level models but rather draw
+attention to a detail I believe has not been given enough attention in the past. Failure to take assumptions
+regarding the initial conditions into account could lead to incorrect conclusions regarding the substantively
+interesting within-person effects. At the same time, while the predetermined models offer flexibility and are
+robust to a number of scenarios, there are drawbacks associated with them as well (Voelkle 2008). It is
+my hope that this article could provide researchers with some further practical guidance for their empirical
+projects.

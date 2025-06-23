@@ -1,0 +1,607 @@
+Applying category theory to the study of consciousness?
+draft, version: December 28, 2022,
+1,2
+Robert Prentner
+Munich Center for Mathematical Philosophy, LMU Mu¨nchen, Ludwigstraße 31, 80539
+Munich, Germany
+Association for Mathematical Consciousness Science, Munich, Germany
+email: robert.prentner@amcs.science
+Abstract
+What are the potential uses and misuses of applying category theory to the study of con-
+sciousness? We first review a recent proposal from the neurosciences of consciousness to
+illustrate the general approach using the integrated information theory of consciousness.
+We then propose possible avenues for further research, importantly also stressing the need
+to better develop the categorical representation of consciousness, in particular its phe-
+nomenological structure. A better understanding of consciousness cannot be achieved by
+merely studying the physical brain. By contrast, the categorical treatment suggests ap-
+plication in the domain of computer science and artificial intelligence research while also
+emphasizing the primacy of (first-personal) experience.
+keywords: (applied) category theory, (mathematized) phenomenology, neural correlates of
+consciousness, phenomenal structures, integrated information theory, (pre-reflective) self,
+(intentional) object, intentionality, process, time-consciousness, conscious agent theory,
+conscious AI
+1 Introduction
+How can we precisely (mathematically) relate consciousness to the workings of a physical
+system, such as the brain, or specific computational architectures? A basic recipe has
+been proposed previously by [1], according to which one should best divide the problem
+and first construct two categorical representations – one “category of the brain” and one
+“category of consciousness” – to then, in a subsequent step, think about possible ways to
+relate them. While it is quite undisputed that the project of constructing a category of
+the brain, although difficult, is possible (e.g., by relying on existing mathematical theories
+of the neural basis of consciousness), it is still doubtful whether constructing the category
+of consciousness is at all a meaningful project. But even if one succeeded with these first
+steps, it is not clear how to conceive of the relation between these categories. Worse,
+it is not obvious that this would really help to make any progress beyond what could in
+principle be achieved with more conventional methods. For example, to what extent would
+our efforts at formalization help to make progress beyond the empirical study of the neural
+correlates of consciousness? We thus speculate on three possible benefits and avenues for
+further research: getting a better grip on the true scope of a science of consciousness, the
+integration of (seemingly unrelated) theories, and exploiting explanatory dualities.
+But is this at all a good way to think about consciousness? Our best systematic
+knowledge about first-personal experience comes from the philosophical discipline of (e.g.,
+Husserlian) phenomenology [2–4]. Constructing a category of consciousness would likely
+heavily draw on research on “mathematizing phenomenology” [5], and it could be con-
+jectured that related approaches [6–9] and research on the mathematical representation
+of qualia [10–13] could be unified into a single framework. So, while we think that the
+project of constructing categories to represent conscious experience is far from trivial, we
+are confident that (at least some aspects of) consciousness could be formalized this way.
+We thereby suggest taking a look at applied category theory [14–16]. Applied category
+theory has become a flourishing interdisciplinary field of study that applies categorical
+We use this as shorthand for the category of “neuronal information processing” for purely mnemonic
+reasons. Indeed, notice the shift in meaning. We are primarily intending to talk about categories of certain
+types of information processing or computation. The fact that these, according to mainstream opinion in
+the field, happen to be realized in neuronal systems is not essential and might even distract from the larger
+message: the category of the brain is but one possible instantiation of a more general, formal structure (see
+discussions in the last section).
+thinking to a range of different phenomena. It seems perfectly feasible to also apply it to
+the domain of phenomenology, and we sketch some avenues for this research.
+Yet, the use of (applied) category theory only provides a high-level story. The low-level
+story has to be told using specific theories and implemented in real-world architectures.
+There seems no way to get past the nitty-gritty details that arise when actually working
+with a particular formal system. These systems could, however, come from quite different
+starting points and need not even focus exclusively on the brain. More generally, we find
+that the application of category theory to phenomenology is not specifically tied to the neu-
+roscience of consciousness but could be applied to any sufficiently mathematizable domain,
+for example, computer science and AI. If one is interested in artificial consciousness, then
+a first step would be to develop a basic mathematical representation of consciousness that
+could be understood by a machine. This article presents some first steps in that direction,
+while also acknowledging the pervasive role of the first-personal perspective.
+2 The case of integrated information theory
+2.1 A categorical reconstruction
+In a paper by Tsuchiya et al. [11], the authors have invoked category theory to study
+the relation of consciousness and the brain, using the example of integrated information
+theory (IIT [17, 18]). The reason to rely on IIT is not so much because IIT is the theory
+of consciousness, but because IIT is the most advanced theory in the neuroscience of
+consciousness when it comes to the precise specification of the mathematical structure of
+relevant physical elements. If IIT appears as the only game in town for a mathematical
+science of consciousness, this has less to do with the theory itself than with a deficiency
+of competing theories in the neuroscience of consciousness (with respect to mathematics).
+Indeed, the categorical approach might generalize to any sufficiently well-developed theory
+that could be used to derive mathematical structures from brain activity correlated to
+consciousness.
+Other categorical treatments of IIT have been proposed by Kleiner and Tull [19, 20].
+In particular, in ref. 20 the mathematical focus has been shifted from standard category
+theory [21, 22] to the framework of applied category theory [14–16]. A suggestive reason to
+use the latter framework, applied category theory, is the fact that standard category often
+appears to be very abstract and beyond any useful application to “real-world” problems.
+Indeed, category theory has often been described as “abstract nonsense” (as reported
+ironically by one of its inventors, Saunders Mac Lane [23]).
+There are certain commonalities in the two approaches but also differences, the main
+being that, whereas Tsuchiya et al. believe that IIT expresses a well-defined relation
+between consciousness and physical systems (in the form of them being “categorically
+equivalent”, already quite a strong assumption short of categorical isomorphism), Kleiner
+and Tull do not find any necessary relation between physical integrated informational
+structures and consciousness, although various (contingent) points of contact can perhaps
+be established. Viewed this way, IIT merely specifies an algorithm that proposes links
+between mathematically-structured spaces. Why and how these spaces are structured the
+way they are (and why consciousness should at all be conceived of in this way) is not really
+part of the IIT-formalism itself.
+2.2 The central identity revisited
+We continue by looking again at IIT’s “central identity” as presented in the canonical
+publications on “IIT 3.0” [17, 18]. The central identity says that (i) consciousness, in
+its quality, is identical to the relevant (“cause-effect” ) structure of a physical system,
+represented by a collection of mechanisms that have non-zero ϕ, and (ii) consciousness,
+in its quantity, can be measured by the integrated information Φ associated with this
+structure.
+Standardly, IIT-proponents conceive of this identity not as a scientific hypothesis in
+the conventional sense. They start by listing “phenomenological axioms” that capture the
+essential properties of consciousness. In the next step, axioms are translated into postulates
+about physical systems, which could, in turn, be studied empirically (e.g., whether a system
+that satisfies the postulates also correlates to experience). Yet, on the canonical view,
+the theory’s axiomatic basis itself is unassailable and self-evident (it expresses necessary
+features for any kind of experience). Empirical evidence for the central identity has to be
+indirect (so not via targeting the axioms directly, but via physical systems that satisfy the
+At least if one does not follow IIT-proponents in basing the theory on “phenomenological axioms” and
+regards the “postulates” as unique realizers (or physical models) of these axioms.
+Originally termed a “maximally irreducible conceptual structure”, MICS, but later referred to as the
+“cause-effect structure” of a physical system.
+postulates), and naturally much criticism of IIT has been directed at exactly the question of
+whether or not IIT is falsifiable (see target articles and replies in [24–26]) or whether or not
+its axiomatic basis is really that “axiomatic” in the classical sense (namely, self-evidently
+true [27, 28]). In the latest iteration of the theory, the central identity has been replaced
+by an “explanatory identity” [29–33] that supposedly carries less ontological weight.
+Here lies a crucial methodological difference between the approach of Tsuchiya et al.
+and the canonical IIT literature. While Tsuchiya et al. are sympathetic to IIT in general,
+they do not assume from the outset, motivated by philosophical reasoning, that the central
+identity is true (or weaker: that it expresses a principled explanatory device), nor do they
+subscribe to IIT’s methodology of progressing from (self-evident) axioms to postulates
+about physical systems. By contrast, they believe that IIT merely specifies a mathematical
+structure (implemented by a neuronal system) that needs to be related to consciousness
+empirically. IIT appears primarily not to be about consciousness itself but about the
+correlating physical system. Still, there could be a systematic relation between those
+structures and consciousness, and category theory might deliver the right tools to assess
+this relation. More generally, the authors ask how one could understand an identity (or
+any other relation) between some “mathematical formalism and consciousness”.
+A first step to assess this relation is to assume that consciousness could be represented
+in terms of a structured entity (ontological questions aside). So, on this view, IIT specifies a
+relation between the cause-effect structure of a physical system and the phenomenal struc-
+ture of the system’s conscious experience. While canonical IIT reasons from an indubitably
+given conscious experience to the physical structures that support it, Tsuchiya et al. ask
+how two (formalizable) domains – physical systems on the one hand, and consciousness on
+the other – could be related.
+In the language preferred by IIT-proponents the “correlating physical system” should be replaced by
+the “physical substrate of consciousness”. Correlation, according to canonical readings of IIT, is a much
+too weak notion. Since the central identity proposes an identity, IIT supposedly specifies both necessary
+and sufficient conditions and thus not merely a correlate. The acceptance of axioms and their unique
+specification in terms of postulates decides whether one should speak of correlation or identity. Logically,
+identity implies correlation, but not the other way around. For this reason, it seems better to use the
+weaker notion of “correlation” throughout this paper.
+3 Basics of category theory
+At this point, it becomes suggestive to invoke the framework of category theory (CT). A
+category C is a very general mathematical structure that can be defined as follows:
+• A collection of objects (or: “types” in some variants of applied category theory) that
+stand for the things to be related. For the category of the brain this is straightfor-
+ward. The objects are neurons. In the case of consciousness it is already difficult to
+say what should count as an object. One reason that CT is a suggestive framework
+for studying consciousness is the fact that in CT objects are fully specified by the
+relations to other objects. For example, Tsuchiya et al. assume that the contents
+of consciousness are either CT-objects themselves (qualia “in the narrow sense” [34],
+e.g., the redness of the cup in front of me), relations between objects (e.g., the expe-
+rienced “closedness” of the two cups in front of me) or more complicated structures
+(e.g., faces as collections of objects and relations between objects or perhaps even
+“qualia in the broad sense” [34], i.e. the contents of any full instance of experience).
+We denote objects by capital letters, X.
+• A collection of morphisms (or: “arrows” in [11] and “processes” in some variants of
+applied category theory) that embody the relations between any pair of objects.
+In the category of neuronal systems, this is again straightforward. Neurons are
+connected via synapses. The morphisms are then representing (the transitive closure
+of) such synaptic networks. In the case of consciousness, morphisms are given by
+relations between objects in the category (e.g., by acts of “constitution”, see below).
+We denote morphisms with small letters, f .
+• In addition to having objects and morphisms, categories have to satisfy some very
+basic conditions:
+1. Identity. To each object X, there exists an identity-morphism from X to itself,
+In IIT, most examples given are not on the level of neurons but on the level of logic gates. In this case,
+the objects of the category could be the individual logic-gates.
+This defines one potential point of contact with phenomenology, see below.
+Or the wires between logic gates in the examples typically given in IIT. In the quantum interpretation of
+applied category theory, morphisms (processes) correspond to completely trace-preserving (non-increasing)
+positive maps.
+1 : X → X. The existence of identity-morphisms is very useful when we want
+134 X
+to replace statements about objects with statements about relations. Identity-
+morphisms must also satisfy that they could be composed with other morphisms
+of the category in a special way, serving as left and right unit of composition,
+f : X → Y ⇒ f ◦ 1 = 1 ◦ f = f.
+138 X Y
+2. Composition. If there exist morphisms between A and B as well as between B
+and C, then there exists a morphism from A to C: f : A → B, g : B → C ⇒
+h = g ◦ f : A → C.
+3. Associativity. If we look at the composition of morphisms, it does not matter
+whether we first compose f and g and then h, or whether we first compose g
+and h and then f . Formally: h ◦ (g ◦ f ) = (h ◦ g) ◦ f.
+3.1 The power of category theory
+CT is a very general framework. This is both a strength and a weakness of the formalism.
+On the one hand, almost anything could be interpreted in terms of a category (consciousness
+being an interesting and non-trivial case!). But on the other hand, if we could find a general
+scheme that fits almost anything, the danger is that nothing specifically worthwhile could
+be said about it.
+One thing that could justify the use of CT has to do with the relationship of domains.
+Specifically, CT knows of different kinds of systematic relations between categories that
+exhibit, informally spoken, various degrees of “similarity”. The weakest is the existence
+of a “functor”: a transformation from the objects and morphisms in one category to the
+other, F : C → D. Functors have to satisfy the following conditions:
+(cid:48)
+1. They transform all objects in one category into objects of the other, F (X) = X ,
+such that
+2. if a morphism between objects exists in one category, f : X → X , then a morphism
+158 1 2
+(cid:48)
+between the corresponding objects in the second category also exists, F (f ) = f :
+F (X ) → F (X ).
+160 1 2
+3. It preserves identity and composition. Simply put, a functor maps objects onto
+objects and thereby keeps the structure of morphisms intact.
+One can now see that a functorial relationship between two domains is much weaker
+than an identity relation (isomorphism). If a functor F : C → D existed, and also a functor
+G : D → C, then (categorical) isomorphism requires that their product amounts to the
+identity functor, G ◦ F = id (and the other way around). This is quite a strong relation.
+166 C
+Category theory knows several “intermediate” degrees of similarity such as strong or weak
+categorical equivalence [35] that could be invoked instead.
+Still, already functorial relationship between domains can be highly useful, since they
+allow one to go from one domain to another, make an inference in the new domain, and
+then “reason back” to the original domain. A functorial relationship between the structure
+of the brain and phenomenal structures would, for example, allow one to solve difficult
+problems in one domain and transfer the solutions (mutatis mutandi ) to the other!
+Tsuychia et al. mention the example for Brouwer’s fixed-point theorem [11].
+Recall that the fixed-point theorem says that any continuous function from a disk in
+R2 2 2
+to itself, f : D → D , has at least one fixed-point, f (x ) = x . This can be illustrated
+176 0 0
+with a map of a foreign country. When trying to orient oneself when stranded in the
+country, there will be at least one point where the location in the map exactly corresponds
+to a “real” location in the country.
+The fixed-point theorem is notoriously difficult to prove within geometry. However,
+geometrical objects are functorially related to sets of numbers (certain algebraic objects,
+known as fundamental groups). Of course, geometrical objects are not identical to sets of
+numbers, and probably the structures defined by such geometric objects are not equivalent
+to the structures on sets of numbers. Still, there exists a systematic mapping between these
+two domains. This allows for a much easier proof of the fixed-point theorem via deriving
+an impossibility result in the category of these algebraic objects.
+Similarly, one could speculate that already the (still quite loose) analogy expressed by
+a functorial relationship between consciousness and the brain suffices to derive interesting
+statements about the nature of conscious experience (the domain where statements sup-
+posedly are difficult). Consciousness is rich in difficult questions such as: “what are other
+persons conscious of at the moment?” or “what entities in nature are in fact conscious
+of anything?”. One would perhaps expect that we need a full theory of consciousness to
+answer these questions, but it may be the case that a much weaker theoretical construction
+already suffices!
+4 Possible payoffs
+Here we briefly speculate on some potential payoffs of using CT in the science of conscious-
+ness more generally. The first is quite uncontested and can be viewed as being part (or a
+natural continuation) of finding the neural correlates of consciousness, but it is often not
+addressed clearly. It is thus worthwhile to additionally emphasize it. The latter is more
+speculative and presents avenues for further research in the science of consciousness.
+4.1 Category theory and the neural correlates of consciousness
+The neural correlates of consciousnesshave been defined as “the minimum neuronal mech-
+anisms jointly sufficient for any one specific conscious experience” [36–38]. Finding the
+neural correlates of consciousness, the “NCC-project”, has been the single most useful
+and successful approach in consciousness studies over the last 30 years. Yet, despite its
+remarkable progress, a true understanding of the NCC is still not in sight. What do these
+correlates express? Why do these correlates hold?
+How to think about the neural correlates of consciousness with respect to category the-
+ory? If one could cast both mathematical structures derived from 3rd-person methods (e.g.,
+from brain scans) as well as from consciousness (e.g., via mathematized phenomenology)
+into the form of a category, one might look for a functorial (or higher) relation between
+these categories. Presumably, the brain is not identical to consciousness, nor is the abstract
+mathematical structure itself, which has been derived from brain activity (how should an
+abstract mathematical structure be identical to consciousness?). But instead, the abstract
+mathematical structure of the brain could be (categorically) related to a structure that
+accounts for important aspects of conscious experience (e.g., its “phenomenal structure”
+[39]).
+A first question might be whether similarity/difference relations could be “preserved”
+across categories, i.e. whether there exists a functor F : C → C such that X ∼ Y ⇒
+219 brain cons
+F (X) ∼ F (Y ) (also satisfying the other requirements listed in the previous section). In
+some sense, this is a question that has already been asked in the psychophysics literature
+for a long time (and has been more elaborated philosophically in the literature on “quality
+spaces” [40–43]), the difference being that the proposed model could be applied to all
+sufficiently formalizable relations that hold for conscious experiences (including, possibly,
+the intentional self-world structure of phenomenology, discussed below).
+The converse, F (X) ∼ F (Y ) ⇒ X ∼ Y would hold, for example, if there also existed an
+inverse functor. The existence of such functors is a necessary requirement for a categorical
+identity to hold. If it fails, then identity cannot be true. But are there empirical ways to
+determine whether or not there exist such functors, and if so, how they would look?
+Luckily, there exists (in principle) a way to assess this question that is tractable with
+standard practices in the field of neuropsychology and psychophysics.
+1. Same stimuli, different experience.
+The “contrastive method” in consciousness studies [38, 44] is the idea to hold a
+stimulus fixed and observe the neuronal changes while conscious perception changes
+from “seen” to “unseen”. This arguably allows one to identify neuronal correlates
+for specific contents, although, the situation is not quite that straightforward due to
+several confounding factors and misguided localization approaches [38, 45].
+If one is now able to cast the recording of brain activity into mathematical form (e.g.,
+construct cause-effect structures), then one could determine whether or not identical
+(or very similar) objects in the “category of the brain” map to different (or very
+dissimilar) conscious experiences.
+2. Different stimuli, same experience.
+The converse is to see whether very dissimilar (different) conscious experience map
+to similar (identical) structures of the brain. This could be achieved, for example,
+using the phenomenon of perceptual metamers [46], where different physical stimuli
+correlate to the same perceptual experience.
+In both cases, one of the categories brain/consciousness might render some of its objects
+identical (similar) whereas the objects in the corresponding category are not. This would
+falsify the existence of a functor, for this specific case, and hence the claim of an identity
+between mathematical representations of brain activity (e.g., cause-effect structures of IIT)
+and conscious experience. In addition, this might have nothing to do with the stimulus itself
+(e.g., one could hold the stimulus constant, but observe changes in brain activity/experience
+or one could vary the stimulus but find roughly the same brain activity/experience).
+But say we would indeed find a functorial relationship, as would be predicted by IIT,
+does this also provide evidence for their identity? No. it provides only necessary but
+not sufficient conditions for the equivocation of consciousness and certain mathematical
+structures of physical systems. Hence, checking whether a functor between domains exist,
+is still part of the NCC-project (or a natural continuation thereof), namely to discover
+correlates (in a more systematical way). Yet, this is co-extensive with the possibility to
+transform certain problems in one domain into problems in the other one. This has proven
+to be a successful strategy in science (as illustrated by one proof of the fixed-point theorem,
+see discussion above).
+However, a more important point can be inferred from the approach of Tsuchiya et al..
+Correlations are the empirical material of a science of consciousness, they are something
+that needs to be explained eventually [47]. Neural correlates of consciousness are not
+themselves theories, but it is helpful to have a rigorous formalization of them. This is a
+precondition of actually testing whether a particular theory is right or wrong. We thus
+agree with Tsuchiya et al.’s suggestion that IIT’s central identity claim should be taken as
+neither self-evidently true nor as something whose truth could be justified by a (unique)
+transition from (self-evidently true) axioms to postulates, but as something that needs to
+be scrutinized empirically. But would we have needed to invoke the formal apparatus of
+CT for this result?
+4.2 Theory-integration and explanatory dualities
+One could try to apply the categorical treatment to a range of theories in the study of
+consciousness with the hope of systematically integrating them (for example, besides IIT,
+the “temporo-spatial theory of consciousness” [48, 49] or the “conscious agent theory”
+[50–52]).
+CT could serve the purpose of establishing a shared (formal) vocabulary for theories
+that might otherwise talk past each other. Especially in an early (immature) stage of a
+scientific enterprise, such as the study of consciousness, this seems to be a better idea than
+(prematurely) sealing off the boundaries between approaches.
+The above-mentioned theories arguably represent proponents of quite different “-isms”
+in the philosophy of mind literature: physicalism, idealism, and non-reductive approaches.
+A formal treatment such as CT would help to overcome metaphysical trenches. This would
+IIT can give you information about whether a physical system that satisfies the postulates correlates
+with experience. From this, it does not follow that such systems are “really” conscious – in a more theoretical
+(necessary), and not empirical (contingent) sense.
+be in line with Husserl’s early emphasis on “bracketing” metaphysical convictions as far
+as possible [53]. It would furthermore allow one to better make the distinction between
+a transcendental approach (which Husserlian phenomenology arguably subscribes to [54])
+and genuine metaphysical theses (i.e. ontological idealism). This way, the use of CT in the
+study of consciousness could help to establish a metaphysically-neutral research program
+beyond the dogmatism of traditional ontologies.
+What could be the benefit of such a metaphysically-neutral (but formal and perhaps
+heterodox) research program? A physics-inspired example would be an explanation that
+proceeds in terms of “dualities” – systematic transformations from one domain of inquiry
+into the other, often followed by back-translation. It is an interesting question whether one
+could specify a duality between consciousness and brain activity. In the previous section, it
+has been argued that one main benefit of the categorical treatment is the possibility to solve
+hard questions about consciousness in the arguably more tractable domain of neuroscience.
+But what’s more, we speculate – in accordance with a “constraint-based” methodology to
+the study of consciousness [31] – that we might even be able to solve some very diffi-
+cult problems in neuroscience by translating them into the language of (mathematized)
+phenomenology. (Recall, for example, that IIT features plenty of computationally almost
+intractable problems such as choosing the minimum information partition and evaluating
+distances between systems and their partitions.)
+Functorial relationship alone is hardly sufficient here though, and we likely need to
+go further: how exactly does a quantity in one domain (e.g., a distance) relate to a dual
+quantity in the other (e.g., to a form of constitution?).
+5 But can we really think about consciousness this way?
+5.1 Phenomenology
+We unhesitatingly agree with the usefulness of having a mathematically rigorous relation
+between computational systems (such as presumably the brain) and consciousness (unlike,
+say, giving you a mere list of empirically determined neural correlates of consciousness.)
+The inspirational example comes from physics, where distances between regions in spacetime have
+been conjectured to be inversely proportional to the entanglement entropy of the associated systems on its
+boundary [55–57].
+Yet, we also do believe that most existing approaches in the field are a mere first step. De-
+tails are missing and, more importantly, the structure of consciousness is often presented
+in a slightly superficial way, not accounting for the rich descriptions that one can find in
+(e.g., Husserlian) phenomenology. Specifically, three concepts are underdeveloped, and
+we also expect that additional tools from CT are needed (such as non-standard approaches
+to compositionality [59] or higher category theory [60, 61]) to make sense of them. On
+the way, we speculate how a first approach to translating these ideas from the language of
+phenomenology into the language of (applied) category theory could look.
+Self. In general, we might run into troubles if it is the case (as suggested by phenomenol-
+ogy) that the categorical representation of basic phenomenological concepts could not –
+unlike often assumed in psychophysics – be given exhaustively in terms of “elementary
+units” of experience (i.e. mereological contents or qualia in the narrow sense). A reason
+for this could be that there are no elementary units independent from the whole they fig-
+ure in. Specifically, the most primitive (but indispensable) variety of a “self”, arguably a
+necessary ingredient of human conscious experience, is likely not an elementary unit in this
+sense.
+Tsuchiya et al. note that “a sense of self [is yet another] type of content” [11] of con-
+sciousness. Here, the phenomenologist would slightly qualify this to “content of reflective
+consciousness”. Importantly, the notion of a “pre-reflective self” – one of the most basal
+structural features of (intentional) consciousness – is not itself an intentional object (read:
+content) of consciousness but a structuring feature of (intentional) consciousness more
+generally. Here, category theory plays nicely alongside phenomenology. Phenomenologists
+typically assume that the pre-reflective self could itself be reflected upon [62], i.e. made
+into the intentional object of a higher act of consciousness. Reflection, in CT, could be
+conceptualized in the form of a “2-category”, a “category of categories”, and the (reflec-
+tive) self would be an object in this higher category. Still, in the original “1-category”, the
+self only figures as a structuring principle (i.e. “pre-reflectively”).
+At this point, a word of caution is in order to not confuse the phenomenological notion
+That said, we were particularly delighted to see that Tsuchiya et al. pointed to the idea of “constitu-
+tions” and conjectured that a “a more refined analysis incorporating phenomenological methods will be able
+to characterize the domain of qualia as category.” [11] In a later publication, [58], they opted for invoking
+enriched category theory to add more details to the original proposal.
+of a pre-reflective self with an empirical (psychological) one. The former deals with invari-
+ant structures of first-personal experience across the full range of individual realizations.
+The relation of a pre-reflective self to an empirical one is, according to one of Husserl’s
+favorite metaphors, similar to the one between a universal geometric object (in somewhat
+mind.
+World. On one conception, the world could be described as a collection of objects and
+structures. When discussing the world, it might thus be a good first choice to look at
+the notion of an “object”. Specifically, talk of objects of consciousness might evoke a
+suggestive analogy to a notion from CT, which knows of objects as basic constituents
+(together with morphisms) of a category. We have seen that Tsuchiya et al. [11] identified
+the objects of the category of consciousness with the contents of consciousness (i.e. qualia).
+Phenomenologists would additionally state, at least in some important cases, that the
+contents of our experiences roughly correspond to an (intentional) object toward which
+consciousness is directed. The contents of our experience are qualitative and intentional.
+Phenomenologists would thus roughly equate the “qualia in the broad sense” [34] with
+intentional objects. At first sight analogous, phenomenologists would perhaps also state
+that such intentional objects are composed of parts. However, the relation between inten-
+tional objects and their components is peculiar. Certain parts do not have an existence
+comprises them). As an example the “redness” of a square is not an object in its own right
+(we cannot be perceptually directed to pure “redness”), it is thus only an “independent
+part” of the red square in front of me. In different words, qualia in the narrow sense are
+We would argue, with phenomenologists, that the concept of a “world” as the result of filling objects
+into an empty container (quite similar to the way Newton thought about “space” as an empty container
+that stands for the “sensorium of God” [63]) is meaningless, but first things first.
+There is a lively debate within phenomenology whether this reading is strictly correct. In the Ideas,
+Husserl introduced the distinction “noesis/noema” to signify the subject/object-poles of consciousness
+[2]. It is quite debated whether we should identify the noema with intentional objects (considered in
+phenomenological reflection) or whether we should conceive of intentional objects as instances of a third,
+ideal category beyond the noesis/noema distinction [54, 64]. For the sake of this discussion, we leave this
+debate open and use the terms “contents” and “intentional objects” synonymously, as seems to be justified
+in at least certain instances of, for example, perceptual consciousness.
+Whereas “qualia in the narrow sense” would roughly equate to the notion of h´yle in Husserl.
+not simply units for the composition of qualia in the broad sense. Intentional objects are
+constituted above and beyond their unit-composition.
+We find that CT has an interesting way to make more sense of this idea. Constitution
+in phenomenology has many “stages”: we constitute (intentional) objects, we constitute
+(experienced) worlds, and we perhaps even constitute realities that assumedly lie behind
+those worlds. CT could represent these various stages by different ways of talking about
+“relations of relations”. Importantly, the objects at lower levels have to be understood
+with respect to their role at higher levels.
+This connects naturally to the NCC-project. If one agrees with phenomenologists,
+possible choices for the objects of the most basic categories are the independent parts of
+consciousness. But different from the idea of qualia (in the narrow sense), such parts are
+empirically not directly accessible. It would thus make no sense to measure brain activity
+and then hypothesize that, for example, activity in the “posterior hot zone” [36] would
+correlate to qualia (in this narrow sense). Rather, one would have to look at generic brain
+activity and see how to derive functorial equivalents of qualia (in the narrow sense) from
+relations among (global) patterns of brain activity. This would be the empirical correlate
+of going from “higher” to “lower” categorical objects.
+Time. Finally, the question as to the “glue” between the world of objects and the self
+arises. This can be seen as an approach roughly consistent with a (non-reductive) aspectual
+monism [65]. Rather than asking how selves could be reduced to objects, or how objects are
+merely constructions of selves, one might ask how the “self-world” co-emerges [66] within
+first-personal experience. We refer to this as the question of time-consciousness.
+This area is quite speculative, so only a few observations should be given at this point.
+First, observe that – if self and world denote co-emerging aspects of first-personal experience
+– this refers to a process, and processes happen over time (in some sense). Phenomenolo-
+gists have speculated on the way how time-consciousness could be described at least since
+Husserl [67]. Importantly, describing time-consciousness is not tantamount to describing
+the subjective experience of time in terms of, for example, “past”, “present” and “future”
+This does not rule out that one could conceive of scenarios where total experiential contents appear to
+be composed, such as in the experimental paradigm, discussed in [34]. Yet, it does not follow from this that
+there really are such things as “elementary units of phenomenal experience” in any substantial, tangible
+way.
+(tensed time). Those are aspects, mere labels, which we attach to specific experiences
+(respectively their contents) and thus cannot describe the ways how such experiences are
+brought about in the first place.
+Secondly, an investigation into time-consciousness should be non-reductive, at least
+initially. We know how time works in classical physics , e.g., how chemical reactions take
+place over a measurable period of time or how neurons fire relative to an external clock. But
+one is hard-pressed to account for a basic puzzle in the philosophy of time: how are genuine
+change and its experience at all possible? Relatedly, phenomenologists typically describe
+experience after suspending their belief in the validity of external, physical existence (known
+as the phenomenological “epoch´e [2]). However, even in this (perhaps only imaginary)
+situation, phenomenologists argue that one’s experience exhibits a sense of “time”, which is
+unaffected by the (non-existence) of a physical world. This issue has been probed repeatedly
+in neurophenomenology (e.g., [70]), and the best answer seems to involve a dual description
+of physical systems and consciousness, informed by phenomenological principles (see also
+[71, 72] for a more recent take on this).
+5.2 Applied category theory
+What is the best approach to translating the preceding remarks about phenomenology into
+a formalized representation, i.e. capturing mathematically the phenomenal structure of
+consciousness? We argue that it might be beneficial to move slightly away from traditional
+category theory and toward applied category theory (more specifically: the framework of
+process theories or strict symmetric monoidal categories [73, 74]). While both approaches
+would result in a formally equivalent representation, the (e.g., Husserlian) phenomenolo-
+gists’ emphasis on constitution, not mere description (unlike what often seems to be the
+target in the conventional study of consciousness, including quality-space theory) motivates
+our representational choice. Recall that we have argued in the previous section that it is
+a process (what we have referred to as “time-consciousness”) that weaves together self,
+world, and objects.
+In applied category theory, objects are often called “types” and are taken to repre-
+sent, in our case, descriptions of momentary states of experience. In addition, applied
+category theory knows of “processes” that operate upon experiences to transform them.
+Although there a serious puzzles in understanding time in fundamental physics [68, 69].
+We conjecture to regard processes in applied category theory as a formal (purely syntacti-
+cal) representation of phenomenological constitutions. This results in a “string diagram”
+(Fig. 1), where experiences are inputted into processes that result in new experiences.
+Intentional objects, for example, could then be regarded as the result of a process that
+acted upon (non-intentional) ingredients. If we assume that all phenomenological notions
+related to objects and selves are created in the course of processes, we also should assume
+those states to be indistinguishable on their own and “self-less” (i.e. before subject to any
+process). A sequence of processes can naturally be interpreted as a single process.
+In [7, 75], it has been proposed that one should distinguish between consciousness (the
+process) and experiential states (results of that process). Accordingly, consciousness should
+not be identified with a particular (behavioral) outcome, (sensory) inputs, or (neuronal)
+states but rather with the weaving together of different threads of experience. This intuition
+seems to be nicely captured by applied category theory.
+Compositionality which might be trivial (as in: composing a building out of lego bricks)
+or non-trivial (as in: composing a symphony out of individual instruments) naturally leads
+to the notion of a “monoidal category” [76]. Composition in monoidal categories takes as
+input two types/processes and outputs a single type/process. One can think of a monoidal
+category as a category with objects being categories and morphisms being functors between
+categories [15], (C, ⊗, 1). We have that ⊗ : C × C → C, and 1 serving as a unit for this
+operation. (E.g for the category of quantum mechanics, unity amounts to multiplication
+with a complex number, 1 = ).
+With a view to phenomenological constitution, this construction is important because it
+tells us that two experiences can be composed to yield another (“higher”) experience, e.g.,
+the kinds of constitutions that allow one to understand how momentary (uninterpreted)
+experiences are combined to form a larger total experience, how its non-intentional ingre-
+dients give rise to its intentional object (content), and finally how experienced phenomenal
+realities are constituted.
+One basic feature of category theory has been discussed at length in previous chapters
+and has to do with (functorial) equivalence. In applied category theory, this is captured in
+terms of re-writing rules between string diagrams. If one diagram can be re-written in terms
+of the other, i.e. if there exists an (invertible) functor between them, they are equivalent. In
+consciousness studies, one often distinguishes the unity of consciousness across time and at
+the same point in time [77]. One could then speculate that one notion is in some sense more
+fundamental. But this might be an error, which stems from a confusion of descriptions of
+experiences (types) with constitutions in consciousness (processes). Following [8], it might
+be better to replace synchronic and diachronic notions of unity with the idea of a “process-
+unity”: consciousness is unified iff its representation as a string diagram cannot be written
+in an equivalent but disconnected way.
+Of course, this still places the onus on the theorist to first argue why a non-disconnected
+representation is in fact unitary, but one could then use the tools of applied category theory
+to reason “functorially” to a host of equivalent cases. At this point, it becomes important to
+illustrate these abstract syntactical notions with a theory that specifies the specific details
+of how processes work. For example, conscious agent theory [50–52] could be interpreted as
+equating types with states defined on measurable spaces X and processes with Markovian
+kernels Q : X → X. If one could show what sequences of kernel executions (in time) result
+in a diachronically unified conscious experience, the synchronic unity for the respective
+parallel composition of kernels could be inferred by invoking applied category theory.
+t X
+(cid:15)(cid:15)
+f g T
+“process-unity”. Types (interpreted as states of experience, wires) are transformed by processes
+(interpreted as constitutions in consciousness, boxes). On the left side, one sees a sequential
+composition of processes (g ◦ f : X → Z). On the right, is an equivalent diagram with the
+respective processes not composing sequentially but horizontally (m ◦ (f ⊗ g ⊗ 1) ◦ p : X ⊗ 1 →
+1 ⊗ Z) ; time flows from top to bottom.
+What about the self? Finding the categorical equivalent of a self (or more precisely:
+the pre-reflective self) is indeed the most difficult part of translating basic phenomenology
+T denotes the transpose; m and p are horizontal composites of the identity and other generic objects
+(“cups” and “caps” [74]).
+into the language of (applied) category theory. However, without the notion of a self, it
+stays somewhat puzzling why the constructions above (i.e. the processes that presumably
+lead to intentional objects and the composition of objects into experienced worlds) would
+yield anything like subjective experiences.
+Traditionally, the notion of a (pre-reflective) self and time-consciousness have always
+been linked [2]: the self is the permanent locus within a stream of conscious experience and
+is co-extensive with the unification within such a stream (i.e. all experiences in a stream of
+consciousness “belong” to the same self). But if experiences are results of processes, then a
+first approach would (i) look at transformations of processes, which (ii) unite a collection of
+otherwise distinct processes (or “streams” thereof ). Formally, this would lead to higher
+category theory [59, 61].
+6 Conclusions
+We have first reviewed potential applications of category theory to the science of con-
+sciousness, in particular, the idea of constructing and then relating “categories of brain”
+and “categories of consciousness”. One example that has received some attention in the
+literature was based on the integrated information theory of consciousness. Integrated
+information theory served us as an exemplary case. Conceivably, the method of construct-
+ing dual categories and seeing how they relate could be useful for many different kinds of
+approaches in the field.
+We then looked at the details of the categorical treatment of consciousness. Here,
+we encountered difficulties. Arguably, the most basic aspects of a systematic approach
+to the description of first-personal experience, namely phenomenology, seem to elude a
+naive treatment and suggest considering structural features in addition to contents of con-
+sciousness, processes rather than static relations. Yet, these are not reasons that speak
+against the categorical treatment, but reasons that speak for adopting further, perhaps
+more sophisticated tools.
+More technically, we have proposed to look at the formalism of applied category theory
+(specifically: process theory) for a mathematization of some phenomenological concepts.
+It is important to note that in applied category theory, a composed collection of processes can be viewed
+as yet another process. A similar property of theories of consciousness, in a different context, has been
+proposed in [50, Conjecture 3].
+Phenomenological constitutions thereby play the role of processes that transform the expe-
+riences which are inputted to them. Quite naturally, looking at the first use-case of applied
+category theory, it is highly suggestive to relate the study of mathematized phenomenology
+not exclusively to neuroscience (which is mainly justified through the assumption that the
+brain presumably is the physical organ of the mind) but instead to computer science and
+AI (which can be justified through structural similarities between the domains of com-
+puter science and phenomenology, as expressed in applied category theory). This is not
+merely a new avenue for phenomenology, say next to the “phenomenology of architectural
+design” [78], but marks a conceptual shift. Rather than describing the explanandum (e.g.,
+“a system in a state” [17]), phenomenology describes the process of its constitution in
+consciousness.
+If the goal is to bring together the study of consciousness and the study of computer
+science [79–81], then a closer look at phenomenology (through the lens of applied category
+theory) is worth the effort, since it might help to dissolve the question: “why would this
+or that computational architecture have any phenomenal experience?” Here, the emphasis
+should lie on the processes of constituting experience from the first-person perspective.
+Consciousness is not something that one has, but something that one does.

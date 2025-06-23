@@ -1,0 +1,1851 @@
+Anxiety associated with perceived uncontrollable stress enhances expectations of
+environmental volatility and impairs reward learning.
+1,2 3,4 2* 1,5*
+Amy Walsh , Peter Dayan , Andreas Olsson , Marc Guitart-Masip
+1 Aging Research Centre | Dept. of Neurobiology, Care Sciences and Society | Karolinska
+Institutet | Stockholm | Sweden
+2 Emotion Lab | Dept. of Clinical Neuroscience | Karolinska Institutet | Stockholm | Sweden
+3 Max Planck Institute for Biological Cybernetics | Tübingen | Germany
+4 University of Tübingen | Tübingen | Germany
+5 Centre for Psychiatry Research | Karolinska Institutet and Stockholm Health Care Services |
+Region Stockholm | Stockholm | Sweden
+Contacting author: marc.guitart-masip@ki.se
+1 Abstract
+Unavoidable stress elicits perceived lack of controllability and learned helplessness, which is a
+risk-factor for depression. Stress, anxiety, and depression can all alter reward learning. In a
+preregistered study during the first-wave of the COVID-19 pandemic, we used self-reported
+measures of depression, anxiety, uncontrollable stress, and COVID-19 risk from 427 online
+participants to predict performance in a three-armed-bandit probabilistic reward learning task.
+As hypothesised, uncontrollable stress predicted impaired learning of optimal choices.
+Uncontrollable stress also predicted a greater proportion of probabilistic errors following
+negative feedback for correct choices, which reflected interpretation of ambiguous negative
+feedback as a change in task reward contingencies. Moreover, this effect of uncontrollable stress
+on probabilistic errors was mediated by state anxiety. A parameter from the best-fitting hidden
+Markov model that estimates expected beliefs that the identity of the optimal choice will shift
+across images, mediated effects of state anxiety on probabilistic errors and learning deficits. Our
+findings show that following uncontrollable stress, anxiety promotes an overly volatile
+representation of the reward structure of uncertain environments, impairing reward attainment,
+which is a potential path to anhedonia in depression.
+To obtain rewards successfully from their complex, ever-changing environments, people flexibly
+learn to adapt behaviour based on prior experience (Daw et al., 2005; O’Doherty et al., 2017;
+Sutton & Barto, 2018). Better than expected outcomes elicit positive prediction errors, while
+worse than expected outcomes elicit negative prediction errors, thus updating estimated action
+values to support optimal choices (Rigoli et al., 2016; Schultz, 2016; Schultz et al., 1997). Stress
+can interfere with this learning process, damaging reward maximization (Berghorst et al., 2013;
+Carvalheiro et al., 2021a; 2021b; de Berker et al., 2016; Morgado et al., 2015; Pizzagalli, 2014;
+Starcke & Brand, 2012; Voulgaropoulou et al., 2021) and impairing avoidance of aversive
+outcomes (Raio et al., 2017). For example, anticipating threat of shock impairs performance in
+probabilistic reward learning tasks (Bogdan et al., 2011; Bogdan & Pizzagalli, 2006; Paret &
+Bublatzky, 2020), and acute stress dampens neural activation associated with reward sensitivity
+in ventromedial prefrontal cortex (vmPFC) and dorsal striatum (Porcelli et al., 2012). However,
+whether stress is perceived to be controllable (i.e., avoidable upon one's action; Ligneul, 2021)
+may determine the extent of these cognitive consequences (Ly et al., 2019; Maier & Seligman,
+2016). Here, we ask whether self-reported stress uncontrollability impairs learning to make
+17 choices to optimise reward.
+When actions result in desired outcomes, a subjective sense of controllability or agency over the
+environment leads to exploration and goal-directed action (Karsh & Eitam, 2015; Ly et al., 2019;
+Moscarello & Hartley, 2017). It is thought that expectations regarding controllability are
+predicted by generalising from experiences in similar contexts (Hiroto & Seligman, 1975; Huys &
+Dayan, 2009; Leider et al., 2013). Expected controllability elicits a shift from spectator models —
+that make inferences about the environment by linking passive past and future states — to
+active models that include one’s own actions as predictors of outcomes (Ligneul et al., 2022).
+Actively avoiding aversive stimuli fosters resilience and protects against later unavoidable
+aversive stimulation, which is thought to arise via vmPFC inhibiting subcortical stress and pain
+circuits (e.g., amygdala, striatum, and insula) in both animals (Amat et al., 2005; 2010; Baratta et
+al., 2008; 2009; Maier et al., 2006; Maier & Watkins, 2005; Maier & Seligman, 2016) and humans
+(Cohodes et al., 2022; Cremers et al., 2021; Limbachia et al., 2021; Kerr et al., 2012; Meine et al.,
+2021; Salomons et al., 2004; Wade-Bohleber et al., 2021; Wang & Delgado, 2021; Wood et al.,
+2015). Moreover, in humans, actively avoiding stressors promotes Stroop conflict resolution
+(Henderson et al., 2012), greater fear attenuation, quicker fear extinction (Hartley et al., 2014;
+Wanke & Schwabe, 2020), and less subjective pain than experiencing uncontrollable aversive
+stimuli of the same intensity (Wiech et al., 2006). When actions do not lead to desired
+35 controllable
+consequences, a sense of uncontrollability leads to reflexive, passive behaviour and learned
+helplessness (a failure to attempt to avoid stressors in new contexts; Hiroto &
+Seligman, 1975; Maier & Seligman, 2016; Moscarello & Hartley, 2017). Animals experiencing
+uncontrollable stress show deactivation of vmPFC, and activation of the stress-related neural
+structures listed above (Maier & Seligman, 2016; Datta & Arnsten, 2019). Moreover, in humans,
+deactivation of vmPFC during uncontrollable stress predicts greater subjective helplessness
+(Meine et al., 2021), which is thought to be a risk factor for development and maintenance of
+42 depression (Pryce et al., 2011; Maier & Seligman, 2016).
+Here, we seek to examine in more detail the effect of uncontrollable stress on learning from
+rewards. Given the contribution of stress (Hammen, 2005; 2015; Pizzagalli, 2014) and
+uncontrollability (MacAulay et al., 2014), to aspects of depression, an obvious parallel for this
+study are the substantial observations about the effects on learning from rewards in depression,
+where it is sometimes (Bishop & Gagne, 2018; Chen et al., 2015; Pizzagalli, 2014; Robinson et al.,
+2012), but not always (Huys et al. 2013; Moutoussis et al., 2018; Rutledge et al., 2017) found to
+be impaired. For the case of depression, there have been substantial efforts to dissociate
+different sources of problems with reward learning, namely issues with reward processing;
+biases or deficits in the learned associations between stimuli and/or actions and rewards; the
+consequences of such associations for motivated decision-making; or, more subtly, an inability
+to adapt behaviour appropriately to the statistical demands of the environment. For an example
+of the complexities, anhedonia, which refers to a blunted emotional response to usually
+pleasurable events, is a cardinal symptom of depression. However, rather than an inability to
+experience pleasure from primary reinforcers (e.g., sweet tastes; Dichter et al., 2010), which
+would constitute a problem with reward processing, anhedonia is associated with lowered
+expected values of actions, pessimistic prior beliefs, and reduced motivation and effort (the last
+of which can predict depression relapse in patients who are remitted; Berwian et al., 2020). One
+of the more robust findings in both depression and state and trait anxiety is a disruption to
+reward learning coming from dysfunctional behavioural adjustments to environmental statistics
+(e.g., Aylward et al., 2019; Bishop & Gagne, 2018; Browning et al., 2015; Hein et al., 2021; Gagne
+et al., 2020; Pike & Robinson, 2022; Xia et al., 2021). Statistics such as the volatility of beneficial
+or malignant circumstances play a critical role in determining learning. Problems arise from
+such things as an expectation that reward, even if currently available, will likely be short-lived,
+or that a punishment represents a systematic and stable characteristic of the environment,
+21 rather than just an unlucky sample.
+In this preregistered study, we ask whether uncontrollable stress is associated with impaired
+reward learning and examine possible computational mechanisms by which this might arise.
+The COVID-19 pandemic presented a context of environmental volatility, with naturally varying
+subjective responses across individuals (e.g., Salari et al., 2020; Shah et al., 2021). During the
+first-wave of the COVID-19 pandemic in April 2020, 427 online participants self-reported levels
+of stress (perceived uncontrollable stress and lack of self-efficacy; Cohen et al., 1983);
+depressive symptoms (Kroenke et al., 2001); state and trait anxiety (Spielberger, 1980; 2010);
+and perceived risk of COVID-19 (Wise et al., 2020). We initially used Exploratory Factor Analysis
+(EFA) to derive latent factor scores within and across the questionnaires to examine how these
+31 n
+factors predicted reward learning task performance. However, these factor scores were not
+reliable within a subset of participants ( = 49, measured across two sessions approximately
+three days apart). Therefore, we deviated from the preregistration and instead used
+confirmatory latent factor models based on previously established subscales to obtain reliable
+35 weighted factor scores.
+All participants performed two versions of a probabilistic reward learning three-armed bandit
+reward. On each trial, participants chose one of three vertical columns comprising three images.
+Images in each horizontal row were from the same class (landscape; mode of transport; animal);
+but the pictures in these rows shuffled randomly on each trial, leaving constant the vertical
+order of the image classes. On any given trial, just one of the images (e.g., a cat) was the target.
+Participants had to learn by accumulating evidence from their composite choices. Participants
+first completed the “signalled” task in which they were informed that each new game of 25 trials
+indicated that the target image had changed. If they chose the composite stimulus that included
+the target, they had a 75% chance of receiving a point (1 penny in Great British Pounds/GBP). If
+they chose a non-target composite, reward probability was 25%. Participants then completed
+the reversal task, which was similar to the signalled task except that it comprised one
+continuous game in which the target changed without warning every 20-30 trials (a fact that
+was communicated to participants). The same images were used for both tasks. The reversal
+task was more difficult, because receiving no reward could indicate either probabilistic negative
+feedback, or a target reversal. We therefore increased reward probability upon choosing the
+target to 80% (20% for non-targets). Participants were informed about reward probabilities for
+7 both tasks.
+We expected that uncontrollable stress would predict impaired learning in both tasks. To
+examine possible cognitive mechanisms by which uncontrollable stress might impact reward
+learning, we compared different computational models that were fit to the participants’ choices.
+The models included preregistered variations of reinforcement learning models (RLMs), which
+estimate the values of choices on each trial, and update these values based on whether the
+outcome is better or worse than expected (i.e., reward prediction errors). We compared the fit of
+simulated choices from each model to the actual data, and then examined whether our factors
+that predicted impaired learning in the task also predicted estimated parameters from the
+winning model. We expected that uncontrollable stress would decrease learning rate for positive
+prediction errors in both tasks, while not affecting reward sensitivity. We expected that
+uncontrollable stress would increase the learning rate for negative prediction errors in the
+reversal task (in which negative feedback is more ambiguous), but not in the signalled task. The
+RLM models turned out to fit choices in the reversal task rather poorly. Thus, we also included
+an exploratory (not preregistered) hidden Markov model (HMM) in which the hidden state is the
+identity of the target image. Inference in the HMM involves tracking the probability of each
+possible target (i.e., each possible hidden state) based on rewards obtained after each choice. As
+the exploratory HMM was a markedly better fit to the data than the RLMs, we explored
+relationships between our factors and the HMM parameters (i.e., the probability that a reward is
+observed when the target is chosen; the probability that a non-reward outcome is observed
+when a non-target is chosen; and the probability that the target identity will shift to another
+28 image on the next trial).
+30 Participants saw a fixation cross for 500 ms, followed by the image stimuli until a response was made,
+31 or for 2000 ms if they failed to respond in time. Participants selected one of the three vertical
+32 composite stimuli (comprising one landscape, one animal, and one mode of transport) on each trial
+33 using the arrow keys (left, down, right). Reward feedback followed for 1000 ms, showing a star on
+34 reward trials, and a cross on no reward trials, along with the chosen composite stimulus. If no
+35 response was made, an image of a clock was shown to remind participants to respond more quickly.
+2 Results
+The 427 participants completed 69 items across four questionnaires (see Materials and
+Methods): the Perceived Stress Scale (PSS, Cohen et al., 1983; 1994); the State Trait Anxiety
+Inventory (STAI, Spielberger, 1980; 2010) the Risk of COVID-19 Scale (Wise et al., 2020); and the
+Patient Health Questionnaire-9 depression scale (PHQ-9, Kroenke et al., 2001). Because we
+expected considerable overlap in the measured constructs, we used exploratory factor analysis
+(EFA) to identify latent factors present within and across the scales to include as fixed-effects in
+our analyses. EFA is a data-driven approach that reduces dimensionality and produces weighted
+scores comprising items which can come from different scales (e.g., Costello & Osborne, 2005).
+The clearest, most meaningful, yet parsimonious structure was a seven-factor model (see
+Materials and Methods for model selection details) comprising: Uncontrollable Stress;
+Depression; State Anxiety; Trait Anxiety; Anxiety (reverse-coded positively-framed items from
+both State and Trait scales); Perceived Likelihood of COVID-19 Risk; and Perceived Severity of
+18 COVID-19 Risk.
+However, assessing test-retest reliability for the 49 participants who completed the scales again
+three days later showed that these EFA scores were not reliable within individuals (Intraclass
+Fleiss, 1979). This lack of reliability was surprising considering that the sum scores for each
+established scale and subscale showed good test-retest reliability (ICC range: 0.75 to 0.95).
+However, using sum scores is not recommended, so we deviated from the preregistration and
+used congeneric factor analysis, a confirmatory factor model (McNeish & Wolf, 2020), to
+produce weighted scores based on the structure of previously established scales and subscales.
+28 Likelihood Severity
+determined the following factor structure: Uncontrollable Stress; Lack of Self-efficacy;
+Depression; Perceived of COVID-19 Risk; Perceived of COVID-19 Risk; State
+Anxiety (negatively-framed items), State Anxiety (positively-framed items), Trait Anxiety
+(negatively-framed items), and Trait Anxiety (positively-framed items). Unlike the EFA factor
+scores, these congeneric scores were test-retest reliable across the two sessions (ICC range: 0.75
+3 tToe 0st.9-r3e; tTeasbt lree Sl.i3a)b. ility of task performance
+For the 49 participants who completed the probabilistic reward learning tasks twice, test-retest
+reliability for overall task performance (mean proportion correct) was low, which is not
+unexpected based on recent examinations of test-retest reliability for tasks that produce robust
+and replicable effects (Enkavi et al., 2019; Hedge et al., 2018). These cognitive tasks typically have
+low between-subject variability, which goes hand-in-hand with low reliability for individual
+10 ICC p CI
+differences (Hedge et al., 2018). Using intraclass correlation (ICC) models, test-retest mean overall
+11 ICC p CI
+accuracy performance was (48, 48) = 0.26, = .032, = 0.31-0.47 for the reversal task, and
+(48, 48) = 0.18, = .093, = -0.42-0.38 for the signalled task. Although low test-retest
+reliability suggests that our task may be less suited to study individual variability and may result
+in underestimation of effect sizes, our ability to detect significant effects is enhanced by our
+15 rImelaptaivcet loyf l aurngceo snatmroplllea obfl e4 2st7r pesasrt aicnipda snttast.e anxiety on reward learning
+To examine which factors affected learning, separately for the signalled and reversal tasks, we
+ran preregistered generalised logistic mixed-models (GLMMs) on accuracy (0, 1), with Trial
+(centred around 0) as a fixed-effect, and by-subject random intercepts and slopes for Trial, thus
+allowing for between-subject learning variability. We systematically added Factor Score x Trial
+interactions as fixed-effects and then as random-effects in separate models for each of the nine
+factors. Adding random-effect interaction terms did not significantly improve fit of any of the
+models. We note that in the preregistration we planned to use factor scores from the EFA, but
+24 because of low reliability we use factor scores from the confirmatory factor models.
+26 GLMMs). Therefore, the signalled task was not considered further.
+27 T Ta h b e l r e e 1 v . e G r e s n a e l r t a as li k se G d L L M o M gis r t e ic s u M lt ix s e a d r e M p o r d e e s l e ( n G t L e M d M in ) T re a s b u l l e t s 1 f . o r the reversal task: Results from the nine
+28 separate models with Factor Score x Trial interactions. Confidence intervals are 95%. se is the
+29 standard error of the log odds estimate. Significant fixed-effects and interactions are shown in bold.
+30 Log odds estimates can be transformed into odds ratios by exponentiating the value. Across these
+31 nine models, the coefficients for the intercept ranged from: log odds = 0.102, se = 0.025, z = 4.023–
+32 4.056, < .001, 95% CI = 0.053-0.152; and for the main effect of Trial: log odds = 0.357, se = 0.018-
+33 0.019, z= 19.232–19.461, < .001, 95% CI = 0.321-0.394. With a Holm correction for multiple
+34 comparisons (Holm, 1979) only the negatively-framed State Anxiety x Trial interaction remained
+35 significant. Although the Uncontrollable Stress x Trial interaction did not survive the Holm
+36 correction, it supported our key preregistered theoretically-driven prediction; effects of all other
+37 factors were relatively exploratory. * One asterisk indicates a significant effect before the Holm
+38 correction; ** Two asterisks indicate a Holm-corrected significant effect. A Holm correction is more
+39 powerful than a Bonferroni correction, is valid under the same assumptions, and controls the family-
+40 wise error rate. To perform the Holm correction, values are ordered from smallest to largest. A -
+41 value is significant when , where is the alpha level; is the number of -values (18
+p- p
+42 in this case); and is the -value ranking. For all three significant effects, the adjusted alpha
+pk < α/m + 1 - k α m p
+43 threshold rounded to .003.
+k p
+log CI CI
+Uncontroll-
+model fixed effects se z value value
+odds lower higher
+able Stress
+Uncontrollable
+main effect -0.045 0.023 -1.905 0.057 -0.091 0.001
+-0.045 0.017 -2.655 0.008* -0.079 -0.012
+Stress x Trial
+State
+main effect -0.065 0.024 -2.685 0.007* -0.113 -0.018
+Anxiety
+neg-
+State Anxiety
+framed
+-0.054 0.018 -3.047 0.002** -0.088 -0.019
+x Trial
+Lack of Self-
+main effect -0.007 0.023 -0.287 0.774 -0.051 0.038
+efficacy
+Lack of Self-
+0.004 0.017 0.267 0.789 -0.028 0.037
+efficacy x Trial
+Depression
+main effect -0.030 0.024 -1.240 0.215 -0.078 0.017
+Depression
+-0.006 0.018 -0.356 0.722 -0.041 0.028
+x Trial
+Likely
+main effect -0.022 0.024 -0.905 0.365 -0.069 0.025
+COVID-19
+Risk
+Likely COVID-19
+0.003 0.018 0.181 0.856 -0.031 0.038
+Risk x Trial
+Severity
+main effect -0.007 0.022 -0.338 0.735 -0.050 0.035
+COVID-19
+Risk
+Severity COVID-19
+-0.012 0.016 -0.761 0.446 -0.043 0.019
+Risk x Trial
+Trait
+main effect -0.044 0.024 -1.817 0.069 -0.091 0.003
+Anxiety
+neg-framed
+Trait Anxiety neg-
+-0.016 0.018 -0.879 0.379 -0.050 0.019
+framed x Trial
+State
+main effect -0.045 0.025 -1.834 0.067 -0.093 0.003
+Anxiety
+pos-framed
+State Anxiety pos-
+-0.033 0.018 -1.832 0.067 -0.068 0.002
+framed x Trial
+Trait
+main effect -0.020 0.024 -0.801 0.423 -0.067 0.028
+Anxiety
+pos-framed
+Trait Anxiety pos-
+0.002 0.018 0.128 0.898 -0.033 0.037
+framed x Trial
+Importantly, as predicted in our preregistration, an Uncontrollable Stress x Trial interaction
+supported our key hypothesis that perceived lack of stress controllability would be associated
+with impaired reward learning. We found no significant effects of positively-framed State
+Anxiety on learning, so we now refer to negatively-framed State Anxiety simply as State Anxiety.
+State Anxiety significantly predicted lower accuracy, and impaired learning (a State Anxiety x
+Trial interaction). With a correction for multiple comparisons (Holm, 1979) only the State
+Trial interaction did not survive the Holm correction, it supported our key preregistered and
+theoretically driven prediction. Indeed, the effects of other factors were relatively exploratory.
+learning, with participants divided into high and low median split groups for visualisation
+9 purposes.
+As preregistered, Uncontrollable Stress x Trial and State Anxiety x Trial were entered into a
+12 p
+indicating that multicollinearity was not an issue (typical cut-offs are >5 or 10; Akinwande et al.,
+13 p
+2015). No effects reached significance: the main effect of State Anxiety was =.057; the Trial x
+14 p
+State Anxiety interaction was =.080; and the Trial x Uncontrollable Stress interaction was
+=.349. The combined model did not provide a significantly better fit to the data than either of
+The fact that both Trial x Uncontrollable Stress and Trial x State Anxiety interactions were
+18 explain
+significant in separate models, but only the State Anxiety interaction was close to significant in
+the combined model suggests that variability in State Anxiety may the effect of
+Uncontrollable Stress on learning. To test this possibility, we implemented an exploratory (not
+preregistered) causal mediation analysis (Imai et al., 2010) with Uncontrollable Stress as the
+we extracted random slopes (range: -0.629 to 0.943) for Trial for each participant from the
+24 p
+simplest GLMM on accuracy with only Trial as a fixed and random-effect. Although the total
+25 p
+effect of State Anxiety and Uncontrollable Stress together was significant ( =.009), the mediation
+did not reach significance ( =.056). Thus, although both factors together impact learning, we
+27 c F a ig n u n r o e t 2 m . T ak h e e e st ff r e o c n ts g o in f f U e n re co n n ce tr s o r ll e a g b a l r e d S in tr g e s a s m an e d d i S a t t a io te n A e n ff x e i c e t t . y on reward learning (accuracy
+28 across trials) in the reversal task (n = 427). Panel a) shows reward learning collapsed across
+29 games with a median split of Uncontrollable Stress scores; and a median split of State Anxiety
+30 scores in Panel b). High scorers are in purple and low scorers are in green. These median splits are
+31 only for the purpose of visualisation, and we treated the factor scores as continuous variables in
+32 analyses. Shaded error bars are standard errors of the mean. Solid lines indicate the observed data,
+33 dotted lines indicate simulated accuracy by the winning computational hidden Markov model
+34 (HMM, see below). Panel c) shows the estimates (log odds) from the Generalised Logistic Mixed
+35 Models (GLMMs) that included the Uncontrollable Stress x Trial interaction alone (yellow), the
+36 State Anxiety x Trial interaction alone (green), and the combined model with both interactions
+37 (purple). Error bars reflect 95% confidence intervals around the mean estimates. Error bars that
+38 cross the dotted horizontal line indicate non-significant effects. For results of the mediation model
+40 by the various reinforcement learning models (RLMs), and the hidden Markov Model (HMM). ba =
+41 beta-alpha; baf = beta-alpha-forget; bafc = beta-alpha-forget-confidence; hmm = hidden Markov
+42 model with 3 free parameters. The simulations were done by sampling each individual subject's set
+43 of parameters 100 times (see Materials and Methods for details). The HMM is clearly the best fitting
+44 model to participants’ choices, although we note that the simulated data deviates slightly from the
+45 observed data from trial 20-30.
+3 T able 2. Results from the two causal mediation analyses on reward learning slopes (estimated from
+4 the GLMM with only Trial as a fixed-effect, with by-subject random-intercepts and slopes for Trial),
+5 and the two mediation analyses on probabilistic error proportions (Prob Errors), which index the
+6 proportion of times participants make errors following probabilistic negative feedback for a
+7 correct response, after they have learned the target. For both variables, we tested whether the
+8 effects of uncontrollable stress were mediated by state anxiety and whether the effects of state
+9 anxiety were mediated by the parameter of the HMM which estimates expected beliefs about the
+10 chance of the target changing identity from trial-to-trial (see computational modelling). In other
+tr
+11 words, probabilistic errors index pre-emptive anticipation of a target reversal. State Anxiety is the
+12 negatively-framed items factor. Confidence intervals are 95%. The Average Causal Mediated Effect
+13 (ACME) is the indirect effect of the predictor on the outcome, via the mediator. The Average Direct
+14 Effect (ADE) is the unmediated effect of the predictor on the outcome. The Total Effect (ADE +
+15 ACME) is the combined effect of the predictor and mediator on the outcome. Asterisks * indicate
+17 in the probabilistic error analyses ( = 393) as some participants did not experience ambiguous
+18 negative feedback after learning the target and so did not have the opportunity to make
+19 probabilistic errors.
+n p
+predictor mediator outcome effect estimate CI CI
+value lower upper
+ACME -0.020 .048* -0.042 0.000
+ADE -0.014 .395 -0.046 0.019
+Uncontrol State Learning
+Total Effect -0.034 .009* -0.059 -0.009
+Stress Anxiety Slopes
+Proportion
+0.589 .056 -0.023 2.353
+Mediated
+ACME 0.027 .023* 0.004 0.051
+ADE 0.011 .530 -0.024 0.046
+Uncontrol State Prob
+Total Effect 0.039 .005* 0.012 0.065
+Stress Anxiety Errors
+Proportion
+0.696 .028* 0.088 2.462
+Mediated
+ACME -0.019 .010* -0.034 -0.004
+ADE -0.023 .036* -0.045 -0.002
+Transition
+tr
+State Learning
+Parameter 427
+Total Effect -0.042 .002* -0.069 -0.016
+Anxiety Slopes
+( )
+Proportion 0.445 .013* 0.136 0.919
+Mediated
+ACME 0.018 .012* 0.004 0.000
+ADE 0.034 .007* 0.009 0.019
+Transition
+tr
+State Prob
+Parameter 393
+Total Effect 0.051 <.001* 0.023 -0.009
+Anxiety Errors
+( )
+Proportion 0.341 0.013* 0.093 2.402
+Mediated
+For both tasks, we performed preregistered multiple linear regressions examining how the nine
+factors predicted learning speed (number of trials to learning defined by a preregistered
+criterion of 5 consecutive correct trials). We expected that Uncontrollable Stress would be
+associated with slower learning. However, none of the factors predicted slower learning in
+7 Iemithpearc tta osfk u (nTcaobnlet rSo.7l;l aSb.8l)e. stress and state anxiety on proportion of probabilistic errors
+We performed preregistered linear regressions examining how the nine factors predicted the
+proportion of probabilistic errors. The proportion of probabilistic errors was the ratio of the
+number of times participants made an erroneous shift away from a correctly chosen learned
+target after receiving probabilistic negative feedback, to the total number of times they received
+probabilistic negative feedback. In other words, probabilistic errors are the proportion of times
+participants shift away from choosing a learned target following negative feedback for a correct
+response, suggesting pre-emptive anticipation of a target reversal. This measure is evidently not
+meaningful for the signalled task. Not all participants had the opportunity to commit
+probabilistic errors as some never experienced probabilistic negative feedback after meeting the
+learning criterion of five consecutive correct trials. This reduced the sample size for this analysis
+to 393. The 34 excluded participants were less accurate overall (mean proportion correct =
+0.329, compared to 0.535 for the included participants), and so the sample included in the
+8 probabilistic error analyses is skewed towards more accurate participants.
+We found that Uncontrollable Stress, State Anxiety (negatively-framed), and State Anxiety
+(positively-framed) all significantly positively predicted a greater proportion of probabilistic
+11 p p
+correction ( =.031, threshold =.007). In a multiple regression model with the above three
+13 β p p’
+factors, only negatively-framed State Anxiety significantly predicted a higher proportion of
+14 probabilistic errors ( =0.047, =.022; other s>.439).
+Given that the predicted significant effect of Uncontrollable Stress was non-significant when
+State Anxiety was included in the model, we ran a mediation on probabilistic error proportions
+18 p
+did above for learning slopes. State Anxiety mediated 70% of the effect of Uncontrollable Stress
+on probabilistic error proportions ( =.028). Thus, uncontrollable stress was associated with a
+propensity to shift choices in anticipation of changes to reward contingencies, an effect which
+21 dTeapbelen 3d.e Ldi noena cr urrergernets sainonxi metoyd. el results (n = 393) for the reversal task examining the effect of each
+22 factor on probabilistic error proportions (preregistered as the ratio of probabilistic errors, and
+23 calculated as the number of times participants made an erroneous shift away from a correctly chosen
+24 target after receiving probabilistic negative feedback, divided by the total number of times they
+25 received probabilistic negative feedback), indexing a tendency to interpret negative feedback as a
+26 change in reward contingencies (i.e., a target reversal). Confidence intervals are 95%. se is the
+27 standard error of the model estimate. With a Holm correction (Holm, 1979) the Uncontrollable
+28 Stress, and the State Anxiety (negatively-framed) effects remained significant (for both effects, the
+29 adjusted alpha threshold rounded to .006). The State Anxiety (positively-framed) main effect did not
+30 survive the Holm correction (threshold .007). Asterisks * indicate a significant effect before the Holm
+31 correction; ** indicates a Holm-corrected significant effect. A Holm correction is more powerful than
+32 a Bonferroni correction, is valid under the same assumptions, and controls the family-wise error rate.
+33 To perform the Holm correction, values are ordered from smallest to largest. A -value is
+34 significant when , where is the alpha level; is the number of -values (18 in this
+p- p
+35 case); and is the -value ranking.
+pk < α/m + 1 - k α m p
+k p
+t p
+fixed CI CI
+model estimate se value value
+effects lower higher
+Uncontroll-
+able Stress imntaeirnc ept 0.341 0.015 22.647 <0.001 0.311 0.370
+0.038 0.014 2.802 0.005** 0.012 0.065
+effect
+State
+Anxiety
+imntaeirnc ept 0.341 0.015 22.801 <0.001 0.311 0.370
+0.051 0.014 3.575 <0.001** 0.023 0.079
+neg-framed
+effect
+State
+Anxiety
+imntaeirnc ept 0.341 0.015 22.556 <0.001 0.311 0.370
+0.031 0.014 2.168 0.031* 0.003 0.060
+pos-framed
+effect
+Trait intercept 0.341 0.015 22.532 <0.001 0.311 0.370
+Anxiety
+main effect 0.026 0.014 1.849 0.065 -0.002 0.054
+neg-framed
+Trait intercept 0.341 0.015 22.473 <0.001 0.311 0.370
+Anxiety
+main effect 0.017 0.014 1.161 0.246 -0.011 0.045
+pos-framed
+intercept 0.341 0.015 22.448 <0.001 0.311 0.370
+Lack of
+Self-efficacy
+main effect 0.013 0.014 0.922 0.357 -0.014 0.039
+intercept 0.341 0.015 22.510 <0.001 0.311 0.371
+Depression
+main effect 0.021 0.014 1.478 0.140 -0.007 0.050
+Likelihood intercept 0.341 0.015 22.470 <0.001 0.311 0.370
+of COVID-19
+main effect -0.015 0.014 -1.077 0.282 -0.043 0.013
+Risk
+Severity of intercept 0.341 0.015 22.462 <0.001 0.311 0.371
+COVID-19
+main effect 0.008 0.013 0.587 0.558 -0.018 0.033
+Risk
+2 C omputational Modelling
+To examine possible cognitive mechanisms underlying effects of Uncontrollable Stress and State
+Anxiety on choices, we assessed the ability of a range of models from two families to capture
+trial-by-trial data (see Materials and Methods). The first family of models includes preregistered
+variations of classical reinforcement learning models (RLMs) in which actions are learned
+through reward prediction errors and the Rescorla Wagner updating rule. However, because the
+RLMs were rather incompetent at explaining the observed choices, we deviated from the
+did not observe any significant effects of our factors on signalled task performance, we only
+report modelling results for the reversal task. For completeness, model comparison results for
+even there, 34% of participants were better fitted by the HMM model.
+hidden state because it cannot be observed directly, but only indirectly through reward feedback
+after each choice. On each trial, the HMM estimates the probability that each of the nine images
+is the target given the choices and the outcome of the trial and uses this to calculate the
+posterior distribution over the hidden state. This likelihood is calculated differently for chosen
+10 q
+and unchosen images and is dependent on two free parameters representing: the model's
+expected probability that a reward is observed when the chosen stimulus includes the target ( );
+12 p p
+and the model's expected probability that a non-reward outcome is observed when the chosen
+stimulus does not include the target ( ). We note that the distribution of was highly skewed
+14 q
+towards 1, which is too high given that notional expected probability of not obtaining a reward
+when non-target stimuli are chosen was 0.8. By contrast, the distribution of was relatively
+normal but underestimated the true probability of obtaining a reward after selecting a target.
+After updating, the hidden states are multiplied by a transition matrix characterizing the
+subjective probabilistic relationship between the hidden state on the current trial and that on
+the next trial. This transition matrix is parameterized by a third free parameter, assuming that
+20 tr
+any new target is chosen uniformly amongst the eight other images. More formally, the off-
+diagonal entries of this transition matrix are set to be the transition parameter ( ) divided by 8.
+The diagonal entries are defined as 1 minus that free parameter and describe the probability
+that the target image remains the same on the next trial.
+25 toolbox (Piray et al., 2019). RLM refers to Reinforcement Learning Models; HMM refers to the hidden
+26 Markov model with three parameters. Model frequency indicates the ratio of participants assigned
+27 to each model. Exceedance probability is the likelihood that each model is the most likely model,
+28 considering the possibility that differences in model evidence are due to chance.
+model model # of model exceedance
+family name parameters frequency probability
+RLM beta-alpha 2 <0.001 0
+beta-alpha-
+RLM 3 0.090 0
+forget
+beta-alpha-
+RLM 6 0.382 0.001
+forget-confidence
+hidden Markov
+HMM 3 0.528 0.999
+model
+We examined possible relationships between State Anxiety and Uncontrollable Stress and the
+32 tr r p p
+three parameters from the HMM (q, p, and tr). The positive correlation between State Anxiety
+and was =.124, =.010 ( value uncorrected for multiple comparisons). No other correlations
+were significant. These results suggest that anxiety is associated with an increased tendency to
+believe that the target identity will change, shifting interpretation of negative feedback towards
+a change in reward contingencies rather than being due to chance. This is in line with higher
+4 tr
+anxiety being associated with a higher proportion of probabilistic errors. To test this hypothesis,
+we ran two exploratory mediation analyses with State Anxiety as the treatment variable and
+6 n
+7 p
+parameter mediated 45% of the relationship between State Anxiety and learning ( =427,
+8 n p
+=.013), and 34% of the relationship between State Anxiety and probabilistic error proportions
+( =393, =.013). The above findings show that anxiety is associated with impaired reward
+learning via a propensity to anticipate changes to reward contingencies, an effect which depends
+11 on expected beliefs about environmental voDliastciluitsys. i on
+Self-reported uncontrollable stress and state anxiety together predicted impaired performance
+in a probabilistic reversal reward learning task in which participants learned from the outcomes
+of their choices to maximise rewards. Both uncontrollable stress and anxiety were associated
+with a propensity to commit probabilistic errors, reflecting pre-emptive anticipation of target
+reversals. Comparing simulated choices from different Reinforcement Learning Models (RLMs)
+18 tr
+to that of a hidden Markov model (HMM) showed that the HMM was a markedly better fit to
+participants’ choices. The parameter from the HMM estimates expected beliefs that the
+20 tr
+identity of the target image will shift from trial-to-trial, hence parametrizing a belief regarding
+environmental volatility. The parameter mediated effects of state anxiety on reward learning
+and probabilistic error proportions. Together, our findings suggest that experiencing
+uncontrollable stress and anxiety are associated with an overly volatile representation of the
+reward structure of the environment, shifting interpretation of probabilistic negative feedback
+towards a change in reward contingencies rather than being due to chance. This shift impairs
+reward learning in the relatively ambiguous context of the reversal task but not the signalled
+27 task.
+We did not expect the lack of effects in the signalled task, but it is concordant with the
+importance of probabilistic errors in driving the observed effects on reward learning.
+Probabilistic errors only play a role in the reversal task as negative feedback is not ambiguous in
+the signalled task. In both tasks, an element of first-order uncertainty arises from the
+probabilistic nature of the reward structure (80/75% chance of reward for choosing the target,
+20/25% otherwise in the reversal and signalled tasks, respectively). A second-order source of
+uncertainty is related to the volatility of the environment and differs between tasks. In both
+tasks there were frequent changes to the reward contingencies (i.e., target reversals) but while
+their timing was known in the signalled task, they occurred silently in the reversal task. This
+rendered negative feedback as ambiguous in the reversal task, as it could be the result of the
+first-order uncertainty present in both tasks or could be a sign that the target image had
+changed. Accordingly, it is commonly observed that non-signalled and rapidly-changing reward
+contingencies reduce confidence in one’s value estimations, giving more weight to unexpected
+outcomes and increasing learning rates (Behrens et al. 2007, Browning et al. 2015). Thus, rather
+than simply impairing the ability of learning the value of actions from positive feedback,
+perceived uncontrollable stress and subsequent anxiety may interfere with the ability to flexibly
+unlearn and relearn the values of actions in the more volatile and ambiguous context of the
+reversal task.
+We used computational modelling to examine possible cognitive mechanisms that might
+underpin these effects. Our preregistered RLMs did not adequately capture participants’ choices
+in the reversal task. Although we expected that RLMs with fixed learning rates would not
+recapitulate participants’ choices in the relatively ambiguous reversal task (Behrens et al., 2007;
+Bartolo & Averbeck 2020; Mathys et al., 2014), we were surprised by the poor performance of
+the RLM that uses estimates of confidence to update learning rates (e.g., Vinckier et al., 2016).
+This suggests that the adapting the learning rate is not sufficient to capture how participants
+adapted to the change in reward contingencies. For example, an additional consideration could
+be narrowing down the focus of attention to the relevant category to learn a new target (Leong
+et al. 2017). In sharp contrast, our HMM provided a generally excellent fit to participants’
+choices in the reversal task, even though the recovered parameters do not reflect the statistics of
+the experiment. This demonstrates the potential for HMMs to shed light on mechanisms
+underlying reward learning in unstable environments and suggest a computationally simple
+mechanism by which the human brain infers the probability of hidden states. Our HMM uses
+only three parameters to estimate beliefs that each of the images is the target on each trial. State
+anxiety positively correlated with the parameter governing the transition matrix that
+determines the diffusion of hidden states between images from trial-to-trial. In participants with
+high state anxiety, the hidden states tend to diffuse more freely among the stimuli than in
+participants with low state anxiety, suggesting that anxiety promotes imprecision in the
+representation of the reward structure of the environment, implying an expectation that
+previously established reward contingencies are likely to shift. In the reversal task, this belief
+appears to increase the tendency to interpret the relatively ambiguous negative feedback as a
+target reversal rather than due to chance. Supporting this notion, the transition parameter
+mediated effects of state anxiety on probabilistic error proportions and reward learning,
+suggesting that an overly volatile reward structure representation can be detrimental for
+27 optimising behaviour to gain reward in unstable environments.
+Our findings extend previous evidence for protective effects of perceived environmental
+controllability, and maladaptive effects of experiencing lack of control. For example, a sense of
+control in stressful environments attenuates later behavioural and neural responses to aversive
+stimuli, possibly via vmPFC activation inhibiting pain, stress, and fear responses (Cremers et al.,
+2021; Hartley et al., 2014; Kerr et al., 2012; Limbachia et al., 2021; Meine et al., 2021; Salomons
+et al., 2004; Wade-Bohleber et al., 2021; Wanke & Schwabe, 2020; Wiech et al., 2006; Wood et al.,
+34 (
+2015). Conversely, perceived stress uncontrollability can enhance feelings of helplessness
+Meine et al., 2021), increase stress responses, and promote passive behaviour in the face of
+later stressors (Hiroto & Seligman, 1975; Moscarello & Hartley, 2017), possibly via decreased
+vmPFC inhibition of stress-related neural structures (Maier & Seligman, 2016; Datta & Arnsten,
+2019). In addition to its role in learning to avoid stressors, vmPFC is also implicated in learning
+action values to gain rewards (Vassena et al., 2014), and in inferring hidden states (Niv, 2019).
+Our findings suggest that, similarly to how uncontrollable stress impairs acting to avoid stress, it
+also can impair acting to gain rewards in ambiguous contexts. Thus, perceived uncontrollable
+stress may affect processes that encompass learning from both positive and aversive outcomes
+43 to make optimal choices to avoid stress or gain rewards in uncertain contexts.
+Anxiety has previously been linked to inaccurate and less certain estimates of environmental
+volatility (e.g., Hein et al., 2021). Such misrepresentations of reward contingencies can lead to
+impaired learning and decision-making. For example, trait anxiety, state anxiety, and acute
+stress have all been linked to deficits in adjusting learning rates to match current environmental
+volatility (Bishop & Gagne, 2018; Browning et al. 2015; Hein et al., 2021; Raio et al., 2017).
+Moreover, failures to adaptively adjust learning rates in volatile contexts has been linked to a
+more general trait negative affect factor that includes both anxiety and depressive symptoms,
+and this deficit generalises across learning from rewarding and aversive outcomes (Gagne et al.,
+2020). But there are mixed findings regarding the mechanisms underlying this altered flexibility.
+For example, trait anxiety has been seemingly paradoxically linked to quicker behavioural
+adjustments in response to punishments (Aylward et al., 2019) and to less sensitivity to negative
+feedback (Xia et al., 2021). Our findings suggest that, under ambiguous conditions of second-
+order uncertainty, state anxiety is specifically associated with greater anticipation of
+environmental volatility, reflected by an overactive tendency to believe reward contingencies
+will change (reflected by the parameter tr), thus increasing probabilistic errors and impairing
+13 reward learning.
+Our exploratory mediation analysis suggested that variability in state anxiety partially explained
+the effect of uncontrollable stress on reward learning, but the mediation did not quite reach
+significance. Although these results should be interpreted with caution, they raise the possibility
+that the extent to which people feel anxious after experiencing perceived uncontrollable stress
+may determine how reward learning is affected. Studies experimentally manipulating perceived
+lack of control, using subsequent anxiety as a mediator, could shed light on whether this is a
+plausible causal path to impaired reward learning. Moreover, longitudinal studies could
+determine whether this hypothesised path results in anhedonic depressive symptoms in some
+individuals. An alternative possibility is that perceived uncontrollable stress and state anxiety are
+tapping into different aspects of the same latent construct that affects reward learning, for
+24 example intolerance of second-order uncertainty, or fear of the unknown (Carleton, 2016).
+One limitation is that within-subject test-retest reliability for task performance was low.
+Cognitive tasks that produce robust and replicable experimental effects tend to have low
+between-subject variability, which necessarily produces less reliable individual differences
+(which benefit from high between-subject variability; see Hedge et al., 2018 for a detailed
+explanation). Low test-retest reliability does not indicate that a task is not a replicable, valid, or a
+robust measure of a construct, but it does make it more difficult to detect relationships between
+task performance and individual differences (Hedge et al., 2018). Thus, although this issue is
+mitigated by our relatively large sample of 427 participants, our effect sizes may be
+underestimated. In future studies, using multiple tasks to obtain a more reliable composite index
+that reflects performance of a common latent construct (e.g., reward learning) may be fruitful for
+increasing sensitivity to detect relationships with individual differences (e.g., Moutoussis et al.,
+2021). Another limitation is that our preregistered exploratory factor analysis did not produce
+reliable factor scores, and so we instead used confirmatory factor models to obtain weighted
+scores based on previously established scales and subscales. A promising avenue for future work
+is using Computational Factor Modelling to identify and validate symptom dimensions against
+40 computationally well-defined neurocognitive processes (Wise et al., 2022).
+To conclude, our results show that perceived uncontrollable stress and state anxiety collectively
+predicted worse reward learning in the reversal task involving ambiguous volatility. The
+computational modelling suggests that state anxiety promotes a misrepresentation of the
+reward structure of the environment, enhancing expectations of environmental volatility. As a
+result, participants with higher state anxiety tend to interpret ambiguous negative feedback as a
+change in reward contingencies, impairing exploitation of known reward regimes in uncertain
+3 contexts.
+4 Materials and Methods
+5 Participants
+As preregistered, 500 participants were recruited via the online platform Prolific
+Participants were paid a base of £3.00 GPB for an estimated 25 minutes of their time and could
+earn a bonus of up to £2.30 GBP based on task performance. Participants earned on average £4.39,
+for an average session duration of 28.5 minutes. Eleven participants’ data could not be recovered
+from Pavlovia. Nine participants were excluded based on the preregistered criterion (mean
+response time/RT <300 ms). In error, the reversal task was first launched with the possibility of
+the target consecutively repeating (i.e., some target reversals occurred after 40-60 trials, instead
+of 20-30 trials); so these 53 participants were excluded from analyses. This left a total of 427
+participants (189 identified as female, 237 as male, and one as non-binary) from 47 different
+countries, with a mean age of 30 years (range 18-74). The sample size should provide sufficient
+statistical power for an EFA on the 69 item scores (e.g., Zygmont & Smith, 2014). Fifty (49 after
+one exclusion for <300 ms mean RT) of the same participants completed an identical session
+approximately three days later, to assess within-subject test-retest reliability of their factor scores
+and task performance. According to Swedish law on ethical approval of research on human
+participants (2003: 460), this study did not require approval from the Swedish Ethics Review
+Prolific participants were linked to their data by an ID number only), and we did not use a physical
+or mental intervention, nor collect biological material. The task and questionnaires were
+27 aSptipmrouvlie adn bdy Metaiktperroiavlnsi ngsmyndigheten in an application for a related project.
+depository, and included three animals (cat, dog, rabbit), three modes of transport (bicycle, car,
+scooter), and three landscapes (beach, forest, mountains). Image size (346x238 pixels) and
+position were set to be proportional to the participants’ screen dimensions. The size and
+dimensions reported here assume a 1920x1080 resolution screen. The images were presented in
+a 3x3 grid, with the centre of the left and right images positioned 405 pixels to the left and right
+of the midpoint, respectively, and the bottom and top images positioned 248 pixels below and
+above the midpoint. The star and cross reward feedback symbols measured 108x108 pixels and
+37 wTaesrke parneds ePnrtoecde 4d3u2r ep ixels below the midpoint.
+Participants were given information about the task and questionnaires before giving informed
+consent by pressing a button. They read task instructions and completed three practice games of
+the signalled task. All participants completed the signalled task first followed by the reversal
+task. Both tasks were versions of a three-armed bandit probabilistic reward learning task
+adapted from Leong et al. (2017). The code and stimuli to run the task can be found at
+1 The signalled task
+comprised six games of 25 trials each. Each trial began with a 500 ms central
+fixation cross. Then, nine images were presented in a 3x3 grid for 2000 ms or until a response was
+made. Each image category was arranged horizontally, with animals across the bottom, modes of
+transport across the middle, and landscapes across the top. This arrangement created three
+vertical composite stimuli, each comprising one animal, one mode of transport, and one landscape.
+Participants chose one of the three composite stimuli on each trial using the left, down (for the
+middle), and right arrow keys. Participants were correctly told that the target (e.g., a forest)
+randomly changed at the start of each game. If the chosen composite stimulus included the target,
+the probability of gaining reward (a point, representing 1 GBP penny) was 75%. If the chosen
+stimulus did not include the target, reward probability was 25%. The goal was to maximise
+reward by learning the identity of the target based on reward feedback (presented for 1000 ms
+immediately following a response, along with the chosen stimulus). Rewards were indicated by a
+yellow star that appeared below the centre image location. On no-reward trials, a red cross
+appeared instead. If no response was made within 2000 ms, an image of a clock reminded them
+to respond faster. After each game, they were told which image was the target, their points earned
+17 i T n h t e h r a e t v g e a rs m a e l , t a a s n k d their overall points tally.
+was like the signalled task except for the following alterations. Instead of a series
+of games, participants completed all 150 trials continuously with no breaks. The target changed
+without warning 5 times in total. A target reversal occurred between every 20-30 trials.
+Specifically, from trial 20 after the previous reversal, on each trial there was a 10% chance of the
+next reversal, and a reversal always occurred at the latest after 30 trials. Because these target
+reversals made the task more difficult, to make the task more manageable we increased reward
+probability to 80% upon choosing the target (20% otherwise). Because the target reversals
+occurred at different trial numbers across participants, and there was a fixed number of trials in
+total to match the signalled task, some participants had only a small number of trials after the final
+target reversal, which were insufficient to examine learning. We therefore discarded trials after
+28 the fifth reversal for all participants for both tasks for consistency.
+After the task, participants were given their reversal task points total, overall points tally, and total
+30 mDaotnae ayn eaalrynseeds. Lastly, they completed the mood questionnaires.
+key dependent variable (DV) was accuracy; choosing the composite stimulus that included the
+target image was coded as a correct response. Accuracy across trials indexed reward learning.
+36 NCaolnc-urleastpinongs Feas c(tfoewr Secro trheasn f 1ro%m o tf htrei aQlus)e wsteiorne nreaciroer dDeadt aas errors.
+Participants completed 69 items across four questionnaires, assessing their state, traits, and mood
+over the previous two weeks. All questionnaires except the new Perceived Risk of COVID-19 scale
+(Wise et al., 2020), are well-validated and established measures of their respective constructs. The
+COVID-19 scale included 10 items assessing perceived potential impact of COVID-19 on oneself
+and others (Wise et al., 2020). The PHQ-9 included 9 items assessing depressive symptoms rated
+on a 4-point Likert scale from “never” to “almost every day” (Kroenke et al., 2001). The PSS (Cohen
+et al., 1983; 1994) included 10 items assessing perceived ability to cope with stress rated on a 5-
+point Likert scale from “never” to “very often”. The State-Trait Anxiety Inventory (STA1I9;
+Spielberger, 1980; 2010) included 40 items rated on a 4-point Likert scale from “not at all” to “very
+much so” assessing how they felt right at that moment, and how they feel generally. Positively
+worded items (e.g., “I feel comfortable”) were reverse-coded so that higher scores indicated
+5 z
+greater stress, state and trait anxiety, depression, and perceived risk of COVID-19. We then
+6 centred ( scored) each item to be on the same scale.
+Exploratory Factor Analysis (EFA) was performed using the “fa” function in the “psych” R package
+8 KMO
+(Revelle, 2022) to find latent factors present within and across these questionnaires. The Kaiser,
+Meyer, Olkin (KMO) measure of sampling adequacy was close to 1 ( = 0.96) suggesting that
+the sum of partial correlations was not large relative to the sum of correlations, meaning that the
+11 df p
+data should result in distinct and reliable factors (Kaiser, 1970). Moreover, Bartlett’s test (Bartlett,
+1951) was significant (χ2 = 18801, = 2346, < .001), indicating that the residual correlations
+13 mvw p
+were all zero, also suggesting that the data was appropriate for EFA. Because the data were not
+normally distributed (Shapiro-Wilk = 0.98, < .001) we used the ordinary least squares
+method to find the minimum residual solution ("minres" method) which provides results similar
+to the maximum likelihood method, without assuming multivariate normal distribution (Schmitt,
+17 2011). We used oblique ("oblimin") rotation because we expected our factors to be correlated.
+There are many possible ways to determine the appropriate number of factors in an EFA (see
+Costello & Osborne, 2005; Schmitt, 2011). As we did not preregister this detail, we tested different
+approaches. We first ran an EFA with eight-factors, then seven, then six, and lastly five-factors. All
+four solutions provided a similarly good fit to the data (e.g., Finch, 2020) with root mean square
+error of approximation (RSMEA) of 0.057 (five- and six-factors); 0.058 (seven-factors) and 0.061
+(eight-factors). The clearest, meaningful, yet parsimonious structure was a seven-factor model,
+which was consistent with the parallel analysis (Horn, 1965) which compares the scree of factors
+of the observed data with a random data matrix of the same size to estimate the appropriate
+number of factors (Schmitt, 2011). Factor scores were obtained using the Thurstone regression
+27 method (DiStefano et al., 2009; Thurstone, 1935).
+As the factor scores from the EFA were not test-retest reliable within the 49 individuals who
+calculated congeneric factor scores, using confirmatory latent factor models to produce weighted
+scores based on the structure of previously established and validated subscales (see McNeish &
+Wolf, 2020). In a congeneric model, each item contributes to the score with a weight that is
+dependent on how related the item is to the construct. If one item is more closely related to the
+construct than a second item, the first item score contributes more weight to the factor score. Each
+item is allowed to have unique error variance (i.e., the latent construct accounts for a different
+amount of variance in each item), and the latent construct is given scale by constraining the
+fit to the data than parallel models (which are equivalent to sum scores, with each item
+contributing to the score with equal weight), indicating that the weighted congeneric scores were
+40 preferred over sum scores to be used as fixed-factors in subsequent analyses.
+To determine whether each scale (e.g., Perceived Stress Scale) should be subset into previously
+established subscales (e.g., Uncontrollable Stress and Lack of Self-efficacy), we fitted the data for
+each scale to one-factor (all items), and two-factor (items from each subscale) congeneric models
+using the lavaan package in R (Rosseel, 2012). Model comparison was done using the “nonnest2”
+package in R (Vuong, 1989). For the Perceived Stress Scale, a two-factor model was a better fit to
+our data than a one-factor model, in line with previous findings (Andreou et al., 2011; Golde2n0-
+Kreutz et al., 2004; Khalili et al., 2017; Nielsen et al., 2016; Roberti, et al., 2006). Uncontrollable
+Stress (also referred to as Perceived Helplessness in the previous literature) includes six
+negatively-framed items regarding the impact of perceived uncontrollable stress (e.g., “In the last
+month, how often have you been angered because of things that were outside of your control?”).
+Lack of Self-efficacy includes four positively-framed items regarding perceived ability to cope with
+7 r p
+stressors (e.g., “In the last month, how often have you been able to control irritations in your life?”.
+8 Likelihood Severity
+The two stress factors significantly correlated with one another, (425) = 0.636, < .001. For the
+Perceived Risk of COVID-19 scale, a two-factor model (Perceived and Perceived
+10 r p
+of COVID-19 Risk) was a better fit than a one-factor model. The two COVID-19 factors significantly
+correlated with one another, (425) = 0.506, < .001. Although the PHQ-9 is often considered to
+be a one-factor construct, a two-factor structure with a cognitive and affective factor, and a
+13 r p
+somatic factor can also be a good fit (e.g., Boothroyd et al., 2019), and was a better fit to our data
+than a one-factor model. But because the two factors were so highly correlated, (425) = 0.772,
+15 < .001, for the sake of parsimony, we treated Depression as one factor.
+The State and Trait Anxiety Inventory scales can be further divided into negatively-framed items
+indexing the presence of anxiety symptoms (e.g., “I feel upset”), and positively-framed items
+indexing the absence of anxiety symptoms (e.g., “I feel calm”) which were reverse-coded so higher
+scores indicate, for example, less calm. Consistent with previous work (Spielberger, 1980; Vigneau
+& Cormier, 2008), a four-factor model with State Anxiety (negatively-framed items), State Anxiety
+(positively-framed items), Trait Anxiety (negatively-framed items), and Trait Anxiety (positively-
+22 r
+framed items) was a better fit than a two-factor Trait and State Anxiety model. The State Anxiety
+23 p r
+negatively-framed and positively-framed factors significantly correlated with one another, (425)
+24 p
+= 0.645, < .001; as did the Trait Anxiety negatively-framed and positively-framed factors, (425)
+25 T= e0s.6t-6r4et, es <t r.0e0li1a.b ility
+Test-retest reliability for factor scores, mean task performance, and the estimated parameters
+from the winning HMM were indexed by intraclass correlation coefficients (ICCs) using two-way
+29 Impact of uncontrollable stress and state anxiety on reward learning
+random-effects models (McGraw & Wong, 1996; Shrout & Fleiss, 1979).
+To examine the effect of each Factor on learning we performed generalised logistic mixed-models
+(GLMMs, using the lmer R package; Bates et al., 2015) with accuracy (0, 1) as the dependent
+variable, Trial (centred around 0) as a fixed-effect, and by-subject random intercepts and slopes
+34 linear logistic
+for Trial thus allowing for between-subject variability in learning. Although the preregistration
+stated mixed-models, a mixed-model is appropriate because accuracy (0, 1) is a
+binary variable. Furthermore, the preregistration stated that we would include game as a fixed-
+effect, however because we did not expect performance to linearly increase in the reversal task, it
+was unclear how to meaningfully code game as a factor. For the sake of parsimony and
+39 interpretability, we decided to deviate from the preregistration and not include game as a factor.
+Each Factor was included as an interaction with Trial in separate models. If a significant Trial x
+Factor interaction was present, we compared the fit of that model to a model without that
+interaction (i.e., with only Trial as a fixed-effect), using a chi-squared ANOVA test. If including the
+Trial x Factor interaction significantly improved model fit, we then added the Trial x Factor
+interaction term as by-subject random intercept and slope (i.e., allowing for the intercepts and
+slopes for the effect of the factor on learning to differ across participants), and compared the fit 2o1f
+that more complex model to the previous model without the random-effect interaction. Factors
+that showed significant interactions with Trial were then entered together into one final
+combined model. We checked for potential issues of multicollinearity between factor scores in
+subsequent models by calculating Variance Inflation Factors (VIFs using the “car” package in R,
+6 OFothx e&r Wpreeisrbeegrigs,t e2r0e1d9 )l.e a rning and error dependent variables.
+In the preregistration we predicted that Uncontrollable Stress would be associated with fewer
+win-stay trials in the reversal task. We also expected perceived uncontrollable stress to result
+greater sensitivity to negative feedback, which would be observed in fewer perseveration errors.
+Win-stay trials are choosing the target directly after being rewarded for choosing the target.
+Perseverative errors index the tendency to stick with choosing the previously learned target after
+a target reversal has occurred, despite receiving negative feedback for choosing the previous
+target. These dependent variables are typically used in two-armed bandit tasks with non-
+composite stimuli, when it is clear what stimulus participants are basing their value estimation
+and choice on. However, in our three-armed bandit task, a choice could be based on a prediction
+that any one of the three images comprising the chosen stimulus were the target. Because the
+images shuffle on each trial, it therefore makes less sense to examine these dependent variables
+19 with our task, and we did not analyse these DVs.
+Probabilistic errors index anticipation of a target reversal, specifically when choice shifts away
+from the current target immediately following probabilistic negative feedback for a correct
+response, after learning has occurred (defined in the preregistration as five correct trials in a row).
+We predicted that Uncontrollable Stress would predict more probabilistic errors, indicating pre-
+24 eEmxppltoivrea taonrtyic mipeatdiioant ioofn t amrgoedt erlesv ersals.
+We used the mediation package in R (Tingley et al., 2014) to perform exploratory causal mediation
+analyses (Imai et al., 2010). We calculated 95% confidence intervals using 10,000 bootstrapped
+28 sCaommppleust.a tional modelling
+We fitted a range of models from two main families to the observed choices in the reversal task.
+As indicated in the preregistration, we fitted a range of reinforcement learning models (RLMs) to
+examine the cognitive mechanisms by which perceived uncontrollable stress or other latent
+factors might impact learning in the signalled or reversal tasks. Because the RLMs did a poor job
+at explaining the observed choices in the reversal task, we deviated from the preregistration and
+fitted two hidden Markov models (HMMs). Choices in the signalled task were not analysed with
+computational modelling because we did not observe any significant effects for any of the nine
+37 Reinforcement Learning Models (RLMs)
+factor scores on performance.
+Our RLMs assume that participants learn to associate each image with a value (feature learning),
+based on reward feedback, and linearly combine these values to determine the value of each
+choice on a given trial (e.g., Leong et al., 2017):
+𝑡𝑡 𝑖𝑖 𝑑𝑑 𝑡𝑡 𝑖𝑖
+𝑉𝑉 (𝑆𝑆 ) = ∑ 𝑣𝑣 (𝑑𝑑, 𝑆𝑆 ) (1)
+1 i t d
+𝑡𝑡 𝑖𝑖 𝑡𝑡 𝑖𝑖
+where 𝑉𝑉 (𝑆𝑆 ) is the value of a composite stimulus on trial , and 𝑣𝑣 (𝑑𝑑, 𝑆𝑆 ) is the value of image
+𝑖𝑖
+on stimulus 𝑆𝑆 . For the signalled task, all 𝑣𝑣 were initialised to 0 at the beginning of each game. For
+the reversal task, all 𝑣𝑣 were initialised to 0 at the beginning of the first game. On each trial, the
+𝑡𝑡
+prediction error is calculated as the difference between the reward obtained 𝑟𝑟 ∈ {0,1} and the
+6 𝑐𝑐 𝑡𝑡 𝑐𝑐
+value of the chosen composite stimulus, 𝑆𝑆 , on that trial 𝑉𝑉 (𝑆𝑆 ):
+𝑡𝑡 𝑡𝑡 𝑡𝑡 𝑐𝑐
+7 𝛿𝛿 = 𝑟𝑟 − 𝑉𝑉 (𝑆𝑆 ) (2)
+We used this prediction error to update the value of the images included in the chosen
+composite stimulus:
+10 𝑡𝑡+1 𝑐𝑐 𝑡𝑡 𝑐𝑐 𝑡𝑡
+𝑣𝑣 (𝑑𝑑, 𝑆𝑆 ) = 𝑣𝑣 (𝑑𝑑, 𝑆𝑆 ) + 𝛼𝛼𝛿𝛿 (3)
+where 𝛼𝛼 (0 < 𝛼𝛼 < 1 ) is the learning rate determining how much the future values reflect the
+latest experienced outcome.
+Finally, we calculated the choice probability using the softmax rule:
+𝛽𝛽𝑉𝑉 (𝑆𝑆 )
+𝑡𝑡 𝑐𝑐
+𝑒𝑒
+𝛽𝛽𝑉𝑉 (𝑆𝑆 )
+𝑡𝑡 𝑎𝑎
+𝑝𝑝(𝑐𝑐) = ∑𝑎𝑎 𝑒𝑒 (4)
+14 c a
+whereby 𝑝𝑝(𝑐𝑐) is the probability of choosing the composite stimulus , enumerates over all
+available composite stimuli, and 𝛽𝛽 (𝛽𝛽 > 0) is the inverse temperature parameter of the softmax
+rule determining how much choices are determined by the differences in values among stimuli.
+The simplest RLM has two free parameters – learning rate (𝛼𝛼), and softmax inverse temperature
+(𝛽𝛽, which captures reward sensitivity at one end of the spectrum, and stochasticity in responding
+at the other). To improve the performance of the RLM, we deviated from the preregistration and
+augmented the base model with a forget parameter 𝜑𝜑 (0 < 𝜑𝜑 < 1) by which the value of the
+unselected images relaxed towards 0, the initial value (e.g., de Boer et al., 2017):
+23 𝑡𝑡+1 𝑎𝑎 𝑡𝑡 𝑎𝑎 𝑡𝑡 𝑎𝑎 𝑎𝑎≠𝑐𝑐
+𝑣𝑣 (𝑑𝑑, 𝑆𝑆 ) = 𝑣𝑣 (𝑑𝑑, 𝑆𝑆 ) + 𝜑𝜑(0 − 𝑣𝑣 (𝑑𝑑, 𝑆𝑆 )) 𝜒𝜒 (5)
+where the last term restricts forgetting to the non-chosen images. As indicated in the
+𝑝𝑝
+preregistration, this model was augmented to include two separate learning rates: 𝛼𝛼 for positive
+𝑛𝑛
+( 𝛿𝛿 > 0), and 𝛼𝛼 for negative reward prediction errors (𝛿𝛿 ≤0). Finally, the model with forget rate
+and two separate learning rates was augmented to include a meta-learning level (Vinckier et al.,
+𝑡𝑡
+2016). The meta-learning model computes a trial-by-trial measure of confidence 𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶 in choice
+based on the absolute value of the prediction error on a given trial so that when prediction errors
+are smaller, confidence is higher:
+31 𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶 𝑡𝑡+1 = 𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶 𝑡𝑡 + 𝛾𝛾((2 − |𝛿𝛿 𝑡𝑡 |)/2 − 𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶 𝑡𝑡 ) (6)
+where 𝛾𝛾 is the confidence learning rate, and is a free parameter. Confidence then modulates the
+learning rate on a trial-by-trial basis:
+𝑡𝑡 𝑝𝑝 𝑡𝑡 𝑡𝑡
+34 𝛼𝛼 = (𝛼𝛼 + 𝜅𝜅𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶 )/(1 + 𝜅𝜅𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶 ) if 𝛿𝛿 > 0
+35 𝑡𝑡 𝑛𝑛 𝑡𝑡
+𝛼𝛼 = 𝛼𝛼 /(1 + 𝜅𝜅𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶 ) otherwise (7)
+where 𝜅𝜅 is a free parameter determining the extent to which confidence modulates learning rate
+differently depending on whether the outcome received on that trial was better or worse than
+expected: the learning rate increases proportional to the confidence for better than expected
+outcomes and decreases proportionally to the confidence in worse than expected outcomes. In
+the preregistration, we planned to include a model with confidence modulating the softmax
+inverse temperature parameter. However, given the poor performance of the RLM in our task, we
+did not continue exploring the model space of RLMs.
+4 Our preregistered predictions from the RLMs were:
+1) For the signalled task we predicted that Uncontrollable Stress would decrease the learning rate
+6 β
+for positive reward prediction errors (better than expected outcomes); while not affecting reward
+𝑛𝑛
+sensitivity ( ); nor affecting learning rate for negative prediction errors (𝛼𝛼 , worse than expected
+outcomes). Alternatively, we predicted that Uncontrollable Stress may even increase the learning
+9 rate for negative prediction errors.
+2) For the reversal task, in our RLMs we expected Uncontrollable Stress to increase sensitivity to
+𝑛𝑛
+negative feedback, reflected by an increased learning rate for negative prediction errors (𝛼𝛼 ). In
+12 β
+line with the signalled task, we predicted that Uncontrollable Stress would decrease the learning
+𝑝𝑝
+13 rate for positive prediction errors (𝛼𝛼 ): while not affecting reward sensitivity ( ).
+3) Moreover, we expected that Uncontrollable Stress would influence a second hierarchical level
+15 β
+to our RLM: confidence (𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶) in current task representations. Higher confidence was expected
+to modulate the free parameters of the RLM by increasing exploitation (reward sensitivity, );
+increasing learning rate for outcomes that confirm expectations and reducing learning rate to
+outcomes that contradict expectations. We predicted that Uncontrollable Stress may reduce the
+rate of learning of confidence itself, and/or the extent to which confidence modulated these free
+20 β
+𝑝𝑝
+parameters (learning rate for positive prediction errors (𝛼𝛼 ), learning rate for negative prediction
+𝑛𝑛
+21 errors (𝛼𝛼 ), and reward sensitivity, ).
+These predictions were not explored because performance in the signalled task was not
+23 Hmioddduelna tMeda rbkyo Uvn Mcoondterlosl l(aHbMleM Stsr)e ss and the reversal task was poorly fitted by the RLM models.
+HMMs differ from RLMs as they do not use feature learning to determine a cached value of each
+image. Instead, inference based on an HMM estimates the probability that each of the individual
+images is the target on a given trial. The identity of the target image is referred to as the hidden
+state because it cannot be observed directly but only indirectly through the rewards obtained
+𝑡𝑡 𝑖𝑖
+after each choice. On each trial, the model updates the probability 𝛼𝛼 (𝐶𝐶 ) of each hidden state (i.e.,
+30 𝑖𝑖
+each image 𝐶𝐶 being the target) upon observing the outcome as follows:
+31 𝑡𝑡+1 𝑖𝑖 𝑡𝑡 𝑖𝑖 𝑖𝑖
+𝛼𝛼 (𝐶𝐶 ) ∝ 𝛼𝛼 (𝐶𝐶 ) ∗ 𝑙𝑙𝑙𝑙𝑙𝑙 (8)
+𝑖𝑖 𝑖𝑖
+where 𝑙𝑙𝑙𝑙𝑙𝑙 is the likelihood that image 𝐶𝐶 is the target and is calculated differently depending on
+whether the image was part of the chosen composite stimulus or not. For the chosen features:
+34 𝑖𝑖 𝑡𝑡
+𝑙𝑙𝑙𝑙𝑙𝑙 = 𝑞𝑞 if 𝑟𝑟 = 1
+35 𝑖𝑖
+𝑙𝑙𝑙𝑙𝑙𝑙 = 1 − 𝑞𝑞 otherwise (9)
+where 0 < 𝑞𝑞 < 1 is a free parameter representing the model's expected probability that a reward
+is observed when the chosen stimulus involves the target. For the unchosen features:
+38 𝑖𝑖 𝑡𝑡
+𝑙𝑙𝑙𝑙𝑙𝑙 = 𝑝𝑝 if 𝑟𝑟 = 1
+𝑖𝑖
+𝑙𝑙𝑙𝑙𝑙𝑙 = 1 − 𝑝𝑝 otherwise (10)
+where 0 < 𝑝𝑝 < 1 is a free parameter representing the model's expected probability that a reward
+outcome is observed when the chosen stimulus does not involve the target.
+After updating, the hidden states are renormalized, and the vector of hidden states is multiplied
+by the transition matrix mapping the expected probability that the hidden state on the next trial
+will transit from each image to any other image. All values of the 9 x 9 matrix except for the
+diagonal are specified as 𝑡𝑡𝑟𝑟/8, 0 < 𝑡𝑡𝑟𝑟 < 1 being a free parameter representing the model's
+expected probability that the hidden state will change to any other feature from one trial to the
+next trial. The diagonal of the transition matrix is specified as 1 − 𝑡𝑡𝑟𝑟. The diagonal thus represents
+the model's expected probability that the hidden state will not change from one trial to the next.
+Finally, we calculated the likelihood of the choices based directly on the hidden states assuming
+probability matching (Herrnstein, 1997; Myers, 2014; Vulkan, 2000):
+∑𝑐𝑐 𝛼𝛼𝑡𝑡(𝑓𝑓𝑐𝑐)
+𝑝𝑝(𝑐𝑐) = ∑𝑖𝑖=1 𝛼𝛼𝑡𝑡(𝑓𝑓𝑖𝑖) (11)
+14 c
+whereby 𝑝𝑝(𝑐𝑐) is the probability of choosing a composite stimulus including three chosen features
+15 tr
+originally augmented to include another free parameter 𝑝𝑝𝐶𝐶𝑝𝑝𝑝𝑝𝑟𝑟 (0 < 𝑝𝑝𝐶𝐶𝑝𝑝𝑝𝑝𝑟𝑟 < 5) that multiplies
+𝑡𝑡 𝑖𝑖
+all hidden states 𝛼𝛼 (𝐶𝐶 ) before the likelihood of the choices was calculated. Thus, this parameter
+magnifies the differences in the hidden states and is akin to the inverse temperature of the softmax
+rule for RLMs and allows for under- and over-matching. However, recoverability checks (see
+22 Model estimation and model comparison
+model was not considered further.
+Model parameters for both RLM and HMM were fitted and compared using the HBI toolbox (Piray
+et al., 2019) that works on MATLAB (2020b). The HBI toolbox simultaneously achieves parameter
+estimation and random effect's model comparison using a variational approach (Piray et al.,
+2019). The HBI toolbox implements a hierarchical Bayesian approach that estimates the
+population distribution over the model parameters as well as the parameters of each individual
+subject given the population distribution, which constrains and regularizes individual subject's
+parameters estimates (Piray et al., 2019). The toolbox allows the best fitting model to vary across
+individual subjects and model comparison is done by counting the frequency of individual
+subjects that are best fit by each model and deriving the exceedance probability for each model
+(Piray et al., 2019). Moreover, by achieving concurrent parameters estimation and model
+comparison, the contribution of each subject to the group level estimates of the parameters are
+weighted by the degree to which a given model is likely to be the underlying model for that subject
+Our preregistration specified we would use RStan, however HBI allowed easier implementation
+of the HMMs, so we used HBI for all models. Both methods are hierarchical Bayesian approaches
+but whereas the HBI uses a variational Bayes approach to estimate the posterior probabilities of
+the parameter, the RStan uses Monte Carlo Markov Chain (MCMC) sampling to obtain the full
+distribution. Similarly, we deviated from the preregistration by not testing models in which
+individual-level parameters drawn from the group-level normal distributions were allowed to
+vary according to the subject score on perceived control (as suggested in Moutoussis et al., 2018).
+Instead, we performed correlations between the estimated parameters and the factor scores
+3 Rouetcsoivdeer oafb tihliet ym aondaellys.s is
+To ascertain that we were able to recover the different models that we tested, we simulated five
+data sets for the reversal task. For these simulations, we used one of the following generative
+models: 1) base RLM model, 2) base RLM model with forget parameters, 3) base RLM model with
+forget parameter and confidence modulation of learning rate, 4) base HMM, and 5) base HMM
+with power parameter. For each generative model, we sampled 1000 combinations of the
+parameters using the mean and variance estimated at the group level for that model. As HBI
+weights the contribution of each subject to the group-level estimates of the parameters by the
+degree to which a given model is likely to be the underlying model for that subject, we did not
+have reliable parameter estimates for models that were very unlikely. To obtain parameters for
+14 those models, we estimated them by themselves, not being compared to any other model.
+For each simulated data set, we then fitted all five models and performed model comparison using
+correlations of the generative parameters against the recovered parameters (see Figures S.1 and
+S.2 for HMM3 and HMM4). We also checked the correlation between the generative parameters
+19 aTnedst t-hreet reescto rveelriaedb ipliatrya fmore tpearrsa. meters from HMM3
+We examined test-retest reliability using intraclass correlation (ICC) models for the three
+22 p ICC p CI
+parameters from the winning HMM with three parameters, for the 49 participants who completed
+23 q ICC p CI
+the task twice. Test-retest reliability for was non-existent: (48, 48) = <0.001, = .500, = -
+24 tr ICC p CI
+0.26-0.27. Test-retest for was better, (48, 48) = 0.24, = .042, = -0.03-0.49. Test-retest for
+the was relatively high, (48, 48) = 0.48, < .001, = 0.21-0.67.
+1 References
+Akinwande, M. O., Dikko, H. G., & Samson, A. (2015). Variance Inflation Factor: As a Condition for
+3 Open Journal of Statistics 05
+the Inclusion of Suppressor Variable(s) in Regression Analysis. , (07),
+Amat, J., Aleksejev, R. M., Paul, E., Watkins, L. R., & Maier, S. F. (2010). Behavioral control over
+6 Neuroscience 165
+shock blocks behavioral and neurochemical effects of later social defeat. , (4),
+Amat, J., Baratta, M. V., Paul, E., Bland, S. T., Watkins, L. R., & Maier, S. F. (2005). Medial prefrontal
+9 Nature
+cortex determines how stressor controllability affects behavior and dorsal raphe nucleus.
+10 Neuroscience 8
+Andreou, E., Alexopoulos, E. C., Lionis, C., Varvogli, L., Gnardellis, C., Chrousos, G. P., & Darviri, C.
+12 International Journal of
+(2011). Perceived Stress Scale: Reliability and Validity Study in Greece.
+13 Environmental Research and Public Health 8
+Aylward, J., Valton, V., Ahn, W.-Y., Bond, R. L., Dayan, P., Roiser, J. P., & Robinson, O. J. (2019).
+15 Nature Human
+Altered learning under uncertainty in unmedicated mood and anxiety disorders.
+16 Behaviour 3
+Baratta, M. V., Lucero, T. R., Amat, J., Watkins, L. R., & Maier, S. F. (2008). Role of the ventral
+medial prefrontal cortex in mediating behavioral control-induced reduction of later conditioned
+19 Learning & Memory 15
+Baratta, M. V., Zarza, C. M., Gomez, D. M., Campeau, S., Watkins, L. R., & Maier, S. F. (2009).
+Selective activation of dorsal raphe nucleus-projecting neurons in the ventral medial prefrontal
+22 European Journal of Neuroscience 30
+cortex by controllable stress. , (6), 1111–1116.
+Barnes, L. L. B., Harp, D., & Jung, W. S. (2002). Reliability Generalization of Scores on the
+2 Educational and Psychological Measurement 62
+Spielberger State-Trait Anxiety Inventory. , (4),
+Bartlett, M. S. (1951). The Effect of Standardization on a χ2 Approximation in Factor Analysis.
+5 Biometrika 38
+Bartolo, R., & Averbeck, B. B. (2020). Prefrontal Cortex Predicts State Switches during Reversal
+7 . Neuron, 106
+Bates D, Mächler M, Bolker B, Walker S (2015). “Fitting Linear Mixed-Effects Models Using
+9 Journal of Statistical Software, 67
+lme4.” (1), 1–48. doi:10.18637/jss.v067.i01.
+Behrens, T. E. J., Woolrich, M. W., Walton, M. E., & Rushworth, M. F. S. (2007). Learning the value
+11 Nature Neuroscience 10
+of information in an uncertain world. , (9), 1214–1221.
+Berghorst, L., Bogdan, R., Frank, M., & Pizzagalli, D. (2013). Acute stress selectively reduces
+14 Frontiers in Human Neuroscience 7
+Berwian, I. M., Wenzel, J. G., Collins, A. G. E., Seifritz, E., Stephan, K. E., Walter, H., & Huys, Q. J. M.
+(2020). Computational Mechanisms of Effort and Reward Decisions in Patients with Depression
+17 JAMA Psychiatry
+and Their Association with Relapse After Antidepressant Discontinuation. ,
+18 77
+Bishop, S. J., & Gagne, C. (2018). Anxiety, Depression, and Decision Making: A Computational
+20 Annual Review of Neuroscience 41
+Bogdan, R., & Pizzagalli, D. A. (2006). Acute Stress Reduces Reward Responsiveness:
+22 Biological Psychiatry 60
+Implications for Depression. , (10), 1147–1154.
+Bogdan, R., Santesso, D. L., Fagerness, J., Perlis, R. H., & Pizzagalli, D. A. (2011). Corticotropin-
+Releasing Hormone Receptor Type 1 (CRHR1) Genetic Variation and Stress Interact to Influence
+3 Journal of Neuroscience 31
+4 Psychiatry Research
+Boothroyd, L., Dagnan, D., & Muncer, S. (2019). PHQ-9: One factor or two? ,
+5 271
+Browning, M., Behrens, T. E., Jocham, G., O’Reilly, J. X., & Bishop, S. J. (2015). Anxious individuals
+7 Nature Neuroscience
+have difficulty learning the causal statistics of aversive environments. ,
+8 18
+Bublatzky, F., Alpers, G. W., & Pittig, A. (2017). From avoidance to approach: The influence of
+10 Behaviour Research and Therapy 96
+threat-of-shock on reward-based decision making. , , 47–56.
+Byrne, K. A., Cornwall, A. C., & Worthy, D. A. (2019). Acute stress improves long-term reward
+13 Brain and Cognition 133
+maximization in decision-making under uncertainty. , , 84–93.
+Byrne, K. A., Peters, C., Willis, H. C., Phan, D., Cornwall, A., & Worthy, D. A. (2020). Acute stress
+16 Cognition 205
+enhances tolerance of uncertainty during decision-making. , , 104448.
+Carleton, R. N. (2016). Into the unknown: A review and synthesis of contemporary models
+19 Journal of Anxiety Disorders 39
+Carvalheiro, J., Conceição, V. A., Mesquita, A., & Seara-Cardoso, A. (2021a). Acute stress impairs
+21 Brain and Cognition 147
+Carvalheiro, J., Conceição, V. A., Mesquita, A., & Seara-Cardoso, A. (2021b). Acute stress blunts
+23 Neurobiology of
+prediction error signals in the dorsal striatum during reinforcement learning.
+24 Stress
+1 Multivariate Behavioral Research
+Cattell, R. B. (1966). The Scree Test for The Number Of Factors. ,
+2 1
+Chen, C., Takahashi, T., Nakagawa, S., Inoue, T., & Kusumi, I. (2015). Reinforcement learning in
+4 Neuroscience & Biobehavioral Reviews 55
+depression: A review of computational research. , , 247–
+Cohen, S., Kamarck, T., & Mermelstein, R. (1994). Perceived stress scale. Measuring stress: A
+8 Journal of
+Cohen, S., Kamarck, T., & Mermelstein, R. (1983). A Global Measure of Perceived Stress.
+9 Health and Social Behavior 24
+Cohodes, E., Odriozola, P., Mandell, J., Caballero, C., McCauley, S., Zacharek, S., . . . Gee, D. (2022).
+Neural effects of controllability as a key dimension of stress exposure. Development and
+Costello, A. B., & Osborne, J. (2005). Best practices in exploratory factor analysis: Four
+14 Exploratory Factor Analysis 10
+recommendations for getting the most from your analysis. , (7), 10.
+Cremers, H., Keedy, S., & Coccaro, E. (2021). The development of an fMRI protocol to investigate
+16 Psychiatry
+vmPFC network functioning underlying the generalization of behavioral control.
+17 Research: Neuroimaging 307
+Datta, D., & Arnsten, A. F. T. (2019). Loss of Prefrontal Cortical Higher Cognition with
+Uncontrollable Stress: Molecular Mechanisms, Changes with Age, and Relevance to Treatment.
+20 Brain Sciences 9
+Daw, N. D., Niv, Y., & Dayan, P. (2005). Uncertainty-based competition between prefrontal and
+22 Nature Neuroscience 8
+dorsolateral striatal systems for behavioral control. , (12), 1704–1711.
+de Berker, A. O., Tirole, M., Rutledge, R. B., Cross, G. F., Dolan, R. J., & Bestmann, S. (2016). Acute
+2 Scientific Reports 6
+stress selectively impairs learning to act. , (1), 1–12.
+de Boer, L., Axelsson, J., Riklund, K., Nyberg, L., Dayan, P., Bäckman, L., & Guitart-Masip, M.
+(2017). Attenuation of dopamine-modulated prefrontal value signals underlies probabilistic
+6 ELife 6
+Wang, K. S., & Delgado, M. R. (2021). The protective effects of perceived control during repeated
+8 Frontiers in Neuroscience, 15
+exposure to aversive stimuli. , 625816.
+Dichter, G. S., Smoski, M. J., Kampov-Polevoy, A. B., Gallop, R., & Garbutt, J. C. (2010). Unipolar
+11 Depression and Anxiety 27
+depression does not moderate responses to the Sweet Taste Test. , (9),
+13 Understanding and Using Factor Scores: Considerations
+DiStefano, C., Zhu, M., & Mîndrilã, D. (n.d.).
+14 for the Applied Researcher
+Enkavi, A. Z., Eisenberg, I. W., Bissett, P. G., Mazza, G. L., MacKinnon, D. P., Marsch, L. A., &
+Poldrack, R. A. (2019). Large-scale analysis of test–retest reliabilities of self-regulation
+17 Proceedings of the National Academy of Sciences 116
+measures. , (12), 5472–5477.
+Finch, W. H. (2020). Using Fit Statistic Differences to Determine the Optimal Number of Factors
+20 Educational and Psychological Measurement 80
+to Retain in an Exploratory Factor Analysis. , (2),
+Fox, J., & Weisberg S (2019). An R Companion to Applied Regression, Third edition. Sage,
+Gagne, C., Zika, O., Dayan, P., & Bishop, S. J. (2020). Impaired adaptation of learning to
+2 ELife 9
+contingency volatility in internalizing psychopathology. , , e61387.
+Gallistel, C. R., Fairhurst, S., & Balsam, P. (2004). The learning curve: Implications of a
+5 Proceedings of the National Academy of Sciences 101
+quantitative analysis. , (36), 13124–13131.
+Golden-Kreutz, D. M., Browne, M. W., Frierson, G. M., & Andersen, B. L. (2004). Assessing Stress in
+Cancer Patients: A Second-Order Factor Analysis Model for the Perceived Stress Scale.
+9 Assessment 11
+10 Annual Review of Clinical Psychology 1
+Hammen, C. (2005). Stress and Depression. , (1), 293–319.
+12 Current Opinion in
+Hammen, C. L. (2015). Stress and depression: Old questions, new approaches.
+13 Psychology 4
+Hartley, C. A., Gorun, A., Reddan, M. C., Ramirez, F., & Phelps, E. A. (2014). Stressor controllability
+15 Neurobiology of Learning and Memory 113
+modulates fear extinction in humans. , , 149–156.
+Hedge, C., Powell, G., & Sumner, P. (2018). The reliability paradox: Why robust cognitive tasks do
+not produce reliable individual differences. Behavior research methods, 50(3), 1166-1186.
+Hein, T. P., de Fockert, J., & Ruiz, M. H. (2021). State anxiety biases estimates of uncertainty and
+21 NeuroImage 224
+impairs reward learning in volatile environments. , , 117424.
+Henderson, R., Snyder, H., Gupta, T., & Banich, M. (2012). When Does Stress Help or Harm? The
+24 Frontiers
+Effects of Stress Controllability and Subjective Stress Response on Stroop Performance.
+25 in Psychology 3
+Herrnstein, R. J. (1997). The matching law: Papers in psychology and economics. Harvard
+University Press.
+3 Journal of
+Hiroto, D. S., & Seligman, M. E. (1975). Generality of learned helplessness in man.
+4 Personality and Social Psychology 31
+5 Scandinavian Journal
+Holm, S. (1979). A Simple Sequentially Rejective Multiple Test Procedure.
+6 of Statistics 6
+, (2), 65–70.
+7 Psychometrika
+Horn, J. L. (1965). A rationale and test for the number of factors in factor analysis. ,
+8 30
+9 Cognition
+Huys, Q. J. M., & Dayan, P. (2009). A Bayesian formulation of behavioral control. ,
+10 113
+Huys, Q. J., Pizzagalli, D. A., Bogdan, R., & Dayan, P. (2013). Mapping anhedonia onto
+12 Biology of Mood & Anxiety Disorders 3
+reinforcement learning: A behavioural meta-analysis. , (1),
+Imai, K., Keele, L., & Yamamoto, T. (2010). Identification, Inference and Sensitivity Analysis for
+15 Statistical Science 25
+16 An Introduction to Statistical Learning
+James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013).
+18 Psychometrika 35
+Kaiser, H. F. (1970). A second generation little jiffy. , (4), 401–415.
+Karsh, N., & Eitam, B. (2015). I control therefore I do: Judgments of agency influence action
+21 Cognition 138
+Kerr, D. L., McLaren, D. G., Mathy, R. M., & Nitschke, J. B. (2012). Controllability Modulates the
+23 Frontiers in Psychology 3
+Anticipatory Response in the Human Ventromedial Prefrontal Cortex. , .
+Khalili, R., Sirati nir, M., Ebadi, A., Tavallai, A., & Habibi, M. (2017). Validity and reliability of the
+2 Asian
+Cohen 10-item Perceived Stress Scale in patients with chronic headache: Persian version.
+3 Journal of Psychiatry 26
+4 Journal of General Internal
+Kroenke, K., Spitzer, R. L., & Williams, J. B. W. (2001). The PHQ-9.
+5 Medicine 16
+6 In
+Lieder, F., Goodman, N. D., & Huys, Q. J. (2013). Learned helplessness and generalization.
+7 Proceedings of the annual meeting of the cognitive science society
+(Vol. 35, No. 35). Retrieved from
+Leong, Y. C., Radulescu, A., Daniel, R., DeWoskin, V., & Niv, Y. (2017). Dynamic Interaction
+10 Neuron
+between Reinforcement Learning and Attention in Multidimensional Environments. ,
+11 93
+Ligneul, R. (2021). Prediction or Causation? Towards a Redefinition of Task Controllability.
+13 Trends in Cognitive Sciences
+Ligneul, R., Mainen, Z. F., Ly, V., & Cools, R. (2022). Stress-sensitive inference of task
+Limbachia, C., Morrow, K., Khibovska, A., Meyer, C., Padmala, S., & Pessoa, L. (2021).
+Controllability over stressor decreases responses in key threat-related brain areas.
+18 Communications Biology 4
+Ly, V., Wang, K. S., Bhanji, J., & Delgado, M. R. (2019). A Reward-Based Framework of Perceived
+20 Frontiers in Neuroscience 13
+MacAulay, R. K., McGovern, J. E., & Cohen, A. S. (2014). Understanding Anhedonia: The Role of
+22 Anhedonia: A Comprehensive Handbook Volume I:
+Perceived Control. In M. S. Ritsner (Ed.),
+23 Conceptual Issues and Neurobiological Advances
+(pp. 23–49). Springer Netherlands.
+Maier, S. F., Amat, J., Baratta, M. V., Paul, E., & Watkins, L. R. (2006). Behavioral control, the
+2 Dialogues in Clinical Neuroscience 8
+medial prefrontal cortex, and resilience. , (4), 397–406.
+Maier, S. F., & Seligman, M. E. P. (2016). Learned helplessness at fifty: Insights from
+4 Psychological Review 123
+Maier, S. F., & Watkins, L. R. (2005). Stressor controllability and learned helplessness: The roles
+6 Neuroscience &
+of the dorsal raphe nucleus, serotonin, and corticotropin-releasing factor.
+7 Biobehavioral Reviews 29
+Mathys, C. D., Lomakina, E. I., Daunizeau, J., Iglesias, S., Brodersen, K. H., Friston, K. J., & Stephan,
+9 Frontiers in Human
+K. E. (2014). Uncertainty in perception and the Hierarchical Gaussian Filter.
+10 Neuroscience, 8.
+MATLAB. (2020b). Natick, Massachusetts: The MathWorks Inc.
+McGraw, K. O., & Wong, S. P. (1996). Forming inferences about some intraclass correlation
+13 Psychological Methods, 1
+14 Behavior Research Methods
+McNeish, D., & Wolf, M. G. (2020). Thinking twice about sum scores. ,
+15 52
+Meine, L. E., Meier, J., Meyer, B., & Wessa, M. (2021). Don’t Stress, It’s Under Control: Neural
+17 NeuroImage
+Correlates of Stressor Controllability in Humans. , 118701.
+Morgado, P., Sousa, N., & Cerqueira, J. J. (2015). The impact of stress in decision making in the
+20 Journal of Neuroscience Research 93
+context of uncertainty. , (6), 839–847.
+Moscarello, J. M., & Hartley, C. A. (2017). Agency and the Calibration of Motivated Behavior.
+23 Trends in Cognitive Sciences 21
+Moutoussis, M., Garzón, B., Neufeld, S., Bach, D. R., Rigoli, F., Goodyer, I., Bullmore, E., Fonagy, P.,
+Jones, P., Hauser, T., Romero-Garcia, R., St Clair, M., Vértes, P., Whitaker, K., Inkster, B., Prabhu, G.,
+Ooi, C., Toseeb, U., Widmer, B., … Dolan, R. J. (2021). Decision-making ability, psychopathology,
+4 Neuron 109
+Moutoussis, M., Rutledge, R. B., Prabhu, G., Hrynkiewicz, L., Lam, J., Ousdal, O.-T., Guitart-Masip,
+M., Fonagy, P., & Dolan, R. J. (2018). Neural activity and fundamental learning, motivated by
+7 PLOS ONE
+monetary loss and reward, are intact in mild to moderate major depressive disorder. ,
+8 13
+Myers, J. L. (2014). Probability learning and sequence learning. Handbook of Learning and
+Cognitive Processes, ed. WK Estes, 171-205.
+Nielsen, M. G., Ørnbøl, E., Vestergaard, M., Bech, P., Larsen, F. B., Lasgaard, M., & Christensen, K. S.
+12 Journal of Psychosomatic Research
+(2016). The construct validity of the Perceived Stress Scale. ,
+13 84
+14 Nature Neuroscience, 22
+Niv, Y. (2019). Learning task-state representations. , 1544–1553.
+O’Doherty, J. P., Cockburn, J., & Pauli, W. M. (2017). Learning, Reward, and Decision Making.
+17 Annual Review of Psychology 68
+Oleson, E. B., Gentry, R. N., Chioma, V. C., & Cheer, J. F. (2012). Subsecond Dopamine Release in
+19 Journal
+the Nucleus Accumbens Predicts Conditioned Punishment and Its Successful Avoidance.
+20 of Neuroscience 32
+21 Behaviour
+Paret, C., & Bublatzky, F. (2020). Threat rapidly disrupts reward reversal learning.
+22 Research and Therapy 131
+Peirce, J., Gray, J. R., Simpson, S., MacAskill, M., Höchenberger, R., Sogo, H., Kastman, E., &
+24 . Behavior Research
+Lindeløv, J. K. (2019). PsychoPy2: Experiments in behavior made easy
+25 Methods, 51
+Petzold, A., Plessow, F., Goschke, T., & Kirschbaum, C. (2010). Stress reduces use of negative
+2 Behavioral Neuroscience 124
+feedback in a feedback-based learning task. , (2), 248–255.
+Pike, A. C., & Robinson, O. J. (2022). Reinforcement learning in patients with mood and anxiety
+5 JAMA Psychiatry, 79
+disorders vs control individuals: A systematic review and meta-analysis. (4),
+313-322. doi:10.1001/jamapsychiatry.2022.0051
+Piray, P., Dezfouli, A., Heskes, T., Frank, M. J., & Daw, N. D. (2019). Hierarchical Bayesian
+8 PLOS Computational
+inference for concurrent model fitting and comparison for group studies.
+9 Biology 15
+Pizzagalli, D. A. (2014). Depression, Stress, and Anhedonia: Toward a Synthesis and Integrated
+11 Annual Review of Clinical Psychology 10
+clinpsy-050212-185606
+Porcelli, A., Lewis, A., & Delgado, M. (2012). Acute Stress Influences Neural Circuits of Reward
+14 Frontiers in Neuroscience 6
+Pryce, C. R., Azzinnari, D., Spinelli, S., Seifritz, E., Tegethoff, M., & Meinlschmidt, G. (2011).
+Helplessness: A systematic translational review of theory and evidence for its relevance to
+17 Pharmacology & Therapeutics 132
+understanding and treating depression. , (3), 242–267.
+Pulcu, E., & Browning, M. (2019). The Misestimation of Uncertainty in Affective Disorders.
+20 Trends in Cognitive Sciences 23
+Raio, C. M., Hartley, C. A., Orederu, T. A., Li, J., & Phelps, E. A. (2017). Stress attenuates the flexible
+22 Proceedings of the National Academy of Sciences 114
+updating of aversive value. , (42), 11241–
+Revelle, W. (2022). psych: Procedures for Psychological, Psychometric, and Personality
+project.org/package=psych.
+Rigoli, F., Chew, B., Dayan, P., & Dolan, R. J. (2016). Multiple value signals in dopaminergic
+5 NeuroImage 135
+midbrain and their role in avoidance contexts. , , 197–203.
+Roberti, J. W., Harrington, L. N., & Storch, E. A. (2006). Further Psychometric Support for the 10-
+8 Journal of College Counseling 9
+Item Version of the Perceived Stress Scale. , (2), 135–147.
+Robinson, O. J., Cools, R., Carlisi, C. O., Sahakian, B. J., & Drevets, W. C. (2012). Ventral striatum
+response during reward and punishment reversal learning in unmedicated major depressive
+12 The American Journal of Psychiatry 169
+Rosseel Y (2012). “lavaan: An R Package for Structural Equation Modeling.” Journal of Statistical
+Software, 48(2), 1–36. doi:10.18637/jss.v048.i02
+Rutledge, R. B., Moutoussis, M., Smittenaar, P., Zeidman, P., Taylor, T., Hrynkiewicz, L., Lam, J.,
+Skandali, N., Siegel, J. Z., Ousdal, O. T., Prabhu, G., Dayan, P., Fonagy, P., & Dolan, R. J. (2017).
+Association of Neural and Emotional Impacts of Reward Prediction Errors with Major
+18 JAMA Psychiatry 74
+Salari, N., Hosseinian-Far, A., Jalali, R., Vaisi-Raygani, A., Rasoulpoor, S., Mohammadi, M.,
+Rasoulpoor, S., & Khaledi-Paveh, B. (2020). Prevalence of stress, anxiety, depression among the
+general population during the COVID-19 pandemic: A systematic review and meta-analysis.
+22 Globalization and Health 16
+Salomons, T. V., Johnstone, T., Backonja, M.-M., & Davidson, R. J. (2004). Perceived Controllability
+24 Journal of Neuroscience 24
+Modulates the Neural Response to Pain. , (32), 7199–7203.
+Schmitt, T. A. (2011). Current Methodological Considerations in Exploratory and Confirmatory
+2 Journal of Psychoeducational Assessment 29
+Factor Analysis. , (4), 304–321.
+4 Dialogues in Clinical Neuroscience
+Schultz, W. (2016). Dopamine reward prediction error coding. ,
+5 18
+(1), 23–32.
+Schultz, W., Dayan, P., & Montague, P. R. (1997). A neural substrate of prediction and reward.
+7 Science (New York, N.Y.) 275
+Shah, S. M. A., Mohammad, D., Qureshi, M. F. H., Abbas, M. Z., & Aleem, S. (2021). Prevalence,
+Psychological Responses and Associated Correlates of Depression, Anxiety and Stress in a Global
+10 Community Mental Health
+Population, During the Coronavirus Disease (COVID-19) Pandemic.
+11 Journal 57
+Shrout, P. E., & Fleiss, J. L. (1979 Intraclass correlations: Uses in assessing rater reliability.
+13 Psychological Bulletin, 86
+Spielberger, C. D. (1980). Test Anxiety Inventory: Preliminary Professional Manual. Palo Alto,
+CA: Consulting Psychologists Press
+16 The Corsini Encyclopedia of Psychology
+Spielberger, C. D. (2010). State-Trait Anxiety Inventory. In
+Stan Development Team (2022). “RStan: the R interface to Stan.” R package version 2.21.5,
+20 Neuroscience &
+Starcke, K., & Brand, M. (2012). Decision making under stress: A selective review.
+21 Biobehavioral Reviews 36
+22 Academic Emergency Medicine 18
+Stoltzfus, J. C. (2011). Logistic Regression: A Brief Primer. , (10),
+Subramanian, A., Chitlangia, S., & Baths, V. (2022). Reinforcement learning and its connections
+2 Neural Networks 145
+3 Reinforcement Learning, second edition: An Introduction
+Sutton, R. S., & Barto, A. G. (2018). . MIT
+Press.
+Tingley D, Yamamoto T, Hirose K, Keele L, Imai K. (2014). “mediation: R Package for Causal
+Mediation Analysis.” Journal of Statistical Software, 59(5), 1–38.
+Thurstone, L. L. (1935). The vectors of mind. Chicago: University of Chicago Press. (pp. 226-231).
+Vassena, E., Krebs, R. M., Silvetti, M., Fias, W., & Verguts, T. (2014). Dissociating contributions of
+10 Neuropsychologia, 59
+ACC and vmPFC in reward prediction, outcome, and choice. , 112-123.
+Velicer, W. F. (1976). Determining the number of components from the matrix of partial
+13 Psychometrika 41
+Vigneau, F., & Cormier, S. (2008). The Factor Structure of the State-Trait Anxiety Inventory: An
+15 Journal of Personality Assessment 90
+Vinckier, F., Gaillard, R., Palminteri, S., Rigoux, L., Salvador, A., Fornito, A., Adapa, R., Krebs, M. O.,
+Pessiglione, M., & Fletcher, P. C. (2016). Confidence and psychosis: A neuro-computational
+18 Molecular Psychiatry 21
+account of contingency learning disruption by NMDA blockade. , (7), 946–
+Voulgaropoulou, S. D., Fauzani, F., Pfirrmann, J., Vingerhoets, C., van Amelsvoort, T., & Hernaus, D.
+(2021). Asymmetric effects of acute stress on cost and benefit learning.
+22 Psychoneuroendocrinology
+Vulkan, N. (2000). An economist’s perspective on probability matching. Journal of economic
+surveys, 14(1), 101-118.
+Vuong, Q., 1989. Likelihood ratio tests for model selection and non-nested hypotheses.
+2 Econometrica 57
+, 307–333.
+Wade-Bohleber, L. M., Haugg, A., Huber, S., Ernst, J., Grimm, S., Recher, D., Richter, A., Seifritz, E.,
+Boeker, H., & Northoff, G. (2021). Anticipating control over aversive stimuli is mediated by the
+5 Human Brain Mapping 42
+medial prefrontal cortex: An fMRI study with healthy adults. , (13),
+Wanke, N., & Schwabe, L. (2020). Dissociable neural signatures of passive extinction and
+8 Social Cognitive and Affective Neuroscience 15
+instrumental control over threatening events. , (6),
+Wiech, K., Kalisch, R., Weiskopf, N., Pleger, B., Stephan, K. E., & Dolan, R. J. (2006). Anterolateral
+Prefrontal Cortex Mediates the Analgesic Effect of Expected and Perceived Control over Pain.
+12 Journal of Neuroscience 26
+13 Changes in risk perception
+Wise, T., Zbozinek, T., Michelini, G., Hagan, C. C., & Mobbs, D. (2020).
+14 and protective behavior during the first week of the COVID-19 pandemic in the United States
+. 13.
+Wise, T., Robinson, O., & Gillan, C. (2022). Identifying transdiagnostic mechanisms in mental
+health using computational factor modeling. Biological Psychiatry.
+Wood, K. H., Wheelock, M. D., Shumen, J. R., Bowen, K. H., Ver Hoef, L. W., & Knight, D. C. (2015).
+Controllability modulates the neural response to predictable but not unpredictable threat in
+21 NeuroImage 119
+Xia, L., Xu, P., Yang, Z., Gu, R., & Zhang, D. (2021). Impaired probabilistic reversal learning in
+23 NeuroImage: Clinical 31
+anxiety: Evidence from behavioral and ERP findings. , , 102751.
+Zygmont, C., & Smith, M. R. (2014). Robust factor analysis in the presence of normality violations,
+2 The Quantitative Methods
+missing data, and outliers: Empirical questions and possible solutions.
+3 for Psychology 10
+Supplementary Materials
+between session 1 and session 2 for scores from the seven-factor EFA (n = 49). Confidence Intervals
+are 95%. The ICC estimates were remarkably low, and so we opted to use confirmatory factor models
+based on previously established scales and subscales instead.
+ICC
+factor df p CI lower CI upper
+estimate
+Anxiety pos-framed 0.518 48, 48 <0.001 0.323 0.671
+State Anxiety neg-framed 0.301 48, 48 0.017 0.072 0.501
+Trait Anxiety neg-framed 0.613 48, 48 <0.001 0.442 0.741
+Depression 0.486 48, 48 <0.001 0.284 0.646
+Uncontrollable Stress 0.556 48, 48 <0.001 0.371 0.700
+Likelihood of COVID-19 Risk 0.139 48, 48 0.168 -0.099 0.362
+Severity of COVID-19 Risk 0.373 48, 48 0.004 0.152 0.559
+models to obtain the factor scores (using the Vuong test in the “nonnest2” package in R). We used
+previously established scales (one-factor models) and subscales (two and four-factor models; see
+McNeish & Wolf, 2020) to determine contributing items. Parallel models create linear
+transformations of the sum scores. Congeneric models produce weighted scores based on how related
+each item is to the construct. LRT is the likelihood ratio test statistic (values below 0 indicate the
+second model is a better fit; values above 0 indicate the first model is a better fit) and the values
+test the significance of the LRT. BIC is Bayesian Information Criterion. CI lower and CI upper indicate
+95% confidence intervals surrounding the difference between BICs for each model comparison.
+scale model model LRT p BIC BIC CI CI
+type comparison model 1 model 2 lower upper
+PSS
+one vs two
+Stress
+parallel
+factors
+2.01 0.978 10948 11061 -217.75 -8.54
+one vs two
+congeneric
+factors
+-3.76 <0.001 10930 10835 42.11 146.89
+parallel vs
+one-factor
+congeneric
+5.44 >0.999 10948 10930 -27.81 63.65
+parallel vs
+two-factor
+congeneric
+-8.51 <0.001 11061 10835 148.52 302.61
+PHQ-9
+one vs two
+parallel
+factors
+9.10 >0.999 9284 9664 -460.75 -299.57
+one vs two
+congeneric
+factors
+-2.52 0.006 9204 9167 3.50 70.94
+parallel vs
+one-factor
+congeneric
+-6.40 <0.001 9284 9204 25.76 134.12
+parallel vs
+two-factor
+congeneric
+-13.83 <0.001 9664 9167 413.13 581.51
+Covid
+one vs two
+Risk parallel
+factors
+-2.02 0.022 17763 17650 -2.40 228.62
+one vs two
+congeneric
+factors
+-4.28 <0.001 17350 17223 65.89 187.65
+parallel vs
+one-factor
+congeneric
+-8.44 <0.001 17763 17350 291.81 534.13
+parallel vs
+two-factor
+congeneric
+-9.87 <0.001 17650 17223 320.23 533.02
+STAI
+two vs four
+Anxiety parallel
+factors
+-4.45 <0.001 38295 37433 476.66 1247.59
+two vs four
+congeneric
+factors
+-9.08 <0.001 38056 36547 1176.21 1840.79
+parallel vs
+two-factor
+congeneric
+-10.12 <0.001 38295 38056 101.58 377.41
+parallel vs
+four-factor
+congeneric
+-14.13 <0.001 37433 36547 694.98 1076.74
+session 2. Scores were created from the confirmatory congeneric latent factor models based on
+previously established scales and subscales (n = 49). Confidence Intervals are 95%.
+ICC CI CI
+subscale questionnaire df
+estimate lower upper
+State Anxiety neg-framed STAI State 0.747 48, 48 <0.001 0.622 0.835
+State Anxiety pos-framed 0.812 48, 48 <0.001 0.713 0.879
+Trait Anxiety neg-framed STAI Trait 0.883 48, 48 <0.001 0.786 0.932
+Trait Anxiety pos-framed 0.867 48, 48 <0.001 0.782 0.918
+Depression PHQ-9 0.932 48, 48 <0.001 0.893 0.957
+Perceived
+Uncontrollable Stress 0.872 48, 48 <0.001 0.802 0.919
+Stress Scale
+Lack of Self-efficacy 0.836 48, 48 <0.001 0.740 0.897
+Likelihood of COVID-19 Risk Covid Risk 0.835 48, 48 <0.001 0.747 0.894
+Severity of COVID-19 Risk 0.791 48, 48 <0.001 0.683 0.865
+factor Generalised Logistic Mixed Models (GLMMs) for the reversal task to the null model (with only
+Trial as a fixed-effect, and by-subject random intercepts and slopes for Trial); and comparing the
+combined model with State Anxiety (negatively-framed) x Trial and Uncontrollable Stress x Trial
+interactions to the two significant single factor (State Anxiety (negatively-framed) x Trial and
+Uncontrollable Stress x Trial) models; and comparing the two significant single factor (State
+Anxiety (negatively-framed) x Trial and Uncontrollable Stress x Trial) models to the same models
+with the addition of the interaction terms as by-subject random intercepts and slopes. AIC = Akaike
+information criterion; BIC = Bayesian information criterion; logLik = log likelihood; Chisq = chi-
+square statistic. Asterisks indicate significant effects ( < .050).
+df p
+model comparison AIC BIC logLik Chisq value
+null 71624 71669 -35807
+null vs
+2 71628 71690 -35807 0.343 0.842
+Self-efficacy
+null vs
+2 71627 71689 -35806 1.689 0.430
+Depression
+null vs
+2 71627 71689 -35806 1.491 0.475
+Likely COVID-19 Risk
+null vs
+2 71628 71690 -35807 0.587 0.746
+Severity COVID-19 Risk
+null vs Trait Anxiety
+2 71625 71687 -35806 3.306 0.191
+neg-framed
+null vs State Anxiety
+2 71624 71686 -35805 4.300 0.116
+pos-framed
+null vs Trait Anxiety
+2 71627 71690 -35807 1.110 0.574
+pos-framed
+null vs State Anxiety
+2 71618 71680 -35802 10.590 0.005*
+neg-framed
+State Anxiety neg-framed
+7 71630 71755 -35801 1.723 0.974
+vs random-effects model
+null vs
+2 71621 71684 -35804 7.237 0.027*
+Uncontrollable Stress
+Uncontrollable Stress vs
+7 71632 71757 -35802 3.097 0.876
+random-effects model
+Combined model vs
+2 71621 71701 -35801 0.960 0.619
+State Anxiety
+Combined model vs
+2 71621 71701 -35801 4.314 0.116
+Uncontrollable Stress
+Stress x Trial and State Anxiety x Trial interaction terms, with by-subject random intercepts and
+slopes for Trial. Confidence intervals are 95%. Log odds estimates can be transformed into odds
+ratios by exponentiating the value. The factor State Anxiety includes the negatively-framed items
+from the STAI-State questionnaire only. The factor Uncontrollable Stress includes the items from the
+subscale of the Perceived Stress Scale (also referred to in previous literature as Perceived
+Helplessness).
+log odds CI CI
+fixed-effects value
+estimate lower upper
+intercept 0.102 0.053 0.152 <0.001
+Trial 0.357 0.321 0.393 <0.001
+Uncontrollable Stress -0.008 -0.067 0.052 0.798
+Anxiety -0.060 -0.122 0.002 0.057
+Uncontrollable Stress x Trial -0.021 -0.064 0.023 0.349
+Anxiety x Trial -0.040 -0.085 0.005 0.080
+results from the nine separate models with Factor Score x Trial interactions. Confidence intervals are
+95%. se is the standard error of the log odds estimate. Significant fixed-effects and interactions are
+shown in bold. Log odds estimates can be transformed into odds ratios by exponentiating the value.
+values are uncorrected for multiple comparisons. No effects were significant.
+CI CI
+model fixed effects estimate se value
+value lower higher
+State Anxiety
+main effect -0.040 0.029 -1.395 0.163 -0.096 0.016
+neg-framed
+State Anxiety neg-
+-0.023 0.014 -1.652 0.099 -0.050 0.004
+framed x Trial
+Uncontrollable
+main effect -0.028 0.027 -1.035 0.301 -0.082 0.025
+Stress
+Uncontrollable
+-0.008 0.013 -0.591 0.554 -0.034 0.018
+Stress x Trial
+Lack of Self-
+main effect 0.009 0.027 0.354 0.723 -0.043 0.062
+efficacy
+Lack of Self- efficacy
+0.004 0.013 0.299 0.765 -0.021 0.029
+x Trial
+Depression main effect 0.003 0.028 0.102 0.919 -0.053 0.059
+Depression
+-0.006 0.014 -0.471 0.638 -0.033 0.020
+x Trial
+CI CI
+model fixed effects estimate se value
+value lower higher
+Likely COVID-19
+main effect -0.004 0.028 -0.132 0.895 -0.059 0.052
+Risk
+Likely COVID-19
+-0.013 0.014 -0.929 0.353 -0.039 0.014
+Risk x Trial
+Severity COVID-
+main effect -0.027 0.025 -1.065 0.287 -0.076 0.023
+19 Risk
+Severity COVID-19
+-0.012 0.012 -0.965 0.335 -0.036 0.012
+Risk x Trial
+Trait Anxiety
+main effect -0.019 0.028 -0.685 0.493 -0.075 0.036
+neg-framed
+Trait Anxiety neg-
+-0.011 0.014 -0.785 0.433 -0.038 0.016
+framed x Trial
+State Anxiety
+main effect -0.028 0.029 -0.961 0.337 -0.084 0.029
+pos-framed
+State Anxiety pos-
+-0.004 0.014 -0.258 0.796 -0.031 0.024
+framed x Trial
+Trait Anxiety pos-
+main effect -0.019 0.029 -0.671 0.502 -0.075 0.037
+framed
+Trait Anxiety pos-
+0.007 0.014 0.503 0.615 -0.020 0.034
+framed x Trial
+number of trials to learning (preregistered as five correct trials in a row), indexing learning speed.
+No factors significantly predicted learning speed. Confidence intervals are 95%. se is the standard
+error of the model estimate.
+t p
+fixed
+model estimate se value value CI lower CI higher
+effects
+intercept 16.240 0.228 71.342 <0.001 15.794 16.686
+Uncontroll-
+able Stress
+main effect 0.308 0.210 1.466 0.143 -0.104 0.720
+State intercept 16.240 0.228 71.380 <0.001 15.794 16.686
+Anxiety
+main effect 0.353 0.219 1.612 0.108 -0.076 0.781
+neg-framed
+State intercept 16.240 0.228 71.267 <0.001 15.794 16.687
+Anxiety
+main effect 0.246 0.220 1.118 0.264 -0.186 0.679
+pos-framed
+Trait intercept 16.240 0.228 71.323 <0.001 15.794 16.687
+Anxiety
+main effect 0.301 0.217 1.384 0.167 -0.125 0.727
+neg-framed
+Trait intercept 16.240 0.228 71.210 <0.001 15.793 16.687
+Anxiety
+main effect 0.164 0.218 0.753 0.452 -0.264 0.592
+pos-framed
+intercept 16.240 0.228 71.162 <0.001 15.793 16.688
+Lack of
+Self-efficacy
+main effect 0.003 0.204 0.015 0.988 -0.398 0.404
+intercept 16.240 0.228 71.213 <0.001 15.793 16.687
+Depression
+main effect 0.169 0.218 0.776 0.438 -0.258 0.596
+Likelihood intercept 16.240 0.228 71.250 <0.001 15.794 16.687
+of COVID-19
+main effect 0.221 0.216 1.024 0.306 -0.202 0.645
+Risk
+Severity of intercept 16.240 0.228 71.165 <0.001 15.793 16.688
+COVID-19
+main effect 0.035 0.193 0.183 0.855 -0.343 0.414
+Risk
+on number of trials to learning (preregistered as five correct trials in a row), indexing learning speed.
+No factors significantly predicted learning speed. Confidence intervals are 95%. se is the standard
+error of the model estimate.
+t p
+fixed
+model estimate se value value CI lower CI higher
+effects
+intercept 16.429 0.227 72.425 <0.001 15.984 16.873
+Uncontroll-
+able Stress
+main effect 0.228 0.210 1.088 0.277 -0.183 0.639
+State intercept 16.429 0.227 72.482 <0.001 15.984 16.873
+Anxiety
+0.297 0.218 1.361 0.174 -0.131 0.724
+main effect
+neg-framed
+State intercept 16.429 0.227 72.473 <0.001 15.984 16.873
+Anxiety
+0.290 0.219 1.324 0.186 -0.139 0.720
+main effect
+pos-framed
+Trait intercept 16.429 0.227 72.333 <0.001 15.983 16.874
+Anxiety
+0.070 0.217 0.322 0.748 -0.355 0.495
+main effect
+neg-framed
+Trait intercept 16.429 0.227 72.401 <0.001 15.984 16.873
+Anxiety
+0.206 0.217 0.947 0.344 -0.220 0.632
+main effect
+pos-framed
+intercept 16.429 0.227 72.328 <0.001 15.983 16.874
+Lack of
+Self-efficacy
+main effect 0.044 0.204 0.218 0.828 -0.355 0.443
+intercept 16.429 0.227 72.325 <0.001 15.983 16.874
+Depression
+main effect 0.019 0.217 0.086 0.932 -0.407 0.444
+Likelihood intercept 16.429 0.227 72.329 <0.001 15.983 16.874
+of COVID-19
+-0.051 0.215 -0.235 0.814 -0.473 0.371
+main effect
+Risk
+Severity of intercept 16.429 0.227 72.337 <0.001 15.983 16.874
+COVID-19
+0.074 0.192 0.382 0.703 -0.304 0.451
+main effect
+Risk
+toolbox (Piray et al., 2019). RLM refers to Reinforcement Learning Models; HMM refers to the hidden
+Markov model with three parameters. Model frequency indicates the ratio of participants assigned
+to each model. Exceedance probability is the likelihood that each model is the most likely model,
+considering the possibility that differences in model evidence are due to chance.
+model model # of model exceedance
+family name parameters frequency probability
+RLM beta-alpha 2 0 0
+beta-alpha-
+RLM 3 0.622 1
+forget
+beta-alpha-
+RLM 6 0 0
+forget-conf
+hidden Markov
+HMM 3 0.378 0
+model
+hidden Markov model with three parameters, for the reversal task. The parameter represents an
+estimate of the expected probability that a non-reward outcome is observed when the chosen
+stimulus does not involve the target (the actual value being 0.8); represents an estimate of the
+expected probability that a reward outcome is observed when the chosen stimulus does include the
+target (the actual value being 0.8); and the parameter represents the expectation that the identity
+of the target will shift to another image on the next trial.
+tr
+p tr q
+percentile
+25% 0.993 0.081 0.349
+50% 0.996 0.127 0.528
+75% 0.997 0.204 0.689
+frequency and exceedance probability estimates. Models: ba = beta-alpha; baf = beta-alpha-forget;
+bafc = beta-alpha-forget-conf; HMM = hidden Markov model with 3 free parameters. Model
+frequency indicates the ratio of participants assigned to each model. Exceedance probability is the
+likelihood that each model is the most likely model, considering the possibility that differences in
+model evidence are due to chance.
+hidden
+model beta-alpha- beta-alpha-
+statistic beta-alpha Markov
+comparison forget forget-conf
+0.052 0.948
+model
+model
+ba vs baf
+0.043 0.353 0.604
+frequency
+ba vs baf vs
+0.414 0.586
+bafc
+bafc vs HMM
+< 0.001 1
+exceedance
+ba vs baf
+0 0 1
+probability
+ba vs baf vs
+< 0.001 1
+bafc
+bafc vs HMM
+three parameters of the winning hidden Markov model.
+Markov model with four parameters. The power parameter was not recoverable, and so this model
+was not considered further.
+with different model for the reversal task. Models: ba = beta-alpha; baf = beta-alpha-forget; bafc =
+beta-alpha-forget-conf; HMM3 = hidden Markov model with 3 free parameters; HMM4 = hidden
+Markov model with 4 free parameters.

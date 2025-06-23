@@ -1,0 +1,924 @@
+Tipping in Crises: Evidence from Chicago Taxi Passengers during
+COVID-19
+Sarah Conlisk
+April 2021
+JEL Classification: D91, D12, I15, M52, Z13
+PsycINFO Classification: 2229, 3020, 3900, 3920
+Key words: consumer behavior; tipping; COVID-19;
+Abstract
+In early 2020, the novel coronavirus (COVID-19) spread to the United States and upended normal life.
+Using trip-level data on over 17 million taxi rides taken in Chicago from 2018-2021, I document how tipping
+behavior changed during the COVID-19 pandemic. I find that the average non-zero tip increased by almost
+2 percentage points, from roughly 26% to 28% of the taxi fare. Meanwhile, the likelihood that a passenger
+left a tip at all declined by roughly 5 percentage points, down from a pre-pandemic likelihood of 95%.
+My preferred specification suggests that the effect on the intensive margin dominates that in the extensive
+margin, leading to an aggregate increase in tipping generosity during the pandemic. I leverage granularity
+in the data to explore the mechanisms behind these trends and offer two explanations consistent with the
+data. First, passengers responded to the two economic shocks of the pandemic – unemployment and savings
+overhangs – by varying their tipping rates accordingly. Second, passengers internalized the increased risk
+of COVID-19 infection as an additional cost for taxi drivers and increased their tips as compensation. My
+analysis testifies to the sustainability of tipping in times of crises and offers theoretical insight into what
+drives tipping behavior.
+I thank Michael Lynn for advice and mentorship throughout this project. All errors and omissions are my own responsibility.
+This research was not supported by any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
+The views expressed in this paper are solely my own and should not be interpreted as reflecting the views of the Board of
+Governors of the Federal Reserve System or of anyone else associated with the Federal Reserve System. Instructions and material
+for replicating my analysis are publicly available on Mendeley Data (Conlisk, 2021).
+Federal Reserve Board of Governors. Email: ssconlisk@gmail.com
+1 Introduction
+1.1 Importance of Tipping
+Tipping is a pervasive and significant feature of the American service economy. Although social norms
+vary across industries and locations, tips are frequently given to workers providing services, notably servers,
+bartenders, hairdressers, parking valets, taxi drivers, and tour guides (Star, 1988). And while individual
+tips tend to be modest, the total can be substantial, with some workers earning over half of their income in
+tips (Payscale, 2012). In the US restaurant industry alone, it was recently estimated that over 46 billion is
+earned each year through tips (Azar, 2011). Further, historical trends suggest that tipping is becoming more
+economically meaningful: while the tipping norm was 10% in late 19th century America, it rose to 15% in the
+middle of the 20th, and by the end of the 20th century had reached 20% in large cities (Post, 1997).
+And yet, the voluntary nature of tipping does not comport with standard economic theory; why would a
+customer pay more for a service after it has been rendered? This question has inspired a robust interdisci-
+plinary literature that seeks to understand tipping behavior (see Lynn (2006, 2015a, 2017) and Azar (2007,
+2020) for reviews). Previous research has covered a variety of topics, including differences on the extensive
+and the intensive margins of tipping (Keith Schwer & Daneshvary, 2000; Haggag & Paci, 2014; Lynn 2015b;
+Alexander et al., 2021); income effects in tipping (Azar, Yosef, & Bar-Eli, 2015; Frank & Lynn, 2020; Tan
+& Zhang, 2020); the role of reciprocity in tipping (Lynn & Grassman, 1990; Lynn, 2009; Lynn 2015a; Lee
+& Sohn, 2020); and most recently, how the COVID-19 pandemic has impacted tipping behavior (Brewster &
+Gourlay, 2021; Lynn, 2021; Majid, et al., 2021).
+Working with a rich dataset of taxi trips taken in Chicago from January 2018 to March 2021, this study
+contributes to each of these research areas. First, I demonstrate how the COVID-19 pandemic has impacted
+tipping behavior in both the extensive and intensive margins. Second, I construct a proxy for passenger’s
+household income and test for heterogeneity in the effect of the pandemic on tipping. Third, I examine
+whether COVID-19 tipping trends were additionally related to perceived and actual infection risk at the time
+of the taxi ride. My findings have practical implications for the viability of tipping in times of crisis and
+provide theoretical insight into the mechanisms underlying tipping.
+2 Background and Literature Review
+2.1 COVID-19 Pandemic
+As most research on tipping has taken place during periods of relative stability, the ongoing COVID-19
+pandemic offers a new context for researchers to gain insight into tipping. COVID-19 is a highly infectious
+disease, transmitted through droplets from an infected person’s cough, sneeze, or breath (Galbadage et al.,
+2020). On March 11th, 2020 the World Health Organization declared the disease outbreak a pandemic, and on
+March 13th, the president of the United States announced a national emergency. In order to slow the spread
+of the disease, the country went into lockdown; by late March, many states had closed schools, restaurants,
+bars, and other businesses. Citizens were banned from public gatherings and encouraged to stay home. When
+in public spaces, they were asked to wear masks and socially distance from others. The pandemic was not only
+a public health crisis, but an economic crisis as well, as the US economy shrunk 3.5% in 2020 (Crutsinger,
+2021) and 20.5 million Americans lost jobs in April 2020 alone (Bureau of Labor Statistics, 2020). Notably,
+the economic toll of the pandemic was not felt equally. Job losses were concentrated among low-wage workers,
+and by April 2021 employment among the bottom third of earners was still down 30% from pre-pandemic
+levels (Chetty et al., 2020). Meanwhile, government-issued stimulus checks, rising stock markets, and reduced
+consumption led to a 18 trillion increase in wealth among U.S. households; of this excess savings, 70% went
+to the top 20% of earners (Batty et al., 2021). The outcome of these two shocks are often characterized as
+having a K-shaped effect on the economy: wealthy individuals gained wealth, while less wealthy individuals
+lost income when they lost their jobs, resembling the diverging strokes of the letter K when plotted (Saraiva,
+2020).
+From a practical standpoint, it is important to understand whether tips remain a dependable source of
+income for service workers during crises, especially as we prepare for climate change disasters and future
+pandemics. From a theoretical perspective, whether tipping behavior changed under the significant lifestyle,
+economic, and public health shocks of the COVID-19 pandemic provide insights into the underlying mecha-
+nisms that drive tipping.
+2.2 Tipping in COVID-19 Pandemic
+Recent research by Lynn (2021) provides some initial insight into how the pandemic has affected tipping.
+Analyzing data provided by a pizza delivery drivers in Texas from January 2020 to July 2020, Lynn finds that
+the average tip increased after COVID-19 was declared a national emergency and remained elevated through
+July 2020. In a secondary study of data from Square payment systems, Lynn finds broadly similar results;
+average tip as a percent of the bill increased by roughly five percentage points for distanced transactions at
+restaurants and increased by two percentage points at face-to-face quick service restaurants. These trends
+align with a recent survey from two small businesses that found customers report they would tip more (in both
+the extensive and intensive margins) after the pandemic than before (Majid et al., 2021). However, Lynn also
+identified a decrease in average tip percentages at full service restaurants with face-to-face interactions after
+the start of the pandemic. Lynn speculates that the overall increase in tip amounts is due to a heightened
+perception of server needs during the pandemic, and suggests that any decreases in tipping rates can be
+attributed to the changing nature of face-to-face service in the pandemic. Relatedly, Brewster and Gourlay
+(2021) conduct a hypothetical experiment and find that masks are not likely to have a meaningful impact on
+the tips that restaurant customers leave, although servers with masks were generally perceived as less friendly.
+Lynn’s evidence that tipping broadly increased during the pandemic is compelling and prompts further
+questions. For example, are the positive effects on tipping in the pandemic that Lynn observed driven by
+more customers deciding to tip or by customers leaving a larger tip when they do? For another, how well
+do these effects generalize across customers or time? This paper builds upon the findings of Lynn (2021) to
+probe the mechanisms underlying pandemic tipping in 3 respects: (1) I estimate the impact of COVID-19
+separately for both the extensive and intensive margin; (2) I examine whether these effects are heterogeneous
+across (i.e. moderated by) income; and (3) I consider whether tips are additionally related to true or perceived
+COVID-19 infection risk at time of trip.
+2.3 Predictors of tipping on the extensive and intensive margins
+The motivations behind tipping have fascinated researchers across the fields of economics, psychology, soci-
+ology, and marketing for decades (see Lynn, 2006; Azar, 2007; Lynn, 2015a; and Azar, 2020 for reviews).
+Notably, the tipping decision has two components: (1) the consumer decides whether to tip; and (2) the
+consumer decides how much to tip. These two decisions are clearly linked and unsurprisingly share several
+motivations. In a web-based study of consumers, Lynn (2015b) demonstrates that reward motives (e.g. “to
+reward good service”) and altruistic motives (e.g. “to help servers”) are associated with both greater tip sizes
+and increased likelihood of leaving a tip, as reported by the consumer. Additional evidence for the impact of
+service quality on both tip frequency and size points to the similarities in the underlying decision processes.
+For instance, consumers in South Africa who perceived “quality service” (i.e. neat, friendly, attentive and
+prompt) from their car guards tipped more frequently and at higher rates (Saunders & Lynn, 2010). Likewise,
+trips from the rideshare platform Uber that receive higher quality ratings from passengers are more likely to be
+tipped and tipped more generously (Chandar et al., 2019). Notably, the relationship between service quality
+and tips extends beyond the subjective. Chandar et al. (2019) found both tip likelihood and non-zero tip size
+decreased when drivers sped, braked hard, and accelerated quickly. Another shared predictor of tipping on the
+extensive and intensive margins is degree of server-consumer interaction: taxi rides where the passenger and
+driver converse are 1.33x more likely to be tipped (Aydin & Acun, 2019), and evidence from the restaurant
+industry suggests that servers can increase the size of their tips by touching and complimenting diners, as
+well as addressing them by name (Ebesu Hubbard et al., 2003; Seiter 2007; Seiter & Weger, 2013).
+However, the tipping literature has also identified a number of effects that differ on the extensive and
+intensive margins. For instance, studying tips at a beauty salon, Schwer and Daneshvary (2000) found that
+the cost of a haircut, identifying as female, and whether one cares about their appearance were all positively
+associated with tip size but unrelated to the likelihood of tipping. Particularly compelling are instances in
+which the effects on the extensive and intensive margins go in opposite directions. In one such instance, Lynn
+(2015b) found that duty motives (e.g. “I tip to obey social norms”) increased the likelihood of tipping but
+decreased the size of those tips left across a variety of services. In another instance, Lynn (forthcoming)
+manipulated the fullness of a tip jar and observed that a full tip jar increased the likelihood of tipping but
+decreased the size of the average tip left. These two studies suggest that pressure to leave a tip – whether
+internally or externally motivated – increases likelihood of leaving a tip but at the expense of the tip amount.
+Interestingly, pressure to leave a larger tip increases tip sizes while decreasing the likelihood of tipping.
+For example, Haggag and Paci (2014) take advantage of a change in default tip selection for taxi rides and
+demonstrate that higher defaults increase non-zero tip sizes and drivers’ tip incomes on aggregate, but also
+increase the likelihood a passenger will “stiff,” or not tip, by 50%. The authors reason that passengers
+perceived higher default tips as unfair and chose to penalize drivers by not tipping. Similar evidence can
+be found in Alexander et al., (2017) who show that increasing tip recommendations for a laundry service
+led to greater tips but reduced likelihood of tipping. However, Alexander et al. also find that higher tip
+recommendations did not affect customer satisfaction, patronage, or spending. This runs contrary to the
+penalty justification for stiffing and and provides little clarity on the mechanisms underlying tipping on the
+extensive margin.
+Reviewing this evidence, consumers respond to pressure to leave a tip vs. not by tipping more frequently,
+but leaving smaller tip amounts when they do so. Conversely, consumers respond to pressure to leave a
+larger tip by leaving greater tip amounts, but by tipping less frequently. Thus, observing that COVID-19 was
+associated with contradicting effects on the extensive and intensive margins may suggest that the pandemic
+affected tipping through pressure mechanisms. This literature highlights the relevance of examining tipping
+in the pandemic along both the extensive and intensive margins.
+2.4 Effects of wealth and costs on tipping
+Under standard consumer theory, demand for a good is an increasing function of income (Engel, 1857). Con-
+sidering tips to be a normal good, one can anticipate that such an income effect exists in tipping: when
+consumers are wealthier, they tip more. Existing tipping literature lends some support to this theory. For
+example, Lynn (2009, 2015b) finds a positive correlation between consumer income and their reported like-
+lihood of tipping in occupations that are routinely tipped. Similarly, in an analysis of 13 million taxi trips
+taken in NYC, Elliot et al., (2017) demonstrate that passengers originating in locations with lower average
+income per capita are consistently more likely to stiff.
+The positive relationship between consumer’s income and tip behavior is observed in the intensive margin
+as well (Lynn, 2009) and remains significant even after controlling for a number of potentially confounding
+demographics such as dining frequency (Parett, 2006). Specifically in a context similar to taxi rides, Chandar
+et al., (2019) identify a positive relationship between tips an Uber driver receives and the median income of
+a passenger’s zip code. However, the evidence on this point is not unanimous, as Elliot et al. fail to find a
+corresponding relationship with median income of a passenger’s pickup area among New York City taxis.
+Given that income is correlated with a large number of customer demographics that may also impact
+tipping behavior (i.e. education, ethnicity (Lynn, 2009)), stronger causal inferences can be derived by exam-
+ining how tips respond to shocks in a customer’s income. In one such study, Tan and Zhang (2020) estimate
+that a one standard deviation increase (decrease) in stock returns is associated with a .3% greater (smaller)
+daily average tips. This association is limited to trading hours and robust to other large news events, which
+Tan and Zhang interpret as evidence that the relationship operates through an income effect (tips increase
+with income), rather than a sentiment effect (tips increase with happiness). Possible evidence of an income
+effect is also presented in Azar, Yosef & Bar-Eli (2015), who conduct a field experiment in which restaurant
+customers are randomized to receive extra change before tipping. They observed that customers who receive
+$ $
+a greater amount of extra change ( 12 vs. 3) tipped their server larger amounts, indicating that positive
+income shocks inspire greater tips. In a related literature, researchers have found that positive shocks to
+income also increase charitable giving (Auten et al., 2002).
+And yet, other evidence suggests that tips are somewhat insensitive to changes in a customer’s budget.
+For instance, tips tend to increase linearly with bill size, contrary to the quadratic trend expected if customers
+were concerned with cost (Lynn & Sturman, 2003). A recent field experiment from Frank and Lynn (2020)
+provides further evidence against a wealth effect; server’s tips increased when a magician performed at their
+customer’s tables, but were independent of the size of the magician’s tip.
+Given that the literature concerning the effect of income shocks on tipping is mixed there is need for more
+research on the subject. The COVID-19 pandemic was a source of two non-trivial economic shocks: job losses
+and significant savings overhangs. If there is an income effect in tipping, one would expect to see tipping
+generosity decline among customers who lost jobs in the pandemic but increase among those who grew their
+savings. Thus, studying how tipping behavior in the pandemic interacts with these economic shocks may offer
+Importantly, the authors caveat that the data may not fully support evidence of an income effect, given that the observed
+relationship between tip amount and extra change is independent of whether the customer actually returned the change. However,
+a pro-social trait such as altruism may be positively associated with tip amount and likelihood of returning the change, which
+could explain why the income effect was observed in both cases.
+evidence in support of an income effect in tipping.
+2.5 Equity theory in tipping
+Lynn and Grassman (1990) pose that from a rational choice perspective, customers tip in order to buy
+equitable relationships. Their hypothesis is rooted in equity theory (Adams, 1965; Walster et al., 1973) which
+offers that individuals are socialized to feel anxiety or distress when participating in an unequal exchange.
+Adams (1965) represents equity theory with the formula
+O O
+A B
+= (1)
+I I
+A B
+where O and O refer to person A’s and person B’s outcomes from the exchange while I and I refer to
+A B a B
+A’s and B’s inputs to the exchange, respectively. When the equality is not met, the exchange is considered
+to be unequal. Applying equity theory to the context of tipped professions, the costs of providing a service
+are the inputs for service worker A (I ), and tips received are A’s outcome (O ). Meanwhile, customer B
+A A
+inputs tips (I ), and receives service quality as an outcome (O ) (Lynn & Grassman, 1990). Customers who
+B B
+perceive their exchange is unequal will tip more in order to restore equity in the exchange, a mechanism also
+referred to as the norm of reciprocity.
+Existing tipping literature offers a fair amount of support for such equity motives in tipping. In the service
+context, equity theory predicts that tips increase in proportion to the consumer’s perception of (1) the quality
+of service they receive and (2) the cost for the worker of providing the service. Consistent with (1), customers
+report that the factor most driving their tip behavior is the desire to “to reward good service” (Lynn, 2009).
+And researchers have found that customers do leave tip amounts that are positively and reliably related to
+their evaluations of service, although this service-tipping relationship is somewhat weaker than consumers
+claim (Lynn & McCall, 2000).
+In support of (2), there is some evidence that customers internalize worker’s cost of providing a service
+and tip accordingly. For example, Lee and Sohn (2020) identify a positive relationship between inclement
+weather and taxi tipping in NYC: passengers are more likely to tip above 20% in extreme temperatures and
+when it is precipitating. They hypothesize that passengers recognize the driver’s increased efforts in poor
+weather, and attempt to restore equity by tipping more. In addition, Lynn, Jabbour, and Kim (2012) find
+that customers tip more the longer they stay at a restaurant, an effect that is largest for customers with
+the smallest bill sizes, and interpret this relationship as recognition of an opportunity cost: consumers are
+aware that their lingering costs the server additional customers and so voluntarily compensate servers for that
+lost opportunity. Finally, recent field experiments have also found that restaurant customers left higher tips
+when they witnessed servers being mistreated by other customers (Hershcovis & Bhatnagar, 2017), as well as
+when servers were yelled at or criticized by their supervisors (Jin et al., 2020). These results are consistent
+with equity theory because consumers are likely to perceive the negative treatment of the server as a cost of
+providing service.
+As proposed by Majid et al., (2021), the increased risk of a COVID-19 infection can be considered an
+This study adds an interesting dimension to the literature on weather and tipping. Notably, Cunningham (1979) identified
+a positive relationship between sunshine and tipping, presumably operating through the positive effects of pleasant weather on
+mood. However, Flynn & Greenberg (2012) fail to replicate with a significantly larger sample. It seems possible that the positive
+effects on tipping of both sunshine and inclement weather offset each other, leading to the null results in Flynn & Greenberg
+(2012).
+additional cost from the service worker. To the extent that customers recognize this additional input, they
+will reciprocate with greater tips, restoring equity in the exchange. Through this mechanism, equity theory
+manifests as a discretionary form of hazard pay. Hazard pay is a common assumption in the economics
+literature: workers in more dangerous jobs will demand a higher wage rate (Viscusi, 1978), and the market
+will offer higher wages for riskier work (Thaler & Rosen, 1976). While the formal wage in the taxi market may
+be slow to adjust for the additional risk of COVID-19, equity theory predicts that passengers who internalize
+this additional cost will take it upon themselves to compensate the driver by tipping more. Thus, investigating
+how tipping on the intensive margin varies with perception of COVID-19 infection risk may lend empirical
+support to motives of reciprocity in tipping.
+3 Data and Methods
+3.1 Raw Data
+As part of their open data initiative, the City of Chicago provides publicly available data on taxi rides through
+the Chicago Data portal (Levy, 2021a). This dataset is a nearly comprehensive record of each trip taken since
+2013, and includes 23 variables containing trip-level information. This study subsets the data to all trips
+taken between January 2018 and April 2021 and makes use of the following variables
+Trip End Timestamp (15-minute interval)
+Trip Duration (in seconds)
+• 3
+Pickup Location (one of 77 community areas )
+• $
+Fare Amount (in )
+• $
+Tip Amount (in )
+Payment Type (Cash or Credit Card)
+Taxi ID (6,181 different taxis in sample)
+I complement the trip-level data with three other sources. First, I incorporate data on the median income
+for each community area provided by the Chicago Metropolitan Agency for Planning (CMAP, 2015). Second,
+I merge in daily counts of COVID-19 hospitalizations since March 1st, 2020 available through the Chicago
+data portal (Levy, 2021b). Third, I consider the 2020 presidential election results for Chicago (Chicago Board
+of Election Commissioners, 2020). The election results are provided at the ward level, which is not a direct
+mapping to community areas. I address this by identifying the three wards that had the highest Trump/Pence
+vote share for the 2020 presidential election, and consider the community areas that comprise those wards
+as relatively pro-Trump regions. Further description of these data and the cleaning process can be found in
+Appendix B. The material needed for replicating my analysis is available on Mendeley Data (Conlisk, 2021).
+Map of community areas provided in Appendix A.
+Chicago is a very blue city; Trump received under 16% of the vote share and there is no ward in which Trump received the
+majority of votes. However, in wards 41, 38, and 19, Trump received 47%, 40%, and 38% of votes, respectively, and thus I consider
+passengers coming from community areas in those wards as relatively more pro-Trump than the average Chicago passenger.
+spirT
+fo
+noitcarF
+0 .2 .4 .6 .8 1
+% of Fare
+3.2 Sample
+Given that records on cash tips are unreliable and often missing, I first filter the data to include only those
+trips paid with a credit card. Next, I follow the procedure outlined in Tan and Zhang (2020) and include only
+$ 5 $
+trips with fare amounts that are greater than 3.25 (the base rate for a ride ) but less than 1,000, as well as
+trips with a positive duration in seconds. On this subset of trips I create three variables: Tip?, an indicator
+for whether the passenger left a tip; Tip %, or the tip amount as a percentage of the fare, conditional on the
+tip being positive; and Pandemic, an indicator for whether the trip occurred after March 13th, 2020, the a
+national emergency was declared. I further drop from the sample any trips where Tip % is greater than 100%,
+so that exceptionally large tips would not bias the main estimates. The distribution of the tip as a percent
+aligns with previous research on taxi tip rates in NYC (Elliot et al., 2017). The distribution is skewed to the
+right, with most passengers tipping more than 20%, while roughly 5% of passengers did not tip at all.
+mean sd p25 p50 p75
+# of Rides (Daily Average) 25,142 7,592 20,732 26,384 30,365
+Tip? (Daily Average) 95 1.5 94 95 96
+Tip % (if positive) 27 12 20 24 32
+Fare 16 15 6.5 9 20
+Trip Duration (min) 16 19 7 11 21
+Median Income of Pickup Area 91,493 19,783 83,575 99,732 107,246
+COVID-19 Hospitalizations (Daily) 34 38 7 23 42
+“Pro-Trump” Passengers .135 .34 0 0 0
+Observations 17,757,921
+See Taxi Rate Calculator
+Doing so reduced my sample by .4%, or by 73,144 trips. As a robustness check, I repeat my analysis on the full sample, and
+winsorize Tip % at the 99th percentile instead of dropping large values. There is no significant change in estimates, which are
+available upon request.
+2018 - April 2021. On average, there is a record for 25,132 trips each day, of which 95% of passengers leave a
+tip. The average tip in the sample is 27% of the fare, whereas the median is 24%, reflecting the right skewed
+7 $
+roughly 16 minutes. The median household income of the area in which the passenger is picked up is 91,493,
+while the average number of COVID-19 related hospitalizations is 34, and roughly 14% of trips are taken by
+passengers I classify as coming from “Pro-Trump” locations.
+corresponds to the average of that variable for a given day; for instance, the very first square in Panel A
+indicates that roughly 93% of passengers left a tip on Jan 1, 2018. Clearly, both statistics are fairly stable
+up until the spring of 2020, when the country entered lockdown in response to COVID-19. In the second half
+of March 2020 the percent of riders who left a tip plummeted about 15 percentage points and remained well
+below the pre-pandemic mean even a year later. Meanwhile, Panel B suggests that the average non-zero tip as
+a percent of the fare increased by several percentage points during the pandemic, and has been elevated since
+then, at tipping rates similar to Christmas day, a time in which tipping rates are unusually high (Greenberg,
+2014).
+Although these trends in daily averages are compelling, they may be driven by several outliers or reflect
+the changing characteristics of taxi rides during the pandemic. For instance, evidence from the UBER ride-
+sharing platform that tips are greater for airport trips (Chandar et al., 2019) may generate a downward bias
+on average estimates, given that tourism and business trips shrank dramatically during the pandemic. The
+regression analysis I employ takes advantage of trip-specific characteristics to help control for this confounding
+variability.
+Calendar Heat Map of Average Tip Pct for Positive Tips
+Calendar Heat Map of % of Riders who leave a Tip
+Sunday
+Sunday Monday
+Monday Tuesday
+Tuesday Wednesday
+Wednesday Thursday
+Thursday Friday
+Friday Saturday
+Saturday
+0.33
+2019 0.32
+0.95 Sunday
+Sunday Monday 0.31
+Monday Tuesday
+Tuesday Wednesday
+Wednesday Thursday 0.30
+Thursday 0.90 Friday
+Friday Saturday 0.29
+Saturday
+0.28
+0.85 2020
+2020 0.27
+Sunday
+Sunday Monday 0.26
+Monday
+Tuesday
+We T d u n e e s s d d a a y y 0.80 Wednesday 0.25
+Thursday
+Thursday
+Friday
+Friday Saturday 0.24
+Saturday
+2021 2021
+Sunday Sunday
+Monday Monday
+Tuesday Tuesday
+Wednesday Wednesday
+Thursday Thursday
+Friday Friday
+Saturday Saturday
+Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+(a) Tip? (b) Tip %
+This might seem high for an average tip percent. One possibility is that passengers are calculating their tip off of the total
+fare, which includes additional costs such as tolls or taxes.
+3.3 Methods
+I formally test for the effect of the pandemic on tipping behavior with the equation
+Y = α + δX + γ + βCOV ID + ϵ (2)
+r,i,t r i t r,i,t
+where Y is the dependent variable for trip r in pickup area i at time t, representing either the outcome
+r,i,t
+Tip?, the likelihood that the passenger left a tip, or Tip %, the tip as a percent of the taxi fare, conditional
+on the tip being positive. I additionally provide estimates for Tipping generosity, which includes both zero
+and non-zero tips as a percent of the total fare, and captures the aggregate effect of the pandemic on tipping
+behavior. The main coefficient of interest is β, which is an estimate of how Y has changed since COVID-19
+r,i,t
+was declared a national emergency in the US. X denotes a vector of controls for each trip r, namely the
+duration of the trip in minutes and the fare of the tip, while γ represents fixed effects for the pickup location
+i, one of Chicago’s 77 community areas. I follow Haggag and Paci (2014) and cluster standard errors for all
+estimates at the driver level.
+4 Results
+4.1 Main Effects of the Pandemic
+margin (columns 1-3), intensive margin (columns 4-6) and on aggregate (columns 7-9). The coefficient on
+COVID in column 1 indicates that the proportion of passengers that left a tip dropped 5.74 percentage
+points since the pandemic began in March 2020, down from a pre-pandemic mean of 94.8%. Meanwhile, the
+coefficient in column 4 demonstrates that the average tip left as a percent of the fare increased by about 1.62
+percentage points since COVID-19, up from a pre-pandemic average tip rate of 27.2%. One concern with
+these simple differences in means is that characteristics of the typical ride or passenger changed during the
+pandemic, and this shifting sample could be responsible for observed trends. Columns 2 and 5 testify that the
+effects of the pandemic on both Tip? and Tip % are robust to the inclusion of controls for the fare amount
+and the duration of the trip in minutes. In columns 3 and 6 I add fixed effects for the pickup location of the
+rider in an attempt to control for any shifts in ridership that might have occurred during the pandemic. While
+the estimate on Tip? is somewhat attenuated, it is still strong and negative, with a 3.9 percentage point
+reduction in the likelihood that a passenger will leave a tip. Meanwhile, the estimated effect of COVID-19
+on Tip % remain positive and significant, at almost 2 percentage points. The relative consistency of the
+estimates across columns 1-3 and 4-6 suggest that shifting characteristics of trips are unlikely to be biasing
+the estimates observed, and that the majority of variation in Tip? and Tip % can be attributed to effects of
+the pandemic.
+Taken together, these results indicate seemingly contradictory effects of the pandemic on tipping behavior;
+while fewer passengers left tips, those who did left a significantly higher amount. One potential explanation
+is that the passengers who stopped tipping altogether during the pandemic were also the ones who tipped on
+the low end of the distribution of Tip % to begin with. Simply removing some of the population of low tippers
+measure of Tip % that also includes passengers who do not tip, which helps adress the issue of a changing
+Tip? Tip % Tipping generosity
+(1) (2) (3) (4) (5) (6) (7) (8) (9)
+b/se b/se b/se b/se b/se b/se b/se b/se b/se
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗ ∗∗∗
+COVID -5.74 -5.71 -3.89 1.62 1.92 1.81 -0.12 0.25 0.67
+(0.18) (0.18) (0.15) (0.14) (0.09) (0.09) (0.15) (0.10) (0.10)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+Constant 94.78 94.84 94.69 27.19 31.84 32.87 25.77 30.13 30.97
+(0.04) (0.04) (0.04) (0.02) (0.03) (0.03) (0.02) (0.03) (0.03)
+Observations 17757921 17757921 17757921 1681257716812577 16812577 1775792117757921 17757921
+Controls No Yes Yes No Yes Yes No Yes Yes
+Loc. F.E.s No No Yes No No Yes No No Yes
+*p<.05, **p<.01, ***p<.001.
+Cells report estimates and associated S.E.s in parentheses.
+Controls include fare amount and trip duration.
+Fixed effects include pickup location.
+In all estimates standard errors are clustered by Taxi ID.
+Tip? indicates whether a passenger left a tip.
+Tip% is the tip as a percent of the fare, conditional on the tip being positive.
+Tipping generosity is the tip as a percent of the fare, including zero tips
+population of tippers. Column 7 signals that on the aggregate, the increased number of “stiffers” in the
+pandemic offset the elevated tipping rates, leading to an insignificant change in tipping generosity overall.
+However, columns 8 and 9 indicate that controlling for trip-level characteristics and fixed effects for pickup
+location boosts the effect of the pandemic on Tipping generosity to be positive and significant, although
+attenuated to an increase of .3-.7 percentage points. Consequently, one can infer that the shifting population
+of tippers may explain some, but certainly not all of the increase in tipping rates. My preferred specification
+in column 9 also reinforces the findings of Lynn (2021) that the pandemic increased tipping generosity in
+contexts where the service did not substantially change, although to a lesser extent than the 2-5 percentage
+point increase in tips that Lynn observed.
+Notably, the conflicting trends along the extensive and intensive margins during the pandemic coincide
+with the evidence on tipping defaults; higher defaults are associated with greater non-zero tips as a percent
+of the bill, as well as average tips received by drivers overall, but are accompanied by an up to 50% increase
+in stiffing rates (Haggag & Paci, 2014; Alexander et al., 2021). Alexander et al. reason that such effects are
+plausible because (i) default options convey information about the expected contribution, which guides the
+behavior of those willing and able to conform with the implied norm, but (ii) may discourage those unable to
+meet these norms into not tipping. Interpreting the pandemic as a de facto increase in social norms of tipping,
+whereby putting pressure on consumers to tip more, is consistent with equity theory; passengers that perceive
+COVID-19 risk as an additional cost for the worker will perceive that the tipping norm has proportionally
+increased. I explore evidence for this equity mechanism in section 4.3.2.
+4.2 Robustness in Main Results
+One concern with the standard OLS approach of 2 is that standard errors may be correlated beyond the Taxi
+ID (e.g. by pickup location or by time of day), resulting in deceivingly small standard errors (Bertrand et al.,
+2004). I attempt to control for this with a secondary model, that uses two stages to estimate the effect of the
+pandemic on tipping as shown in equation 3 and equation 4 below.
+The main change in taxi rides during the pandemic was the requirement of a mask (Exec. Order. No. 43, 2020), which
+occurred on June 26, 2020
+Y = α + δX + γ + Z + ϵ (3)
+r,i,t r i t r,i,t
+Z = βCovid + ν (4)
+t t t
+In equation 3 I modify equation 2 to include a full set of indicators for each date t in the sample, such that
+t ∈ {Jan 1, 2018, Jan 2, 2018 ... March 31, 2021}. The resulting vector of coefficients Z represent fixed effects
+for each day, which I regress on an indicator for the pandemic in equation 4. β becomes the coefficient of
+the size and significance of estimates from the two-stage regression are very comparable, bolstering confidence
+a definition of pandemic that begins on March 20th, the day that Chicago’s governor issued a stay at home
+order. These estimates are virtually the same as those that rely on the March 13th definition of the pandemic
+and from community areas that contain airports. This helps to control for the substantial decrease in
+tourism during the pandemic, which may bias estimates given evidence from Uber that tips are systematically
+higher for airport trips (Chandar et al., 2019). Notably, these estimates replicate the main results but are
+less among local passengers than traveling ones and increased tip sizes more among local passengers than
+traveling ones. Such heterogeneity comports with a recent survey emphasizing how local consumer support
+for small businesses increased during the pandemic via tipping (Majid et al., 2021). Lastly, in columns 3, 6,
+the day of the week (i.e. Sunday, Monday, etc) that the trip was taken. These additional controls are justified
+by research identifying significant driver and seasonal effects, as well as more generous tips on Wednesdays
+and Fridays (Chandar et al., 2019; Greenberg, 2014; Flynn & Greenberg, 2012). This full set of fixed effects
+does not meaningfully change the magnitude or significance of the estimates, further building confidence in
+the main results.
+outcomes – (1) Tip ? ; (2) Tip % ; (3) Tip % (median); and (4) Tipping generosity – on the outcome of that
+day exactly 1 year prior and an indicator for the pandemic. This specification will explicitly control for any
+general time trends and again eliminate seasonal effects that may be biasing the coefficients (Greenberg, 2014).
+The key takeaways remain: the likelihood that a passenger tips is significantly lower during the pandemic,
+while both the average and median non-zero tip increased. Without any trip-level or location controls, the
+teedakbfw5gvdgmnaxlel54hau-story.html
+Chicago has 2 airports: O’Hare airport is in the O’Hare community area, Midway airport is in the Garfield Ridge community
+area
+4.3 Interactions
+The results from Section 4.1 and Section 4.2 indicate that the pandemic was associated with significant changes
+in tipping behavior: customers were less likely to tip, but tipped greater amounts when they did. Next, I
+examine heterogeneity in (i.e. moderation of) these associations to shed light on possible mechanisms through
+which the pandemic may affect tipping.
+4.3.1 Heterogeneity/Moderation by Income
+Pandemic Began
+?piT
+Pandemic Began
+01jan2018 01jan2019 01jan2020 01jan2021
+Median Income of Pickup Location
+Low Income Mid Income
+High Income
+(a) Tip?
+piT
+01jan2018 01jan2019 01jan2020 01jan2021
+Median Income of Pickup Location
+Low Income Mid Income
+High Income
+(b) Tip %
+Pandemic Began
+)lanoitidnocnU(
+piT
+01jan2018 01jan2019 01jan2020 01jan2021
+Median Income of Pickup Location
+Low Income Mid Income
+High Income
+(c) Tipping generosity
+First, I explore whether tipping trends might be driven by the economic shocks of the pandemic, consistent
+with an income effect in tipping. Job losses may force passengers to eliminate discretionary expenses like
+tipping, while savings overhangs may embolden passengers to increase their tips. I rely on evidence that
+job losses during the pandemic were more common in lower-income households while wealth gains were
+concentrated among higher-income households (Chetty et al., 2020; Batty et al., 2021), and proceed to
+investigate whether COVID-19’s effect on tipping behavior differs by a passenger’s income, which I proxy with
+the median income of a passenger’s pickup area. Specifically, I classify rides into one of three terciles relative
+to the rest of the data – low-, middle-, or high-income – depending on pickup location, and use these terciles
+to analyze the pandemic effect by passenger’s income. If these interactions indicate that passengers from
+higher-income areas increased their tips more than passengers from lower-income areas during the pandemic,
+or that the increase in stiffing rates was driven by lower-income passengers, this may be evidence of an income
+effect in tipping.
+outcome of interest by income tercile. Panel A demonstrates that passengers from the lowest-income tercile
+were less likely to leave a tip prior to the pandemic, which is consistent with recent research on stiffing rates
+among NYC taxi passengers (Elliot et al., 2017). The declaration of a national emergency in March 2020 led
+to a drop in Tip? for all terciles, but the drop was substantially larger for passengers from low-income areas.
+Monthly averages since 2021 demonstrate that the level of Tip? had not recovered and the gap for passengers
+from low-income areas remains exacerbated. Panel B tells a parallel story: passengers from lower-income
+areas have consistently tipped lower percentages than passengers from middle- and high-income terciles and
+the increase that Tip % has experienced during the pandemic is primarily driven by passengers from middle-
+and high-income areas. In panel C, I plot monthly averages of Tipping generosity to visualize heterogeneity
+in the aggregate effect of the pandemic. Here, the diverging rates of tipping generosity between middle-
+and high-income locations and low-income locations is evocative of a K shape; the pandemic led to more
+generous tipping behavior among passengers from high- and middle-income locations, while passengers from
+lower-income areas became more stingy with their tips.
+Although these plots are compelling evidence for an income effect in tipping, systematic differences in
+trip-level characteristics during the pandemic may be biasing the average estimates. I formally test for
+heterogeneous effects of the pandemic with equation 5, in which I estimate the effect of the pandemic, β,
+separately for each tercile.
+T ip = α + δX + γ + βCOV ID + β COV ID + ϵ (5)
+r,i,t r income t income t r,i,t
+In this specification, income ∈ [1, 3] such that (income = 1) represents the community areas in the lowest
+tercile of median household income, (income = 2) represents community areas in the middle-income tercile,
+and so on. This allows the estimate of β , or the effect of COVID-19 pandemic on tipping behavior,
+income
+to vary by income tercile of pickup location. Meanwhile, γ controls for average tip behavior for each
+income
+of the three income terciles prior to the pandemic, conditional on trip-level characteristics. Because there
+are only three terciles, the model will absorb the coefficient on the lowest-income tercile by default. Thus,
+the β coefficient on COV ID will represent the effect for passengers from the low-income tercile, while β + β
+represents the effect of the pandemic for passengers from the middle-income tercile, and β +β for high-income
+differ for passengers coming from middle and high, relative to low, income locations.
+the pandemic, while this decrease was substantially smaller for passengers from middle and high-income areas,
+who decreased tipping likelihood only about 3-4 percentage points. Column 2 demonstrates that the twice-
+as-large effect magnitude for passengers from low-income areas remains robust to the inclusion of controls
+for fare amount and trip duration, although is attenuated by several percentage points. Likewise, columns
+3 and 4 showcase that the positive effect of the pandemic on Tip % is primarily driven by passengers from
+Tip? Tip % Tipping generosity
+(1) (2) (3) (4) (5) (6)
+b/se b/se b/se b/se b/se b/se
+∗∗∗ ∗∗∗ ∗∗∗
+Mid Income 1.41 0.08 3.41 -0.01 3.59 0.01
+(0.05) (0.18) (0.03) (0.09) (0.03) (0.10)
+∗∗∗ ∗∗∗ ∗∗∗
+High Income 1.96 -0.12 3.38 -0.04 3.72 -0.06
+(0.05) (0.19) (0.03) (0.09) (0.03) (0.10)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+COVID -7.30 -4.60 1.06 0.79 -0.90 -0.36
+(0.23) (0.21) (0.13) (0.09) (0.12) (0.10)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+COVID × Mid Income 4.27 1.61 2.32 1.87 3.15 2.02
+(0.24) (0.24) (0.17) (0.14) (0.16) (0.14)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+COVID × High Income 3.55 1.24 2.42 2.29 3.04 2.29
+(0.29) (0.27) (0.21) (0.18) (0.22) (0.20)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+Constant 93.65 94.71 24.90 32.89 23.32 30.99
+(0.06) (0.13) (0.03) (0.07) (0.03) (0.07)
+Observations 17757921 17757921 1681257716812577 17757921 17757921
+Controls No Yes No Yes No Yes
+Pickup location fixed effects No No No No No No
++p<.10, *p<.05, **p<.01, ***p<.001.
+Cells report estimates and associated S.E.s in parentheses.
+Controls include fare amount and trip length in seconds.
+In all estimates standard errors are clustered by Taxi ID.
+Tip? indicates whether a passenger left a tip.
+Tip% is the average non-zero tip as a percent of the fare.
+Tipping generosity is the average tip as a percent of the fare, and includes zero tips.
+The coefficient on COVID is the effect of the pandemic for passengers traveling from low-income locations.
+The coefficient on COVID x Mid Income is the effect for middle-income relative to low-income passengers.
+The coefficient on COVID x High Income is the effect for high-income relative to low-income passengers.
+middle and high-income areas, who tipped about 3 percentage points more when they tipped. And columns 5
+and 6 combine the effects along the extensive and intensive margins to estimate aggregate trends in Tipping
+generosity: average tips from passengers in low-income areas fell during the pandemic, dominated by greater
+stiffing rates, but remained elevated for passengers coming from middle- and high-income locations.
+The heterogeneity observed in Tip? is consistent with an income effect in the event that passengers from
+lower-income areas were more exposed to negative economic shocks of the pandemic such as job losses, and
+chose to conserve money by tipping less. Given the evidence that wealth gains during the pandemic were
+concentrated among wealthier households (Batty et al., 2021), the data also support an income effect in Tip %.
+Passengers traveling from middle- and high-income locations left tips that were roughly 3 percentage points
+higher than pre-pandemic rates, while passengers from lower-income locations left tips only 1 percentage point
+higher. On aggregate, the estimates of tipping generosity during the pandemic were K-shaped, in sync with
+the aggregate economic trends.
+4.3.2 Role/Impact of Infection Risk
+Second, I consider whether tipping trends on the intensive margin are further associated with infection risk.
+This analysis is motivated by an application of equity theory (Adams, 1965), that supposes passengers increase
+their tips in order to offset the greater risk of a COVID-19 infection for the driver during the pandemic;
+in practice, equity theory operates as a discretionary form of hazard pay. I push on this mechanism by
+investigating whether Chicago taxi passengers leave greater tips on trips where the perceived risk of a COVID-
+19 infection is higher. Common knowledge on how diseases spread maintains that the likelihood a passenger
+infects a driver with COVID-19 increases with time spend in the taxi, as well as the prevalence of COVID-19 in
+the community at the time of the trip. Thus, I look at two sources of heterogeneity for infection risk during the
+pandemic: (1) trip duration in minutes and (2) the rolling 12-day average of the COVID-19 hospitalizations
+in Chicago, which is a proxy for prevalence of COVID-19, and thus risk of infection, on any given day.
+I focus on the Tip % measure since passengers whose tip amount is motivated by equity theory will likely
+already be tipping. I also provide estimates for Tipping generosity, driven by the same logic as before: if
+greater risk of COVID-19 infection is correlated with low-tipping passengers ceasing tipping this could look
+like hazard pay, when the change is instead due to a shifting sample of tippers. Notably, I limit the analysis
+that considers COVID-19 hospitalization admissions to trips taken after March 13th, which will net out the
+previously established effects of the pandemic on tipping.
+with lower tipping rates across the whole sample, a trend unaffected by the pandemic. This relationship is
+inconsistent with a theory of hazard pay if passengers believe risk of COVID-19 infection increases with
+time spent in the same vehicle. Meanwhile, the positive and significant coefficient in Column 2 supports
+a mechanism of hazard pay: when COVID-19 is more prevalent in the community, passengers tip more to
+offset the greater cost for taxi drivers. Specially, column 2 suggests that every additional 100 COVID-19
+hospitalizations in Chicago during the pandemic is associated with a .64 percentage point increase in the
+average tip among passengers who tip. When estimated for both tipping and non-tipping passengers this
+effect becomes insignificant, as shown in column 5.
+Tip % Tipping generosity
+(1) (2) (3) (4) (5) (6)
+b/se b/se b/se b/se b/se b/se
+∗∗∗ ∗∗∗
+COVID 1.96 0.81
+(0.20) (0.18)
+COVID × Trip Duration (min) -0.01 -0.01
+(0.01) (0.01)
+∗∗∗ ∗∗∗
+Trip Duration (min) -0.04 -0.03
+(0.01) (0.00)
+∗∗∗ ∗∗∗ ∗
+COVID Hospitalizations (100) 0.64 0.73 0.16 0.24
+(0.11) (0.12) (0.11) (0.12)
+∗∗ ∗
+Trump × COVID Hospitalizations (100) -0.54 -0.47
+(0.18) (0.21)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+Constant 32.87 35.85 35.86 30.97 31.77 31.78
+(0.03) (0.18) (0.18) (0.03) (0.19) (0.19)
+Observations 16812577 282662 282662 17757921 317471 317471
+Controls Yes Yes Yes Yes Yes Yes
+Pickup location fixed effects Yes Yes Yes Yes Yes Yes
+*p<.05, **p<.01, ***p<.001.
+Cells report estimates and associated S.E.s in parentheses.
+Controls include fare amount and trip duration.
+In all estimates standard errors are clustered by Taxi ID.
+Daily hospitalizations are calculated on a 12-day moving average.
+Tip? indicates whether a passenger left a tip.
+Tip% is the average non-zero tip as a percent of the fare.
+Tipping generosity is the average tip as a percent of the fare, and includes zero tips.
+The coefficient on Trump x COVID Hospitalizations is the effect of hospitalization rate on tipping for Pro-Trump
+passengers relative to other passengers.
+I construct a 12-day window to reflect that hospital admissions occur 10-12 days after infection, on average (Mayo Clinic, 2020).
+I use rolling averages rather than a 12-day lag to account for passengers who have imperfect information about the underlying
+prevalence of COVID-19 in their community, and thus update their perceptions of risk as news about cases, in addition to
+hospitalizations, comes in.
+In summary, there is some evidence that passengers increase tip sizes under heightened risk of COVID-19
+infection in the community. However, the lack of significance on trip duration indicates they do not participate
+in this form of hazard pay when they themselves are the source of infection risk. It is possible that this is
+due to comparative optimism bias, where individuals perceive their risk of COVID-19 infection as lower than
+others (Kuper-Smith et al., 2020). Another explanation is that hospitalization admissions are correlated with
+some other factor that increases tipping generosity, and hazard pay motives are not driving the observed
+increase in tip sizes. For instance, number of rides per day is highly correlated with hospitalization rate, as I
+show in Appendix E. Perhaps, passengers recognize that taxi drivers are receiving less income on slow days
+and tip to help workers out of altruism, a commonly recognized motive for tipping (Lynn, 2015a).
+While this is alternative explanation is plausible, I exploit further variation in perception of infection risk
+to bolster support for a mechanism of hazard pay. Famously, President Trump had been very dismissive of
+COVID-19 risk, with statements that “we have it totally under control,” that the coronavirus “affects virtually
+nobody,” and that those who are sick “are going to get better very quickly” (Summers, 2020). Given the
+high publicity of COVID-19 as a topic during the 2020 presidential campaign between Donald Trump and
+Joseph Biden, I assume that supporters of Trump are less likely to recognize the risk of COVID-19 infection
+and thus less likely to increase their tips as hazard pay. Although Chicago remains a predominately blue
+city, I code passengers coming from community areas that are in wards where the highest proportion of
+Trump voters live in as relatively “Pro-Trump” and interact that indicator with the rolling average of hospital
+admissions. A mechanism of hazard pay predicts that the coefficient on the interaction between Trump and
+hospitalizations is negative, indicating that, relative to all other passengers, Pro-Trump passengers perceive
+less need to compensate the risk of infection with a higher tip.
+Formally, I estimate the following equation
+T ip = α + δX + γ + βHospitalizations + β Hospitalizations + ϵ (6)
+r,i,t r i t trump t r,i,t
+where the coefficient of interest is β , and T rump ∈ {0, 1} to capture whether the relationship between
+T rump
+tipping and hospitalization rate is weaker for passengers from relatively pro-Trump community areas relative
+to all other passengers.
+relatively pro-Trump locations are significantly less sensitive to increased hospitalization rates when tipping:
+the majority of passengers leave tips that are .73 percentage points higher for every additional 100 hospitaliza-
+tions at time of trip, while this relationship is reduced to .19 percentage points for passengers from relatively
+pro-Trump areas. Column 6 demonstrates that the significance of these results holds when estimated over the
+total population of tippers and non-tippers.
+pro-Trump locations in Chicago tipped less prior to the pandemic. But they were less sensitive to the
+steep increase in hospitalizations in April 2020 and maintained tipping rates similar to pre-pandemic rates
+throughout 2020 and into 2021. Meanwhile, passengers from non-Trump locations increased tipping rates by
+over 2 percentage points when hospitalizations first rocketed, and slightly elevated them again in response to
+the second wave of COVID-19 following the holiday season.
+This analysis lends support to a mechanism of hazard pay during the pandemic. When hospitalization
+admissions increased, a majority of passengers responded by tipping higher percentages. However, this re-
+piT
+snoitazilatipsoH
+yliaD
+01oct2019 01apr2020 01oct2020 01apr2021
+Date
+Monthly Avg. (Non−Trump) Hospitalizations
+Monthly Avg. (Trump)
+sponse was not universal; passengers from relatively pro-Trump regions of Chicago did not tip at greater rates
+when COVID-19 was more prevalent. Given the politicization of recognizing COVID-19 infection risk, this
+heterogeneity provides additional support for hazard pay motivated by equity theory; passengers who do not
+perceive that the exchange relationship has changed due to risk of infection will not increase tips.
+5 Conclusion
+Tipping is an economically meaningful and behaviorally curious feature of the American economy that has
+inspired a robust literature. However, most research on tipping has been completed in times of relative stability.
+The lifestyle, public health, and economic shocks of the 2020 coronavirus pandemic offer a new context for
+researchers to gain insight into tipping. Notably, Lynn (2021) has studied tipping during the pandemic and
+identified an increase in average tips in the majority of service contexts. The extent of and the mechanisms
+behind this increase are practically and theoretically interesting, and warrant further investigation.
+Building upon Lynn (2021), this study leverages a high frequency publicly available dataset from January
+2018 - March 2021 to examine how tipping behavior among Chicago taxi passengers changed during the
+COVID-19 pandemic along the extensive and intensive margins. Further, it exploits granularity in the data to
+control for trip-level characteristics and explore possible mechanisms for this effect. I find that while passengers
+were 5 percentage points less likely to tip during the pandemic, those that did left tips roughly 2 percentage
+points higher, for a 7.5% average increase in the amount tipped. My preferred specification suggests that
+the effect on the intensive margin dominates that in the extensive margin, leading to an aggregate increase
+in tipping generosity during the pandemic. These findings are consistent with the main takeaway from Lynn
+(2021) that customers tipped more after the pandemic began. However, they also highlight that effects along
+the extensive and intensive margins are not always consistent, and underscore the importance of measuring
+both in future tipping research.
+Interestingly, opposing effects in the extensive and intensive margins mirror research examining default tips:
+introducing tip defaults increases the average non-zero tip amount customers leave but leads to fewer customers
+leaving a tip at all. Observing a similar response during COVID-19 suggests an analogous mechanism: the
+pandemic increased how much customers thought they should tip. Such pressure is likely to have inspired
+greater tips from some customers but also prove to be insulting/prohibitive to others, who ceased tipping at
+all.
+I bolster confidence in these main estimates with a series of robustness checks. Specifically, I provide
+comparable estimates under alternative empirical frameworks that (1) compare tipping behavior across unique
+days of the year to control for seasonal effects and (2) estimate the model in two stages, which sidesteps the
+issue of multiple levels of clustered errors. I also demonstrate that these effects remain in specifications that
+use an alternative definition of when COVID-19 began, consider additional trip-level controls, and exclude
+trips involving airports. Notably, I find that removing airport trips puts upward pressure on estimates, leading
+fewer passengers to stiff in the pandemic, and increasing the average non-zero tip size by roughly 3 percentage
+points instead of 2. These results indicate that the mechanisms leading passengers to increase tips during the
+pandemic are more salient among local passengers, which aligns with recent surveys documenting consumer
+support of local businesses through tipping (Majid et al., 2021).
+Next, I explore heterogeneity in these trends to shed light on the mechanisms by which the pandemic
+may be affecting tipping. I show that the decline in tip likelihood during the pandemic is concentrated
+among passengers traveling from low-income locations; meanwhile, increases in average non-zero tips are
+driven by passengers from middle- and high-income locations. Combining these effects across the extensive
+and intensive margins leads to an aggregate increase in tips among passengers from middle- and high-income
+locations but a decrease among those coming from low-income locations. This evidence aligns with research
+on the disparate effects of COVID-19 economic shocks – job losses were concentrated among low-income
+individuals, while wealthier households experienced savings booms – and suggests that the trends in tipping
+during the pandemic may be driven by underlying changes in passenger wealth: passengers experiencing
+financial losses cut back on the discretionary act of tipping just as passengers experiencing gains increased
+tips. While such income effects are widely recognized in consumer theory and observed in related contexts
+such as charitable giving (Auten et al., 2002), the research on how tips respond to shocks in income remains
+somewhat mixed. Specifically, tips have been found to increase when customers receive extra change and to
+mimic movements in the stock market, but are unrelated to additional costs such as larger bill sizes or tips
+given to magicians (Lynn & Sturman, 2003; Azar, Yosef & Bar-Eli, 2015; Frank & Lynn, 2020; Tan & Zhang,
+2020). This study joins research on stock market fluctuations in providing evidence for an income effect in
+losses as well as gains, and is the first to document that negative income shocks may lead to reductions on the
+extensive margin of tipping. Further, the persistence of these trends over nearly a year during the pandemic is
+somewhat stronger evidence of an income effect, as such consistent effects cannot be due to the mood boosting
+(lowering) properties of gaining (losing) wealth that compromise short term studies of income effects (Tan &
+Zhang, 2020; Azar, Yosef & Bar-Eli, 2015). However compelling, it is important to note that pickup location
+remains a rather crude proxy for a passenger’s income shock. Further research that considers better identified
+economic shocks – such as stimulus checks or changes in base taxi fare – will reveal more on the relationship
+between a consumer’s budget and tipping behavior.
+Lastly, I consider whether tips during the pandemic are additionally related to greater risk of COVID-
+19 infection, of which I consider two sources: (1) the length of time a passenger spends with the driver in
+the taxi and (2) COVID-19 hospitalization rate at time of trip. While the relationship for trip duration is
+insignificant, I find that the daily COVID-19 hospitalization rate is positively associated with non-zero tip
+sizes during the pandemic. This result suggests that passengers may be participating in a discretionary form
+of hazard pay: when the community prevalence of COVID-19 is higher, so is infection risk, and passengers tip
+their drivers more as compensation for this greater cost of providing the taxi service. However, it is possible
+that the positive relationship between tips and hospitalizations is confounded by seasonal effects or altruistic
+tendencies during periods of low ridership. To address such concerns, I take advantage of the politicization of
+the pandemic and show that this effect ceases to exist among passengers traveling from relatively pro-Trump
+regions of Chicago. This interaction bolsters support for a theory of hazard pay that is motivated by equity
+theory: customers who perceive the driver’s cost of providing a taxi ride has gone up will increase their tip
+amount to maintain equity in the exchange, while customers who do not perceive an additional cost will not.
+Although equity motives have been studied in the tipping literature, the focus has been on how consumers
+reciprocate in response to the quality of the service they receive (Lynn 2001; 2003). This study contributes to
+a smaller body of research that observes increases in tips when service is more costly, such as in circumstances
+of dangerous driving conditions (Lee & Sohn, 2020), lost opportunity for additional customers (Lynn, Jabbour,
+& Kim, 2012), and employee mistreatment (Hershcovis & Bhatnagar, 2017; Jin et al., 2020). Given the new
+appreciation for service workers sparked by the pandemic, a collective desire to compensate them more is
+not altogether surprising. Furthermore, interpreting the pandemic as putting upwards pressure on tipping
+norms is consistent with the evidence of tip defaults on the extensive and intensive margins; customers tip
+higher amounts, but fewer customers tip. Research on whether tipping rates remain elevated throughout the
+roll-out of vaccines will provide additional insight into a mechanism of hazard pay and equity motives.
+Ultimately, this study testifies to the sustainability of the tipping model in crises. Despite the significant
+economic and societal upheaval of the pandemic, the majority of passengers continued to tip, and many began
+to tip larger amounts, leading to an average increase in the tips that drivers receive. Not only does this
+highlight the enduring popularity of giving tips to service workers, but also underscores the benefits of tipping
+as a voluntary form of price discrimination: passengers can adjust their tips to the shocks of the pandemic and
+still afford the taxi service. The evident resilience and utility of tipping speaks to its longevity as a pricing
+model and stresses the relevance of future research on the topic.
+In fact, the pandemic has inspired a push for a policy of hazard pay. In April 2021 Senate Democrats introduced a proposal
+calling for a COVID-19 “Heroes Fund,” through which the federal government would finance “premium pay” of an additional
+$ $
+25,000 (or roughly an additional 13 per hour) for essential frontline workers (Kinder, 2021).
+6 References
+Alexander, D., Boone, C., & Lynn, M. (2021). The Effects of Tip Recommendations on Customer Tipping,
+Satisfaction, Repatronage, and Spending. Management Science, 67(1), 146-165.
+Adams, J. S. (1965). Inequity in social exchange. In Advances in experimental social psychology (Vol. 2,
+pp. 267-299). Academic Press.
+Auten, G. E., Sieg, H., & Clotfelter, C. T. (2002). Charitable giving, income, and taxes: An analysis of
+panel data. American Economic Review, 92(1), 371-382.
+Aydin, A. E., & Acun, Y. (2019). An investigation of tipping behavior as a major component in service
+economy: The case of taxi tipping. Journal of behavioral and experimental economics, 78, 114-120.
+Azar, O. H. (2007). The social norm of tipping: A review 1. Journal of Applied Social Psychology, 37(2),
+380-402.
+Azar, O. H. (2009). Incentives and service quality in the restaurant industry: the tipping–service puzzle.
+Applied Economics, 41(15), 1917-1927.
+Azar, O. H. (2011). Business strategy and the social norm of tipping. Journal of Economic psychology,
+32(3), 515-525.
+Azar, O. H., Yosef, S., & Bar-Eli, M. (2015). Restaurant tipping in a field experiment: How do customers
+tip when they receive too much change?. Journal of Economic Psychology, 50, 13-21.
+Azar, O. H. (2020). The Economics of Tipping. Journal of Economic Perspectives, 34(2), 215-36.
+Batty, M. M., Deeken, E., Volz, A. H. (2021). Wealth Inequality and COVID-19: Evidence from the
+Distributional Financial Accounts (No. 2021-08-30-2). Board of Governors of the Federal Reserve
+System (US).
+Bertrand, M., Duflo, E., & Mullainathan, S. (2004). How much should we trust differences-in-differences
+estimates?. The Quarterly journal of economics, 119(1), 249-275.
+/en/election-results-specifics.asp
+Brewster, Z. W., Gourlay, K. (2021). The “Mask Effect” on the tips that customers leave restaurant servers.
+International Journal of Hospitality Management, 99, 103068.
+Bureau of Labor Statistics (BLS). (2020). Payroll Employment Down 20.5 million in April 2020. TED:
+The Economics Daily (blog), May 12, 2020. Bureau of Labor Statistics, U.S. Department of Labor,
+Washington, DC.
+Chandar, B., Gneezy, U., List, J. A., & Muir, I. (2019). The drivers of social preferences: Evidence from a
+Nationwide tipping field experiment (No. w26380). National Bureau of Economic Research.
+Chetty, R., Friedman, J., Hendren, N., & Stepner, M. (2020). The economic impacts of COVID-19: Evidence
+from a new public database built from private sector data. Opportunity Insights.
+[dataset] CMAP. (2015). Chicago Community Area (CCA) CDS data. Accessed 26 April 2021. https:
+//datahub.cmap.illinois.gov/dataset/community-data-snapshots-raw-data/resource/8c4e0
+96e-c90c-4bef-9cf1-9028d094296e
+Conlisk, S. (2021), “Chicago Taxi Trips (Tipping)”, Mendeley Data, V2, doi: 10.17632/tm47d7z5xf.2
+Crutsinger, M. (2021, January 28). U.S. economy shrank 3.5 percent in 2020 after growing 4 percent last
+Ebesu Hubbard, A. S., Tsuji, A. A., Williams, C., Seatriz Jr, V. (2003). Effects of Touch on Gratuities
+Received in Same-Gender and Cross-Gender Dyads 1. Journal of Applied Social Psychology, 33(11),
+2427-2438.
+Elliott, D., Tomasini, M., Oliveira, M., Menezes, R. (2017). Tippers and Stiffers: An Analysis of Tipping
+Behavior in Taxi Trips. money, 21, 22.
+Engel, Ernst. 1857. “Die Produktions- und Consumtionsverh¨altnisse des K¨onigreichs Sachsen.” Zeitschrift
+des Statistischen Bu¨reaus des K¨oniglich S¨achischen Ministeriums des Innern, 8 and 9. (Reprinted in
+Engel (1895). Appendix I, pp. 1–54.)
+Exec. Order No. 43 (June 26, 2020).
+Flynn, S. M., & Greenberg, A. E. (2012). Does Weather Actually Affect Tipping? An Empirical Analysis
+of Time-Series Data 1. Journal of Applied Social Psychology, 42(3), 702-716.
+Frank, D. G., & Lynn, M. (2020). Shattering the Illusion of the Self-Earned Tip: The Effect of a Restaurant
+Magician on Co-Workers’ Tips. Journal of Behavioral and Experimental Economics, 87, 101560.
+Galbadage, T., Peterson, B. M., & Gunasekera, R. S. (2020). Does COVID-19 spread through droplets
+alone?. Frontiers in public health, 8, 163.
+Greenberg, A. E. (2014). On the complementarity of prosocial norms: The case of restaurant tipping during
+the holidays. Journal of Economic Behavior Organization, 97, 103-112.
+Haggag, K., & Paci, G. (2014). Default tips. American Economic Journal: Applied Economics, 6(3), 1-19.
+Hershcovis, M. S., & Bhatnagar, N. (2017). When fellow customers behave badly: Witness reactions to
+employee mistreatment by customers. Journal of Applied Psychology, 102(11), 1528.
+Jin, D., Kim, K., & DiPietro, R. B. (2020). Workplace incivility in restaurants: Who’s the real victim?
+Employee deviance and customer reciprocity. International Journal of Hospitality Management, 86,
+102459.
+Keith Schwer, R., & Daneshvary, R. (2000). Tipping participation and expenditures in beauty salons.
+Applied Economics, 32(15), 2023-2031.
+Kinder, M. (2021, April 10). COVID-19’s essential workers deserve hazard pay. Here’s why—and how it
+Kuper-Smith, B. J., Doppelhofer, L. M., Oganian, Y., Rosenblau, G., & Korn, C. (2020). Optimistic beliefs
+about the personal impact of COVID-19.
+Lee, W. K., Sohn, S. Y. (2020). A large-scale data-based investigation on the relationship between bad
+weather and taxi tipping. Journal of Environmental Psychology, 70, 101458.
+[dataset] Levy, J. (2021a) Taxi Trips record data. Chicago Data Portal. Accessed 9 April 2021. Available
+[dataset] Levy, J. (2021b). Hospitalizations data. Chicago Data Portal. Accessed 14 May 2021. Available
+nd-Hospitalizations/naz8-j4nc
+Lynn, M. (2001). Restaurant tipping and service quality: A tenuous relationship. Cornell Hotel and
+Restaurant Administration Quarterly, 42, 14-20.
+Lynn, M. (2003). Tip levels and service: An update, extension and reconciliation. Cornell Hotel and
+Restaurant Administration Quarterly, 44, 139-148.
+Lynn, M. (2006). Tipping in restaurants and around the globe: An interdisciplinary review.
+Lynn, M. (2009). Individual differences in self-attributed motives for tipping: Antecedents, consequences,
+and implications. International Journal of Hospitality Management, 28(3), 432-438.
+Lynn, M. (2015a). Service gratuities and tipping: A motivational framework. Journal of Economic Psychol-
+ogy, 46, 74-88.
+Lynn, M. (2015b). Explanations of service gratuities and tipping: Evidence from individual differences in
+tipping motivations and tendencies. Journal of Behavioral and Experimental Economics, 55, 65-71.
+Lynn, M. (2021). Did the COVID-19 Pandemic Dampen Americans’ Tipping for Food Services? Insights
+From Two Studies. Compensation Benefits Review, 53(3), 130-143.
+Lynn, M., & Grassman, A. (1990). Restaurant tipping: an examination of three ‘rational’explanations.
+Journal of Economic Psychology, 11(2), 169-181.
+Lynn, M., & McCall, M. (2000). Gratitude and gratuity: a meta-analysis of research on the service-tipping
+relationship. The Journal of Socio-Economics, 29(2), 203-214.
+Lynn, M., Sturman, M.C., 2003. It’s simpler than it seems: an alternative explanation for the magnitude
+effect in tipping. International Journal of Hospitality Management 22 (1), 103–110
+Lynn, M., Jabbour, P., & Kim, W. G. (2012). Who uses tips as a reward for service and when? An exam-
+ination of potential moderators of the service–tipping relationship. Journal of Economic Psychology,
+33(1), 90-103.
+Majid, K. A., Kolar, D. W., & Laroche, M. (2021). Support for small businesses during a health crisis.
+Journal of Services Marketing.
+Mayo Clinic. (2020). Early Prediction of Aggresive COVID-19 Progression and Hospitalization. https:
+Parrett, M. (2006). An analysis of the determinants of tipping behavior: A laboratory experiment and
+evidence from restaurant tipping. Southern Economic Journal, 489-514.
+Post, Peggy. (1997). Emily Post’s Etiquette. 16th ed. New York: William Morrow and Co.
+Saraiva, C. (2020) How a K-shaped Recovery is Widening U.S. Inequality. Washington Post. https:
+Saunders, S. G., & Lynn, M. (2010). Why tip? An empirical test of motivations for tipping car guards.
+Journal of Economic Psychology, 31(1), 106-113.
+Seiter, J. S. (2007). Ingratiation and gratuity: the effect of complimenting customers on tipping behavior in
+restaurants. Journal of Applied Social Psychology, 37(3), 478-485.
+Seiter, J. S., & Weger Jr, H. (2013). Does a customer by any other name tip the same?: The effect of
+forms of address and customers’ age on gratuities given to food servers in the United States. Journal
+of Applied Social Psychology, 43(8), 1592-1598.
+Star, N. (1988). The International Guide to Tipping. New York: Berkley Publishing Group.
+Summers, J. (2020). Timeline: How Trump Has Downplayed The Coronavirus Pandemic. NPR. https:
+Tan, W., & Zhang, J. (2020). Good Days, Bad Days: Stock Market Fluctuation and Taxi Tipping Decisions.
+Management Science.
+Thaler, R., & Rosen, S. (1976). The value of saving a life: evidence from the labor market. In Household
+production and consumption (pp. 265-302). NBER.
+Viscusi, W. K. (1978). Wealth effects and earnings premiums for job hazards. The review of economics and
+statistics, 408-416.
+Walster, E., Berscheid, E., & Walster, G. W. (1973). New directions in equity research. Journal of personality
+and social psychology, 25(2), 151.

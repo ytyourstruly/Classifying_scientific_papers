@@ -1,0 +1,219 @@
+Building robust and ethical vaccination verification
+systems
+1∗ 2 3
+Baobao Zhang, Laurin Weissinger, Johannes Himmelreich,
+4 5 6 1
+Nina McMurry, Tiffany Li, Naomi Scheinerman, Sarah Kreps
+Department of Government, Cornell University,
+214 White Hall, Ithaca, NY 14853, USA
+Fletcher School of Law and Diplomacy, Department of Computer Science, Tufts University
+161 College Avenue, Medford, MA 02155, USA
+Maxwell School of Citizenship and Public Affairs
+Department of Public Administration and International Affairs, Syracuse University
+200 Eggers Hall, Syracuse, NY 13244, USA
+Institutions and Political Inequality Unit, WZB Berlin Social Science Center
+Reichpietschufer 50, 10785 Berlin, Germany
+School of Law, Boston University
+765 Commonwealth Avenue, Boston, MA 02215, USA
+Department of Medical Ethics and Health Policy, University of Pennsylvania
+423 Guardian Drive, Philadelphia, PA 19104, USA
+To whom correspondence should be addressed; E-mail: bz377@cornell.edu.
+December 30, 2020
+As countries begin to vaccinate their populations against COVID-19, creating
+systems to verify vaccine records will be vital to reopening businesses, educa-
+tional institutions, and travel. We consider the challenges of building vaccine
+record verification (VRV) systems that involve data sharing by health care
+providers, methods for verifying vaccine records, and regulation of how en-
+tities (e.g., workplaces, schools, businesses, and airlines) may request proof
+of vaccination. In particular, we focus on the opportunities and risks associ-
+ated with digital vaccine passport apps. We propose three ethical principles to
+guide the building of VRV systems: 1) aligning systems with vaccine prioritiza-
+tion, 2) upholding fairness and equity, and 3) building trustworthy technology
+that protects the public’s health data.
+In less than a year, scientists worldwide have developed effective vaccines against COVID-
+19. Public health authorities are now deliberating policies around the verification of vaccine
+records. Instead of focusing solely on the technical details, we consider vaccine record verifica-
+tion (VRV) as a system, as illustrated in Fig. 1. The system involves 1) data sharing by health
+care providers, 2) methods for verifying vaccine records, and 3) regulation of how entities (e.g.,
+workplaces, schools, businesses, and airlines) may request proof of vaccination. Building ro-
+bust and ethical VRV systems will be vital to reopening businesses, educational institutions,
+and travel.
+Historically, governmental agencies have played a dominant role in VRV systems by issuing
+paper records. But now, non-profit organizations, corporations, and academic researchers are
+developing digital verification systems. For instance, a non-profit organization has created an
+app called CommonPass to verify users’ COVID-19 test results and, soon, vaccine records for
+safer air travel. Tech companies, including IBM, are developing similar apps. Beyond airlines,
+other businesses, employers, and educational institutions may rely on digital vaccine passports
+in the future (1).
+We acknowledge that building VRV systems for the COVID-19 pandemic poses both op-
+portunities (e.g., more accurate verification) and risks (e.g., exacerbating health and economic
+inequalities). In Fig. 1, we pose key policy questions associated with each component of the
+system and the system as a whole. We argue for increased oversight to govern the development
+and use of VRV systems. Based on our analysis, we endorse the following ethical principles to
+guide public health authorities, policymakers, health care providers, and software developers:
+• Aligning VRV systems with vaccine prioritization
+• Upholding fairness and equity to avoid discrimination against individuals who cannot
+access vaccines
+• Building trustworthy technology that protects the public’s health data
+Background
+We consider how three existing public health surveillance measures could inform policies around
+verification of COVID-19 vaccine records.
+Paper vaccine record cards
+The idea of an internationally-recognized VRV system is not new. In the 1920s and 1930s,
+countries began tying air travel to health certificates to verify inoculation against certain dis-
+eases. In 1951, the World Health Organization (WHO) took existing measures a step further by
+establishing the International Sanitary Regulations that aimed to limit the international spread
+of disease. An International Certification of Vaccination, known as the carte jaune, followed in
+1959 and logged an individual’s vaccination history to meet countries’ exit and entry require-
+ments (2). The WHO publishes vaccine requirements, largely an annual update on yellow fever
+vaccination requirements across countries. The longstanding success of the carte jaune sug-
+gests that paper-based vaccine records should not be abandoned. (Indeed, countries including
+the U.S. and the U.K. are issuing paper vaccination cards.) Unlike digital health records, paper
+records are less error-prone (e.g., not sensitive to internet connectivity), do not exclude those
+without smartphones, and can serve as a backup for digital verification tools.
+Immunity passports based on antibody tests
+In the middle of 2020, several countries considered adopting immunity passports in the form
+of a certificate or app that would verify that an individual has neutralizing antibodies against
+COVID-19 (3). These antibody immunity verification proposals were not adopted because they
+could have encouraged individuals to become infected with the virus. Furthermore, concerns
+about the sensitivity and specificity of serologic tests and the possibility that people can become
+reinfected with COVID-19 added additional roadblocks (4).
+Vaccine records would eliminate many of the problems associated with immunity passports
+based on antibody tests. Nevertheless, one concern remains: Immunity passports, whether
+based on antibody or vaccine verification, could create a two-tiered society: those who have
+greater freedom to work, travel, and perform other activities versus those who do not. Therefore,
+we argue in our recommendations that public health policies must uphold fairness and equity
+by not punishing people who cannot (yet) access vaccines.
+COVID-19 exposure notification apps
+COVID-19 exposure notification apps, designed to supplement manual contact tracing, illus-
+trate the potential problems associated with implementing technological solutions quickly in
+a pandemic. Although many countries have adopted the Google/Apple Exposure Notification
+system that is privacy-preserving, use rates in the U.S. and Europe remain relatively low (5).
+Concerns about vaccine passport apps are likely to be similar to concerns about contact tracing
+apps: privacy violations, government/private surveillance, and abuse of the collected data (6).
+Widespread adoption of vaccine passport apps requires overcoming public distrust of this new
+technology and the government and private organizations that run them.
+Challenges of building VRV systems
+Health care providers
+Health care providers that are vaccinating patients face challenges regarding the storage and
+sharing of vaccine records. VRV systems require the mass collection of health data, generally
+understood to be particularly sensitive information under most privacy law regimes (e.g., the
+EU General Data Protection Regulation). Electronic transfer of health information also incurs
+legal obligations under regulations like the Health Insurance Portability and Accountability Act
+(HIPAA) in the U.S. Beyond legal concerns, the U.S. also faces information technology (IT)
+hurdles because many health care providers do not enter vaccine records into online immuniza-
+tion information systems (IISs) that facilitate data sharing. As of 2019, only 60% of U.S. adults’
+vaccine records were in IISs (7). Expanding health care providers’ IT capacity would require
+considerable resources.
+Another important question is with whom health care providers should share vaccine records
+and what specific data would be shared. Currently, there is a proliferation of third-party soft-
+ware developers building vaccine passport apps. Without oversight or credible information
+about these app developers, health care providers may be (rightly) hesitant to share vaccine
+records. Patients may also be reluctant to participate because they fear that these apps could
+leak sensitive medical data.
+Verification methods
+One central debate regarding verification methods is whether vaccine passport apps should sup-
+plement paper cards or replace them entirely in some cases. While some express concerns that
+paper records are easy to fake, paper vaccine records have a proven track record.
+Well-designed vaccine passport apps can prevent fraud. Nevertheless, apps must be de-
+signed with privacy, security, and transparency in mind to protect medical and personal data.
+App-based verification will not work well in areas where health care providers do not have the
+technical capacity to share data, where many people do not own smartphones, or where people
+distrust the apps and the actors developing the apps.
+One lesson from the exposure notification app experience in the U.S. and Europe is that
+public trust in new technology and the actors developing and managing this technology is vital
+for widespread adoption. In a survey conducted in early December 2020, we found that the U.S.
+public does not prefer paper records over cellphone-based verification. In our survey (results
+shown in Fig. 2), 54% of U.S. adults support requiring cellphone-based verification to travel
+on airplanes and public transportation, compared with 52% for paper records. Nevertheless,
+46% said that requiring cellphone-based verification would violate privacy, compared with 39%
+for paper records. Even if vaccine passport apps were made mandatory, failing to establish a
+trustworthy and privacy-preserving app could cause long-term distrust in tech companies and
+governmental institutions.
+Entities requesting proof of vaccination
+While educational institutions and some employers have traditionally required proof of vac-
+cination, many more entities (e.g., landlords, stores, restaurants, cinemas, airlines, and public
+transit) may soon request it as well. Who is allowed to request proof of vaccination, when they
+are allowed to begin request proof, and what type of verification they will (have to) accept are
+currently being debated.
+From a legal perspective, U.S. law provides little recourse against discrimination based
+on immunity verification. Both states and private businesses have broad power to implement
+mandatory vaccination requirements. U.S. laws protecting health data (e.g., HIPAA and the
+Genetic Information Nondiscrimination Act) do not prohibit discriminatory uses of immunity
+information. The Americans with Disabilities Act (ADA) also does not protect against discrim-
+inatory impacts of immunity verification. Indeed, the ADA allows employers to limit hiring to
+individuals who “shall not pose a direct threat to the health or safety of other individuals in the
+workplace.” The U.S. Equal Opportunity Employment Commission (EEOC) released guidance
+in December, stating that employers can legally mandate vaccinations, provided that accommo-
+dations are made for individuals with disabilities or those seeking religious exemption.
+As immunity verification will likely impact fundamental rights like housing, education, and
+employment, the absence of strong legal protections is troubling. Laws should balance protect-
+ing the health of the public and preserving fundamental human rights. At the very least, entities
+should not make impossible demands on individuals, such as requiring them to jump the vaccine
+prioritization queue when vaccine supplies are limited, as we will discuss in the next section.
+Guiding ethical principles
+Based on our discussion of the associated challenges, we propose the following principles to
+guide the development of VRV systems.
+Aligning VRV systems with vaccine prioritization
+Public health authorities have made painful trade-offs in deciding which groups should be given
+priority in the COVID-19 vaccine queue (8). Proof of vaccination requirements need to be
+aligned with vaccination prioritization. Only those who can get a vaccine ought to be subject
+to mandatory proof of vaccine. When VRV is required for international air travel, for example,
+then anyone who is at the back of a vaccine queue but who urgently needs or wants to travel,
+can neither get a vaccine nor travel. This dilemma could create incentives to change vaccine
+prioritization plans to allow travel for those who are otherwise at the back of the queue, thereby
+undermining the principles that informed the vaccine prioritization plan in the first place. Plans
+informed initially by medical and social needs could be amended to satisfy economic or political
+interests instead. However, vaccine verification could complement and substitute for required
+pre/post-flight testing and mask-wearing to make travel safer.
+Upholding fairness and equity
+The COVID-19 pandemic has exacerbated existing socioeconomic inequities by disproportion-
+ately harming ethnic minorities and low-income individuals (9). VRV systems should amelio-
+rate rather than exacerbate these inequities so that those most exposed do not then suffer the
+most scrutiny when unprotected. Individuals who cannot access vaccines while supply is lim-
+ited should not be denied public services, employment, education, or travel. Likewise, those
+who cannot receive the vaccine for health reasons (e.g., those with severe allergies) should also
+not face discrimination. Furthermore, governments and/or employers should pay for not only
+the vaccines but also medical treatments for severe side-effects. Finally, as we noted earlier,
+official paper vaccine records should be accepted so that those who do not own smartphones are
+not discriminated against.
+The fairness and equity principle should be applied internationally as well as domestically.
+While the vaccines will likely be widely available to the public in developed countries in 2021,
+some low-income countries will not see mass vaccination in the upcoming year (10). Developed
+countries should not curtail immigration and travel from developing countries by imposing strict
+vaccine requirements that cannot be met.
+Upholding fairness and equity may be costly: the public must adhere to measures to pre-
+vent COVID-19 spread (e.g., social distancing, mask-wearing, and surveillance testing) until
+vaccines are widely available and herd immunity is reached. Nevertheless, keeping these pre-
+ventative measures in place is prudent until we have more data regarding whether vaccination
+prevents asymptotic transmission (11).
+Once COVID-19 vaccines are widely and easily available, entities may — and perhaps ought
+to — require vaccine verification. Permitting such policies would be in line with the individual
+autonomy of entities in the private economic sphere and protect individuals’ health. Moreover,
+such requirements would likely incentivize vaccination.
+Building trustworthy technology
+Any vaccine passport app should be privacy-preserving and secure. As a core technical design
+tenet, the app and its back end should only collect and store data necessary for the app to
+function. All data should be securely deleted once it is no longer needed. Developers should
+avoid including any functionality that tracks unnecessary data or and avoid implementing any
+third-party tracking or dependencies (12, 13). All data communications should remain end-
+to-end secure between user devices and the data controller’s infrastructure. Vaccine passport
+apps should also maximize privacy-preservation: individual users should be able to verify their
+vaccination status without sharing personally identifiable (PII) or personal health information
+(PHI) with the verifying entity. This is technically and cryptographically feasible (14).
+The application and back-end should implement strong and positive security controls. Pro-
+gram logic and back-end protections should include role-based access controls to ensure that
+users can only access the information they require to complete the specific tasks assigned to
+their role within an organization during a particular time frame. PHI and PII should never be
+collected, accessed, used, analyzed, or shared without verified expressed user opt-in. Further-
+more, the data controller should implement strong internal controls and safeguards to prevent
+staff from accessing any personal data without appropriate process, such as third-party approval,
+the four-eyes principle (i.e., two individuals being required to complete the process), documen-
+tation, and alerts to affected individuals.
+The most effective way to increase the trust in, and the security of, the solution is to use an
+open-source approach for application and back-end services, as demonstrated by the German
+Corona Warn App. This approach allows for crowd-sourced (automated and manual) security
+review (15). Trust in institutions, both private or governmental, develops slowly and has taken
+serious hits in recent years (16). However, the availability of source code would allow regula-
+tors, security experts, and the press to peruse and improve the source code of the app, building
+necessary trust in the VRV system.

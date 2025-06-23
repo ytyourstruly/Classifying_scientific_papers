@@ -1,0 +1,606 @@
+Spatial Proximity Determines Overshadowing Between Landmarks in Human Spatial
+Navigation
+1,2 3 3
+Estibaliz Herrera , Joe M. Austen , Gonzalo P. Urcelay
+School of Psychology, Georgia Institute of Technology, Atlanta, GA, USA.
+GSU/GT Center for Advanced Brain Imaging, Atlanta, GA, USA.
+School of Psychology, University of Nottingham, UK.
+Submitted: December, 2024
+Author notes
+This research was supported by a UK Economic and Social Research Council Grant
+(ES/R011494/2) awarded to GPU, and by a doctorate studentship from the University of
+Leicester (UK) awarded to EH. These findings were presented at the Society for
+Neuroscience (2023) in Washington D.C. The authors declare no financial interest associated
+was not preregistered. The data reported in this paper are available at DOI:
+10.17639/nott.7507. CRediT: Estibaliz Herrera served as lead for conceptualization,
+investigation, formal analysis, methodology, visualization, validation, software, and writing–
+original draft. Joe M. Austen served as a lead for software, data acquisition, validation, and
+data curation, and served in a supporting role for formal analysis, methodology, visualization,
+writing–review and editing. Gonzalo P. Urcelay served as lead for conceptualization,
+investigation, project administration, resources, funding acquisition, methodology, formal
+analysis, visualization, writing–review and editing.
+Correspondence concerning this article should be addressed to Gonzalo P. Urcelay
+School of Psychology, University of Nottingham, NG7 2RD, UK. Email:
+gonzalo.urcelay@nottingham.ac.uk or Estibaliz Herrera, School of Psychology, Georgia
+Institute of Technology, Atlanta, GA, 30332, USA. GSU/GT Center for Advanced Brain
+Imaging, Atlanta, GA, 30332, USA. Email: estibaliz.herrera@psych.gatech.edu
+Abstract
+Previous studies involving birds and humans have identified spatial proximity as a source of
+overshadowing between landmarks in navigation. In Herrera et al. (2024), subjects were
+trained in an open environment to find a hidden goal with reference to a cross-shaped array of
+four landmarks placed at various distances from it. Critically, two of the four landmarks (i.e.,
+target landmarks) were placed at distances that were common among groups whereas the
+remaining two were either proximal or distal from them. Landmarks near to the goal
+overshadowed (i.e., competed with) learning about the further ones, and this effect
+disappeared in the groups trained with distal landmarks. However, neither of these studies
+included a control group providing a base line performance to assess the extent of
+competition; were the data indicative of overshadowing or facilitation of learning? Thus, we
+assessed whether spatial proximity determines overshadowing or facilitation between
+landmarks, including a control group trained with the target landmarks only. We conducted
+three experiments with varied training length: 6 training trials in Experiment 1 and 16 in
+Experiments 2 and 3. We also extended the distance of the landmarks to the goal in
+Experiment 3. In all experiments, we observed overshadowing in the groups trained with
+closer nontarget landmarks (relative to the target) but no overshadowing when the nontarget
+landmarks were distal from the target landmarks. Overall, these experiments reveal spatial
+distance is a critical determinant of overshadowing between landmarks, a finding that is
+consistent with domain-general theories of learning, such as a modification of Pearce’s
+configural model.
+Keywords: Spatial Cognition, Overshadowing, Competition, Proximity, Distance
+Spatial Proximity Determines Overshadowing Between Landmarks in Human
+Spatial Navigation
+Landmarks provide relevant information about what ways we have to traverse our
+environment to find destinations. However, it has been shown that when we experience
+several landmarks simultaneously, these are usually weighted unevenly (Chen et al., 2017;
+Cheng et al., 2007), with subjects relying more on some landmarks at the expense of others.
+In other words, landmarks can enter into competition for behavioral control of navigation by
+either blocking (Biegler & Morris, 1999) or overshadowing (Goodyear & Kamil, 2004;
+Herrera et al., 2024) learning about other, usually less salient, landmarks of the array.
+Organisms benefit from knowing the direction of a goal relative to salient places, but as a
+representational mechanism it can be constraining, because each newly found place would
+have to be linked with every other place in the environment (Jeffery, 2017).
+Standard, domain-general theories of learning (Mackintosh, 2002; Pearce, 2009), when
+applied to navigation, predict that landmarks should compete with each other (and/or with the
+geometry of the environment) for control over navigation. However, domain-specific theories
+have proposed that space is processed in an incidental manner in comparison with other input
+systems, and thus there should be no competition between different sources of information
+(e.g., landmarks and geometry; Gallistel, 1990; O’Keefe & Nadel, 1978). The literature is
+clearly mixed, with some laboratories reporting said competition (Biegler & Morris, 1999;
+Prados, 2011; Rodrigo et al., 1997) and some not (Pearce et al., 2001; Doeller & Burgess,
+2008). To make matters more complicated, some laboratories have reported facilitation (i.e.,
+the opposite to competition) between different sources of information in spatial learning
+(Austen et al., 2013; Horne & Pearce, 2009; Pearce et al., 2006; Sturz et al., 2010). For
+instance, Pearce et al. (2006) trained rodents to locate a hidden platform located in one of the
+corners of either a kite-shaped or a rectangular pool. When the color of the wall surrounding
+the goal location (e.g., white) was different from the opposite — distal — wall (e.g., black),
+it facilitated learning about the global representation of the pool in the kite, but not in the
+rectangle, relative to control groups which learned about the geometry alone (all walls were
+white). In a further study conducted in the rectangular pool where the shorter walls were
+white and the longer ones black, they found that learning about the geometry of the pool was
+poorer in the experimental group compared to the all-white control group. Descriptively,
+these experiments suggest that both competition and facilitation can be observed in spatial
+learning, but the mechanisms remain unknown.
+Although it is not entirely clear – at least at a psychological level - why some
+laboratories have observed competition and some facilitation, accumulating evidence
+suggests that temporal and spatial proximity may be key factors for cue interactions (for a
+review see Herrera et al., 2022; Urcelay, 2017; Urcelay & Miller, 2009). For instance, in the
+spatial domain it has been consistently found that different species such as birds (Cheng,
+1992; Goodyear & Kamil, 2004; Gould-Beierle & Kamil, 1999; Spetch, 1995), gerbils
+(Collett et al., 1986), bees (Cheng et al., 1987), rats (Chamizo & Rodrigo, 2004; Gimeno &
+Chamizo, 2021), and humans (Deery & Commins., 2023; Herrera et al., 2022, 2024) tend to
+rely on close sources of information relative to the goal location when navigating.
+Similarly, Chamizo et al. (2006) trained 2 groups of rats in a Morris water maze to
+locate the hidden escape platform in relation to a configuration of two landmarks, while they
+manipulated the proximity of a third landmark that was either near (Bn group) or far (Bf
+group) from the goal location. They tested both groups with the landmark configuration alone
+and confirmed that the Bf group outperformed the Bn group, suggesting that spatial proximity
+may be a key factor for competition to occur, results that are consistent with those found in
+other species (Cheng et al., 1987; Goodyear & Kamil, 2004; Spetch, 1995). However, the
+report by Chamizo did not include a control group trained with the landmark configuration
+alone, so the extent to which competition occurred relative to a baseline measure is unknown.
+In a recent study, Herrera and colleagues (2024) replicated in human participants a
+study that Goodyear and Kamil (2004) conducted with Clark’s nutcrackers. Herrera et al.
+trained human participants to find a hidden goal in a naturalistic virtual navigation task
+resembling the experimental arrangements from Goodyear and Kamil. Participants
+experienced the virtual environment from a first-person perspective and had to find a hidden
+goal using an array of landmarks. That is, three groups of subjects were trained to find a
+hidden goal in the presence of four distinct landmarks arranged in the shape of a cross, with a
+hidden goal placed in its center. Landmarks were placed at different distances from the goal.
+In Group Close, landmarks were located at 10, 30, 50 and 70 virtual units (hereafter, VUs)
+from the goal. For Group Medium, these were located at 30, 50, 70 and 90 VUs, and for
+Group Far these were located at 50, 70, 90 and 110 VUs. Following training, all groups were
+tested with the 50 and 70 VUs landmarks (i.e., target landmarks). During test, subjects
+showed better performance to the target landmarks when these were trained in the presence of
+more distal landmarks (Group Far) relative to a group that received training with nontarget
+landmarks close to the goal (Group Close; Group Medium performed in between these
+groups). In other words, performance at test was “dose-dependent” on the distance of the
+nontarget landmarks during training, thus revealing an effect of spatial proximity on spatial
+learning.
+One notable shortcoming of the studies by Goodyear & Kamil (2004) and Herrera and
+colleagues (2024) is that the performance of the experimental groups (all trained with 4
+landmarks and tested with just 2 of them) was not compared to a control group trained to
+locate the goal with the target landmarks only (i.e., the 2 landmarks that were common across
+groups, placed at 50 and 70 VUs from the goal), which would have provided a control for
+overshadowing. The same caveat applies to the previously described rodent study conducted
+by Chamizo and colleagues (2006), in which they observed more overshadowing of two
+target landmarks by an additional landmark placed close to the goal relative to a landmark
+that was distal from the goal. This precludes an assessment of the extent of overshadowing in
+these studies. In other words, it is unclear from these studies whether the landmarks placed at
+different distances overshadowed, had no effect, or perhaps facilitated performance based on
+the target landmarks. Because the presence or absence of competition in the spatial domain
+has been a litmus test for comparing domain-general (Mackintosh, 2002; Pearce, 2009) and
+domain-specific (Gallistel, 1990; Jeffery, 2010) theories of learning, the current study sought
+to assess whether nontarget landmarks placed at different distances from a goal interact
+(compete, have no effect, or facilitate) with learning about target landmarks, relative to a
+control group that only received training with the target landmarks.
+In addition to assessing the effect of spatial proximity as a factor for interactions
+between landmarks to occur, we wanted to assess whether overshadowing changes as a
+function of practice. In nonspatial scenarios, it has been reported that overshadowing (and
+other cue competition phenomena such as blocking and overexpectation) varies as a function
+of the number of training trials. That is, whereas short compound training results in strong
+competition, the effect wanes with extensive training (Bellingham & Gillette, 1981; Reed &
+Quigley, 2019; Stout et al., 2003; Urcelay et al., 2012). In the spatial domain, it has been
+suggested that navigation can engage two parallel strategies: learning the relative positions of
+the cues in the environment (i.e., having a global representation of space, also known as place
+learning), and acquiring a series of reinforced responses by repetition (i.e., stimulus-response
+[S-R] associations). This has been supported by lesion work that has dissociated the
+hippocampus and the striatum for place and S-R learning, respectively (Marchette et al.,
+2011; Packard & McGaugh, 1996). For example, an inactivation study in rodents (Packard &
+McGaugh, 1996) in which animals were trained in a T-maze, allowed dissociation of these
+navigational strategies. They observed that hippocampal inactivation early in training
+disrupted place learning, and striatal inactivation disrupted response learning after extended
+training, revealing that the engagement of these strategies changes over time. In human
+participants, however, a study (Marchette et al., 2011) that enabled the assessment of their
+navigational style revealed that there is lots of variability in the degree of learning that
+occurred in each system. Thus, despite these strategies presumably developing in parallel, it
+is still not well understood how the differential engagement of these mechanisms develops
+over the course of learning, and whether or not they compete for behavioral control. In a
+recent study (Holden et al., 2021) in which participants were trained inside of a cross-shaped
+arena for either 2, 4 or 16 trials, and their ability to transfer memories to the outside of the
+arena was tested, they found very consistent results regardless of the extent of practice. Taken
+together, these results highlight how little is yet known about the impact that practice may
+have on spatial navigation, and in particular the evidence on how it may impact interactions
+between landmarks in spatial navigation procedures is very sparse. In non-spatial tasks,
+extended training sometimes abolishes cue-competition phenomena (Azorlosa & Cicala,
+1982; Bellingham & Gillette, 1988) and sometimes results in facilitation (Urcelay et al.,
+2012), therefore we also assessed the effect of extended training on the interaction between
+landmarks.
+In summary, the goal of this study was to assess, using the protocol in humans
+developed by Herrera and colleagues (2024), whether overshadowing between landmarks
+varied as a function of distance to the goal, with a control group which only experienced
+training with the target landmarks. In addition, we explored whether overshadowing varied as
+a function of practice, and whether facilitation could be observed with more distal landmarks.
+We expected to see overshadowing of target landmarks by closer landmarks, and that the
+effect would be attenuated (and perhaps reversed into facilitation) with more distal
+landmarks. Thus, three experiments were conducted. In Experiment 1, participants were
+trained for 6 trials whereas in Experiment 2, they received 16 training trials. In Experiment 3,
+participants were trained for 16 trials with the target landmarks at longer distances from the
+goal, in order to assess whether this configuration resulted in facilitation rather than
+competition. In Experiments 1 and 2, Group Control experienced training with 2 landmarks
+placed at 50 and 70 VUs from the goal, and the 3 experimental groups were trained with 4
+Critically, the 50 and 70 VUs landmarks (i.e., target landmarks) were trained in all groups.
+Group Close was trained with an additional pair of landmarks placed at 10 and 30 VUs from
+the goal, for Group Medium these were located at 30 and 90 VUs, and for Group Far, they
+were at 90 and 110 VUs. Following training, we assessed how well participants could
+estimate the goal location in the presence of the 50 and 70 VUs landmarks in all four groups.
+In Experiment 3, the experimental design was the same as in Experiment 2, but the target
+landmarks were placed at 90 and 110 VUs from the goal in Group Control, and nontarget
+landmarks distances in the three experimental groups were also increased by 40 VUs. In all
+experiments, latencies to find the goal location were used as indicators of performance during
+training, and errors in distance estimation were the dependent measure during test.
+Experiment 1
+Method
+Participants
+Two hundred and thirty-four participants (99 identified as male, 126 identified as
+female, 5 as other and 4 preferred not to say) with a mean age of 27 years (range 18-49 years)
+were recruited via Prolific and were given financial compensation in return (a video example
+were randomly allocated to one of four groups. In Experiment 1, this resulted in 75
+participants in Group Control, 43 in Group Close, 54 in Group Medium and 62 in Group Far.
+Based on a previous report with this same task (Herrera et al., 2024), we aimed to recruit 40
+participants per group after exclusions, as this has proven sensitive to detect differences in
+performance based on distance of landmarks to the goal (comparison of Groups Close and
+Far). Ethical approval was obtained from the Psychology Ethics Committee at the University
+of Nottingham. Informed consent was obtained from each participant in the experiments
+reported here.
+Apparatus and Materials
+The environmental set-up was the same as that used by Herrera et al., (2024) and was
+built using Unity game engine (Unity Technologies, San Francisco, California, USA, version
+2019.4.0f1 for Windows). It was composed of four background orientation cues (a windmill,
+a snow-capped mountain, a village and a forest), and an array of four distinctive landmarks
+forming a cross (unique black and white landmarks featuring distinct patterns: a chevron
+pattern, horizontal stripes, a checkerboard pattern, and vertical stripes). The goal was located
+in the center of the cross of distinctive landmarks and participants had to be within a distance
+of 3 VUs from the goal to be successful. The landmark width was 2.5 VUs in Experiments 1
+and 2 (but 5 VUs in Experiment 3), and the height was 6 VUs. The identity of the landmarks
+(i.e., distinct patterns) was randomized between participants, but was kept constant through
+the experiment for each participant. Each group was trained with a different landmark array.
+In Experiments 1 and 2 for Group Close the landmarks were set at 10, 30, 50, 70 VUs from
+the goal; for Group Medium at 30, 50, 70, 90 VUs; Group Far 50, 70, 90 110 VUs, and
+all groups were trained with the 50 and 70 VUs landmarks, which allowed between-groups
+comparisons. In Experiment 3, all landmark distances for the three experimental groups and
+the control group were increased by 40 VUs. Hence, for Group Close, the landmarks were set
+at 50, 70, 90, 110 VUs; for Group Medium at 70, 90, 110, 130 VUs; for Group Far at 90, 110,
+130, 150 VUs; and Group Control was trained with landmarks at 90 and 110 VUs, which are
+the distances shared across groups (i.e. target landmarks). The orientation cues were aligned
+with each landmark.
+Procedure
+Each experiment was comprised by two phases, training and test. In Experiment 1,
+participants received six training trials, and in Experiment 2, sixteen trials. Experiment 3 was
+similar to Experiment 2, except that all landmarks were placed 40 VUs further away from the
+goal. During training, participants were instructed to find a buried seed (i.e., the hidden goal)
+in the presence of the four landmarks, which were key to learning the exact goal location. The
+orientation (i.e., background) cues were consistently present during training and test, always
+in the same location for each participant relative to the distinctive landmarks. Participants
+were released facing in a random direction from one of the four corners of an invisible square
+of 100 × 100 VUs (its dimensions were increased by 200 VUs in Experiment 3; se
+Supplementary Materials), with the goal in its center and the four starting points placed at a
+per block in a random order. To move forward participants used the up arrow key, the down
+arrow key to move backward, and the left and right arrow keys to rotate counterclockwise
+and clockwise, respectively, with a turning speed of 60° per second. Latencies to find the
+goal were recorded during training. If participants did not find the buried seed within 60 s (in
+Experiments 1 and 2) or 90 s (in Experiment 3), a corn plant within a blue light column was
+presented at the goal location to aid participants in learning the exact goal location. Once they
+reached the goal, participants could no longer move forward or backward, and a
+congratulatory message was displayed encouraging them to rotate 360° and attend to their
+surroundings. After 10 s, the next trial started automatically.
+During the test phase, participants experienced a total of three blocks of tests. The first
+block comprised four landmark tests with the combination of the 50 and 70 VUs landmarks
+in Experiments 1 and 2, and with the 90 and 110 VUs landmarks in Experiment 3 (i.e., the
+target landmarks) and is reported in the analyses. The second and third blocks were tests with
+each landmark (50 or 70 [90 and 110 in Experiment 3]) alone, and because the results are
+similar to those with both landmarks together we do not report them. The distance error from
+where participants thought the goal was to the true goal location was calculated for each test
+and measured in VUs.
+Statistical Analyses
+Participants who took more than 60 s to find the goal on Trials 6 (Experiment 1) or
+Trial 16 (Experiment 2) of training were excluded from all analyses as this was considered as
+an indication that they did not adequately learn the task (i.e., they had to be shown the goal
+location on the final training trial). In Experiment 3, in which the landmarks were placed
+further away from the goal and hence the task was much more difficult, the training criterion
+was 90 s on trial 16 (the same conclusions are achieved if the criterion is 60 s). For training, a
+mixed analysis of variance (ANOVA) with Group (Control, Close, Medium and Far) and
+Trials (6 in Experiment 1 and 16 in Experiments 2 and 3) was used. For the test data, we used
+one-way ANOVAs with Group as the main factor. The distance between where participants
+signaled the goal was located and its actual location (i.e., distance error) was assessed with
+the two landmarks that were common across groups (i.e., 50 and 70 VUs). Hence, the
+landmark tests consisted of 1 block of 4 trials, with the target landmarks (50 VUs and 70 VUs
+in Experiments 1 and 2, and 90 and 110 VUs in Experiment 3) tested together. The distance
+between where participants signaled the goal was located and its actual location (i.e., distance
+error) was averaged across the 4 test trials.
+Bonferroni post-hoc tests were carried out to further investigate significant ANOVAs or
+interactions. All statistical analyses are reported with two-tailed levels of significance and
+alpha set at .05. In repeated-measures analyses, the Huynh-Feldt correction was used to adjust
+degrees of freedom when the sphericity assumption was violated.
+Transparency and Openness Statement
+The data reported in this article are available at DOI: 10.17639/nott.7507. Data were
+analyzed using IBM SPSS Statistics (Version 27). This study’s design and its analysis were
+not preregistered. The task and materials are available upon request. Videos of the task can be
+Results
+Training. Eighty-eight participants (49 females, 35 males, 2 individuals identified as
+‘other’, and 2 that preferred not to say) failed to reach the learning criterion and were
+removed from the data analyses. The total sample size analyzed was composed of 146
+participants (of which 72 as male, 68 identified as female, 3 as other, and 3 that did not
+disclosure their gender identity) with a mean age of 25.6 years (range 18-49). Groups Close
+and Medium comprised 35 participants each, and Groups Control and Far comprised 37 and
+39 participants, respectively.
+training trials. The data suggest that Group Close performed better than the other groups, but
+for all groups latencies became smaller as training progressed. A mixed ANOVA with a
+between-subjects factor of Group (Control, Close, Medium, and Far) and a within-subjects
+factor of Trial (1–6) revealed a significant main effect of Trial, F(4.32, 613.83) = 118.38, p <
+.001, η p = .46, 90% CIs [41, .50], indicating that participants found the goal faster as
+training progressed. There was also a significant main effect of Group, F(3, 142) = 7.48, p <
+.001, η p = .14, [.05, .22], however the Group x Trial interaction was not significant, F(12.97,
+613.83) = 1.49, p = .116, η p = .03, [.00, .03]. A follow-up post-hoc Bonferroni test
+confirmed that Group Close performed better than the Control (p = .001), Medium (p = .005),
+and Far (p < .001) groups. There were no other differences across groups. A one-way
+th
+ANOVA was conducted to analyze the performance of the groups in the 6 , and last, training
+trial, and showed that their performance was significantly different, F(3, 146) = 4.59, p =
+.004, η p = .09, [.02, .19]. A further Bonferroni test revealed that Group Close significantly
+differed from Groups Control and Far (p = .034 and p = .004, respectively).
+Test. The results of the goal-landmark distance errors estimations with the 50 and 70
+outperformed Groups Close and Medium, indicative of overshadowing by close but not distal
+landmarks. A one-way ANOVA with Group as the independent variable (Control, Close,
+Medium and Far) revealed significant differences between groups F(3, 142) = 25.93, p <
+.001, η p = .35, 90% CIs [.24, .43]. Follow-up Bonferroni-corrected post hoc tests revealed
+that Groups Control and Far were significantly more accurate in estimating where the goal
+was located (i.e., less error) compared to Groups Close and Medium (p < .001 all). There
+were no other significant differences between groups.
+Experiment 2
+Experiment 1 revealed a clear effect of landmark distance on the overshadowing effect,
+in that close (but not distal) landmarks overshadowed learning about target landmarks, but
+there was clearly no evidence of facilitation. Urcelay (2017) suggested that cue competition
+and facilitation are the extremes of a continuum of outcomes that ranges from competition to
+no competition to facilitation. In non-spatial tasks, cue-competition phenomena such as
+overshadowing (Bellingham & Gillette, 1981; Reed & Quigley, 2019; Stout et al., 2003) and
+blocking (Azorlosa & Cicala, 1988) disappear with increasing number of training trials.
+There is also evidence that another cue-competition phenomenon, the overexpectation effect,
+can reverse into facilitation with increasing number of compound training trials (Urcelay,
+Witnauer & Miller, 2012; Experiment 3). The evidence in non-spatial tasks led us to reason
+that perhaps no evidence of facilitation was observed in Experiment 1, because of the small
+number of training trials. Experiment 1 revealed that this well-controlled task shows robust
+cue competition (and its absence), so we sought to manipulate the number of training trials in
+order to investigate why, previously, some laboratories have observed overshadowing and
+others facilitation in the spatial domain, with otherwise comparable experimental designs. In
+Experiment 2, we assessed whether the pattern of results observed in Experiment 1 would
+change when increasing the number of training trials from six to sixteen and whether this
+would result in facilitation instead of competition (in particular in Group Far). Although the
+effect of extended training in the spatial cognition literature is not clear, it could be possible
+that extended training changed how participants processed the landmarks, and this would
+result in facilitation by distal landmarks instead of no overshadowing. This was the objective
+of Experiment 2, which was similar to Experiment 1 except that the number of training trials
+was extended from six to sixteen. Based on the results of Experiment 1, we expected that
+landmarks placed close to the goal (10 and 30 VUs) would overshadow the target landmarks
+(50 and 70 VUs). At issue was what would happen with the 90 and 110 VUs landmarks in
+Group Far, with the possibility that the distal landmarks would facilitate learning based on
+the target landmarks.
+Method
+Participants and Materials
+Two hundred and fifty-nine participants (of which 160 identified as female, 97 as male,
+and 2 as “other”) with a mean age of 29 years (range 18-50 years) took part in the study and
+received economic compensation in return. Participants were randomly allocated to each
+group resulting in 72 participants in Group Control, 55 in Group Close, 63 in Group Medium,
+and 69 in Group Far. The materials used for this experiment were the same as in Experiment
+1.
+Procedure
+The procedure was the same as in Experiment 1, except participants experienced 16
+training trials instead of 6.
+Results
+Training. Sixty-six participants (61 females, 5 males) failed to reach the learning
+criterion stated above, and were excluded from all analyses. The total sample size analyzed
+was therefore 193 participants with a mean age of 28 years (range 18-50). Hence, there were
+46 participants in the Group Control, and 49 in Groups Close, Medium and Far.
+as training progressed, with participants in Group Close performing the fastest in finding the
+goal location. A mixed ANOVA with Group as a between-subjects factor (Control, Close,
+Medium, and Far) and Trial as within-subjects factor (1–16) revealed a main effect of Trial,
+F(12.67, 2394.17) = 136.75, p < .001, η p = .42, 90% CIs [.39, .44], indicating that
+participants found the goal quicker as training progressed. There was also a significant main
+effect of Group, F(3, 189) = 10.85, p < .001, η p = .15, [.07, .22], as well as a significant
+Group x Trial interaction, F(38, 2394.17) = 1.60, p = .012, η p = .03, [.01, .03], suggesting
+that groups differed in their overall performance. A follow-up Bonferroni-corrected post hoc
+analysis on the main effect of group revealed that Group Close performed the fastest,
+outperforming Groups Control and Far (p < .001), as well as Group Medium (p = .002). A
+one-way ANOVA comparing the performances between the groups in the last training trial
+showed that their performances significantly differed, F(3, 193) = 3.29, p = .022, η p = .05,
+[.41, .56]. A further Bonferroni test revealed that Group Close performed better than Group
+Far, (p = .019), but there were no other significant differences between groups.
+Test. The results of the goal-landmark distance errors estimations with the 50 and 70
+Groups Far and Control outperformed both Groups Close and Medium, indicative of
+overshadowing by close but not distal landmarks, although there was clearly no evidence of
+facilitation. A one-way ANOVA with Group as the independent variable (Control, Close,
+Medium and Far) was conducted on the test data with landmarks 50 and 70 VUs. The
+ANOVA revealed significant differences between groups F(3, 189) = 23.32, p < .001, η p =
+.27, 90% CIs [.18, .34]. Follow-up Bonferroni-corrected tests revealed that the distance
+estimations of Groups Close and Medium were significantly poorer than the ones of Group
+Control, and Group Far (p < .001 all), whereas Groups Far and Control performed in a similar
+manner.
+Experiment 2 revealed that the results of Experiment 1 can be replicated when training
+is extended from 6 to 16 training trials, thus attesting to the reliability of the findings in
+Experiment 1. However, there was no evidence of facilitation of target landmarks by more
+distal landmarks. Although there are several demonstrations of facilitation in the spatial
+domain, the majority of these have been observed with rodents (Austen et al., 2013; Cole et
+al., 2011; Graham et al., 2006; Horne & Pearce, 2011; Pearce et al., 2001; 2006) and there are
+only a few observations in humans that revealed facilitation (Katz et al., 2014; Sturz et al.,
+2009; Sturz et al., 2010). What is unique about these is that participants had to learn about a
+spatial pattern rather than a single goal location, thus making it difficult to extrapolate from
+those findings to the current task in which there is a single goal location.
+The non-spatial (i.e., temporal) literature, however, suggests that one reason why we
+did not observe facilitation is that landmarks were not distant enough from the goal. For
+example, Urcelay and Miller (2009) used a Pavlovian fear conditioning preparation and
+observed overshadowing between auditory cues when there was no trace between cue
+termination and outcome presentation. When there was a 20-s trace between cue termination
+and shock presentation, the same cues resulted in facilitation instead of overshadowing.
+However, when the trace was 10 seconds, there was no overshadowing nor facilitation.
+Batsell and colleagues (Batsell et al., 2012) have observed a similar pattern in taste aversion.
+When two tastes were immediately followed by LiCl, there was reciprocal overshadowing
+between the tastes. When there was a 2-hour trace between flavor presentation and LiCl
+administration, the same tastes now facilitated each other. However, at intermediate trace
+intervals there was no overshadowing nor facilitation. Based on these results, we reasoned it
+could be possible that the explanation for not observing facilitation in Group Far (in
+Experiments 1 and 2) was not due to amount of training but instead because the landmarks
+were not distant enough from the goal location. Thus, the goal of Experiment 3 was to assess
+whether we could observe facilitation with landmarks that were more distant from the goal
+than those used in Experiments 1 and 2.
+Experiment 3
+Experiment 2 revealed a strong effect of spatial proximity on overshadowing, in that
+closer but not distal landmarks overshadowed the target ones. However, regardless of the
+extent of training, there was no evidence of facilitation. Urcelay (2017) reviewed the factors
+that determine the outcome of cue interactions (competition or facilitation) and argued that
+weak proximity may be a relevant, domain-general, factor involved in facilitation, as seen in
+Urcelay & Miller (2009). Evidence on this matter was later provided by Alcalá et al. (2023)
+manipulating action-outcome temporal contiguities in humans. Based on the evidence
+reviewed, we wanted to assess if longer goal-landmark distances (i.e., weaker spatial
+proximity) would turn overshadowing into facilitation.
+Thus, Experiment 3 was similar to Experiment 2 in that it included the same 4 groups
+and also 16 training trials. The main difference was that the overall size of the invisible
+boundary of the arena was enlarged so that landmarks could be moved 40 VUs further away
+from the goal (relative to previous experiments).
+Method
+Participants and Materials
+One hundred and fifty-nine participants (79 females, 79 males, and 1 participant
+preferred not to say) with a mean age of 27 (range 18-47 years) were recruited via Prolific
+and compensated for their time. They were randomly allocated to Groups Control (35
+participants), Close (59 participants), Medium (29 participants), and Far (36 participants).
+The task and procedure were the same as in Experiment 2 (including the same 4 groups and
+16 training trials). The main difference relative to previous experiments was that the
+landmarks were placed 40 VUs further away from the goal, and consequently, the size of the
+arena was also increased to accommodate for the larger landmark distances. Because this
+would render the task substantially more difficult than the versions used in Experiment 1 and
+2, for example by reducing detectability of the now more distal landmarks, we doubled the
+width of the landmarks from 2.5 to 5 VUs. In addition, to facilitate performance, the radius of
+the goal was doubled from 3 VUs to 6 VUs, and the training criterion on Trial 16 was 90 s
+instead of 60 s.
+Results
+Training. 34 participants (23 females, and 11 males) failed to reach the learning
+criterion, and were removed from the data analyses. The total sample size analyzed was
+composed of 125 participants (of which 68 identified as male, 56 identified as female, and 1
+that preferred to not to disclosure) with a mean age of 26 years (range 19-47). Groups Close,
+Medium, Far and Control comprised 50, 25, 26, and 24 participants, respectively.
+increasing training trials. A mixed ANOVA with a between-subjects factor of Group
+(Control, Close, Medium, and Far) and a within-subjects factor of Trial (1–16) revealed a
+significant main effect of Trial, F(12.63, 1527.77) = 65.99, p < .001, η p = .35, 90% CIs [31,
+.37], confirming that participants found the goal faster as training progressed. There was no
+effect of Group, F(3, 121) = 2.31, p = .080, η p = .05, [.00, .11], nor a Group x Trial
+interaction, F(37.88, 1527.77) = 1.30, p = .105, η p = .03, [.25, .31], which indicates that all
+groups performed at a similar level during training. A one-way ANOVA was conducted to
+th
+analyze the performance of the groups in the 16 , and last, training trial, and confirmed that
+there were no group differences in performance, F(3, 121) = .22, p = .884, η p = .01, [.00,
+.03].
+Test. The results of the goal-landmark distance errors estimations with the 90 and 110
+outperformed both Groups Close and Medium, indicative of overshadowing by close but not
+distal landmarks. A one-way ANOVA with Group as the independent variable (Control,
+Close, Medium and Far) was carried out. The analysis revealed significant differences
+between groups F(3, 121) = 8.72, p < .001, η p = .18, 90% CIs [.07, .26]. Follow-up
+Bonferroni-corrected post hoc tests revealed that Group Control significantly outperformed
+Group Close in estimating where the goal was located. Group Close’s performance was
+worse than that of Groups Medium and Far, and these did not differ from each other (nor
+from Group Control). These results reveal competition but not facilitation between
+landmarks.
+General Discussion
+The purpose of this study was twofold: first, we wanted to assess if parametric goal-
+landmark proximity manipulations may have a gradient effect on overshadowing when
+comparing the performances (i.e., estimating distances) of experimental groups to a control
+group (i.e., strong overshadowing with proximal goal-landmark distances and an attenuation
+of it when they become distant). Second, we wanted to test if additional practice (i.e., length
+of training) or more distal landmarks would result in facilitation of performance based on the
+target landmarks by the most distal landmarks of the array. In all three experiments, the
+absolute proximity of the target landmarks was kept constant across groups (including the
+control group) whereas the distance of the other landmarks was either closer to, or further
+from, the goal location. Although the parametric variations that we implemented did not
+result in facilitation of performance based on the target landmarks, all three experiments
+conclusively revealed that overshadowing between landmarks depends on spatial proximity,
+in line with previous results observed when assessing the effect of close and distal landmarks
+on learning about the geometric shape of an arena (Herrera et al., 2022).
+The results are consistent with previous work reported on food-storing birds (Goodyear
+& Kamil, 2004), and in humans (Herrera et al., 2024) in showing a “dose-dependent” effect
+of landmark distance on overshadowing, with the addition of a control group which enabled
+for direct comparisons between distance estimation abilities based on spatial proximity (all
+groups had in common the target landmarks). These findings show that the way the target
+landmark information is processed depends upon the relative distance of the other landmarks
+in the array. In other words, whereas the target landmarks are placed at the same distance
+across all groups, the degree of overshadowing varies depending on whether the nontarget
+landmarks are closer to the goal (Group Close) or further (Group Far). Test results across all
+experiments revealed a staggered degree of overshadowing, with Group Close showing the
+largest errors in estimating distances based on the target landmarks, followed by Group
+Medium, and Group Far, with the latter showing no difference when compared with the
+Control Group. In this manner, we observed overshadowing in groups Close and Medium
+(except in Experiment 3) and no overshadowing in Group Far, and to our knowledge this is
+the first time this is documented in a first-person navigation task with human participants.
+It is worth noting that Group Far in Experiments 1 and 2, which performed the best out
+of all the experimental groups, is equivalent to Group Close in Experiment 3 in terms of goal-
+landmark distances. Despite the increase in task difficulty in Experiment 3, the performance
+of Group Far is significantly better than that of Group Close. This reveals that learning to
+locate a goal with reference to a set of landmarks depends not only on the absolute distance
+set between them, but also on their relative distances with other cues available during
+learning.
+As mentioned, we were interested in assessing whether extended training (Experiments
+2 and 3) or placing landmarks more distal from the goal (Experiment 3) than the target
+landmarks would facilitate learning of the target landmarks. In Experiments 2 and 3,
+participants were trained for 16 trials rather than 6, and unlike the literature in other non-
+spatial tasks (Bellingham & Gillette, 1981; Reed & Quigley, 2019; Stout et al., 2003), we did
+not observe an attenuation of overshadowing, but a very similar pattern as in Experiment 1.
+This result is consistent with prior literature that has failed to observe an effect of practice in
+spatial tasks in which S-R associations are not relevant to find a goal (Holden et al., 2021;
+Kealy et al., 2008; Sturz et al., 2013). Hence, even in the absence of practice effects, these
+results replicate the basic finding that overshadowing depends on the spatial proximity of the
+cues, showing that the results are robust and replicate across different parameters.
+Of course, a question that remains to be addressed is why it proved difficult to observe
+facilitation among landmarks in human participants. Studies in nonhuman animals have
+sometimes revealed facilitation instead of overshadowing, but the exact reasons for these
+discrepant findings are not clear. Pearce et al., (2006) trained rats in different shaped pools
+with different walls painted in black or white and found facilitation as well as overshadowing
+depending on how these cues were arranged. These authors argued that the relative salience
+of the cue colors and the shape of the environment may be key factors for cue competition or
+facilitation to occur. In human participants, three studies have consistently observed
+facilitation of spatial learning by discrete cues when learning about a spatial configuration of
+locations. For example, Sturz et al. (2009) used a matrix of raised bins in which participants
+had to find a cross-shaped configuration of locations. The cross-shaped pattern could be
+presented during training alone or signaled by color cues on each of the locations. When
+tested in the absence of the color cues, participants trained with the color cues made fewer
+errors when locating the pattern of goal locations, a result that was later replicated in different
+setups and with parametric variations (Sturz et al., 2010; Katz et al., 2014).
+Studies in the nonspatial domain have readily observed the findings that we observed
+here. For example, in addition to spatial experiments with geometry as the target, Herrera and
+colleagues (Herrera et al., 2022) also reported that temporal contiguity determined
+overshadowing in predictive learning, with results consistent with the current report. That is,
+they only observed overshadowing with strong temporal contiguity, but overshadowing was
+attenuated with weak temporal contiguity. Using an action-outcome (i.e., instrumental) task
+in human participants, Alcalá et al. (2023) manipulated the temporal contiguity between an
+action and the outcome (2 vs 6s), and orthogonally signaled the traces with a salient stimulus
+(Signal vs No Signal). They observed that the salient signal overshadowed instrumental
+performance with a 2s trace between actions and outcomes but facilitated performance with a
+6s trace between actions and outcomes. That is, they observed a cross-over interaction
+between contiguity and the presence of the signal (also see Urcelay & Miller, 2009 for similar
+results in Pavlovian fear conditioning with rats, and Urcelay, 2017 for a revision).
+As mentioned above, the current results extend those of Herrera et al. (2022) in which
+proximity to the goal determined whether or not a landmark overshadowed navigation
+towards a goal on the basis of the geometric properties of the arena (and also in predictive
+learning as discussed above). We interpreted those findings in terms of Pearce’s configural
+model (1987). The model assumes that participants process environmental information in a
+configural manner. In our study, this would mean that in the experimental groups trained with
+four landmarks, all the landmarks of the array become integrated with the orientation cues in
+the background, as a single configuration that guides participants towards the goal. However,
+during test, when they are presented with a portion of the informational unit (i.e., the two
+target landmarks rather than the entire landmark array), this results in generalization
+decrement because what is tested is different from what was presented during training. In
+other words, generalization decrement results in poorer performance due to the dissimilarity
+between the information presented during training and the available information during test.
+Hence, the more similar both training and testing environments are, the less generalization
+decrement should be observed. Although Pearce (1987) was somewhat silent about the effect
+of contiguity manipulations on generalization, in Herrera et al. (2022) we made the additional
+assumption that weaker contiguity attenuates processing of unique elements in the
+generalization rule, and this results in more generalization from training to test. In other
+words, as contiguity becomes weaker, there is more generalization from training to test, and
+this provides an account of the results observed here. Since the publication of that report, it
+has been brought to our attention that generalization, which depends on similarity, cannot be
+more than one, otherwise the model would incorrectly predict “hyper generalization” or more
+responding at test to a compound AX when only one of the elements (X+) has been trained .
+Thus, similarity cannot be more than a unit as we proposed then. With this being
+acknowledged, the revised model can still predict the absence of overshadowing with weaker
+contiguity, and the observation of facilitation. The latter can be expected because training a
+compound AX, requires higher salience in the configural unit than training a single element
+X, and therefore even when similarity is capped at one, more salience during training should
+result in more associative strength, which in turn with little to no generalization decrement
+anticipates the facilitation effect. Applied to the present experiments, when nontarget
+landmarks are closer to the goal than the target landmarks, removal of nontarget landmarks
+(as was the case in Group Close) has a greater impact on performance than removal of
+nontarget landmarks which are more distal from the goal location than target landmarks (as in
+Group Far).
+The explanation outlined above is not unique in anticipating the present results. In
+answering how different spatial cues are combined in an environment to guide navigation,
+Cheng et al., (2007), building on a Bayesian framework, argued that subjects tend to assign
+different weights to spatial cues based on how close they are to the goal. Landmarks which
+are close to the goal are given more weight and this enables these landmarks to overshadow
+the target landmarks, whereas landmarks which are further away from the goal relative to the
+target landmarks are attributed less weight, resulting in an attenuation of overshadowing. To
+put it differently, when, among many different landmarks, there is one that stands out from
+the rest (in our task, it would be the landmarks closer to the goal), the weights given to the
+landmarks are distributed unevenly, with more weight being allocated to the more salient
+landmark, which ultimately leads to overshadowing of the more distal, lower weight
+landmarks. However, if the nontarget landmarks are further away from the goal relative to the
+target landmark then they are processed as a similar source of information. As such, they are
+likely to be assigned similar weights and will therefore become integrated. Building on this,
+Chen et al., (2017) argued that cue integration might be happening even in the presence of
+competition, as the performances do not drop to chance levels. The varying degree of
+overshadowing that we see in our results, and especially the absence of competition in Group
+Far, whose performance is not different from Group Control, might indicate that there is an
+interplay of competition and integration under intermediate to low interference conditions
+(i.e., Medium and Far Groups), happening in a linear fashion rather than in absolute values.
+Overall, our results conclusively demonstrate in human participants with a first-person
+navigation task that overshadowing and its absence depend on spatial proximity. Much
+research in spatial cognition has been devoted to discriminating between domain-general
+(Mackintosh, 1975; McGregor, 2016; Pearce, 1987) and domain-specific explanations
+(Cheng, 1986; Doeller & Burgess, 2008), with the former anticipating overshadowing in the
+spatial domain and the latter anticipating absence of overshadowing. Whilst evidence for both
+outcomes is available, there is no clarity as to when one should observe overshadowing and
+when not. The current results (replicated three times) indicate that proximity is a critical
+determinant of overshadowing between landmarks in humans, and we interpret these findings
+in terms of domain-general theories of learning (Pearce, 1987), in line with other reports such
+as that by Gilroy and Pearce (2014).
+The current results reveal that spatial distance is a critical determinant for competition
+between landmarks to occur. Despite there being a long-standing outcome-driven debate
+leading to two approaches: domain-specific (i.e., based on the absence of competition;
+Cheng, 1986; Doeller & Burgess, 2008), and domain-general theories of learning (i.e., based
+on cue competition effects; Mackintosh, 1975; Miller & Shettleworth, 2007; Pearce, 1987),
+here we provide a reconciliatory theoretical framework that can explain how competition
+effects vary through a continuum (Herrera et al., 2022).

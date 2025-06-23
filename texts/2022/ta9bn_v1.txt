@@ -1,0 +1,1265 @@
+Distribution-dependent representations in auditory category
+learning and generalization
+4 Zhenzhong Gan 1,2,3, Lurong Zheng 1,2,3, Suiping Wang 1,*, Gangyi Feng 4,5,*
+6 1 Philosophy and Social Science Laboratory of Reading and Development in Children and
+7 Adolescents (South China Normal University), Ministry of Education, Guangzhou, Guangdong,
+8 China
+9 2 Guangdong Provincial Key Laboratory of Mental Health and Cognitive Science, South China
+10 Normal University, Guangzhou, Guangdong, China
+11 3 School of Psychology, South China Normal University, Guangzhou, Guangdong, China
+12 4 Department of Linguistics and Modern Languages, The Chinese University of Hong Kong,
+13 Shatin, N.T., Hong Kong SAR, China
+14 5 Brain and Mind Institute, The Chinese University of Hong Kong, Shatin, N.T., Hong Kong
+15 SAR, China
+17 * Correspondence:
+18 Gangyi Feng: g.feng@cuhk.edu.hk
+19 Suiping Wang: wangsuiping@m.scnu.edu.cn
+1 / 43
+22 Abstract
+23 A fundamental objective in Auditory Sciences is understanding how people learn to generalize
+24 auditory category knowledge in new situations. How we generalize to novel scenarios speaks
+25 to the nature of emergent category representations and generalization mechanisms in handling
+26 perceptual variabilities and novelty. The dual learning system (DLS) models propose that
+27 auditory category learning involves an explicit, hypothesis-testing learning system, which is
+28 optimal for learning rule-based (RB) categories, and an implicit, procedural-based learning
+29 system, which is optimal for learning categories requiring pre-decisional information
+30 integration (II) across acoustic dimensions. Although DLS describes distinct mechanisms of
+31 two types of category learning, it is yet clear the nature of acquired representations and how
+32 we transfer them to new contexts. Here, we conducted three experiments to examine
+33 differences between II and RB category representations by examining what acoustic and
+34 perceptual variabilities affect learners’ generalization success. Learners can generalize to
+35 different sets of untrained sounds after only eight training blocks for both II and RB categories.
+36 The category structures and novel contexts differentially modulated the generalization success.
+37 The II learners significantly decreased generalization performances when categorizing new
+38 items derived from an untrained perceptual area and in a context with more distributed samples.
+39 In contrast, RB learners’ generalizations are resistant to changes in perceptual regions but are
+40 sensitive to changes in sound dispersity. Representational similarity modeling revealed that the
+41 generalization in the more dispersed sampling context was accomplished differently by II and
+42 RB learners. II learners increased representations of perceptual similarity and decision distance
+43 to compensate for the decreased transfer of category representations, whereas the RB learners
+44 used a more computational cost strategy by default, computing the decision-bound distance to
+45 guide generalization decisions. These results suggest that distinct representations emerged after
+46 learning the two types of category structures and using different strategies and flexible
+47 mechanisms in resolving generalization challenges when facing novel perceptual variability in
+48 new contexts. These findings provide new evidence for dissociated representations of auditory
+49 categories and reveal novel generalization mechanisms in resolving different variabilities to
+50 maintain perceptual constancy.
+52 Keywords: auditory category learning, generalization, representation nature, dual learning
+53 system, information integration, rule-based learning
+2 / 43
+55 Introduction
+56 Category learning ability allows us to learn to group items based on shared features or common
+57 regularities across individual examples. The grouping knowledge acquired after learning is
+58 considered abstract category representations guiding us to categorize items in new scenarios
+59 (Kruschke, 1996; Smith and Minda, 1998, 2002; Love et al., 2004; Wills et al., 2006).
+60 Successful generalization of learned category knowledge requires coping with various
+61 variabilities of within- and between-category exemplars. Failure to do so would affect critical
+62 decisions in our lives and even survival (e.g., under-generalization: missing detecting early
+63 signatures of serious diseases, or over-generalization: categorizing poison mushrooms as
+64 eatable). Therefore, category learning requires forming mental representations to support an
+65 appropriate level of generalization. However, we are not yet fully understand the nature of
+66 these category representations and the differences in representational characteristics when
+67 learning different category structures.
+68 Category representations are formed in the process of interacting with category
+69 members, where the structure and distributional patterns of the category members affect how
+70 we learn and the nature of acquired category representations (Ashby and Maddox, 2005, 2011;
+71 Chandrasekaran et al., 2014a, 2014b). Previous behavioral and neuroimaging studies suggest
+72 that at least two distinct learning systems are involved in category learning across visual (e.g.,
+73 Ashby and Maddox, 2005, 2011; Smith and Grossman, 2008) and auditory modalities
+74 (Chandrasekaran et al., 2014a, 2014b; Feng et al., 2021b). An explicit, hypothesis-testing
+75 learning system is considered to be optimal for learning rule-based (RB) categories, where
+76 those categories can be categorized based on verbalized rules. In contrast, an implicit,
+77 procedural-learning-based system is hypothesized to be optimal for learning category
+78 structures requiring information integration (II) across multiple dimensions before making a
+79 categorization decision (Ashby and Maddox, 2005; Ashby and Valentin, 2005).
+80 Previous studies have demonstrated various factors that differentially affect the learning
+81 of II and RB category structures. For example, feedback types (instant vs. delayed; with vs.
+82 without feedback) affect learning II categories more than RB’s (Maddox et al., 2003; Maddox
+83 and Ing, 2005); category-response mapping is more critical and specific for II category learning
+84 than that of RB (Ashby et al., 2003; Maddox et al., 2004b, 2007, 2010). In contrast, RB
+85 category learning is more affected by executive-function-related factors, e.g., concurrent
+86 working memory task (Waldron and Ashby, 2001; Filoteo et al., 2010), stress (Ell et al., 2011),
+87 feedback processing interference (Maddox et al., 2004a), number of categories (i.e., limitation
+88 of working memory) (Maddox et al., 2004c). These findings support the dual learning system
+3 / 43
+89 (DLS) model that distinct neural and cognitive systems are involved in learning II and RB
+90 categories.
+91 Different category learning tasks recruiting distinct learning systems provides a helpful
+92 framework to reason that distinct natures of category representations emerged after learning
+93 (due to engaging different learning processes), and distinct mechanisms support learners to
+94 generalize acquired representations to categorize new items that are different from training
+95 samples in various levels of similarity. However, these predictions have not been
+96 systematically tested to date, as we know, and there is no detailed description of the
+97 representation nature and generalization mechanisms. In the present study, we aim to test these
+98 predictions and reveal the abstraction levels of category representations of II and RB categories
+99 by modeling learners’ categorization responses with representational similarity models and
+100 examining how well learners generalize the learned category knowledge to novel contexts.
+101 Generalization and categorization require accessing our learned category knowledge to
+102 guide the judgment of within- and between-category members. Types and degrees of sampling
+103 variabilities affect how well we generalize the learned category knowledge. To resolve
+104 generalization challenges imposed by stimulus novelty and variabilities, we must form
+105 category representations abstracted from individual exemplars-specific features at appropriate
+106 levels (Raviv et al., 2022). The abstract form of category representations was previously
+107 considered prototypes or rules. Prototype-based theories propose that category membership is
+108 determined by the distance or similarity between members and a category prototype that is
+109 abstracted from individual training samples (Posner and Keele, 1968; Reed, 1972; Rosch, 1973;
+110 Homa et al., 1981; Smith and Minda, 2000). Rule or regularity derived from the hypothesis-
+111 testing-based learning process is another abstract form of category representations. A rule may
+112 refer to a dimensional boundary (e.g., Category A consists of larger items, while Category B
+113 consists of smaller ones; a decision is based on the dimension of size) or complex combinations
+114 of features (simultaneous presentation of features a and b belongs to Category A, while the
+115 presentation of features a and c belongs to Category B) (Erickson and Kruschke, 1998; for
+116 other instantiations of RB models, please see Ashby and Maddox, 1992; Maddox and Ashby,
+117 1993). RB and prototype-based hypotheses would predict that surface variations in a new
+118 context are less likely to affect the generalization of these abstract representations.
+119 Successful generalization may also depend on exemplar-specific representations
+120 acquired from the perceptual properties of training samples (Erickson and Kruschke, 1998,
+121 2002). Exemplar-based models assume that categorizing new stimuli are based on the
+122 similarities between new items and previously-experienced individual exemplars in a
+4 / 43
+123 psychological space (Medin and Schaffer, 1978; Estes, 1986; Nosofsky, 1986, 2011).
+124 Exemplar- or feature-specific category representations was emerged and considered dominant
+125 in learning categories with a II structure. For example, in the visual domains, II category
+126 learners performed significantly less accurately when categorizing new items sampled from
+127 untrained locations in the stimulus space (Casale et al., 2012). Similarly, changes in stimulus
+128 dimensions significantly affected generalization performances even though the dimensions are
+129 irrelevant to categorization (Filoteo et al., 2010; Grimm and Maddox, 2013). Rosedahl et al.
+130 (2018) reported a more striking finding: learners exposed to items presented in one visual field
+131 failed to categorize the same items in another visual field, suggesting visual-field-dependent
+132 representations emerged after learning II categories. However, other studies revealed a
+133 different pattern that II category learners can generalize learned representations to categorize
+134 items from untrained perceptual locations in the visual domain (Nosofsky et al., 2005; Seger et
+135 al., 2015). These mixed findings suggest that the abstractness of II category representations are
+136 required further investigation.
+137 Here we designed novel generalization paradigms to examine the nature and
+138 abstractness of representations that emerged after learning auditory categories with II and RB
+139 structures. We generated well-controlled non-speech auditory category structures with the
+140 same perceptual dimensions: spectral and temporal modulations. These dimensions are
+141 fundamentals of complex acoustic signals like music and speech, where their representations
+142 are robustly associated with the activations in the auditory cortex (Schönwiesner and Zatorre,
+143 2009). We sampled sounds from two-category II and RB structures separately in the two-
+144 dimensional space, where the RB structure prefers categorization using an explicit decisional
+145 criterion on the spectral-modulation dimension (high vs. low), and the II structure that was
+146 created by rotating the RB structure by 45° anticlockwise requires integrating information from
+147 the two dimensions. Importantly, we devised four generalization tests (see Fig. 1 for a graphical
+148 illustration) by sampling new sounds that were different from the training samples in different
+149 degrees to probe the abstractness of the learned category knowledge. The four tests consist of
+150 a baseline generalization test without inducing new variations, but the items were not exposed
+151 in the training sessions; a “fundamental frequency (F0)” test where a change in acoustic
+152 dimension (i.e., F0) irrelevant to the categorization was induced; a “new dispersity (ND)” test
+153 where the dispersity of the generalization sounds increased compared to the training samples
+154 while the sampling range in the perceptual space remains unchanged; and a “new location (NL)”
+155 test where the generalization sounds were sampled from an untrained region of the perceptual
+156 space. Successful generalization to the four tests requires learners to form and transfer
+5 / 43
+157 representations with different abstraction levels, ranging from generalizing category
+158 knowledge across items with surface acoustic differences (F0 test) to items with different
+159 distributional patterns (i.e., ND test: sound dispersity; NL test: perceptual areas).
+160 According to the DLS model, learning RB categories is dominated by an explicit
+161 learning system associated with working memory and executive hypothesis-testing functions
+162 (Chandrasekaran et al., 2014a, 2014b; Feng et al., 2021b). Thus, DLS predicts that RB category
+163 representations are abstracted from individual training samples and the associated features. RB
+164 learners can generalize the learned category knowledge to untrained items with different
+165 variabilities. If this is the case, we would predict that RB learners perform equally well across
+166 the four generalization tests. In contrast, II auditory category learning is hypothesized to be
+167 dominated by an implicit learning system that maps sounds onto categories via corticostriatal
+168 systems (Chandrasekaran et al., 2014a, 2014b; Feng et al., 2021b). This implicit sound-to-
+169 category mapping learning is not consciously penetrable and requires accessing and integrating
+170 information from multiple dimensions (Ashby et al., 2003; Maddox et al., 2007; Smith et al.,
+171 2015; Rosedahl et al., 2018). Therefore, the DLS model predicts that II category knowledge
+172 tightly pertains to sample-specific features and the weighting of the features in perceptual space.
+173 If this hypothesis is correct, we would predict that II learners will decrease generalization
+174 performances in F0, ND, and NL tests compared to the baseline test. The degree of
+175 generalization decrease depends on the abstractness of II representations. If the emergent II
+176 representations are strictly specific to exemplar features, any acoustic changes will affect
+177 generalization performance equally. However, if the representations are not strictly exemplar-
+178 specific, II learners can resist certain degrees of acoustic and perceptual changes. Thus, the
+179 generalization performance will be as a function of the four tests (e.g., baseline > F0 > ND >
+180 NL).
+181 We conducted three auditory category learning experiments to test the DLS model and
+182 the above predictions, focusing on the nature of II and RB category representations and
+183 generalization mechanisms. Across three experiments, we also examined whether
+184 categorization-based training (in Exp. 2.1 vs. observation-based training in Exp. 1) and
+185 providing feedback (Exp. 2.2) could facilitate category learning and generalization and alter
+186 the nature of emergent representations. Numerous studies showed that category training
+187 procedures modulate learning outcomes (e.g., Ashby et al., 1999, 2002; Goudbeek et al., 2008,
+188 2009; Levering and Kurtz, 2015). Compared to observational training, categorization training
+189 could facilitate category learning by learning to attend to discriminative features among
+190 categories while ignoring within-category item variabilities (Hsu and Griffiths, 2010; Levering
+6 / 43
+191 and Kurtz, 2015). In addition, providing immediate feedback was considered a prerequisite for
+192 learning II categories (Maddox et al., 2003; Maddox and Ing, 2005). Specifically, feedback
+193 facilitates performances in learning auditory and speech categories (Goudbeek et al., 2009).
+194 Participants were constrained to use a sub-optimal strategy to learn categories without feedback
+195 (Ashby et al., 1999). We examined to which extent the two factors augment the differences
+196 between II and RB category representations. In addition to categorization accuracies averaged
+197 across trials, we modeled trial-by-trial categorization responses with representational similarity
+198 analysis (RSA) (Kriegeskorte et al., 2008) for each generalization test to reveal the nature of
+199 emergent representations of each category structure. With pre-defined representational models,
+200 RSA enables us to reveal how different informational content besides category knowledge
+201 emerged in generalization when facing different changes.
+Materials and Methods
+204 Participants
+205 A total of 104 adults (88 females, age range = 18-27 years) were recruited from South China
+206 Normal University communities for three auditory-category learning and generalization
+207 experiments. For each experiment, participants were assigned to one of the training groups
+208 according to the category structures (i.e., II or RB). In Experiment 1, two participants’ data
+209 were removed from further analyses because they misunderstood the task instruction (i.e.,
+210 performed categorization in Exp. 1). There were 35 participants left (II group: mean age =
+211 21.12, SD = 2.74, N = 17; RB group: mean age = 19.39, SD = 1.69, N = 18). In Experiment 2,
+212 two participants’ data were removed because they missed more than one-third of test trials in
+213 at least three generalization tests. There are 32 participants in Exp. 2.1 (II group: mean age =
+214 19.50, SD = 1.37, N = 16; RB group: mean age = 20.31, SD = 1.58, N = 16), and 33 participants
+215 in Exp. 2.2 (II group: mean age = 19.75, SD = 1.98, N = 16; RB group: mean age = 20, SD =
+216 2.15, N = 17). These six groups of participants across the three experiments were matched in
+217 age (chi-square = 7.570, p = 0.182) and gender (F = 1.770, p = 0.127). All participants
+(5,94)
+218 reported normal hearing and had normal or corrected-to-normal vision. No participant reported
+219 a history of neurological disorders or reading disabilities. All materials and protocols were
+220 approved by the ethics review board of the School of Psychology at South China Normal
+221 University and the Joint Chinese University of Hong Kong – New Territories East Cluster
+222 Clinical Research Ethics Committee. Written informed consent was obtained before the
+223 experiment.
+7 / 43
+225 Stimulus Construction
+226 Ripple sounds were generated by modulating a white noise stimulus, varying along spectral
+227 and temporal modulation dimensions (duration = 500 ms, digital sampling rate = 44.1 kHz).
+228 The spectral-modulation dimension ranges from 0.1 to 2 cyc/oct. The temporal-modulation
+229 dimension ranges from 4 to 10 Hz (Fig. 1). We selected these modulation ranges since they are
+230 strongly represented in the human auditory cortex (Schönwiesner and Zatorre, 2009) and reflect
+231 the complexity of natural spectro-temporal variations in speech (Elliott and Theunissen, 2009).
+232 All sounds were synthesized with in-house scripts with MATLAB (Mathworks, Natick, MA,
+233 USA), and the RMS amplitude was normalized to 80 dB.
+234 Two sets of ripple sounds were generated for category training based on predefined
+235 two-categories II and RB structures, respectively. We created two bivariate distributions in a
+236 normalized two-dimensional space along the positive diagonal to generate sounds of the II
+237 categories. This normalized space ranges from 0 to 1 along spectral and temporal modulation
+238 dimensions. The centers of two II categories are in the locations of [temp. = 0.39, spec. = 0.61]
+239 and [temp. = 0.61, spec. = 0.39]. The standard deviation (SD) is 0.15 for the longer axis and
+240 0.05 for the shorter axis with an orthogonal design. The optimal category bound is along the
+241 positive diagonal (Fig. 1A upper panel, red dashed lines). We randomly sampled 480 ripple
+242 sounds for the II category structure. Values along each dimension were logarithmically mapped
+243 onto temporal and spectral modulation dimensions. The RB category sounds were generated
+244 by rotating the II samples by 45° anticlockwise, and the centers of the two categories were
+245 shifted to [temp. = 0.55, spec. = 0.35] and [temp. = 0.55, spec. = 0.65] (Fig. 1A lower panel).
+246 The optimal category bound for the RB sounds perpendicular to the spectral modulation
+247 dimension at 0.45 cyc/oct (Fig. 1A lower panel, red dashed lines).
+8 / 43
+250 Fig. 1. Ripple sounds of II and RB category structures used for training (A) and generalization
+251 tests (B). Two categories of sounds are plotted in different colors (Category 1: red, Category 2:
+252 blue) in a two-dimensional (i.e., spectral and temporal modulation dimensions) space. The red
+253 dashed lines represent the optimal boundaries separating the two categories. Dashed ellipses
+254 represent the coverage regions of the training samples. Sampling parameters (i.e., F0 and
+255 dispersity) are listed at the top of each graph. F0 = fundamental frequency; SD = standard
+256 deviation of each within-category sampling distribution.
+258 To uncover the nature of emergent representations of auditory II and RB categories, we
+259 examined the extent to which the learners generalized the learned category knowledge to four
+260 different sets of generalization sounds that deviated from the training samples in acoustic and
+261 distributional properties (see Fig. 1B for a graphical illustration). In the control test (CT), the
+262 new sounds were sampled from the same distribution as the training samples but not exposed
+263 during training. The CT serves as a baseline of generalization. Any generalization
+264 performances increase or decrease in other tests compared to CT could be due to the changes
+265 in acoustic or contextual factors in those tests. In the “fundamental frequency (F0)” test, we
+266 introduced a new acoustic dimension irrelevant to the categorization. The F0 of these new
+267 sounds was changed from 150 Hz (used in all experiments and generalization tests except the
+268 F0 test) to 250 Hz. This manipulation is similar to the change from a male to a female speaker
+269 to produce sounds. In the “new dispersity (ND)” test, we increased within-category sound
+270 dispersity in this generalization context (i.e., more sampling variations for each category than
+9 / 43
+271 the training sounds). Dispersity of the ND sounds increased in both the long and short axes
+272 (from [SD = 0.15, SD = 0.05] to [SD = 0.22, SD = 0.07]), while the coverage areas
+long short long short
+273 in the stimulus space (i.e., Fig. 2, dashed ellipse) remain unchanged. In the “new location (NL)”
+274 test, we sampled novel sounds from a location outside the coverage range of the training
+275 samples in the stimulus space. The category distributions were moved away along the optimal
+276 decision bound to the left edge of the training samples, resulting in new centers of the two
+277 categories (i.e., coordinate of the centers; II category 1: [temp. = 0.11, spec. = 0.32], category
+278 2: [temp. = 0.32, spec. = 0.11]; RB category 1: [temp. = 0.15, spec. = 0.35], category 2: [temp.
+279 = 0.15, spec. = 0.65]). The new centers are 2.67 SDs away from the centers of the training
+280 samples. These four types of manipulation were applied equally to II and RB categories to
+281 generate four generalization tests (Fig. 1B). We generated 240 ripple sounds for each
+282 generalization test.
+284 Training and generalization procedures
+285 We conducted three experiments by manipulating the training procedure to examine whether
+286 categorization and providing feedback could facilitate category learning and generalization. In
+287 Exp. 1, participants were asked to learn to associate category labels with sounds via
+288 observational training (OT) procedure (Fig. 2A, left panel). For each training trial, a fixation
+289 cross was presented for 200 ms, followed by a category label (i.e., “类别 1” or “类别 2”)
+290 displayed on the screen. One second after the category label appeared, a sound was presented
+291 for 500 ms. Participants were instructed to learn the associations between sounds and category
+292 labels without making any categorization response. After each trial, a jittered inter-trial interval
+293 (randomly sampling between 1 and 2 seconds) was added to minimize the effects of temporal
+294 prediction. Each participant completed eight blocks of OT. Each training block consists of 60
+295 trials.
+296 Participants were asked to complete the four generalization tests twice, one
+297 immediately following training and another one week after (Fig. 2B). The CT was always
+298 performed first to minimize the influence of the other tests. The order of the other three tests
+299 (i.e., F0, ND, and NL) was counterbalanced across participants. Each generalization test
+300 consists of two blocks (60 trials/block). The training and testing were conducted in a sound-
+301 attenuated booth using E-Prime software (Psychology Software Tools, Inc., Sharpsburg, PA,
+302 USA). The sounds were presented over headphones (Sennheiser HD280 pro) at a comfortable
+303 listening level.
+10 / 43
+306 Fig. 2. Illustration of training paradigms (A) and experimental procedures (B) used for the three
+307 experiments to train participants to learn auditory categories. A, three category training
+308 paradigms. The time frames for categorization response and feedback presentation are
+309 highlighted in red. B, training and testing procedures for each experiment.
+311 In Exp. 2.1, participants first completed four blocks of OT (session 1) and performed
+312 another four blocks of categorization training with no feedback (CT-NF) in session 2 (Fig. 2B).
+313 The OT procedure was the same as Exp. 1. In the CT-NF sessions, for each trial, a fixation
+314 cross was presented for 200 ms, followed by a ripple sound for 500 ms. Participants were
+315 instructed to categorize sounds into one of the two categories without feedback (Fig. 2A,
+316 middle panel). In Exp. 2.2, the same training paradigm was used as the Exp. 2.1 except for
+317 providing corrective feedback for each categorization response (i.e., CT-WF, see Fig. 2A right
+318 panel) in the training session 2. Visual feedback (i.e., “Right” or “Wrong”) was displayed for
+319 500 ms after each response. If participants failed to respond within 2 seconds following the
+320 sound onset, cautionary feedback was presented (i.e., “No response”). A jittered inter-trial
+321 interval was added after each trial. The generalization test is a categorization task without
+322 providing feedback, the same as the CT-NF. The test procedure was the same across the three
+323 experiments.
+11 / 43
+325 Data analysis
+326 Representation modeling
+327 Although categorization accuracy provides an overall performance for each generalization test,
+328 it does not tell us how sound-by-sound variabilities in response patterns and category
+329 confusions link with category knowledge acquired in training. Therefore, we employed a
+330 representational similarity analysis (RSA) approach (Kriegeskorte et al., 2008; Feng et al.,
+331 2021c) to examine the degree of category representations applied to each test and whether there
+332 are additional sampling-related information emerged in aid of generalization. We calculated
+333 representation similarities between three pre-defined representation models and categorization
+334 response confusions across learner groups and experiments.
+337 Fig. 3. Representational similarity analysis procedure for modeling response confusion patterns
+338 to reveal the nature of emergent representations in generalization. A, three representation
+339 models were pre-defined based on category labels, bound-based decision distance, and center-
+340 based perceptual similarity. B, illustration of a response confusion matrix and representative
+341 examples of response confusion matrices for the four generalization tests.
+12 / 43
+343 We constructed three representation models (see Fig. 3A) based on binary category
+344 labels, bound-based decision distance, and center-based perceptual similarity from the training
+345 samples to uncover the nature of emergent representations in generalization. These models
+346 reflect three types of category-related information that the learners could acquire during
+347 learning. These models are operationally defined by representational dissimilarity matrices
+348 (RDMs) to fit the behavioral response RDMs derived from trial-by-trial categorization
+349 response patterns (Fig. 3B).
+350 The category model (and the corresponding RDM) represents abstract category labels
+351 and is designed to have only two values: 0 if two sounds are from the same category or 1 if
+352 they are from different categories. The bound-based decision distance model was created based
+353 on the Euclidean distance between each sound and the optimal category bound in the
+354 normalized spectral-temporal-modulation space (Fig. 3A). The center-based perceptual
+355 similarity model was created based on the Euclidean distance between the center of each
+356 category and every sound in the 2-dimensional space. The following equation was used to
+357 convert the Euclidean distance to the within-category and between-category perceptual
+358 similarity (PS) for each sound:
+"#
+359 𝑃𝑆 = 𝑒 !,# .
+"#
+360 𝐷 denotes Euclidean distance between sound i and the center of category C1 or C2; 𝑒 !,#
+!,%
+361 denotes the PS of sound i to category C1 or C2. These PSs were first normalized by scaling
+362 between 0 and 1, then converted to dissimilarities (i.e., one minus similarities) to generate the
+363 model RDM. These model RDMs were constructed based on training samples and applied to
+364 fit response RDMs for each generalization test. High model fittings indicate the robust transfer
+365 of the category and sound-related knowledge acquired in training to the generalization tests.
+366 To calculate the model fit of each model in each generalization test, we first computed
+367 a response RDM based on trial-by-trial responses for each block of the tests. Suppose two
+368 sounds are responded with the same key, their dissimilarity equal 0, otherwise 1. We sorted
+369 items in the response RDM based on their category labels and location in the stimulus space
+370 (see Fig. 3B for representative response RDMs). To fit the response RDMs, we generated the
+371 pre-defined model RDMs based on the sampling distributions of II and RB structures used in
+372 training sessions separately. To avoid sampling bias due to a limited number of sounds in each
+373 block, we conducted sampling simulations with 10,000 iterations for each model RDM. A
+374 model RDM was generated for each simulation and correlated with the response RDMs with
+13 / 43
+375 Spearman correlation. Average correlation rho was computed for each test and subject. We
+376 also examined the unique contribution of each model with a partial correlation approach to
+377 control for the variance of the other two models.
+379 Mixed effects modeling
+380 We analyzed participants’ categorization accuracy (ACC), response time, and RSA model fits
+381 using linear mixed-effects regression (LMER) analysis. We aim to examine the effects of the
+382 generalization test and category structure (II vs. RB learners) on generalization accuracy and
+383 model fit for each experiment. We also directly compared the effects of generalization tests
+384 (i.e., F0 vs. CT; ND vs. CT; NL vs. CT) across the three experiments to examine whether the
+385 training procedure modulates generalization performances. The fixed effects of interest were
+386 the category structure and four generalization tests. The LMER analyses were performed with
+387 the software R (version 4.1.0). We analyzed the variances of the LMER models to reveal the
+388 statistical significance of the fixed factors and the interaction effects. Effect sizes were
+Results
+392 Experiment 1
+393 Both II and RB learners performed significantly above chance (0.5) in the four generalization
+394 tests conducted immediately after training (Bonferroni-corrected ps < 0.01, see Fig. 4A). We
+395 consider CT as the baseline test of generalization because the sounds in this test were generated
+396 from the same sampling distribution as the training samples. Thus, any differences in
+397 performance between CT and the other three tests are presumable due to the differences
+398 between training and generalization samples in sound properties. For II learners, planned
+399 comparisons revealed that the categorization accuracy in the NL test was significantly lower
+400 than CT test (t = -6.103, p < 0.001, Cohen d = -1.142), while no significant difference was
+(16)
+401 found in the F0 vs. CT (t = 0.460, p = 1, Cohen d = 0.048) or ND vs. CT comparison (t =
+(16) (16)
+402 -2.334, p = 0.099, Cohen d = -0.369). On the contrary, for RB learners, the categorization
+403 accuracy was significantly lower in F0 (t = -2.976, p = 0.025, Cohen d = -0.512), but not in
+(17)
+404 ND (t = -2.178, p = 0.131, Cohen d = -0.289) or NL tests (t = -0.703, p = 1, Cohen d = -
+(17) (17)
+406 Bonferroni-corrected; the same applies hereinafter).
+14 / 43
+407 The representation modeling of the category model showed similar patterns as the
+409 chance (i.e., rho = 0) across the four tests and two learner groups (Bonferroni-corrected ps <
+410 0.01), indicating category representations were transferred in the generalization tests
+411 immediately after training. Planned comparisons showed the same significance patterns as that
+412 of the categorization accuracy: II learners, NL vs. CT (t = -4.856, p < 0.001, Cohen d = -
+(16)
+413 1.117); RB learners, F0 vs. CT (t = -3.312, p = 0.012, Cohen d = -0.531). No other
+(17)
+417 Fig. 4. Generalization performance and model fit of the category model across four
+418 generalization tests in Exp. 1. A&B, generalization accuracy and model fit of the immediate
+419 test session. C&D, generalization accuracy and modeling fit of the test session conducted one
+420 week after training. Red lines with arrows indicate significant differences between CT and the
+421 other three tests. Asterisks represent the above-chance statistical significance (Bonferroni-
+422 corrected p-values < 0.05) of each generalization test for each measure.
+424 We conducted the same generalization tests one week after training to examine whether
+425 the representation properties change over time. Overall, generalization patterns were similar to
+426 those found in the immediate tests (Fig. 4C&D). For categorization accuracy (Fig. 4C),
+427 generalization performances were significantly lower in ND and NL tests than that in CT for
+428 II learners (ND vs. CT: t = -2.775, p = 0.041, Cohen d = -0.429; NL vs. CT: t = -2.935, p
+(16) (16)
+429 = 0.029, Cohen d = -0.582; F0 vs. CT: t = -1.435, p = 0.512, Cohen d = -0.137), similar to
+(16)
+15 / 43
+430 the immediate tests. However, no planned comparison was significant for RB learners (see Fig.
+433 showed that the model fits were significantly lower in ND and NL tests than that in CT for II
+434 learners (ND vs. CT: t = -2.998, p = 0.026, Cohen d = -0.459; NL vs. CT: t = -3.004, p =
+(16) (16)
+435 0.025, Cohen d = -0.657; F0 vs. CT: t = -1.330, p = 0.606, Cohen d = -0.170), indicating
+(16)
+436 reduced category representations in the two tests. For RB learners, the pattern of model fits
+437 was different from the immediate tests. Compared to CT, the category model fits in ND were
+438 significantly decreased (t = -3.367, p = 0.011, Cohen d = -0.637), but increased model fits
+(17)
+439 were found in NL (t = 3.425, p = 0.010, Cohen d = 0.778), indicating a dissociated pattern
+(17)
+440 in the two tests for RB learners. No significant difference was found between F0 and CT test
+441 (t = 1.235, p = 0.701, Cohen d = 0.206).
+(17)
+443 Experiment 2
+444 Overall performance in training
+445 During categorization training, participants from both learner groups performed significantly
+446 better than chance in training session 2 (see Fig. S1 in Supplementary). Specifically, the
+447 categorization accuracy in the last training block (i.e., block 8) was significantly higher than
+448 the chance for both II (Exp. 2.1: t = 17.081, p < 0.001, Cohen d = 6.039; Exp. 2.2: t =
+(15) (15)
+449 32.023, p < 0.001, Cohen d = 11.322) and RB learners (Exp. 2.1: t = 8.330, p < 0.001, Cohen
+(15)
+450 d = 2.945; Exp. 2.2: t = 7.263, p < 0.001, Cohen d = 2.491). II and RB learners were
+(16)
+451 performed similarly at the end of training (Exp. 2.1: t = 1.063, p = 0.592, Cohen d = 0.376;
+(30)
+452 Exp. 2.2: t = 1.900, p = 0.134, Cohen d = 0.662).
+(31)
+453 For Exp. 2.1 (CT without feedback), LMER revealed a significant main effect of
+454 category structure (F = 17.185, p < 0.001, partial η2 = 0.12) and a category-structure-
+(1, 127.35)
+455 by-training-block interaction (F = 7.266, p = 0.008, partial η2 = 0.07), while the main effect
+(1, 96)
+456 of training block was not significant (F = 0.708, p = 0.402, partial η2 < 0.01). Simple effect
+(1, 96)
+457 analyses revealed a significant main effect of the training block for RB learners (F = 5.872,
+(1,48)
+458 p = 0.019, partial η2 = 0.11) but not for II learners (F = 1.838, p = 0.182, partial η2 = 0.04),
+(1,48)
+459 which may indicate that RB learners increased performances in training session 2 whereas II
+460 learners’ performance reaches a plateau. For Exp. 2.2, LMER revealed a significant main effect
+461 of training block (F = 6.321, p = 0.014, partial η2 = 0.06). No other effect was found
+(1, 99)
+462 significant.
+16 / 43
+464 Generalization performances in Exp. 2.1
+465 This experiment examines whether categorization training without feedback could facilitate
+466 category learning and modulate generalization patterns across the four tests. As shown in Fig.
+467 5A, both learner groups performed significantly above chance in the four tests conducted
+468 immediately after training. For the II learners, planned comparisons showed significantly
+469 decreased categorization accuracy in ND (t = -7.189, p < 0.001, Cohen d = -0.977) and NL
+(15)
+470 tests (t = -5.749, p < 0.001, Cohen d = -1.582) compared to CT. Changes in F0 did not affect
+(15)
+471 generalization (F0 vs. CT: t = -0.120, p = 1, Cohen d = 0.027). Changes in sound dispersity
+(15)
+472 also affected generalization performances for RB learners (ND vs. CT: t = -3.538, p = 0.009,
+(15)
+473 Cohen d = -0.384), whereas the other two factors did not affect generalization (F0 vs. CT: t
+(15)
+474 = 0.201, p = 1, Cohen d = 0.025; NL vs. CT: t = 0.049, p = 1, Cohen d = 0.007). These
+(15)
+475 generalization patterns are similar to those found in Exp. 1.
+476 Model fits of the category model were all significantly better than chance across tests
+477 and learner groups (Fig. 5B and Fig. S3). For II learners, similar to the accuracy data, we found
+478 significantly decreased category model fits in ND and NL tests compared to CT (ND vs. CT:
+479 t = -7.146, p < 0.001, Cohen d = -1.071; NL vs. CT: t = -6.309, p < 0.001, Cohen d = -
+(15) (15)
+480 1.890). Increased sound dispersity also significantly affected category representations in ND
+481 for RB learners (ND vs. CT: t = -3.719, p = 0.006, Cohen d = -0.451). No other contrasts
+(15)
+485 Fig. 5. Generalization performance and model fit of the category model across four
+486 generalization tests in Exp. 2.1 with categorization training without feedback. A&B,
+17 / 43
+487 generalization accuracy and model fit of the immediate test session. C&D, generalization
+488 accuracy and modeling fit of the tests conducted one week after training. Red lines with arrows
+489 indicate significant differences between CT and the other three tests. Asterisks represent the
+490 above-chance statistical significance (Bonferroni-corrected p-values < 0.05) of each
+491 generalization test for each measure.
+493 Generalization tests performed one week after training were all significantly above
+494 chance across learner groups (Fig. 5C). Similar to the immediate tests, for II learners, changes
+495 in sound dispersity and locations in the perceptual space significantly affected generalization
+496 performances (ND vs. CT: t = -3.037, p = 0.025, Cohen d = -0.667; NL vs. CT: t = -4.971,
+(15) (15)
+497 p < 0.001, Cohen d = -1.313), but not for the F0 changes (F0 vs. CT: t = 0.253, p = 1, Cohen
+(15)
+498 d = 0.072). In contrast, RB learners’ generalizations were not affected by these factors (F0 vs.
+499 CT: t = -0.263, p = 1, Cohen d = 0.045; ND vs. CT: t = -2.342, p = 0.100, Cohen d = -
+(15) (15)
+500 0.383; NL vs. CT: t = 0.370, p = 1, Cohen d = 0.066), which may indicate a certain degree
+(15)
+501 of representation transformation over time. The representation modeling results are consistent
+503 (t = -3.646, p = 0.007, Cohen d = -0.780); NL vs. CT (t = -5.952, p < 0.001, Cohen d = -
+(15) (15)
+504 1.302). No other comparison was found significant.
+506 Generalization performances in Exp 2.2
+507 In this experiment, we aim to examine to which extent categorization training with feedback
+508 facilitates learning and generalization performances. However, we did not find a significant
+509 difference in categorization performances between Exp. 2.1 and Exp. 2.2 at the end of training
+510 (II learners: t = 1.741, p = 0.184, Cohen d = 0.616; RB learners: t = 0.011, p = 1, Cohen
+(30) (31)
+511 d = 0.004) and in the immediate CT (II learners: t = 0.019, p = 1, Cohen d = 0.007; RB
+(30)
+512 learners: t = 1.107, p = 0.554, Cohen d = 0.386).
+(31)
+513 In the immediate tests, similar to the Exp. 2.1, II and RB learners performed
+514 significantly above chance in the four tests (Fig. 6A, all Bonferroni-corrected ps < 0.001). For
+515 II learners, categorization accuracy and category model fits were both significantly decreased
+516 in the ND (accuracy: t = -3.659, p = 0.007, Cohen d = -0.570; model fit: t = -4.515 p =
+(15) (15)
+517 0.001, Cohen d = -0.611) and NL tests (accuracy: t = -7.375, p < 0.001, Cohen d = -1.515;
+(15)
+518 model fit: t = -7.078, p < 0.001, Cohen d = -1.490) compared to CT. No other planned
+(15)
+519 comparison reached significance after correction (see Tables 1 and 2 for details).
+18 / 43
+522 Fig 6. Generalization performance and model fit of the category model across four
+523 generalization tests in Exp. 2.2 with categorization training with feedback. A&B,
+524 generalization accuracy and model fit of the immediate test session. C&D, generalization
+525 accuracy and modeling fit of the tests conducted one week after training. Red lines with arrows
+526 indicate significant differences between CT and the other three tests. Asterisks denote
+527 significantly above chance (Bonferroni-corrected p-values < 0.05).
+529 For the generalization tests performed one week after training, categorization
+530 accuracies and model fits of the category model were all significantly above chance across
+531 learner groups (Fig. 6C&D). Similar to the immediate test, II learner’s categorization
+532 accuracies and model fits were significantly decreased in the ND (accuracy: t = -5.546, p <
+(15)
+533 0.001, Cohen d = -0.929; model fit: t = -6.103, p < 0.001, Cohen d = -1.026) and NL tests
+(15)
+534 (accuracy: t = -6.009, p < 0.001, Cohen d = -1.523; model fit: t = -8.983, p < 0.001, Cohen
+(15) (15)
+535 d = -1.774) compared to CT. For RB learners, categorization accuracy was affected by the
+536 changes in sound dispersity (ND vs. CT: t = -3.327, p = 0.013, Cohen d = -0.380), which is
+(16)
+537 different from the immediate generalization. Also, we found that model fits were significantly
+538 higher in NL than in CT (t = 3.957, p = 0.003, Cohen d = 0.758), indicating better category
+(16)
+539 knowledge transferred in NL. No other planned comparison reached significance after
+540 correction (see Tables 1 and 2 for details).
+542 Statistical summaries across the three experiments
+19 / 43
+543 The above results highlighted the effects of generalization (i.e., F0/ND/NL vs. CT) and distinct
+544 patterns in these effects for II and RB learners in each experiment. To directly compare
+545 generalization effects across learner groups, experiments (i.e., training procedures), and types
+546 of generalization, we used CT as a baseline to estimate the generalization effects induced by
+547 changes in F0, sound dispersity (i.e., ND) and location in the perceptual space (i.e., NL).
+548 Therefore, three types of generalization effects (i.e., F0 – CT; ND – CT; NL – CT) were
+549 calculated for each learner, experiment, and testing session. A three-factor LMER was
+550 conducted to reveal the main effects of learner group (II vs. RB), generalization type (F0-CT
+551 vs. ND-CT vs. NL-CT), and training procedure (OT vs. CT-NF vs. CT-WF) as well as their
+552 interaction effects.
+553 For the immediate generalization performances (Fig. 7A), we found significant main
+554 effects of learner group (F = 12.865, p < 0.001, partial η2 = 0.11) and generalization type
+(1, 100)
+555 (F = 33.069, p < 0.001, partial η2 = 0.25), and a significant learner-group-by-
+(2, 200)
+556 generalization-type interaction effect (F = 66.407, p < 0.001, partial η2 = 0.40) indicating
+(2, 200)
+557 different patterns of the generalization effects between II and RB learners. No other effect was
+558 found significant. Similarly, for category model fit (Fig. 7B), we found significant main effects
+559 of learner group (F = 25.376, p < 0.001, partial η2 = 0.20) and generalization type (F
+(1, 100) (2, 200)
+560 = 23.166, p < 0.001, partial η2 = 0.19), and a significant learner-group-by-generalization-test
+561 interaction effect (F = 89.905, p < 0.001, partial η2 = 0.47). Since neither the main effect
+(2, 200)
+562 of training procedure nor any interaction effect related to training procedure was significant,
+563 we conducted ad hoc comparisons with data collapsed across the three experiments.
+564 Consistent with the results reported in each experiment, changes in sound dispersity
+565 and location in the perceptual space significantly affected generalization performances for II
+566 learners (accuracy: ND vs. CT, t = -6.577, p < 0.001, Cohen d = -1.329; NL vs. CT, t = -
+(48) (48)
+567 11.029, p < 0.001, Cohen d = -2.228; category model fit: ND vs. CT, t = -7.281, p < 0.001,
+(48)
+568 Cohen d = -1.471; NL vs. CT, t = -10.411, p < 0.001, Cohen d = -2.103). However, changes
+(48)
+569 in F0 did not affect generalization (accuracy: t = 0.182, p = 1, Cohen d = 0.037; category
+(48)
+570 model fit: t = 0.905, p = 1, Cohen d = 0.183). For RB learners, changes in F0 (accuracy: t
+(48) (50)
+571 = -2.850, p = 0.019, Cohen d = -0.564; category model fit: t = -3.195, p = 0.007, Cohen d =
+(50)
+572 -0.633) and sound dispersity (i.e., ND) (accuracy: t = -4.504, p < 0.001, Cohen d = -0.892;
+(50)
+573 category model fit: t = -3.870, p < 0.001, Cohen d = -0.766) significantly affect
+(50)
+574 categorization accuracy and the robustness of category representations in generalization.
+575 Furthermore, the generalization effect of NL in categorization accuracy (Fig. 7A) was
+576 more robust for II than RB learners (t = -7.912, p < 0.001, Cohen d = -1.583). For category
+(98)
+20 / 43
+577 model fits (Fig. 7B), generalization effects of sound dispersity (i.e., ND) (t = -3.019, p =
+(98)
+578 0.009, Cohen d = -0.604) and location of perceptual space (i.e., NL) (t = -9.753, p < 0.001,
+(98)
+579 Cohen d = -1.951) were both more robust for II learners than that of RB. However, the
+580 generalization effect of F0 was more robust for RB than II learners (t = 2.721, p = 0.023,
+(98)
+581 Cohen d = 0.544).
+584 Fig. 7. Changes in generalization accuracy (A&C) and category model fit (B&D) for the
+585 generalization tests performed immediately (A&B) or one week after training (C&D) for the
+586 three experiments. Red asterisks under the curly brackets denote significant differences
+587 between CT and the other three tests, with data collapsed across the three experiments. Red
+588 lines denote significant differences between II and RB learners, with data collapsed across all
+589 experiments. Asterisks at the bottom of each graph denote significant differences between CT
+590 and the other three tests for each experiment. *, p < 0.05; **, p < 0.01; **, p < 0.001; p-values
+591 were corrected.
+593 Generalization effects for tests conducted one week after training was largely similar
+594 to the immediate tests (Fig. 7C&D). Two intriguing differences were found between the
+595 immediate tests and tests performed one week after training. Firstly, the generalization effect
+596 of F0 was not significant for RB learners, neither for accuracy (t = -0.236, p = 1, Cohen d =
+(50)
+21 / 43
+597 -0.047) nor category model fits (t = 1.426, p = 0.480, Cohen d = 0.282), which may indicate
+(50)
+598 of a category representation transformation or abstraction after training. The second difference
+599 is that category model fits in NL for the RB learners were significantly higher than that in CT
+600 (t = 5.707, p < 0.001, Cohen d = 1.130), indicating more category representations emerged
+(50)
+601 in the NL test conducted one week after training.
+604 Fig. 8. Representation modeling of trial-by-trial response confusion matrices with three
+605 predefined models using data collapsed across the three experiments. The unique contribution
+606 of each model was calculated and subtracted from CT. Colored asterisks on the bottom of each
+607 graph denote significant differences between CT and the other three tests. Arrow lines denote
+608 significant differences between II and RB learners in modeling fit (*, p < 0.05; **, p < 0.01;
+609 **, p < 0.001; p-values were corrected).
+611 We further examined what sound- or category-related knowledge was represented and
+612 utilized in generalization and to which extent these representations changed due to the changes
+613 in F0, sound dispersity, and locations of perceptual space. Thus, we used the three predefined
+614 representation models to fit learners’ response RDMs and compared the model fits between CT
+615 and the other three tests to reveal the representation changes. For all the generalization tests,
+616 each of the three representation models was significantly correlated with learners’ response
+617 RDMs (Fig. S3), indicating that these models all contribute to explaining learners’
+618 categorization response patterns. The category model explained the most variances among the
+619 three models across all tests except for ND. We further calculated the unique contribution of
+620 each model in explaining the response confusion patterns by controlling the variances of the
+621 other two models with the partial correlation approach and compared these model fits between
+622 tests and learners (Fig. 8).
+22 / 43
+623 For generalization performed immediately after training, the F0 change only affected
+624 category model fits for RB learners (Fig. 8A, left panel; F0 vs. CT: t = -2.555, p = 0.041,
+(50)
+625 Cohen d = -0.506). However, RB learners’ category representations increased one week after
+626 training in the F0 test (Fig. 8A, right panel) and were significantly higher than CT (t = 3.421,
+(50)
+627 p = 0.003, Cohen d = 0.678). This increase in category representations was accompanied by a
+628 decrease in the representation of decision distance (t = -2.929, p = 0.015, Cohen d = -0.580).
+(50)
+629 Compared to CT, increased sound dispersity in the ND test affected category
+630 representations for both II and RB learners in generalization tests conducted immediately and
+631 one week after training (Fig. 8B; II learners: immediate test, t = -6.825, p < 0.001, Cohen d
+(48)
+632 = -1.379; one week after training, t = -6.754, p < 0.001, Cohen d = -1.364; RB learners:
+(48)
+633 immediate test, t = -2.856, p = 0.019, Cohen d = -0.566; one week after training, t = -
+(50) (50)
+634 4.401, p < 0.001, Cohen d = -0.871). More decrease in category representations were found for
+635 II than RB learners (t = -4.580, p < 0.001, Cohen d = -0.916). The decrease in category
+(98)
+636 representations was accompanied by an increase in representations of decision distance only
+637 for II learners (immediate test: t = 3.945, p < 0.001, Cohen d = 0.797; one week after training:
+(48)
+638 t = 2.659, p = 0.032, Cohen d = 0.537), but not for RB learners (immediate test: t = -0.036,
+(48) (50)
+639 p = 1, Cohen d = -0.007; one week after training: t = 0.816, p = 1, Cohen d = 0.162). More
+(50)
+640 increase representations of decision distance (t = 3.084, p = 0.008, Cohen d = 0.617) and
+(98)
+641 perceptual similarity (t = 2.932, p = 0.013, Cohen d = 0.586) were found for II than RB
+(98)
+642 learners.
+643 Changes in locations of perceptual space in the NL test modulated the degrees of
+644 category representations for both II and RB learners, but in opposite directions (Fig. 8C; II,
+645 immediate test: t = -6.498, p < 0.001, Cohen d = -1.313; one week after training: t = -
+(48) (48)
+646 5.301, p < 0.001, Cohen d = -1.071; RB, immediate test: t = 3.697, p = 0.002, Cohen d =
+(50)
+647 0.732; one week after training: t = 6.672, p < 0.001, Cohen d = 1.321). For II learners,
+(50)
+648 decreased category representations were accompanied by decreased representations of decision
+649 distance (immediate test: t = -4.010, p < 0.001, Cohen d = -0.810; one week after training:
+(48)
+650 t = -8.555, p < 0.001, Cohen d = -1.728) and perceptual similarity (immediate test: t = -
+(48) (48)
+651 6.080, p < 0.001, Cohen d = -1.228; one week after training: t = -7.185, p < 0.001, Cohen d
+(48)
+652 = -1.452). For RB learners, increased category representations were accompanied by decreased
+653 representations of decision distance (t = -6.050, p < 0.001, Cohen d = -1.222) and perceptual
+(50)
+654 similarity (t = -2.848, p = 0.019, Cohen d = -0.575) only for the tests performed one week
+(50)
+655 after training. More decreased representations of perceptual similarity were found for II than
+23 / 43
+656 RB learners (immediate test: t = -2.497, p = 0.043, Cohen d = -0.500; one week after training:
+(98)
+657 t = -2.881, p = 0.015, Cohen d = -0.582).
+(98)
+658 Regarding the categorization response time (RT), we found a significant main effect of
+659 training procedure (F = 8.415, p < 0.001, partial η2 = 0.14). Faster categorization responses
+(2,100)
+660 were shown in Exp. 2.2 (CT-WF vs. OT: F = 10.528, p = 0.004, partial η2 = 0.13; CT-WF
+(1, 68)
+661 vs. CT-NF: F = 13.673, p < 0.001, partial η2 = 0.17). This training procedure effect is
+(1, 65)
+662 learner group general, suggesting that categorization training with feedback facilitates
+663 categorization decisions in generalization. We also found a significant main effect of
+664 generalization test (F = 3.532, p = 0.015, partial η2 = 0.01) where learners required a
+(3, 700)
+665 longer time to categorize in the ND test (ND vs. CT: F = 6.545, p = 0.033, partial η2 =
+(1, 300)
+666 0.02; F0 vs. CT: F = 0.078, p = 1, partial η2 < 0.001; NL vs. CT: F = 0.013, p = 1,
+(1, 300) (1, 300)
+667 partial η2 < 0.001). We did not find a significant main effect of leaner group (F = 1.123, p
+(1,100)
+668 = 0.292, partial η2 = 0.01) but found a significant learner-by-test interaction effect (F =
+(3,700)
+669 9.149, p < 0.001, partial η2 = 0.04). For II learners, the main effect of generalization test was
+670 significant (F = 7.465, p < 0.001, partial η2 = 0.06), where the ND and NL tests responded
+(3, 343)
+671 significantly longer than other tests (F0 vs. CT: F = 1.034, p = 0.940, partial η2 = 0.007;
+(1, 147)
+672 ND vs. CT: F = 8.613, p = 0.012, partial η2 = 0.06; NL vs. CT: F = 6.600, p = 0.034,
+(1, 147) (1, 147)
+673 partial η2 = 0.04). In contrast, for RB learners, although the effect of generalization test was
+674 also significant (F = 4.583, p = 0.007, partial η2 = 0.04), learners categorized sounds
+(3, 357)
+675 significantly faster in the NL test than in other tests (F0 vs. CT: F = 0.331, p = 1, partial
+(1, 153)
+676 η2 = 0.002; ND vs. CT: F = 0.463, p = 1, partial η2 = 0.003; NL vs. CT: F = 5.871, p
+(1,153) (1,153)
+677 = 0.050, partial η2 = 0.04).
+679 Discussion
+680 Learners’ ability to generalize to novel testing situations directly speaks to the nature of
+681 representations acquired in previous category training and the mechanisms supporting cross-
+682 situation transfer of category knowledge. Here, with this experimental logic, we designed four
+683 generalization tests with different types of novel items and conducted three category learning
+684 experiments with different training procedures to probe the differences in representation nature
+685 between II and RB categories. Across three experiments, we found distinct characteristics of
+686 the newly-acquired II and RB category representations indicated by generalization patterns and
+687 representation modeling. II and RB learners transferred category knowledge to the four tests to
+688 different extents. The II learners significantly decreased generalization performances and
+689 category representations in the ND and NL tests but not in the F0 test compared to the baseline
+24 / 43
+690 test, which suggests that the generalization of II category knowledge is not affected by surface
+691 acoustic changes in an irrelevant F0 dimension but less successful in categorizing new items
+692 sampled from an untrained perceptual area (i.e., the NL test) and in a context with more
+693 disperse samples (i.e., the ND test). In contrast, RB learners’ generalizations are resistant to
+694 changes in perceptual regions (i.e., the NL test) and interference of the F0 change (especially
+695 for the representations after stabilization, i.e., one week after training), but they are sensitive to
+696 changes in increasing dispersity of exemplars (i.e., the ND test). Representational similarity
+697 modeling further revealed that generalization in the ND test was accomplished by II and RB
+698 learners with different strategies. II learners enhanced representations of perceptual similarity
+699 and decision distance to compensate for the decreased transfer of category representations,
+700 whereas RB learners used a more computational cost strategy by default, computing the
+701 decision-bound distance to guide categorization decisions. These findings provide new insights
+702 into understanding the relationships between category learning, the nature of category
+703 representations, and how different learning and representation systems operate differently to
+704 achieve successful generalization.
+705 We aim to examine the representation nature of II and RB categories, especially the
+706 abstractness of the category representations utilized in generalization. We manipulated three
+707 factors in generalization, ranging from low-level surface acoustics to higher-level exemplar
+708 dispersity and untrained perceptual location. Based on DLS models, especially in the visual
+709 domains, II representations are tightly linked to the exemplar-dependent or feature-specific
+710 information (e.g., visual field), and any changes in the low-level information affect
+711 generalization performances (Ashby et al., 2003; Maddox et al., 2004b, 2005, 2007; Rosedahl
+712 et al., 2018). However, across the three experiments, we demonstrate that II learners can resist
+713 changes in F0 for generalization tests performed immediately and one week after training,
+714 suggesting that auditory II category representations are not tightly linked to low-level
+715 dimensions irrelevant to discriminating category members. Changes in F0 analog changes in
+716 talker (e.g., Bradlow and Bent, 2008; Xie et al., 2021). This finding is consistent with previous
+717 auditory and speech category learning studies that showed talker-independent category
+718 representations emerged at both behavioral and neural levels during training (Bradlow and Bent,
+719 2008; Feng et al., 2019, 2021c; Johnson and Sjerps, 2021; Xie et al., 2021). In speech
+720 perception, native listeners can maintain perceptual constancy while facing various types of
+721 acoustic and perceptual variabilities (Bradlow and Bent, 2008; Feng et al., 2018, 2021a),
+722 suggesting exceptional generalization ability to overcome the “lack-of-invariance” challenge.
+25 / 43
+723 In comparison, RB learners’ generalization performances were not consistently affected
+724 by F0 changes. The generalization performances in the immediate F0 test were significantly
+725 less accurate than the control test, especially for Exp. 1 with observational training. However,
+726 the generalization was insensitive to F0 changes one week after training across the three
+727 experiments. These findings suggest that RB learners may undergo a transformation or
+728 abstraction process within a week after training to stabilize the category representations to
+729 overcome the variability induced by an irrelevant acoustic dimension. One speculation is that
+730 this post-training abstraction or stabilization process is specific for RB categories, where the
+731 F0 information could be fastly integrated into the previously-acquired categorization rules so
+732 that the irrelevant acoustic information is eliminated before the decision (e.g., application of
+733 new filtering rules). Adopting a new rule to filter irrelevant information while maintaining
+734 attention to the relevant dimensions or features may require time and the support of executive
+735 systems (Diekelmann and Born, 2010; Genzel et al., 2014). The distinct patterns between II
+736 and RB learners in the F0 test suggest that the category structure we learn plays an important
+737 role in how the auditory perception system copes with acoustic variabilities.
+738 One of the critical tests for the abstractness of emerged representations is to test the
+739 generalization to new sounds sampled from an untrained area of the stimulus space. We found
+740 that significantly reduced generalization performances and decreased category model fittings
+741 to new sounds outside the range of training samples (i.e., in the new location test) for II learners
+742 across the three experiments. In contrast, increased generalization performances and enhanced
+743 category representations for the RB learners were found in the same test. This dissociated
+744 pattern suggests that II representations are tightly restricted to the perceptual areas where the
+745 training samples are covered. The trained locations in the stimulus space may be weighted
+746 differently than untrained areas, so the categorization performances are compromised when the
+747 category knowledge is transferred from trained locations to untrained locations. These results
+748 are consistent with previous findings from studies of visual category learning. For example,
+749 Smith and colleagues (2015) asked two groups of participants to learn RB and II categories,
+750 respectively, and required them to categorize new stimuli sampled from an untrained region of
+751 the stimulus space. They found that RB learners’ generalization was nearly seamless, whereas
+752 II learners failed to categorize the new items. Moreover, II representations are often linked with
+753 exemplar-associated sensorimotor features. Changes in the visual field have significant
+754 interferences of II categorization but not RB (Rosedahl et al., 2018), suggesting visual-field-
+755 dependent representations of II categories. Similarly, changing the response key to categorize
+756 items only affects the II categorization but not RB (Ashby et al., 2003), suggesting that visual
+26 / 43
+757 II categories are tightly associated with their motor correspondences. Comparing these findings
+758 from visual domains, our findings in auditory category learning indicate that II auditory
+759 category representations are only tightly linked to the perceptual properties of the dimensions
+760 relevant to categorization instead of any other irrelevant dimensions (e.g., F0) inherent from
+761 the training samples. This representation mechanism of II auditory categories may help
+762 listeners precisely generalize category knowledge to novel items and scenarios with redundant
+763 and irrelevant acoustic information.
+764 Another critical test of the representation nature is to examine the generalization
+765 performances to new sounds with distinct distributional patterns from the training samples. We
+766 found that reduced categorization accuracy and decreased category representations when
+767 learners generalized to a set of new sounds with a more dispersed distribution (i.e., the ND test)
+768 compared to the training samples for both II and RB learners. These findings indicate that both
+769 II and RB category representations are sensitive to the within-category sound distributional
+770 pattern. DLS models predict that learning II and RB categories recruit distinct learning
+771 strategies and neurocognitive systems (Ashby and Maddox, 2005, 2011; Chandrasekaran et al.,
+772 2014a, 2014b). However, DLS models do not have detailed descriptions and predictions about
+773 whether the category representations are associated with the within-category distributional
+774 statists of the training samples. DLS model may predict that the generalization of II category
+775 representations is affected by changes in sound dispersity because II category representations
+776 are hypothesized to link with sample-specific features. This reasoning is supported by recent
+777 findings that II but not RB categories with a probabilistic distribution are learned worse than
+778 categories with a deterministic distribution (Roark and Holt, 2018), suggesting II category
+779 representations are formed based on or along with distributional information. Any changes in
+780 the stimulus distributional pattern would affect generalization performances. Even though the
+781 overall coverage in the perceptual space is the same for the training and generalization samples,
+782 the distributional patterns within each category are different. The training samples are normally
+783 distributed in the space (more samples in the middle of the distribution), whereas the
+784 generalization samples in the ND test are more distributed. Thus, our results suggest that
+785 forming II category representations is a learning process that considers all types of variabilities
+786 in the perceptual space. Any changes in sample distribution or the locations in the perceptual
+787 space, whether within or outside the coverage of training samples, would affect the transfer of
+788 the II category knowledge.
+789 A perceptual weighting mechanism may explain the II generalization decreases in the
+790 ND and NL tests (Niv et al., 2015). Successful learning of II auditory categories requires
+27 / 43
+791 integrating information from the spectral- and temporal-modulation dimensions. The
+792 integration ratio of the two dimensions is subject to the distributions of training samples. The
+793 distribution of the training samples provides statistical information about the category
+794 probabilities for the learners to weigh the two dimensions. Learners may gradually adjust the
+795 integration ratio or weights of the two dimensions as they expose to more samples. Higher
+796 perceptual weights would be assigned to the perceptual areas more frequently encountering
+797 samples. Transferring this weighting knowledge from trained areas to untrained areas (e.g., in
+798 the NL test) or from more trained areas to less trained areas (e.g., in the ND test) in the stimulus
+799 space would be less successful because these weighting representations are acquired with the
+800 procedure-based learning system and tapped into the auditory cortex. In addition, sounds from
+801 untrained perceptual areas may not be weighted the same way in the stimulus space as the
+802 trained sounds, which may lead to incorrect categorization. This speculation is consistent with
+803 our recent neuroimaging findings. Feng and colleagues (2021) examined the neural encodings
+804 of II and RB auditory categories during categorization training. They found that auditory and
+805 speech perception-related regions in the superior temporal cortex gradually increased the
+806 weightings of perceptual information for II sounds. In contrast, the same regions gradually
+807 decreased the perceptual representations for RB sounds. This putative perceptual weighting
+808 mechanism of II representations requires further examination.
+809 For the RB categories, DLS models may predict that changes in perceptual locations or
+810 sample distributions in generalization would not affect categorization performances. However,
+811 we found that categorizing RB sounds in generalization was affected by changes in
+812 distributional patterns but not in locations of the perceptual space. These unexpected findings
+813 are inconsistent with the prediction of DLS models and findings from recent studies (Maddox
+814 et al., 2005; Roark and Holt, 2018). RB category representations have been considered an
+815 abstract form of rules associated with executive functions and working memory capacity
+816 (Waldron and Ashby, 2001; Zeithamova and Maddox, 2006; DeCaro et al., 2008; Reetzke et
+817 al., 2016). Sample dispersity is not directly related to the execution of these functions. One
+818 possibility of our findings is that the categorization rules are derived from the statistical
+819 distribution of the training samples. Learners abstract the regularities of acoustic and perceptual
+820 information from the distributional patterns of the samples via hypothesis-testing processes.
+821 Transferring the sample-specific regularities to a new sample set with a significantly different
+822 dispersity in the perceptual space would affect the categorization performances. Another
+823 possibility may relate to the RB generalization mechanism. Dispersity of the samples relates to
+824 the accuracy in computing the sound-to-boundary decision distance. More distributed sounds
+28 / 43
+825 within each category (i.e., the ND test) may cause a less accurate estimation of the decision
+826 distance between each sound and a putative category bound. Therefore, the less accurate
+827 bound-distance estimation may affect the categorization decision in the ND test compared to
+828 the control test. This possibility assumes that the decision-distance estimation based on a
+829 category bound is a necessary categorization process during generalization. This assumption is
+830 supported by our representational similarity modeling results showing that the decision-
+831 distance model significantly correlates with trial-by-trial category response confusions (see Fig.
+832 S2 in supplementary). The model fits did not significantly change between generalization tests
+833 (see Fig. 8), suggesting that the estimation of decision distance is a default step in
+834 generalization. Future studies are needed to investigate the two possibilities systematically.
+835 Regarding the training procedure, we did not find any significant differences in
+836 generalization accuracy or representational model fit across the three experiments. In addition,
+837 the training procedure did not affect the differences between II and RB in generalization
+838 performances. These findings suggest that categorization tasks and providing immediate
+839 feedback compared to the observation training may not additionally facilitate learning and
+840 generalization accuracies for both category structures. In contrast to the generalization
+841 accuracy and representation modeling, we found that categorization training with feedback (i.e.,
+842 Exp. 2.2) facilitated learners’ categorization response time across generalization tests (Fig. S3
+843 in supplementary), while this facilitation is not a tradeoff of categorization accuracies. These
+844 findings indicate that categorization training with feedback may facilitate learners’
+845 categorization decision processes, such as more efficiency in accumulating information for
+846 category decisions compared to the observation training. Providing feedback and presenting
+847 category labels may play a similar role for RB’s hypothesis-testing and II’s associative learning
+848 processes, except that feedback-based training recruits reinforcement learning mechanisms to
+849 learn sound-to-category mappings (Ashby and Maddox, 2005). The feedback-dependent
+850 reinforcement learning may facilitate the formation of many-to-one corticostriatal projections
+851 from the auditory and prefrontal cortex to the striatum regions (Chandrasekaran et al., 2014a,
+852 2014b; Maddox and Chandrasekaran, 2014; Feng et al., 2021b). The reinforcement-based
+853 mechanism may facilitate the retrieval of the category knowledge acquired during feedback-
+854 based categorization training, thus enhancing the decision processing in categorization. More
+855 investigations are needed to test this possibility.
+857 Summary and conclusion
+29 / 43
+858 We examined the nature of II and RB auditory category representations by accessing the ability
+859 of learners to generalize new category knowledge to novel testing situations. Four
+860 generalization tests with various novel items were designed, and three category learning
+861 experiments with different training procedures were conducted to compare the characteristics
+862 of newly acquired II and RB category knowledge. II learners demonstrated decreased
+863 generalization performance and category representation when generalizing to untrained
+864 perceptual areas and in contexts with more dispersed samples; on the other hand, RB learners
+865 showed resistance to changes in perceptual regions but sensitivity to increasing dispersity of
+866 sounds. II and RB learners used different strategies for generalization when facing the more
+867 variable context, with II learners enhancing representations of perceptual similarity and
+868 decision distance while RB learners employed a more computational cost strategy to guide
+869 categorization decisions. These findings shed light on the relationship between category
+870 learning and representation nature and the varying strategies used by different learning and
+871 representation systems to achieve successful generalization.
+30 / 43
+873 Conflict of Interest
+874 The authors declare that the research was conducted without any commercial or financial
+875 relationships that could be construed as a potential conflict of interest.
+877 Author Contributions
+878 Zhenzhong Gan: Data curation, Project administration, Writing- Original draft preparation.
+879 Lurong Zheng: Investigation. Suiping Wang: Project administration, Funding acquisition.
+880 Gangyi Feng: Data curation, Writing- Original draft preparation, Writing- Reviewing and
+881 Editing, Supervision, Funding acquisition.
+883 Acknowledgments
+884 This work was supported by grants from the Research Grants Council of Hong Kong
+885 (Grant/Award Numbers: 14619518 and 14614221 to Gangyi Feng).
+31 / 43
+888 References
+889 Ashby, F. G., Ell, S. W., and Waldron, E. M. (2003). Procedural learning in perceptual
+890 categorization. Memory & Cognition 31, 1114–1125. doi: 10.3758/BF03196132.
+891 Ashby, F. G., and Maddox, W. T. (1992). Complex decision rules in categorization:
+892 Contrasting novice and experienced performance. Journal of Experimental
+893 Psychology: Human Perception and Performance 18, 50–71. doi: 10.1037/0096-
+894 1523.18.1.50.
+895 Ashby, F. G., and Maddox, W. T. (2005). Human Category Learning. Annu. Rev. Psychol.
+896 56, 149–178. doi: 10.1146/annurev.psych.56.091103.070217.
+897 Ashby, F. G., and Maddox, W. T. (2011). Human category learning 2.0: Human category
+898 learning 2.0. Annals of the New York Academy of Sciences 1224, 147–161. doi:
+899 10.1111/j.1749-6632.2010.05874.x.
+900 Ashby, F. G., Maddox, W. T., and Bohil, C. J. (2002). Observational versus feedback training
+901 in rule-based and information-integration category learning. Memory & Cognition 30,
+902 666–677. doi: 10.3758/BF03196423.
+903 Ashby, F. G., Queller, S., and Berretty, P. M. (1999). On the dominance of unidimensional
+904 rules in unsupervised categorization. Perception & Psychophysics 61, 1178–1199.
+905 doi: 10.3758/BF03207622.
+906 Ashby, F. G., and Valentin, V. V. (2005). “MULTIPLE SYSTEMS OF PERCEPTUAL
+907 CATEGORY LEARNING: THEORY AND COGNITIVE TESTS,” in Handbook of
+908 Categorization in Cognitive Science (Elsevier), 547–572. doi: 10.1016/B978-
+909 008044612-7/50080-9.
+910 Bradlow, A. R., and Bent, T. (2008). Perceptual adaptation to non-native speech. Cognition
+911 106, 707–729. doi: 10.1016/j.cognition.2007.04.005.
+912 Casale, M. B., Roeder, J. L., and Ashby, F. G. (2012). Analogical transfer in perceptual
+913 categorization. Mem Cogn 40, 434–449. doi: 10.3758/s13421-011-0154-4.
+32 / 43
+914 Chandrasekaran, B., Koslov, S. R., and Maddox, W. T. (2014a). Toward a dual-learning
+915 systems model of speech category learning. Front. Psychol. 5. doi:
+916 10.3389/fpsyg.2014.00825.
+917 Chandrasekaran, B., Yi, H.-G., and Maddox, W. T. (2014b). Dual-learning systems during
+918 speech category learning. Psychon Bull Rev 21, 488–495. doi: 10.3758/s13423-013-
+919 0501-5.
+920 DeCaro, M. S., Thomas, R. D., and Beilock, S. L. (2008). Individual differences in category
+921 learning: Sometimes less working memory capacity is better than more. Cognition
+922 107, 284–294. doi: 10.1016/j.cognition.2007.07.001.
+923 Diekelmann, S., and Born, J. (2010). The memory function of sleep. Nat Rev Neurosci 11,
+924 114–126. doi: 10.1038/nrn2762.
+925 Ell, S. W., Cosley, B., and McCoy, S. K. (2011). When bad stress goes good: increased threat
+926 reactivity predicts improved category learning performance. Psychon Bull Rev 18, 96–
+927 102. doi: 10.3758/s13423-010-0018-0.
+928 Elliott, T. M., and Theunissen, F. E. (2009). The Modulation Transfer Function for Speech
+929 Intelligibility. PLoS Comput Biol 5, e1000302. doi: 10.1371/journal.pcbi.1000302.
+930 Erickson, M. A., and Kruschke, J. K. (1998). Rules and Exemplars in Category Learning.
+931 Journal of Experimental Psychology: General 127, 107–140.
+932 Erickson, M. A., and Kruschke, J. K. (2002). Rule-based extrapolation in perceptual
+933 categorization. Psychonomic Bulletin & Review 9, 160–168. doi:
+934 10.3758/BF03196273.
+935 Estes, W. K. (1986). Array models for category learning. Cognitive Psychology 18, 500–549.
+936 doi: 10.1016/0010-0285(86)90008-3.
+937 Feng, G., Gan, Z., Llanos, F., Meng, D., Wang, S., Wong, P. C. M., et al. (2021a). A
+938 distributed dynamic brain network mediates linguistic tone representation and
+939 categorization. NeuroImage 224, 117410. doi: 10.1016/j.neuroimage.2020.117410.
+33 / 43
+940 Feng, G., Gan, Z., Wang, S., Wong, P. C. M., and Chandrasekaran, B. (2018). Task-General
+941 and Acoustic-Invariant Neural Representation of Speech Categories in the Human
+942 Brain. Cerebral Cortex 28, 3241–3254. doi: 10.1093/cercor/bhx195.
+943 Feng, G., Gan, Z., Yi, H. G., Ell, S. W., Roark, C. L., Wang, S., et al. (2021b). Neural
+944 dynamics underlying the acquisition of distinct auditory category structures.
+945 NeuroImage 244, 118565. doi: 10.1016/j.neuroimage.2021.118565.
+946 Feng, G., Li, Y., Hsu, S.-M., Wong, P. C. M., Chou, T.-L., and Chandrasekaran, B. (2021c).
+947 Emerging Native-Similar Neural Representations Underlie Non-Native Speech
+948 Category Learning Success. Neurobiology of Language 2, 280–307. doi:
+949 10.1162/nol_a_00035.
+950 Feng, G., Yi, H. G., and Chandrasekaran, B. (2019). The Role of the Human Auditory
+951 Corticostriatal Network in Speech Learning. Cerebral Cortex 29, 4077–4089. doi:
+952 10.1093/cercor/bhy289.
+953 Filoteo, J. V., Lauritzen, S., and Maddox, W. T. (2010). Removing the Frontal Lobes: The
+954 Effects of Engaging Executive Functions on Perceptual Category Learning. Psychol
+955 Sci 21, 415–423. doi: 10.1177/0956797610362646.
+956 Genzel, L., Kroes, M. C. W., Dresler, M., and Battaglia, F. P. (2014). Light sleep versus slow
+957 wave sleep in memory consolidation: a question of global versus local processes?
+958 Trends in Neurosciences 37, 10–19. doi: 10.1016/j.tins.2013.10.002.
+959 Goudbeek, M., Cutler, A., and Smits, R. (2008). Supervised and unsupervised learning of
+960 multidimensionally varying non-native speech categories. Speech Communication 50,
+961 109–125. doi: 10.1016/j.specom.2007.07.003.
+962 Goudbeek, M., Swingley, D., and Smits, R. (2009). Supervised and unsupervised learning of
+963 multidimensional acoustic categories. Journal of Experimental Psychology: Human
+964 Perception and Performance 35, 1913–1933. doi: 10.1037/a0015781.
+965 Grimm, L. R., and Maddox, W. T. (2013). Differential impact of relevant and irrelevant
+966 dimension primes on rule-based and information-integration category learning. Acta
+967 Psychologica 144, 530–537. doi: 10.1016/j.actpsy.2013.09.005.
+34 / 43
+968 Homa, D., Sterling, S., and Trepel, L. (1981). Limitations of exemplar-based generalization
+969 and the abstraction of categorical information. Journal of Experimental Psychology:
+970 Human Learning and Memory 7, 418–439. doi: 10.1037/0278-7393.7.6.418.
+971 Hsu, A. S., and Griffiths, T. E. (2010). Effects of Generative and Discriminative Learning on
+972 Use of Category Variability. ERN: Econometric Modeling in Microeconomics
+973 (Topic).
+974 Johnson, K., and Sjerps, M. J. (2021). “Speaker Normalization in Speech Perception,” in The
+975 Handbook of Speech Perception, eds. J. S. Pardo, L. C. Nygaard, R. E. Remez, and D.
+976 B. Pisoni (Wiley), 145–176. doi: 10.1002/9781119184096.ch6.
+977 Kriegeskorte, N., Mur, M., and Bandettini, P. (2008). Representational similarity analysis -
+978 connecting the branches of systems neuroscience. Front Syst Neurosci 2, 4. doi:
+979 10.3389/neuro.06.004.2008.
+980 Kruschke, J. K. (1996). Dimensional Relevance Shifts in Category Learning. Connection
+981 Science 8, 225–248. doi: 10.1080/095400996116893.
+982 Levering, K. R., and Kurtz, K. J. (2015). Observation versus classification in supervised
+983 category learning. Mem Cogn 43, 266–282. doi: 10.3758/s13421-014-0458-2.
+984 Love, B. C., Medin, D. L., and Gureckis, T. M. (2004). SUSTAIN: A Network Model of
+985 Category Learning. Psychological Review 111, 309–332. doi: 10.1037/0033-
+986 295X.111.2.309.
+987 Maddox, W. T., and Ashby, F. G. (1993). Comparing decision bound and exemplar models of
+988 categorization. Perception & Psychophysics 53, 49–70. doi: 10.3758/BF03211715.
+989 Maddox, W. T., Ashby, F. G., and Bohil, C. J. (2003). Delayed feedback effects on rule-
+990 based and information-integration category learning. Journal of Experimental
+991 Psychology: Learning, Memory, and Cognition 29, 650–662. doi: 10.1037/0278-
+992 7393.29.4.650.
+993 Maddox, W. T., Ashby, F. G., Ing, A. D., and Pickering, A. D. (2004a). Disrupting feedback
+994 processing interferes with rule-based but not information-integration category
+995 learning. Memory & Cognition 32, 582–591. doi: 10.3758/BF03195849.
+35 / 43
+996 Maddox, W. T., Bohil, C. J., and Ing, A. D. (2004b). Evidence for a procedural-learning-
+997 based system in perceptual category learning. Psychonomic Bulletin & Review 11,
+998 945–952. doi: 10.3758/BF03196726.
+999 Maddox, W. T., and Chandrasekaran, B. (2014). Tests of a dual-system model of speech
+1000 category learning. Bilingualism 17, 709–728. doi: 10.1017/S1366728913000783.
+1001 Maddox, W. T., Filoteo, J. V., Hejl, K. D., and Ing, A. D. (2004c). Category Number Impacts
+1002 Rule-Based but Not Information-Integration Category Learning: Further Evidence for
+1003 Dissociable Category-Learning Systems. Journal of Experimental Psychology:
+1004 Learning, Memory, and Cognition 30, 227–245. doi: 10.1037/0278-7393.30.1.227.
+1005 Maddox, W. T., Filoteo, J. V., Lauritzen, J. S., Connally, E., and Hejl, K. D. (2005).
+1006 Discontinuous Categories Affect Information-Integration but Not Rule-Based
+1007 Category Learning. Journal of Experimental Psychology: Learning, Memory, and
+1008 Cognition 31, 654–669. doi: 10.1037/0278-7393.31.4.654.
+1009 Maddox, W. T., Glass, B. D., O’Brien, J. B., Filoteo, J. V., and Ashby, F. G. (2010).
+1010 Category label and response location shifts in category learning. Psychological
+1011 Research PRPF 74, 219–236. doi: 10.1007/s00426-009-0245-z.
+1012 Maddox, W. T., and Ing, A. D. (2005). Delayed Feedback Disrupts the Procedural-Learning
+1013 System but Not the Hypothesis-Testing System in Perceptual Category Learning.
+1014 Journal of Experimental Psychology: Learning, Memory, and Cognition 31, 100–107.
+1015 doi: 10.1037/0278-7393.31.1.100.
+1016 Maddox, W. T., Lauritzen, J. S., and Ing, A. D. (2007). Cognitive complexity effects in
+1017 perceptual classification are dissociable. Memory & Cognition 35, 885–894. doi:
+1018 10.3758/BF03193463.
+1019 Medin, D. L., and Schaffer, M. M. (1978). Context theory of classification learning.
+1020 Psychological Review 85, 207–238. doi: 10.1037/0033-295X.85.3.207.
+1021 Niv, Y., Daniel, R., Geana, A., Gershman, S. J., Leong, Y. C., Radulescu, A., et al. (2015).
+1022 Reinforcement Learning in Multidimensional Environments Relies on Attention
+1023 Mechanisms. Journal of Neuroscience 35, 8145–8157. doi:
+1024 10.1523/JNEUROSCI.2978-14.2015.
+36 / 43
+1025 Nosofsky, R. M. (1986). Attention, similarity, and the identification–categorization
+1026 relationship. Journal of Experimental Psychology: General 115, 39–57. doi:
+1027 10.1037/0096-3445.115.1.39.
+1028 Nosofsky, R. M. (2011). “The generalized context model: an exemplar model of
+1029 classification,” in Formal Approaches in Categorization, eds. E. M. Pothos and A. J.
+1030 Wills (Cambridge University Press), 18–39. doi: 10.1017/CBO9780511921322.002.
+1031 Nosofsky, R. M., Stanton, R. D., and Zaki, S. R. (2005). Procedural interference in perceptual
+1032 classification: Implicit learning or cognitive complexity? Memory & Cognition 33,
+1033 1256–1271. doi: 10.3758/BF03193227.
+1034 Posner, M. I., and Keele, S. W. (1968). On the genesis of abstract ideas. Journal of
+1035 Experimental Psychology 77, 353–363. doi: 10.1037/h0025953.
+1036 Raviv, L., Lupyan, G., and Green, S. C. (2022). How variability shapes learning and
+1037 generalization. Trends in Cognitive Sciences 26, 462–483. doi:
+1038 10.1016/j.tics.2022.03.007.
+1039 Reed, S. K. (1972). Pattern recognition and categorization. Cognitive Psychology 3, 382–407.
+1040 doi: 10.1016/0010-0285(72)90014-X.
+1041 Reetzke, R., Maddox, W. T., and Chandrasekaran, B. (2016). The role of age and executive
+1042 function in auditory category learning. Journal of Experimental Child Psychology
+1043 142, 48–65. doi: 10.1016/j.jecp.2015.09.018.
+1044 Roark, C. L., and Holt, L. L. (2018). Task and distribution sampling affect auditory category
+1045 learning. Atten Percept Psychophys 80, 1804–1822. doi: 10.3758/s13414-018-1552-5.
+1046 Rosch, E. H. (1973). Natural categories. Cognitive Psychology 4, 328–350. doi:
+1047 10.1016/0010-0285(73)90017-0.
+1048 Rosedahl, L. A., Eckstein, M. P., and Ashby, F. G. (2018). Retinal-specific category learning.
+1049 Nat Hum Behav 2, 500–506. doi: 10.1038/s41562-018-0370-z.
+1050 Schönwiesner, M., and Zatorre, R. J. (2009). Spectro-temporal modulation transfer function
+1051 of single voxels in the human auditory cortex measured with high-resolution fMRI.
+1052 Proc. Natl. Acad. Sci. U.S.A. 106, 14611–14616. doi: 10.1073/pnas.0907682106.
+37 / 43
+1053 Seger, C. A., Braunlich, K., Wehe, H. S., and Liu, Z. (2015). Generalization in Category
+1054 Learning: The Roles of Representational and Decisional Uncertainty. Journal of
+1055 Neuroscience 35, 8802–8812. doi: 10.1523/JNEUROSCI.0654-15.2015.
+1056 Smith, D. J., and Minda, J. P. (2000). Thirty categorization results in search of a model.
+1057 Journal of Experimental Psychology: Learning, Memory, and Cognition 26, 3–27.
+1058 doi: 10.1037/0278-7393.26.1.3.
+1059 Smith, E. E., and Grossman, M. (2008). Multiple systems of category learning. Neuroscience
+1060 & Biobehavioral Reviews 32, 249–264. doi: 10.1016/j.neubiorev.2007.07.009.
+1061 Smith, J. D., and Minda, J. P. (1998). Prototypes in the mist: The early epochs of category
+1062 learning. Journal of Experimental Psychology: Learning, Memory, and Cognition 24,
+1063 1411–1436. doi: 10.1037/0278-7393.24.6.1411.
+1064 Smith, J. D., and Minda, J. P. (2002). Distinguishing prototype-based and exemplar-based
+1065 processes in dot-pattern category learning. Journal of Experimental Psychology:
+1066 Learning, Memory, and Cognition 28, 800–811. doi: 10.1037/0278-7393.28.4.800.
+1067 Smith, J. D., Zakrzewski, A. C., Johnston, J. J. R., Roeder, J. L., Boomer, J., Ashby, F. G., et
+1068 al. (2015). Generalization of category knowledge and dimensional categorization in
+1069 humans (Homo sapiens) and nonhuman primates (Macaca mulatta). Journal of
+1070 Experimental Psychology: Animal Learning and Cognition 41, 322–335. doi:
+1071 10.1037/xan0000071.
+1072 Waldron, E. M., and Ashby, F. G. (2001). The effects of concurrent task interference on
+1073 category learning: Evidence for multiple category learning systems. Psychonomic
+1074 Bulletin & Review 8, 168–176. doi: 10.3758/BF03196154.
+1075 Wills, A. J., Noury, M., Moberly, N. J., and Newport, M. (2006). Formation of category
+1076 representations. Memory & Cognition 34, 17–27. doi: 10.3758/BF03193383.
+1077 Xie, X., Liu, L., and Jaeger, T. F. (2021). Cross-talker generalization in the perception of
+1078 nonnative speech: A large-scale replication. Journal of Experimental Psychology:
+1079 General 150, e22–e56. doi: 10.1037/xge0001039.
+38 / 43
+1080 Zeithamova, D., and Maddox, W. T. (2006). Dual-task interference in perceptual category
+1081 learning. Memory & Cognition 34, 387–398. doi: 10.3758/BF03193416.
+1084 Tables
+1087 experiment.
+Immediate test One week after training
+Category Generalization
+df
+Corrected Corrected
+structure test (vs. CT)
+t-value Cohen d t-value Cohen d
+p-value p-value
+Exp. 1 (OT)
+16 0.46 1 0.048 -1.435 0.512 -0.137
+II F0
+16 -2.334 0.099 -0.369 -2.775 0.041 -0.429
+ND
+16 -6.103 < 0.001 -1.142 -2.935 0.029 -0.582
+NL
+17 -2.976 0.025 -0.512 0.822 1 0.12
+RB F0
+17 -2.178 0.131 -0.289 -2.154 0.138 -0.345
+ND
+17 -0.703 1 -0.107 0.617 1 0.087
+NL
+Exp. 2.1 (CT-NF)
+15 -0.12 1 -0.027 0.253 1 0.072
+II F0
+15 -7.189 < 0.001 -0.977 -3.037 0.025 -0.667
+ND
+15 -5.749 < 0.001 -1.582 -4.971 0.001 -1.313
+NL
+RB F0 15 0.201 1 0.025 -0.263 1 -0.045
+15 -3.538 0.009 -0.384 -2.342 0.1 -0.383
+ND
+15 0.049 1 0.007 0.37 1 0.066
+NL
+Exp. 2.2 (CT-WF)
+15 0.107 1 0.024 -2.513 0.072 -0.329
+II F0
+15 -3.659 0.007 -0.57 -5.546 < 0.001 -0.929
+ND
+15 -7.375 < 0.001 -1.515 -6.009 < 0.001 -1.523
+NL
+15 -1.787 0.279 -0.306 -0.921 1 -0.14
+RB F0
+15 -2.367 0.093 -0.325 -3.327 0.013 -0.38
+ND
+15 -0.329 1 -0.051 0.529 1 0.09
+NL
+1088 Note. The p-values were Bonferroni-corrected.
+39 / 43
+1091 model for each experiment.
+Immediate test one week after training
+Category Generalization
+df
+Corrected Corrected
+structure test (vs. CT)
+t-value Cohen d t-value Cohen d
+p-value p-value
+Exp. 1 (OT)
+II F0 16 0.807 1 0.098 -1.33 0.606 -0.17
+ND 16 -2.662 0.051 -0.513 -2.998 0.026 -0.459
+NL 16 -4.856 0.001 -1.117 -3.004 0.025 -0.657
+RB F0 17 -3.312 0.012 -0.531 1.235 0.701 0.206
+ND 17 -1.579 0.399 -0.238 -3.367 0.011 -0.637
+NL 17 1.054 0.919 0.21 3.425 0.01 0.778
+Exp. 2.1 (CT-NF)
+II F0 16 0.576 1 0.123 0.53 1 0.144
+ND 16 -7.146 < 0.001 -1.071 -3.646 0.007 -0.78
+NL 16 -6.309 < 0.001 -1.89 -5.952 < 0.001 -1.302
+RB F0 17 -0.897 1 -0.098 0.439 1 0.083
+ND 17 -3.719 0.006 -0.451 -1.904 0.229 -0.383
+NL 17 1.459 0.495 0.171 2.41 0.088 0.505
+Exp. 2.2 (CT-WF)
+II F0 16 0.274 1 0.057 -2.108 0.157 -0.299
+ND 16 -4.515 0.001 -0.611 -6.103 < 0.001 -1.026
+NL 16 -7.078 < 0.001 -1.49 -8.983 < 0.001 -1.774
+RB F0 17 -1.394 0.547 -0.273 0.8 1 0.153
+ND 17 -1.854 0.247 -0.288 -1.962 0.202 -0.36
+NL 17 1.807 0.269 0.265 3.957 0.003 0.758
+1092 Note. The p-values were Bonferroni-corrected.
+40 / 43
+Supplementary Figures
+1098 Fig. S1. Categorization performances (proportion correct) during training session 2 for
+1099 Experiment 2.1 (CT-NF) and 2.2 (CT-WF). Dashed lines = II learners; solid lines = RB learners.
+1100 CT-NF = categorization training without feedback; CT-WF = categorization training with
+1101 feedback.
+41 / 43
+1105 Fig. S2. Representational similarity modeling of categorization response patterns for each
+1106 generalization test with the three pre-defined models. Data were collapsed across three
+1107 experiments. *, corrected p < 0.05 above chance.
+42 / 43
+1110 Fig. S3. Learners’ categorization response time for each learner group across generalization
+1111 tests and experiments. *, p < 0.05; **, p < 0.01.
+43 / 43

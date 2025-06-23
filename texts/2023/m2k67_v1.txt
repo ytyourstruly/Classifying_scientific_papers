@@ -1,0 +1,416 @@
+Swanson et al.
+RESEARCH
+Cognitive networks and text analysis identify
+anxiety as a key dimension of psychological
+distress in suicide notes
+1 2 1 5 4
+Trevor James Swanson , Andreia Sofia Teixeira , Brianne N. Richson , Ying Li , Thomas T. Hills , Kelsie
+1 6 7 7*
+T. Forbush , David Watson , Luciana Ciringione and Massimo Stella
+Correspondence:
+Abstract
+massimo.stella@inbox.com
+CogNosco Lab, Department of
+Understanding the mindset of people who end their lives by suicide remains a key
+Psychology and Cognitive Science,
+research challenge. To this aim, we reconstruct conceptual associations and emotional
+University of Trento, Trento, Italy
+Full list of author information is perceptions of 139 authors of genuine suicide notes, i.e., notes written moments before
+available at the end of the article
+ending one’s own life. Our methods are grounded in cognitive network science, text
+analysis and psychometrics. We introduce a quantitative framework measuring to what
+extent authors of suicide notes tend to associate emotional words in ways similar to how
+200 individuals with high/low levels of depression, anxiety, and stress (on a DASS-21
+scale) recall concepts together. In Study 1, we use text analysis to build one co-occurrence
+network out of suicide notes’ texts and six fluency co-occurrence networks out of fluency
+data from individuals high/low on anxiety/stress/depression levels. We find that emotional
+word associations in suicide notes reflect mostly conceptual associations produced by
+low-anxiety individuals. In Study 2, we perform residual emotional profiling, i.e. measuring
+the emotional intensity of words remaining after removing from fluency networks those
+words mentioned and connected in the suicide notes’ network. We find that only the
+high-anxiety fluency network displays negligible emotional residuals, indicating the highest
+overlap - in terms of emotions - between suicide notes’ content and the concepts recalled
+by individuals with high anxiety levels. We discuss how these findings relate to existing
+psychological literature, along with their potential implications for understanding and
+quantifying suicidal behavior.
+Keywords: complex networks; text analysis; emotional profiling; cognitive network science
+Introduction
+Approximately 800,000 people die by suicide every year—that is about one suicide every 40
+seconds (World Health Organization, 2014). Suicide often arises from complex, distressed
+emotional processing that includes distorted perceptions about the self and others, as well
+the world in general (Oquendo et al., 2020; Rizk et al., 2019). Given the variety and complex-
+ity of factors that may lead an individual to contemplate or complete suicide, it is important
+to advance research into the psychological conditions surrounding such a tragic event. Sui-
+cide notes—that is, letters written immediately prior to the author’s suicide—represent one
+Swanson et al. Page 2 of 20
+potential window into the mindset of individuals who complete suicide (McAdams, 2001;
+Proulx & Heine, 2006). By analyzing the contents and language of suicide notes, we can gain
+unique insights into the common features of individual experiences and obtain a greater un-
+derstanding of the cognitive components that characterize suicidal ideation (Schneidman,
+1981).
+Previous research on suicide notes has focused on identifying their contents, as well as ex-
+plicating what features differentiate them from other types of texts (Handelman & Lester,
+2007; Pestian et al., 2012b). Al-Mosaiwi & Johnstone (2018) found that the vocabulary of
+individuals at risk for suicide contained more absolutist words (e.g., “always”, “totally”,
+“entire”) than what was observed among those diagnosed with depression or anxiety. Un-
+derstanding the emotional contents of suicide notes has also been a prominent research goal,
+wherein sentiment analysis has been employed to classify the emotions in such texts and
+train learning algorithms to distinguish between genuine and simulated suicide notes (Pes-
+tian et al., 2010; Schoene & Dethlefs, 2016). While these automated text-analytic techniques
+can be powerful for identifying written signs of suicidal ideation, they can be difficult to inter-
+pret and often use a “bag-of-words” approach that ignores the relationships between words
+and how they are used. Cognitive networks, however, offer a more readily-interpretable
+quantitative framework wherein the emotional contents of suicide notes can be analyzed
+while taking into account their associative structure—that is, networks allow for the study
+of both the contents and contexts of words used in suicide notes (Castro & Siew, 2020).
+Recent applications of cognitive networks to the study of suicide notes have provided
+unique insights into the structure of their emotional contents. For instance, Teixeira et al.
+(2021) and Stella et al. (2022) found, with different methodologies, that suicide notes con-
+sisted of an overwhelming majority of positively-valenced words that exhibited a compart-
+mentalized structure, such that positively- versus negatively-valenced words were often con-
+nected with one another (Showers, 1992). Moreover, Stella et al. (2022) found that suicide
+notes contained a higher degree of emotional complexity than notes written by a non-suicidal
+Swanson et al. Page 3 of 20
+control group. Together, these findings reflect that suicide notes may contain a unique emo-
+tional and lexical footprint.
+However, an important unresolved issue is whether traces of that lexical footprint (Stella,
+2022) can be observed in notes written by individuals who exhibit high levels of emotional
+distress, such as stress, depression, and anxiety. Addressing this question represents the
+primary goal of the present research. Comparing the emotional structure of suicide notes
+with that of notes written by individuals reporting symptoms of internalizing disorders
+(Lovibond & Lovibond, 1995) provides a step forward in using cognitive networks to identify
+signs of suicidal ideation (and thereby, possible suicide risk) in written texts. Our motivation
+for this work lies in the potential of these insights to have clinical implications for improving
+prevention efforts. Specifically, by supplementing previous machine learning research (Fatima
+et al., 2021; Pestian et al., 2012b; Schoene et al., 2021), we can create network models that
+are more informative to clinicians and may be used to detect nuanced features of texts that
+flag groups who are at risk for suicidal behavior.
+Several studies have shown that higher levels of stress, depression, and anxiety can be risk
+factors for suicidal ideation and behavior (Hawton et al., 2013; Naragon-Gainey & Watson,
+2011; Sandin et al., 1998; Sareen et al., 2005). Research has shown that among adults who
+reported a lifetime suicide attempt, up to 70% of them had an anxiety disorder (Nepon et al.,
+2010). Similarly, approximately 60% of individuals who completed suicide were diagnosed
+with major depressive disorder (Ng et al., 2017). Thus, to identify signs of suicidal ideation
+among individuals who report symptoms of internalizing disorders, it is an important goal to
+assess how the mindset of individuals who complete suicide might differ from the mindsets
+of those who exhibit psychopathological symptoms but did not attempt suicide.
+In this paper we employ a cognitive network science framework to investigate the emotional
+contents and structure of suicide notes. Similar to past research that used networks to study
+suicide notes (Stella et al., 2022; Teixeira et al., 2021), we construct co-occurrence networks
+to map the associative structure of words used in such notes and analyze the organization
+Swanson et al. Page 4 of 20
+of their emotional contents. We create networks from a sample of recalls produced by indi-
+viduals who reported high/low levels of internalizing symptoms (i.e., stress, depression, and
+anxiety), and aim to assess the structural similarities and differences between suicide notes
+and these other recalls.
+To the best of our knowledge, this paper represents the first attempt to directly compare
+networks created from suicide notes with those created from notes produced by individuals
+experiencing high/low levels of emotional distress. The primary goal behind this research is
+to compare and contrast the mindsets of individuals experiencing these negative psycholog-
+ical conditions with those of individuals who completed suicide to inform future research on
+suicide prevention.
+Transparency and Openness
+No studies within this paper were preregistered. The suicide note data were obtained via
+personal communication with external researchers, and so are not made publicly available
+by the current authors. Access to the de-identified ERT data collected by Li et al. (2020)
+conduct the analyses described in this paper are also available at the following repository:
+all manipulations, and all measures in the study. Our sample size of suicide notes was
+determined by the preexisting data that were obtained by Schoene & Dethlefs (2016); the
+same is true of the sample size for the ERT data obtained by Li et al. (2020). Ethical
+approval was granted from the HSSREC IRB panel at the University of Warwick to work
+with the suicide notes and the emotional recall data (HSSREC 63/21-22).
+Methods
+This section briefly outlines the datasets and network structures investigated in this study.
+Swanson et al. Page 5 of 20
+Genuine suicide notes and ERT data
+This work used 139 genuine suicide notes curated by Schoene & Dethlefs (2016) and inves-
+tigated also in previous works, through different methodologies Fatima et al. (2021); Stella
+et al. (2022); Teixeira et al. (2021). These letters were written in English by individuals who
+completed suicide. A suicide letter included an average of 120 words. No additional contex-
+tual information (e.g., demographics) was available from the dataset. Notes were processed
+with names and sensitive information anonymized by Schoene & Dethlefs (2016), thus fil-
+tering out any sensitive information from the analysis. Text was tokenised (i.e., split into
+words) and stemmed (e.g., regularize different forms to a common morphonological root)
+through Mathematica 11.3. Punctuation was discarded and we considered only stemmed
+words appearing in the Emotional Recall Task (ERT).
+The Emotional Recall Task was introduced by Li et al. (2020). N = 200 individuals re-
+cruited from Amazon Mechanical Turk (MTurk) recalled 10 emotional states while reporting
+how they felt in their last month through a fluency task. The overall dataset included 475
+different stems of emotional words (e.g., happy, sad, etc.) in English. We considered each
+recall as a list of words and stemmed it with Mathematica 11.3. Each word list/recall was
+relative to a numeric score from the Depression Anxiety Stress Scales (DASS; Lovibond
+& Lovibond, 1995). We partitioned ERT recalls as produced by people with higher-than-
+median and lower-than-median anxiety. We did the same for stress and depression, obtaining
+6 different collections of ERT recalls.
+To identify the structure of emotional co-occurrences across populations experiencing de-
+pression, anxiety, stress and suicide ideation, we used a cognitive network science framework
+(Gon˜i et al., 2011).
+Emotional co-occurrence networks
+We used the sequences of emotional words from suicide notes and ERT data to build networks
+of emotion co-occurrence in the narratives and recollections of our target populations. As
+in previous studies dealing with fluency data, we used the approach by Gon˜i et al. (2011)
+Swanson et al. Page 6 of 20
+for building co-occurrence networks out of word lists. We used an l = 2 window—i.e.,
+we considered the two words that immediately preceded and followed each word in the
+texts as co-occurring together. We applied this window to all words in all sentences, and
+recorded all co-occurrences as connections between pairs of concepts. We then discarded
+all idiosyncratic co-occurrences, that is, those appearing only once. We additionally selected
+links by considering a Binomial filtering based on word frequency in the corpora. All corpora
+featured a total of |D| = 475 unique stems. These nodes D were added to all networks, then
+connections for every emotional network were added according to the procedure by Gon˜i
+et al. (2011). This led to 7 emotional networks where nodes represent emotional states and
+links indicate stronger-than-expected emotional co-occurrences in clinical populations, i.e.,
+people experiencing suicidal ideation and low/high depression, anxiety and stress.
+Emotional auras and Jaccard similarity
+Words in each emotional network were enriched with valence/arousal labels from the
+Valence-Arousal-Dominance dataset by Mohammad (2018). Labels for valence were “posi-
+tive” (upper quartile), “negative” (lower quartile) or neutral (otherwise). Labels for arousal
+were “exciting” (upper quartile), “inhibitive” (lower quartile) or neutral (otherwise). These
+labels were used to detect the type of negative/positive or boring/exciting associations be-
+tween emotional states. As in Stella et al. (2019), we used the metric of emotional auras
+to combine valence/arousal labels and network connectivity. For each word, we detected its
+neighborhood—i.e., the set of all words co-occurring with it. Example neighborhoods for
+larities populating each neighborhood; this is the emotional aura attributed to a word and
+depending on its neighborhood of associations. The aura of each word does not depend on its
+valence-arousal labels, but rather on the affective labels of its neighbors/associates. For in-
+stance, “happi” (stem for “happiness” and “happy”) is always labeled as a positive/arousing
+concept. However, it inherits a positive aura in the network produced by people with low
+depression, and a negative aura in the network produced by people with high depression,
+Swanson et al. Page 7 of 20
+ordered list of nodes {D , D , ..., D }, we represented each emotional network N as a
+1 2 475
+vector:
+V (N ) = {A , A , ..., A }, (1)
+a 1 2 475
+of emotional auras for each corresponding node. By computing Jaccard similarity between
+vectors, we measured how similar emotional networks were in associating concepts with
+analogous emotional auras, mixing valence/arousal and emotion co-occurrence.
+Emotional profiling
+Emotional profiles were built by using the NRC Emotion Lexicon (Mohammad & Turney,
+2013). The latter is a behavioral mapping between words and the emotions elicited by them
+(Mohammad & Turney, 2013).
+Counting how many emotions are present in a given set powered our “words not said”
+analysis. We measured residual emotions present in the complement C of two lists of words
+with degree k ≥ 1, one list coming from a network of low/high negative states and the other
+list coming from suicide notes. For example, this procedure makes it possible to consider
+the emotions persisting in words that were mentioned by people with high depression but
+not mentioned/associated in suicide notes.
+For any complement list C, we reconstructed its affective content as an emotional flower
+(Semeraro et al., 2021; Stella, 2020), where petals indicate z -scores of eight different emo-
+tional states based on how many words elicit a given state. The larger the petals, the more
+concepts elicit that emotional state. Let us clarify this in quantitative terms. We measured
+the fraction r = m/N of m words inspiring emotion i in a list with N entries. The collection
+of observed values {r } constitutes the so-called emotional profile of a set C of words not
+i i
+said. For suicide notes, antonyms of words linked with meaning negations (e.g., “not”) were
+Swanson et al. Page 8 of 20
+added to the count (antonyms were defined via WordNet 3.0; Fellbaum, 2012). The observed
+profile was matched against 1000 random emotional profiles built by sampling uniformly at
+random from the NRC Emotion Lexicon as many words as those that elicited at least one
+emotion in the {r } s. We computed 8 z -scores, one per emotional state, and plotted them in
+i i
+a sector bar chart inspired by Plutchik’s wheel of emotions (Plutchik, 1980). The rejection
+area z < 1.96 was plotted as a semi-transparent area and concentric circles indicated units
+of z -scores higher than 2.
+Importantly, all of these analyses rely on network structural properties for their conclu-
+sions. Emotional auras are determined by local patterns of connectivity within the networks,
+tivity of the networks in order to focus only on the largest connected component (LCC) for
+creating the network complement C. Further details about this analysis and our methodol-
+ogy can be found in the Supplementary Information document.
+Results
+Suicide notes’ semantic frames most resemble positive and arousing associations expressed by
+individuals with low anxiety
+First, as described by Stella et al. (2022) and Teixeira et al. (2021), we observed that the
+suicide notes contained an overwhelming majority of words with positive auras. Specifically,
+only 3 words were observed to have negative auras. Given the paucity of words with negative
+auras in the suicide notes as compared with the ERT data, we were not able to construct
+appropriate comparisons for words with negative auras across the two datasets. Thus, we
+limited the analysis of Jaccard similarity to words with positive auras. In addition to assess-
+ing the similarity of words with positive auras, we also included exciting auras as a second
+dimension for computing the Jaccard similarity of each ERT network against the suicide
+notes network.
+with positive auras plotted on the y-axis, and that for words with exciting auras plotted
+Swanson et al. Page 9 of 20
+on the x-axis. Each point on the plot represents the Jaccard similarity between each ERT
+network and the suicide notes network on each of the two dimensions. The first pattern that
+emerges is that low stress, anxiety, and depression networks have higher similarity values
+for words with positive auras than the corresponding high stress, anxiety, and depression
+networks. Notably, we see that the low anxiety network has the highest levels of Jaccard
+similarity on both dimensions. This means that words with positive auras and exciting
+auras in both the suicide notes and low anxiety networks show the most similar patterns of
+connectivity with other words, as compared to what we observe for the other ERT networks.
+Going beyond positivity: “Words not said”, suicide letters and high anxiety
+Given that the ERT networks contained a variety of words with negative auras that were not
+able to be included in the analysis (due to the dearth of words with negative auras in suicide
+notes), this begs the question of what emotional contents exist in those networks that were
+not expressed in the suicide notes. That is, our initial analysis was limited by restricting
+the ERT networks to only evaluate words that were also included in suicide notes. Thus,
+we wanted to evaluate the residual emotional contents expressed by the “words not said”
+in suicide notes, but were said by the individuals who completed the ERT. To do this,
+we constructed residual networks for the ERT data, wherein for each subsample (low/high
+stress, anxiety, and depression) we removed all words that were present in suicide notes and
+analyzed the emotional profiles for the remaining words in each network.
+reflect the “words not said” in suicide notes. In each emotional flower the petals reflect
+the prevalence, and statistical significance, of each individual emotion among the words in
+the corresponding residual network. Petals that extend beyond the semi-transparent circles
+indicate that the z -score for that emotion is greater than 2, or that it appeared with a
+significantly greater frequency than chance, given an alpha level of .05. The only ERT
+network that did not reveal any emotions occurring more frequently than chance was the
+high anxiety network.
+Swanson et al. Page 10 of 20
+Closing remarks: Low and high anxiety are important constructs to understand emotions (not)
+expressed in suicide notes
+Our results reveal an interesting relationship between the emotional contents of suicide notes
+and those from emotional-recall data provided from a sample of healthy individuals. Specifi-
+cally, we observed that the patterns of connectivity among emotion words with positive and
+exciting auras in suicide notes showed the greatest similarity with those in texts written
+by relatively low-anxiety individuals. This alone does not tell the whole story. In fact, we
+see that after removing words used in suicide notes from networks generated by individuals
+high/low in stress, anxiety, and depression, all networks—except those representing written
+texts from high-anxiety individuals—contained additional emotional contents not present in
+suicide notes.
+Discussion and Conclusions
+The purpose of the current study was to compare the emotional content of words in 139
+genuine suicide notes curated by Schoene & Dethlefs (2016) to those from 200 healthy
+individuals who completed the Emotional Recall Task in which they recalled 10 emotional
+states while reporting how they felt in their last month through a fluency task. Our secondary
+goal was to identify how many emotions were present in a given set of “words not said” by
+measuring residual emotions from a network of low/high emotion states and one list coming
+from suicide notes. We observed that patterns of connectivity among emotional words in
+suicide notes were most similar to those in texts written by low-anxiety individuals. At
+the same time, after removing the bulk of positive associations, the remaining collection of
+emotions in suicide notes was most similar to states expressed by high-anxiety individuals.
+Our findings reveal that the mindset of individuals who complete suicide has a complex
+association with the mindset of individuals experiencing anxiety. On first glance, it appears
+that the organization of emotion words in suicide notes is most similar to that in notes
+written by individuals with low levels of anxiety. But upon closer investigation, it seems
+that individuals with low anxiety also frequently express other types of emotions within
+Swanson et al. Page 11 of 20
+their written texts, particularly a high level of joy and anticipation. However, heightened
+levels of these additional emotions appear to be absent among individuals who reported
+higher levels of anxiety, indicating that the collection of emotional contents they express
+matches more closely to that observed in suicide notes. An interesting conclusion of this
+research is that understanding how the emotional contents in suicide notes relate to those
+expressed by individuals with different levels of internalizing symptoms may have less to do
+with what is actually written, and more to do with the “words not said”.
+It is important to emphasize that these results are direct products of analyzing the con-
+nectivity of the networks studied in this paper. Where our study of emotional auras re-
+lies on the networks’ local connectivity, and the “words not said” analysis relies on their
+global connectivity. Moreover, upon further analysis of other structural properties of the
+networks—including degree distribution, average clustering coefficient, and average network
+distance—we see that they all have a similar global topology (i.e., heavy-tailed degree dis-
+tribution with short average network distance and relatively high clustering coefficient),
+highlighting that local connectivity is really the key feature driving the present results. See
+the Supplementary Information for more details about these additional analyses.
+Suicidal ideation (a suicide risk factor) is associated with several anxiety-spectrum disor-
+ders and related disorders (e.g., post-traumatic stress disorder; Naragon-Gainey & Watson,
+2011). One meta-analysis indicated that the presence of an anxiety disorder distinguishes
+individuals who think about suicide from those who attempt suicide, whereas depression was
+similarly prevalent in both groups (May & Klonsky, 2016). High-anxiety individuals may
+have an external locus of control (i.e., feeling one’s life is controlled by external factors);
+perceived lack of control may facilitate feelings of hopelessness that, in theory, exacerbate
+suicidal ideation (Joiner, 2005). Indeed, having an external locus of control has been asso-
+ciated with suicide attempts (Wiebenga et al., 2021). It is also possible that ‘high anxiety’
+is a proxy for overarousal and/or sensitivity to the experience of anxiety, both of which
+have been suggested as risk factors for suicide (Ribeiro et al., 2015; Stanley et al., 2018).
+Swanson et al. Page 12 of 20
+More generally, neuroticism (a personality construct strongly related to anxiety) is likely
+negatively associated with positive affective experiences like joy (Ng, 2009).
+The above provides some context to help explain why we observed a relationship between
+the emotions expressed by high-anxiety individuals and those expressed in suicide notes.
+However, the fact that patterns of connectivity among positively-valenced and exciting words
+in the suicide notes were most similar to those observed in low-anxiety individuals indicates
+that there is more to the story.
+Multiple theories about suicide—e.g., the Interpersonal Theory of Suicide (Joiner et al.,
+2021), the 3-Step Theory (Klonsky & May, 2015), and the Integrated Motivational-Volitional
+Model (O’Connor, 2011)—posit that there are distinct processes that lead one to develop
+suicidal ideation versus the capacity for acting on suicidal thoughts. In these theories, in-
+terpersonal factors such as loneliness or feeling as though one does not belong with their
+social group may lead to suicidal thoughts. However, the capacity for suicide appears to be
+related to certain aspects of fearlessness or low anxiety. This includes experiences such as
+low fear of bodily harm and a higher-than-average tolerance of physical pain (Joiner, 2005).
+Thus, our quantitative analysis reflects the dual nature of these relationships between
+anxiety and suicide, where there appears to be a contradictory association between both
+high/low anxiety and suicidal ideation/behavior. However, these associations may poten-
+tially be understood as reflecting what has been identified in past literature as a connection
+between higher emotional anxiety and greater risk of suicidal ideation (Naragon-Gainey &
+Watson, 2011), as well as lower physiological anxiety being a risk factor for acting on suicidal
+thoughts (Joiner, 2005; Smith et al., 2010).
+This distinction can be understood by looking closely at the items on the DASS “anxiety”
+subscale. This scale, which we used to operationalize high/low anxiety in our sample, con-
+tains mostly somatic and panic-related content (e.g., “I experienced difficulty breathing”; “I
+was aware of dryness of my mouth”), and relatively fewer anxious affect items (e.g., “I felt
+scared without any good reason”). This may account for why we observed the most simi-
+Swanson et al. Page 13 of 20
+larity between the emotional contexts of suicide texts and those written by individuals who
+scored low on the DASS anxiety subscale, given that a low anxiety score on the DASS may
+correspond more readily to low physiological anxiety than low emotional anxiety. Another
+potential explanation for why we observe this similarity could be that the act of writing a
+suicide note leads to an acute reduction in anxiety, which is then reflected in the note itself.
+Indeed, research in narrative psychology and on expressive writing has suggested that writ-
+ing about oneself and one’s life can reduce feelings of emotional distress (e.g., Pennebaker,
+1997; Stephens, 2011). But while this would certainly be an interesting explanation, collect-
+ing data to test this hypothesis would be extremely difficult and our current data are unable
+to address such a possibility.
+It is important to note some limitations of this study. First, there was no demographic
+information available for the authors of the suicide notes we analyzed in this study. The
+sample of individuals who completed the ERT was collected from MTurk (a population that
+has been extensively studied in the social science literature; Huff & Tingley, 2015), but it
+is unclear to what extent these individuals represented an appropriate comparison group
+for the sample of suicide-note authors. Future research would also benefit from analyzing
+a larger collection of suicide notes, such as the corpus of 1,319 suicide notes described by
+Pestian et al. (2012a) which includes relevant demographic information such as gender, age,
+and education level. This would likely help to address another limitation we encountered,
+which was the dearth of negatively-valenced words in the suicide notes.
+Some strengths of this study lie in its potential implications for informing research on
+predicting suicidal behavior from written texts. Previous research has used machine learning
+techniques to identify texts that may signal suicidal ideation (Pestian et al., 2012b; Schoene
+et al., 2021), but such methods often produce results that are difficult to understand and thus
+may not be very helpful to clinicians for identifying the underlying features of a text that
+may signal risk for suicidal behavior (Rudin, 2019). Conversely, while qualitative methods for
+analyzing texts lend themselves better to interpretation, these may have limited reliability
+Swanson et al. Page 14 of 20
+and be more difficult to apply on a broader scale (e.g., with larger corpora). Using cognitive
+network science, our approach retains the value of quantitative analysis while preserving the
+human dimension of the data. Network models (Stella, 2022; Stella et al., 2020) allow us
+to analyze the patterns of associative knowledge that represent the mindsets of individuals
+who may be at risk for suicide. This affords interpretable, automated emotion detection
+(Stella et al., 2020) which may be used to enhance clinical psychological investigations of
+an individual’s risk for suicide.
+Future research should clarify if results similar to what we observed here emerge in studies
+wherein depression, stress, and anxiety are modeled together, as we recognize that these
+constructs are not mutually exclusive and are instead highly related (O’Driscoll et al., 2021).
+It will be important to test networks of suicide notes from other samples of individuals
+as well. For example, research is needed in clinical samples that are considered ‘at-risk’
+for suicidal ideation and suicidal behavior, such as in individuals with depression, eating
+disorders, and PTSD (Chesney et al., 2014; Fu et al., 2021). The methods described in this
+paper could also be used to address other research questions relevant to mental health. For
+instance, another important application of these methods could be to analyze texts written
+by military service members diagnosed with PTSD, who are at a significantly elevated risk
+for death by suicide due to numerous risk factors (Ramchand et al., 2015; Xue et al., 2015).
+Given that the risk of developing PTSD is high among military personnel (Armed Forces
+Health Surveillance Center, 2012; Martin et al., 2009), using cognitive networks to uncover
+traces of its ‘lexical footprint’ in texts written by active military members could offer a
+potential means of identifying those groups who may be most at-risk for death by suicide.
+In this paper we have shown how cognitive networks can provide unique insights into
+the mindsets of individuals who completed suicide, and how those insights can be used to
+identify similarities between the emotional contents of suicide notes and those expressed
+by individuals reporting high/low levels of emotional distress. Results preliminarily suggest
+Swanson et al. Page 15 of 20
+that text communication platforms could be monitored for textual-connectivity patterns, or
+a lack of key positive emotional language, to inform suicide prevention.
+Author Contributions
+Conceptualization: TS, AT, LY, TTH, MS; Formal Analysis: MS; Methodology: MS, TS, AT, LY, TH; Investigation: All authors;
+Data Curation: MS, LY, TTH; Writing - Original Draft Preparation: All authors.
+Conflicts of Interest
+The author(s) declare that there were no conflicts of interest with respect to the authorship or the publication of this article.
+Acknowledgements
+AST acknowledges support by the FCT through the LASIGE Research Unit, ref. UIDB/00408/2020 and ref. UIDP/00408/2020.
+Author details
+1 2
+Department of Psychology, University of Kansas, 1415 Jayhawk Blvd., Lawrence, KS, 66045, USA. LASIGE, Departamento
+de Inform´atica, Faculdade de Ciˆencias, Universidade de Lisboa, 1749-016 Lisboa, PT. Institute of Psychology, Chinese
+4 5
+Academy of Sciences, Beijing, China. Department of Psychology, University of Warwick, Coventry, UK. Center for Adaptive
+Rationality, Max Planck Institute for Human Development, Berlin, DE. Department of Psychology, University of Notre Dame,
+Notre Dame, USA. CogNosco Lab, Department of Psychology and Cognitive Science, University of Trento, Trento, Italy.

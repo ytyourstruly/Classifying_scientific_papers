@@ -1,0 +1,1858 @@
+NORTHWESTERN UNIVERSITY
+Beyond Traditional Measures of Personality with BISCUIT and BARE:
+A New Statistical Learning Technique and Behavioral Item Pool
+to Push Personality Psychology Forward
+A DISSERTATION
+SUBMITTED TO THE GRADUATE SCHOOL
+IN PARTIAL FULFILLMENT OF THE REQUIREMENTS
+for the degree
+DOCTOR OF PHILOSOPHY
+Field of Psychology
+By
+Lorien Grey Elleman
+EVANSTON, ILLINOIS
+September 2020
+Abstract
+This dissertation investigates two ways in which personality psychology should move be-
+yond the traditional approach of measuring personality with broad domains composed of trait
+descriptors, as exemplified by the Big Five taxonomy. The first study (Chapter 2) suggests
+an alternative to the traditional approach of aggregating personality items into domains.
+Mounting evidence indicates that, compared to domains, narrower measures of personality
+account for more variance in criteria and describe personality-criterion relationships more
+accurately. Analysis of individual personality items is the most granular approach to study-
+ing personality and is typically performed with statistical learning techniques (SLTs). The
+first study: (a) champions a new statistical learning technique, BISCUIT; (b) finds that
+BISCUIT provides a balance between prediction and parsimony; and (c) replicates previous
+findings that the broadness of the Big Five traits hinder their predictive power.
+The second study (Chapter 3) suggests an alternative to the traditional approach of
+measuring personality with trait descriptors, or “traditional personality items.” Of the three
+patterns commonly associated with personality (cognitions, emotions, and behaviors), be-
+haviors are the least studied; traditional personality items tend to measure cognitions and
+emotions. Historically, yearlong patterns of specific behaviors have been thought of as criteria
+of personality measures, but the second study posits they should be classified as personality
+items because they measure patterns of behavior, a component of personality. The second
+study reviews and extends two pilot studies that indicated behavioral frequencies predict
+life outcomes, sometimes better than traditional personality items. The second study: (a)
+estimates the extent to which behavioral frequencies strengthen personality-criterion relation-
+ships above traditional personality items; (b) determines that some criteria are differentially
+predicted by personality item type; and (c) publishes an updated, public-domain item pool
+of behavioral frequencies: the BARE (Behavioral Acts, Revised and Expanded) Inventory.
+Acknowledgements
+I sincerely thank:
+William Revelle, for being a patient, impulsive, generous, curious, wise, loyal, disagree-
+able, and kind mentor and friend. It has been a pleasure to work with someone who
+was so blunt when I was incorrect, so supportive when I was on the right track, and so
+excited when I suggested something he had not before considered.
+Dan Mroczek, for your mentorship, encouragement, jovialness, insight, and generosity.
+I can’t thank you enough.
+Rick Zinbarg, for joining this committee on short notice and in the middle of a pan-
+demic. I truly appreciate it.
+David Condon, for returning my email seven years ago when I inquired about an
+RAship in the PMC lab. And for being a long-time mentor and collaborator. Most of
+my graduate school research has depended upon your commitment to SAPA.
+Sarah McDougald, for our three-year collaboration. You taught me a great deal more
+than I had anticipated, and I am proud to have helped you pursue your own PhD.
+My wonderful partner Marissa, for loving and supporting me in ways no one else ever
+has. And for copy editing.
+Preface
+I have structured this dissertation in a manner I have heard called the “European model.”
+That is, each of Chapters 2 and 3 is an independent paper that has been or will be submitted
+for publication, but together they function as parts of a cohesive dissertation. Currently,
+Chapter 2 is in press in a special issue of the European Journal of Psychological Assessment,
+“New Approaches Towards Conceptualizing and Assessing Personality.” I plan to submit
+Chapter 3 for publication immediately following my defense, and there should be a preprint
+available by the time this dissertation is widely available. If you would cite Chapters 2 or 3,
+please instead cite the published paper or preprint. You should be able to find links to them at
+com/ for the next few years.
+My reason for designing my dissertation this way was because, even before COVID-19
+ravaged the economy, the academic job market was bleak. New psychology PhDs are being
+churned out of universities an order of magnitude faster than the rate at which tenured
+psychology professors are retiring. The idea that a dissertation should be an end in itself, and
+perhaps a publication as an afterthought, does not reflect the kind of competition that PhD
+graduates face. Publishing chapters from my dissertation before defending was a practical
+way to bolster my preparedness for entering the job market.
+List of Tables 8
+List of Figures 16
+1 General Introduction 18
+1.1 An Existential Limitation of the Big Five . . . . . . . . . . . . . . . . . . . . 20
+1.2 A Practical Limitation of the Big Five . . . . . . . . . . . . . . . . . . . . . 23
+1.3 The Current Studies:
+Moving Beyond the Tradition of the Big Five . . . . . . . . . . . . . . . . . 27
+2 That Takes the BISCUIT 28
+2.1 Abstract . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+2.2 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+2.2.1 The Four Statistical Learning Techniques to be Compared . . . . . . 31
+2.2.2 Aims of the Study . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+2.3 Methods . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+2.3.1 Sample . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+2.3.2 Measures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+2.3.3 Procedure . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+2.3.4 Statistical Analyses . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+2.4 Results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+2.4.1 Predictive Accuracy . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+2.4.2 Parsimony . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+2.4.3 Post-hoc Analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+2.5 Discussion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 44
+2.5.1 Limitations of the Study . . . . . . . . . . . . . . . . . . . . . . . . . 47
+2.5.2 Future Directions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 48
+2.5.3 Conclusions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+3 Laying Personality BARE 51
+3.1 Abstract . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+3.2 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 52
+3.2.1 Two Pilot Studies Have Examined the Incremental Validity of Behav-
+ioral Frequencies . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+3.2.2 Overview of the Current Study . . . . . . . . . . . . . . . . . . . . . 56
+3.3 Methods . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 57
+3.3.1 Participants . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 57
+3.3.2 Measures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 58
+3.3.3 Statistical Analyses . . . . . . . . . . . . . . . . . . . . . . . . . . . . 60
+3.4 Results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 62
+3.4.1 The Strength of Personality-Criterion Relationships Using Different
+Item Pools . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 62
+3.4.2 The Types of Personality Items Most Related to Each Criterion . . . 63
+3.4.3 Summary of Best Items Content for Each Criterion . . . . . . . . . . 64
+3.5 Discussion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 70
+3.5.1 Limitations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 73
+3.5.2 Future Directions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 74
+3.5.3 Conclusions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 75
+4 General Discussion 77
+References 81
+Appendix A Appendix for Chapter 2 100
+Appendix B Appendix for Chapter 3 113
+LIST OF TABLES 8
+List of Tables
+3.1 Tests to determine the differences in non-independent correlations of criteria
+with BISCUIT models that use traditional personality item pools, compared
+to other item pools. Each test determines if correlation r is significantly
+AB
+different from r , accounting for r . Variables A are six criteria. Variables
+AC BC
+B are BISCUIT models built using the traditional personality item pool. Vari-
+ables C are BISCUIT models built using either the behavioral frequency item
+pool or an item pool that combined both personality item types. Bolded p-
+values indicate significant differences (p < .05), and bolded item pools and
+correlations indicate the models with the larger correlations. . . . . . . . . . 64
+3.2 Pearson’s chi-squared tests comparing the frequencies of behavioral and tra-
+ditional items in the total item pool against the frequencies in each BISCUIT
+model that was built with the total item pool. A bolded row indicates statis-
+tical significance (p < .05). . . . . . . . . . . . . . . . . . . . . . . . . . . . . 65
+LIST OF TABLES 9
+3.3 The 10 personality items most strongly correlated with general health, se-
+lected by BISCUIT from a pool of 1,121 items. The BISCUIT model com-
+posed of these items had a large correlation with general health (R = .51).
+Each listed correlation is an average across ten folds, and its standard error ≈
+.02. The column “Key” indicates whether the item was positively or negatively
+keyed on the listed domain/facet. . . . . . . . . . . . . . . . . . . . . . . . . 66
+3.4 The 20 personality items most strongly correlated with overall stress, selected
+by BISCUIT from a pool of 1,121 items. The BISCUIT model composed of
+these items had a large correlation with overall stress (R = .52). Each listed
+correlation is an average across ten folds, and its standard error ≈ .02. The
+column “Key” indicates whether the item was positively or negatively keyed
+on the listed domain/facet. . . . . . . . . . . . . . . . . . . . . . . . . . . . . 66
+3.5 The 14 personality items most strongly correlated with body mass index,
+selected by BISCUIT from a pool of 1,121 items. The BISCUIT model com-
+posed of these items had a large correlation with BMI (R = .48). Each listed
+correlation is an average across ten folds, and its standard error ≈ .02. The
+column “Key” indicates whether the item was positively or negatively keyed
+on the listed domain/facet. . . . . . . . . . . . . . . . . . . . . . . . . . . . . 67
+3.6 The 10 personality items most strongly correlated with smoking frequency,
+selected by BISCUIT from a pool of 1,121 items. The BISCUIT model com-
+posed of these items had a large correlation with smoking frequency (R = .53).
+Each listed correlation is an average across ten folds, and its standard error ≈
+.02. The column “Key” indicates whether the item was positively or negatively
+keyed on the listed domain/facet. . . . . . . . . . . . . . . . . . . . . . . . . 68
+LIST OF TABLES 10
+3.7 The 10 personality items most strongly correlated with exercise frequency,
+selected by BISCUIT from a pool of 1,121 items. The BISCUIT model com-
+posed of these items had a large correlation with exercise frequency (R = .51).
+Each listed correlation is an average across ten folds, and its standard error ≈
+.02. The column “Key” indicates whether the item was positively or negatively
+keyed on the listed domain/facet. . . . . . . . . . . . . . . . . . . . . . . . . 69
+3.8 The 10 personality items most strongly correlated with emergency room vis-
+its, selected by BISCUIT from a pool of 1,121 items. The BISCUIT model
+composed of these items had a moderate correlation with emergency room
+visits (R = .29). Each listed correlation is an average across ten folds, and
+its standard error ≈ .02. The column “Key” indicates whether the item was
+positively or negatively keyed on the listed domain/facet. . . . . . . . . . . . 69
+A.1 Descriptive statistics of participant variables, for the initial sample (no restric-
+tions) and the final sample (complete data for personality items and criteria). 101
+A.2 Average pairwise administrations for training and test subsamples, by item
+pair type, for all data missingness conditions. Standard deviations are in
+parentheses. Average item-to-criterion pairwise administrations are larger
+than item-to-item administrations because criterion data were complete in
+all conditions. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 101
+A.3 Number of items selected by BISCUIT, for each criterion and level of person-
+ality data missingness. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 101
+A.4 Number of items selected by the lasso, for each criterion and level of personal-
+ity data missingness. For the 25%, 50%, and 75% data missingness conditions,
+the number of items is an average across 20 imputations. . . . . . . . . . . . 102
+LIST OF TABLES 11
+A.5 Number of items selected by the elastic net, for each criterion and level of
+personality data missingness. For the 25%, 50%, and 75% data missingness
+conditions, the number of items is an average across 20 imputations. . . . . . 102
+A.6 The six-item model selected by the BISCUIT to predict Sleep Quality in
+the complete data condition. BISCUIT unit-weights items in its model, but
+output from the BISCUIT model includes information regarding the mean
+and SD of correlations (across folds) of items with the criterion. . . . . . . . 102
+A.7 The one-item model selected by the BISCUIT to predict BMI in the 90% data
+missingness condition. BISCUIT unit-weights items in its model, but output
+from the BISCUIT model includes information regarding the mean and SD of
+correlations (across folds) of items with the criterion. . . . . . . . . . . . . . 104
+A.8 The one-item model selected by the BISCUIT to predict General Health
+in the 90% data missingness condition. BISCUIT unit-weights items in its
+model, but output from the BISCUIT model includes information regarding
+the mean and SD of correlations (across folds) of items with the criterion. . 104
+A.9 Number of items selected by BISCUIT run on imputed data, for each crite-
+rion and level of personality data missingness. For the 25%, 50%, and 75%
+data missingness conditions, the number of items is an average across 20 im-
+putations. Mean number of items = 39; median = 37. . . . . . . . . . . . . . 104
+A.10 Predictive accuracy (measured in multiple R) of the lasso and elastic net,
+based on personality data, across five levels of imposed missingness of data,
+in five criteria. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 106
+A.11 Predictive accuracy (measured in multiple R) of BISCUIT and the random
+forest, based on personality data, across five levels of imposed missingness of
+data, in five criteria. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 107
+LIST OF TABLES 12
+A.12 Predictive accuracy (measured in multiple R) of regression using the SPI-27
+and regression using the Big Five, based on personality data, across five levels
+of imposed missingness of data, in five criteria. . . . . . . . . . . . . . . . . . 108
+A.13 Predictive accuracy (measured in multiple R) of BISCUIT using weighted
+coefficients and BISCUIT using imputed data (post-hoc analyses), based on
+personality data, across five levels of imposed missingness of data, in five criteria.109
+A.14 Predictive accuracy (measured in multiple R) of the elastic net and BISCUIT
+applied to the SPI-27 (post-hoc analyses), based on personality data, across
+five levels of imposed missingness of data, in five criteria. . . . . . . . . . . . 110
+A.15 Predictive accuracy (measured in multiple R) of the elastic net and SPI-27
+trained on imputed data and tested on complete data (post-hoc analyses),
+based on personality data, across five levels of imposed missingness of data,
+in five criteria. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 111
+A.16 Predictive accuracy (measured in multiple R) of BISCUIT trained on missing
+data and BISCUIT trained on imputed data, both tested on complete data
+(post-hoc analyses), based on personality data, across five levels of imposed
+missingness of data, in five criteria. . . . . . . . . . . . . . . . . . . . . . . . 112
+B.1 Items of the BARE Inventory. “SAPA ID” refers to the unique item identifier
+used by the SAPA Project. “Origin” refers to whether the item was taken
+from the ORAIS or the BAI. The last column lists either the ORAIS facet
+associated with the item or the original BAI item ID number. . . . . . . . . 116
+B.2 Personality items removed from BISCUIT’s analysis of best items for a cri-
+terion due to the item content being synonymous with the criterion. Item
+correlation with the corresponding criterion is listed. . . . . . . . . . . . . . 130
+LIST OF TABLES 13
+B.3 Reliabilities of BISCUIT models as if they were personality scales, by criterion.
+Items used per model and correlation with appropriate criterion are also listed.131
+B.4 The 10 personality items most strongly correlated with general health, se-
+lected by BISCUIT from a pool of 696 traditional personality items. The
+BISCUIT model composed of these items had a large correlation with general
+health (R = .48). Each listed correlation is an average across ten folds, and
+its standard error ≈ .02. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 132
+B.5 The 10 personality items most strongly correlated with general health, se-
+lected by BISCUIT from a pool of 425 behavioral frequencies. The BIS-
+CUIT model composed of these items had a large correlation with general
+health (R = .46). Each listed correlation is an average across ten folds, and
+its standard error ≈ .02. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 132
+B.6 The 20 personality items most strongly correlated with overall stress, selected
+by BISCUIT from a pool of 696 traditional personality items. The BISCUIT
+model composed of these items had a large correlation with overall stress
+(R = .52). Each listed correlation is an average across ten folds, and its
+standard error ≈ .02. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 133
+B.7 The 10 personality items most strongly correlated with overall stress, selected
+by BISCUIT from a pool of 425 behavioral frequencies. The BISCUIT model
+composed of these items had a moderate correlation with overall stress (R =
+.35). Each listed correlation is an average across ten folds, and its standard
+error ≈ .02. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 133
+B.8 The 41 personality items most strongly correlated with BMI, selected by BIS-
+CUIT from a pool of 696 traditional personality items. The BISCUIT model
+composed of these items had a large correlation with BMI (R = .42). Each
+listed correlation is an average across ten folds, and its standard error ≈ .02. 134
+LIST OF TABLES 14
+B.9 The 10 personality items most strongly correlated with BMI, selected by BIS-
+CUIT from a pool of 425 behavioral frequencies. The BISCUIT model com-
+posed of these items had a large correlation with BMI (R = .44). Each listed
+correlation is an average across ten folds, and its standard error ≈ .02. . . . 134
+B.10 The 26 personality items most strongly correlated with smoking frequency,
+selected by BISCUIT from a pool of 696 traditional personality items. The
+BISCUIT model composed of these items had a moderate correlation with
+smoking frequency (R = .29). Each listed correlation is an average across ten
+folds, and its standard error ≈ .02. . . . . . . . . . . . . . . . . . . . . . . . 135
+B.11 The 10 personality items most strongly correlated with smoking frequency,
+selected by BISCUIT from a pool of 425 behavioral frequencies. The BIS-
+CUIT model composed of these items had a large correlation with smoking
+frequency (R = .54). Each listed correlation is an average across ten folds,
+and its standard error ≈ .02. . . . . . . . . . . . . . . . . . . . . . . . . . . . 135
+B.12 The 27 personality items most strongly correlated with exercise frequency,
+selected by BISCUIT from a pool of 696 traditional personality items. The
+BISCUIT model composed of these items had a large correlation with exercise
+frequency (R = .41). Each listed correlation is an average across ten folds,
+and its standard error ≈ .02. . . . . . . . . . . . . . . . . . . . . . . . . . . . 136
+B.13 The 10 personality items most strongly correlated with exercise frequency,
+selected by BISCUIT from a pool of 425 behavioral frequencies. The BIS-
+CUIT model composed of these items had a large correlation with exercise
+frequency (R = .49). Each listed correlation is an average across ten folds,
+and its standard error ≈ .02. . . . . . . . . . . . . . . . . . . . . . . . . . . . 136
+LIST OF TABLES 15
+B.14 The 10 personality items most strongly correlated with ER visits, selected by
+BISCUIT from a pool of 696 traditional personality items. The BISCUIT
+model composed of these items had a moderate correlation with ER visits
+(R = .19). Each listed correlation is an average across ten folds, and its
+standard error ≈ .02. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 137
+B.15 The 10 personality items most strongly correlated with ER visits, selected by
+BISCUIT from a pool of 425 behavioral frequencies. The BISCUIT model
+composed of these items had a moderate correlation with ER visits (R = .24).
+Each listed correlation is an average across ten folds, and its standard error
+≈ .02. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 137
+LIST OF FIGURES 16
+List of Figures
+2.1 A visual representation of the three steps in which the sample data were pre-
+pared for analyses. (a) The final sample (complete data) was randomly split
+into the training sample (75% of the sample) and the test sample (25% of the
+sample). (b) For both the training and test samples, new data sets were cre-
+ated in which random missingness was imposed in the personality data. This
+representation only shows a data set in which 50% missingness was imposed,
+but this procedure was also performed for 25%, 75%, and 90% missingness.
+(c) For each data set with missing personality data, a new data set was created
+in which the missing data were imputed. For levels of missingness in which
+multiple imputation was used, twenty data sets were created for each data set
+with missing data. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+2.2 Predictive accuracy (measured in multiple R) of the six statistical techniques,
+using personality data, across five levels of imposed data missingness, in five
+criteria. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
+2.3 Percentage reduction in predictive accuracy (R ) for each of three techniques,
+averaged across five criteria. Each model was trained on one of five levels of
+imposed data missingness and tested on complete data. . . . . . . . . . . . . 43
+LIST OF FIGURES 17
+3.1 Correlation of BISCUIT models with six criteria, using three pools of person-
+ality items (traditional items, behavioral frequencies, and a combined pool).
+The height of each shape is approximately the size of the estimate’s 95%
+confidence interval. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 62
+A.1 Predictive accuracy (measured in R ) of the six statistical techniques, using
+personality data, across five levels of imposed data missingness, in five criteria. 103
+A.2 Predictive accuracy (measured in multiple R) of four techniques based on
+personality data, across five levels of imposed missingness of data, in five
+criteria. Models were only trained on data with an imposed data missingness
+level; the predictive accuracy of each technique was tested on complete data. 105
+CHAPTER 1. GENERAL INTRODUCTION 18
+Chapter 1
+General Introduction
+When we propound a general theory in our sciences, we are sure only that,
+literally speaking, all such theories are false. They are only partial and provi-
+sional truths which are necessary to us, as steps on which we rest, so as to go on
+with investigation; they embody only the present state of our knowledge, and
+consequently they must change with the growth of science, and all the more
+often when sciences are less advanced in their evolution.
+—Claude Bernard, An Introduction to the Study of Experimental Medicine
+Human personality is broadly conceived of as individual differences in patterns of think-
+ing, feeling, and behaving. The “lexical hypothesis” is an approach that describes these
+patterns as trait descriptors (i.e., adjectives, short phrases, or sentences) by leveraging the
+assumption that important individual differences will appear as descriptions in human lan-
+guages (Allport and Odbert, 1936; Goldberg, 1990). The “Big Five” taxonomy of personality
+categorizes trait descriptors into five broad traits: Conscientiousness, Agreeableness, Neu-
+roticism, Openness to Experience, and Extraversion (Goldberg, 1990). In terms of number
+of studies, the Big Five taxonomy is undoubtedly the most dominant of trait taxonomies in
+personality psychology (John et al., 2008). It has been pervasive in the field for approxi-
+mately two decades (Funder, 2001, p. 200), and its enduring popularity has cemented it as
+CHAPTER 1. GENERAL INTRODUCTION 19
+the default measure of personality.
+The Big Five’s lasting dominance is due, in part, to the many conveniences of its taxon-
+omy. One such convenience is the small number of traits one needs to remember. Findings
+from cognitive psychology suggest that individuals can hold only a small number of concepts
+in their short-term memory (7 ± 2, Miller, 1956; or, more recently, 4 ± 1, Cowan, 2001).
+In addition to being in this cognitive sweet spot, the Big Five describe personality at “the
+broadest level at which categories still have a high degree of fidelity” which is the level at
+which people prefer to describe others and themselves (John et al., 1991, p. 348). Since Big
+Five scales, like most measures of personality, are typically self-reported (Baumeister et al.,
+2007), administering them is also convenient. And conveniently, there are scales of the Big
+Five that may fit any researcher’s needs: scales that have hundreds of items (e.g., Costa and
+McCrae, 1992; Condon, 2014), dozens (e.g., John and Srivastava, 1999), or even less than a
+dozen (e.g., Gosling et al., 2003); established scales that require costly licenses (e.g., Costa
+and McCrae, 1992), or free-to-use measures that are psychometrically sound (e.g., Goldberg
+et al., 2006; Condon, 2014).
+The Big Five’s popularity has also helped it become even more popular, as it has provided
+a set of common domains for researchers. In the middle of the 20th century, the number
+of personality constructs proliferated such that simply documenting them was a significant
+undertaking (Goldberg, 1971). The Big Five have given psychologists a set of personality
+traits that function as a common language amidst a “Babel of concepts and scales” (John
+and Srivastava, 1999, p. 102), and have arguably shaped personality psychology into the
+“unified scientific discipline” that Eysenck (1991) called for (p. 786). Broader and narrower
+personality traits have been integrated hierarchically above and below the Big Five. Broader
+traits are super-factors of the Big Five (John et al., 2008), while narrower traits are considered
+to be “facets” (Costa and McCrae, 1992), “aspects” (DeYoung et al., 2007), or “nuances”
+(McCrae, 2015) of the Big Five.
+CHAPTER 1. GENERAL INTRODUCTION 20
+Of course, the Big Five are popular for more than just their convenience. There is a
+long history of the Big Five structure being found as the optimal solution in factor analytic
+studies, dating back to the 1940’s (Fiske, 1949; the Big Five were found across three analyses,
+but not within any one of them). Since then, dozens of other studies of English-language
+assessments have found a factor structure similar to the Big Five (for a review, see John
+et al., 2008). In one of the largest studies of its kind, Goldberg (1990) found the Big Five
+factors among hundreds of descriptors, across multiple samples. Much work has also been
+done in non-English samples, and it appears that the Big Five are relatively universal; the
+factor structure has been found across dozens of cultures (for a review, see Allik et al., 2012).
+Lastly, the Big Five continue to be popular because studies continue to find that they are
+related to phenomena of psychologists’ interests. For example, a vast body of evidence has
+linked the Big Five with important life outcomes (see Ozer and Benet-Mart´ınez, 2006 and
+Roberts et al., 2007 for reviews). Additionally, the Big Five have been found to be associated
+with biology and behavior; the Big Five are heritable (e.g., Loehlin, 1998), differentially
+related to the volume of brain regions (e.g., DeYoung et al., 2010), and associated with
+actual behavior (Grucza and Goldberg, 2007; Jackson et al., 2010). It is likely that the Big
+Five will remain popular until researchers can no longer milk findings from the taxonomy.
+1.1 An Existential Limitation of the Big Five
+An existential limitation of the Big Five is that they may not actually exist; they are
+perhaps more accurately identified as convenient fictions (Revelle, 1983). There is a long-
+standing debate concerning whether the Big Five, or any latent traits, are “real” and/or have
+causal power (see Mo˜ttus, 2016 and Asendorpf et al., 2016 for a recent example). However,
+two facts are indisputable: one, the Big Five were constructed with factor analysis; and two,
+factor analysis is merely a mathematical simplification of data. Researchers have no hope
+CHAPTER 1. GENERAL INTRODUCTION 21
+represent the data of a psychological study. Thus, we sometimes use the crutch of factor
+analysis and other models in order to simplify data. In the case of the Big Five, hundreds
+of descriptors are simplified into five broad ideas (e.g., Costa and McCrae, 1992), which we
+may more easily juggle in our minds (Cowan, 2001).
+Factor analysis does not magically summon latent traits into physical existence or unveil
+a hidden absolute truth. The Big Five taxonomy is, at its core, an abstraction, and much
+like a true score it is “a Platonic ideal, a concept that exists in a non-spatial/non-temporal
+universe, in a world of pure forms somewhere out in the clouds” (Hogan and Foster, 2016,
+p. 4). In a manner of speaking, factor analysis actually leads away from the truth, insofar
+as it reduces complexity at the cost of information—information that is necessary to fully
+describe some phenomenon. Hogan and Foster (2017) provide a simple example of this loss of
+information by facetiously suggesting that psychologists should combine measures of height
+and weight into a factor called “size” because the correlation between the two is of a similar
+magnitude to that of intercorrelations between same-domain facets (p. 23).
+The repeated, cross-cultural replication of the same factor solution does not indicate that
+the Big Five are real or the one true answer for personality. The most we may reasonably
+extrapolate from the cross-cultural replication of the Big Five is the following: If one were
+to vastly simplify the underlying covariance matrix of a broad pool of trait descriptors, the
+Big Five structure would probably be a decent solution to those data. In the same vein,
+evidence that the Big Five are heritable or related to biological mechanisms is not evidence
+that only the Big Five are associated with these phenomena. In fact, these sorts of findings
+from Big Five studies may generalize to any reasonable measure of personality; for example,
+personality appears to be heritable at every measurable breadth, from traits broader than
+the Big Five (Vukasovi´c and Bratko, 2015) to individual personality items (M˜ottus et al.,
+2017).
+CHAPTER 1. GENERAL INTRODUCTION 22
+On the subject of heritability, it is worthwhile to take a short diversion into behavior
+genetics, as the evidence in that field suggests the opposite of the top-down causal chain
+that proponents of the Big Five taxonomy sometimes presume—that a few broad traits
+cause narrower traits, which then cause ever-narrower traits. While the first law of behavior
+genetics establishes the heritability of all behavioral traits (Turkheimer, 2000), the fourth
+law states that any one these traits “is associated with very many genetic variants, each
+of which accounts for a very small percentage of the behavioral variability” (Chabris et al.,
+2015, p. 305). It appears that the gene, a tiny unit of biological individual differences, is
+responsible for broader patterns of personality. But Meaney (2010) asserts this causal chain
+is more complicated:
+The operation of the genome at any phase of the life cycle is an emergent property
+of the constant and very physical interaction of the genome with environmentally
+regulated, intracellular signals that directly alter chromatin structure. Thus,
+function at any level of biology emerges as a function of the continuous dialogue
+between the genome and its environment. (p. 69)
+When sufficiently aggregated, this constant dialogue is observable as narrow patterns of
+thinking, feeling, and behaving. Thus, rather than being Aristotelian first uncaused causes
+of personality, the Big Five are instead executive summaries of gene-by-environment inter-
+actions.
+That the Big Five may not actually exist or have causal power is not necessarily a problem
+for research in personality psychology. Decades of studies concerning the Big Five have helped
+researchers comprehend otherwise incomprehensible data and discover associations between
+personality and many important phenomena. So long as Big Five measures prove adequate
+in the continuing advancement of psychological research, there would be no reason to move
+beyond analysis of the Big Five.
+CHAPTER 1. GENERAL INTRODUCTION 23
+1.2 A Practical Limitation of the Big Five
+A practical limitation of the Big Five is that they no longer prove adequate in the contin-
+uing advancement of psychological research. Specifically, the broadness of the Big Five traits
+both diminishes the explanatory power of personality and limits the specificity of personality-
+criterion relationships. Narrower personality traits, namely, facets and items, have proven
+to be useful alternatives to the Big Five.
+Facet-sized traits are more predictive and informative than the Big Five.
+The term “facet” was popularized by Costa and McCrae (1985) and denoted six subtraits
+within each of Neuroticism, Extraversion, and Openness to Experience. A revised version of
+the NEO Personality Inventory (NEO-PI-R; Costa and McCrae, 1992) added six facets for
+each of Agreeableness and Conscientiousness. The fact that six facets were placed beneath
+each Big Five trait was not decided on strictly psychometric grounds and possibly was for
+tidiness, convenience, or marketing. Facets of the NEO Big Five are “observable characteris-
+tics of the individual that go beyond the five factors” (Costa and McCrae, 2008); the specific
+variance of the facets are stable (Mo˜ttus et al., 2014) and heritable (Jang et al., 1998).
+Other researchers have followed suit in describing lower-level subtraits of broader domains
+as “facets” for other inventories based on the Big Five (Hofstee et al., 1992) or inventories of
+other taxonomies (e.g., HEXACO; Lee and Ashton, 2004).
+For almost as long as the Big Five have been ubiquitous, research has indicated that
+narrower traits account for more variance in criteria than broader domains. Early studies
+did not actually compare facets with the Big Five, but instead examined the difference
+between broader and narrower traits (while correcting for shrinkage). For example, Mershon
+DeYoung et al. (2007) split each Big Five trait in two, with each pair forming “aspects” of a domain.
+Aspects are broader traits than facets but narrower than the Big Five. The difference between aspects and
+facets will not be explored. Occasionally, I refer to aspect-level research in order to compare domains with
+lower-level personality traits.
+CHAPTER 1. GENERAL INTRODUCTION 24
+and Gorsuch (1988) found that, compared to a six-trait inventory, a 16-trait inventory of
+personality traits accounted for more variance in 15 of 17 “real-life” criteria; and Paunonen
+(1998) found that, across two studies, more incremental variance in criteria was found for
+more numerous and narrow traits (22 and 16) over and above the Big Five, than vice versa.
+It appears that the first example of comparing the explanatory power of a Big Five mea-
+sure with its facets was from Paunonen and Ashton (2001). In this study, variance explained
+in 40 criteria was compared for each of two measures of the Big Five (the PRF-JPI and the
+NEO-PI-R) against their corresponding facets (numbering 34 and 30, respectively.) Interest-
+ingly, instead of comparing each set of Big Five scales against all of its facets, Paunonen and
+Ashton only used five facets per criteria, and these five facets were selected in advance from
+a panel of expert judges. Even with this limitation of five facets per criterion, sets of five
+facets tended to significantly predict more criteria and more average variance in criteria than
+their corresponding Big Five scales. In a follow-up extension, Paunonen et al. (2003) found
+that the relationships between personality and 19 criteria were more consistently replicated
+across four cultures for 10 facets of the Supernumerary Personality Inventory (SPI) than
+for either of two domain measures (the Big Five NEO-FFI and the three-factor SPI).
+Facets or aspects of the same domain can differentially correlate with a criterion, and
+when they do, these lower-level traits are better at specifying personality-criterion rela-
+tionships than the broader domains. For instance, Mo˜ttus et al. (2012) found that diagnosis
+history of a sexually transmitted disease was related to just three facets (Deliberation, Hostil-
+ity, and Impulsivity), as opposed to two Big Five domains (Agreeableness and Neuroticism).
+In a geographical psychology study, Rentfrow (2014) observed an instance of two aspects
+I refer to such narrow traits as “facet-sized” traits to denote their narrow scope, even though they are
+not components of a larger domain. One example of why this is useful can be observed in the 27-factor
+personality inventory of Condon (SPI-27; 2018): The SPI-27 are not subtraits of broader domains, but are
+“facet-sized” due to their being as narrow in scope as the NEO-PI-R facets (e.g., “Order” and “Anxiety” are
+both traits of the SPI-27 and facets of the NEO-PI-R, and they are of similar breadth in both inventories).
+This measure is unrelated to the SPI-27 of Condon (2018).
+CHAPTER 1. GENERAL INTRODUCTION 25
+of Extraversion (Assertiveness and Activity) differentially correlating with health and social
+capital, such that signs were opposite for the two aspects. In another study of geographical
+psychology, Elleman et al. (2020) found that the population density and income disparity
+of ZIP Codes were related to the aggregated personality of ZIP Codes in three domains of
+the Big Five (Openness, Conscientiousness, and Agreeableness), but were primarily related
+to just six and seven (respectively) of the possible 18 facets of those three domains. In a
+frequently-cited health psychology study, body mass index (BMI) was positively correlated
+with the facet Impulsivity, but negatively related to its domain, Neuroticism (Terracciano
+et al., 2009). Lastly, a meta-analysis of the higher-order trait Grit found that its facet Per-
+severance of Effort was a better predictor of academic achievement than overall Grit or the
+other facet of Grit, Consistency of Interest (Cred´e et al., 2017). In all of these examples,
+facet-level analysis further specified the personality-criterion relationships beyond what the
+domains could have.
+Items are more predictive and informative than the Big Five and facets.
+In personality psychology, the term “nuance” was originally used by McCrae (2015) to
+denote personality traits below the facet level, which had unique item variance not accounted
+for by higher-order traits and were “the absolute bottom of the trait hierarchy” (p. 99).
+Functionally, nuances are the individual items in a given pool of personality items, whether
+or not higher-order traits are presupposed in that pool. In practice, studies have tended to
+conceptualize nuances as items that are part of a higher-order scale, and contrast nuances
+with those higher-order traits. An initial wave of evidence in the last decade indicates that
+nuances are both reliable and valid measures of personality; nuances have longitudinal rank-
+order stability, have cross-rater agreement, and like all stable measures of personality, are
+heritable (M˜ottus et al., 2014, 2017, 2019).
+Traditional approaches to personality scale construction (e.g., Loevinger, 1957) would
+CHAPTER 1. GENERAL INTRODUCTION 26
+consider personality items to be both “samples” and “signs.” That is, personality items are
+nothing more than sample behaviors which point to broader underlying traits. In that view,
+the unique variance associated with items would not be of particular importance; in the same
+way that factor analysis simplifies data by omitting information, a scale of a higher-order
+trait omits the unique variance of its component items. This omission ultimately impedes
+the field of psychometrics, whose task is “to isolate, to identify and, so far as possible, to
+measure separately the important components of variance” (Loevinger, 1957, p. 649).
+Historically, psychometricians have not considered item-level variance to be an important
+component of variance due to limitations of sample sizes. Goldberg (1993), however, had
+the foresight to imagine samples so large that “it would be silly even to amalgamate the
+items into scales because one would inevitably lose some specific variance at the item level
+that could serve to increase predictive accuracy” (pp. 181-182). Growing evidence over the
+past few years seems to confirm Goldberg’s claim: in several studies with large samples,
+personality-criterion models built with items were more predictive than those built with
+facets or domains (Seeboth and M˜ottus, 2018; Mo˜ttus et al., 2015, 2020).
+In studies in which the predictive power of items was examined individually, instead of
+in aggregate, item-level findings provided the greatest amount of information in describing
+personality-criterion relationships. For instance, in the previous example in which BMI was
+positively related to Impulsivity, Terracciano et al. (2009) also found that BMI was associated
+with only two Impulsivity items, both of which measured overeating. In another previous
+example, ZIP Code population density was linked to Dutifulness, Morality, and Orderliness,
+but an examination of items indicated a more precise finding: that each facet was associated
+with population density because it contained one or two items related to having an aversion
+to rules (Elleman et al., 2020). Item-level results indicated a tight cluster of items (perhaps
+broad enough to be considered a facet) whose items were dispersed across three facets.
+Due to the limited number of studies that have investigated personality at the item level,
+CHAPTER 1. GENERAL INTRODUCTION 27
+the full utility of this type of research is largely unknown. Researchers seem to agree that
+personality items generally account for more variance in criteria than domains or facets, but
+what is less known is whether one should expect items to be more informative, above and
+beyond domains and facets, in describing personality-criterion relationships. There are few
+instances in the personality literature of a relationship between a criterion and a high-order
+personality trait being explained by a few items, but this dearth appears to be due to a lack
+of inquiry. Even in the case of BMI and Impulsivity, most follow-up studies of Terracciano
+et al. (2009) reported only the facet-level relationship and did not examine whether the items
+of Impulsivity differentially correlated with BMI (Vainik et al., 2015).
+1.3 The Current Studies:
+Moving Beyond the Tradition of the Big Five
+In this introduction, I have made the case that measuring personality using broad sum-
+maries of trait descriptors, as exemplified by the Big Five, has existential and practical
+limitations. The two following studies both move beyond this traditional approach by inves-
+tigating item-level relationships. The first study (Chapter 2) compares the predictive validity
+of the Big Five, 27 facet-sized traits, and four statistical learning techniques which use item-
+level analysis, including BISCUIT, a novel technique designed to analyze personality data.
+The second study (Chapter 3) posits that self-reported yearlong behavioral frequencies are
+measures of personality, and examines their incremental validity over and above traditional
+trait descriptors.
+CHAPTER 2. THAT TAKES THE BISCUIT 28
+Chapter 2
+That Takes the BISCUIT
+Predictive Accuracy and Parsimony of Four
+Statistical Learning Techniques in Personality
+Data, with Data Missingness Conditions
+2.1 Abstract
+The predictive accuracy of personality-criterion regression models may be improved with
+statistical learning (SL) techniques. This study introduced a novel SL technique, BISCUIT
+(Best Items Scale that is Cross-validated, Unit-weighted, Informative and Transparent).
+The predictive accuracy and parsimony of BISCUIT was compared with three established
+SL techniques (the lasso, elastic net, and random forest) and regression using two sets of
+scales for five criteria across five levels of data missingness. BISCUIT’s predictive accuracy
+was competitive with other SL techniques at higher levels of data missingness. BISCUIT
+most frequently produced the most parsimonious SL model. In terms of predictive accuracy,
+CHAPTER 2. THAT TAKES THE BISCUIT 29
+the elastic net and lasso dominated other techniques in the complete data condition and
+in conditions with up to 50% data missingness. Regression using 27 narrow traits was an
+intermediate choice for predictive accuracy. For most criteria and levels of data missingness,
+regression using the Big Five had the worst predictive accuracy. Overall, loss in predictive
+accuracy due to data missingness was modest, even at 90% data missingness. Findings
+suggest that personality researchers should consider incorporating planned data missingness
+and SL techniques into their designs and analyses.
+2.2 Introduction
+Research over the last decade has indicated that personality items (often called “nuances;”
+McCrae, 2015) are both reliable and valid measures of personality. There is cross-rater agree-
+ment associated with the specific variance of nuances (Mo˜ttus et al., 2014) and nuances have
+rank-order stability over time, and are heritable (Mo˜ttus et al., 2017, 2019). Additionally,
+personality-criterion models that utilize nuances tend to be more predictive than those that
+employ broad domains (e.g., the Big Five; Goldberg, 1990) or narrower facets (Seeboth and
+Mo˜ttus, 2018; M˜ottus et al., 2015, 2020).
+Item-level analysis requires a number of multiple comparisons that is an order of mag-
+nitude greater than broad personality domains or narrower facets. Traditional methods of
+analysis, such as regression, can overfit the data or find few stable results after statisti-
+cal adjustments. Recently, several researchers have suggested using statistical learning (SL)
+techniques to study nuances (Chapman et al., 2016) and improve the prediction of outcomes
+in personality psychology (Yarkoni and Westfall, 2017). Compared to traditional statistical
+methods, many SL techniques are more complex and better suited to the study of nuances
+Specifically, supervised learning. Models generated by supervised learning techniques are “supervised”
+by the criterion variable they predict. Unsupervised learning techniques describe patterns in data without
+the use of a criterion.
+CHAPTER 2. THAT TAKES THE BISCUIT 30
+because they have been designed to reduce overfitting. Usually, the accuracy of an SL model
+is measured by the prediction of a holdout sample (the “test sample”) that has been kept
+separate from the sample upon which the model was built (the “training sample”). For an
+overview of statistical learning, see James et al. (2017); for short overviews, see Chapman
+et al. (2016) and Yarkoni and Westfall (2017).
+To improve prediction of the test sample, an SL technique may augment a basic statistical
+method, such as regression, in several ways. For instance, an SL technique may implement
+“regularization” to shrink the coefficients of a model to reduce overfitting (e.g., ridge regres-
+sion; Hoerl and Kennard, 1970). Some SL techniques use “variable selection” to retain the
+most important variables for the final model (e.g., the lasso; Tibshirani, 1994). SL techniques
+may test many different models via “resampling,” an iterative sampling procedure: each new
+model is developed iteratively on randomly selected sub-samples of the training data and
+may be cross-validated using holdout portions of the training data (for a review of using
+cross-validation for model selection, see Arlot and Celisse, 2010). Resampling procedures
+may be used to aggregate the different models into a final model, to estimate the error of
+the model estimates, and/or to optimize model hyperparameters (or “tuning parameters”).
+A tuning parameter differs from a typical model parameter in that the researcher preselects
+a series of tuning parameter coefficients. Each tuning parameter coefficient is input into a
+new model or series of models. Hyperparameters are tuned (i.e., an optimal value is found
+for each) by selecting the model or aggregated model with the lowest cross-validated error.
+For example, the lasso’s regularization hyperparameter must be tuned in order to determine
+the optimal degree of regularization for a particular criterion (Tibshirani, 1994).
+Applying certain SL techniques to personality psychology may result in final models that
+are substantially more complex, and perhaps more difficult to interpret, than traditional
+personality models. For example, in applying an SL technique to personality data, Seeboth
+and M˜ottus (2018) took an approach that was similar to a genome-wide association study
+CHAPTER 2. THAT TAKES THE BISCUIT 31
+(GWAS; Hirschhorn and Daly, 2005), such that personality-criterion associations were con-
+sidered to be “driven by a large number of specific personality characteristics” (p. 188) and
+nuance-criterion relationships were summarized by the variance explained by using an un-
+specified number of items. Even if nuances predict a criterion better than facets or domains,
+certain SL methods, such as a “persome”-wide association study (Mo˜ttus et al., 2020), may
+output a model with as many or nearly as many predictors as there are items in the pool.
+While predictive accuracy and parsimony differ for each SL approach, very little, if any,
+research in personality psychology has been performed to compare the predictive accuracy
+and parsimony of SL techniques.
+2.2.1 The Four Statistical Learning Techniques to be Compared
+BISCUIT. The Best Items Scale that is Cross-validated, Unit-weighted, Informative and
+Transparent, or BISCUIT (Revelle, 2020), is a correlation-based SL technique that grew out
+of the practical need for generating parsimonious models to describe nuance-level relation-
+ships in Massively Missing Completely At Random (MMCAR) data (Revelle et al., 2010,
+2016). Similar to the “criterion-keyed scale construction” of Chapman et al. (2016) and rem-
+iniscent of the procedures used in the development of the Minnesota Multiphasic Personality
+Inventory (MMPI; Hathaway and McKinley, 1942), BISCUIT utilizes variable selection to
+retain the items that most strongly correlate with a criterion (i.e., the best items). Item-level
+correlations in BISCUIT are calculated solely from pairwise administrations of items. Thus,
+unlike other SL techniques in this study, BISCUIT may be run on MMCAR data structures
+without the need for imputation. BISCUIT uses a resampling procedure to determine a
+cross-validated list of the best items based upon the average correlation; either bootstrap
+In MMCAR data, each participant is given a random sample of items; the raw data are mostly (i.e.,
+massively) missing, but this missingness has been completely randomized. Individual scales may be over- or
+undersampled.
+CHAPTER 2. THAT TAKES THE BISCUIT 32
+aggregation (“bagging”) or k-fold cross-validation may be utilized (for a description of bag-
+ging, see Breiman, 1996; for k-fold cross-validation, see Chapman et al., 2016, p. 607). The
+cross-validated best items are combined into a scale for the criterion, which is the final model
+for BISCUIT. In BISCUIT’s empirically constructed scale (and typical personality scales),
+all best items are weighted the same (i.e., unit-weighted).
+Compared to an optimally weighted regression model, a unit-weighted model tends to
+fit the initial data set about as well (e.g., Wilks, 1938; Dawes, 1979), and often has im-
+proved predictive accuracy in new data sets (Wainer, 1976; Waller, 2008); optimal weights
+are optimal only for the initial data set, and overfitted in others. Although there is only
+one set of optimal weights for a least-squares regression model, there are an infinite number
+of alternative sets of weights for a more robust, non-least-squares solution (Waller, 2008).
+BISCUIT employs unit-weighting as a simple alternative to least-squares regression for the
+same reason that regression-based statistical learning techniques implement regularization:
+to improve upon the predictive accuracy of an overfitted regression model by systematically
+modifying the model’s coefficients. Lastly, BISCUIT’s unit-weighted models and output are
+like oven windows through which one can view a biscuit baking; BISCUIT outputs a list of
+items that most highly correlate with a criterion, their correlations with the criterion, and
+the content of each item. BISCUIT’s tuning parameter is the number of best items to select
+for a model.
+To provide clarity around the BISCUIT algorithm, the following is a step-by-step pro-
+cedure for it: (1) At least two options are selected: (1a) the range of N best items to be
+retained and (1b) whether the analysis should use bagging or k-fold cross-validation (this
+Reviewers were concerned that BISCUIT’s performance would improve by weighting variables instead
+of unit-weighting them. An option to weight variables (equal to their zero-order correlations) has been
+added to the BISCUIT algorithm. Comparative analysis indicated that BISCWIT (Weighted, instead of
+Unweighted) performed sometimes better than BISCUIT, sometimes worse, and on average about the same
+coefficients were estimated by multiple regression instead of zero-order correlation. We agree that exploring
+this modification in a future study would be worthwhile.
+CHAPTER 2. THAT TAKES THE BISCUIT 33
+example will assume k-fold). (2) For a given criterion, for each of k splits: (2a) A criterion-
+by-item correlation matrix is calculated, based on the pairwise administrations of the raw
+data in the training subsample. (2b) The N items that have the largest correlations with
+the criterion are retained and formed into a unit-weighted scale. Both item-level and scale-
+level correlations are recorded. (2c) The holdout subsample may be used to determine the
+cross-validated correlation of the unit-weighted scale with the criterion. (3) The steps in 2
+are repeated k times. (4) Average correlations across the k splits are found. (5) A final set
+of N items is retained, based on the number of items that were best cross-validated across
+the k splits. (6) The BISCUIT model is output as a scale, listing each item and whether it
+is negatively or positively associated with the criterion.
+Lasso. The Least Absolute Shrinkage and Selection Operator, or lasso (Tibshirani, 1994),
+is a regression-based SL technique that was created to be an improvement over traditional
+regression and ridge regression (Hoerl and Kennard, 1970). The lasso and ridge regression
+are similar in that each uses a regularization penalty that is based on a tuning parameter
+and the magnitude of each regression coefficient. However, ridge regression’s penalty ((cid:96) )
+uses the square of each coefficient, while the lasso’s penalty ((cid:96) ) uses the absolute value
+of each coefficient (see Equations A.1 and A.2 in Appendix A). The lasso’s penalty, unlike
+ridge regression’s penalty, allows regression coefficients to shrink to values of zero. After
+regularization, variables with zero-value coefficients are discarded, effectively giving the lasso
+a variable selection feature. The lasso’s tuning parameter λ determines the magnitude of
+coefficient shrinkage.
+Elastic Net. The elastic net is a regression-based SL technique that is framed as an
+improvement over the lasso (Zou and Hastie, 2005). The elastic net incorporates ridge
+regression and the lasso into one algorithm; the lasso is a special case of the elastic net when
+the λ tuning parameter of the elastic net is set to 0, and ridge regression is a special case of
+the elastic net when λ is set to 1 (Zou and Hastie, 2005). Two typical tuning parameters
+CHAPTER 2. THAT TAKES THE BISCUIT 34
+of the elastic net are: (a) λ, which determines the magnitude of coefficient shrinkage; and
+(b) λ , which determines the extent to which groups of highly correlated variables will be
+retained.
+Random Forest. The random forest (Breiman, 2001) is an SL technique based upon
+decision trees. A decision tree iteratively partitions a data set, one variable at a time, into
+two groups such that differences in the groups maximally predict a criterion. Essentially,
+the random forest combines the bagging resampling procedure with the random decision
+forest (Ho, 1995). In the random decision forest, a final model is built from an aggregation
+of multiple trees; in each tree, a random subset of predicting variables is selected for each
+branch. The random forest combines bagging and the random decision forest by aggregating
+bootstrapped decision tree models, where each model includes a subsample of predicting
+variables. The purpose of bagging and the random decision forest is similar: to aggregate
+models based upon samples from the available data in order to reduce overfitting. There are
+inconsistencies in the literature regarding what, if any, tuning parameters should be used for
+the random forest (Probst and Boulesteix, 2018; Tang et al., 2018).
+2.2.2 Aims of the Study
+The primary aim of this study was (a) using personality data, to compare the models of
+four SL techniques in terms of their predictive accuracy. Because of our particular interest
+in BISCUIT, and because BISCUIT was built to perform well with MMCAR data, we also
+evaluated (b) in terms of predictive accuracy, whether BISCUIT models gained an advantage
+over other SL models as the rate of data missingness was artificially increased in the sample.
+Finally, we determined (c) the extent to which BISCUIT tended to provide more parsimo-
+nious models than other SL techniques, which was quantified by the number of personality
+items used in a model.
+CHAPTER 2. THAT TAKES THE BISCUIT 35
+2.3 Methods
+2.3.1 Sample
+Participant data were collected at SAPA-project.org, an international online personality
+assessment. The SAPA (Synthetic Aperture Personality Assessment) Project is an ongoing
+research project where each participant is given a small random sample of a large item pool
+(over 6,000 items), resulting in an MMCAR data structure. An initial sample of 497,048
+participants (64% female; median age = 26 years; from 228 countries; 39% from the U.S.)
+was collected from February 7, 2017 to November 12, 2018. In order to run out-of-the-box
+algorithms for the lasso, elastic net, and random forest, the data were limited to complete
+cases for the selected personality items and criteria (see below in Measures). Requiring
+complete data reduced the sample to 78,828 participants. This final sample had participants
+who were from 200 countries (57% from the U.S.), 65% were female, and the median age
+was 33 years (min = 14, max = 90). Descriptive information concerning the initial and final
+2.3.2 Measures
+All measures were self-reported. Personality was measured with the 135-item SPI-27
+(SAPA Personality Inventory; Condon, 2018), a personality inventory that may be scored as
+27 traits (five items per trait) or as the Big Five domains (70 total items; 14 items per trait).
+Each personality item was answered on a six-point Likert-like scale. There were five criteria:
+Body Mass Index (BMI), smoking frequency, sleep quality, general health, and educational
+achievement. These specific criteria were selected for their breadth. Demographic measures
+included ethnicity (if the participant was from the U.S.), age, sex, and country of residence.
+CHAPTER 2. THAT TAKES THE BISCUIT 36
+2.3.3 Procedure
+All steps in the procedure and analyses were performed with the statistical programing
+language and environment R (R Core Team, 2019) in the integrated development environ-
+ment RStudio (RStudio Team, 2019). There were three primary steps to preparing the data
+create new test and training sample data sets by imposing increasing levels of missingness;
+and (c) for each data set with missing data, create new data sets in which the missing data
+were imputed. More details of each step are described below.
+for analyses. (a) The final sample (complete data) was randomly split into the training sample
+(75% of the sample) and the test sample (25% of the sample). (b) For both the training and
+test samples, new data sets were created in which random missingness was imposed in the
+personality data. This representation only shows a data set in which 50% missingness was
+imposed, but this procedure was also performed for 25%, 75%, and 90% missingness. (c) For
+each data set with missing personality data, a new data set was created in which the missing
+data were imputed. For levels of missingness in which multiple imputation was used, twenty
+data sets were created for each data set with missing data.
+(a) The final sample was randomly split into the training sample (75% of participants)
+and test sample (the remaining 25%). Having the training sample be larger than the test
+CHAPTER 2. THAT TAKES THE BISCUIT 37
+sample gives training models greater power and is typical (e.g., Breiman, 1996; Chapman
+et al., 2016; Seeboth and M˜ottus, 2018).
+(b) Because BISCUIT was designed to analyze MMCAR data, it was necessary to test
+whether missingness in personality data would give an advantage to BISCUIT’s predictive
+accuracy over the models of other techniques. To do this, four new data sets were created
+(for each of the training and test samples), where each new data set imposed increasing levels
+of random missingness in the personality data (25%, 50%, 75% and 90% missingness; see
+(c) BISCUIT’s algorithm can converge on data sets with missing data, but other out-
+of-the-box SL techniques cannot. Therefore, new data sets were created that imputed the
+imposed missing data (using the “MIPCA” and “imputePCA” functions of the R package
+“missMDA;” Josse and Husson, 2012, 2016). For data sets with 25%, 50%, and 75% data
+missingness, imputation was performed with multiple imputation using Bayesian principal
+components analysis (BayesMIPCA; Audigier et al., 2014). This imputation method per-
+forms favorably compared to other methods (Schmitt et al., 2015). However, BayesMIPCA
+did not converge on 90% data missingness, so a single imputation method that was similar
+to BayesMIPCA was used for 90% missingness data sets: single imputation using a regu-
+larized iterative principal components analysis (Audigier et al., 2016). For both imputation
+methods, the number of principal components was determined with parallel analysis (Horn,
+1965).
+2.3.4 Statistical Analyses
+Analyses consisted of three steps: for each criterion and at each level of data missingness,
+(a) each model was built using the appropriate training data set; (b) using test personality
+data, each model predicted each criterion; and (c) the predictive accuracy of each model was
+CHAPTER 2. THAT TAKES THE BISCUIT 38
+determined by calculating the multiple R value between a model’s prediction of a criterion
+and the actual value of the criterion in the test data. More details of each technique’s
+procedures are described below.
+BISCUIT. BISCUIT was run using the “bestScales” function in the “psych” package (Rev-
+elle, 2020, version 1.9.11) of R. BISCUIT was the only technique run on data sets with missing
+data. To increase the speed of computation, BISCUIT was set to use k-fold cross-validation
+(k = 10) instead of bagging. BISCUIT’s tuning parameter, the number of best items, was
+given the full range of possible values, from one item to one hundred thirty-five items. An av-
+erage model was found for each count of items, using k-fold cross-validation. Across counts
+of items, and for each criterion and level of missingness in the data, the model with the
+highest cross-validated multiple R was selected.
+Lasso. The lasso was run using the “cv.glmnet” function in the “glmnet” package (Fried-
+man et al., 2010) of R. The tuning parameter λ was optimized using the function’s default
+sequence of values. An average model was found for each value of λ using k-fold cross-
+validation (k = 10). For each criterion and level of missingness in the data, the model with
+the lowest cross-validated error was selected.
+Elastic Net. The elastic net was also run using the “cv.glmnet” function. For the tuning
+parameter λ , eleven values were tested, from 0 to 1 in increments of .1. For each value of λ ,
+2 2
+the tuning parameter λ was optimized using the function’s default sequence of values. An
+average model was found for each value of λ using k-fold cross-validation (k = 10). Across
+values of λ , and for each criterion and level of data missingness, the model with the lowest
+cross-validated error was selected.
+Random Forest. The random forest was run using the “randomForest” function in the
+Multiple imputation generated twenty data sets for each level of data missingness. For each level of data
+missingness, twenty models were built using the twenty imputed training data sets, each model was applied
+to one of the twenty imputed test data sets, model fits were determined, and model fits were averaged across
+the twenty predictions.
+CHAPTER 2. THAT TAKES THE BISCUIT 39
+“randomForest” package (Liaw and Wiener, 2002) of R. Forty-five personality items were
+sampled as candidates for each branch of each tree (which was the default value for the
+function). There were one hundred trees per forest model in order to maintain computational
+feasibility (i.e., less than one week of computation for all random forest models).
+Regression. Two regression analyses were used as baselines for typical statistical analyses
+in personality psychology. One regression technique used the Big Five measures as predictors,
+while the other used the 27 traits of the SPI-27. These basic regression models did not
+implement any tuning parameters or resampling procedures. Given the high power of the
+study, all predicting variables were included in every regression model.
+2.4 Results
+2.4.1 Predictive Accuracy
+Predictive accuracy of the techniques in 25 total conditions (five criteria by five levels of
+2 2
+data missingness) was calculated with Multiple R and R (R was used to calculate ratios
+of predictive accuracy between models). The elastic net had the highest predictive accuracy
+in 13 conditions, BISCUIT in seven conditions, the lasso in three conditions, and regression
+accuracy for all five criteria for the complete, 25%, and 50% data missingness conditions.
+Models generated by the lasso were, on average, 99.8% as predictive as the elastic net models,
+which indicated that the predictive accuracy of the elastic net and lasso were functionally
+equivalent. For complete data, multiple R effect sizes between the elastic net models and the
+corresponding criteria were: R = .51; R = .48; R = .43; R = .42;
+Education Health BMI SleepQuality
+and R = .33. On average across the five criteria, the random forest was
+SmokingF requency
+CHAPTER 2. THAT TAKES THE BISCUIT 40
+the 3rd most predictive technique for complete data, being 85% as predictive as the elastic
+net; regression using the SPI-27 (4th) was 81% as predictive; BISCUIT (5th) was 69% as
+predictive; and regression using the Big Five (last) was 42% as predictive.
+One aim of the study was to determine whether BISCUIT, relative to other models, gained
+an advantage in predictive accuracy as data missingness increased. To assess this question,
+a ratio was found by dividing the accuracy of each BISCUIT model in each condition by
+the accuracy of the most predictive model in that condition, and these ratios were averaged
+for each level of data missingness. Consistent with our hypothesis, each increased level
+of missingness resulted in an improvement to BISCUIT’s average comparative predictive
+accuracy, up to 75% data missingness: for complete data and 25%, 50%, and 75% data
+missingness, BISCUIT was, on average, 69%, 74%, 83%, and 100% as predictive as the
+most predictive model, respectively. In the 75% data missingness condition, BISCUIT had
+the highest predictive accuracy for four of the five criteria. In the 90% data missingness
+condition, BISCUIT’s comparative predictive accuracy was, on average, 89% as predictive
+as the most predictive model, and BISCUIT had the highest predictive accuracy for three
+criteria. The comparative predictive accuracy of regression using the SPI-27 also improved
+as data missingness increased: in the 90% data missingness condition, regression using the
+SPI-27 had the highest predictive accuracy for two criteria.
+We also ran BISCUIT on imputed data to estimate a possible effect of noise generated by imputation.
+The predictive accuracy of BISCUIT using imputed data was 94% as predictive as BISCUIT using missing
+A reviewer was concerned that the superiority of regression using the SPI-27, in the 90% data missingness
+condition and for the two criteria, was due to regression’s tendency to capitalize on chance. They suggested
+that a model that aggregated regression coefficients across 10 folds would be more stable and less predictive,
+such that an aggregated regression model using the SPI-27 would not have the highest predictive accuracy
+for any of the criteria in the 90% data missingness condition. This hypothesis was tested and the results
+were null: across the five criteria in the 90% data missingness condition, the mean absolute difference in
+multiple R between the two regression methods was .0008, and the aggregated regression model using the
+SPI-27 was still the most predictive for the two criteria.
+CHAPTER 2. THAT TAKES THE BISCUIT 41
+using personality data, across five levels of imposed data missingness, in five criteria.
+CHAPTER 2. THAT TAKES THE BISCUIT 42
+2.4.2 Parsimony
+Parsimony of SL models was measured by the number of items used in a model; models
+that used fewer items were more parsimonious. BISCUIT generated the most parsimonious
+SL techniques were ranked for their overall parsimony by calculating the mean and median
+number of items used in their models across the 25 conditions. Across the 25 conditions,
+BISCUIT was the most parsimonious technique, using, on average, 30 personality items per
+model (median = 30, SD = 22, range = 1–81); the lasso (2nd) used an average of 59 items
+per model (median = 56, SD = 27, range = 14–112); the elastic net (3rd) used an average
+and the random forest (last) used 135 items in every model. The lasso and elastic net used
+fewer items as missingness increased, whereas the BISCUIT did not.
+2.4.3 Post-hoc Analysis
+Training models on data missingness conditions and testing them on complete data.
+In the planned analyses, the predictive accuracy of each technique decreased as the
+was a combination of two effects: (a) the missingness in the training data, which gave each
+technique less information with which to build its predictive models; and (b) the missingness
+in the test data, which gave each technique less information with which to test its predic-
+tions. To isolate the first effect, we performed a post-hoc analysis to determine the decrease
+Of note is the fact that BISCUIT generated six one-item models in the 75% and 90% data missingness
+conditions. Five of these one-item models also had the highest predictive accuracy for their condition (Tables
+A.10 – A.12 in Appendix A). See Tables A.6 – A.8 in Appendix A for the item content of three brief BISCUIT
+models, each predicting a different criterion.
+CHAPTER 2. THAT TAKES THE BISCUIT 43
+averaged across five criteria. Each model was trained on one of five levels of imposed data
+missingness and tested on complete data.
+in predictive accuracy of models trained with data missingness but tested on complete data.
+We selected three techniques: the elastic net, regression using the SPI-27, and BISCUIT.
+Results indicated that the decrease in predictive accuracy due to missingness in training
+predictive accuracy was particularly low at the 50% data missingness condition; on average
+across the five criteria and three techniques, models trained on 50% data missingness were
+95% as predictive as their respective models trained on complete data.
+CHAPTER 2. THAT TAKES THE BISCUIT 44
+SL techniques on the SPI-27.
+In the planned analyses, regression using the SPI-27 performed well across missingness
+levels and criteria. Because SL techniques are supposed to be an improvement over simple
+regression, we performed a post-hoc analysis to determine whether the predictive accuracy
+of models utilizing the SPI-27 could be improved with either of two SL techniques: the
+elastic net (the most predictive technique) and BISCUIT (the technique of special interest
+in this study). Results indicated that the predictive accuracy of models using the SPI-27
+in Appendix A).
+2.5 Discussion
+BISCUIT
+Consistent with our hypothesis, the predictive accuracy of BISCUIT was more compet-
+itive with other SL techniques as data missingness increased, up to 75% data missingness,
+where it generated the model with the highest predictive accuracy in four of five criteria.
+BISCUIT did not perform as well in the 90% data missingness condition, but it generated
+the model with the highest predictive accuracy in three of the five criteria. Also consistent
+with our hypothesis, BISCUIT provided the most parsimonious model in 23 of 25 conditions.
+The Elastic Net and Lasso
+In terms of predictive accuracy, the elastic net dominated other techniques for the com-
+plete data and 25% and 50% data missingness conditions. The lasso was nearly as predictive
+as the elastic net. The elastic net and lasso may have dominated BISCUIT because BIS-
+CUIT’s methodology ignored information that the elastic net and lasso did not. Specifically,
+CHAPTER 2. THAT TAKES THE BISCUIT 45
+BISCUIT selected fewer variables than either technique, and BISCUIT used unit-weighting
+coefficients while the other two techniques used penalized regression coefficients.
+The Random Forest
+The random forest performed competitively for many missingness conditions and criteria.
+For complete data, it was 85% as predictive as the elastic net. It is possible that adjusting
+tuning parameters for the random forest could have increased its predictive accuracy, but we
+did not find a consensus in the literature regarding what, if any, tuning parameters should
+be used (Probst and Boulesteix, 2018; Tang et al., 2018). Increasing the number of trees per
+forest also may have helped, but the random forest was already the most burdensome SL
+technique in terms of computational load. The random forest appeared to be a lackluster
+choice for statistical learning with personality data, due to its suboptimal predictive accuracy,
+poor parsimony of its models, ambiguities in the literature regarding its tuning parameters,
+and its burdensome computational load.
+Regression Using the SPI-27
+Regression using the SPI-27 had greater predictive accuracy than the Big Five (for com-
+plete data, it was 93% more predictive), but in most conditions it did not have the maximal
+predictive accuracy of the elastic net. The SPI-27’s dominance over the Big Five is con-
+sistent with previous research that found that narrower traits out-predicted broader traits
+(e.g., Paunonen and Ashton, 2001; Paunonen et al., 2003; Gladstone et al., 2019). In the
+90% data missingness condition, regression using the SPI-27 had the most predictive model
+for two of five criteria. In such extreme data missingness, the benefit of improving the signal
+by aggregating items into facet-size factors may outweigh the benefit of utilizing item-level
+variance in a model’s prediction. A post-hoc analysis indicated that the predictive accuracy
+of the SPI-27 was not improved by employing a more complex SL technique instead of simple
+CHAPTER 2. THAT TAKES THE BISCUIT 46
+regression.
+Regression Using the Big Five
+As expected, regression using the Big Five had poor predictive accuracy compared to
+other techniques. For complete data, the Big Five was, on average, the least predictive
+technique of the six tested, being 42% as predictive as the elastic net. In no condition was
+regression using the Big Five the most predictive model. Additionally, regression using the
+Big Five showed a far weaker relationship between personality and BMI than any other
+in which analysis with broader traits failed to find personality-criterion relationships that
+were evident with narrower traits (Terracciano et al., 2009; Cred´e et al., 2017). If personality
+researchers continue to use the Big Five to answer the question, “Is personality related to this
+phenomenon,” they may falsely conclude that no relationship exists, when narrower traits
+would have shown a robust relationship. Thus, regression or correlation using the Big Five
+may only be appropriate for studying personality-criterion relationships when no alternative
+is feasible.
+Data Missingness
+Across all techniques and criteria, predictive accuracy decreased as data missingness
+increased. However, a post-hoc analysis indicated that, after accounting for data missingness
+in the test data, loss in predictive accuracy was modest. That is, a model trained on a data
+set with missing or imputed data is still accurate, but complete data is needed to test
+this accuracy. Results indicated that the loss in predictive accuracy was approximately 5%
+for the 50% data missingness condition, which suggests that a large-sample study could
+introduce 50% data missingness without substantially impacting prediction. Fifty percent
+data missingness would allow for an item pool twice that of a complete data set, holding the
+CHAPTER 2. THAT TAKES THE BISCUIT 47
+number of items per participant constant. Ninety percent data missingness would allow for
+an item pool ten times that of a complete data set, but the cost to predictive accuracy would
+be higher (this study estimated the range of loss to be approximately 10–30%). This loss
+in predictive accuracy will appear to be even greater if models are not tested on complete
+data. Thus, whether higher levels of data missingness are optimal for maximizing predictive
+accuracy will depend on whether the increased predictive accuracy due to a broader item
+pool will outweigh the loss due to data missingness.
+2.5.1 Limitations of the Study
+There were at least four methodological decisions that could impact the generalizability
+of the study’s results. First, the comparative predictive accuracy of SL techniques may
+have depended upon the particular criteria or item pool; new criteria or item pools may
+favor different SL techniques. Second, only four SL techniques were compared in this study,
+and only one of them accounted for interactions (the random forest). Other SL techniques,
+such as Multivariate Adaptive Regression Splines (MARS; Friedman, 1991), may have better
+accounted for interactions than the random forest did. Third, the criteria chosen in this study
+were all assumed to be monotonic variables. Results related to the predictive accuracy of
+BISCUIT cannot be extended to non-monotonic criteria. Fourth, results for this study were
+based upon MMCAR data and may not generalize to data sets with non-random missingness,
+such as Missing Not At Random data sets.
+Another major limitation of this study is that it compared the predictive accuracy of
+nuances with higher-order traits using an item pool in which all items were subsumed under
+higher-order traits. The scales of the SPI-27 (and scales which have followed classic psy-
+chometric internal consistency procedures) were designed such that the items were nothing
+more than representations of a scale; a personality scale does not include items that predict
+CHAPTER 2. THAT TAKES THE BISCUIT 48
+outcomes well but are not exemplars of the scale. Thus, this study may have underestimated
+the predictive accuracy of nuance-based approaches, given a broader item pool.
+2.5.2 Future Directions
+Replication and Generalizability of Specific SL Models
+Compared to traditional methods of analysis in personality psychology, statistical learning
+appears to be a more accurate approach to predicting criteria. The success of SL approaches
+is partially due to modeling the unique variance of personality items, which is ignored in
+higher-order traits. The superior predictive accuracy of SL techniques seems to suggest that
+domain-level personality-criterion relationships may be better described as a complex web
+of nuance-level patterns (e.g., M˜ottus, 2016). But how stable are these patterns across data
+sets? In this study, an elastic net model best predicted BMI in the complete data condition,
+and this model contained 78 predictors and regression weights. Although the elastic net and
+other SL techniques did not capitalize on chance fluctuations and outliers, they may have
+capitalized on idiosyncratic attributes of this data set. A vital question to answer is: how
+predictive of a criterion is any specific SL model in a new data set that has different data
+collection methods, demographics, or other attributes? Another question to consider is: on
+average, how similar are two SL models generated from the same technique, using the same
+pool of predictors, but trained on substantially different data sets? Further research will be
+required to determine the generalizability of any given SL model, and whether parsimonious
+SL models are more replicable than complex SL models.
+Utilizing a Planned Missing Data Structure to Train Statistical Learning Models
+Post-hoc analysis indicated that there was relatively low cost to predictive accuracy for
+models trained on data sets with missingness, compared to models trained on complete
+CHAPTER 2. THAT TAKES THE BISCUIT 49
+data. In the case of 50% data missingness, loss in predictive accuracy was about 5%. This
+finding suggests that researchers should consider using planned data missingness in their
+study designs. Randomly sampling items from a pool, instead of administering the same
+items to every participant, would allow a study to multiply the number of items in its pool
+while still allowing for the development of robust statistical learning models. In order for
+a model trained on MMCAR data to have maximal accuracy in predicting a criterion in a
+new data set, one would need to collect complete data on the variables that were included
+in the model. Of the techniques in this study, BISCUIT tended to have the fewest variables
+A). Because it is an accurate, parsimonious and cost-effective statistical learning technique,
+BISCUIT could prove to be especially useful in applying personality-criterion models to
+real-world predictions of criteria.
+2.5.3 Conclusions
+Results from this study indicate that statistical learning techniques could prove to be
+essential in future research of personality-criterion relationships. SL techniques are low-cost
+tools that increase the predictive power of personality beyond traditional techniques; greater
+predictive accuracy is achieved by utilizing the same raw data. Since statistical learning
+methods excel at modeling item-level variance, item pools that contain a broad array of
+personality nuances may be more highly valued in the future. Planned data missingness
+designs are suited to meet the need for larger item pools; a study can collect data on an
+item pool of virtually any size, while still administering a given number of items per partic-
+ipant. Although both SL techniques and planned data missingness are powerful procedures,
+both can add complexity to a study. Statistical learning techniques such as BISCUIT of-
+fer a balanced approach to the study of personality-criterion relationships, by generating
+CHAPTER 2. THAT TAKES THE BISCUIT 50
+parsimonious models that have greater predictive accuracy than traditional methods.
+CHAPTER 3. LAYING PERSONALITY BARE 51
+Chapter 3
+Laying Personality BARE
+Behavioral Frequencies Strengthen
+Personality-Criterion Relationships
+3.1 Abstract
+Personality consists of stable patterns of cognitions, emotions, and behaviors, yet behav-
+iors are rarely studied in the field of personality psychology. Even when examined, behaviors
+typically are considered to be validation criteria for traditional personality items, instead of
+measures of personality. In the current study (N = 332, 489), we conceptualize behavioral fre-
+quencies (self-reported yearlong patterns) as measures of personality. We investigate whether
+behavioral frequencies have incremental validity over and above traditional personality items
+in correlating personality with six outcome criteria. We use BISCUIT, a statistical learning
+technique, to find the optimal number of items for each criterion’s model, across three pools
+of items: traditional personality items (k = 696), behavioral frequencies (k = 425), and a
+combined pool. Compared to models using only traditional personality items, models using
+CHAPTER 3. LAYING PERSONALITY BARE 52
+the behavioral frequency item pool are more strongly correlated to two criteria, and models
+using the combined pool are more strongly correlated to four criteria. We find mixed evidence
+that there is congruence between the type of criterion and the type of personality items that
+are most strongly correlated with it (e.g., behavioral criteria are most strongly correlated
+to behavioral personality items). Findings suggest that behavioral frequencies are measures
+of personality that provide a unique effect in describing personality-criterion relationships,
+over and above traditional personality items. We also provide an updated, public-domain
+item pool of behavioral frequencies: the BARE (Behavioral Acts, Revised and Expanded)
+Inventory.
+3.2 Introduction
+Of the three patterns commonly associated with personality (cognitions, emotions, and
+behaviors), behaviors are the least studied (Baumeister et al., 2007; Furr, 2009). The
+measurement of cognitions and emotions have adequate coverage in traditional personality
+inventories, such as the NEO-PI-R (Costa and McCrae, 2008), the BFI-2 (Soto and John,
+2017), the IPIP-HEXACO (Ashton et al., 2007), and the SPI-27 (Condon, 2018). Within
+each inventory, traditional personality items prompt participants to report how accurately
+trait descriptors (e.g., “I have a vivid imagination”) describe a target, using a Likert-like
+scale. Some traditional personality items contain behavioral content; Wilt (2014) found that,
+of the Big Five domains, Conscientiousness and Extraversion had the most prototypically
+behavioral items (e.g., “Get chores done right away” and “Talk to a lot of different people
+at parties,” respectively). Traditional personality items, however, (a) only include behaviors
+that are supposed to be indicative of broader personality traits; (b) do not measure specific
+frequencies of behaviors; and (c) do not specify a time period in which the behaviors have
+Wilt and Revelle (2015) have argued for a fourth pattern to be included: desires.
+CHAPTER 3. LAYING PERSONALITY BARE 53
+taken place.
+The Act Frequency Approach (AFA; Buss and Craik, 1980, 1983, 1985, 1987) popularized
+the behavioral frequency, a retrospective, self-reported number of instances that a target
+has performed a given behavior (e.g., meditated, littered) in a previous period of time (e.g.,
+the past year). Compared to traditional personality items, behavioral frequencies may be
+more comprehensive and precise measurements of behavior because they (a) include a broader
+range of behaviors; (b) quantify the frequency of each behavior; and (c) specify a time period
+for each frequency of behavior. Despite the potential advantages that behavioral frequencies
+may have over traditional personality items, they have rarely been studied since the AFA was
+met with criticism in the late 1980s (e.g., Block, 1989; Moser, 1989). The babies (behavioral
+frequencies) were thrown out with the bath water (AFA’s theory). Although there is a
+historical association between the AFA and behavioral frequencies, the use of behavioral
+frequencies does not require the baggage of AFA theory (namely, that there is no explanatory
+power in personality traits because they are merely behavioral summaries; for a review of
+AFA theory, see Buss and Craik, 1983).
+Behavioral frequencies should be thought of as non-traditional personality items. As evi-
+dence for the claim that behavioral frequencies measure personality, we submit the following
+argument: (a) behavioral frequencies measure patterns of behavior; (b) personality includes
+patterns of behavior; (c) therefore, behavioral frequencies measure personality. Only state-
+ment a is debatable; b is widely accepted in personality psychology, and c follows directly
+from a and b. Block (1989) argued that behavioral frequencies do not measure behavior
+because “the indisputable fact remains that nowhere have acts been directly observed” (p.
+237). Block’s statement is accurate in the sense that behavioral frequencies typically are not
+observed and tallied by a third-party rater, but it ignores the fact that the behaviors have
+Behavioral frequencies may be reported by an informant, but previous studies have focused on self-
+reports. We use the term “behavioral frequency” as shorthand for self-reported behavioral frequency, unless
+otherwise noted.
+CHAPTER 3. LAYING PERSONALITY BARE 54
+been observed by a reporter who is intimately familiar with them: the participant. Pre-
+liminary research suggests that retrospective self-reported behaviors are valid; self-reported
+behaviors and actual behaviors are positively related to one another (Gosling et al., 1998;
+Vazire and Mehl, 2008; Jackson et al., 2010).
+Post-AFA researchers have conceptualized behavioral frequencies as validation criteria for
+traditional personality traits. For example: Grucza and Goldberg (2007) selected behavioral
+frequencies as one of several criteria to test the comparative validity of eleven personality
+inventories; Hirsh et al. (2009) found behavioral patterns for two metatraits (higher-order
+traits that supposedly subsume the Big Five); Church et al. (2007) found cross-cultural
+consistency of associations between behavioral frequencies and Big Five traits; Chapman and
+Goldberg (2017) described behavioral “signatures” of each Big Five trait; and Skimina et al.
+(2019) linked a person’s values with their behavior. Since the AFA, however, no published
+paper has considered that behavioral frequencies are themselves measures of personality and
+that behavioral frequencies may account for variance in real-world criteria that is unexplained
+by traditional personality items.
+3.2.1 Two Pilot Studies Have Examined the Incremental Validity of Be-
+havioral Frequencies
+Although personality psychologists typically study multi-item scales that represent broad
+traits, such as domains and facets, research suggests that individual items (sometimes called
+“nuances;” McCrae, 2015) also may be used to measure personality. Items are reliable mea-
+sures; they are stable over time (M˜ottus et al., 2017, 2019) and there is cross-rater agreement
+concerning their specific variance (M˜ottus et al., 2014). Given the same pool of items, item-
+Additionally, it appears that Block was unaware of or ignored experience-sampling procedures (Csik-
+szentmihalyi and Larson, 1987), in which individuals frequently report their current behaviors throughout
+the day.
+CHAPTER 3. LAYING PERSONALITY BARE 55
+based models better predict outcomes than models of multi-item scales, because the variance
+associated with individual items has predictive validity (Seeboth and Mo˜ttus, 2018; M˜ottus
+et al., 2015, 2020; Revelle et al., 2020).
+Two unpublished pilot studies have compared the predictive validity of yearlong behav-
+ioral frequencies over traditional personality items. The first study (N = 31, 467; Elleman
+et al., 2017), using 199 behavioral frequencies and 100 traditional personality items, found
+the ten personality items with the largest absolute correlation for each of four life outcomes.
+The items that most strongly correlated with criteria were overwhelmingly behavioral fre-
+quencies; of the total top 40 items (10 items multiplied by four criteria), only one was a
+traditional personality item. The second pilot study (Elleman et al., 2018) was a replication
+and extension of the first. It included more participants (N = 177, 853), criteria (twelve),
+and personality items (696 traditional and 454 behavioral). Of the top 120 items (i.e., the
+10 items with the largest absolute correlation for each of twelve criteria), 79 of them were
+traditional personality items. Overall, behavioral frequencies did not better predict criteria
+than traditional personality items, but they were represented in proportion to the size of
+their item pool.
+Post-hoc analysis of the second study uncovered a pattern: in general, each criterion was
+predicted by mostly one type of personality item. Three criteria (body mass index [BMI],
+smoking frequency, and caffeine consumption) were predicted by behavioral frequencies, while
+four criteria (overall stress, general health, sleep quality, and prescription adherence) were
+predicted by traditional personality items. One criterion, exercise frequency, was predicted
+by an even mix of the two personality item types. Models were not able to produce accept-
+able cross-validated predictions for the remaining four criteria (frequency of brushing and
+flossing teeth, hospital emergency room (ER) visits, and average hours slept). Qualitative
+analysis indicated that three of the four criteria that were predicted by traditional personal-
+ity items appeared to be more similar to trait descriptors than measures of behavior: health
+CHAPTER 3. LAYING PERSONALITY BARE 56
+(“How would you rate your health?” Poor – Excellent); sleep quality (“How is the quality
+of your sleep?” Poor – Excellent); and stress (“How would you rate your stress lately?”
+Extremely calm – Extremely stressed). Prescription adherence (“Do you take medication
+as prescribed?” I often miss a dose – I never miss a dose) was a measure of behavior, but
+not especially precise. Interestingly, many of the best traditional personality items that pre-
+dicted prescription adherence appeared to be a mix of behavior and cognition or emotion
+(e.g., “Quickly lose interest in the tasks I start”; “Do things that I later regret”; “Habitually
+blow my chances”; and “Do things without thinking of the consequences”).
+Conversely, the three criteria predicted by behavioral frequencies were precise measures
+of behavior or outcomes driven mostly by behavior: smoking frequency (“How often do
+you smoke?” Never in my life – More than 20 times a day); caffeine consumption (“How
+much caffeine do you consume each day?” None – More than 400mg a day); and BMI
+(a ratio of weight and height). These findings suggest that behavioral frequencies may
+better predict behavioral criteria that are precisely measured, while traditional personality
+items (i.e., cognitions and emotions) may better predict criteria that are more cognitive and
+emotional. Simply put, behaviors predict behaviors, while cognitions and emotions predict
+cognitions and emotions.
+3.2.2 Overview of the Current Study
+The primary aim of the current study was to determine, for six criteria, the extent to
+which behavioral frequencies accounted for additional variance above traditional personality
+items. To take a more empirical approach than the pilot studies, which selected an arbitrary
+number of items for a model, this study used a new statistical learning technique, BISCUIT
+(Revelle, 2020; Elleman et al., in press; see also Chapter 2), to determine the optimal number
+of personality items for each criterion. A secondary aim was to determine if the post-hoc
+CHAPTER 3. LAYING PERSONALITY BARE 57
+findings from the second pilot study could be replicated. That is, were some criteria mostly
+predicted by one type of personality item, and if so, was this type of personality item con-
+gruent with the type of criterion (i.e., were behavioral criteria predominantly correlated with
+behavioral frequencies, and were cognitive and emotional criteria predominantly correlated
+with traditional personality items)? Lastly, in the current study we released an updated,
+public-domain item pool of behavioral frequencies: the BARE (Behavioral Acts, Revised
+3.3 Methods
+3.3.1 Participants
+thetic Aperture Personality Assessment (SAPA) project (Revelle et al., 2016). Participants
+received automated feedback regarding their personality as compensation for their partici-
+pation. The data collection time period for this study (May 2018 to November 2019) started
+immediately after the second pilot study. Participants were included in the study if they
+responded to at least one behavioral frequency item. Participants (N = 332, 489) were from
+230 countries, 65% were female, and the median age was 29 years (min = 14, max = 90,
+median absolute deviation = 15). Of the 85% of participants who reported their educational
+attainment, 18% were enrolled in college and 56% had attained at least an associate’s degree.
+Participants from the United States accounted for 51% of the sample. Of the 61% of U.S.
+participants who reported their ethnicity, 78% identified as White, 7% as Hispanic American,
+4% as African American, 4% as Asian American, 1% as Native Alaskan/Hawaiian/American,
+and 6% as multi-racial, “other,” or “none of these.”
+CHAPTER 3. LAYING PERSONALITY BARE 58
+3.3.2 Measures
+MMCAR Structure
+Because there were thousands of personality items in SAPA’s item pool, each partici-
+pant received a quasi-random sample of them; each inventory may have been sampled at a
+different rate, but within each inventory, a random sample of items was given. This data
+collection method resulted in a Massively Missing Completely at Random (MMCAR) data
+structure where, for any given participant, most of the data were missing (Revelle et al.,
+2010, 2016). This MMCAR approach was not used for demographic or criterion variables;
+every participant was given all of those items, although participants were not required to
+respond to them.
+Traditional Personality Items
+There were 696 traditional personality items included in this study. These items are
+public domain and have been curated for use on the SAPA website (Condon and Revelle,
+2015; Condon et al., 2017). The items were from eight sets of personality scales, seven of
+a repository of public domain items (Goldberg, 1999; Goldberg et al., 2006). Items from
+the following inventories are mentioned in the Results section: IPIP-NEO (Goldberg, 1999);
+IPIP-HEXACO (Ashton et al., 2007); QB6 (Thalmayer et al., 2011); BFAS (DeYoung et al.,
+2007); EPQ (Eysenck et al., 1985); and Plasticity/Stability (DeYoung, 2010). All tradi-
+tional personality items were given the same six-point Likert-like scale: “Very Inaccurate,”
+“Moderately Inaccurate,”“Slightly Inaccurate,”“Slightly Accurate,”“Moderately Accurate,”
+and “Very Accurate.” Compared to other traditional personality inventories, the 135 items
+of the SPI-27 (Condon, 2018), which are in some of the reported scales, were oversampled;
+the median number of administrations of an item from the SPI-27 was 225,563, whereas the
+CHAPTER 3. LAYING PERSONALITY BARE 59
+median number of administrations of a non-SPI traditional personality item was 2,878.
+Behavioral Frequencies
+There were 425 behavioral frequency items included in this study. These items constituted
+the BARE Inventory, which combined items from the Oregon Avocational Interest Scales
+(ORAIS; Goldberg, 2010) and items curated and revised from the Behavioral Acts Inventory
+(BAI; Chapman and Goldberg, 2017). For each item, participants rated the frequency of
+their behavior on a six-point scale: “Never in my life,” “Not in the past year,” “Less than 3
+times in past year,”“3 to 10 times in past year,”“10 to 20 times in past year,” and “More than
+20 times in past year.” The median number of administrations of a behavioral frequency was
+7,718.
+Demographic and Criterion Variables
+There were four self-reported demographics: age, sex, ethnicity, and educational at-
+tainment. The median number of administrations of a demographic variable was 268,452
+(ethnicity had far fewer administrations [k = 94, 065] due to only being applicable for partic-
+ipants in the United States). There were six self-reported criterion variables: general health
+(“How would you rate your health?” Poor – Excellent); overall stress (“How would you rate
+your stress lately?” Extremely calm – Extremely stressed); body mass index (computed from
+weight and height); exercise frequency (“How often do you exercise?” Very rarely or never
+– More than five times a week); smoking frequency (“How often do you smoke?” Never in
+my life – More than 20 times a day); and hospital emergency room visits (“How many times
+have you been admitted to an emergency room in the last 6 months?” None – Three or more
+times). The median number of administrations of a criterion was 175,138. Fewer criteria
+B for a list of items in the BARE Inventory.
+CHAPTER 3. LAYING PERSONALITY BARE 60
+were included in this study than the second pilot study due to a data sharing agreement
+with the administrator of the SAPA website.
+3.3.3 Statistical Analyses
+All analyses were performed in the statistical programming language R (R Core Team,
+2019), using the RStudio environment (RStudio Team, 2019). Due to the MMCAR data
+structure, it was not appropriate to use the full sample size (N = 332, 489) to estimate sta-
+tistical significance. We took a conservative approach for determining the effective n for each
+analysis related to a criterion by finding the minimum number of pairwise administrations
+of a pool of items with a criterion. For example, the minimum number of pairwise adminis-
+trations between the 696 traditional personality items and the general health criterion was
+2,410, so this number was used as the effective n for determining the statistical significance
+of analyses for general health. Separately, for a general estimate of statistical significance
+for item-level correlations, we calculated the minimum absolute correlation that would be
+statistically significant (p < .05), using the fewest number of pairwise administrations with
+a criterion (n = 1, 736) and a Bonferroni correction (Dunn, 1961) for the maximum num-
+ber of correlations between a criterion and personality items (k = 1, 121). All item-level
+personality-criterion correlations across all BISCUIT models were greater than or equal to
+this threshold (|r| = .10).
+The statistical learning technique BISCUIT (Best Items Scale that is Cross-validated,
+Unit-weighted, Informative, and Transparent) was used to find a list of items that were
+most strongly correlated with each criterion. BISCUIT used a k-fold resampling procedure
+(k = 10) to determine a cross-validated list of the “best items” based upon each item’s average
+correlation with the criterion (for a concise description of k-fold, see Chapman et al., 2016, p.
+60). One unique feature of BISCUIT is that its models implement unit-weighting to reduce
+CHAPTER 3. LAYING PERSONALITY BARE 61
+overfitting. We employed BISCUIT in this study because it was designed for MMCAR data
+structures; BISCUIT calculates item-level correlations from the pairwise administrations of
+items and does not need to impute missing data, unlike some other SLTs. The BISCUIT
+algorithm is available as the “bestScales” function in the “psych” R package (Revelle, 2020,
+version 2.0.5).
+We gave BISCUIT a limited range of possible solutions for the optimal number of items
+in a model: from 10–100 items. The minimum of 10 items was chosen in order to: (a)
+have a large enough frequency of items in each model for chi-squared tests by item type
+and (b) ensure a reasonable number of items per model for assessing item content. The
+maximum of 100 items was chosen in order to: (a) decrease processing time for computing
+results, (b) select an arbitrary number large enough to be considered outside the realm of a
+parsimonious “best items” solution. We gave BISCUIT a preference for more parsimonious
+models by having it select the model with the fewest number of items that was within one
+standard error of the optimal model, since these two models would be statistically no different
+from one another in terms of their correlation with a criterion. For each criterion, BISCUIT
+found the best personality items using three pools of items: (a) traditional personality items,
+(b) behavioral frequencies, and (c) a combined set of all personality items.
+After a BISCUIT model was built and cross-validated on a criterion, we examined the
+item content of the best items. Any of the best items that were synonymous with the criterion
+were removed from the pool of possible items and the model was rerun. For example, the
+behavioral frequency “smoked tobacco” was removed from the item pool for the criterion
+“smoking frequency.” Across the six criteria, twelve personality items were removed. For a
+B.
+CHAPTER 3. LAYING PERSONALITY BARE 62
+items (traditional items, behavioral frequencies, and a combined pool). The height of each
+shape is approximately the size of the estimate’s 95% confidence interval.
+.5
+.4
+.3
+.2
+.1
+Health Stress BMI Smoking Exercise ER Visits
+Criterion
+ledom
+TIUCSIB
+htiw
+noitalerroC
+Item Pool:
+Traditional personality items Behavioral frequencies Combined
+3.4 Results
+3.4.1 The Strength of Personality-Criterion Relationships Using Different
+Item Pools
+Did behavioral frequencies strengthen personality-criterion relationships beyond that of
+traditional personality items? To answer this question, we tested for differences in non-
+independent correlations (Steiger, 1980) of a criterion and BISCUIT models using different
+item pools. For this analysis, p-values were Holm-adjusted (Holm, 1979) to account for the
+CHAPTER 3. LAYING PERSONALITY BARE 63
+total of 12 comparisons. First, we determined whether there were any instances in which
+BISCUIT models built with behavioral frequencies were more strongly correlated with crite-
+ria than models built with traditional personality items. Two criteria (smoking and exercise
+frequency) were more strongly correlated with BISCUIT models built with behavioral fre-
+quencies than those built with traditional personality items. One variable, overall stress, was
+more strongly correlated with the BISCUIT model built with traditional personality items.
+And each of the remaining three criteria (general health, BMI, and ER visits) was not dif-
+3.1). Second, we determined whether there were any instances in which BISCUIT models
+built with all personality items were more strongly correlated with criteria than models built
+with traditional personality items. For these comparisons, we adjusted the correlations be-
+tween each pair of BISCUIT models to account for the fact that they had overlapping items,
+which had the effect of more conservative estimates of statistical significance. Four out of
+the six criteria were more strongly correlated with BISCUIT models built with the combined
+item pool than those built with traditional personality items; BISCUIT models for overall
+3.4.2 The Types of Personality Items Most Related to Each Criterion
+For each criterion, were the personality items selected by BISCUIT predominantly of one
+type? To answer this question, for each criterion’s best items, we used Pearson’s chi-squared
+tests to determine if frequencies of item types were statistically different than the expected
+distribution, in which 696 (62%) were traditional personality items and 425 (38%) were
+behavioral frequencies. Due to the small number of each criterion’s best items, statistical
+We used the “scoreOverlap” function of the “psych” package in R, which implements an algorithm similar
+to suggestions by Cureton (1966) and Bashaw and Anderson (1967).
+CHAPTER 3. LAYING PERSONALITY BARE 64
+BISCUIT models that use traditional personality item pools, compared to other item pools.
+Each test determines if correlation r is significantly different from r , accounting for r .
+AB AC BC
+Variables A are six criteria. Variables B are BISCUIT models built using the traditional
+personality item pool. Variables C are BISCUIT models built using either the behavioral
+frequency item pool or an item pool that combined both personality item types. Bolded
+p-values indicate significant differences (p < .05), and bolded item pools and correlations
+indicate the models with the larger correlations.
+A: Criterion B: BISCUIT Items C: BISCUIT Items r r r t value p value
+AB AC BC
+item pool used(B) item pool used(C)
+General health Traditional 10 Behaviors 10 .48 .46 .44 1.11 .807
+General health Traditional 10 Combined 10 .48 .51 .87 −3.89 <.001
+Overall stress Traditional 20 Behaviors 10 .52 .35 .56 8.83 <.001
+Overall stress Traditional 20 Combined 20 .52 .52 .94 0.00 1.000
+Body mass index Traditional 41 Behaviors 10 .42 .44 .38 −0.72 .938
+Body mass index Traditional 41 Combined 14 .42 .48 .35 −2.51 .060
+Smoking frequency Traditional 26 Behaviors 10 .29 .54 .41 −11.11 <.001
+Smoking frequency Traditional 26 Combined 10 .29 .53 .45 −11.04 <.001
+Exercise frequency Traditional 27 Behaviors 10 .41 .49 .47 −3.78 <.001
+Exercise frequency Traditional 27 Combined 10 .41 .51 .80 −8.02 <.001
+ER visits Traditional 10 Behaviors 10 .19 .24 .25 −1.80 .290
+ER visits Traditional 10 Combined 10 .19 .29 .56 −4.93 <.001
+significance was determined by a Monte Carlo simulation with 2,000 replicates (Hope, 1968).
+Results indicated that three of the six criteria were predominantly associated with one type
+of personality item, and each of those criteria was associated with the type of personality item
+that we expected: overall stress was predominantly associated with traditional personality
+3.4.3 Summary of Best Items Content for Each Criterion
+Of the ten personality items selected by BISCUIT for correlating with general health,
+ditional personality items were from the Liveliness facet of the Extraversion domain (e.g.,
+See Tables B.4 – B.15 in Appendix B for the best items content of BISCUIT models built only with
+traditional personality items or behavioral frequencies.
+CHAPTER 3. LAYING PERSONALITY BARE 65
+items in the total item pool against the frequencies in each BISCUIT model that was built
+with the total item pool. A bolded row indicates statistical significance (p < .05).
+Criterion Behavioral Traditional χ p value
+items items
+General health 1 9 3.29 .119
+Overall stress 0 20 12.08 .001
+Body mass index 11 3 9.66 .003
+Exercise frequency 3 7 0.26 .748
+Smoking frequency 9 1 11.37 .001
+ER visits 7 3 4.32 .056
+Total item pool 425 696 − −
+“Have great stamina”), three were from the Resiliency domain (e.g., “Recover quickly from
+stress and illness”), and three were from Neuroticism domain of two different inventories (e.g.,
+“Have a low opinion of myself”). The one behavioral frequency was, “Did aerobic exercise.”
+Of the twenty personality items selected by BISCUIT for correlating with overall stress,
+were from the Neuroticism and Emotional Stability domains of four different inventories (e.g.,
+“Feel desperate”), three were from the Resiliency domain (e.g., “Feel a sense of worthlessness
+or hopelessness”), one was from the Stability metatrait (i.e., “Find life difficult”), and one
+was from the Liveliness facet of the Extraversion domain (i.e., “Feel healthy and vibrant
+most of the time”).
+Of the fourteen items selected by BISCUIT for correlating with BMI, there were three
+traditional personality items from the Immoderation facet of the Neuroticism domain (e.g.,
+to self-control (e.g. “Am able to control my cravings”). The other ten items were behavioral
+frequencies involving food (e.g., “Ate too much”), monitoring one’s health (e.g., “Had my
+CHAPTER 3. LAYING PERSONALITY BARE 66
+by BISCUIT from a pool of 1,121 items. The BISCUIT model composed of these items had
+a large correlation with general health (R = .51). Each listed correlation is an average across
+ten folds, and its standard error ≈ .02. The column “Key” indicates whether the item was
+positively or negatively keyed on the listed domain/facet.
+Item Corr. Item pool Inventory Domain/Facet* Key
+Tire out quickly. −.39 Traditional IPIP-HEXACO Ext./Liveliness −
+Have great stamina. .38 Traditional IPIP-HEXACO Ext./Liveliness +
+Am usually active and full of energy. .36 Traditional IPIP-HEXACO Ext./Liveliness +
+Often feel listless and tired for no reason. −.34 Traditional EPQ Neuroticism +
+Recover quickly from stress and illness. .34 Traditional QB6 Resiliency +
+Am happy with my life. .34 Traditional QB6 Resiliency +
+Feel a sense of worthlessness or hopelessness. −.32 Traditional QB6 Resiliency −
+Have a low opinion of myself. −.32 Traditional IPIP-NEO Neur./Depression +
+Feel that I’m unable to deal with things. −.32 Traditional IPIP-NEO Neur./Vulnerability +
+Did aerobic exercise. .31 Behavioral BARE (ORAIS) Exercise +
+*Ext. = Extraversion; Neur. = Neuroticism
+BISCUIT from a pool of 1,121 items. The BISCUIT model composed of these items had a
+large correlation with overall stress (R = .52). Each listed correlation is an average across
+ten folds, and its standard error ≈ .02. The column “Key” indicates whether the item was
+positively or negatively keyed on the listed domain/facet.
+Item Corr. Item pool Inventory Domain/Facet* Key
+Find life difficult. .41 Traditional Plasticity/Stability Stability −
+Am relaxed most of the time. −.40 Traditional IPIP-NEO Neur./Anxiety −
+Feel a sense of worthlessness or hopelessness. .37 Traditional QB6 Resiliency −
+Feel desperate. .37 Traditional IPIP-NEO Neur./Depression +
+Recover quickly from stress and illness. −.37 Traditional QB6 Resiliency +
+Am happy with my life. −.37 Traditional QB6 Resiliency +
+Am often down in the dumps. .36 Traditional IPIP-NEO Neur./Depression +
+Often feel blue. .36 Traditional IPIP-NEO Neur./Depression +
+Feel healthy and vibrant most of the time. −.36 Traditional IPIP-HEXACO Ext./Liveliness +
+Get caught up in my problems. .36 Traditional IPIP-NEO Neur./Anxiety +
+Worry about things. .36 Traditional IPIP-NEO Neur./Anxiety +
+Often feel fed-up. .35 Traditional EPQ Neuroticism +
+Rarely feel depressed. −.35 Traditional BFAS Neur./Withdrawal −
+Am often in a bad mood. .35 Traditional IPIP-NEO Neur./Anger +
+Dislike myself. .35 Traditional IPIP-NEO Neur./Depression +
+Often feel lonely. .35 Traditional EPQ Neuroticism +
+Rarely worry. −.35 Traditional IPIP-HEXACO EmS./Anxiety −
+Feel that I’m unable to deal with things. .34 Traditional IPIP-NEO Neur./Vulnerability +
+Suffer from nerves. .34 Traditional EPQ Neuroticism +
+Am a worrier. .33 Traditional EPQ Neuroticism +
+*EmS = Emotional Stability; Ext. = Extraversion; Neur. = Neuroticism
+CHAPTER 3. LAYING PERSONALITY BARE 67
+cholesterol level checked”), or commuting and motor vehicles (e.g., “Used public transporta-
+tion”).
+by BISCUIT from a pool of 1,121 items. The BISCUIT model composed of these items had
+a large correlation with BMI (R = .48). Each listed correlation is an average across ten folds,
+and its standard error ≈ .02. The column “Key” indicates whether the item was positively
+or negatively keyed on the listed domain/facet.
+Item Corr. Item pool Inventory Domain/Facet* Key
+Often eat too much. .34 Traditional IPIP-NEO Neur./Immoderation +
+Ate too much. .26 Behavioral BARE (ORAIS) Food-Related +
+Dieted to lose weight. .26 Behavioral BARE None
+Had my cholesterol level checked. .24 Behavioral BARE None
+Used public transportation. −.24 Behavioral BARE (ORAIS) Green Activities +
+Consulted a professional nutritionist, .24 Behavioral BARE None
+dietician, or physician about my diet.
+Am able to control my cravings. −.24 Traditional IPIP-NEO Neur./Immoderation −
+Ate or drank while driving. .23 Behavioral BARE (ORAIS) Food-Related +
+Took antacids. .23 Behavioral BARE None
+Took three or more different medications .22 Behavioral BARE None
+in the same day.
+Had my blood pressure taken. .21 Behavioral BARE None
+Bought a car, truck, or motorcycle. .21 Behavioral BARE (ORAIS) Vehicles +
+Rarely overindulge. −.20 Traditional IPIP-NEO Neur./Immoderation −
+Drove a car 10 miles (16 km) per hour .20 Behavioral BARE None
+over the speed limit.
+*Neur. = Neuroticism
+Of the ten personality items selected by BISCUIT for correlating with smoking frequency,
+there was one traditional personality item from the Psychoticism domain (i.e., “Would take
+behavioral frequencies involving the use of drugs (e.g., “Smoked, vaped or otherwise consumed
+marijuana”) or alcohol (e.g., “Became intoxicated”).
+Of the ten personality items selected by BISCUIT for correlating with exercise frequency,
+tional personality items were from the Liveliness facet of the Extraversion domain (e.g., “Am
+usually active and full of energy”), two were from the Neuroticism domain of two different
+CHAPTER 3. LAYING PERSONALITY BARE 68
+lected by BISCUIT from a pool of 1,121 items. The BISCUIT model composed of these
+items had a large correlation with smoking frequency (R = .53). Each listed correlation
+is an average across ten folds, and its standard error ≈ .02. The column “Key” indicates
+whether the item was positively or negatively keyed on the listed domain/facet.
+Item Corr. Item pool Inventory Domain/Facet Key
+Smoked, vaped or otherwise consumed marijuana. .50 Behavioral BARE None
+Drank alcohol or used other drugs to make myself .37 Behavioral BARE None
+feel better.
+Took a hard drug recreationally (such as cocaine, .33 Behavioral BARE None
+methamphetamine, or heroin).
+Would take drugs which may have strange or .32 Traditional EPQ Psychoticism +
+dangerous effects.
+Had a hangover. .32 Behavioral BARE (ORAIS) Drinking +
+Left a place because of cigarette smoke. −.32 Behavioral BARE None
+Became intoxicated. .28 Behavioral BARE (ORAIS) Drinking +
+Tried to stop using alcohol or other drugs. .27 Behavioral BARE None
+Used smokeless tobacco (such as chewing tobacco .27 Behavioral BARE None
+or snuff).
+Had an alcoholic drink before breakfast or instead .25 Behavioral BARE None
+of breakfast.
+inventories (e.g., “Often feel listless and tired for no reason”), and one was from the Activity
+Level facet of the Extraversion domain (i.e., “Do a lot in my spare time”). The three behav-
+ioral frequencies involved behaviors that were related to an active lifestyle (e.g., “Went on a
+hike”).
+Of the ten personality items selected by BISCUIT for correlating with emergency room
+items were from the Plasticity metatrait (e.g., “Find myself in the same kinds of trouble,
+time after time”), and one was from the Immoderation facet of the Neuroticism domain (i.e.,
+“Don’t know why I do some of the things I do”). The other seven items were behavioral
+frequencies, six of which involved health and medical behaviors (e.g., “Took three or more
+different medications in the same day”). The other behavioral frequency was, “Cried nearly
+every day for a week.”
+CHAPTER 3. LAYING PERSONALITY BARE 69
+lected by BISCUIT from a pool of 1,121 items. The BISCUIT model composed of these
+items had a large correlation with exercise frequency (R = .51). Each listed correlation is an
+average across ten folds, and its standard error ≈ .02. The column “Key” indicates whether
+the item was positively or negatively keyed on the listed domain/facet.
+Item Corr. Item pool Inventory Domain/Facet* Key
+Went on a hike. .37 Behavioral BARE (ORAIS) Summer Activities +
+Feel healthy and vibrant most of the time. .35 Traditional IPIP-HEXACO Ext./Liveliness +
+Am usually active and full of energy. .33 Traditional IPIP-HEXACO Ext./Liveliness +
+Tire out quickly. −.32 Traditional IPIP-HEXACO Ext./Liveliness −
+Have great stamina. .31 Traditional IPIP-HEXACO Ext./Liveliness +
+Often feel listless and tired for no reason. −.30 Traditional EPQ Neuroticism +
+Took a long walk alone. .30 Behavioral BARE None
+Do a lot in my spare time. .29 Traditional IPIP-NEO Ext./Activity level +
+Am easily discouraged. −.27 Traditional BFAS Neur./Withdrawal +
+Attended an athletic event. .26 Behavioral BARE (ORAIS) Sports +
+*Ext. = Extraversion; Neur. = Neuroticism
+selected by BISCUIT from a pool of 1,121 items. The BISCUIT model composed of these
+items had a moderate correlation with emergency room visits (R = .29). Each listed correla-
+tion is an average across ten folds, and its standard error ≈ .02. The column “Key” indicates
+whether the item was positively or negatively keyed on the listed domain/facet.
+Item Corr. Item pool Inventory Domain/Facet Key
+Had my blood pressure taken. .17 Behavioral BARE None
+Took three or more different medications .16 Behavioral BARE None
+in the same day.
+Visited a doctor for a physical examination .16 Behavioral BARE None
+or general check up.
+Cried nearly every day for a week. .13 Behavioral BARE None
+Don’t know why I do some of the things I do. .13 Traditional IPIP-NEO Neur./Immoderation +
+Find myself in the same kinds of trouble, .13 Traditional Plasticity/Stability Stability −
+time after time.
+Changed my daily routine because of pain .13 Behavioral BARE None
+associated with an injury or illness.
+Had a medical operation. .12 Behavioral BARE None
+Used a thermometer to take my temperature. .12 Behavioral BARE None
+Am self-destructive. .12 Traditional Plasticity/Stability Stability −
+CHAPTER 3. LAYING PERSONALITY BARE 70
+3.5 Discussion
+Behavioral frequencies strengthened personality-criterion relationships beyond what was
+possible with traditional personality items.
+Four of the six criteria in this study were more strongly correlated with a BISCUIT model
+built with a combined item pool than a BISCUIT model built with traditional personality
+items. This result indicates that behavioral frequencies have incremental validity for relating
+personality with criteria of interest; behavioral frequencies capture unique variance in the
+personality patterns of individuals. Additionally, two of these four criteria were more strongly
+correlated with a model built with behavioral frequencies than traditional personality items.
+In some cases, behavioral frequencies may be better than traditional personality items at
+establishing the strongest relationship between life outcomes and personality. Lastly, there
+was only one instance in which a BISCUIT model built with traditional personality items
+outperformed a model built with behavioral frequencies. Thus, in many cases researchers
+may be able to entirely replace traditional personality items with behavioral frequencies and
+have no detrimental impact to the predictive accuracy of personality-criterion models.
+There was mixed evidence for congruence between the type of personality item and type
+of criterion.
+In three of six BISCUIT models which used the combined personality item pool, criteria
+were related to predominantly one type of personality item; BMI and smoking frequency
+were predominantly correlated with behavioral frequencies, and overall stress was predom-
+inantly correlated with traditional personality items. For BMI and smoking frequency, the
+few traditional personality items in each model were behaviors that were consistent with
+the behavioral frequencies in that model. For instance, the traditional personality item
+most related to BMI was “Often eat too much,” which was synonymous with the behavioral
+CHAPTER 3. LAYING PERSONALITY BARE 71
+frequency “Ate too much.” And the one traditional personality item related to smoking
+frequency, “Would take drugs which may have strange or dangerous effects,” presented a
+hypothetical behavior which agreed with the actual behaviors in the model (e.g., “Took a
+hard drug recreationally, such as cocaine, methamphetamine, or heroin”). These results
+were aligned with our hypothesis that behaviors would predict behavioral criteria and that
+cognitions and emotions would predict cognitive and emotional criteria.
+However, three criteria (general health, exercise frequency, and ER visits) were not pre-
+dominantly associated with one type of personality item. This evidence suggests that some
+criteria may be mostly related to a personality item type that is congruent with its type,
+while some criteria may show no such pattern. Interestingly, there were no examples in this
+study of a criterion that was predominantly correlated with a personality item type that was
+incongruent with the criterion’s type; no behavioral criterion was associated with mostly cog-
+nitive/emotional personality items, or vice versa. Of course, the absence of evidence in this
+study does not preclude the possibility that this type of personality-criterion incongruence
+exists. A full reckoning of our hypothesis concerning personality-criterion type congruence
+would require many more criteria, with perhaps an even larger personality item pool, as well
+as consideration for a more nuanced typology of criteria and personality items (e.g., separat-
+ing cognitions and emotions into their own types, and/or incorporating desires as a type).
+Results from the current study suggest that researchers may want to more carefully consider
+the type of personality items that they select when associating criteria with personality.
+Transparent SLTs can elucidate how personality is related to outcomes of interest.
+A common criticism of statistical learning techniques is that they produce models that
+are uninterpretable “black boxes” (Yarkoni and Westfall, 2017). Some SLTs, like BISCUIT,
+however, output models that are transparent enough to let researchers peek inside. In the
+case of the criterion “emergency room visits,” many of the behavioral items selected by the
+CHAPTER 3. LAYING PERSONALITY BARE 72
+BISCUIT model were behaviors which, on their face, appear to be the actions of someone in
+poor health who would be more likely to require a visit to the emergency room (e.g., “Took
+three or more different medications in the same day,” and “Changed my daily routine because
+of pain associated with an injury or illness”). These particular behaviors seem to constitute
+a coherent pattern, but probably would not be useful for the development of a personality
+trait. One might even argue that these behaviors ultimately would not prove to be of much
+practical value to researchers; common sense could tell you that a person who has reported,
+“I had a medical operation” is also more likely to report having gone to an emergency room,
+perhaps even having had the medical operation as a result of going to the ER.
+It is important to remember, however, that the purpose of this study was to highlight
+the predictive potential of behavioral frequencies, not construct a latent trait of emergency-
+room-ness. If the behaviors selected by an SLT are too similar to a criterion to be of practical
+use, researchers can prune those items from a model and perhaps also add a broader range
+of behaviors to the item pool. Some outcomes, such as being struck by a motor vehicle
+while enjoying dinner at a restaurant, may be so dependent upon environmental conditions
+that patterns of thoughts, feelings, and behaviors will not account for much of a criterion’s
+variance, no matter the size of the item pool. However, even in the case of emergency
+room visits, there were three traditional personality items that, read at face value, suggest
+chaotic behavior (i.e., “Find myself in the same kinds of trouble, time after time,”“Am self-
+destructive,” and “Don’t know why I do some of the things I do”). Could these items be part
+of a larger pattern of thoughts, feelings, and behaviors, and would this pattern substantially
+predict the likelihood of a visit to an emergency room? There’s only one way to find out:
+Broaden the item pool.
+CHAPTER 3. LAYING PERSONALITY BARE 73
+3.5.1 Limitations
+There are at least two sets of limitations for this study. The first set involves how
+behavioral frequencies were measured. Behavioral frequencies were self-reported, yearlong
+patterns that were given a scale from 1 (“Never in my life”) to 6 (“More than 20 times in
+past year”). First, although self-reports of behaviors are valid measures, they are far from
+perfect; informant ratings are sometimes more valid and often have incremental validity
+beyond self-reports (Vazire and Mehl, 2008). Second, it was unknown whether a yearlong
+period for behavioral frequencies was the optimal length of time for the prediction of the
+selected criteria. Third, the year-to-year stability of yearlong behavioral frequencies was
+also unknown. Fourth, there was loss of information in the measurement of behavioral fre-
+quencies due to participants being limited to six options. All four of these issues are not
+isolated to the current study; these are limitations of the behavioral frequency literature.
+The promising results of this study justify further scientific effort to improve the measure-
+ment of behavioral frequencies beyond what has been historically acceptable. Future studies
+should consider: (a) measuring behavior with informant-ratings and/or objective measures;
+(b) exploring whether different measurement periods for behavioral frequencies may be op-
+timal for different outcomes; (c) determining the stability of behavioral frequencies; and (d)
+measuring behavioral frequencies with a frequency scale.
+The second set of limitations involves the generalizability of this study’s results in light of
+its methods and criteria. BISCUIT may, on average, select fewer items than other statistical
+learning techniques, and an MMCAR data structure may also influence SLTs toward more
+parsimonious solutions (Elleman et al., in press; also see Chapter 2). A more complete data
+structure, or another SLT, such as the elastic net (Zou and Hastie, 2005), could potentially
+impact (a) the extent to which behavioral frequencies provide unique explanatory variance
+over traditional personality items, or (b) the distribution of types of personality items in an
+CHAPTER 3. LAYING PERSONALITY BARE 74
+SLT’s model. Additionally, the small number of criteria in this study should not be assumed
+to be representative of the much broader pool of life outcomes that researchers may be
+interested in. Contrary to our position that typically there is congruence between the type
+of criterion and the type of personality items that best predict it, most criteria of interest
+may be best predicted by a relatively even mix of cognitions, emotions, and behaviors.
+3.5.2 Future Directions
+For generalizable findings, studying the incremental validity of self- or informant-reported
+behavioral frequencies requires a large pool of personality items. Since responding to all items
+in such a pool would fatigue the average participant, administering a random sample of items
+is the obvious approach. Thus, researchers may have to rely on MMCAR data structures
+to further investigate the incremental validity of behavioral frequencies. Immediate next
+steps include increasing the number and breadth of criteria, refining but also expanding the
+behavioral frequency item pool, and measuring behaviors on a precise frequency scale.
+Although self- and informant-reports have external validity, objective measures are the
+gold standard. One approach for capturing objective behavioral data is to equip a participant
+with an always-on Electronically Activated Recorder (EAR; Mehl et al., 2001), which can
+take the form of a dedicated recording device or be incorporated into a smartphone with
+a specialized software application (Harari et al., 2016). A major challenge of an EAR-type
+study is the huge quantity of raw data to be coded, and it would not be feasible for humans
+to code these data if the time frame were one year. To some extent, machine/statistical
+learning methods can be used to code phone data, such as summarizing GPS location to
+identify when a participant has visited a grocery store (Harari et al., 2016; Stachl et al.,
+2020). However, SLTs will need to advance before they are able to perform tasks akin to
+text analysis (Iliev et al., 2014; Chen and Wojcik, 2016), turning thousands of hours of video
+CHAPTER 3. LAYING PERSONALITY BARE 75
+and audio into frequency variables of how often someone has meditated, slapped someone,
+or had a hangover in the past year. Coding certain compound behaviors, such as “ate too
+much,” may elude SLTs for some time.
+Another promising source of objective behavioral frequency data can be found in the
+digital footprints that most people make every day. For example, Facebook likes, emails,
+and credit card transactions can be coded as behaviors in themselves. And just as a clean
+room leaves behind the behavioral residue of a conscientious individual (Gosling et al., 2002),
+digital behavioral residue, such as average email response time or the number of minutes
+spent on a social media app, can be used to infer other behaviors, cognitions, and emotions
+of interest (Hinds and Joinson, 2019). The primary benefits of studying digital footprints are
+that the data are objective and already exist in enormous quantities. The primary downside
+is that the questions that researchers can ask are limited by the data that are available.
+3.5.3 Conclusions
+Personality is commonly considered to be made up of patterns of cognitions, emotions,
+and behaviors. The field of personality psychology, however, has not sufficiently investi-
+gated behaviors. Self-reported behavioral frequencies are an efficient method of collecting
+behavioral data on participants by asking raters who are intimate with those behaviors—the
+participants themselves. The current study presented evidence that behavioral frequencies
+have incremental validity beyond traditional personality items in describing and accounting
+for personality-criterion relationships. In terms of the effect sizes of those relationships, in
+some cases behaviors alone were as good as or even better than cognitions and emotions.
+The current study found these results using a statistical learning technique, BISCUIT. These
+results suggest that personality researchers would benefit from expanding the measurement
+of personality beyond traditional personality items and including more advanced methods
+CHAPTER 3. LAYING PERSONALITY BARE 76
+like SLTs in their data analyses. Only by continuing to advance beyond traditional methods
+and measures may psychologists hope to one day fully lay bare the intricacies of personality.
+CHAPTER 4. GENERAL DISCUSSION 77
+Chapter 4
+General Discussion
+The most radical idea of this dissertation is that behavioral frequencies may be thought
+of as personality items. Many personality psychologists have been resistant to this idea
+whenever I have discussed it with them. I have not spoken with any researchers who have
+claimed that patterns of behavior are not part of personality, so I believe this hesitance
+may be due to personality psychology being almost inextricably tied to traits. Correlating
+patterns of past behaviors with criteria (which are themselves sometimes behaviors) may
+seem like circular reasoning. And perhaps more importantly, none of the predictor behaviors
+point to an explanation of what caused all of them in the first place.
+Personality psychology has been mostly concerned with explaining causes (Yarkoni and
+Westfall, 2017), and latent traits tend to be the causal explanations for behaviors. Traditional
+personality items (e.g., “I am a talkative person”) are thought to be indicators of latent traits
+(e.g., Extraversion), and these latent traits are thought to be the causes of behaviors (e.g.,
+talking). Most personality psychologists are comfortable with this explanation. However, this
+reasoning is just as circular as correlating behaviors with behaviors. Personality psychologists
+may be more comfortable with this explanation because the circularity is obscured by the
+aggregation of traditional personality items into traits, often broad domains like the Big
+CHAPTER 4. GENERAL DISCUSSION 78
+Five. But if the traditional personality item “I am a talkative person” is part of the domain of
+Extraversion, should we really be impressed that extraverts tend to talk more than introverts?
+Instances of circularity in personality psychology cannot be fixed by hiding them behind
+broad domains or trait descriptors, but they can be identified and removed with more surgical
+measures.
+Circularity aside, it is undoubtedly true that traditional personality items, and tradi-
+tional personality scales such as the Big Five, are valid measures of personality; they predict
+what one would expect measures of personality to predict (Ozer and Benet-Mart´ınez, 2006;
+Roberts et al., 2007). To say that traditional personality items measure latent traits, how-
+ever, is to make an unfalsifiable claim. To use a turn of phrase from Block (1989), the
+indisputable fact remains that nowhere have traits been directly observed. And because
+they can never be observed, they can never be falsified. What psychology researchers ob-
+serve every day are cognitions, emotions, and behaviors. Any theory concerning how these
+patterns of personality covary is perhaps falsifiable, but the existence of an inner trait is
+not. Traits do not need to be falsifiable, however, if they are considered to be convenient
+fictions that summarize the covariances of personality items.
+What do personality items measure, if not latent traits? I suspect that most personality
+psychologists would agree that personality items at least measure patterns of cognitions,
+emotions, and behaviors. Traditional personality items require that participants summarize
+these patterns by agreeing or disagreeing with trait descriptors, which are often cognitive or
+emotional, but sometimes behavioral. If the goal of psychometrics is, as Loevinger (1957)
+stated, “to isolate, to identify and... to measure separately the important components of
+Factor structures probably are not truly falsifiable. As an example, the debate between the Big Five and
+the HEXACO can never be laid to rest by a preponderance of evidence because both are reasonable solutions
+and useful in different circumstances, but neither arrives at a higher truth (Srivastava, 2020; Wiernik et al.,
+2020). There are too many vested interests, too many opinions about which rotation is most appropriate,
+and too many fit statistics for a nail ever to be driven into the coffin of a halfway-tolerable factor solution.
+If the past accurately predicts the future, the popular factor structures will survive, while the more fringe
+but equally reasonable solutions eventually will die with their proponents.
+CHAPTER 4. GENERAL DISCUSSION 79
+variance” (p. 649), then it is worthwhile to pursue the iterative improvement of personality
+measurement. One avenue of improvement I propose is to add an underutilized measure
+of personality, the behavioral frequency, to shore up some of the limitations of traditional
+personality items. The other proposed avenue is the use of statistical learning approaches
+(especially BISCUIT), which quantify personality-criterion relationships at the level of per-
+sonality items.
+As an algorithm, BISCUIT is an actuarial method that finds a subset of items that most
+highly correlate with a criterion. It should not be surprising that this kind of approach
+can be superior in prediction to a method that is not as rigorously empirical; we have
+known about the advantages of actuarial judgments for 70 years (Kelly and Fiske, 1950;
+Meehl, 1954; Dawes et al., 1989). Such a method could be labeled atheoretical, empirical,
+or perhaps godless. But while BISCUIT’s quantitative goal of prediction may reek of dust
+bowl empiricism, it also has a qualitative goal: to be a transparent statistical learning
+technique that describes personality-criterion relationships more precisely than at the domain
+or facet level. I hope that this transparency and precision will help to push some theories
+of personality in new, fruitful directions. But even if BISCUIT turns out to have limited
+utility as a theory generator, it is a useful statistical learning technique that finds a balance
+between prediction and parsimony.
+Future Directions: Big Data
+As personality researchers continue to delve into the unfathomable depths of Big Data,
+they will need more tools like BISCUIT; compared to even the largest item pools of a typical
+personality study, Big Data is a massively missing item ocean. Using empirical approaches
+like BISCUIT can result in powerful effects in the real world. For example, in one of the first
+studies to combine personality psychology, Big Data, and field experimentation, Matz et al.
+(2017) targeted participants with a personality-congruent advertisement and nearly doubled
+CHAPTER 4. GENERAL DISCUSSION 80
+the purchase rates for an online product, compared to purchases based on a personality-
+incongruent ad. To achieve this effect, a similar method to BISCUIT was used to determine
+the top Facebook likes that were correlated with the Extraversion domain, from an item
+pool of over 65,000 Facebook Likes. These top Likes functioned as an empirical scale of
+Extraversion, this scale scored millions of new participants, and these scores determined ad
+congruence.
+This study and others that have paired the Big Five with digital footprints (e.g., Kosinski
+et al., 2013; Gladstone et al., 2019) should be thought of as proofs of concept, not blueprints
+for endless future iterations. Previous research has indicated that summarizing one hundred
+self-report trait descriptors into five broad domains results in substantial loss of predictive
+accuracy. Summarizing petabytes of data in the same way would be catastrophically wasteful.
+To move forward, personality psychologists will need to reevaluate what they consider to be
+a personality item. Incorporating self-reports of yearlong patterns of behaviors is a good first
+step. However, a broader definition of “behavioral frequencies” would include every keystroke,
+click, transaction, post, and reaction from a person’s winding path of digital footprints.
+In terms of real-world utility, personality psychology has been a vastly undervalued and
+underutilized field of study. Tech companies, advertisement firms, and political campaigns
+are just beginning to understand what personality psychologists and psychometricians have
+been publishing for over a century: that each person has stable patterns of cognitions,
+emotions, and behaviors, and that these patterns can be used to predict and influence fu-
+ture cognitions, emotions, and behaviors. Big Data contains an unprecedented wealth of
+non-traditional personality items disguised as Tweets, Likes, and purchases. If personality
+psychology evolves into a discipline that fully harnesses the potential of Big Data, it may
+st
+prove to be the most influential social science of the 21 century. But first, the field needs
+to move away from traditional conceptions of personality, toward more advanced approaches
+in analysis and measurement.
+REFERENCES 81

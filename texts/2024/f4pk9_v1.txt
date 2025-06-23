@@ -1,0 +1,2155 @@
+A Bayesian Independent Samples t Test for Parameter
+Differences in Networks of Binary and Ordinal Variables
+1 1 1 2,1
+M. Marsman , L.J. Waldorp , N. Sekulovski , and J.M.B. Haslbeck
+Department of Psychology, University of Amsterdam
+Department of Clinical Psychological Science, Maastricht University
+Abstract
+Multivariate analysis of psychological variables using graphical models has
+become a standard analysis in the psychometric literature. Most cross-
+sectional measures are either binary or ordinal, and the methodology for
+inferring the structure of networks of binary and ordinal variables is de-
+veloping rapidly. In practice, however, research questions often focus on
+whether and how networks differ between observed groups. While Bayes
+factor methods for inferring network structure are well established, a similar
+methodology for assessing group differences in networks of binary or ordinal
+variables is currently lacking. In this paper, we extend the Bayesian frame-
+work for the analysis of ordinal Markov random fields, a network model
+for binary and ordinal variables, and develop Bayes factor tests for assess-
+ing parameter differences in the networks of two independent groups. The
+proposed methods are implemented in the R package bgms, and we use nu-
+merical illustrations to show that the implemented methods work correctly
+and how well the methods work compared to existing methods in situations
+resembling empirical research.
+Keywords: Network Comparison, Bayes Factor, Graphical Model, Ordinal
+Variables, Network Psychometrics
+1 Introduction
+Multivariate analysis of psychological variables using graphical models has become a staple
+of the psychometric literature (Marsman & Rhemtulla, 2022). The two most popular graph-
+ical models for cross-sectional data in psychology are the Ising graphical model (IGM; Ising,
+Correspondence concerning this article should be addressed to:
+Maarten Marsman
+University of Amsterdam, Psychological Methods
+Nieuwe Achtergracht 129B
+PO Box 15906, 1001 NK Amsterdam, The Netherlands
+E-mail may be sent to m.marsman@uva.nl.
+COMPARING ORDINAL MRFS 2
+1925) for networks of binary variables and the Gaussian graphical model (GGM; Dempster,
+1972) for networks of continuous, normally distributed variables. Although popular, these
+graphical models do not fit the nature of most cross-sectional measures in psychology, which
+are typically scored on a Likert-scale and thus ordinal. To fill this gap, we proposed the ordi-
+nal Markov random field in earlier work (OMRF; Marsman, van den Bergh, & Haslbeck, in
+press). The IGM, GGM, and OMRF are Markov random fields (Kindermann & Snell, 1980),
+and their edge weights reflect the conditional dependence between pairs of variables in the
+network, i.e., its structure. Several approaches exist to estimate these network structures
+from empirical data (e.g., Borsboom et al., 2021), and the more recent Bayesian approaches
+have the unique advantage of being able to test whether a pair of variables in the network
+are conditionally independent or not (Sekulovski, Keetelaar, et al., 2024).
+In many network studies, the central research question is whether networks differ
+between two or more observed groups, such as people with a diagnosis vs. people without
+a diagnosis. There are several methods to test for group differences in network structure
+(see Haslbeck, 2022, for a recent review). The network comparison test (NCT; van Borkulo
+et al., 2023) is widely used and is based on a permutation test for the null hypothesis of
+equivalence of parameters of IGMs, GGMs, or mixed graphical models (MGMs; Haslbeck
+& Waldorp, 2020) across groups. The fused graphical lasso (FGL; Danaher, Wang, &
+Witten, 2014) is an alternative approach that has an additional penalization parameter
+for group differences in GGMs, and Epskamp, Isvoranu, and Cheung (2022) proposed an
+iterative model search approach within a SEM framework. All of these methods are based
+on frequentist approaches and as such cannot support the null hypothesis of equivalence,
+only reject it. Williams, Rast, Pericchi, and Mulder (2020) proposed a Bayesian approach
+to assessing group differences in GGMs based on the Bayes factor (Jeffreys, 1961; Kass &
+Raftery, 1995), which quantifies the strength of evidence for the competing hypotheses of
+parameter equivalence or invariance and parameter differences. An important advantage
+of a Bayes factor test is that it can support the null hypothesis of parameter equivalence,
+the evidence for the absence of a difference, but it can also separate this conclusion from
+a lack of support for either hypothesis, an absence of evidence. These advantages of the
+Bayes factor contribute to a robust methodology for network analysis, especially network
+comparisons. However, this type of analysis is not currently available for OMRFs.
+Here, we address this problem by presenting an extension of the OMRF to two
+independent groups and developing a Bayesian methodology for assessing group differences
+in the estimated networks. Since the IGM is a special case of the OMRF, this also provides
+a test for group differences for the IGM. We develop a Bayesian methodology to assess
+parameter differences in the OMRF in a manner similar to how we test for mean differences
+in the Bayesian independent samples t test (Rouder, Speckman, Sun, & Morey, 2009).
+Central to the Bayesian t test is the parameterization of the model so that the group
+difference is a parameter and this effect is separated from the overall mean. The Bayes
+factor test then pits the hypothesis that the group difference parameter is zero against the
+alternative hypothesis that the parameter is free to vary. Here we apply this strategy to
+each of the OMRF parameters.
+In a recent review of Bayesian methods for testing conditional independence, two
+types of Bayes factors were analyzed; the “single-model” and the “inclusion” Bayes fac-
+tors. The Bayes factor derived from the posterior using the Savage-Dickey approach is the
+COMPARING ORDINAL MRFS 3
+single-model Bayes factor. The drawback of this type of Bayes factor is that when we use
+it to test for a group difference in one of the OMRF parameters, we also have to make an
+assumption about the remaining parameter differences (e.g., that all remaining parameters
+differ between groups). In practice, however, we are uncertain about these differences, and
+the single-model Bayes factor may be sensitive to violations of the underlying assumption
+(Sekulovski, Keetelaar, et al., 2024). To avoid this problem, we use the inclusion Bayes
+factor, which uses Bayesian model averaging (BMA; Hinne, Gronau, van den Bergh, & Wa-
+genmakers, 2020; Hoeting, Madigan, Raftery, & Volinsky, 1999) to average over the posterior
+distributions of the different possible two-group OMRFs, i.e., models with different config-
+urations of parameter differences or equivalences. Unlike the single-model Bayes factor, the
+inclusion Bayes factor requires no assumptions other than setting priors on the parameter
+differences. The proposed Bayes factor test for group differences in networks of ordinal
+variables is an extension of the inclusion Bayes factor test for conditional independence
+proposed by Marsman et al. (in press).
+The remainder of this paper is organized as follows. First, we provide a theoretical
+overview of the OMRF and its extension to account for group differences in Section 2. In
+the supplementary material, we also present new one- and two-group extensions for ordinal
+variables with a neutral response category. Consistent with the Bayesian approach of Mars-
+man et al. (in press), we use the pseudolikelihood (Besag, 1975) because the normalization
+constant of the OMRF is computationally intractable. We introduce the pseudoposterior
+and outline a Bayesian procedure for its estimation in Section 3. Then, in Section 4, we
+detail the Bayesian approach to hypothesis testing in the general case of the OMRF and,
+in particular, testing for group differences in model parameters. Throughout these two sec-
+tions, we use numerical checks to verify that the methods work as intended. In additional
+simulations in Section 5, we compare the proposed approach with two existing methods for
+assessing group differences that must treat the ordinal data as Gaussian (i.e., use a GGM);
+the NCT and the single-model Bayes factor proposed by Williams et al. (2020). Finally,
+we discuss how our method can contribute to more robust results in the network literature
+and suggest avenues for future research.
+2 Markov Random Field (MRF) Graphical Models for Ordinal Data
+2.1 The Ordinal MRF
+The ordinal Markov random field (OMRF) was proposed by Marsman et al. (in
+press) as a graphical model for ordinal variables. The Ising graphical model (IGM) is a
+special case of the OMRF with two response categories. Here, we introduce the OMRF as
+a multivariate extension of the adjacent category logit model (Agresti, 2018), which models
+the logarithm of the ratio of the probabilities of observing a response in two adjacent ordinal
+categories. Suppose we have p ordinal variables, i.e., x ∈ {0, . . . , m}, for i = 1, . . . , p,
+each with m + 1 ordered response categories. Let c ∈ {0, . . . , m}, denote ordered labels
+for the response categories. The model for these p variables can then be derived from the
+Although it is not necessary, we will assume here for notational convenience that the number of response
+categories for all variables is m + 1.
+COMPARING ORDINAL MRFS 4
+(conditional) adjacent category logits:
+(i)
+P(X = c + 1 | x )
+ln = µ + 2 θ x ,
+i c+1 ij j
+P(X = c | x(i))
+j̸=i
+where µ denotes a log-linear change in the probabilities of answering in the two adjacent
+i c
+(i)
+categories for variable i, θ denotes the interaction between variables i and j, and x
+ij
+T p
+is the vector x = (x , x , . . . , x ) ∈ {0, . . . , m} , excluding the i-th element. For each
+1 2 p
+variable, the threshold µ corresponding to the first ordinal category is set to 0 to achieve
+i0
+identification (see Marsman et al., in press, or Appendix A.1).
+Together, the conditional logits imply the following multivariate probability model
+for p ordinal variables (Suggala, Yang, & Ravikumar, 2017):
+(cid:16) (cid:17)
+Pp Pm Pp−1 Pp
+exp µ I(x = c) + 2 x x θ
+i c i i j ij
+i=1 c=1 i=1 j=i+1
+P(x) = , (1)
+(cid:16) (cid:17)
+P Pp Pm Pp−1 Pp
+exp µ I(x = c) + 2 x x θ
+i c i i j ij
+x i=1 c=1 i=1 j=i+1
+where the sum in the denominator ranges across all possible realizations of the vector
+x. A proof that the joint model follows from the conditional adjacent category logits
+is implied by the Hammersley-Clifford theorem (e.g., Suggala et al., 2017). This theorem
+states that a multivariate probability distribution is uniquely defined by its (full) conditional
+distributions. That is, either a set of full conditional distributions is consistent with a
+particular multivariate probability distribution, or there is no single multivariate probability
+distribution that has those particular full conditional distributions. As a check, one can
+confirm that the conditional logits we specified above are consistent with the full conditional
+distributions for the OMRF.
+2.2 Extending Ordinal MRFs to Two Independent Samples
+We now consider the scenario where we have ordinal data from two groups. The
+goal of this paper is to assess if and how the networks of ordinal variables differ between
+the two groups. The OMRF is characterized by two types of parameters, the category
+thresholds µ and the pairwise interactions (i.e., partial associations) θ, and thus we want
+to assess the differences in terms of these two parameters. In order to assess whether there
+are differences in these two parameters between the two groups in a Bayesian framework,
+it is ideal if we can explicitly parameterize these differences. In this section, we formulate
+these parameterizations.
+We model the differences in category thresholds between the two groups by refor-
+mulating the category thresholds as follows;
+λ − ϵ for Group 1
+ic ic
+µ = (2)
+ic
+λ + ϵ for Group 2,
+ic ic
+where λ is the overall category threshold, i.e., the category threshold we would find if the
+ic
+data from the two groups were combined and analyzed as a single data set. The parameter
+ϵ is then the main difference effect, i.e., the category threshold for Group 2 minus that
+ic
+for Group 1. If it is zero, there is no difference in the category thresholds between the
+COMPARING ORDINAL MRFS 5
+groups, and the category threshold parameter in each group is equal to the overall threshold
+parameter λ . However, if the main difference effect is not zero, there is a difference in the
+ic
+category thresholds between the two groups.
+We model the difference in the pairwise interaction between the two groups in a
+similar way, reformulating the pairwise interactions as follows;
+ϕ − δ for Group 1
+ij ij
+θ = (3)
+ij
+ϕ + δ for Group 2,
+ij ij
+where ϕ is the overall pairwise interaction, i.e., the pairwise interaction we would find
+ij
+if the data from the two groups were combined and analyzed as a single data set. The
+parameter δ is then the pairwise difference effect. If it is zero, there is no difference in
+ij
+the pairwise interactions between the groups, and the pairwise interaction in each group is
+equal to the overall pairwise interaction ϕ . However, if the pairwise difference effect is not
+ij
+zero, there is a difference in the pairwise interactions between the two groups.
+With the above reparameterizations in place, we can now go on to reformulate the
+OMRF for the two groups. Let X be the n × p matrix of ordinal responses for Group 1,
+and let Y be the n × p matrix of ordinal responses for Group 2. We assume here that the
+two groups are independent of each other, and that the cases or persons in each group are
+also independent. The joint probability distribution of the data is then given by
+n n
+1 2
+Y Y
+P(X, Y) = P(X) P(Y) = P(x ) × P(y ).
+v v
+v=1 v=1
+The OMRF for a person v from Group 1 can then be formulated as
+ 
+p m (cid:18) (cid:19) p−1 p (cid:18) (cid:19)
+1 1 1
+X X X X
+P(x ) = exp λ − ϵ I(x = c) + 2 x x ϕ − δ , (4)
+ 
+v i c i c vi vi vj ij ij
+Z 2 2
+i=1 c=1 i=1 j=i+1
+and for a person v from Group 2 as
+ 
+p m (cid:18) (cid:19) p−1 p (cid:18) (cid:19)
+1 1 1
+X X X X
+P(y ) = exp λ + ϵ I(y = c) + 2 y y ϕ + δ . (5)
+ 
+v i c i c vi vi vj ij ij
+Z 2 2
+i=1 c=1 i=1 j=i+1
+We prove the identifiability of the two-group OMRF in Appendix A.2.
+3 Estimation
+Marsman et al. (in press) described a Bayesian approach to estimating the OMRF.
+Here, we consider the approach to estimating the parameters of the two-group OMRF as
+specified in the previous section.
+We begin by specifying the full Bayesian model by specifying the prior distributions
+for the parameters to be estimated. Unfortunately, the posterior distributions of the model
+parameters are not available in closed form, and we need a numerical procedure to estimate
+these posterior distributions. We propose a Gibbs sampling procedure to simulate the
+values of the posterior distribution for the parameters of the two-group OMRF, which is
+COMPARING ORDINAL MRFS 6
+implemented in version 0.1.4.2 of the R package bgms (Marsman, Huth, Sekulovski, & van
+den Bergh, 2024). Our approach to testing hypotheses about parameter differences between
+the two groups is based on this numerical procedure. To verify that the numerical procedure
+is correctly implemented in bgms, we compare estimates based on the proposed procedure
+with estimates from an alternative implementation in the Stan language (Gelman, Lee, &
+Guo, 2015) using the R package rstan (Stan Development Team, 2024a) in Appendix C.1.
+3.1 Prior Specification
+The two-group OMRF has two types of parameters. The category threshold λ
+ic
+and the pairwise interaction parameters ϕ that would be obtained if the data sets from
+ij
+the two groups were combined. If the only goal of the analysis is to test group differences,
+these parameters are nuisance, and only the main difference parameters ϵ and the pairwise
+ic
+difference parameters δ are of interest.
+ij
+We follow Marsman et al. (in press) for the specification of prior distributions for the
+nuisance parameters. Independent beta-prime distributions are specified on exponentially
+transformed category threshold parameters η = exp(λ ), or equivalent,
+ic ic
+1 exp(a λ )
+ic
+p(λ ) = .
+ic
+B(a, b) a+b
+(1 + exp(λ ))
+ic
+In line with the prior setup of Marsman et al. (in press), independent Cauchy dis-
+tributions with a scale of 2.5 are specified for the pairwise interaction parameters.
+We also use independent Cauchy distributions for the two sets of difference param-
+eters. This choice lays the foundation for our testing procedure, which we describe later,
+and which includes a variable selection procedure based on independent spike and slab prior
+distributions. The Cauchy distribution is a popular candidate for testing because of its tail
+behavior. We will use a scale of 1.0.
+3.2 A Gibbs Sampling Procedure to Simulate the Posterior Distribution
+Bayesian estimation of the two-group OMRF concerns the construction of the mul-
+tivariate posterior distribution.
+p(λ, ϵ, ϕ, δ | X, Y) ∝ P(X | λ, ϵ, ϕ, δ) P(Y | λ, ϵ, ϕ, δ) p(λ) p(ϵ) p(ϕ) p(δ).
+Unfortunately, this posterior distribution is not known in closed form, and we must resort to
+numerical methods to estimate it. Here we consider a Markov chain Monte Carlo (MCMC)
+method known as the Gibbs sampler (Geman & Geman, 1984). The Gibbs sampler is a
+method for generating dependent samples from a multivariate posterior distribution. In-
+stead of simulating directly from the multivariate posterior, in each iteration of the Gibbs
+sampler, it simulates in turn from the conditional posterior of each parameter, given the
+current states of the remaining parameters and the data.
+There are two major challenges for a Gibbs sampler to simulate from the desired
+posterior distribution. We briefly describe these problems and our chosen solutions here,
+and discuss them in more detail below. The first challenge is that the desired posterior
+distribution is doubly intractable (Murray, Gharamani, & MacKay, 2012) because the like-
+lihood of the OMRF is computationally intractable. We therefore apply a pseudolikelihood
+COMPARING ORDINAL MRFS 7
+approximation (Besag, 1975) to the likelihood and estimate the pseudoposterior distribu-
+tion. The second challenge is that the full-conditional pseudoposterior distributions are of
+unknown form and cannot be simulated directly. Therefore, we use Metropolis algorithms
+to sample from the desired full conditionals.
+Below, we outline the general procedure for our Metropolis-within-Gibbs approach to
+simulate from the pseudoposterior distribution, and leave the technical details to Appendix
+B. The method is available through the bgmCompare function in version 0.1.4.2 of the R
+package bgms (Marsman et al., 2024), and by setting the difference_selection parameter
+to FALSE.
+3.2.1 The Computationally Intractable Likelihood
+The two normalization constants of the two-group OMRF pose a significant com-
+putational challenge for the Gibbs sampler. With p variables, each with m + 1 response
+categories, these normalization constants consist of (m + 1) terms. To illustrate the mag-
+nitude of this computational burden, suppose we have ten ordinal variables, each rated on a
+Likert scale with five response categories. Each of the normalization constants then consists
+of 9,765,625 terms. Because the normalization constants must be evaluated repeatedly in
+the Gibbs sampling procedure, their calculation is a significant computational burden.
+While several methods have been proposed to avoid the need to compute the nor-
+malization constants (e.g., see Park & Haran, 2018, for an overview), the pseudolikelihood
+approach proposed by Besag (1975) is by far the most popular in network psychometrics,
+and its overall good performance in structure selection has also made it an increasingly
+attractive option in the Bayesian literature (e.g., Marsman et al., in press; Mohammadi,
+Schoonhoven, Vogels, & Birbil, 2023; Vogels, Mohammadi, Schoonhoven, & Birbil, in press).
+The pseudolikelihood approximates the joint distribution of the vector variable x —i.e., the
+distribution of ordinal responses of Group 1 in (4)— with the product of its full conditional
+distributions (and similarly for Group 2):
+P(x | λ, ϵ, ϕ, δ) ≈ P (x | λ, ϵ, ϕ, δ)
+(cid:16) (cid:17)
+Pm 1 P 1
+p exp (λ − ϵ ) I(x = c) + x (ϕ − δ ) x
+i c i c i i ij ij j
+Y c=1 2 j̸=i 2
+(cid:16) (cid:17)
+Pm 1 P 1
+1 + exp λ − ϵ + u (ϕ − δ ) x
+i=1 u=1 i u i u j̸=i ij ij j
+2 2
+(cid:16) (cid:16) (cid:17) (cid:16) (cid:17)(cid:17)
+Pp Pm 1 Pp−1 Pp 1
+exp λ − ϵ I(x = c) + 2 x x ϕ − δ
+i c i c i i j ij ij
+i=1 c=1 2 i=1 j=i+1 2
+= .
+n (cid:16) (cid:17)o
+Qp Pm 1 P 1
+1 + exp λ − ϵ + u (ϕ − δ ) x
+i u i u ij ij j
+i=1 u=1 2 j̸=i 2
+Note that the pseudolikelihood is equivalent to the full likelihood, except that it replaces the
+intractable normalization constant Z with a tractable one. For the ten-variable network
+considered earlier, the pseudolikelihood normalization constant has only (m + 1) × p =
+6 × 10 = 60 terms instead of the 9, 765, 625 terms in the full likelihood.
+Although the pseudolikelihood is a crude approximation to the full likelihood, the
+generalized posterior based on the pseudolikelihood is consistent (Miller, 2021) and, in the
+case of the IGM and OMRF, the pseudolikelihood does not introduce any additional bias
+into the estimators beyond that introduced by the full likelihood (Keetelaar, Sekulovski,
+Borsboom, & Marsman, 2024; Marsman et al., in press). In addition, a number of studies
+COMPARING ORDINAL MRFS 8
+on graph recovery using the pseudolikelihood approach have demonstrated its consistency
+in high-dimensional settings where both the number of observations and the number of
+variables are allowed to grow (e.g., Barber & Drton, 2015; Ravikumar, Wainwright, & Laf-
+ferty, 2010), a result that extends to Bayesian approaches (Csiszár & Talata, 2006; Pensar,
+Nyman, Niiranen, & Corander, 2017). Despite these positive results, the pseudolikelihood
+approximation is also known to lead to underestimation of standard errors (e.g., Keetelaar
+et al., 2024) and consequently makes edge selection procedures more sensitive to detecting
+non-zero effects (Marsman et al., in press).
+3.2.2 A Metropolis-Within-Gibbs (MwG) Procedure for Bayesian Estimation
+The proposed MwG procedure consists of four steps. Each step consists of sampling
+from the pseudoposterior of one of the four parameters λ, ϵ, ϕ, δ conditional on all other
+parameters. Next, we derive the four desired full conditional pseudoposterior distributions
+and discuss how to simulate from them. Numerical Check I in Appendix C.1 shows that the
+MwG procedure is correctly implemented in bgms, and that its posterior estimates agree
+with those from an alternative rstan implementation.
+Step 1: Sampling the Category Thresholds. The full conditional pseudopos-
+terior of the category threshold parameters are of the form
+n +n
+(cid:16) (cid:17) exp (λ ) ic1 ic2
+(c) ic
+p λ | X, Y, λ , ϵ, ϕ, δ ∝
+ic i Qn Qn
+1 (g + q exp (λ )) 2 (g + q exp (λ ))
+v=1 v1 v1 ic v=1 v2 v2 ic
+exp (λ )
+ic
+× ,
+α+β
+(1 + exp (λ ))
+ic
+for c = 1, . . . , m, and i = 1, . . . , p. Here, we have used the following shorthand notations
+Pn Pn
+n = 1 I(x = c), n = 2 I(y = c), and
+ic1 vi ic2 vi
+v=1 v=1
+ 
+1 1
+X X
+g = 1 + exp λ + ϵ + u (ϕ + δ ) x
+ 
+v1 iu i,u ij ij vj
+2 2
+u̸=k j̸=i
+ 
+1 1
+X X
+g = 1 + exp λ − ϵ + u (ϕ − δ ) y
+ 
+v2 iu i,u ij ij vj
+2 2
+u̸=k j̸=i
+1 1
+ln(q ) = ϵ + c (ϕ + δ ) x
+v1 i,c ij ij vj
+2 2
+j̸=i
+1 1
+ln(q ) = − ϵ + c (ϕ − δ ) y .
+v2 i,c ij ij vj
+2 2
+j̸=i
+The full conditional resembles a generalized beta-prime distribution
+(d exp (λ ))
+ic
+p(λ ) ∝ .
+ic
+a+b
+(1 + d exp (λ ))
+ic
+Maris, Bechger, and San Martin (2015) suggested using the beta-prime as the proposal in a
+Metropolis algorithm, and using the properties of the target distribution to set the proposal
+parameters. We have successfully used this idea before to simulate the threshold parameters
+COMPARING ORDINAL MRFS 9
+of the IGM and OMRF (e.g., Marsman, Huth, Waldorp, & Ntzoufras, 2022; Marsman et
+al., in press). Technical details of the approach can be found in Appendix B.1.
+Step 2: Sampling the Main Differences. The full conditional pseudoposterior
+distribution of the main difference parameters are of the form
+(cid:16) (cid:17)
+exp ϵ n
+i c ic1
+p (ϵ | X, Y, λ , ϵ, ϕ, δ) ∝
+ic i n (cid:16) (cid:17)o
+Qn Pm 1 P 1
+1 1 + exp λ + ϵ + u (ϕ + δ ) x
+i u i u ij ij vj
+v=1 u=1 2 j̸=i 2
+(cid:16) (cid:17)
+exp − ϵ n
+i c ic2
+n (cid:16) (cid:17)o
+Qn Pm 1 P 1
+2 1 + exp λ − ϵ + u (ϕ − δ ) y
+i u i u ij ij vj
+v=1 u=1 2 j̸=i 2
+× ,
+s2 + ϵ 2
+ϵ i, c
+where s is the scale of the Cauchy prior. We will sample from these full conditional
+pseudoposterior distributions using adaptive Metropolis (Atchadé & Rosenthal, 2005; Griffin
+& Steel, 2022). Technical details of the approach can be found in Appendix B.2.
+Step 3: Sampling the Pairwise Interactions. The full conditional pseudopos-
+terior distribution of the pairwise interactions are of the form
+(cid:16) (cid:17)
+(ij) (ij)
+p ϕ | X, Y, λ , λ , ϵ , ϵ , ϕ , δ
+ij i j i j
+Pn
+exp ( 1 x x ϕ )
+vi vj ij
+v=1
+(cid:26) (cid:27) (cid:26) (cid:27)
+P P
+1 1 1 1
+Qn Pm λ + ϵ +u (ϕ + δ ) x Pm λ + ϵ +u (ϕ + δ ) x
+1 1 + e i u i u ij ij vj 1 + e j u j u ij ij vi
+2 j̸=i 2 2 i̸=j 2
+v=1 u=1 u=1
+Pn
+exp ( 2 y y ϕ )
+vi vj ij
+v=1
+(cid:26) (cid:27) (cid:26) (cid:27)
+P P
+1 1 1 1
+Qn Pm λ − ϵ +u (ϕ − δ ) y Pm λ − ϵ +u (ϕ − δ ) y
+2 1 + e i u i u ij ij vj 1 + e j u j u ij ij vi
+2 j̸=i 2 2 i̸=j 2
+v=1 u=1 u=1
+× ,
+2 2
+s + ϕ
+ϕ ij
+where s is the scale of the Cauchy prior. The technical details of the adaptive Metropolis
+algorithm to simulate from these full conditional pseudoposterior distributions can be found
+in Appendix B.3.
+Step 4: Sampling the Pairwise Differences. The full conditional pseudoposte-
+rior distribution of the pairwise differences are of the form
+(cid:16) (cid:17)
+(ij) (ij)
+p δ | X, Y, λ , λ , ϵ , ϵ , ϕ , δ
+ij i j i j
+(cid:16) (cid:17)
+1 Pn
+exp 1 x x δ
+vi vj ij
+2 v=1
+(cid:26) (cid:27) (cid:26) (cid:27)
+P P
+1 1 1 1
+Qn Pm λ + ϵ +u (ϕ + δ ) x Pm λ + ϵ +u (ϕ + δ ) x
+1 1 + e i u i u ij ij vj 1 + e j u j u ij ij vi
+2 j̸=i 2 2 i̸=j 2
+v=1 u=1 u=1
+(cid:16) (cid:17)
+1 Pn
+exp − 2 y y δ
+vi vj ij
+2 v=1
+(cid:26) (cid:27) (cid:26) (cid:27)
+P P
+1 1 1 1
+Qn Pm λ − ϵ +u (ϕ − δ ) y Pm λ − ϵ +u (ϕ − δ ) y
+2 1 + e i u i u ij ij vj 1 + e j u j u ij ij vi
+2 j̸=i 2 2 i̸=j 2
+v=1 u=1 u=1
+× .
+2 2
+s + δ
+δ ij
+COMPARING ORDINAL MRFS 10
+where s is the scale of the Cauchy prior. The technical details of the adaptive Metropolis
+algorithm to simulate from these full conditional pseudoposterior distributions can be found
+in Appendix B.4.
+4 Hypothesis Testing
+4.1 Bayes Factor Tests for Conditional Independence in Ordinal MRFs
+A major advantage of using the OMRF to test hypotheses about the dependence
+or independence between two ordinal variables i and j in the network, conditional on the
+remaining variables, is that these hypotheses can be formulated as tests on the partial
+associations θ . That is, H : θ = 0 is a null hypothesis of conditional independence, and
+ij 0 ij
+H : θ ̸= 0 the alternative hypothesis of conditional dependence. We use the Bayes factor
+1 ij
+(Jeffreys, 1961; Kass & Raftery, 1995) to quantify the relative predictive adequacy of the
+two competing hypotheses.
+The Bayes factor is defined as the change in beliefs about the relative plausibility
+of the two hypotheses before and after observing the data;
+p(H | data) P(data | H ) p(H )
+1 1 1
+= × .
+p(H | data) P(data | H ) p(H )
+0 0 0
+| {z } | {z } | {z }
+Posterior Odds BF Prior Odds
+The term on the left, the posterior odds ratio, conveys the relative plausibility of the two
+competing hypotheses after viewing the data. The formula above shows that the posterior
+odds can be expressed as the product of two factors: The Bayes factor, BF , which indicates
+the relative support for the two hypotheses in the data at hand, and the prior odds, the
+relative plausibility of the two hypotheses before haven seen the data.
+The subscripts in the Bayes factor notation indicate the direction in which the
+support is expressed. BF indicates the relative support for H over H , and BF indicates
+01 0 1 10
+the relative support for H over H : Note that the Bayes factor BF is the reciprocal of
+1 0 01
+BF , i.e. BF = 1/ . The values of the Bayes factor BF range from 0 to ∞, and
+BF
+10 01 01
+values greater than 1 indicate that there is relative support for H in the data, while values
+less than 1 indicate relative support for H . When the Bayes factor is 1, both hypotheses
+predict the data equally well. While the Bayes factor is a continuous measure of evidence,
+its values are often labeled according to the classification scheme of Jeffreys (1961, Appendix
+B) or Kass and Raftery (1995). In the JASP program (Love et al., 2019; Wagenmakers et
+al., 2018), Bayes factor values in the ranges 1/ to 1 and 1 to 3 are labeled as anecdotal
+evidence, values in the ranges 1/ to 1/ and 3 to 10 as moderate evidence, values in the
+10 3
+ranges 1/ to 1/ and 10 to 30 as strong evidence, and label Bayes factor values < 1/ and
+30 10 30
+> 30 as very strong evidence for their respective hypotheses.
+4.1.1 The Inclusion Bayes Factor
+For each partial association θ in the OMRF, Marsman et al. (in press) introduced
+ij
+a binary indicator variable γ to model the inclusion or exclusion of the edge between
+ij
+variables i and j, and set the following spike-and-slab prior on the partial associations:
+p(θ | γ ) = γ 1 (θ ) p(θ ) + (1 − γ ) 1 (θ ),
+ij ij ij R \{0} ij ij ij {0} ij
+COMPARING ORDINAL MRFS 11
+where 1 (x) is an indicator function that ensures that θ is in the appropriate region
+a ij
+depending on the value of γ (this formulation is due to Gottardo & Raftery, 2008). In
+ij
+this formulation, the binary variable γ indicates the presence or absence of conditional
+ij
+dependence between variables i and j. If γ = 1, the variables are conditionally dependent,
+ij
+and the partial association θ is assigned a prior density (e.g., the Cauchy distribution). If
+ij
+γ = 0, the variables are independent and θ is constrained to be zero.
+ij ij
+Given the relationship between the indicator variables and the partial associations,
+our hypotheses about conditional dependence or independence can be formulated in terms
+of γ :
+ij
+H : γ = 0 ⇐⇒ θ = 0 (Variables i and j are conditionally independent),
+0 ij ij
+H : γ = 1 ⇐⇒ θ ̸= 0 (Variables i and j are conditionally dependent)
+1 ij ij
+Thus, testing whether γ is equal to zero is a conditional independence test.
+ij
+Marsman et al. (in press) proposed Bernoulli(0.5) and beta(1, 1)-Bernoulli prior
+distributions for the vector of indicator variables, and developed an MCMC procedure to
+estimate the joint posterior distribution of the OMRF parameters and indicator variables.
+This procedure forms the basis for computing the inclusion Bayes factor.
+Recall that the Bayes factor can be expressed as
+p(H | data) p(H )
+1 1
+BF = ,
+p(H | data) p(H )
+0 0
+which expresses it as the change from prior to posterior odds. Reformulating the hypotheses
+in terms of the indicator variables yields the following expression for the Bayes factor
+P(γ = 1 | data) P(γ = 1)
+ij ij
+BF = ,
+P(γ = 0 | data) P(γ = 0)
+ij ij
+i.e. the posterior odds of edge inclusion divided by the prior odds of edge inclusion. For
+the Bernoulli(0.5) and beta(1, 1)-Bernoulli prior distributions, the prior odds are equal to
+one, which simplifies the Bayes factor to the posterior odds of edge inclusion.
+To compute the posterior inclusion probability, we compute the (marginal) posterior
+expectation:
+E ∗ ∗
+P(γ = 1 | data) = (Γ | data) = γ × P(γ = γ | data),
+ij ij
+ij
+γ∗∈{0, 1}p(p−1)/2
+p(p−1)/2
+where the sum is over all 2 possible network structures, i.e. configurations of the
+vector γ of indicator variables. However, this sum is hard to compute, and the posterior
+structure probabilities are hard to estimate. Fortunately, the posterior inclusion probability
+can be efficiently estimated using samples from the posterior distribution. Let S denote the
+number of posterior samples, and γ , s = 1, . . . , S, represent the sampled values of the
+indicator variable. The posterior inclusion probability can then be approximated using the
+following Monte Carlo estimator:
+E s
+(Γ | data) ≈ γ¯ = γ ,
+ij
+s=1
+i.e., the sample fraction of the posterior samples where γ equals 1.
+ij
+COMPARING ORDINAL MRFS 12
+4.2 Bayes Factor Tests for Group Differences in Ordinal MRFs
+The Bayes factor approach to testing for conditional independence carries over seam-
+lessly to testing for differences in the parameters between the two groups. We first consider
+Bayes factor tests for differences in the category threshold parameters, and then for differ-
+ences in the pairwise interactions.
+4.3 Testing for Differences in Category Threshold Parameters
+We evaluate differences in the category threshold parameters for each variable in
+the network. That is, the null hypothesis of no difference refers to all category thresholds
+for that variable being zero – H : ϵ = 0 – while the alternative hypothesis suggests that
+0 i.
+(some of) these differences are not zero H : ϵ ̸= 0. This is mostly for pragmatic reasons.
+1 i.
+However, because of their relationships, we also expect that if there is a difference in one
+of the category thresholds, there must also be a difference in one or more of the remaining
+category thresholds for that variable.
+If a category is observed in one of the two groups but not in the other, the category
+threshold and its group difference are not identified. In bgms we consider three solutions.
+The first solution is not to test the differences in the category thresholds and to estimate
+the category thresholds in each group freely. This solution can be selected by setting the
+main_difference_model option to “Free”. Missing categories in one group will be collapsed
+without affecting the category threshold estimates in the other group. For example, if
+variable i has categories 0, 1, and 2, but category 0 was not observed in Group 1, the data
+will be recoded as 1 → 0 and 2 → 1 for Group 1, but not for Group 2. This results in one
+category threshold estimate for Group 1 and two for Group 2. The second solution is to
+collapse categories in both groups when one group has missing responses. This solution can
+be selected by setting the main_difference_model option to "Collapse". Categories will
+collapse into the categories below (unless the lowest category is collapsed, in which case it
+will collapse into the next higher category). The third solution is to avoid recoding and
+instead constrain the difference parameter ϵ to zero if corresponding responses are missing
+ic
+in one group, which can be selected with main_difference_model = "Constrain". If both
+groups are missing responses for a category, the software automatically collapses it.
+4.3.1 The Inclusion Bayes Factor
+The inclusion Bayes factor assumes a Gibbs sampler that can move between models
+and allows the dimension of the within-model parameters to change with the model. Got-
+tardo and Raftery (2008) showed that this can be achieved for the previously formulated
+spike and slab priors on the difference parameters by updating the difference indicator value
+γ and the difference parameter ϵ in pairs. We therefore add the following step to the
+ii i0
+Metropolis-within-Gibbs sampler derived above for Bayesian estimation.
+Step 5: Sampling the Main Difference Indicator and Parameter Pair.
+We use a Metropolis step and propose a new value for the difference indicator γ and the
+′ ∗ ∗
+difference parameters ϵ based on their current states (i.e., γ = γ and ϵ = ϵ ). We factor
+ii i.
+the proposal distribution as
+′ ′ ∗ ∗ ′ ∗ ′ ′ ∗
+p(ϵ , γ | ϵ , γ ) = p(ϵ | ϵ , γ ) P(γ | γ ).
+COMPARING ORDINAL MRFS 13
+We will also use the MoMS formulation for the two proposal distributions. First, we consider
+the proposal distribution for the edge indicator,
+′ ∗ ∗ ′ ∗ ′
+P(γ | γ ) = (1 − γ ) 1 (γ ) + γ 1 (γ ),
+{1} {0}
+′ ∗
+which suggests changing the edge, i.e. it sets γ = 1 − γ to make the between model move.
+Next, we define the conditional proposal distribution for the main difference effect,
+′ ∗ ′ ′ ′ ′ ′ ′ ∗
+p(ϵ | ϵ , γ ) = (1 − γ ) 1 (ϵ ) + γ 1 (ϵ ) p (ϵ | ϵ ).
+{0} Rm−1\{0} proposal
+′ ′
+Here the proposal value ϵ is equal to 0 if γ = 0, otherwise it is drawn from a proposal
+density p (ϵ | ϵ ). We use the adaptive proposals from Step 2 of the original Gibbs
+proposal
+sampler.
+∗ ∗
+Let γ and ϵ denote the current states of the main difference indicator and the
+′ ′
+main difference parameter vector for the variable i, and let γ and ϵ denote their proposed
+states. We accept the proposed states with probability min {1, π}, where
+Pseudolikelihood Ratio Prior Ratio Proposal Ratio
+z }| { z }| { z }| {
+∗ ′ ∗ ′ ′ ′ ′ ∗ ′ ∗ ∗ ′
+P (x | λ, ϵ , ϕ, δ) P (y | λ, ϵ , ϕ, δ) p(ϵ | γ ) P(γ ) p(ϵ | ϵ , γ ) P(γ | γ )
+π = ,
+∗ ∗
+P (x | λ, ϵ∗, ϕ, δ) P (y | λ, ϵ∗, ϕ, δ) p(ϵ∗ | γ∗) P(γ∗) p(ϵ′ | ϵ∗, γ′) P(γ′ | γ∗)
+∗ ′
+where ϵ is the current state of the matrix of main differences and ϵ its proposed state
+′ ∗ ′
+with elements in row i set equal to the proposed value ϵ . If γ = 0, we propose γ = 1 and
+ϵ ∼ N (0, ν ), for c = 1, . . . , m, and accept the proposed values with probability
+ic
+( )
+∗ ′ ∗ ′ ′
+P (x | λ, ϵ , ϕ, δ) P (y | λ, ϵ , ϕ, δ) p (ϵ )
+slab
+min 1, × .
+∗ ∗
+P (x | λ, ϵ∗, ϕ, δ) P (y | λ, ϵ∗, ϕ, δ) p (ϵ′ | ϵ∗)
+proposal
+∗ ′ ′ ′ ′
+Conversely, if γ = 1, we propose γ = 0 and ϵ = 0. We accept γ and ϵ with probability
+(cid:26) ∗ ′ ∗ ′ ∗ ′ (cid:27)
+P (x | λ, ϵ , ϕ, δ) P (y | λ, ϵ , ϕ, δ) p (ϵ | ϵ )
+proposal
+min 1, × .
+∗ ∗
+P (x | λ, ϵ∗, ϕ, δ) P (y | λ, ϵ∗, ϕ, δ) p (ϵ∗)
+slab
+Numerical Check II in Appendix C.2 shows that the proposed Metropolis algorithm correctly
+recovers the prior distribution of the main difference indicators and parameters.
+We add this additional step to the Gibbs sampler, and then update in Step 2 only
+those main difference parameters for which the difference is selected, i.e., the indicator is
+one. The inclusion Bayes factor test for a main difference is equal to
+P(γ = 1 | data) P(γ = 1)
+ii ii
+BF = ,
+P(γ = 0 | data) P(γ = 0)
+ii ii
+where, as before, the posterior inclusion probabilities can be estimated from the output of
+the Gibbs sampler. Numerical Check III in Appendix C.3 shows that this inclusion Bayes
+factor is consistent with theoretical expectations. In bgms, the prior probabilities for the
+main difference indicators can be set to a Bernoulli and beta-Bernoulli distribution, from
+which the prior inclusion probabilities can be easily derived.
+COMPARING ORDINAL MRFS 14
+4.4 Testing for Differences in Pairwise Interaction Parameters
+The Bayes factor test for the presence or absence of a difference in the pairwise
+interaction between the two groups is a straightforward extension of the Bayes factor test
+for conditional independence. We will not simultaneously test whether a pair of variables
+in the network are conditionally independent (i.e., whether the pairwise interaction is zero)
+and whether the pairwise interaction differs between groups. In principle, the former could
+be tested by combining the two data sets into one. Here, we focus on testing for the group
+difference.
+4.4.1 The Inclusion Bayes Factor
+The inclusion Bayes factor requires us to add the following step to the Gibbs sampler
+to update the pairwise difference indicator and the parameter pair.
+Step 6: Sampling the Pairwise Difference Indicator and Parameter Pair.
+∗ ∗
+Let γ and δ denote the current states of the pairwise difference indicator and the pairwise
+′ ′
+difference parameter for the variables i and j, and let γ and δ denote their proposed states.
+We accept the proposed states with probability min {1, π}, where
+Pseudolikelihood Ratio Proposal Ratio
+Prior Ratio
+z }| { z }| { z }| {
+∗ ′ ∗ ′ ′ ′ ′ ∗ ′ ∗ ∗ ′
+P (x | λ, ϵ, ϕ, δ ) P (y | λ, ϵ, ϕ, δ ) p(δ | γ ) P(γ ) p(δ | δ , γ ) P(γ | γ )
+π = ,
+∗ ∗ ∗ ∗
+P (x | λ, ϵ, ϕ, δ ) P (y | λ, ϵ, ϕ, δ ) p(δ∗ | γ∗) P(γ∗) p(δ′ | δ∗, γ′) P(γ′ | γ∗)
+∗ ′
+where δ is the current state of the matrix of pairwise differences and δ is its proposed
+state, with elements in row i column j and row j column i set equal to the proposed value
+′ ∗ ′ ′
+δ . If γ = 0, we propose γ = 1 and δ ∼ N (0, ν ), and accept the proposed values with
+ij
+probability
+( )
+∗ ′ ∗ ′ ′
+P (x | λ, ϵ, ϕ, δ ) P (y | λ, ϵ, ϕ, δ ) p (δ )
+slab
+min 1, × .
+∗ ∗ ∗ ∗
+P (x | λ, ϵ, ϕ, δ ) P (y | λ, ϵ, ϕ, δ ) p (δ′ | δ∗)
+proposal
+∗ ′ ′ ′ ′
+Conversely, if γ = 1, we propose γ = 0 and δ = 0. We accept γ and δ with probability
+( )
+∗ ′ ∗ ′ ∗ ′
+P (x | λ, ϵ, ϕ, δ ) P (y | λ, ϵ, ϕ, δ ) p (δ | δ )
+proposal
+min 1, × .
+∗ ∗ ∗ ∗
+P (x | λ, ϵ, ϕ, δ ) P (y | λ, ϵ, ϕ, δ ) p (δ∗)
+slab
+Numerical Check II in Appendix C.2 shows that the proposed Metropolis algorithm correctly
+recovers the prior distribution of the pairwise difference indicators and parameters.
+We add this additional step to the Gibbs sampler, and then update in step 4 only
+those pairwise difference parameters for which the difference is selected, i.e., the indicator
+is equal to one. The inclusion Bayes factor test for a pairwise difference is equal to
+P(γ = 1 | data) P(γ = 1)
+ij ij
+BF = ,
+P(γ = 0 | data) P(γ = 0)
+ij ij
+where, as before, the posterior inclusion probabilities can be estimated from the output of
+the Gibbs sampler. Numerical Check III in Appendix C.3 shows that this inclusion Bayes
+factor is consistent with theoretical expectations. In bgms, the prior probabilities for the
+pairwise difference indicators can be set to a Bernoulli and beta-Bernoulli distribution, from
+which the prior inclusion probabilities can be easily derived.
+COMPARING ORDINAL MRFS 15
+5 Numerical Experiments
+The goal of the numerical checks in Appendix C was to demonstrate that the
+proposed method yields consistent parameter estimates and selection of group differ-
+ences. Here, we provide an additional numerical experiment to evaluate the performance
+of the method in selecting group differences in a setting similar to an empirical psy-
+chological study, and how it compares to other popular methods for comparing pair-
+wise association networks. The R script for this numerical experiment can be found at
+5.1 Simulation Setup
+The goal of this simulation study is to evaluate how well our method compares to
+existing methods for testing group differences in scenarios that resemble typical empirical
+research studies in the field of psychology.
+5.1.1 Data Generating Model
+We obtain our data generating model by estimating an OMRF on empirical data
+from Adamkovič et al. (2022), which we also used for Numerical Check I in Appendix C.1.
+Their study analyzed partial association networks of 11 variables related to life satisfac-
+tion, posttraumatic growth, coping strategies, and resilience in cancer survivors, comparing
+networks of female and male survivors. To meaningfully test the performance of group
+difference selection methods, we need a pair of models in which only a subset of parameters
+differ between groups. To achieve this, we took the empirical estimates and set to zero all
+pairwise interactions whose estimates differed less than 0.1 in absolute value, resulting in
+25/55 (45.5%) of pairwise interaction parameters being set to be different, with differences
+ranging from 0.10 to 0.34 in absolute value. We used the same strategy for the thresholds,
+applying a cutoff of 1.5 to the mean of the absolute values of the differences in the respective
+threshold parameters for a given variable. For the thresholds, this resulted in 5/11 (45.5%)
+of the thresholds being different in the data generating model. This approach provides us
+with a pair of OMRFs that resemble empirical studies both in the parameterization of the
+networks and their differences.
+To evaluate how the absolute and relative performance of the compared methods
+depends on sample size, we sample either N = 150, N = 300, N = 600, or N = 1, 200 cases
+in each group from the data generating model. We chose these sample sizes because few
+network studies have fewer than N = 150 samples, and for N = 1, 000 we already expect
+high performance in detecting group differences. In each of the three simulation conditions,
+we sample 100 independent data sets to approximate the expected performance of each
+method with respect to the data generating model.
+5.1.2 Selecting Group Differences
+For estimating group differences in the interaction parameters, we evaluate the per-
+formance of three versions of our method that differ in the specification of the Cauchy
+priors on the group differences in the interaction parameters. Specifically, we vary the scale
+parameter of the Cauchy prior in s ∈ {0.5, 1, 1.5}. Our method also requires a prior for the
+inclusion probability, which can be a Bernoulli or a beta-Bernoulli prior. Pilot simulations
+COMPARING ORDINAL MRFS 16
+showed that both lead to indistinguishable performance, so we did not vary this prior in the
+simulation presented here, and used the default Bernoulli prior throughout this simulation.
+We run the MCMC sampling for 10, 000 iterations to approximate the posterior distribu-
+tion. We use the implementation of our method in the R package bgms (version 0.1.4.2;
+Marsman et al., 2024).
+We compare our method to two popular methods for selecting group differences
+between Gaussian graphical models Haslbeck (2022). We consider them the most interesting
+methods to compare our method to because researchers have had to model ordinal data as
+continuous in order to estimate partial association networks and select differences between
+them. The first method is a frequentist permutation test for the null hypothesis that a pair of
+parameters is equal across groups, implemented in the R package NetworkComparisonTest
+(version 2.2.2; van Borkulo et al., 2023). We use 10, 000 permutations to construct sampling
+distributions under the null hypothesis. The second GGM-based method uses a single-model
+Bayes factor, as implemented in the R package BGGM (version 2.1.3; Williams & Mulder,
+2020). This Bayes factor compares two models in which all pairwise differences are present,
+except that in one, the difference between a given pair of parameters is set to zero (Williams
+et al., 2020). We use 10, 000 iterations to approximate the posterior distribution.
+For estimating group differences in threshold parameters, we compare three versions
+of our method, which differ in the scale of the Cauchy prior on threshold differences, which
+we again vary in s ∈ {0.5, 1, 1.5}. Since neither the NCT nor BGGM provide a test for
+differences in intercepts, we cannot include these methods in the comparison.
+5.1.3 Evaluating Performance
+To avoid that our results depend on arbitrary tuning parameters (α-values for the
+permutation test, inclusion probability/Bayes factor cutoffs for the Bayesian methods), we
+use Receiver Operating Characteristic (ROC) curves, which plot the false positive rate
+(FPR; x-axis) against the true positive rate (TPR; y-axis) for a sequence of all meaningful
+tuning parameters (Fawcett, 2006).
+5.2 Simulation Results
+sample sizes per group N . We see that the performance of all methods increases as N
+increases, as expected. We noticed that the ROC curves for the three variations of our
+methods look essentially the same. However, we see that the conventional cutoff of 0.50 on
+the inclusion probabilities leads to different solutions. The model with the Cauchy scale
+s = 0.5 is the most liberal (FPR = 0.13), followed by the models with s = 1 (FPR = 0.09)
+δ δ
+and s = 1.5 (FPR = 0.07), averaged over N . As expected, this difference decreases as N
+increases. For the BGGM method, the average FPR for the 0.50 cutoff is 0.02 and for the
+NCT it is 0.13, which is inflated considering the cutoff of α = 0.05, which in theory should
+give us an FPR of 0.05.
+Comparing our method with the single-model Bayes factor implemented in BGGM
+and the NCT, we see that our method outperforms BGGM by a reasonable margin, which
+increases as N increases. We also see that our method considerably outperforms the popular
+NCT method.
+COMPARING ORDINAL MRFS 17
+We were surprised by the relatively poor performance of the NCT. One explanation
+is that the Gaussian graphical model (GGM) used by the NCT is misspecified. However,
+this is also the case for BGGM, which performs much better. The other difference in the NCT
+is that it uses regularized regression, which assumes a sparse network. Since the networks
+in both groups are not sparse in our data generating model (all interaction parameters are
+non-zero), this could be the reason for the lower performance of the NCT. We tested this
+hypothesis using a variation of our data generating model in which all interactions that are
+the same across groups are set to zero (in both groups). In this scenario, the NCT performs
+better and all other methods perform worse, resulting in roughly equal performance of all
+five methods. See Appendix D for detailed results.
+COMPARING ORDINAL MRFS 18
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+FPR
+RPT
+Interactions (N = 150)
+1.0
+bgms (Cauchy = 0.5)
+bgms (Cauchy = 1)
+bgms (Cauchy = 1.5)
+0.8
+NCT
+BGGM
+0.6
+0.4
+0.2
+a =
+50% Inclusion / 0.05
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+FPR
+RPT
+Interactions (N = 300)
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+FPR
+RPT
+Interactions (N = 600)
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+FPR
+RPT
+Interactions (N = 1200)
+ROC curves plotting the false positive rate (FPR; x-axis) against the true positive rate (TPR;
+y-axis) for detecting group differences in interaction parameters for the method proposed in
+this paper (implemented in bgms) with the scale of the Cauchy priors set to either 0.5, 1,
+or 1.5, the network comparison test (NCT), and the group comparison implemented in
+BGGM. The single point on each ROC curve indicates the common cutoffs of 50% inclusion
+probability and α = 0.05 for the NCT. The four panels show the results of the same methods
+for different sample sizes per group.
+parameters. We see that the overall performance indicated by the ROC curve is highest for
+s = 0.5, followed by s = 1 and s = 1.5. Looking at the FPRs of the conventional 0.50
+ϵ ϵ ϵ
+inclusion probability cutoff, we see that the method is most liberal when using the s = 0.5
+scale, followed by s = 1 and s = 1.5.
+ϵ ϵ
+COMPARING ORDINAL MRFS 19
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+FPR
+RPT
+Thresholds (N = 150)
+1.0
+bgms (Cauchy = 0.5)
+bgms (Cauchy = 1)
+bgms (Cauchy = 1.5)
+0.8
+0.6
+50% Inclusion
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+FPR
+RPT
+Thresholds (N = 300)
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+FPR
+RPT
+Thresholds (N = 600)
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+FPR
+RPT
+Thresholds (N = 1200)
+ROC curves plotting the false positive rate (FPR; x-axis) against the true positive rate (TPR;
+y-axis) for detecting group differences in threshold parameters for the method proposed in
+this paper (implemented in bgms), with the scale of the Cauchy priors set to either 0.5, 1,
+or 1.5. The single point on each ROC curve indicates the frequent cutoff of 50% inclusion
+probability. The four panels show the results of the same methods for different sample sizes
+per group.
+5.3 Discussion of Simulation Results
+We found that all methods performed better as the sample size per group increased.
+We found that our method performed best, closely followed by the GGM-based single-model
+BF method implemented in the BGGM package. The performance of the NCT method was
+much worse. An additional simulation suggests that this is due to the fact that the NCT
+assumes sparse networks, an assumption that is violated by our data generating model.
+Using a variant of our data generating model that is sparse, we found that all Bayesian
+methods performed worse and the NCT performed better, leading to an overall similar
+performance. Thus, our numerical results show that when a network is sparse, all methods
+perform roughly the same, and when the network is dense, our method performs best.
+COMPARING ORDINAL MRFS 20
+Our results provide clear guidance for empirical researchers. We found that all
+methods performed similarly for sparse networks, but our method performed best in the
+dense network, suggesting that our method is a good choice in both scenarios. The variation
+in Cauchy priors provides guidance for applied researchers. For example, the model with
+s = 0.5 resulted in an average FPR of 0.13, while the model with s = 1.5 resulted in an
+δ δ
+average FPR of 0.07.
+As with any simulation study, we cannot know with certainty how our results will
+generalize to scenarios we have not examined here. However, since we derived our data
+generating models from a typical empirical dataset, we hope that our conclusions extend
+to datasets similar to this one. It would be interesting to investigate why the FPR of the
+NCT is not calibrated in either the dense or the sparse network. However, since the NCT
+is not the focus of this paper, we did not investigate this further.
+6 Discussion
+In this paper, we have introduced a new Bayesian method for analyzing two-group
+differences in networks of ordinal variables that addresses the limitations of traditional
+network approaches that focus on Gaussian variables and frequentist methods, or a combi-
+nation thereof. We introduced an extension of the ordinal Markov random field (OMRF)
+to model differences between OMRFs in independent groups. A new Markov chain Monte
+Carlo (MCMC) procedure was developed to estimate these OMRFs, which also formed
+the basis of Bayes factor tests for parameter equivalence or parameter differences between
+groups. Three numerical checks showed that the methods were correctly implemented in the
+R package bgms (Marsman et al., 2024) and that they worked as intended. A comparison
+with the NCT (van Borkulo et al., 2023) and the Bayes factor approach of Williams et al.
+(2020), the two most popular methods for assessing group differences in pairwise interac-
+tions of psychological networks, shows that our proposed method performs better than its
+competitors when the networks are relatively densely connected, and as good as its competi-
+tors when the networks are relatively sparsely connected. The proposed method also shows
+good performance in assessing differences in category thresholds, which no other method
+can currently assess. Thus, the proposed approach improves the recovery of group differ-
+ences in pairwise interactions and, because it models binary and/or ordinal data, uniquely
+allows the assessment of differences in category thresholds.
+A major advantage of the proposed Bayes factor approach over current non-Bayesian
+approaches is that it can quantify support for the presence or absence of individual effects,
+providing a robust Bayesian test for conditional dependence or independence in one-group
+Markov random field models, and for parameter equivalence or difference in two independent
+samples. While commonly used network comparison methods such as the NCT are often
+interpreted as a Bayes factor, they are not. The ability to support the null hypothesis of
+network parameter equivalence is unique to the Bayes factor approach.
+The inclusion Bayes factor we propose is likely to be more appropriate in empirical
+settings than the single-model Bayes factor. The reason is that we are generally uncertain
+about which parameters differ and which do not. This uncertainty is not captured by the
+single-model Bayes factor, where we must choose a priori between competing models, one
+with the focal parameter difference and one without. For example, we can specify the full
+model, which includes all differences, as the baseline comparison. Although the performance
+COMPARING ORDINAL MRFS 21
+of the single-model Bayes factor is better when the hypothesized model (e.g., the full model)
+is close to the data-generating model, its performance deteriorates when the hypothesized
+model deviates from the unknown data-generating model (e.g., Sekulovski, Keetelaar, et
+al., 2024). In contrast, the inclusion Bayes factor considers all possible models, making
+it the most robust choice in the face of model uncertainty that we encounter in empirical
+applications.
+There are several modeling limitations that we would like to acknowledge and ad-
+dress in future developments. Ideally, we would have a single inferential framework for net-
+work analysis that covers the full range of psychometric variables and designs. Currently,
+however, the proposed framework can only account for binary and/or ordinal variables.
+Although these are the most common types of variables in psychological network analysis,
+we would like to extend the framework, and thus the underlying models, to other types of
+variables, such as continuous variables. The conditional Gaussian graphical model (Lau-
+ritzen & Wermuth, 1989) provides a concrete approach for doing so. Another limitation of
+the model is that it only considers designs with two independent groups. Extending the
+underlying idea of an independent samples t test to an ANOVA design, following the ideas
+underlying Bayesian ANOVA (Rouder, Morey, Speckman, & Province, 2012), provides a
+concrete direction for designs with more than two independent samples. The extension
+to dependent samples (e.g., a pre- and post-intervention design) requires a new modeling
+strategy involving random intercepts. We have already taken concrete steps in modeling
+group differences in dependent samples, but we have not yet found a satisfactory procedure
+for their analysis. All of these limitations provide concrete directions for future research.
+There are also two limitations of the underlying computational methodology that
+are of interest to us. First, while the mixtures of mutually singular (MoMS; Gottardo &
+Raftery, 2008) distributions approach provides a simple and effective approach for mak-
+ing moves between models, Numerical Check II showed that the component-wise adaptive
+Metropolis approach is much less efficient than rstan for making moves within models. This
+is to be expected, since adaptive Metropolis algorithms, and especially their component-
+wise versions, tend to introduce much more autocorrelation than the Hamiltonian Monte
+Carlo method used in rstan. The reason we use component-wise updates is that the pro-
+posals are then calibrated to use MoMS for the component-wise moves between models.
+We are currently investigating alternative sampling strategies to overcome the limitation
+of component-wise updates and to find more efficient algorithms for within-model moves,
+such as the Metropolis-adjusted Langevin algorithm (Besag, 1994; Rossky, Doll, & Fried-
+man, 1978). Second, the pseudolikelihood approach we use to bypass the calculation of
+the normalization constant, while consistent, balances sensitivity and specificity differently
+than the full model (e.g., Marsman et al., in press). We therefore experiment with Monte
+Carlo approximations to the underlying MCMC procedure. Despite these limitations in the
+underlying computational methods, we have shown that the proposed methodology works
+in the three numerical illustrations and performs better overall than current alternatives.
+We have implemented the proposed Bayesian methods in the R package bgms (ver-
+cran.r-project.org/web/packages/bgms/index.html). The computational aspects of
+the software are mostly written in C++ using the Rcpp package (Eddelbuettel, 2013). In
+a series of numerical experiments, we have shown that the proposed methodology works
+COMPARING ORDINAL MRFS 22
+and is correctly implemented in the R package. In addition to updating the computational
+algorithms described above, we are currently integrating the independent samples compari-
+son into the easybgm R package (Huth, Keetelaar, Sekulovski, van den Bergh, & Marsman,
+2024) to streamline the analysis, and the bgms package into the JASP software (Love et al.,
+2019; Wagenmakers et al., 2018) so that applied researchers without R experience can use
+the methodology.
+7 Conclusion
+We proposed a new two-group extension of the ordinal Markov random field that
+allows researchers to model the group differences in the pairwise interactions and category
+thresholds of networks for binary and/or ordinal variables. We have also introduced a
+Bayesian methodology, including an implementation in the bgms package, for estimating and
+evaluating these differences with empirical data. The proposed methods provide researchers
+with a clear way to assess group differences in networks. We hope that by providing these
+methods for an appropriate network model for ordinal data and a robust methodology for
+assessing group differences, we can help put the growing literature on networks on a more
+solid methodological footing.
+8 References
+Adamkovič, M., Fedáková, D., Kentoš, M., Bozogáňová, M., Havrillová, D., Baník, G., . . . Piterová,
+I. (2022). Relationships between satisfaction with life, posttraumatic growth, coping strategies,
+and resilience in cancer survivors: A network analysis approach. Psycho-Oncology, 31 , 1913–
+1921. doi: 10.1002/pon.5948
+Agresti, A. (2018). An introduction to categorical data analysis (Third ed.). Wiley.
+Atchadé, Y. F., & Rosenthal, J. S. (2005). On adaptive Markov chain Monte Carlo algorithms.
+Bernoulli, 11 (5), 815–828. doi: 10.3150/bj/1130077595
+Barber, R. F., & Drton, M. (2015). High dimensional Ising model selection with Bayesian information
+criteria. Electronic Journal of Statistics, 9 (1), 567–607. doi: 10.1214/15-EJS1012
+Besag, J. (1975). Statistical analysis of non-lattice data. Journal of the Royal Statistical Society
+Series D (The Statistician), 24 (3), 179–195. doi: 10.2307/2987782
+Besag, J. (1994). Discussion of the paper “Representations of knowledge in complex systems” by U.
+Grenander and M. I. Miller. Journal of the Royal Statistical Society. Series B (Methodological),
+56 (4), 591–592.
+Borsboom, D., Deserno, M. K., Rhemtulla, M., Epskamp, S., Fried, E. I., McNally, R. J., . . .
+Waldorp, L. J. (2021). Network analysis of multivariate data in psychological science. Nature
+Reviews Methods Primers, 1 (1), 58. doi: 10.1038/s43586-021-00055-w
+Csiszár, I., & Talata, Z. (2006). Consistent estimation of the basic neighborhood of Markov random
+fields. The Annals of Statistics, 34 (1), 123–145. doi: 10.1214/009053605000000912
+Danaher, P., Wang, P., & Witten, D. M. (2014). The joint graphical lasso for inverse covariance
+estimation across multiple classes. Journal of the Royal Statistical Society: Series B (Statistical
+Methodology, 76 (2), 373–397. doi: 10.1111/rssb.12033
+Dempster, A. (1972). Covariance selection. Biometrics, 28 , 157–175.
+Eddelbuettel, D. (2013). Seamless R and C++ integration with Rcpp. New York: Springer. doi:
+10.1007/978-1-4614-6868-4
+Epskamp, S., Isvoranu, A., & Cheung, M. (2022). Meta-analytic Gaussian network aggregation.
+Psychometrika, 87 , 12–46. doi: 10.1007/s11336-021-09764-3
+Fawcett, T. (2006). An introduction to ROC analysis. Pattern Recognition Letters, 27 (8), 861–874.
+doi: 10.1016/j.patrec.2005.10.010
+COMPARING ORDINAL MRFS 23
+Gelman, A., Lee, D., & Guo, J. (2015). Stan: A probabilistic programming language for Bayesian
+inference and optimization. Journal of Educational and Behavioral Statistics, 40 , 530–543.
+doi: 10.3102/1076998615606113
+Gelman, A., & Rubin, D. B. (1992). Inference from iterative simulation using multiple sequences.
+Statistical Science, 7 (4), 457–472. doi: 10.1214/ss/1177011136
+Geman, S., & Geman, D. (1984). Stochastic relaxation, Gibbs distributions, and the Bayesian
+restoration of images. IEEE Transactions on Pattern Analysis and Machine Intelligence,
+6 (6), 721–741. doi: 10.1109/TPAMI.1984.4767596
+Good, I. J. (1984). C205. Monotonic properties of the moments of a Bayes factor and the relationship
+to measures of divergence. Journal of Statistical Computation and Simulation, 19 (4), 320–325.
+doi: 10.1080/00949658408810747
+Gottardo, R., & Raftery, A. E. (2008). Markov chain Monte Carlo with mixtures of mutually
+singular distributions. Journal of Computational and Graphical Statistics, 17 (4), 949–975.
+doi: 10.1198/106186008X386102
+Griffin, J. E., & Steel, M. F. J. (2022). Adaptive computational methods for Bayesian variable
+selection. In M. G. Tadesse & M. Vanucci (Eds.), Handbook of Bayesian variable selection.
+Boca Raton, Florida: CRC Press.
+Haslbeck, J. M. B. (2022). Estimating group differences in network models using moderation
+analysis. Behavior Research Methods, 54 , 522–540. doi: 10.3758/s13428-021-01637-y
+Haslbeck, J. M. B., & Waldorp, L. J. (2020). mgm: Estimating time-varying mixed graphical
+models in high-dimensional data. Journal of Statistical Software, 93 (8), 1–46. doi: 10.18637/
+jss.v093.i08
+Hinne, M., Gronau, Q. F., van den Bergh, D., & Wagenmakers, E.-J. (2020). A conceptual intro-
+duction to Bayesian model averaging. Advances in Methods and Practices in Psychological
+Science, 3 (2), 200–215. doi: 10.1177/251524591989865
+Hoeting, J., Madigan, D., Raftery, A., & Volinsky, C. (1999). Bayesian model averaging: A tutorial.
+Statistical Science, 14 (4), 382–401.
+Hoffman, M. D., & Gelman, A. (2014). The No-U-Turn Sampler: Adaptively setting path lengths
+in Hamiltonian Monte Carlo. Journal of Machine Learning Research, 15 , 1593–1623.
+Huth, K. B. S., Keetelaar, S., Sekulovski, N., van den Bergh, D., & Marsman, M. (2024). Simplifying
+Bayesian analysis of graphical models for the social sciences with easybgm: A user-friendly
+R-package. advances.in/psychology(e66366). doi: 10.56296/aip00010
+Ising, E. (1925). Beitrag zur theorie des ferromagnetismus. Zeitschrift für Physik, 31 (1), 253–258.
+doi: 10.1007/BF02980577
+Jeffreys, H. (1961). Theory of probability (3rd ed.). Oxford, UK: Oxford University Press.
+Johnson, A. A., Ott, M. Q., & Dogucu, M. (2022). Bayes rules! An introduction to applied Bayesian
+modeling. CRC Press.
+Kass, R. E., & Raftery, A. E. (1995). Bayes factors. Journal of the American Statistical Association,
+90 (430), 773–795. doi: 10.2307/2291091
+Keetelaar, S., Sekulovski, N., Borsboom, D., & Marsman, M. (2024). Comparing maximum likeli-
+hood and pseudo-maximum likelihood estimators for the Ising model. advances.in/psychology,
+2 (e25745). doi: 10.56296/aip00013
+Kindermann, R., & Snell, J. L. (1980). Markov random fields and their applications (Vol. 1).
+Providence: American Mathematical Society.
+Lauritzen, S., & Wermuth, N. (1989). Graphical models for assocations between variables, some
+of which are qualitative and some quantitative. The Annals of Statistics, 17 (1), 31–57. doi:
+10.1214/aos/1176347003
+Lehmann, E. L., & Casella, G. (1998). Theory of point estimation (Second ed.). New York:
+Springer-Verlag.
+Love, J., Selker, R., Marsman, M., Jamil, T., Dropmann, D., Verhagen, A. J., . . . Wagenmakers,
+E.-J. (2019). JASP – graphical statistical software for common statistical designs. Journal of
+COMPARING ORDINAL MRFS 24
+Statistical Software, 88 (2), 1–17. doi: 10.18637/jss.v088.i02
+Maris, G. K. J., Bechger, T. M., & San Martin, E. (2015). A Gibbs sampler for the (extended)
+marginal Rasch model. Psychometrika, 80 (4), 859–879. doi: 10.1007/s11336-015-9479-4
+Marsman, M., Huth, K. B. S., Sekulovski, N., & van den Bergh, D. (2024). bgms: Bayesian analysis
+.org/package=bgms (R package version 0.1.4.2)
+Marsman, M., Huth, K. B. S., Waldorp, L. J., & Ntzoufras, I. (2022). Objective Bayesian edge
+screening and structure selection for Ising networks. Psychometrika, 87 (1), 47–82. doi: 10
+.1007/s11336-022-09848-8
+Marsman, M., & Rhemtulla, M. (2022). Guest editors’ introduction to the special issue “net-
+work psychometrics in action”: Methodological innovations inspired by empirical problems.
+Psychometrika, 87 (1), 1–11. doi: 10.1007/s11336-022-09861-x
+Marsman, M., van den Bergh, D., & Haslbeck, J. M. B. (in press). Bayesian analysis of the ordinal
+Markov random field. Psychometrika.
+Miller, J. W. (2021). Asymptotic normality, concentration, and coverage of generalized posteriors.
+Journal of Machine Learning Research, 22 (168), 1–53.
+Mohammadi, R., Schoonhoven, M., Vogels, L., & Birbil, I. (2023). Large-scale Bayesian structure
+learning for Gaussian graphical models using marginal pseudo-likelihood. Retrieved from
+Murray, I., Gharamani, Z., & MacKay, D. (2012). MCMC for doubly-intractable distributions.
+Neal, R. M. (1996). Monte Carlo implementation. In Bayesian learning for neural networks (Vol. 118,
+pp. 55–98). Springer. doi: 10.1007/978-1-4612-0745-0_3
+Park, J., & Haran, M. (2018). Bayesian inference in the presence of intractable normalizing constants.
+Journal of the American Statistical Association, 113 (523), 1372–1390. doi: 10.1080/01621459
+.2018.1448824
+Pensar, J., Nyman, H., Niiranen, J., & Corander, J. (2017). Marginal pseudo-likelihood learning
+of discrete Markov network structures. Bayesian Analysis, 12 (4), 1195–1215. doi: 10.1214/
+16-BA1032
+Ravikumar, P., Wainwright, M. J., & Lafferty, J. D. (2010). High-dimensional Ising model selection
+using l -regularized logistic regression. Annals of Statistics, 38 (3), 1287–1319. doi: 10.1214/
+09-AOS691
+Robbins, H., & Monro, S. (1951). A stochastic approximation method. The Annals of Mathematical
+Statistics, 22 (3), 400–407. doi: 10.1214/aoms/1177729586
+Rossky, P. J., Doll, J. D., & Friedman, H. L. (1978). Brownian dynamics as smart Monte Carlo
+simulation. Journal of Chemical Physics, 69 (10), 4628–4633. doi: 10.1063/1.436415
+Rouder, J. N., Morey, R. D., Speckman, P. L., & Province, J. M. (2012). Default Bayes factors
+for ANOVA designs. Journal of Mathematical Psychology, 56 (5), 356–374. doi: 10.1016/
+j.jmp.2012.08.001
+Rouder, J. N., Speckman, P. L., Sun, D., & Morey, R. D. (2009). Bayesian t tests for accepting
+and rejecting the null hypothesis. Psychonomic Bulletin & Review, 16 (2), 225–237. doi:
+10.3758/PBR.16.2.225
+Sekulovski, N., Keetelaar, S., Huth, K. B. S., Wagenmakers, E.-J., van Bork, R., van den Bergh,
+D., & Marsman, M. (2024). Testing conditional independence in psychometric networks:
+An analysis of three Bayesian methods. Multivariate Behavioral Research, 59 , 913–933. doi:
+10.1080/00273171.2024.2345915
+Sekulovski, N., Marsman, M., & Wagenmakers, E.-J. (2024). A Good check on the Bayes factor.
+Behavior Research Methods, 56 (8), 8552–8566. doi: 10.3758/s13428-024-02491-4
+mc-stan.org/ (R package version 2.32.6)
+Stan Development Team. (2024b). Stan reference manual [Computer software manual]. (Version 2.x.
+COMPARING ORDINAL MRFS 25
+th
+Suggala, A. S., Yang, E., & Ravikumar, P. (2017). Ordinal graphical models: A tale of two
+approaches. In D. Precup & Y. W. Teh (Eds.), Proceedings of the 34th international conference
+on machine learning (Vol. 70, pp. 3260–3269). PMLR.
+van Borkulo, C. D., van Bork, R., Boschloo, L., Kossakowski, J. J., Tio, P., Schoever, R. A., . . .
+Waldorp, L. (2023). Comparing network structures on three aspects: A permutation test.
+Psychological Methods, 28 (6), 1273–1285. doi: 10.1037/met0000476
+Vehtari, A., Gelman, A., Simpson, D., Carpenter, B., & Bürkner, P. (2021). Rank-normalization,
+folding, and localization: An improved R for assessing convergence of MCMC. Bayesian
+Analysis, 16 (2), 667–718. doi: 10.1214/20-BA1221
+Vogels, L., Mohammadi, R., Schoonhoven, M., & Birbil, I. (in press). Bayesian structure learning in
+undirected Gaussian graphical models: Literature review with empirical comparison. Journal
+of the American Statistical Association. doi: 10.1080/01621459.2024.2395504
+Wagenmakers, E.-J., Love, J., Marsman, M., Jamil, T., Ly, A., Verhagen, J., . . . Morey, R. D. (2018).
+Bayesian inference for psychology. Part II: Example applications with JASP. Psychonomic
+Bulletin & Review, 25 (1), 58–76. doi: 10.3758/s13423-017-1323-7
+Williams, D. R., & Mulder, J. (2020). BGGM: Bayesian Gaussian graphical models in R. Journal
+of Open Source Software, 5 (51), 2111. doi: 10.21105/joss.02111
+Williams, D. R., Rast, P., Pericchi, L. R., & Mulder, J. (2020). Comparing Gaussian graphical
+models with the posterior predictive distribution and Bayesian model selection. Psychological
+Methods, 25 (5), 653–672. doi: 10.1037/met0000254
+Appendix A
+Parameter Identification of MRF Models for Ordinal Data
+Marsman et al. (in press, Section 2.4) showed that the parameters of the OMRF are iden-
+tified, i.e., that the corresponding probability distribution p(x) in Eq. (1) is an injective
+function of the parameters. We first give a new proof for the identification of the OMRF,
+which gives us a strategy to show that the parameters of the two-group OMRF are also
+identified.
+A.1 Parameter Identification of the Ordinal MRF
+The OMRF is in the exponential family and has sufficient statistics for each pa-
+rameter. The sufficient statistics for the category thresholds µ are the indicator functions
+ic
+I(x = c), for c = 1, . . . , m (i.e., we set µ = 0 for identification, see below), and the
+i i0
+sufficient statistics for the pairwise interactions are the pairwise products x x . We collect
+i j
+all these statistics in the vector s := s(x), where x ∈ {0, 1, . . . , m} . In the same way, we
+collect the corresponding parameters µ and θ in the vector η. We can then rewrite the
+probability distribution characterized by the OMRF as
+(cid:16) (cid:17)
+P(x | η) = exp η s − ln (Z(η)) .
+We show that the elements in s have no linear constraints, i.e., they cannot be expressed
+as a linear function of each other, which implies the identifiability of the parameter vector
+η (Lehmann & Casella, 1998).
+For each variable, we set the threshold parameter for the first category to a constant
+for identification (i.e., µ = 0). If we had not done this, then the sufficient statistics for
+i0
+COMPARING ORDINAL MRFS 26
+the category thresholds of a variable i would satisfy the linear constraint:
+I(x = 0) = 1 − I(x = c),
+i i
+c=1
+and the parameter vector η would not be identifiable. By setting the threshold parameter
+of the first category to the constant zero for each variable in the network, the statistic
+I(x = 0) is not part of s. This implies that the value of the sufficient statistic for the
+threshold parameter of a category c cannot be a linear combination of the sufficient statistics
+corresponding to the remaining categories (or pairwise interactions) alone. That is, they
+no longer satisfy linear constraints. Similarly, the statistics corresponding to the pairwise
+interactions cannot be expressed as a linear combination of the remaining statistics. To
+see why, consider the statistic x x that corresponds to the pairwise interaction parameter
+i j
+θ . If it can be expressed as a linear combination of the remaining statistics, then this
+ij
+relation must hold for all possible realizations of the vector x. Now let’s assume that all
+other variables are zero, but that x x > 0. In this case, the only non-zero statistics we
+i j
+have are x x , I(x = c), and I(x = d) for some integers 0 < c, d ≤ m, and there is clearly
+i j i j
+no linear combination of I(x = c) and I(x = d) that can reproduce the statistic x x .
+i j i j
+In the same way, one can show that there is no linear combination that can reproduce the
+statistic x x if the remaining variables are all one, or some are one and some are zero.
+i j
+This shows that the pairwise interactions also have no linear constraint, and the parameter
+vector η is identifiable.
+A.2 Parameter Identification of the Two-Group Ordinal MRF
+Since the parameters of the two-group MRF are a one-to-one function of the param-
+eters of two independent MRFs, and since we have established that the parameters of the
+independent MRFs are identifiable, we know that the parameters of the two-group MRF
+must also be identifiable. To verify this, we follow the same strategy as before and focus on
+the comparison of the OMRF in two groups.
+The two-group OMRF is in the exponential family and has sufficient statistics for
+each parameter. The sufficient statistics for the category threshold parameters λ are
+ic
+I(x = c) + I(y = c), the sufficient statistics for the category threshold differences ϵ are
+i i ic
+1/ I(y = c) − 1/ I(x = c), the sufficient statistics for the pairwise interactions ϕ are the
+2 2
+i i ij
+sum of the pairwise products x x + y y , and for the pairwise differences δ the differences
+i j i j ij
+of the pairwise products 1/ y y − 1/ x x . We again collect all these statistics in the vector
+2 2
+i j i j
+s := s(x, y), where x, y ∈ {0, 1, . . . , m} , and collect the corresponding parameters λ, ϵ,
+ϕ, and δ in the vector η. Proof of the identifiability of the parameter vector η follows the
+same steps and arguments as above.
+For reasons stated above, we set the category threshold parameter and category
+threshold difference parameter for the first category to a constant for identification (i.e.,
+λ = 0, and ϵ = 0) for each variable. Then, it is clear from the sufficient statistics defined
+i0 i0
+above, that I(x = c) + I(y = c) ̸= I(y = c) − I(x = c), for c = 1, . . . , m and every
+i i i i
+x = y ̸= 0. That is, we cannot express the sufficient statistics for the category thresholds
+i i
+and their differences as a linear combination of each other or of the remaining statistics.
+Similarly, the statistics corresponding to the pairwise interactions and their dif-
+ferences cannot be expressed as a linear combination of the remaining statistics. To see
+COMPARING ORDINAL MRFS 27
+why, consider the statistic x x + y y that corresponds to the pairwise interaction pa-
+i j i j
+rameter ϕ . If it can be expressed as a linear combination of the remaining statistics,
+ij
+then this relation must hold for all possible realizations of the vectors x and y. Now
+let’s assume that all other variables are zero, but that x x + y y > 0. In this case, the
+i j i j
+non-zero statistics we have are x x + y y , 1/ y y − 1/ x x , I(x = c) + I(y = c),
+2 2
+i j i j i j i j i i
+I(x = d) + I(y = d), 1/ I(y = c) − 1/ I(x = c), 1/ I(y = d) − 1/ I(x = d) for
+2 2 2 2
+j j i i j j
+some integers 0 < c, d ≤ m. There is no linear combination of these five statistics that
+can reproduce the statistic x x + y y for every possible realization of x and y. Let’s
+i j i j
+examine a single example to verify that this statement is true. Let x x + y y = 1, which
+i j i j
+implies that either x = x = 1 and at least one of y and y is zero (scenario 1), or at
+i j i j
+least one of x and x is zero and y = y = 1 (scenario 2). In scenario 1 we have that
+i j i j
+1/ y y − 1/ x x = −1/ , I(x = 1) + I(y = 1) is one or two, I(x = 1) + I(y = 1) is one
+2 2 2
+i j i j i i j j
+or two, 1/ I(y = 1)−1/ I(x = 1) is zero or minus a half, and 1/ I(y = 1)−1/ I(x = 1) is
+2 2 2 2
+i i i i
+zero or minus a half. In scenario 2 we have that 1/ y y −1/ x x = 1/ , I(x = 1)+I(y = 1)
+2 2 2
+i j i j i i
+is one or two, I(x = 1) + I(y = 1) is one or two, 1/ I(y = 1) − 1/ I(x = 1) is zero or
+2 2
+j j i i
+a half, and 1/ I(y = 1) − 1/ I(x = 1) is zero or a half. From this we see that in neither
+2 2
+i i
+scenario can we uniquely express the statistic x x + y y as a linear function of the other
+i j i j
+statistics.
+Since none of the statistics discussed so far could be expressed as a linear combi-
+nation involving the pairwise difference statistic, the converse must also hold. That is, the
+pairwise difference statistic cannot be expressed as a linear function of any of the statistics
+discussed so far. The argument for the sum of the pairwise products can also be used for
+the difference of the pairwise products to argue that none of the pairwise difference statis-
+tics can be expressed as a linear combination of the remaining differences in the pairwise
+products. Thus, the parameter vector η is identifiable.
+Appendix B
+Technical Details for the MwG Procedure
+B.1 Independence Chain Metropolis for the Category Thresholds
+The log of the target distribution is concave and has linear tails:
+d n (cid:16) (cid:17)o n + n − n − n − β as λ → ∞,
+(c) ic1 ic2 1 2 ic
+ln p λ | X, Y, λ , ϵ, ϕ, δ −→
+ic
+dλ
+n + n + α as λ → −∞,
+ic
+ic1 ic2 ic
+and the same holds for the proposal distribution:
+d −b as λ → ∞,
+ic
+ln {p (λ )} −→
+ic
+dλ
+a as λ → −∞.
+ic
+ic
+We match the tails of the proposal distribution to that of the target distribution by setting
+a = n + n + α and b = n + n − n − n + β. The last free parameter, d, is used
+ic1 ic2 1 2 ic1 ic2
+to ensure that the proposal closely matches the target distribution at the current state of
+the Markov chain. Specifically, d is used to make the derivatives of the logarithms of the
+proposal and target distributions equal. If λ is the current state of λ in the Markov chain,
+ic
+then we equate the two derivatives and solve for d, which yields
+COMPARING ORDINAL MRFS 28
+Pn q Pn q 1
+1 v1 + 2 v2 + (α + β)
+v=1 ˆ v=1 ˆ ˆ
+g +q exp(λ) g +q exp(λ) 1+ exp(λ)
+d = v1 v1 v2 v2 .
+ˆ ˆ ˆ
+Pn q exp(λ) Pn q exp(λ) exp(λ)
+α + β + n + n − 1 v1 + 2 v2 + (α + β)
+1 2
+v=1 ˆ v=1 ˆ ˆ
+g +q exp(λ) g +q exp(λ) 1+ exp(λ)
+v1 v1 v2 v2
+Now that we have the value for d, we can sample a proposal from the generalized
+beta-prime distribution in the following way: we sample W from a Beta(a, b) distribution,
+(cid:16) (cid:17)
+′ −1 W ′
+and set the proposed value λ equal to log d /2. Here, λ is a sample from the
+1−W
+generalized beta-prime distribution. We accept the proposed value with probability
+ (cid:16) (cid:16) (cid:17)(cid:17) (cid:16) (cid:16) (cid:17)(cid:17)
+Qn ˆ Qn ˆ
+1 g + q exp λ 2 g + q exp λ
+v=1 v1 v1 v=1 v2 v2
+min 1,
+Qn Qn
+1 (g + q exp (λ′)) 2 (g + q exp (λ′))
+v=1 v1 v1 v=1 v2 v2
+(cid:16) (cid:16) (cid:17)(cid:17)α+β
+1 + exp λ ′ α+β+n 
+(1 + d exp (λ )) 
+× ,
+α+β (cid:16) (cid:16) (cid:17)(cid:17)α+β+n
+(1 + exp (λ′)) ˆ
+1 + d exp λ
+and retain the current value λ otherwise.
+B.2 Adaptive Metropolis for the Main Differences
+The adaptive Metropolis algorithm is implemented as follows. We propose a new
+′ ∗
+value ϵ from a normal density centered at the current state ϵ . The variance of this proposal
+density is ν . We accept the proposed value with probability
+i c
+(cid:26) (cid:18) (cid:19)
+′ ∗
+π = min 1, exp (n − n ) (ϵ − ϵ )
+ic1 ic2
+(cid:26) (cid:27)
+P P
+1 1 1 ∗ 1
+Pm λ + ϵ +u (ϕ + δ ) x λ + ϵ +c (ϕ + δ ) x
+1 + e i u i u ij ij vj + e i c ij ij vj
+2 j̸=i 2 2 j̸=i 2
+1 u=1̸=c
+(cid:26) (cid:27)
+P P
+Pm λ + 1 ϵ +u (ϕ + 1 δ ) x λ + 1 ϵ′+c (ϕ + 1 δ ) x
+1 + e i u i u ij ij vj + e i c ij ij vj
+v=1 2 j̸=i 2 2 j̸=i 2
+u=1̸=c
+(cid:26) (cid:27)
+P P
+1 1 1 ∗ 1
+Pm λ − ϵ +u (ϕ − δ ) y λ − ϵ +c (ϕ − δ ) y
+1 + e i u i u ij ij vj + e i c ij ij vj
+2 j̸=i 2 2 j̸=i 2
+2 u=1̸=c
+(cid:26) (cid:27)
+P P
+Pm λ − 1 ϵ +u (ϕ − 1 δ ) y λ − 1 ϵ′+c (ϕ − 1 δ ) y
+1 + e i u i u ij ij vj + e i c ij ij vj
+v=1 2 j̸=i 2 2 j̸=i 2
+u=1̸=c
+2 ∗ 2
+s + (ϵ )
+× ,
+s2 + (ϵ′)2
+and retain the current value otherwise.
+The variance of the proposal distribution is calibrated using a Robbins-Monro algo-
+rithm (Robbins & Monro, 1951). Specifically, at initialization t of the Gibbs sampler, we
+(t)
+set the logarithm of the proposal variance ν equal to
+i c
+(t) (t−1) −ϕ (t−1)
+ln(ν ) = ln(ν ) + t (π − .234),
+ϵ ϵ
+i c i c
+COMPARING ORDINAL MRFS 29
+(t−1)
+where π was the acceptance probability in the previous iteration. This approach adjusts
+the proposal variance so that the Metropolis algorithm’s target acceptance probability is
+.234, which is optimal for a Metropolis-Hastings random walk.
+B.3 Adaptive Metropolis for the Pairwise Interactions
+The adaptive Metropolis algorithm is implemented as follows. We propose a new
+′ ∗
+value ϕ from a normal density centered at the current state ϕ . The variance of this
+proposal density is ν . We accept the proposed value with probability
+ij
+( ! !
+n n
+1 2
+X X
+′ ∗
+min 1, exp x x + y y (ϕ − ϕ )
+vi vj vi vj
+v=1 v=1
+(cid:26) (cid:27)
+1 ∗ 1 1
+Pm λ + ϵ +ux (ϕ + δ )+u (ϕ + δ ) x
+1 + e i u i u vj ij ik ik vj
+2 2 k̸=i̸=j 2
+1 u=1
+(cid:26) (cid:27)
+Pm λ + 1 ϵ +ux (ϕ′+ 1 δ )+u (ϕ + 1 δ ) x
+1 + e i u i u vj ij ik ik vj
+v=1 2 2 k̸=i̸=j 2
+u=1
+(cid:26) (cid:27)
+1 ∗ 1 1
+Pm λ + ϵ +ux (ϕ + δ )+u (ϕ + δ ) x
+1 + e j u j u vi ij kj kj vi
+2 2 k̸=i̸=j 2
+1 u=1
+(cid:26) (cid:27)
+Pm λ + 1 ϵ +ux (ϕ′+ 1 δ )+u (ϕ + 1 δ ) x
+1 + e j u j u vi ij kj kj vi
+v=1 2 2 k̸=i̸=j 2
+u=1
+(cid:26) (cid:27)
+1 ∗ 1 1
+Pm λ − ϵ +uy (ϕ − δ )+u (ϕ − δ ) y
+1 + e i u i u vj ij ik ik vj
+2 2 k̸=i̸=j 2
+2 u=1
+(cid:26) (cid:27)
+Pm λ − 1 ϵ +uy (ϕ′− 1 δ )+u (ϕ − 1 δ ) y
+1 + e i u i u vj ij ik ik vj
+v=1 2 2 k̸=i̸=j 2
+u=1
+(cid:26) (cid:27)
+1 ∗ 1 1
+Pm λ − ϵ +uy (ϕ − δ )+u (ϕ − δ ) y
+1 + e j u j u vi ij kj kj vi
+2 2 k̸=i̸=j 2
+2 u=1
+(cid:26) (cid:27)
+Pm λ − 1 ϵ +uy (ϕ′− 1 δ )+u (ϕ − 1 δ ) y
+1 + e j u j u vi ij kj kj vi
+v=1 2 2 k̸=i̸=j 2
+u=1
+2 ∗ 2
+s + (ϕ )
+× ,
+s2 + (ϕ′)2
+and update the proposal variance ν using the Robbins-Monro algorithm (Robbins &
+ij
+Monro, 1951) as outlined above.
+B.4 Adaptive Metropolis for the Pairwise Differences
+The adaptive Metropolis algorithm is implemented as follows. We propose a new
+′ ∗
+value δ from a normal density centered at the current state δ . The variance of this proposal
+COMPARING ORDINAL MRFS 30
+density is ν . We accept the proposed value with probability
+ij
+( ! !
+n n
+1 1 2
+X X
+′ ∗
+min 1, exp x x − y y (δ − δ )
+vi vj vi vj
+v=1 v=1
+(cid:26) (cid:27)
+1 1 ∗ 1
+Pm λ + ϵ +ux (ϕ + δ )+u (ϕ + δ ) x
+1 + e i u i u vj ij ik ik vj
+2 2 k̸=i̸=j 2
+1 u=1
+(cid:26) (cid:27)
+Pm λ + 1 ϵ +ux (ϕ + 1 δ′)+u (ϕ + 1 δ ) x
+1 + e i u i u vj ij ik ik vj
+v=1 2 2 k̸=i̸=j 2
+u=1
+(cid:26) (cid:27)
+1 1 ∗ 1
+Pm λ + ϵ +ux (ϕ + δ )+u (ϕ + δ ) x
+1 + e j u j u vi ij kj kj vi
+2 2 k̸=i̸=j 2
+1 u=1
+(cid:26) (cid:27)
+Pm λ + 1 ϵ +ux (ϕ + 1 δ′)+u (ϕ + 1 δ ) x
+1 + e j u j u vi ij kj kj vi
+v=1 2 2 k̸=i̸=j 2
+u=1
+(cid:26) (cid:27)
+1 1 ∗ 1
+Pm λ − ϵ +uy (ϕ − δ )+u (ϕ − δ ) y
+1 + e i u i u vj ij ik ik vj
+2 2 k̸=i̸=j 2
+2 u=1
+(cid:26) (cid:27)
+Pm λ − 1 ϵ +uy (ϕ − 1 δ′)+u (ϕ − 1 δ ) y
+1 + e i u i u vj ij ik ik vj
+v=1 2 2 k̸=i̸=j 2
+u=1
+(cid:26) (cid:27)
+1 1 ∗ 1
+Pm λ − ϵ +uy (ϕ − δ )+u (ϕ − δ ) y
+1 + e j u j u vi ij kj kj vi
+2 2 k̸=i̸=j 2
+2 u=1
+(cid:26) (cid:27)
+Pm λ − 1 ϵ +uy (ϕ − 1 δ′)+u (ϕ − 1 δ ) y
+1 + e j u j u vi ij kj kj vi
+v=1 2 2 k̸=i̸=j 2
+u=1
+2 ∗ 2
+s + (δ )
+× ,
+s2 + (δ′)2
+and update the proposal variance ν using the Robbins-Monro algorithm (Robbins &
+ij
+Monro, 1951) outlined above.
+Appendix C
+Numerical Checks
+The R scripts used for the numerical checks and the rstan implementation used
+19e5c8ebaf164fd5af87f83029fe9b63.
+C.1 Numerical Check I: Estimating the Pseudoposterior With bgms and rstan
+Our approach to Bayesian hypothesis testing about parameter differences between
+the two groups relies on the numerical procedures for Bayesian parameter estimation. Our
+software implementation consists of more than 3,000 lines of C++ code, which calls for a
+careful evaluation of whether the software works correctly. To verify that these numeri-
+cal procedures are implemented correctly, we compare their estimates with the estimates
+from an alternative software implementation. Here we consider the popular Stan language
+(Gelman et al., 2015) using the R package rstan (Stan Development Team, 2024a), which
+is a general-purpose probabilistic software package for Bayesian estimation in which the
+user can code their preferred model and prior distributions, and the software compiles a
+Hamiltonian Monte Carlo (HMC) procedure to simulate from the corresponding posterior
+distribution (Hoffman & Gelman, 2014; Neal, 1996).
+COMPARING ORDINAL MRFS 31
+Our rstan implementation for simulating from the pseudoposterior distribution of
+the parameters of the two-group OMRF, which must also use the pseudolikelihood approx-
+imation, is new and can be used to as an alternative to bgms to analyze the two-group
+OMRF. However, the caveat of this software, which is the limitation of the HMC method
+implemented in Stan, is that it cannot handle discrete parameters, such as the indicator
+variables used in the Bayesian variable selection methods that we will use later to construct
+Bayes factor hypothesis tests about parameter differences between the two groups. How-
+ever, the Savage-Dickey Bayes factor can be computed from the Stan output, which we will
+use as an alternative to the inclusion Bayes factor, which we can compute from the output
+of a fully Bayesian specification, i.e., one that also takes the structure of the network into
+account.
+To compare estimates from both implementations, we use the empirical dataset
+reported by Adamkovič et al. (2022), in which the authors assessed life satisfaction, post-
+traumatic growth, coping strategies, and resilience in 696 cancer survivors. We consider an
+analysis in which they contrasted the network structure of (ordinal) responses to five items of
+the Satisfaction with Life Scale and six items of the Brief Resilience Scale between men and
+We reanalyzed their data using the two-sample OMRF with the HMC procedure as imple-
+mented in the R package rstan and the MwG procedure as implemented in the R package
+bgms. The HMC procedure was run using the rstan defaults of four separate Markov chains,
+each running for 2,000 iterations with 1,000 burnin iterations, and the MwG procedure was
+run using a chain running for 101,000 iterations with 1,000 burnin iterations. Scatter plots
+with the correlation of their estimates, showing that the results are nearly identical for the
+two methods. Additional comparisons between the bgms and rstan results are shown in
+Appendix C.4.
+COMPARING ORDINAL MRFS 32
+−5
+−10
+−15
+−20
+−20 −15 −10 −5 0
+)smgb(
+sbbiG-nihtiW-siloporteM
+0.6
+r<latexit sha1_base64="+reTSlbIctWsOcB6aWKyuMGlg4U=">AAACAXicbVDLSsNAFJ3UV62vqBvBzdAiVISQuKi6EIpuXFawD2hCmUwm7dDJJMxMhBDqxl/wE9y4UMStf+Guf+P0sdDqgYHDOfdw5x4/YVQq2x4bhaXlldW14nppY3Nre8fc3WvJOBWYNHHMYtHxkSSMctJUVDHSSQRBkc9I2x9eT/z2PRGSxvxOZQnxItTnNKQYKS31zAN3gFQuRlWX6VCAjuEltC40embFtuwp4F/izEmlXnZPnsb1rNEzv9wgxmlEuMIMSdl17ER5ORKKYkZGJTeVJEF4iPqkqylHEZFePr1gBI+0EsAwFvpxBafqz0SOIimzyNeTEVIDuehNxP+8bqrCcy+nPEkV4Xi2KEwZVDGc1AEDKghWLNMEYUH1XyEeIIGw0qWVdAnO4sl/SevUcmpW7Va3cQVmKIJDUAZV4IAzUAc3oAGaAIMH8AxewZvxaLwY78bHbLRgzDP74BeMz28OkZhR</latexit>ˆ( ) = .9999 r<latexit sha1_base64="IrIfRUXBWW9YnCi2CdWXKkNke3A=">AAAB/nicbVDLSsNAFJ3UV62vqLhyM7QIFSEkLqouhKIblxXsA5pQJtNJM3QyCTMTIYSCH+EPuHGhiFu/w13/xuljoa0HLhzOuZd77/ETRqWy7bFRWFldW98obpa2tnd298z9g5aMU4FJE8csFh0fScIoJ01FFSOdRBAU+Yy0/eHtxG8/EiFpzB9UlhAvQgNOA4qR0lLPPHJDpHIxqrpJSE/hNbSuNHpmxbbsKeAyceakUi+7Z8/jetbomd9uP8ZpRLjCDEnZdexEeTkSimJGRiU3lSRBeIgGpKspRxGRXj49fwRPtNKHQSx0cQWn6u+JHEVSZpGvOyOkQrnoTcT/vG6qgksvpzxJFeF4tihIGVQxnGQB+1QQrFimCcKC6lshDpFAWOnESjoEZ/HlZdI6t5yaVbvXadyAGYrgGJRBFTjgAtTBHWiAJsAgBy/gDbwbT8ar8WF8zloLxnzmEPyB8fUD0OGXEw==</latexit>ˆ( ) = .9999
+0.4
+0.2
+0.0
+−0.2
+−0.2 0.0 0.2 0.4 0.6
+0.4
+1 r<latexit sha1_base64="lK0++T8aemS1LjU23S3LOBsBKIQ=">AAACAnicbVDLSsNAFJ3UV62vqCtxM7QIFSEkLlq7EIpuXFawD2hCmUwn7dDJJMxMhBCKGz/BX3DjQhG3foW7/o3Tx0KrBy4czrmXe+/xY0alsu2JkVtZXVvfyG8WtrZ3dvfM/YOWjBKBSRNHLBIdH0nCKCdNRRUjnVgQFPqMtP3R9dRv3xMhacTvVBoTL0QDTgOKkdJSzzxyh0hlYlx2SSwpi/gpvIRWrVar9sySbdkzwL/EWZBSveiePU3qaaNnfrn9CCch4QozJGXXsWPlZUgoihkZF9xEkhjhERqQrqYchUR62eyFMTzRSh8GkdDFFZypPycyFEqZhr7uDJEaymVvKv7ndRMVXHgZ5XGiCMfzRUHCoIrgNA/Yp4JgxVJNEBZU3wrxEAmElU6toENwll/+S1rnllOxKrc6jSswRx4cgyIoAwdUQR3cgAZoAgwewDN4BW/Go/FivBsf89acsZg5BL9gfH4DJGKY8g==</latexit>ˆ(✏) = .9997 r<latexit sha1_base64="sDpUVKZWq/FkvPk4A/A0ncWC7rM=">AAACAHicbVC7SgNBFJ2NrxhfqxYWNkOCEBHCrkVMCiFoYxnBPCC7hNnJJBky+2DmrrAsafwG/8DGQhFbP8Muf+PkUWjigQuHc+7l3nu8SHAFljUxMmvrG5tb2e3czu7e/oF5eNRUYSwpa9BQhLLtEcUED1gDOAjWjiQjvidYyxvdTv3WI5OKh8EDJBFzfTIIeJ9TAlrqmifOkEAqx0WnxwSQc3yNS9VqtdI1C1bJmgGvEntBCrW8c/E8qSX1rvnt9EIa+ywAKohSHduKwE2JBE4FG+ecWLGI0BEZsI6mAfGZctPZA2N8ppUe7odSVwB4pv6eSImvVOJ7utMnMFTL3lT8z+vE0K+4KQ+iGFhA54v6scAQ4mkauMcloyASTQiVXN+K6ZBIQkFnltMh2Msvr5LmZckul8r3Oo0bNEcWnaI8KiIbXaEaukN11EAUjdELekPvxpPxanwYn/PWjLGYOUZ/YHz9AFtZl+8=</latexit>ˆ( ) = .9998
+0.3
+0.2
+0.1
+0.0
+−1
+−0.1
+−2 −0.2
+−0.3
+−2 −1 0 1 −0.3 −0.1 0.0 0.1 0.2 0.3 0.4
+Hamiltonian Monte Carlo (rstan)
+Scatterplots of the posterior means estimated using the Hamiltonian Monte Carlo approach,
+as implemented in the R package rstan, against the posterior means estimated using the
+Metropolis-Within-Gibbs approach, as implemented in the R package bgms.
+C.2 Numerical Check II: Prior Recovery
+In a second numerical check, we verify that the Bayesian variable selection method
+works and is implemented correctly. In the absence of data, we know exactly what the
+target distribution of the MCMC procedure is, so a simple numerical check is to see if the
+procedures can recover the prior. To this end, we consider two checks. First, we check
+whether the MCMC procedure can recover the prior inclusion probabilities and the prior
+densities of the main differences in the two-group model. Second, we check whether the
+MCMC procedure can recover the prior inclusion probabilities and the prior densities of
+the pairwise differences in the two-group model. Since the procedure for estimating and
+selecting the pairwise interactions in the one-group model works in exactly the same way,
+we do not perform this additional check here.
+COMPARING ORDINAL MRFS 33
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+1 3 5 7 9
+Variable
+ytilibaborP
+noisulcnI
+roirP
+1.0
+MCMC
+Bernoulli (0.5)
+0.8
+0.6
+0.4
+0.2
+0.0
+−15 −10 −5 0 5 10 15
+Main Difference
+ytisneD
+evitalumuC
+roirP
+MCMC
+Cauchy
+The estimated prior inclusion probability of the main differences based on the outlined proce-
+dure is shown in the left panel, and the estimated prior density for one of the main difference
+parameters is shown in the right panel.
+For the numerical check of the main difference estimation and selection procedure,
+we consider a network with ten variables and three response categories (i.e., m = 2 main
+difference parameters per variable). This results in a total of twenty main difference pa-
+rameters and ten difference indicators to be sampled. We ran the MCMC procedure for one
+million iterations. The estimated prior inclusion probabilities for the ten difference indica-
+C2, and show that the method was able to recover both well. There is a slight discrepancy
+between the tails of the Cauchy prior and the recovered density using a normal proposal.
+This appears to be unique to the tails of the Cauchy distribution, as additional checks with
+other types of distributions did not reveal any differences.
+COMPARING ORDINAL MRFS 34
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0 10 20 30 40
+Variable Pair
+ytilibaborP
+noisulcnI
+roirP
+1.0
+MCMC
+Bernoulli (0.5)
+0.8
+0.6
+0.4
+0.2
+0.0
+−15 −10 −5 0 5 10 15
+Pairwise Difference
+ytisneD
+evitalumuC
+roirP
+MCMC
+Cauchy
+The estimated prior inclusion probability of the pairwise differences based on the outlined
+procedure is shown in the left panel, and the estimated prior density for one of the pairwise
+difference parameters is shown in the right panel.
+For the numerical check of the pairwise difference estimation and selection procedure,
+we consider a network with ten variables. This results in a total of 45 pairwise difference
+parameters and difference indicators to be sampled. We ran the MCMC procedure for one
+million iterations. The estimated prior inclusion probabilities for the 45 difference indicators
+and show that the method was able to recover both well. Again, there is a slight discrepancy
+between the tails of the Cauchy prior and the recovered density using a normal proposal.
+C.3 Numerical Check III: A Good Check on the Difference Bayes Factors
+Our first numerical check verified that the MCMC procedure was implemented cor-
+rectly by showing that the estimates from bgms were consistent with estimates from an im-
+plementation of rstan, and our second check showed that the variable selection methodology
+was able to recover the prior distributions for the difference indicators and the difference
+parameters. Next, we want to verify that the MCMC procedure for Bayesian hypothesis
+testing is implemented correctly. That is, that the inclusion Bayes factor for testing for
+the presence of differences in MRF parameters between two independent groups is cor-
+rectly computed. To implement this check, we cannot compare the bgms estimates with
+the rstan estimates because rstan cannot model the inclusion indicators. Therefore, we
+have to take a different approach and perform a numerical check proposed by Sekulovski,
+Marsman, and Wagenmakers (2024) based on two theorems about the properties of Bayes
+factors attributed to Alan Turing and Jack Good (e.g., Good, 1984).
+The first theorem states that the expected Bayes factor in favor of a false hypothesis
+is equal to one, i.e., (BF | H ) = 1, while the second theorem generalizes this result to
+01 1
+COMPARING ORDINAL MRFS 35
+higher order moments. Sekulovski, Marsman, and Wagenmakers (2024) have previously
+used this method to verify the computational accuracy of the inclusion Bayes factor for
+testing for the presence of edges in a single group, as proposed in Marsman et al. (in press).
+We extend this approach to evaluate the computation of Bayes factors for testing differences
+in category thresholds and pairwise interaction parameters between two independent groups
+using the difference selection approach.
+Following the procedure outlined by Sekulovski, Marsman, and Wagenmakers
+(2024), we simulate N = 50,000 data sets with p = 5 binary variables for two groups
+consisting of n = 250 cases each, both under H and H . Under H , we simulate the data
+1 0 1
+after setting all overall category threshold parameters λ to −0.5, all interaction parame-
+ic
+ters ϕ to 0.5, all threshold differences ϵ and pairwise differences δ to zero, but sampling
+ij ic ij
+one threshold difference ϵ and one pairwise difference δ from a Cauchy(0,1) distribution.
+11 45
+Under H we simulate the data by also setting ϵ and δ to zero. We run the MCMC
+0 11 45
+procedure on each of the simulated data sets with 10,000 iterations. Of the 50, 000 analyses,
+43, 632 were successful, and for each of them we compute the inclusion Bayes factor for the
+threshold differences for variable 1 and for the pairwise difference for variables 4 and 5.
+For data sets simulated under H , we compute the cumulative first and second
+moments of the Bayes factors in favor of H about the origin (i.e., (BF | H ) and
+0 01 1
+E 2
+(BF | H ) ) for both the threshold and partial association difference parameters. We
+01 1
+also compute the first moment of the Bayes factor in favor of H using the data simulated
+Number of data sets where H is true
+FB
+2.0 Threshold difference: 1.06 at final iteration
+1.5
+Partial Association difference: 1.03 at final iteration
+1.0
+Higher order moments:
+0.5
+| |
+E[BF H ] = 3.19;E[BF H ] = 3.12
+01 0 01 1
+| |
+E[BF H ] = 3.45;E[BF H ] = 3.83
+01 0 01 1
+0.0
+0 10000 20000 30000 40000
+Monte Carlo estimates of the expected Bayes factor BF as a function of the number of
+synthetic data sets generated under H . Both the threshold and the pairwise difference Bayes
+factors tend to one. In addition, the first and second order moments are similar.
+COMPARING ORDINAL MRFS 36
+the Bayes factor for the pairwise difference converge to one. In addition, the mean Bayes
+factor in favor of the true hypothesis for the data simulated under H is approximately
+equal to the second moment of the Bayes factor in favor of the false hypothesis for the data
+simulated under H . According to Sekulovski, Marsman, and Wagenmakers (2024), this
+result provides strong evidence for the correct calculation of Bayes factors.
+C.4 Numerical Check I, Continued: Parameter Estimates and Convergence
+Diagnosis
+The first numerical check verified that the MCMC procedure was correctly imple-
+mented in bgms, since the posterior means obtained from bgms and rstan were indistin-
+guishable. Here we examine the quality of the MCMC output of the two approaches.
+We generated a data set using the same setup we used for Numerical Check III
+under H . We ran the rstan software with its default settings: Four independent chains
+of 2, 000 iterations each, discarding the first 1, 000 iterations as a warm-up. Similarly, we
+ran four independent chains of 10, 000 iterations each for bgms, discarding the first 1, 000
+iterations as a warm-up. This is the default number of iterations for bgms, although unlike
+rstan, the bgms software runs a single chain by default.
+The posterior means and standard deviations for the estimates from the two proce-
+To assess the convergence of the Markov chains, we compute the Gelman-Rubin
+statistic (R, Gelman & Rubin, 1992), which compares the within-chain variance to the
+between-chain variance. R values close to one indicate convergence, but there is some
+variability in what is considered close to one, with cutoff values ranging from 1.1, 1.05,
+to 1.01 (e.g. Gelman & Rubin, 1992; Johnson, Ott, & Dogucu, 2022; Vehtari, Gelman,
+Simpson, Carpenter, & Bürkner, 2021). For our example, the R statistic is equal to or less
+than 1.01 for all parameters except one, which is equal to 1.02. This indicates satisfactory
+convergence for the two liberal cutoffs, but not for the most stringent, suggesting that a
+few more samples are needed.
+We also computed the effective sample size (n ), which estimates how many in-
+eff
+dependent samples from the posterior would carry the same information as the dependent
+samples produced by the two methods. The methods show a striking difference in effective
+sample sizes (n ), with the rstan samples consistently producing larger n values than
+eff eff
+the bgms samples, even though the former ran for far fewer iterations than the latter. The
+Hamiltonian Monte Carlo (HMC) procedure in rstan produces much less autocorrelation
+between successive states of the Markov chain than the adaptive Metropolis-Hastings within
+Gibbs procedure in bgms. Note that the n values for the Stan model for some of the pa-
+eff
+rameters exceed the total number of iterations of the sampler (excluding the warm-up). For
+some estimation problems in Stan, HMC can produce such anticorrelated draws, which can
+cause the effective sample size to exceed the number of iterations (Stan Development Team,
+2024b). This suggests that while the Markov chain converges quickly, it requires many
+samples to efficiently explore the posterior distribution, e.g., to estimate the tails of the
+posterior distribution. For this reason, we usually suggest running the MCMC procedure
+for many more iterations (e.g., Huth et al., 2024).
+COMPARING ORDINAL MRFS 37
+Posterior means and standard deviations, and convergence diagnostics, from bgms and
+rstan output. Results are rounded to two decimal places.
+Parameter Mean SD n R
+eff
+bgms rstan bgms rstan bgms rstan bgms rstan
+λ -0.37 -0.37 0.21 0.22 2185 3467 1.00 1.00
+1 0
+λ -0.32 -0.32 0.21 0.21 2023 3614 1.00 1.00
+2 0
+λ -0.38 -0.37 0.21 0.21 2043 3507 1.01 1.00
+3 0
+λ -0.72 -0.72 0.21 0.22 2241 3870 1.01 1.00
+4 0
+λ -0.23 -0.23 0.21 0.21 2147 3949 1.00 1.00
+5 0
+ϵ 0.43 0.42 0.38 0.38 1305 3645 1.01 1.00
+1 0
+ϵ 0.17 0.17 0.37 0.37 1331 4063 1.00 1.00
+2 0
+ϵ -0.56 -0.55 0.39 0.38 1143 3980 1.00 1.00
+3 0
+ϵ -0.34 -0.35 0.37 0.39 1275 3945 1.00 1.00
+4 0
+ϵ -0.71 -0.71 0.41 0.40 1042 4159 1.00 1.00
+5 0
+ϕ 0.35 0.36 0.16 0.16 1684 4894 1.01 1.00
+2 1
+ϕ 0.59 0.59 0.15 0.16 1854 4587 1.02 1.00
+3 1
+ϕ 0.85 0.85 0.15 0.15 1866 4628 1.00 1.00
+4 1
+ϕ 0.35 0.35 0.16 0.16 1693 4463 1.00 1.00
+5 1
+ϕ 0.58 0.58 0.16 0.15 1925 4919 1.01 1.00
+3 2
+ϕ 0.67 0.66 0.15 0.16 1920 4492 1.00 1.00
+4 2
+ϕ 0.17 0.17 0.15 0.16 1870 4778 1.01 1.00
+5 2
+ϕ 0.26 0.27 0.15 0.16 1854 5425 1.00 1.00
+4 3
+ϕ 0.45 0.45 0.15 0.15 1833 4747 1.01 1.00
+5 3
+ϕ 0.54 0.54 0.15 0.16 1975 4671 1.01 1.00
+5 4
+δ 0.12 0.12 0.29 0.29 1743 4412 1.00 1.00
+2 1
+δ 0.07 0.07 0.28 0.29 1772 5335 1.01 1.00
+3 1
+δ 0.18 0.18 0.28 0.29 1934 4712 1.00 1.00
+4 1
+δ 0.24 0.25 0.29 0.30 1701 4870 1.00 1.00
+5 1
+δ 0.24 0.23 0.28 0.28 1813 5514 1.00 1.00
+3 2
+δ 0.12 0.13 0.28 0.29 1905 5049 1.00 1.00
+4 2
+δ -0.38 -0.39 0.29 0.28 1552 4417 1.00 1.00
+5 2
+δ -0.16 -0.15 0.29 0.29 1744 4655 1.00 1.00
+4 3
+δ 0.73 0.72 0.29 0.30 1826 4671 1.00 1.00
+5 3
+δ -0.19 -0.20 0.29 0.29 1674 4543 1.00 1.00
+5 4
+Appendix D
+Numerical Experiments with Sparse Network
+Here we report the results of a variant of the numerical experiments reported in the main
+text in Section 5. We have modified the data generating model so that all interaction
+parameters that are equal across groups are set to zero. Since 54.5% of the interaction
+parameters were equal across groups, this means that 54.5% of the interaction parameters
+are equal to zero in both groups in this variant of the simulation study.
+data generating model. We see that all Bayesian methods perform worse and the NCT
+method performs better, which leads to all methods performing about equally well.
+We see that the ROC curves for the NCT appear to be more discrete. This is due to
+COMPARING ORDINAL MRFS 38
+the regularization and the resulting shape of the sampling distribution of the permutation
+test. If almost the entire mass of the sampling distribution is at 0, then α cutoffs up to close
+to 1 will still result in low FPRs. However, at α = 1, we force FPR=1, TPR=1, leading
+to the “jump” in the ROC curves. This jump occurs for higher FPR values for higher N .
+This makes sense: The higher N , the fewer estimates are set to zero, allowing higher FPRs
+even for cutoffs with α < 1.
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+FPR
+RPT
+Interactions (N = 150)
+1.0
+bgms (Cauchy = 0.5)
+bgms (Cauchy = 1)
+bgms (Cauchy = 1.5)
+0.8
+NCT
+BGGM
+0.6
+0.4
+0.2
+a =
+50% Inclusion / 0.05
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+FPR
+RPT
+Interactions (N = 300)
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+FPR
+RPT
+Interactions (N = 600)
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+FPR
+RPT
+Interactions (N = 1200)
+ROC curves plotting the false positive rate (FPR; x-axis) against the true positive rate (TPR;
+y-axis) for detecting group differences in interaction parameters for the method proposed in
+this paper (implemented in bgms) with the scale of the Cauchy priors set to either 0.5, 1,
+or 1.5, the network comparison test, and the group comparison implemented in BGGM. The
+single point on each ROC curve indicates the common cutoffs of 50% inclusion probability
+and α = 0.05 for the NCT. The four panels show the results of the same methods for
+different sample sizes per group. The data generating model is the same as in the numerical
+experiments in the main text, but the network is sparse (see text).
+COMPARING ORDINAL MRFS 39
+We also replicated the performance for detecting group differences in the threshold
+have the same ROC curves, but for a fixed inclusion probability cutoff they differ in how
+liberal they are. Compared to the results in the main text, we see that the performance in
+recovering group differences in thresholds is significantly higher when the data generating
+network is sparse.
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+FPR
+RPT
+Thresholds (N = 150)
+1.0
+bgms (Cauchy = 0.5)
+bgms (Cauchy = 1)
+bgms (Cauchy = 1.5)
+0.8
+0.6
+50% Inclusion
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+FPR
+RPT
+Thresholds (N = 300)
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+FPR
+RPT
+Thresholds (N = 600)
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+FPR
+RPT
+Thresholds (N = 1200)
+ROC curves plotting the false positive rate (FPR; x-axis) against the true positive rate (TPR;
+y-axis) for detecting group differences in threshold parameters for the method proposed in
+this paper (implemented in bgms), with the scale of the Cauchy priors set to either 0.5, 1,
+or 1.5. The single point on each ROC curve indicates the frequent cutoff of 50% inclusion
+probability. The four panels show the results of the same methods for different sample sizes
+per group. The data generating model is the same as in the numerical experiments in the
+main text, but the network is sparse (see text).

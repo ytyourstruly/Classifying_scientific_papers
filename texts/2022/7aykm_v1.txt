@@ -1,0 +1,529 @@
+A cognitive computational approach to social and collective
+decision-making
+1,2,∗† 1,2,∗† 3
+Alan Novaes Tump , Dominik Deffner , Timothy J. Pleskac ,
+2,4,5 1,2
+Pawel Romanczuk , Ralf H. J. M. Kurvers
+Center for Adaptive Rationality, Max Planck Institute for Human Development, Berlin, Germany
+Science of Intelligence, Technische Universität Berlin, Berlin, Germany
+Department of Psychology, University of Kansas, Lawrence, Kansas, United States of America
+Institute for Theoretical Biology, Department of Biology, Humboldt Universität zu Berlin, Berlin, Germany
+Bernstein Center for Computational Neuroscience Berlin, Berlin, Germany
+Corresponding authors: tump@mpib-berlin.mpg.de, deffner@mpib-berlin.mpg.de
+Equal contributions
+June 19, 2023
+Abstract
+Collective dynamics play a key role in everyday decision-making. Whether so-
+cial influence promotes the spread of accurate information and ultimately results
+in adaptive behavior or leads to false information cascades and maladaptive social
+contagion strongly depends on the cognitive mechanisms underlying social inter-
+actions. Here we argue that cognitive modeling, in tandem with experiments that
+allow collective dynamics to emerge, can mechanistically link cognitive processes
+at the individual and collective levels. We illustrate the strength of this cogni-
+tive computational approach with two highly successful cognitive models that have
+been applied to interactive group experiments: evidence accumulation and rein-
+forcement learning models. We show how these approaches make it possible to
+simultaneously study (i) how individual cognition drives social systems, (ii) how
+social systems drive individual cognition, and (iii) the dynamic feedback processes
+between the two layers.
+Keywords: cognitive modeling; drift-diffusion model; reinforcement learning; groups; col-
+lective dynamics
+Many decisions are embedded in social contexts, being it sharing news on social media, choosing
+an investment fund, or deciding whether or not to cross a red light in the presence of others are just
+a few examples (Cialdini and Goldstein, 2004). Individuals are embedded within groups, platforms,
+and other social entities, which they both influence and are influenced by; and these processes of
+reciprocal social influence shape the dynamics of social systems. Indeed, the collective intelligence
+phenomena that emerge from these interactions underpin the immense ecological success—but also
+destructiveness—of the human species (Henrich and McElreath, 2003; Tomasello et al., 1993). In
+today’s interactive world, these dynamically-evolving social processes seem more important than
+ever, both on- and offline. We argue that to understand collective systems, research needs to adopt
+approaches that allow complex social dynamics to evolve—that is, to study simultaneously (i) how
+individual cognition drives social systems, (ii) how social systems drive individual cognition, and (iii)
+the interaction between both layers. We argue that to test competing hypotheses in such complex
+systems, computational approaches are needed that explicitly account for this dynamic feedback
+across levels.
+Though it is widely agreed that the behavior of individuals is the basis of all collective dynam-
+ics, many influential models of collective behavior, such as the Vicsek model (Liggett, 1997) or the
+Voter model (Castellano et al., 2009b), make highly idealized, simplifying assumptions about the
+underlying individual decision processes. For example, borrowing concepts from statistical physics
+or epidemiology, these models assume that individuals interact like Brownian particles (Romanczuk
+et al., 2012) or that information and opinions spread like virulent diseases (Cavalli-Sforza and Feld-
+man, 1981). Such assumptions facilitate mathematical tractability and allow modeling of behavior
+of collectives at large scales. These approaches typically focus on emergent patterns in collectives
+with very large numbers of individuals. These simulation-driven analyses have provided valuable
+insights into collective phenomena such as swarms or large herds (Castellano et al., 2009a). However,
+they typically neglect individual cognition, assuming that large collectives show general properties
+irrespective of the details of the individual-level decision process. Currently, empirical studies on
+social cognition have made great progress in understanding the cognitive mechanisms of decision
+processes in social settings—for example, showing when individuals seek social information (Kendal
+et al., 2018) and how social influence can alter evaluation processes (Germar et al., 2016) and risk
+attitudes (Ciranka and Van den Bos, 2019). Although such studies provide detailed insights into how
+cognition acts in social settings, very few studies take a dynamic approach to study how cognitive
+processes shape—and are shaped by—collective dynamics over time. Instead, social cognition studies
+typically look at static—often simulated—sources of social information and are unable to accom-
+modate the complexity of multiple individuals interacting dynamically and repeatedly in real-time.
+We argue that (i) designing more “dynamic” cognitive behavioral experiments where participants
+repeatedly interact in real-time (embracing natural variation in the timing of decisions) and respond
+to the unfolding social environment created by the decisions of others (as opposed to more “static”
+experiments which constrain decision timing and prevent recurrent feedbacks between the choices
+of group members); and (ii) modeling the cognitive processes of such dynamically interacting indi-
+viduals is a fruitful path forward, making it possible to describe, understand, and predict collective
+outcomes (Krause et al., 2021).
+Computational cognitive modeling has become firmly established as an invaluable tool for the
+study of human decision-making (see Lee and Wagenmakers (2014), Farrell and Lewandowsky (2018)
+and Wilson and Collins (2019) for introductions to cognitive modeling). We argue that taking such
+models to the level of social interactions will prove instrumental for integrating theories across dis-
+ciplines such as psychology, biology, and economics within a single framework. Recent advances in
+cognitive modeling and the increasing availability of software such as Stan (Carpenter et al., 2017),
+PyMC3 (Salvatier et al., 2016), and Turing (Ge et al., 2018) allows formalizing and testing models to
+capture these complex interactions (Lee and Wagenmakers, 2014; Farrell and Lewandowsky, 2018),
+and thus to investigate the relationship between individual cognition and collectives bottom-up:
+The models take cognitive processes at the individual level as the start point while simultaneously
+accounting for the collective dynamics that these processes create. This approach can thus bridge
+the gap between individual and collective dynamics in social groups. Starting from formal models
+of individual cognition and mechanistically linking the individual and collective level, this approach
+makes it possible to analyze dynamic behavior in social experiments and to test quantitative pre-
+dictions derived from different theories against each other.
+We illustrate the strength of this approach with two classes of models that have been highly
+successful in explaining individual decision-making: (i) evidence accumulation models, predicting
+trial-level choices and response times, and (ii) reinforcement learning models, predicting dynamic
+learning process over repeated choices. Throughout, we highlight novel research directions.
+Modeling Evidence Accumulation in Collectives
+From individual to social cognitive modeling
+Timing plays a central role in a wide range of decision-making tasks, e.g., animals deciding whether
+to escape or continue foraging under predation risk or pedestrians deciding whether to wait or cross a
+busy street. The dominant theoretical framework to account for the underlying individual decision
+processes is that of evidence accumulation models. These models describe the decision-making
+process as a continuous process of accumulating noisy evidence until a decision threshold is reached
+and a decision is made. The most prominent representative of evidence accumulation models is the
+drift-diffusion model (DDM), which captures the choice process between two alternatives (Ratcliff
+and McKoon, 2008; Ratcliff et al., 2016). It assumes that individuals start with an initial evidence
+state, which can favor one of the decision alternatives (described by the start point). Over time,
+they gather further information, which changes the evidence state (described by the drift rate) until
+the evidence for one alternative reaches a level that triggers a decision (by hitting the upper or
+lower decision threshold; see Fig. 1A). This continuous evidence accumulation process is typically
+approximated by assuming small discrete time steps (∆t) with the change in the evidence state L
+being described by:
+L(t + ∆t) = L(t) + δ × ∆t + ∆t × (cid:15), (1)
+with δ being the drift rate describing the rate of evidence accumulation per unit time with positive
+(negative) values describing a drift towards the upper (lower) decision threshold. If one option is
+correct, the drift rate typically describes the rate of evidence accumulation for the correct choice.
+The parameter (cid:15) adds Gaussian noise and makes the choice process stochastic (i.e., the diffusion
+process).
+By providing an account for response time distributions and choice probabilities, the DDM is
+widely used to study individual cognitive processes across many domains (Ratcliff et al., 2016;
+Krajbich and Rangel, 2011). To date, the large majority of DDM applications have studied single
+decision makers. Yet, many choices are made under social influence, with individuals able to observe
+the choices of others to inform their own decisions. Animals often observe the flight responses or food
+choices of conspecifics and pedestrians observe others dashing across the road. In such situations,
+early choices can cascade through the group via social contagion (Bikhchandani et al., 1998; Mann,
+2018; Poel et al., 2022; Tump et al., 2020). The collective outcome of these dynamics is strongly
+influenced by how individuals integrate information over time, and how they time their decisions. As
+DDMs can account for both these processes, extending such models to the domain of social dynamics
+is extremely promising.
+The integration of personal and social information over time can be described as a dynamic
+process whereby multiple individuals simultaneously collect noisy evidence (see equation 1). Once
+an individual makes a decision, this decision becomes observable for undecided individuals and can
+be incorporated as further evidence (Fig. 1A). Formally, the incorporation of this additional evidence
+can be described by a change in the drift rate δ(t) as a function of the majority size M (t) of the
+individuals who already decided at time point t:
+δ(t) = δ + δ (M (t)). (2)
+p s
+Thus, the drift rate δ consists of a personal drift rate δ and a social drift rate δ describing the
+p s
+uptake of non-social and social information, respectively. The former describes personal information
+intake from the task-specific stimuli, while the latter describes the social influence which changes
+(left) by accounting for the integration of personal and social information during the choice process
+(right). (A) Five individuals gather noisy evidence for options “A” (here the correct decision)
+and “B” (the incorrect decision). When an individual hits a decision threshold (i.e., red dashed
+lines), their choice becomes observable (indicated by dots) for the undecided individuals. These
+undecided individuals can use this information as additional information by drifting to the decision
+threshold favored by the majority. (B) If group members vary in their ability to extract personal
+information (i.e., their personal drift rate), those with a higher ability are expected to make faster
+and more accurate choices. This allows groups to self-organize, whereby accurate individuals provide
+high-quality information to less skilled individuals. (C) If group members differ in the amount of
+information needed to make a decision (i.e., different thresholds), individuals with lower thresholds
+are expected to make faster but less accurate choices, undermining the accuracy of later-deciding
+with the majority size M (t):
+M (t) = N (t) − N (t). (3)
+A B
+where N (t) and N (t) are the number of individuals who have already decided for the options “A”
+A B
+or “B”, respectively. For the simulations in Fig. 1A-C we assumed a linear relationship between
+the majority size and social information uptake (i.e., δ = s × M (t)), with s scaling the strength of
+social information use. In reality, individuals may use more complex social information integration
+strategies, as discussed later.
+The social DDM links evidence accumulation at the individual level to the collective level, ex-
+plicitly modeling the timing of choices and the arrival of new social information, thereby shedding
+light on the information flow in sequentially-deciding collectives (Bidari et al., 2022; Caginalp and
+Doiron, 2017; Karamched et al., 2020a,b; Tump et al., 2020). This framework goes beyond previous
+models on information cascades, which usually assume a random decision order (Bikhchandani et al.,
+1998; Deneubourg et al., 1990; Sumpter and Pratt, 2009, but see Vicente-Page et al., 2018). Such
+models neglect the influence of individual cognitive processes on strategic decision timing. Whether
+individuals decide early or late can be the result of distinct cognitive processes, such as individual dif-
+ferences in response biases (e.g., starting evidence accumulation closer to one option), personal drift
+rate, thresholds (a.k.a., speed–accuracy trade-offs), or the integration of social information (Bogacz
+et al., 2010). Importantly, these cognitive processes are predicted to have different ramifications at
+the collective level. For example, individual differences in how quickly group members can extract
+information for the correct option (i.e., variation in expertise) is described by individual differences
+in the personal drift rate δ . Such individual differences in expertise are expected to promote collec-
+tive intelligence, as they will allow “expert” individuals to make early, accurate choices, which can
+then be adopted by later-deciding, less skilled individuals (Fig. 1B). But the social DDM can also
+predict when social interactions might undermine accuracy. For example, individuals’ preferences
+for speed or accuracy are reflected in their decision thresholds with higher thresholds resulting in
+more accurate, but slower, decisions. If group members vary in these preferences, those individuals
+with low thresholds are predicted to make early, error-prone choices, thereby jeopardizing the accu-
+racy of individuals with higher thresholds (Fig. 1C). The social DDM allows testing these different
+predictions by fitting the model to empirical data. Thereby it can tease apart distinct decision
+processes, paving the way for more in-depth modeling and understanding of information cascades
+or other social processes.
+Strategies underlying social information integration
+How individuals integrate social information crucially determines the outcome of social interactions.
+Applying a DDM perspective can facilitate a detailed mechanistic understanding and provide novel
+insights into decision processes in sequentially-deciding groups, including (i) social learning rules,
+(ii) the information present in response order and speed, and (iii) information flow.
+Social psychology has a long tradition of investigating how the number of individuals displaying
+a certain behavior influences the likelihood of another individual adopting that behavior (Asch,
+1951; Milgram et al., 1969; Morgan and Laland, 2012). This relationship has been speculated to
+follow different forms, such as a saturating power function (Latané, 1981) or an S-shaped function
+(Bond, 2005). Yet few studies allowed social information to arise from the interactions between
+group members. In more realistic settings, how social information arises will crucially depend on the
+cognitive strategies of the group members. For example, individuals using quorum thresholds will
+down-weight small majorities but ramp up copying once the majority reaches a critical size. The
+choices of these groups will initially be relatively independent, allowing individual errors to cancel
+out and later-deciding individuals to benefit from often accurate majorities. In contrast, the choices
+of groups relying on strong copying of small majorities will be highly dependent, increasing decision
+speed, but at the cost of accuracy (Sumpter, 2006; Sumpter and Pratt, 2009). Thus, how much
+weight individuals give to an observed choice depends on when it was observed and the implemented
+strategy. In some contexts, choices might be observed before the process of personal evidence
+accumulation starts. In this case, the social evidence can enter the choice process by biasing the
+start point instead of the drift which can push people towards confirming the social source without
+thoroughly evaluating their personal information (Germar and Mojzisch, 2019). By operationalizing
+these strategies with the social DDM, future research can measure and test the use of such strategies.
+For example, the diminishing effect of each additionally observed choice described by Latané (1981)
+via a saturating power function—but also other relationships—can be implemented via the social
+drift rate (see also Tump et al., 2020):
+δ = s × M (t) , (4)
+with s scaling the strength of social influence and q influencing the shape of the power function.
+Freely timed decisions allow individuals to make inferences from response times. For example,
+the speed of an observed decision is used to infer the decision quality (Frydman and Krajbich, 2022).
+Similarly, the order in which people make decisions can convey information. For example, a choice
+that diverges from the current majority is predicted to be based on strong personal information
+(Mann, 2018). Even the absence of decisions can convey information. When group members start
+with a bias toward one option, a long period without a choice may indicate that individuals have
+gathered good evidence for the initially less-preferred option (Karamched et al., 2020b). Allowing
+participants to freely time their decision can thus provide a richer and more realistic understanding
+of social systems.
+Taking such a dynamic approach can cast light on the mechanisms driving information flow.
+Previous work has shown that relying on social information in sequentially-deciding groups can
+increase accuracy (Goeree et al., 2007; Mann, 2021; Tump et al., 2020; Vicente-Page et al., 2018),
+but that it can also promote false information cascades or maladaptive herding (Anderson and Holt,
+1997; Baddeley, 2010; Bikhchandani et al., 1998; Toyokawa et al., 2019; Weizsäcker, 2010). The
+DDM has the potential to bring together such results under one framework. One driving factor
+here is the order in which individuals decide, whereby benefits of social interactions emerge when
+individuals coordinate their response time according to information quality (i.e., deciding early/late
+when possessing strong/weak evidence), but fail to emerge when they do not (Gul and Lundholm,
+1995; Kurvers et al., 2015; Tump et al., 2020; Vicente-Page et al., 2018; Zhang, 1997).
+The emergence of biases in social systems
+The DDM framework has been used extensively to understand the emergence of biases at the indi-
+vidual level (Gold and Shadlen, 2007; Leite and Ratcliff, 2011; Mulder et al., 2012), but few studies
+have looked at biases in social systems. To illustrate, consider a police officer approaching a poten-
+tially dangerous situation, and needing to decide whether or not to shoot. Previous research has
+studied which aspects of the cognitive process can explain biases in single police officers, showing
+that the start point and evaluation of incoming information depend on the suspect’s race (Pleskac
+et al., 2018; Johnson et al., 2018). In reality, however, the decision to shoot is rarely made in iso-
+lation. Most police precincts in the United States dispatch at least four officers when a suspect is
+expected to be armed. Despite the importance of the social context, it remains unknown how biases
+play out when two or more police officers approach a potentially dangerous scene. Creating realistic
+social scenarios (e.g., interactive shooting simulations) that acknowledge the role of timing are key
+for understanding these issues.
+The DDM framework can also be used to generate predictions for social contexts, based on
+modeling the behavior of single individuals. For example, experimental research on individual police
+officers in shooting simulators has shown that the decision to shoot is typically made faster than the
+decision not to shoot, explained by a bias in the start point (Pleskac et al., 2018). Such asymmetries
+in decision timing—which appear in various social contexts (Tump et al., 2022a)—are predicted to
+have consequences on which decisions (and potential biases) are amplified in a social context, because
+early-arriving social information typically exerts a stronger influence on the collective (Tump et al.,
+2022a,b). The prediction at the collective level is thus that having multiple police officers in a
+shooting simulator will increase the likelihood to shoot.
+Individual heterogeneity, social networks and norms
+It is well known that individuals differ systematically in many key aspects of cognition (Kanai and
+Rees, 2011), including how they react to standardized social information (Molleman et al., 2019,
+2020). However, few studies have quantified such individual differences in dynamic social systems,
+let alone studied their importance at the collective level. Cognitive models accounting for social
+interactions—such as the social DDM— allow to systematically quantify individual differences and
+their importance for social systems.
+Another key dimension on which individuals may vary is the number and structure of social
+contacts. The topology of social networks is known to strongly influence the dynamics of information
+flow (Galesic et al., 2023). By allowing freely timed decisions, future research could address questions
+such as how the speed of a decision interacts with a network structure and which structures promote
+(or prevent) the influence of early-deciding individuals (Gross and Blasius, 2008).
+Lastly, the behavior of others can also convey normative expectations. How such expectations
+are incorporated into the choice process, influences early choices and, thereby, the social dynamics
+are largely open questions. For example, individual tendencies to behave selfishly or cooperate have
+been described to influence the start point (Chen and Krajbich, 2018), while social expectations
+can bias the drift rate (Germar and Mojzisch, 2019; Toelch et al., 2018), with different expected
+consequences for emerging dynamics. As normative influence plays a central role in many everyday
+social interactions, research is needed to investigate how the cognitive underpinnings promote or
+discourage undesired social dynamics such as jaywalking, collective violence, and hate speech (Krause
+et al., 2021).
+Whereas the DDM models two-alternative forced choice tasks, the approach could be extended
+to other tasks. For example, models accounting for go/no-go tasks provide an interesting extension
+(Ratcliff et al., 2018) as only the “go” action is observable by others which causes an asymmetry in
+information flow in collectives. Evidence accumulation models have also been extended to tasks with
+more than two alternatives (Krajbich and Rangel, 2011; Kvam, 2019). Other extensions can account
+for different types of social information exchange—for example, directly communicating evidence
+states (Bidari et al., 2022). Jointly, these models offer the potential to develop tools that shed new
+light on temporal coordination and information flow in a much broader range of social systems by
+explicitly modeling the process of personal and social information accumulation.
+Modeling Reinforcement Learning in Collectives
+Individual and social learning
+Collective dynamics are not limited to single choices (astypically assumed in evidence accumulation
+models), they often unfold throughout many successive choices. To succeed in complex and hetero-
+A)
+Option A or Option B
+B)
+C)
+Payoff
+Trial
+a social reinforcement learning (RL) model. Five individuals repeatedly choose between options
+¯ ¯
+“A” and “B” which differ in their average payoffs (A = 15 and B = 20 points, with SD = 3;
+AB
+see illustration on the left). Following their choices (colored dots), individuals receive payoffs and
+update their latent values (i.e., beliefs about the value of both options; colored lines; see equation
+5). After half of the trials, the relative payoffs change and option “A” produces, on average, a
+higher payoff. In addition to this personal information, individuals can observe the choices of other
+group members and integrate these social cues depending on their learning strategy (see equations
+7 and 8). (A) Without social learning (social learning weight σ = 0), only some individuals learn
+which option produces the highest payoff (indicated by shaded areas). (B) With low conformist
+social learning (σ = 0.3, conformity exponent θ = 1.5), all individuals initially learn that option B
+produces a higher payoff and are able to successfully track the change in payoffs. (C) With high
+conformist social learning (σ = 0.7, θ = 5), individuals quickly converge on the initially better
+option, but continue to choose this option after the change in payoffs, illustrating the danger of
+maladaptive herding in social systems. Individual RL parameters were fixed with updating-rate
+parameter α = 0.3 and exploration/exploitation-rate parameter β = 0.18 (see equations 5 and 6).
+geneous environments, organisms must continually learn from the consequences of their actions and
+adjust their behaviors accordingly. Social organisms can learn not only from direct interaction with
+the environment but also from the observed choices and behaviors of others. Such social learning
+allows groups to pool information and to adapt to changing conditions more quickly and reliably
+than individual learners (compare Figs. 2A and 2B; Boyd et al., 2011; Kendal et al., 2018). How-
+ever, similar to information cascades in the social DDM, excessive social learning can also result in
+maladaptive herding, where collectives continuously copy each other and fail to track the state of
+the environment (see Fig. 2C; Aoki and Feldman, 2014; Kendal et al., 2018; Rogers, 1988).
+To standardize the social information available to participants, many experimental studies in-
+vestigate social learning in relatively simplistic settings, where social information either comes from
+earlier participants or is not truly “social” but created by the experimenter (Hoppitt and Laland,
+2013; Mesoudi, 2021). This approach has provided important insights into the mechanisms and
+strategies individuals use to learn from others (see Kendal et al., 2018, for review). However, it
+does not allow the dynamic collective consequences of individual learning strategies to be studied.
+To uncover how individuals use social information and how different social learning strategies shape
+collective performance, researchers need to study the use of social information in social environments
+created by individuals, that is, in scenarios where social information arises endogenously from the
+behavior of others in interacting groups.
+Dynamic inference for dynamic collectives
+Reinforcement learning (RL) provides a powerful computational framework that links observed
+choices to latent individual-level value updating and translates the influence of such latent val-
+ues (i.e., estimated payoffs for each choice option) into individual choice probabilities (see Sutton
+and Barto, 2018, for a general introduction). Standard individual-level RL models consist of two
+basic components: (1) an updating equation describes how latent values (“Q-values”) of different
+behavioral options i change over time as a function of reward prediction errors (i.e., differences
+between received rewards π and reward predictions):
+i,t−1
+Q = Q + α(π − Q ). (5)
+i,t i,t−1 i,t−1 i,t−1
+The updating-rate parameter α determines the relative weight of recent experiences and thus influ-
+ences how quickly individuals update their values based on recent experiences (colored lines in Fig. 2
+illustrate latent value updating).
+(2) A softmax choice rule translates the latent values of different options (here shown for two
+options) into probabilities that those options are chosen:
+exp(βQ )
+i,t
+P = . (6)
+i,t
+(cid:80)
+exp(βQ )
+m,t
+m=1
+The exploration/exploitation-rate parameter β describes how strongly differences in latent values
+determine choices and thus influences an individual’s tendency to select new options over relying on
+previously rewarding behaviors.
+Linking individual-level learning to group-level adaptation
+Extending RL models to dynamic social situations makes it possible to identify mechanistic links
+between individual-level (non-social and social) learning, the social information that such learning
+creates, and the resulting group-level consequences (e.g., Deffner et al., 2020; McElreath et al., 2005,
+2008; Toyokawa et al., 2019; Toyokawa and Gaissmaier, 2022). Social RL models allow different
+observable social cues to also influence the probability that a certain option is chosen:
+exp(βQ )
+i,t
+P = (1 − σ) + σP . (7)
+i,t S,i,t
+(cid:80)
+exp(βQ )
+m,t
+m=1
+An additional parameter σ represents the relative weight individuals place on social information as
+opposed to their own experience and the social choice probability P can include the influence of
+S,i,t
+several option- or model-specific social cues such as frequency-dependent (or “conformist”) copying
+(Hoppitt and Laland, 2013; McElreath et al., 2005):
+i,t−1
+P = , (8)
+S,i,t
+(cid:80)
+m,t−1
+m=1
+where n is the number of group members previously choosing option i and θ is the conformity
+i,t−i
+for simulation and plotting code).
+Explicitly modeling the learning and decision processes of individuals in collectives can provide
+mechanistic insights into collective adaptation and decision-making. For example, it has long been
+unclear why groups sometimes exhibit collective intelligence and other times maladaptive herding.
+Toyokawa et al. (2019) studied interactive group experiments in which individuals needed to learn
+which of three slot machines produced the highest payoff. Fitting social RL models, they showed
+that the individual-level social learning strategies explained when groups succeeded (or failed) in
+adapting to a changing environment (see also Fig. 2). Specifically, a weak conformist bias allowed
+groups to perform well in stable environments, while retaining flexibility when environmental con-
+ditions changed. In harder tasks, where the payoff distributions showed more overlap, individuals
+showed a stronger conformist bias, and, thus, tended to stick with an outdated maladaptive solution
+when conditions changed. Further increasing the realism (and complexity) of such experiments,
+Deffner et al. (2020) allowed for dynamically-changing group compositions through movement be-
+tween groups. Using time-varying social RL models, they showed that individuals relied heavily on
+conformist social learning after entering a new group with experienced group members, but more on
+personal information when group members did not provide useful social information. In simplifying
+group dynamics, previous studies may, therefore, have underestimated the amount of social learning
+occurring in more realistic, dynamic groups with different experience levels.
+Computational models can also help to better understand seemingly paradoxical effects of indi-
+vidual strategies. For example, many RL studies have found that single individuals’ value-updating
+tends to focus on recent experiences, which can bias them to choose safe options that are sub-optimal
+in the long run. Because conformity tends to amplify individual biases, one might expect collectives
+to display even stronger biases toward safe, sub-optimal, behavior. If conformist social influence was
+strong, Toyokawa and Gaissmaier (2022) indeed found that individual risk aversion was amplified in
+interactive groups. However, if conformist influence was weaker than personal risk aversion, social
+learning, surprisingly, increased exploration and promoted favorable risk taking. Only by study-
+ing how the learning and choice biases of multiple individuals unfold in dynamically-interacting
+collectives can we understand when collectives mitigate, rather than amplify, individually-biased
+decision-making.
+There is a rich diversity of social learning strategies beyond conformity, such as prestige-based,
+success-based, similarity-based, and novelty-based learning (Kendal et al., 2018) that can equally be
+integrated into social RL models via equation 7. The collective consequences of such strategies are
+still largely unexplored. For instance, preferentially learning from high-prestige individuals might
+prove adaptive for the collective when prestige accurately reflects past performance and generalizes
+to novel tasks, but maladaptive in hierarchical groups where this is not the case. Also, social learning
+strategies do not operate in isolation but jointly influence individuals’ choices. Future research could
+investigate how different social learning strategies in concert allow collectives to adapt to changing
+environments (or prevent them from doing so). Lastly, group dynamics and social network structures
+have proven to be important drivers of social learning and collective adaptation (Chimento et al.,
+2021; Deffner and McElreath, 2022; Derex and Mesoudi, 2020; Galesic et al., 2023). Experiments on
+social RL have recently started to move beyond closed groups, but future studies could allow even
+more complex turnover and network dynamics to emerge, making it possible to investigate how such
+effects might interact with individual cognition.
+Cognitive details matter: decision biasing, value shaping, and meta-learning
+Recent work in cognitive neuroscience has generated novel insights into the mechanisms underpinning
+people’s abilities to learn from others (see Olsson et al., 2020, for a review). This line of research
+has suggested how cognitive details might matter for collective outcomes. For example, in all social
+RL models that have been applied to interactive group experiments (see also equation 7), social
+information directly influences the probability that a certain option is chosen without changing the
+latent values (e.g., Deffner et al., 2020; McElreath et al., 2005; Toyokawa et al., 2019; Toyokawa
+and Gaissmaier, 2022). As an alternative to such “decision-biasing” social learning, Najar et al.
+(2020) have proposed a “value-shaping” process, where social information directly enters the latent
+value estimation of different options such that observed choice options become inherently more
+“valuable” to participants (implemented through extension of equation 5) rather than only affecting
+their behavior. The authors present experiments that suggest that value shaping might explain
+human choice behavior in their task better than decision biasing or other social learning models.
+More empirical research is needed on the relative importance of decision biasing and value shaping
+and on their collective-level consequences, which can be tested through evolutionary simulations
+and dynamic group experiments. Value shaping might lead to faster learning in stable environments
+by aligning the internal expectations of individuals. In stochastic environments, however, decision
+biasing might be more adaptive, as individuals influence each others’ choices but still update their
+beliefs about the world based on their personal experience.
+Lastly, going beyond social RL, Wu et al. (2022) argue that the power of human social learning
+is not underpinned by a single cognitive capacity, but by the ability to flexibly switch between
+different computational modes. Specifically, social learners can directly copy other individuals’
+actions without any causal understanding (“policy imitation”), infer the values guiding those actions
+(“value inference”), or infer their model of the environment and intrinsic rewards (“belief inference
+and reward inference”). Similarly, human individual learning extends beyond pure Rescorla-Wagner-
+style updating (Sutton and Barto, 2018), and future work could implement more realistic learning
+models from computational neuroscience—for instance, models based on variational inference (Blei
+et al., 2017; Doya et al., 2006). No research (as far as we know) has yet addressed such complex
+forms of individual and social learning in dynamic interactive experiments. How do collectives adapt
+to environmental changes if individuals use social information to infer others’ mental states instead
+of blindly copying their behavior? How do collective outcomes change if people have access to other
+people’s goals instead of only their actions? And how do social learners decide and switch between
+different strategies when faced with multiple sources of social information? These and many related
+questions await more detailed investigation—there is thus vast unexplored territory concerning the
+collective consequences of the various cognitive (social) learning mechanisms that facilitate collective
+adaptation and cultural evolution (Galesic et al., 2023).
+Combining evidence accumulation and reinforcement learning models
+Social evidence accumulation and social RL models have thus far only been used independently
+within largely distinct research traditions, although they are in fact highly complementary: RL
+models describe the dynamics of latent value updating, while assuming a simplified decision process
+(usually a softmax choice rule) that leaves out the complexities of noisy evidence accumulation. In
+contrast, evidence accumulation models account for choice probabilities and response times, but do
+not model information transfer about option quality across trials. Combining both models would
+constitute a major advance for the computational modeling of social systems. Similar RL diffusion
+models have already been developed for the non-social domain, explaining choice behavior better
+than previous models (Fontanesi et al., 2019; Konovalov and Krajbich, 2016; Pedersen et al., 2017).
+For example, Pedersen et al. (2017) let the drift rate change depending on (learned) expected rewards
+through a RL process. They also tested which other features of the DDM process (e.g., the start point
+or decision threshold) change with experience by comparing different model versions using cross-
+validation (see Fontanesi et al. (2019) for further variations). Extending such models to dynamic
+social systems might provide fresh insights into collective decision-making across different time scales.
+How does the timing of individual decisions influence the exploration of different options and how do
+experienced payoffs and observed choices in turn influence the subsequent evidence accumulation and
+temporal self-organization of collectives? Integrating these approaches provides exciting prospects
+for theory development and empirical breakthroughs but also requires researchers to develop and
+test additional assumptions about the exact intersection of both models and how social environments
+might influence learning dynamics and choice processes in different ways.
+Conclusion
+Human collectives are complex, dynamic systems that emerge from and shape individual cognition.
+Due to this inherent complexity, most previous studies have either abstracted away from individ-
+ual cognition and focused on macro-level dynamics or used constrained, simplified experiments to
+investigate specific aspects of social interactions. Both approaches have been (and will continue
+to be) fruitful, but focusing exclusively on one side of the dynamic interplay between individual
+and collective will necessarily miss crucial aspects of social dynamics. We have argued that more
+naturalistic experiments which allow complex social dynamics to unfold over time can close the gap
+between simulation-based studies on large-scale collective phenomena and experimental studies on
+individual-level social cognition. More dynamic group experiments will only be useful if appropriate
+statistical tools are available for their analysis, and complexity of experimental setups should not be
+an end in itself. Therefore, we advocate for a close integration between experimental designs and
+computational models.
+There are different ways to link computational models to empirical evidence: Most commonly,
+researchers fit models to data from experiments that closely mirror the structure of the theoretical
+model in order to empirically identify plausible parameter values. This approach allows to measure
+features of latent cognitive processes such as how fast participants update their beliefs or how
+sensitive they are to social information; it can also be used to test specific hypotheses if they can
+be expressed in terms of certain parameter values (e.g., conformity vs. anti-conformity depending
+on the value of θ in equation 8). A complementary aim is to test and compare competing model
+assumptions to assess which assumed process(es) are compatible with empirical evidence using, for
+example, model comparison or model selection (Farrell and Lewandowsky, 2018; McElreath, 2020).
+The application of computational models to social systems is greatly facilitated when researchers
+can build on well-grounded models of how (non-social) environmental features and individual char-
+acteristics influence the decision process, which can then be extended to social contexts to allow for
+dynamic feedback between individuals’ choices. Most of these established formal models—including
+all examples discussed in this article—describe decision problems with a well-defined set of potential
+actions that can be described by probability distributions and, therefore, fitted to experimental data
+using routine statistical methods. If behavior is even more unconstrained (e.g., free movement across
+space, naturalistic social interactions or unstructured discussions), single actions can be difficult to
+pin down and the direct application of established decision-making models becomes more difficult,
+and potentially intractable. Even if such experiments may not be used to directly test or falsify
+hypotheses generated by computational models, social-cognitive models can serve as starting guides
+for exploration and help to identify essential features of complex real-world interactions, limit the
+problem space, and inspire new experimental paradigms and computational methods.
+Lastly, applying a cognitive computational approach to collective decision-making will not only
+generate novel advances in basic research but might also help researchers and policy makers to
+better generalize insights from cognitive science to other social systems and to predict and guide
+how different collective phenomena unfold in the real world (Glymour et al., 2016; Deffner et al.,
+2022). From the emergence of economic bubbles to the spread of false news and polarization of be-
+liefs, collective dynamics can go very wrong, leading to herding and false information cascades with
+devastating societal consequences. Whether interventions successfully reduce the risk of undesired
+dynamics ultimately depends on features of the decision-making process. On a more positive note,
+culture and other social dynamics can facilitate flexible adaptation to vastly different environments
+and (at least partly) underlie our success as a species (Henrich, 2017). Better understanding the
+circumstances under which collectively intelligent behavior emerges from individual-level cognition
+will thus be crucial in helping people to adapt and thrive in a changing world.
+Acknowledgments. A.N.T., D.D., P.R., and R.H.J.M.K. acknowledge funding from Germany’s
+Excellence Strategy – EXC 2002/1 “Science of Intelligence” – project number 390523135. We thank
+Susannah Goss for editing the manuscript.
+Data and Code Availability. This manuscript does not contain any new empirical data. Simu-
+lation and plotting code necessary to reproduce all figures in the manuscript can be found on OSF:

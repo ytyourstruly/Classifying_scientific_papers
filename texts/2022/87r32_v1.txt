@@ -1,0 +1,856 @@
+Unbiased Individual Unconsciousness: Rationale, Replication and Developing Applications
+1-3
+Myron Tsikandilakis
+Persefoni Bali
+Pierre-Alexis Mével
+Christopher Madan
+Jan Derrfuss
+Alison Milbank
+School of Psychology, University of Nottingham.
+Medical School, Faculty of Medicine and Health Sciences, University of Nottingham.
+School of Cultures, Languages and Area Studies, University of Nottingham.
+Department of Theology and Religious Studies, University of Nottingham.
+Address for correspondence:
+Myron Tsikandilakis
+School of Psychology,
+School of Medical
+and Health Sciences,
+University of Nottingham
+tsikandilakismyron@gmail.com
+Myron.tsikandilakis3@nottingham.ac.uk
+Word Count: 8,783
+Key words: unbiased; individual; subjective; unconscious; research; methodology,
+This manuscript is a pre-print and might differ from the published version
+Το δοκίμιο αφιερώνεται σε όλους τους ανθρώπους που μου στάθηκαν τα
+τελευταία δύο δυσκολότερα χρόνια της ζωής μου, στον Αλέξανδρο και την
+Περσεφόνη.
+Μ.
+Abstract
+Unbiased individual unconsciousness is a methodology that employs non-parametric receiver
+operating characteristics and Bayesian analyses to provide estimations for thresholds for
+subjective visual suppression. It can enable a researcher to define among brief durations (e.g.,
+8.33 or 16.67 or 25 ms), per participant and elicitor type, the threshold of presentation for which
+each participant is individually unconscious during masking. The outcomes of this method are
+then used in a subsequent experimental session that involves psychophysiological assessments
+and participant ratings to explore evidence for unconscious processing and emotional
+responsivity. Following collegial requests for a dedicated manuscript on the rationale and
+replication of this method, in this manuscript, we provide a thorough, comprehensive and
+reader-friendly tutorial-guide. We include empirical illustrations, open-source and ready-to-
+use methodological, mathematical and statistical coding scripts and step-by-step instructions
+for replicating this methodology. We discuss the potential contributions and the developing
+applications of individual unconsciousness in topical research.
+Introduction
+Empirical research on the unconscious is an area in which researchers have provided
+an abundance of fascinating results and impassioned refutations. It is a research area involving
+intense, unrelenting and unresolved academic debates. Research in the unconscious was
+contentious since its “first steps” (Ebbinghaus,1908; Field, Aveling & Laird, 1922; Miller,
+1942; Kahn, 1943; Fechner, 1948; Goldiamond, 1958; for an overview see Tsikandilakis, Bali,
+Derrfuss & Chapman, 2019) to its – so to speak – “mid-life crisis” (Burnham, 1967; Dixon,
+1971; 1981; Goodkin & Phillips, 1980; Merikle & Cheesman, 1987; Frosh, 1989; Bornstein,
+1989; for an overview see Tsikandilakis, Bali, Yu, Madan, Derrfuss, Chapman & Groeger,
+2021) and has grown methodologically contentious, now, more than ever, among contemporary
+psychologists (see Bar & Biederman, 1998; Erdelyi, 2005; Pessoa & Adolphs, 2010; Elgendi,
+Kumar, Barbic, Howard, Abbott & Cichocki, 2018; for an overview see Tsikandilakis et al.,
+2022d).
+The reasons for this topical discontent have been attributed to how different our
+empirical outcomes for unconscious processing are and how polemically the believers and
+disbelievers of these outcomes hold on to their theses and antitheses (Pessoa & Adolphs, 2010;
+Stafford, 2014). Several scholars explored as best they could the scientific causes of the topical
+discontent (Stanislaw & Todorov, 1999; Erdelyi, 2005; Dienes, 2014; 2015; 2016). They
+identified potential problems and attempted to provide potential resolutions (see van der Ploeg,
+Brosschot, Versluis & Verkuil, 2017).
+The problems that scholars recognized as regards the empirical exploration of the
+unconscious were numerous. These included several issues, such as the use of biased metrics
+for the assessment of perception during visual suppression (Stanislaw & Todorov, 1999; Zhang
+& Mueller, 2005; Swets, 2014; Hautus, Macmillan & Creelman, 2021) and the use of
+inconclusive statistical procedures for inferring whether participants were unconscious of
+visually suppressed stimuli (Dienes, 2014; 2015; 2016; Kruschke& Liddell, 2018; Heck et al.,
+2022). These also spanned to other issues, such as the use of potentially unreliable methods for
+implementing psychophysics-related image processing manipulations, the type of masking
+applied to visually suppressed stimuli, and the unresolved problem of failing to achieve
+unbiased evidence for unconsciousness using static durations of presentation (e.g., 8.33 or
+16.67 or 25 or 33.33 ms) (see Tsikandilakis, Bali, Derrfuss & Chapman, 2019; Tsikandilakis,
+Bali, Madan, Derrfuss, Chapman & Groeger, 2021; Tsikandilakis et al., 2022d). The explicit
+outlining of these tangible problems had a paradoxical effect (Bargh & Morsella, 2008): it
+restored a quantum of confidence in the future of research into the unconscious. It signified a
+passage from thesis-affiliated conflicts to an objective exploration of the methodological issues
+that required address and resolution in this area.
+For example, a very contentious issue in this area was what metrics should be used for
+the assessment of perception during visual suppression (Swets, 2014). Relevant research, in its
+vast majority, provided hit-rate outcomes – the percentage of correct answers – to assess
+perception under conditions of visual suppression (Brooks et al., 2012; Meneguzzo, Tsakiris,
+Schioth, Stein & Brooks, 2014). This was problematic. Hit rates can be affected by response
+bias. For example, some participants might respond conservatively, that is, they withhold a
+post-trial engagement task response for seeing an elicitor unless they are absolutely certain.
+Others might respond liberally, that is, they might respond in a post-trial engagement task
+seeing a masked elicitor even if they are quite unsure (Stanislaw & Todorov, 1999).
+To address this issue, unbiased metrics for detection sensitivity such as signal detection
+theory receiver operating characteristic (ROC) were suggested as an alternative (Zhang &
+Mueller, 2005). The advantage of receiver operating characteristics was that they took into
+account error for the assessment of participant responses. They provided a ratio between hits,
+such as true positives, signifying that a participant responded in a post-trial task that a target
+was presented when a target was presented, and miss responses, such as false alarms, signifying
+that a participant responded that a target was presented when a target was not presented
+(Hautus, Macmillan & Creelman, 2021). Receiver operating characteristics were not biased by
+conservative or liberal response strategies and criteria and could provide a reliable perception
+metric for whether the presented masked elicitors were consciously perceived or not (see
+Yonelinas & Parks, 2007).
+Another issue was the statistical analyses used for inferring whether participants were
+unconscious (Dienes, 2014; 2015; 2016). The vast majority of topical research used
+significance testing – in this case, a frequentist one-sample t-test – to infer unconscious
+prοcessing (Brooks et al., 2012). This analysis allowed researchers to compare the participants’
+responses to chance (e.g., 50% or d’ = 0 or A’ = .5 or A = .5; see Hautus, Macmillan &
+Creelman, 2021). The researchers explored whether they were able to report non-significant
+differences between the participants’ detection performance and chance, and if they did, they
+claimed that the presented elicitors were processed unconsciously (Dienes, 2015).
+As our group (Tsikandilakis & Chapman, 2018; Tsikandilakis, Chapman & Peirce,
+2018; Tsikandilakis, Bali & Chapman, 2019; Tsikandilakis, Bali, Derrfuss & Chapman, 2019;
+Tsikandilakis, Bali, Derrfuss & Chapman, 2020a; 2020b; Tsikandilakis, Bali, Haralabopoulos,
+Derrfuss & Chapman, 2020; Tsikandilakis, Bali, Yu, Madan, Derrfuss, Chapman & Groeger,
+2021; Tsikandilakis et al., 2019; 2021; 2022a) and other researchers (Howard, Maxwell &
+Fleming, 2000; Rouder, Morey, Speckman & Pratte, 2007; Rouder, Speckman, Sun, Morey &
+Iverson, 2009; Dienes, 2014; 2015; 2016; Dienes, Coulton & Heather, 2018; Vadillo, Malejka,
+Lee, Dienes & Shanks, 2021) have repeatedly emphasized, significance testing can only
+provide evidence that we can reject or fail to reject the null hypothesis. Even if we fail to reject
+the null hypothesis, in this instance, we do not have evidence that the participants’ performance
+was proximate to or at-chance. We have evidence that suggest that we can reject that the
+participant’s perception was not significantly different to chance. This is subsequently
+mistreated as evidence for the participant’s perception being proximate to or at chance (see
+Kruschke, 2011).
+This issue can be resolved using Bayesian analysis. Bayesian analysis requires the
+standard error of a sample, the mean difference of a sample, a comparison value, and lower and
+upper bounds that define the range for proximity of the population value to the comparison
+value, called credible intervals (see Dienes, 2016). With these we can provide a Bayes factor
+(BF). The BF can predict the likelihood that the data were observed under the alternate
+hypothesis or the null hypothesis. A BF < .33, for example, would signify that the participants’
+responses provided direct evidence that the data can be predicted and observed under the null
+hypothesis and that they were within a priori defined credible intervals for unconsciousness
+(Rouder, Haaf & Vandekerckhove, 2018). In case of .33 ≤ BF ≤ 3, the data are considered
+inconclusive, and at B > 3, the likelihood is that the data can be predicted and observed under
+the alternate hypothesis, and the participants were conscious of the presented elicitors (see
+Rouder, Morey, Speckman & Pratte, 2007; for the presented Bayesian metrics above see
+These concepts have been frequently discoursed (see Shanks, Malejka & Vadillo, 2021;
+Tsikandilakis, Bali, Yu, Madan, Chapman & Groeger, 2021) but infrequently applied (van der
+Ploeg, Brosschot, Versluis & Verkuil, 2017; see particularly Tsikandilakis et al., 2022d; pp.
+16-17). This shows the extend of empirical bias in relevant research. It is also challenging from
+an educational perspective. Receiver operating characteristics were first introduced by Marcum
+in 1947. They have been revised and refined multiple times (Peterson, Birdsall & Fox, 1954;
+Pollack & Norman, 1964; Banks, 1970; Lord, 1985; Macmillan, 1993; Stanislaw & Todorov,
+1999) until – arguably (see Verde, Macmillan & Rotello, 2006) – Zhang and Mueller (2005)
+implemented the most unbiased to date non-parametric sensitivity index (A) including several
+corrections to d, A’ and A’’ (see Tsikandilakis, Bali, Derrfuss & Chapman, 2019; pp. 14-21).
+Conversely, the Bayesian theorem dates back 259 years (Bayes & Hume, 1763). It was
+first suggested as an alternative analysis to one-sample significance testing 76 years ago by
+C.W. Churchman (1946). It has been suggested to be a more valid alternative to one-sample t-
+tests by a plethora of authors in a plethora of publications thereafter (Lindley, 1957; Lann,
+1959; Rozeboom, 1960; Edwards, Lindman & Savage, 1963; Bernardo, 1980; Berger & Sellke,
+1987; Howard, Maxwell & Fleming, 2000; Rouder, Morey, Speckman & Pratte, 2007; Rouder,
+Speckman, Sun, Morey & Iverson, 2009; Dienes, 2014; 2015; 2016).
+ROC and Bayesian analyses are for the better part of the last thirty years included in
+standard statistical software used for psychological research (SPSS, STATA, MEDCALC etc.).
+open-access easy-to-populate toolboxes for implementing ROCs and Bayesian analyses. This
+– to phrase our argument as provocatively as it should be phrased – has left a large number of
+topical researchers unmoved and has created a niche of relevant research in which the
+researchers are possibly unaware of or unwilling to take these methods under consideration.
+With a mind that patience is a virtue, we have reiterated these themes and resolutions here. We
+will continue to iterate them until common sense becomes common practice (Tsikandilakis,
+Bali, Derrfuss & Chapman, 2019; Tsikandilakis, Bali, Derrfuss & Chapman, 2020a;
+Tsikandilakis, Bali, Yu, Madan, Derrfuss, Chapman & Groeger, 2021)
+These resolutions have offered us reliable metrics for perception and fitting statistical
+models for assessing unconsciousness (see Chambers, 2019). They have also raised new
+challenges. For example, using unbiased metrics and analyses for unconsciousness, attaining
+unconsciousness became significantly harder (see Elgendi, Kumar, Barbic, Howard, Abbott &
+Cichocki, 2018). In other (and again provocative words), it was not necessarily a difficult task
+when using biased metrics for perception (i.e., hit rates), and misusing statistical inference
+(significance testing one-sample t-tests) to suggest that stimuli were presented without
+conscious awareness (see Dienes, 2015). On the other hand, when using unbiased receiver
+operating characteristics (i.e., sensitivity index A; Zhang & Mueller, 2005) and statistical
+analyses that require the conclusive provision of evidence for the likelihood that the data were
+observed under the null (i.e., Bayesian analyses; Dienes, 2014), inferring unconsciousness
+became considerably more difficult (Moore, 2008).
+To address this hurdle, we previously applied (Tsikandilakis & Chapman, 2018;
+Tsikandilakis, Chapman & Peirce, 2018; Tsikandilakis, Bali, Derrfuss & Chapman, 2020a) and
+synoptically discoursed (Tsikandilakis, Bali, Derrfuss & Chapman, 2019; Tsikandilakis, Bali,
+Yu, Madan, Derrfuss, Chapman & Groeger, 2021) a method for attaining unbiased individual
+unconsciousness. This method addressed the difficulties for attaining unbiased evidence for
+unconscious presentations. It was conceptually founded on empirical outcomes that suggested
+that different participants (Pessoa, McKenna, Gutierrez & Ungerleider, 2002; Pessoa, 2005;
+Japee, Crocker, Carver, Pessoa & Ungerleider, 2009; Albrecht, Klapötke & Mattler, 2010;
+Albrecht & Mattler, 2012) and different elicitor types (Pessoa, McKenna, Gutierrez &
+Ungerleider, 2002; Pessoa & Ungerleider, 2004; Balconi & Lucchiari, 2007; Etkin et al., 2008;
+Hedger, Adams & Garner, 2015) required different durations of presentation for attaining
+unaware presentations during masking (Elgendi, Kumar, Barbic, Howard, Abbott & Cichocki,
+2018).
+The justifications of these differences in perceptual ability have been attributed to
+differences in attentional and cognitive resources of individual participants (Barrett, Tugade &
+Engle, 2004; Bishop, 2008; Kaspar & König, 2012). They have also been attributed to the
+evolutionary value (Öhman, 2009), low-spatial frequencies (De Gardelle & Kouider, 2010) and
+high-level component characteristics (Guenter, Grimm, Wood, Malvar, & Pighin, 1998) of
+different elicitor types that are discoursed at length in previous publications (see for example
+Tsikandilakis, Bali, Derrfuss, & Chapman, 2019; Tsikandilakis et al., 2022d).
+The overarching aim of the current work is not merely to review these – arguably
+(Tsikandilakis et al., 2022d) – known and extensively discoursed subjects (see Pessoa,
+McKenna, Gutierrez & Ungerleider, 2002; Pessoa, 2004; Japee, Crocker, Carver, Pessoa &
+Ungerleider, 2009; Pessoa & Adolphs, 2010); it is to show how to overcome them. We present
+here in full the rationale and a methodology for replication for attaining unbiased individual
+unconsciousness. Individual unconsciousness employs unbiased ROC metrics and Bayesian
+analyses, and can enable us to adjust the threshold of presentation of a masked elicitor
+separately for each participant for each presented elicitor type to chance-level detection
+performance, that would signify that a “participant responded like a blind person would” (see
+Erdelyi, 2004; pp. 76-81; see also Tsikandilakis & Chapman, 2018; Tsikandilakis, Chapman
+& Peirce, 2018; Tsikandilakis, Bali, Derrfuss & Chapman, 2019; Tsikandilakis, Bali, Derrfuss
+& Chapman, 2020a).
+The methodological framework of this method is based on dividing a study into two
+stages. In stage one, a set of masked stimuli is presented. These stimuli are presented for
+different durations, such as 8.33 and 16.67 and 25 ms. The participants are asked whether they
+perceived a masked target after each trial. The duration of presentation that for each participant
+and elicitor type provides evidence for the null when subjected to Bayesian analyses using
+unbiased sensitivity index A is selected as the threshold of unconsciousness for that participant
+and for that elicitor type (see for example Tsikandilakis, Chapman & Peirce, 2018;
+Tsikandilakis, Bali, Derrfuss & Chapman, 2020a).
+In a second stage, typically, a week after the first stage (see Garrido et al., 2020), the
+same participants are presented with different stimuli belonging to the same elicitor types (e.g.,
+happy, fearful and neutral faces). These stimuli are presented using masking for the durations
+that were shown to provide substantial evidence for the null in stage one. Participants’ self-
+reports, such as ratings for valence and intensity, and psychophysiological responses, such as
+skin conductance responses (SCR), heart-rate responses (HR), facial-expression assessment
+(FA), and further physiological and neuroscientific assessments are measured to explore
+unconscious processing and emotional responsivity (see Tsikandilakis, Bali, Derrfuss &
+Chapman, 2020a).
+Individual unconsciousness has received an academic welcome (Tsikandilakis &
+Chapman, 2018; Tsikandilakis, Chapman & Peirce, 2019; Tsikandilakis, Bali, Derrfuss &
+Chapman, 2020a) and has been previously synoptically discoursed (Tsikandilakis, Bali,
+Derrfuss & Chapman, 2019; Tsikandilakis, Bali, Yu, Madan, Derrfuss, Chapman & Groeger,
+2021). It would not be an understatement to submit that its reception raised considerable
+interest and debate concerning exactly how to replicate it, which participant inclusion criteria
+should be used, what were the most successful coding methodological and statistical scripts we
+employed in previous research, what should be the methodology for measuring and interpreting
+the psychophysiological outcomes of this method, and, in general, a demand for an exact,
+detailed and thorough discourse of the workings of our method (Madipakkam & Rothkirch,
+2019; Maldonado et al., 2020). As requested, therefore, in this manuscript, we provide the
+reader with a step-by-step rationale and replication guide, including open-source statistical and
+methodological coding scripts, and empirical data illustrations, to enable a direct replication of
+key parts or of the entire process.
+Making Unconsciousness
+Let us assume that in stage one we would like to present participants with backward
+masked fearful, happy and neutral faces and adjust per participant and elicitor type the
+individual threshold for unconsciousness. The first thing we need to correctly calculate is
+power. For our intended design, liberal power calculations (P ( ) = .8; p ≤ .05; f = .25) require
+1 - β
+n = 28 and conservative power calculations (P ( ) ≥ .9; p ≤ .01; f = .1) require n = 302 (Faul,
+1 - β
+Erdfelder, Buchner & Lang, 2009). Obviously, we would, if it is possible, advise for the latter,
+but a compromise between these extreme lower and higher computations (P ( ) = .9; p ≤ .01;
+1 - β
+f = .25) requiring n = 49 has proven sufficient in previous studies to provide us with meaningful
+results (see Tsikandilakis & Chapman, 2018; Tsikandilakis, Chapman & Peirce, 2018;
+Tsikandilakis, Bali, Derrfuss & Chapman, 2019; 2020a).
+We need to bear in mind two more things. Firstly, we would not object to the statistical
+scholar who would consider the default ε = 1 sphericity value coded in standard power
+calculation software (e.g., GPOWER; see Faul, Erdfelder, Buchner & Lang, 2009) an “ideal
+world” value (see Berkovits, Hancock & Nevitt, 2000). The overall mean of ε in our previous
+studies (k = 14) was .83 (SD = .04). Replacing the default coded value ε = 1 with ε = .83 in
+GPOWER 3.1 gives us n = 58. This increase in the sample size could contribute to an increase
+of the validity of our outcomes (Lane, 2016). Secondly, we should not forget the importance
+of contour in validating power calculations (Baker et al., 2020). In our case, for our power
+calculations, 40 to 60 trials per condition (i.e., elicitor type) must be presented to achieve a P
+= .9. This is a very understated and underused statistical calculation in experimental
+(1 – β)
+psychology and can lead to Type-I and Type-II errors (see Cohen, MacWhinney, Flatt &
+Provost, 1993; Brand, Bradley, Best & Stoica, 2010; Murphy, Myors & Wolach, 2014; Arnoldo
+advisable to select from the required range of trial contour a number that can divide to an
+integer (e.g., 40; 40/2 = 20). This can allow participants to attain unbiased perfect chance-level
+performance (e.g., A = .5) if this is, indeed, their true perceptual sensitivity, and avoid
+unfeasible-to-implement decimal repetitions for the contour of the presented stimuli
+(Tsikandilakis, Chapman & Peirce, 2018) .
+Our next implementations relate to sampling and particularly to participant selection
+criteria. We have imposed and debated very strict criteria to improve the reliability and validity
+of our studies (Tsikandilakis, Bali, Derrfuss & Chapman, 2020a). Our first step is to screen
+participants for psychiatric conditions. The reader can choose for this purpose from a plethora
+of available, validated questionnaires that have been widely used in previous research (see
+Haynes, & Lench, 2003). They can also choose more contemporary questionnaires that include
+less widely applied but potentially more up-to-date psychiatric assessment items (see Rosellini
+& Brown, 2021). Our choice for a clinical assessment questionnaire is Sphere-12 (Hickie et al.,
+2001). Our choice is made on the grounds that Sphere-12 has convergent validity with
+assessments for both temporary mood and undiagnosed psychiatric conditions (Berryman,
+McAuley & Moseley, 2012; for an open-source format of Sphere-12, see
+The next questionnaire we commonly use is an assessment for Alexithymia and
+Alexithymia traits. These can be described as a subclinical difficulty to express, experience and
+1 We could also calculate Bayesian power for equivalence of significance to the null for the purposes of the current
+stage. This is a complicated process both conceptually and as regards communicating comprehensively the
+required code that would provide a meaningful result (Rescorla, 2015). It would require an address in an at least
+partly mathematically populated publication (see Schönbrodt & Wagenmakers, 2018). However, we can compute,
+for the purposes of the current stage, that our current design has sufficient Bayesian power for providing evidence
+for the null given credible intervals for equivalence of significance testing for the null conservatively defined at
+less than a small critical f (.1) given n = 49 (P (H ) = .9; BF < .33; f (.01 to .09)) and n = 58 (P (H ) ≥ .9; BF <
+01 01
+.33; f (.01 to .09)) (Kruschke, 2011). These can be converted to indicate contribution effects of .0001% to .0009%
+of an interdependent to a dependent variable (see Kruschke & Liddell, 2018). Calculations, instructions and code
+for replicating this outcome and calculating Bayesian power have been made available online and can be found at
+2 In the interest of applied ethical standards in scientific practice, the participants should be informed of the
+outcomes of the clinical assessments, and the researchers should have a document ready directing them to
+university and local psychological support infrastructures and clinical-assessment facilities. We stand by that the
+responsibilities of a research should go beyond career-advancing practices. The participants were invited to a
+study on the premises of the correct or incorrect knowledge of not being aware that they are suffering from a
+psychiatric disorder. In case we have a mind for exploring the exceptions of this pre-requirement towards a
+publication, we would like to stress that this could constitute an invaluable contribution to this area if it was a
+planned objective (Hedger, Gray, Garner & Adams, 2016), and we would also like to stress that his could be
+unethical practice given our study description (see Sinclair, 2017).
+recognize emotion (Taylor & Bagby, 2000). The inclusion of participants with Alexithymia, or
+Alexithymia traits, exposes the results of particularly emotion-assessing studies to potential
+biases. This is also a little recognized fact, and assessments for Alexithymia have not been
+consistently applied as an exclusion criterion for the participants or the participants’ data in
+topical research. This has resulted in lack of knowledge concerning whether the participants
+were potential responders or non-responders of true positives (i.e., hits) for the perception of
+masked elicitors (see van der Ploeg, Brosschot, Versluis & Verkuil, 2017). Our choice/solution
+for this issue is participant assessment and data-exclusion of above-threshold values using the
+OAQ-G2 (Thompson, 2007). Our choice is made on the grounds that OAQ-G2 provides
+reliable assessments for the diagnosis of Alexithymia and separately for high scores for
+Alexithymia traits, such as emotional awareness, social detachment and interpersonal
+functionality (Donges, Kersting & Suslow, 2014; for an open-source format of OAQ-G2, see
+Another assessment we commonly use is the Emotional Regulation Questionnaire
+(ERQ; delValle, Andres, Urquijo, Zamora, Mehta & Gross, 2021). The ERQ is a brief 10-item
+assessment involving ratings from one (strongly agree) to seven (strongly disagree). It is used
+to assess cognitive emotional reappraisal, such as the intensity, control and ability to access
+and process one’s emotions, and emotional suppression, such as the inclination and predilection
+to communicate one’s emotions (Ochsner. & Gross, 2005). We use this questionnaire on the
+grounds that it has been shown to report high convergent validity with the sensitivity of
+perception and the psychophysiological outcomes of exposure to emotional images (Mauss,
+Levenson, McCarter, Wilhelm & Gross, 2005). Extreme values in this questionnaire, therefore,
+can be an indication that both perception and physiological responses could be influenced by
+subclinical emotional traits (see Tsikandilakis, Bali, Derrfuss & Chapman, 2020a; for an open-
+Finally, given the sensitivity of the current design to confounds, we implement an
+additional and strict self-developed method (see Tsikandilakis et al., 2022a). We have termed
+this method Bayesian sampling. We employ it when using the ERQ, and any other
+questionnaire we have previously used that could provide evidence for non-clinical emotional
+processing biases (Tsikandilakis & Chapman, 2018; Tsikandilakis, Chapman & Peirce, 2018;
+Tsikandilakis, Bali, Derrfuss & Chapman, 2020a). Our method consists of, firstly, excluding
+the data from participants that have scores in the ERQ – or any other relevant emotional
+questionnaire (Van Humbeeck, Van Audenhove, De Hert, Pieters & Storms, 2002) – that are
+1.5 units below or above the median interquartile range (IQR) for Q1 and Q3 respectively. This
+method allows us to control for outliers without having to rely on the assumption of
+parametricity (see particularly Leys, Ley, Klein, Bernard & Licata, 2013).
+Subsequent to this intervention, we reverse-engineer Bayesian analyses for equivalence
+of significance (see particularly Zednik & Jäkel, 2014; 2016). We know the mean, standard
+deviation and standard error of normal values in the wider population for our assessment (ERQ
+: M = 10.49; SD = 2.91; SE = .09; ERQ : M = 21.53; SD = 3.86;
+emotional regulation emotional suppression
+SE = .11; see for example Sala et al., 2012). We also know the mean for each of our participants.
+We do not know and cannot reliably know in this instance, without falling prey to the
+limitations of extrapolating Monte-Carlo simulations from a single value derived from
+categorical responses (Garrido, Abad & Ponsoda, 2016), and re-assessment participant biases
+(Gross et al., 2012), the measures of dispersion for each individual participant. We can,
+nevertheless, test whether each participant provides Bayesian evidence for equivalence to the
+null for canonical values for this – or any other applied – questionnaire assessment (see
+Tsikandilakis et al., 2019; pp. 6 & 12; Tsikandilakis et al., 2021, pp. 11, 17 & 19; Tsikandilakis
+et al., 2022a, pp. 9 & 28).
+For example, let us assume that a particular participant has an ERQ score for emotional
+regulation of 10.51. The mean for a canonical score including cross-cultural and mixed gender
+values is 10.43. The mean difference between the participant’s score and the comparison value
+is .08. The standard error of the overall assessed population is .09. If we are liberal with our
+credible intervals, we can define the lower and higher bounds at – 5.87 and 5.87 (2*SD
+overall
+). If we want to be quite strict with our credible intervals, we can define them at – 2.91
+population
+and 2.91 or less (such -1 and 1 intervals). For this participant, therefore, the chances that their
+emotional regulation score can be observed as proximate to a controlled general population
+value is BF = .03 for liberal credible criteria and BF = .06 for strict criteria (BF = .17; CIs (-1
+to 1)). This means that, even under strict inclusion control conditions, we were able to report
+substantial evidence that the data of this participant were predicted and observed under the null
+and can be included in the analyses (for open-source statistical code for this method, see
+inclusivity is quite thorough and exacting but it allows us to control for outliers within our own
+data – without relying on the assumption of parametricity – and in comparison between our
+data and assessment values as reported in previous research (see Gullone & Taffe, 2012).
+Our next steps relate to stimuli selection. The selected stimuli should ideally be
+controlled for valence, intensity and emotional ambiguity. These variables should ideally
+provide same-elicitor type Bayesian evidence for equivalence of significance (Tsikandilakis &
+Chapman, 2018). In a previous publication (Tsikandilakis, Chapman & Peirce, 2018; pp. 78-
+91 & Appendix 1A & 1B), we introduced a metric for this type of elicitor selection. We
+conducted a pilot study, including 52 participants (26 female; P ( ) ≥ .9; p ≤ .01; f = .25), to
+1 - β
+select from a surplus of 2,000 faces (Gur et al., 2002) the most potent elicitors for fearful and
+happy faces, and the neutral faces that did not confer emotional responsivity. The metric we
+used is presented below:
+𝑆𝑒𝑙𝑒𝑐𝑡𝑖𝑜𝑛 𝐶𝑟𝑖𝑡𝑒𝑟𝑖𝑜𝑛 (% 𝑚𝑒𝑡𝑟𝑖𝑐)
+𝑉𝑎𝑙𝑒𝑛𝑐𝑒 𝑅𝑎𝑡𝑖𝑛𝑔 + 𝐼𝑛𝑡𝑒𝑛𝑠𝑖𝑡𝑦 𝑅𝑎𝑡𝑖𝑛𝑔
+= ((((10 – 𝐴𝑚𝑏𝑖𝑔𝑢𝑖𝑡𝑦 𝑅𝑎𝑡𝑖𝑛𝑔) + ) ∗ 50)
++ (((𝑆𝐶𝑅 𝑀𝑎𝑥𝑖𝑚𝑢𝑚 𝐷𝑒𝑓𝑒𝑟𝑟𝑎𝑙 {𝑆𝐶𝑅 𝑀𝑎𝑥𝑖𝑚𝑢𝑚 𝐷𝑒𝑓𝑒𝑟𝑟𝑎𝑙 𝑆𝑡𝑖𝑚𝑢𝑙𝑢𝑠 𝑇𝑦𝑝𝑒}) ∗ 25)
++ (( 𝐻𝑅 𝑀𝑎𝑥𝑖𝑚𝑢𝑚 𝐷𝑒𝑓𝑒𝑟𝑟𝑎𝑙 {𝐻𝑅 𝑀𝑎𝑥𝑖𝑚𝑢𝑚 𝐷𝑒𝑓𝑒𝑟𝑟𝑎𝑙 𝑆𝑡𝑖𝑚𝑢𝑙𝑢𝑠 𝑇𝑦𝑝𝑒}) ∗ 25)))
+In this occasion, this signified that in a separate experiment, involving all the
+aforementioned sampling criteria, we inquired about the valence, intensity and emotional
+ambiguity and assessed skin conductance and heart-rate responses for over 2,000 faces to
+conclude to the selected sample of faces that we used in our main study. We would not object
+to that this choice can be burdensome for most projects, but, more critically, that it can result
+in including the most emotionally arousing but not necessarily the most representative and
+ecologically valid emotional stimuli for each elicitor type (see Schyns & Oliva, 1997).
+Another method we have used is predefining meaningful values for our included elicitor
+types and conducting Bayesian analyses for finding out which of our stimuli meet sensible a-
+priori requirements. For example, for our current design, including three types of faces (fearful,
+happy and neutral), we can either derive a priori values from previous research (Kring & Sloan,
+2007; Adolph & Alpers, 2010) or define them ourselves (see for example Maxwell, Lau &
+Howard, 2015; Wiggins & Christopherson, 2019; Tsikandilakis, Bali, Derrfuss & Chapman,
+2020a). In both cases, assessment and validation using digital facial-emotional recognition
+technology, such as Noldus Face Reader (see Skiendziel, Rösch & Schultheiss, 2019), is a
+potential merit for pre-selection but not necessarily a requirement for pre-selection (see
+Tsikandilakis et al., 2019; 2021b; 2022a; 2022b).
+For example, in studies like ours in which stimuli are presented for very brief durations,
+we would be well advised to include assessments for valence, intensity and also emotional
+ambiguity (Barrett, 2006). This is because in previous studies we have shown that valence and
+intensity can differ within a same-elicitor-type category (Tsikandilakis, Chapman & Peirce,
+2018; Tsikandilakis, Bali & Chapman, 2019; Tsikandilakis, Bali, Derrfuss & Chapman,
+2020a). We have also shown that stimuli categorized under the umbrella term of a prototypical
+emotional category can be better described as other emotions, such as faces categorized as
+angry providing empirical evidence for re-categorization as hostile (Tsikandilakis, Bali,
+Derrfuss & Chapman, 2020b), and stimuli categorized as sad involving characteristics relating
+distinguishably to melancholy, bereavement, misery and despair (Tsikandilakis et al., 2022b;
+see also Cowen & Keltner, 2020). These can lead to differences in perceptual sensitivity and
+emotional responsivity (Tsikandilakis, Bali, Yu, Madan, Derrfuss, Chapman & Groeger, 2021).
+For example, in an unpublished pilot conducted in 2020, we recruited a sample size of
+52 participants (26 female; M = 23.01; SD = .94) (P ( ) ≥ .9; p ≤ .05; f = .25). We did
+age age 1 - β
+not want strictly prototypical stimuli because these can lead to extreme emotional responsivity
+and lack ecological validity (Tsikandilakis et al., 2019; 2021; 2022a; 2022b; 2022c). We chose
+that for ambiguity for all faces we would like to include a desired value of eight in a scale of
+one (very ambiguous) to nine (not ambiguous at all) or, if our results yielded unexpectedly low
+ratings, seven, but no less than that, to achieve within-elicitor-type emotional homogeneity.
+For neutral faces, a value of five was considered meaningful to reliably confer null emotional
+characteristics for intensity and valence. For happy faces, an intensity value of seven in a scale
+from one (not intense at all) to nine (very intense), and a valence of seven in a scale from one
+(very negative valence) to nine (very positive valence) was selected as a meaningful value.
+Conversely, fearful faces were required to be at proximity of an intensity value of seven and a
+valence value of three.
+In this pilot, we did not have to reverse-engineer Bayesian analysis. Given ratings for
+the same image from the sum of our population size (n = 52), we could calculate means and
+measures of dispersion for each image. For example, one of our images showing a happy face
+was rated with mean valence of 7.13 (SD = .67). We used a simple transformation of measures
+𝑆𝐷 .67
+of dispersions (𝑆𝐸 = ), to calculate the standard error, which yielded 𝑆𝐸 = = .09. We
+√𝑛 7.21
+applied strict (- 1 to 1) lower and higher bounds, and given a mean difference of .13, we
+reported a BF = .32. This value qualified the particular image for inclusion. This was an arduous
+task that was applied individually for every image and for each individual rating for every
+image (i.e., valence, intensity, ambiguity). The resulting pool of images rewarded us in that
+every elicitor was without exception within our predefined criteria (see Dienes, 2014; 2015;
+2016).
+Our next steps, related to stimuli processing and presentation. These topics are very
+important. We have provided a dedicated paper pending for publication for these, therefore, we
+will keep this section concise and refer the reader to our dedicated discourse (Tsikandilakis et
+al., 2022d). The canon for processing faces in topical research is cropping a face to standard
+dimensions (e.g., height: 6 cm, width: 4 cm), removing non-facial characteristics, and applying
+grayscale conversions to control for luminosity and colour contrast (see Brooks et al., 2012).
+All but the latter are common and sensible techniques (but see also Kim et al., 2010); the latter
+is quite problematic (De Gardelle & Kouider, 2010). The problem with grayscale conversions
+is that they maintain the colour contrast and luminosity of the original images and transcribe it
+to diverse shades of grey (see Gray, Adams, Hedger, Newton & Garner, 2013; see also
+Tsikandilakis et al., 2022d).
+Visual stimuli can be broadly divided as having low and high-level component
+characteristics. The low-level component characteristics include luminosity, brightness and
+contrast while the high-level components involve the distribution of these characteristics that
+contribute to the structure of an image (Shapley,1990; see also Wyart & Tallon-Baudry, 2009;
+Spillmann & Werner, 2012; Izmailov, Chernorizov & Polyansky, 2022). We can manipulate
+the former and average their lumens values to exactly similar values which will result in a
+reduction of perceptual sensitivity bias due to low-level facial features (Willenbockel, Sadr,
+Fiset, Horne, Gosselin & Tanaka, 2010). If we apply this method both to our masked and mask
+stimuli we can have “equivalence of contrast” of the mean lumens of the elicitors in our design
+Fearful Faces Happy Faces Neutral Faces
+Mean = 140 Mean = 140 Mean = 140
+lumens lumens lumens
+SD = x SD = y SD = z
+lumens overall lumens overall lumens overall
+= =
+Mean Lumens Mean Lumens
+= =
+Mean Lumens Mean Lumens
+Pattern Masks
+Difference Difference
+Mean = 140
+lumens
+SD = 27.03
+= =
+Mean & SD Mean & SD
+Lumens Lumens
+MATLAB processing. The Mean lumens of both the pattern masks and the presented target is averaged to a mid-lumens value of 140.
+This can reduce variations in masked stimuli perceptibility due to differences in lumens values and masked-to-mask stimuli contrast.
+We cannot manipulate the distribution of luminosity of images. We cannot manipulate
+high-level component characteristics in images, such as the distributions of lumen values,
+without deconstructing the basic facial characteristics of an expression that confer emotion (see
+Gray, Adams, Hedger, Newton & Garner, 2013; for an infamous attempt to manipulate high-
+level component characteristics in facial expressions of emotion, see
+processing and presenting stimuli are limited to averaging mean lumens values within masked
+Kouider, 2010). This is not an evitable limitation and the already applied corrections have been
+sufficient to eliminate perceptual biases in past studies (Tsikandilakis et al., 2022d; pp. 19-33;
+As we stated before, to achieve the necessary power contour for our design, each elicitor
+should be presented at least forty times, or in forty trials (Baker et al., 2020). Therefore, during
+stage one, fearful, happy and neutral faces will have to be presented forty times for each
+duration that in previous research has provided evidence for qualifying as a potential duration
+for being an individual threshold for unconsciousness (e.g., 8.33 or 16.67 or 25 ms;
+Tsikandilakis & Chapman, 2018; Tsikandilakis, Chapman & Peirce, 2018; Tsikandilakis, Bali,
+Derrfuss & Chapman, 2019; Tsikandilakis, Bali, Yu, Madan, Derrfuss, Chapman & Groeger,
+2021). This amounts to 120 faces per elicitor type or 360 faces overall. To provide unbiased
+sensitivity index A outcomes we can benefit from an equal signal to noise ratio, therefore, we
+must also include 360 Gaussian blurs (120 blurs for 8.33 and 16.67 and 25 ms; see
+Tsikandilakis et al., 2022d; pp. 11-13). These will be used as the metric for our false alarms
+such as responding that a face was presented when a face was not presented during a binary
+engagement task (i.e., “Did you see a face during the presentation? (Y/N)”) post-trial signal-
+detection; Zhang & Mueller, 2005).
+This implementation will allow us to compute the overall A for stage one. We are
+interested in which duration (8.33 or 16.67 or 25 ms) is per participant and elicitor type closest
+to chance. One way to achieve an unbiased per participant and elicitor type sensitivity A with
+equal signal (faces) to noise (blurs) ratio is pre-experimentally assigning a random set of forty
+Gaussian blurs that have the same duration as a presented elicitor type (8.33 or 16.67 or 25 ms)
+to that elicitor type for each duration (i.e., Fear_Blurs-Set_8.33, Happy_Blurs-Set_8.33,
+Neutral_Blurs-Set_8.33; Fear_Blurs-Set_16.67, Happy_Blurs-Set_16.67, Neutral_Blurs-
+Set_16.67; Fear_Blurs-Set_25, Happy_Blurs-Set_25, Neutral_Blurs-Set_25).
+We can also do this task post-experimentally, as long as we do not match the best fit
+false alarm trials with an elicitor type duration that will provide optimized results for A, or fall
+prey to simple and innocuous human error, such as repeating one or more Gaussian blurs as
+part of the corresponding set of two or more elicitor types. We could also simply divide the
+overall number of trials (k = 120) of Gaussian blurs for each duration (8.33 or 16.67 or 25 ms)
+by three and include the resulting scores for false alarms to the corresponding duration of each
+of our elicitor types. Given the basic framework of the central limit theorem this would, in fact,
+work in favour of achieving proximity to A = .5. As such, it will represent a dissemblance and
+not a realistic equivalence of signal to noise ratio (see Zhang & Mueller, 2005; pp. 208-211).
+The first proposed method involving randomised pre-experimental denominations of the noise
+to signal ratio is the one we use in our work (see Tsikandilakis, Bali, Derrfuss & Chapman,
+2020a).
+For example, let us present the above as an empirical illustration. In our aforementioned
+2020 pilot, one example – and exemplary for illustration purposes – participant was presented
+with forty fearful, happy and neutral faces for 8.33 and 16.67 and 25 ms with backward
+blurs for 8.33 and 16.67 and 25 ms using a pre-experimental assignment of forty blurs to each
+duration by elicitor type combination, as described in the first part of the previous paragraph.
+A. Overall B. Fearful Faces
+A A
+,54 ,58
+,57
+,53 ,572
+,56
+,52
+,55
+,552
+,51 ,514 ,54
+,53
+,50
+,52
+,49
+,491 ,51
+,48
+,50
+,501
+,47 ,49
+,48
+,46
+,47
+,45
+,46
+,44
+,45
+8.33 ms 16.67 ms 25 ms
+8.33 ms 16.67 ms 25 ms
+C. Happy Faces D. Neutral Faces
+A A
+,55 ,55
+,54 ,54
+,53 ,535 ,53
+,52 ,52
+,51 ,51
+,50 ,50
+.502 .501
+,49 ,49
+,491
+.49
+,48 ,48
+.481
+,47 ,47
+,46 ,46
+,45
+,45
+8.33 ms 16.67 ms 25 ms
+8.33 ms 16.67 ms 25 ms
+neutral faces (D.) for a single participant from a previous pilot study. Dashed mid-line indicates chance-level
+performance at A =.5. Bars represent ±2 standard errors of the mean. Values with bold characters for fearful, happy
+and neutral faces indicate the closest to chance available sensitivity index A value from the range of included
+durations of presentation (8.33 and 16.67 and 25 ms). Figures 2B-D., including fearful, happy and neutral faces,
+involve wider range y axis values compared to 2A for illustration purposes.
+For the specific participant, overall performance was closest to chance at 8.33 ms. With
+a mean difference to absolute chance (A = .5) at .009, a standard error of .01 and lower and
+upper bounds set at - .5 (A = .45) and .5 (A = .55), we reported a BF = .04 (for open-source
+participant was overall proximate to chance and their performance could provide further
+evidence for per elicitor type unconsciousness. For fearful faces their mean difference to
+chance was .001 at 8.33 ms, for happy faces it was .002 at 16.67 ms and for neutral faces it was
+.001 for 25 ms. Using the exact same parameters for analyses as above, fearful faces should be
+presented for 8.33 ms (BF = .03), happy faces presented for 16.67 ms (BF = .03) and neutral
+faces presented for 25 ms (BF = .03). We showed very substantial evidence for the null for all
+three elicitor types, and we could proceed to the next stage with these durations to test whether
+individual unconsciousness can lead to self-report and physiological responses.
+Testing Unconsciousness
+For stage two, our calculations suggest that we should present this particular participant
+with forty 8.33 ms fearful faces, forty 16.67 ms happy faces and forty 25 ms neutral faces. This
+also means that we will have to present forty 8.33 ms Gaussian blurs, forty 16.67 ms Gaussian
+Gaussian Blurs:
+Happy Faces: Neutral Faces:
+Fearful Faces:
+40 trials for 8.33 and
+40 trials for 16.67 ms 40 trials for 25 ms
+40 trials for 8.33 ms
+16.67 and 25 ms
+Pattern Masks:
+116.17 ms
+for 25 ms. 120 Gaussian blurs were also presented matched to each elicitor type for its duration of presentation. The stimuli were
+masked with back-and-white patterns – and not neutral faces (Kim et al., 2010) – to avoid masked-to-mask stimuli emotional
+incongruency (masked fearful and happy faces) and congruency (masked neutral faces) perceptual biases (see Tsikandilakis, Madan
+& Milbank; pp. 16-19).
+Our next subject topic is assessment. We would like to assess the physiology of the
+participants and also their self-report ratings in response to our individually adjusted stimuli.
+For physiological assessments, we have a certain set of combined methods that we have used
+in past studies (see Tsikandilakis, Bali, Derrfuss & Chapman, 2020a). We have used skin
+conductance (SCR), heart rate (HR) and facial-emotional expression recognition (FE) for our
+physiological assessments. Our assessments involve SCR measured from the left hand
+(index/first and middle/second fingers) of each participant using disposable Ag/AgCl gelled
+electrodes received by a BIOPAC System, EDA100C in units of micro-Siemens (μS) and
+recorded in AcqKnowledge. The presence of a phasic skin conductance response is defined as
+an unambiguous increase (.01 μS) with respect to each pre-target SCR score occurring one to
+three seconds post-elicitor offset. The presence of a heart-rate response is defined as an event-
+related heart-rate peak in beats per minute with respect to each pre-target heart-rate score
+occurring one to five seconds post-elicitor offset.
+For facial expressions analyses, we use Noldus Face-Reader versions 7.1 to 9.1 (see
+Sabatos-DeVito et al., 2019). We use an HD (4K) camera mounted at the bottom of the
+presenting screen and centred on the participant’s face. The analysis is run using the maximum
+video capture frames per second allowed by the face-reader equipment (30 fps). It includes a
+custom template, and each participant is evaluated in respect to an expressed emotion after
+controlling for facial-emotional characteristics that are present in their neutral expressions
+using the participant calibration module. Expression of an emotion is defined as recognition of
+an emotional expression up to five seconds post-elicitor offset (Tsikandilakis, Bali, Derrfuss &
+Chapman, 2020a; 2020b; see also Skiendziel, Rösch & Schultheiss, 2019) .
+For these assessments to provide us with meaningful results we need to develop a
+matrix of post-trial and post-physiological assessment window functions. This should assess
+hits, misses and it will be wise to include uncertainty as an indication of non-categorical
+conscious perception and unawareness of the presented elicitors (see Morin, 2006). We could
+also benefit from confidence ratings for these responses, particularly in the interest of linear
+trend analyses (see particularly Tsikandilakis, Chapman & Peirce, 2018; pp. 79-83) and ratings
+for valence and intensity for every post-trial set of engagement tasks (Tsikandilakis &
+Chapman, 2018; Tsikandilakis, Chapman & Peirce, 2018; Tsikandilakis, Bali, Derrfuss &
+These are the psychophysiological assessments that we have used in previous publications. If the reader would
+like to apply additional or different psychophysiological assessments, relevant procedures can be found in
+Cacioppo, Tassinary and Berntson (2007; pp. 19-68 (fMRI & fNIRS); 85-91 (EEG); 120-131 (TMS); 211-218
+(Gastrointestinal Responses); 231-235 (Respiratory Responses); see also Tsikandilakis, Bali, Haralabopoulos,
+Derrfuss & Chapman, (2020)). In the aforementioned volume the reader will also be able to find additional
+processes and parameters for measuring SCR (pp. 159-163), HR (pp. 182-197) and facial responses (pp. 267-291).
+Did you see a facial stimulus during the presentation?
+Please use your Keyboard to Press
+(order of option positions randomised)
+“Y” for Yes “U” for Unsure “N” for No
+How confident are you for your How would you best describe your How confident are you for your
+response? response? response?
+1 5 9 1 5 9 1 5 9
+Not at all Moderately Very I did not I am not sure I saw N o t a t a ll Moderately Very
+(Confident) See a face if I saw a face a face (Confident)
+How would you rate the valence of How would you rate the experience
+the presented face? of the valence of the presentation?
+1 5 9
+1 5 9
+Negative Moderate Positive Negative Moderate Positive
+k d
+k d
+s e
+a s e
+s a
+T i s
+m T i
+o o f
+o o
+r d
+e n r
+e n
+d a
+d a
+r R
+O r R
+How would you rate the intensity How would you rate the experience
+of the presented face? of the intensity of the presentation?
+1 5 9 1 5 9
+Low Moderate High Low Moderate High
+psychophysiological responses. This setup allows us to infer specific values for each response type such as hits, seeing a face that was presented,
+misses, not seeing a face that was presented, and uncertainty responses, not being able to conclusively answer whether the participant saw or
+not a face that was presented. Significant effects for physiological changes and self-report ratings in response to emotional faces for the latter
+two conditions could stand as evidence that partial awareness and/or unconscious effects were reported using unbiased adjustments for
+individual unco nsciousness. We use the word “very” as opposed to extremely in Likert scales because our pilot data have repeatedly shown
+that the latter deters the participants from scores ≥ 7, therefore, biasing the design towards lesser ratings. We use the word “moderate” as
+opposed to “neutral” in Likert scales relating to valence and intensity to maintain homogeneity between different engagement tasks (see
+Tsikandilakis Bali, Derrfuss & Chapman, 2019; 2020a; Tsikandilakis, Bali, Yu, Madan, Derrfuss, Chapman & Groeger, 2021; Tsikandilakis,
+Madan & Milbank, 2022).
+We are ready now to proceed to the method for our analyses and – perhaps, most
+interestingly – our outcomes . The usual approach in relevant research is to run a repeated-
+measures ANOVA with independent variable Elicitor Type (fear, happy & neutral) and
+dependent variable – for the purposes of this illustration – SCR (see Critchley, 2002; Mertens
+& Engelhard, 2020). In case of significant results for the omnibus ANOVA, and significant
+differences between Bonferroni-corrected elicitor type comparisons, such as higher
+physiological arousal in response to fearful faces compared to happy and neutral faces, our
+outcomes could be interpreted as evidence for unconscious emotional responsivity. They
+should not (Tsikandilakis, Bali, Derrfuss & Chapman, 2019; 2020a).
+To make such inferences, we need to know where the responses are coming from. We
+need to know what the responses of the participants were to faces they reported seeing when
+these faces were presented (hits). We need to know what the responses of the participants were
+to faces they reported they were unsure whether they saw or not when these faces were
+presented (uncertainty). We need to know what the responses of the participants were to faces
+they reported that they did not see when they were presented (misses).
+To illustrate the importance of the division mentioned above, in our aforementioned
+2020 pilot, we encountered a finding that we did not expect and was not in accordance with the
+vast majority of our research outcomes when we previously applied individual
+unconsciousness (see Tsikandilakis & Chapman, 2018; pp. 443-449; Tsikandilakis, Chapman
+& Peirce, 2018; pp. 87-91; Tsikandilakis, Bali, Derrfuss & Chapman, 2019; pp. 21-25; 2020a;
+pp. 501-507; Tsikandilakis, Bali, Yu, Madan, Derrfuss, Chapman & Groeger, 2021; pp. 13-18;
+Tsikandilakis et al., 2022d; pp. 23-29). A repeated measures ANOVA with independent
+variable Elicitor Type (fear, happy & neutral) and dependent variable skin conductance
+4 We will use three decimal points in this section to illustrate more accurately to the reader the relevant results
+because the latter often involve very discrete and small values and differences.
+responses showed a significant effect of Elicitor Type (F (1.642, 83.747) = 371.249; p < .001;
+η = .879; Greenhouse-Geisser corrected). Further Bonferroni-corrected comparisons showed
+that fearful faces elicited higher SCR (M = .041; SD = .005) compared to happy (M = .028; SD
+= .004; p < .001; d = 2.87) and neutral faces (M = .017; SD = .003; p < .001; d = 5.82). Happy
+faces were also higher for SCR compared to neutral faces (p < .001; d = 3.11). We have
+significant results for unconscious emotional responsivity as reported by higher SCR for fearful
+faces compared to happy and neutral faces. In fact, we could argue that happy faces also
+provided evidence for unbiased unconscious emotional responsivity if their comparison to
+neutral faces can suffice to justify this claim (Winkielman & Berridge, 2004).
+It is accurate to say that hits, reporting seeing a masked face when a masked face was
+presented, can be referred to as conscious perception. On the other hand, miss responses, such
+as reporting not seeing a masked face when a masked face was presented, can be referred to as
+a presentation in which participants were not conscious of the masked target. The responses
+for uncertainty could correspond between levels one, “almost no experience at all, any
+responses would reflect mere guesses” and two, “a brief glimpse, a feeling that something has
+been shown that cannot be characterized by any content and that cannot be explained further”,
+in the PAS scale (Sandberg & Overgaard, 2015; pp. 182-185; see also Overgaard & Sandberg,
+2021). It would be fair to call this condition of perception partial between consciousness and
+unconsciousness, or simply perceptual uncertainty.
+In our pilot, a repeated-measures ANOVA for consciously perceived stimuli (hits), with
+the same independent and dependent variables described above, gives us significant results (F
+(1.449, 73.877) = 421.708; p < .001; η = .892; Greenhouse-Geisser corrected). Further
+Bonferroni-corrected comparisons reveal higher SCR for hits for fearful faces (M = .069; SD
+= .011) compared to hits for happy (M = .041; SD = .011; p < .001; d = 2.545) and hits for
+neutral faces (M = .017; SD = .004; p < .001; d = 6.282). Hits for happy faces were higher for
+SCR than hits neutral faces (p < .001 d = 2.899). The same analysis for unconsciousness (miss
+responses) presents us with very different outcomes. No significant differences and Bayesian
+evidence for equivalence of significance for the null were reported between Elicitor Types (F
+(2, 102) = 1.767; p = .176; η = .033; SE = .001; BF = .31). We can provide further Bonferroni-
+corrected comparisons, and these also confirm that SCR were not significantly different and
+provided evidence for the null for miss responses for fearful face (M = .017; SD = .005)
+compared to miss responses for happy (M = .017; SD = .005; p = 534; d = .007; SE = .001; BF
+= .18) and miss responses to neutral faces (M = .017; SD = .004; p = .229; d = .025; SE = .001;
+BF = .27), and miss responses for happy faces compared to miss responses for neutral faces (p
+= .999; d = .002; SE = .001; BF = .03).
+For perceptual uncertainty, significant differences were reported between elicitor types
+(F (2, 102) = 84.224; p < .001; η = .623). Responses for uncertainty when fearful faces were
+presented (M = .037; SD = .009) were higher for SCR compared to responses for uncertainty
+when happy (M = .027; SD = .008; p < .001; d = 1.174) and neutral faces (M = .018; SD =
+.005; p < .001; d = 2.609) were presented. Responses for uncertainty when happy faces were
+presented were higher for SCR than responses for uncertainty when neutral faces (p < .001; d
+= 1.236). Perceptual uncertainty provided evidence that participants experienced higher
+electrodermal responses to fearful faces compared to any other facial elicitor, and for happy
+faces compared to neutral faces.
+These findings illustrate our method and are important (see Brooks et al., 2012).
+Conscious perception (hits) showed significant physiological responsivity, unconsciousness
+(miss responses) showed evidence for the null, and perceptual uncertainty provided us with
+significant findings for differences in skin conductance responses between fearful, happy and
+neutral faces. Our method was illustrated, applied in a reader-friendly thorough and
+comprehensive way, and – in this instance – it resulted in unexpected findings (see Morin,
+2006; Ramsøy, Friis-Olivarius, Jacobsen, Jensen & Skov, 2012; Newell & Shanks, 2014; Fisk,
+& Haase, 2020).
+Overall Summary
+We presented a step-by-step replication guide for implementing individual
+unconsciousness. We presented the statistical, mathematical and methodological processes for
+calculating per participant and elicitor type the threshold for chance-level perception. We
+presented the methodology for assessing self-report ratings and physiological responses to
+individually adjusted backward masked targets. We presented an empirical illustration for
+replication including unexpected results for higher arousal for uncertainty between fearful, and
+happy and neutral faces.
+General Discussion
+Psychological research has been an area of polemic empirical discontent for whether
+unconscious processing is or whether it is not a real phenomenon. This conflict runs deep and
+old but so do multiple attempts to improve the methodological canon for assessing whether
+unconscious processing is real. For example, the implementation of receiver operating
+characteristics, instead of hit rates, in this area has enabled us to measure perceptual sensitivity
+without – or at least with less (Stanislaw & Todorov, 1999) – bias and exposure to conservative
+or liberal participant response strategies and criteria (see Hautus, Macmillan & Creelman,
+2021). The implementation of Bayesian analyses has provided us with the means to show direct
+evidence for the null – that participants were unconscious of a presented target – and has
+contributed to the assessment of whether participants were unconscious during the presentation
+of masked elicitors (Dienes, 2014; 2015; 2016). We have added to these a methodological
+process. This method includes adjustments in the duration of masked presentations. These
+adjustments are made separately for each participant and for each elicitor type.
+This method consists of a first stage during which the durations of presentation that
+provide evidence for the null hypothesis – that participants were proximate or at-chance level
+for perceiving a masked target – are selected. It consists of a second stage during which
+participants are presented with masked targets for these pre-defined durations. Their responses,
+such as responses for seeing a presented face (hits), responses for not seeing a presented faces
+(miss responses), and responses for being uncertain of having seen a presented face (responses
+for uncertainty), are assessed. Their assessments can include self-report ratings and/or
+physiological measurements, such as SCR, HR and facial-emotional analyses (see
+Tsikandilakis, Bali, Derrfuss & Chapman, 2019). The results are interpreted overall and
+separately for each response (i.e., hits and miss responses, and responses for uncertainty; see
+Tsikandilakis et al., 2020a).
+This method is presented here in sufficient detail, including open-source material, open-
+source methodological, mathematical and statistical code, and empirical illustrations, so that it
+can be directly replicated (Tsikandilakis & Chapman, 2018; Tsikandilakis, Chapman & Peirce,
+2018; Tsikandilakis, Bali, Derrfuss & Chapman, 2019; 2020a; Tsikandilakis, Bali, Yu, Madan,
+Derrfuss, Chapman & Groeger, 2021; Tsikandilakis et al., 2022d). The method is laborious, it
+involves strict participant selection and assessment criteria, and it is overall arduous to
+implement. It is also effective to the extent that the aim of an experiment involves the
+attainment and assessment of unbiased unconsciousness (see example van der Ploeg,
+Brosschot, Versluis & Verkuil, 2017; Vadillo, Linssen, Orgaz, Parsons & Shanks, 2020;
+Vadillo, Malejka, Lee, Dienes & Shanks, 2021; Heck et al., 2022).
+We have presented a difficult but feasible method. This method can provide us with
+evidence for response effects under conditions of conscious, unconscious – and potentially –
+partial awareness, such as responses for uncertainty in a post-trial signal detection task.
+Whether uncertainty signifies unconscious processing will be extensively debated and we do
+not make any claims concerning its interpretation at this stage given the ongoing debate on the
+subject. We submitted the blueprints for unbiased individual unconsciousness and we have
+made its outcomes available for discourse (Morin, 2006; Ramsøy, Friis-Olivarius, Jacobsen,
+Jensen & Skov, 2012; Newell & Shanks, 2014; Fisk, & Haase, 2020; Siegel, 2022).
+Developing the Future of Individual Unconsciousness
+An important – albeit implicit – new challenge we have raised is to extend the outcomes
+of the current method beyond the five-second post-trial physiological assessment and
+participant engagement-task window during visual suppression (see Bargh & Morsella, 2008).
+This is important to understand the effects of consciousness and unconsciousness deeper and
+better. To do so, we will have to expand this method even more than we have done, seven
+years, twenty-seven pilots and seventeen publications, since its conception. We have to
+consider applying unbiased individual unconsciousness to the litmus of ecological validity and
+contemporary psychological discontent relating to unconscious processing: unconscious (or
+subliminal) priming.
+This subject might seem extraneous but, having delivered the blueprints for the current
+method, it is only natural to contemplate that in the last 57 years unconscious priming has
+transformed from a notorious publicity hoax to a methodologically debated empirical reality.
+Unconscious priming begun empirically with evidence for being a conditional effect, that can
+take place unconsciously, only when the unconscious prime can satisfy an already existing
+desire. Recently, it has landed at a point that relevant research has provided evidence that
+unconscious primes can unconditionally influence – even against our personal ideologies and
+beliefs – our interpersonal, cultural, racial, political, religious and emotional beliefs (see Bar &
+Biederman, 1998; Karremans, Stroebe & Claus, 2006; Van Den Bussche, Van den Noortgate
+& Reynvoet, 2009; Elgendi, Kumar, Barbic, Howard, Abbott & Cichocki, 2018; Albarrak,
+Metatla & Roudaut, 2021; Tsikandilakis et al., 2022a).
+These recent empirical evidence are subject to the limitations that we discoursed in the
+introduction of the current manuscript. They have not been tested using individual thresholds
+(see Meyen et al., 2022). The future of individual unconsciousness can be to explore these most
+interesting and most provocative claims. It can be to explore what is the outcome of unbiased
+individual unconscious presentations for our subsequent perceptions, and cognitive and
+emotional responses. The next step of this method, now that its rationale and replicating tools
+have been made available, can be its application within a context of ecological validity, and
+the exploration of possibly the most enduring myth – or possibly the most unsettling reality –
+of research relating to the unconscious: Can we really be primed to alter our emotions,
+cognition and behaviours when presented with individually adjusted unconscious cues
+(Tsikandilakis, Mével, Madan, Derrfuss & Milbank, 2022; in preparation)?
+Conclusions
+In this manuscript, we presented the methodological, mathematical, statistical and
+outcome assessment framework for unbiased individual unconsciousness. We offered open-
+source material, code and the required resources to replicate our method. We showed in several
+empirical illustrations that this method is laborious in its implementation but that it is efficient
+in achieving unbiased per participant and elicitor-type chance-level perceptual sensitivity. We
+provided empirical illustrations. We showed challenging results for higher emotional
+responsivity for fearful compared to happy and neutral faces only for responses for consciously
+perceiving (hits) and responses for partial awareness (uncertainty) of masked elicitors. We
+emphasized that perceptual uncertainty is a condition that merits discourse. We emphasized
+that the developing future research applications of individual unconsciousness can be its
+implementation for undertaking research in unconscious priming.
+Acknowledgements
+The first author would like to thank Maria-Dolores for her unconditional love and
+support in the last six years. All included studies were approved by the Ethics Committee of
+the School of Psychology of the University of Nottingham. All data, and experimental,

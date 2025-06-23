@@ -1,0 +1,612 @@
+Network Analysis of the Short Dark Triad: A Cross-Cultural Study in 10 Countries
+Cristian Ramos-Vera1, Angel García O’Diana1, Dennis Calle1, Miguel Basauri-Delgado2,
+Bruno Bonfá-Araujo3, Ariela Raissa Lima-Costa4, Mirko Duradoni5, Shagufta Nasir6,
+Jacksaint Saintila7*
+1Faculty of Health Sciences, Universidad César Vallejo, Lima, Peru
+2Escuela de Posgrado, Universidad Femenina del Sagrado Corazón, Lima, Peru
+3Faculty of Social Science, The University of Western Ontario, London, Canada
+4Graduate Program of Psychology, Universidade São Francisco, Campinas, Brazil
+5Department of Education, Literatures, Intercultural Studies, Languages and Psychology,
+University of Florence, Florence, Italy
+6Department of Psychiatry and Forensic Medicine, School of Medicine, Universitat
+Autònoma de Barcelona, Barcelona, Spain
+7Faculty of Health Sciences, Universidad Señor de Sipán, Lima, Peru
+*Correspondence:
+Jacksaint Saintila, Faculty of Health Sciences, Universidad Señor de Sipán, Carretera a
+Pimentel, Km 5, Chiclayo, Perú, E-mail: jacksaintsaintila@gmail.com
+Abstract
+Previous research has suggested that manipulation and callousness are central to dark
+traits, but it has not identified which specific manifestations are expressed across various
+countries. In the present study, we analyzed a general network structure and the most
+relevant items (centrality indices) of interconnection of dark triad traits in 10 countries. For
+this purpose, we used a scale widely used in different contexts such as the Short dark triad
+(SD3). The total sample consisted of 8093 participants (59.7% women, M(age) = 32.68
+years). Regarding the graphical representation with the spinglass algorithm in the general
+network, we observed a structure distributed in clusters of Machiavellianism, psychopathy,
+and subclinical narcissism traits. Firstly, the items related to short-term verbal manipulation
+from the domain of psychopathy, along with clever manipulation and strategic revenge-
+seeking items from the Machiavellianism cluster, and narcissistic motivations to establish
+connections with important people, exhibited higher centrality indexes (expected and
+bridge-expected influence). Secondly, the most predicted items were characterized by
+planned revenge and using information against others from the Machiavellianism cluster,
+short-term psychopathic verbal manipulation, and the narcissistic belief of being special
+based on external validation. Finally, we utilized the clique-percolation algorithm to identify
+shared central characteristics among multiple dark triad traits. Through this analysis, the
+item of short-term verbal manipulation was found to simultaneously belong to the
+psychopathy and narcissism clusters. Additionally, the clever manipulation item exhibited
+an overlap with Machiavellianism and psychopathy traits. This cross-cultural study mainly
+reveals the central role of manipulation and also a set of strategic and self-serving
+approaches toward others within a system of dark traits of the SD3 scale. The importance
+of exploring these traits in less considered contexts is emphasized in order to verify whether
+these findings remain consistent.
+Keywords: dark triad traits; network Analysis; Personality; Subclinical traits;cross-cultural
+Introduction
+Personality traits and contextual aspects influence how someone behaves, either
+prosocially (i.e., behaving following social norms and caring about others’ rights) or
+aversively (i.e., behaving contrary to social norms and disregarding others’ rights). There is
+concern from many researchers about which traits are more likely to be associated with
+aversive behaviors, affecting workplaces, marital, familial, and social settings negatively.
+Researchers identified certain personality traits that appeared to be more prone to
+influence people to behave aversively, the so-called dark triad (i.e., subclinical narcissism,
+psychopathy, and Machiavellianism; Paulhus & Williams, 2002). Nonetheless, personality
+alone does not influence the frequency and intensity of specific behaviors, environment
+plays an important role in this process, thus is crucial to understand how people from
+different cultures perceive such aversive behaviors.
+The dark triad was proposed as a set of traits that consistently showed a shared core of
+malevolent characteristics, such as aggressiveness, duplicity, callousness, manipulation, and
+emotional coldness (Kowalski, 2001; Paulhus & Williams, 2002; Vize et al., 2020). Despite
+having common characteristics, each trait has its own set of defining behaviors. Subclinical
+narcissism refers to people who tend to self-promote and show an exacerbated sense of
+grandiosity, believing they are the best in everything they do, requiring constant admiration
+and care. Narcissistic individuals tend to exhibit more social and extraverted tendencies,
+but they also have dominant and low empathy motivations, which can lead to aggression
+when serving self-enhancement motives (Weiss & Miller, 2018). Machiavellianism, based
+on the works of Machiavelli, characterizes people who behave in manipulative ways, lack
+concern for morality and ethics, are able to delay gratification, and its key difference from
+psychopathy is the high levels of constraining shown by Machiavellians (Collison et al., 2018;
+Rauthmann & Will, 2011). Individuals with high levels of Machiavellianism are cold,
+strategic, and prefer to have power over attention, unlike narcissists. The Machiavellian
+trait is associated with antisocial behavior when a person perceives that rewards are greater
+than risks, implying that Machiavellians pay attention to environmental clues about
+punishment risks (Jones & Mueller, 2022). Finally, psychopathy is considered the most
+aversive trait, being associated with more negative outcomes in life (Poythress & Hall,
+2011). This term is used to describe individuals who disregard others’ feelings, are
+untrustworthy, lack empathy, guilt, and remorse, are irresponsible, impulsive, and often
+engage in criminal behavior (De Brito et al., 2021).
+Certain environments may reinforce certain patterns of aversive manifestations. According
+to the evolutionary perspective, traits of the dark triad may share a fast life history strategy
+(fast life history strategy) that is based on a short-term approach to resource acquisition in
+contexts with limited resources and high competition (Jonason et al., 2010). Assessment of
+the dark triad in resource-deprived and high-developmental settings is important given that
+these personality traits are not limited to a specific sociocultural context (Moshagen et al.,
+2020; Paulhus & Williams, 2002). This may be supported by the fact that environments can
+shape specific forms of expression of this ensemble of dark personality traits. This is
+demonstrated by differential correlations between dark personality traits with occupational
+outcomes, social positions, socioeconomic conditions, and even emotion recognition (Aluja
+et al., 2022; Luo et al., 2022; Ma et al., 2021; Schmitt et al., 2020). Therefore, assessing the
+dark triad in diverse settings is essential to identify which dark traits are most essential in a
+multicultural sample, given that people belonging to diverse demographic groups interact
+in diverse contexts and social dynamics that may be prone to take advantage of others,
+possibly in different ways.
+Besides the shared multicultural perspective of these behaviors, there is also a debate
+about a shared central characteristic among the dark triad traits. According to some
+findings, insensitivity towards others and interpersonal manipulation are the common and
+most consistent behaviours among these social aversive traits, demonstrated through high
+correlations between these traits and these behaviours in latent variable studies (Jones &
+Paulhus, 2014) and network systems (Marcus et al., 2018; Truhan et al., 2021). However, it
+is important to understand that there are distinct motivations for each trait, as theories of
+each trait point out. For example, narcissists may manipulate others to gain admiration and
+attention, while people with a high degree of psychopathy manipulate others for quick and
+impulsive material gain. Moreover, Machiavellians use manipulation as a strategic tool to
+achieve their goals and maintain power (Muris et al., 2017; Vize et al., 2018).
+To assess these indicators, instruments must have been developed to differentially measure
+patterns of behavior, motivation and beliefs in dark personality traits. One such instrument
+is the Short dark triad (SD3) developed by Jones and Paulhus (2014). The SD3 aimed to
+provide a brief assessment of these traits while ensuring item diversity and avoiding being
+too long or too short like other measures such as the MACH-IV, Narcissism Personality
+Inventory (NPI) or the Self Report Psychopathy (SRP). This instrument is one of the most
+widely used globally and has a higher item conceptual breadth than other short dark triad
+measures (Bonfá-Araujo et al., 2022; Furnham et al., 2013). This feature of the scale can be
+used to analyze the content of the dark personality trait items in more detail to examine
+the relationships between aversive behaviors from the dark triad model. However, there is
+also evidence that this measure may not reflect the distinct characteristics of each trait, and
+may not allow a clear evaluation to distinguish a clear structure or core features of each
+dark triad trait as they were originally conceived (Dowgwillo & Pincus, 2017; Rogoza &
+Cieciuch, 2020). Therefore, a detailed examination of the items on the SD3 scale can help
+identify which items are most relevant for accurate assessment of the dark triad, which may
+improve the accuracy of assessment in different cultural contexts.
+Network analysis has gained popularity as an alternative for assessing psychological
+constructs, including personality research. Unlike factor models, network analysis does not
+address the fact that underlying latent variables are responsible for the interactions
+between observable variables. In contrast, in the network model, psychological phenomena
+are represented by a system where psychological characteristics emerge from the mutual
+interconnections between observable indicators. In this way, it focuses on the patterns of
+conditional relationships between items of similar content and which reinforce each other,
+allowing the formation of groupings or clusters with the same common nature, analysing
+the underlying structure and importance that each variable has in the network (Borsboom
+et al., 2021). In the area of personality, this perspective can be especially useful as it allows
+for a new representation of complex psychological measures where there are no latent
+traits of common cause, but where observable traits together explain a system of specific
+patterns (Costantini et al., 2019). In fact, this methodology has already been applied to
+examine individual differences at both domain and item level (Dinic et al., 2021; Richetin et
+al., 2017; Truhan et al., 2021). Thus, network analysis is presented as an appropriate
+methodology for examining the complexity of relationships between personality variables,
+even those more aversive traits that expand other more classical models (e.g. Big Five).
+The first objective in the present study was to determine the aversive features with the
+highest centrality of influence and interconnectedness (expected and bridge-expected
+influence) in the overall network of the 10 countries. This was based on previous findings
+that highlighted the existence of specific traits that promote and maintain connections
+between the different domains of the dark triad. For example, research by Burtăverde et al.
+(2022) reported a manipulative interconnected nature of various dark personality
+expressions, specifically items such as verbal manipulation, aligning oneself with influential
+people, using information against others and planned revenge seeking. These dark patterns
+were found to show a higher number of connections, suggesting a central role in the overall
+network. These findings offer evidence of the presence of stable associations among items
+from different domains of dark personality traits. Collectively, these items are likely to
+strengthen and stabilize a concise structural system, reflecting a central core of the dark
+triad from a network perspective. Consequently, it is likely that a lower prevalence of these
+core behaviours would lead to a deterioration of the network system as the number or
+magnitude of network connections would be limited or reduced (Jones et al., 2021).
+Although these findings have been observed in specific contexts (Burtăverde et al., 2022;
+Marcus et al., 2018; Trahair et al., 2020), it is necessary to examine which aversive
+characteristics may be more representative in diverse societies, both collectively and
+independently in each environment.
+As a second objective of the study, it was proposed to identify the items with the highest
+predictability within the overall dark triad network. This was based on the known evidence
+of positive correlations that have been reported in the diverse literature on the dark triad;
+However, it is often not detailed which specific items are most strongly connected for each
+domain (Muris et al., 2017). For this reason, we sought to identify the items with the highest
+shared variance, i.e., those that are most strongly conditionally related to other items after
+multivariate control of the network system components. For example, network research
+conducted by Dodell-Feder et al. (2019) assessed a schizotypal personality trait (item)
+system comprised of three communities, where the highest predictability metrics were
+obtained for two schizotypal traits linked to social awkwardness and conversational
+awkwardness, both measures with the highest degree of association and significantly higher
+than the other network connections. In the case of the present study, this network metric
+is relevant to understand the commonality where certain indicators or aversive behaviours
+of each domain of the dark triad are reinforced. However, to date, most network studies
+only include facets and dimensions of the dark triad in conjunction with other variables in
+common contexts (Dinic et al., 2021; Truhan et al., 2021); while other network studies that
+used only the SD3 measure did not report the predictability index (Burtăverde et al., 2022).
+Finally, the third objective was to identify dark behaviours that overlap between the three
+domains of the dark triad using the network percolation metric. To achieve this, we used
+the clique-percolation method, which allows us to recognise those items belonging not only
+to one grouping but to several groups or clusters at the same time. This objective builds on
+the existing debate about the lack of clear distinction between subclinical traits such as
+psychopathy and Machiavellianism, which hinders the accuracy of measurement of each
+trait (Persson et al., 2019; Rogoza & Cieciuch, 2020). However, to detail these similarities
+and/or distinctions, other authors suggest decomposing each trait into its elementary parts
+to better understand its unique characteristics (Kay & Arrow, 2022). Based on the above,
+the possibility can be raised that some items belong to more than one domain, which is
+possible by means of this network metric, which allows to identify given the underlying
+structure emerging from the interaction of the individual patterns of the dark triad, where
+traits with common characteristics are recognised given the theoretical overlap shared by
+these subclinical domains of socially aversive personality.
+Materials and Method
+Participants
+First, we inquired about studies that used the SD3 during 2020-2022, and we invited the
+respective authors to participate in the present investigation. Among them, we obtained a
+response from researchers from India (Siddiqi et al., 2020) and Italy (Dionigi et al., 2022)
+who offered direct availability to collaborate with their research data. Subsequently, we
+collected accessible data (i.e., namely open databases), which used the SD3 instrument in
+Regarding the data from participants from Peru and Brazil, these were collected
+simultaneously during the second semester of 2020. In total, the final sample consisted of
+8093 participants from 10 countries (59.7% female) after removing missing data (n=48)
+from the original United States study (Vize et al., 2020; the original sample had 1255
+participants, and the present study, 1207). All participant data is available at:
+The data collection of each investigation was carried out following the respective approval
+of the study, the use of language and ethical norms according to each cultural context, and
+following the guidelines of the Declaration of Helsinki (World Medical Association, 2017)
+regarding informed consent, confidentiality of the information and dignified treatment of
+the participants.
+Instruments
+The Short dark triad scale (SD3; Jones & Paulhus, 2014) presents 27 items that are
+distributed in 9 items for each dark triad trait, as in the case of Machiavellianism (e.g., “I
+like to use clever manipulation to get my way”), subclinical narcissism (e.g., “I know that I
+am special because everyone keeps telling me so”) and psychopathy (e.g., “People who
+mess with me always regret it”). Although this instrument presents inverse scoring items to
+minimize acquiescence in responses, this practice often leads to a potential risk of bias,
+especially in cross-cultural studies (Church et al., 2011; Suárez-Álvarez et al., 2018), which
+has also been referenced in works that examined the SD3 scale (Atari & Chegeni, 2016;
+Čopková & Šafár,2021; Pechorro et al.,2019; Persson et al., 2019;Zhang et al., 2019). When
+recoded, these reverse items formed separate groups in the general and individual
+networks during initial network estimation. Also they correlated negatively with other
+items, so we only considered those items with direct scoring that were interpretable
+according to the dark triad model. In turn, item 1 was withdrawn, because it evidenced a
+redundancy of collinearity with item 7, which was kept because it provides a better
+Machiavellian orientation. Participants responded to each item in a range from 1 = Strongly
+disagree to 5 = Strongly agree. Each measure was validated in the context and language of
+the respective countries, where all the studies reported adequate values of internal
+consistency for each trait of the dark triad. The general reliability of the instrument used in
+this 21-item study refers to adequate reliability through the Omega coefficient (ω = .86).
+Data Analysis
+Packages
+All processes were made in the R environment (R Core Team, 2022) with qgraph (Epskamp
+et al., 2012; Epskamp et al., 2022), igraph (Csardi & Nepusz, 2006; Csardi & Nepusz, 2022),
+bootnet (Epskamp, 2021), NetworkComparisonTest (van Borkulo et al., 2019), networktools
+(Jones, 2022), NetworkToolbox (Christensen, 2019), and CliquePercolation (Lange, 2021)
+packages.
+General Network Estimation
+The general network model was calculated with bootnet package, with the huge estimator
+(Jiang et al., 2019; Zhao et al., 2012), a nonparanormal transformation of the data (Liu et
+al., 2009), and the Rotation Information Criterion (RIC) for model selection (Lysen, 2009);
+all contained in the ‘estimateNetwork’ function. The clusters were identified with the
+spinglass algorithm (Newman & Girvan, 2004; Reichardt & Bornholdt, 2006; Traag &
+Bruggeman, 2009) this was calculated with ‘spinglass.community’ function in igraph
+package, through the undirected adjacency matrix and 200 spins.
+The overlapped communities in the graph were calculated with the Clique Percolation
+Method (CPM) algorithm (Palla et al., 2005), where a community is a several fully connected
+subgraphs that tend to share some of their nodes. Thus, the algorithm first finds all cliques
+of size k in the estimated network graph, then create a graph where nodes are cliques of
+size k, after adding edges if two nodes (cliques) share k-1 common nodes, and finally, each
+community is represented by each connected component in the final clique graph. A k = 7
+cliques were used to identify the percolated nodes.
+For the network, visualization edges represent the weight of the correlations between the
+individual nodes, whereas wider edges indicate stronger correlations between nodes.
+Nodes represent scores of each predictability (i.e., how well a node can be predicted by all
+others it is connected to). Each group node color is an identified cluster, and two or more
+colors are percolated nodes; all were plotted with the ‘cpColoredGraph’ function of the
+CliquePercolation package.
+Stability and Centrality
+The stability was calculated with the bootnet package in two forms: (a) using a person-
+dropping bootstrap (CS-coefficient), values upper than > 0.5 indicate strong stability and
+interpretability (Ramos-Vera et al., 2022); (b) A multiverse stability of bootstrap samples,
+where every row indicates an edge and every column a bootstrap, the color intensity
+indicates the strength of the edge in each bootstrap replication. If the network is stable, the
+Then, the centrality indices, one and two step Expected Influence were estimated with the
+‘expectedInf’ function on networktools package, the first provides information on the direct
+relationships between each node and the rest by summing the weights of the edges,
+considering the absolute values or the sign of the value, and the second sums the weights
+of indirectly related edges (Robinaugh et al., 2016). Likewise, one and two step bridge
+expected influence were estimated with the ‘bridge’ function in the same package, the first
+indicates the total connectivity of each node with nodes of other communities with which
+it is directly related, by summing the weights of the edges that connect the node with nodes
+of other communities considering absolute values, while the second considers indirect
+relationships with nodes in other communities (Jones et al., 2021). Furthermore, the
+participation coefficient was estimated as a corrective for the centralities of nodes. This
+allows us to observe the consistency of the connections that a node has in comparison to
+different groups of nodes within the network (Letina et al., 2019). This was estimated with
+the ‘participation’ function in the NetworkToolbox package.
+Networks by Countries Estimation
+The individual countries' networks were estimated with the Local/Global (LoGo) method,
+which estimates a Graphical Gaussian Model (GGM) using a Triangulated Maximally Filtered
+Graph (TMFG) network (Barfuss et al., 2016), the partial correlations were estimated
+through a nonparanormal transformation of the data (Liu et al., 2009), and the Rotation
+Information Criterion (RIC) for model selection (Lysen, 2009). To view the dynamism of the
+communities, these were colored like the general network. And the centralities were
+explored with the Expected Influence metric for each network. Afterward, the comparison
+between networks of countries was conducted with the ‘NCT’ function of the
+NetworkComparisonTest package, this was calculated with Bonferroni-Holm correction
+(Hochberg & Tamhane, 1987; van Borkulo et al., 2022) and 100 permutations for each case.
+Results
+Frequency
+Country (sample) M (Age) Gender ω (SD3)
+(percent)
+Male 207 (27.2%)
+BRAZIL (n = 760) 34.53 0.89
+Female 553 (72.8%)
+Male 117 (26.7%)
+CHINA (n = 439) 21.41 0.84
+Female 322 (73.3%)
+Male 94 (20.3%)
+GERMANY (n = 463) 25.78 0.84
+Female 369 (79.7%)
+Male 490 (59.3%)
+INDIA (n = 826) 19.8 0.77
+Female 336 (40.7%)
+Male 188 (26.3%)
+ITALIA (n = 715) 42.4 0.83
+Female 527 (73.7%)
+Male 967 (49.7%)
+JAPAN (n = 1947) 44.81 0.83
+Female 980 (50.3%)
+Male 121 (38.7%)
+PERU (n = 313) 24.56 0.87
+Female 192 (61.3%)
+Male 300 (50.0%)
+SLOVAKIA (n = 600) 43.12 0.84
+Female 300 (50.0%)
+Male 282 (34.3%)
+SPAIN (n = 823) 31.31 0.82
+Female 541 (65.7%)
+Male 499 (41.3%)
+USA (n = 1207) 39.1 0.90
+Female 708 (58.7%)
+Notes. M (age) = Mean age, ω (SD3) = omega reliability coefficient of the SD3 Scale
+Regarding the descriptive data at a general level, the total number of participants was made
+up of 8093 people: 3265 males (40.3%) and 4828 females (59.7%), while the mean age was
+participants were those from Japan, Italy, and Slovakia, while the youngest were from India
+and China. On the other hand, a more equitable sample of men and women is evident in
+the countries of Slovakia and Japan; the opposite occurs in the sample of Germany, Italy,
+and China. The reliability of the instrument in each study through the omega coefficient was
+adequate. General and individual network correlation matrices can be found in the OSF
+repository:
+Notes.
+Blue paths are positive relationships. Red cluster: Machiavellianism; Blue Cluster: Psychopathy; Green
+Cluster: Narcissism. Node size is defined by its predictability index. Items: SDT2= I like to use clever
+manipulation to get my way. SDT3= Whatever it takes, you must get the important people on your side.
+STD4=Avoid direct conflict with others because they may be used in the future. STD5= It’s wise to keep track
+of information that you can use against people later. STD6=You should wait for the right time to get back at
+people. STD7= There are things you should hide from other people to preserve your reputation. STD8= Make
+sure your plans benefit yourself, not others. STD9= Most people can be manipulated. STD10= People see me
+as a natural leader. STD12= Many group activities tend to be dull without me. STD13= I know that I am special
+because everyone keeps telling me so. STD14= I like to get acquainted with important people. STD16= I have
+been compared to famous people. STD18= I insist on getting the respect I deserve. STD19= I like to get revenge
+on authorities. STD21= Payback needs to be quick and nasty. STD22= People often say I’m out of control.
+STD23= It’s true that I can be mean to others. STD24= People who mess with me always regret it. STD26= I
+enjoy having sex with people I hardly know. STD27= I’ll say anything to get what I want.
+highest relationships were between SDT5 (It’s wise to keep track of information that you
+can use against people later) and SDT6 (You should wait for the right time to get back at
+people) (r = 0.298) from the machiavellianism cluster. Then, SDT12 (Many group activities
+tend to be dull without me) and SDT13 (I know that I am special because everyone keeps
+telling me so) (r = 0.228) from the narcissism cluster. Furthermore, SDT3 (Whatever it takes,
+you must get the important people on your side); and SDT4 (Avoid direct conflict with others
+because they may be used in the future) (r = 0.176), also from the machiavellianism group.
+Regarding predictabilities, SDT6(You should wait for the right time to get back at people'')
+(r2 = 0.282) and SDT5 (It’s wise to keep track of information that you can use against people
+later) (r2 = 0.264) were the highest values, while SDT26 (I enjoy having sex with people
+Ihardly know)(r2 = 0.101) and SDT7 (I have been compared to famous people) (r2 = 0.083)
+were the lowest.
+Notes. Every row indicates an edge, and every column is a bootstrap. Blue lines = Positive
+Edges; Red lines = Negative edges. The color intensity indicates the strength of the edge in
+each bootstrap replication.
+The clusters explored with the spinglass algorithm were in accordance with the original
+theoretical framework. Then, they were percolated and plotted, the results suggest that
+SDT2 (I like to use clever manipulation to get my way) item is influenced by
+Machiavellianism and psychopathy dimensions, and SDT27 ( I’ll say anything to get what I
+want) item is influenced by psychopathy and narcissism dimensions. The multiverse stability
+bootstrap iteration executed; this can be visualized in the straight horizontal lines formed.
+The highest value was between SDT5(It’s wise to keep track of information that you can use
+against people later) and SDT6 (You should wait for the right time to get back at people)
+edge weight (0.359) in the 366 iterations, while SDT3 (Whatever it takes, you must get the
+important people on your side)- SDT23 (People who mess with me always regret it) edge
+weight (-0.109) was the lowest in the 474 iterations.
+Notes. Values greater than 1 refer to greater centrality in the network. Items: SDT2= I like to use clever
+manipulation to get my way. SDT3= Whatever it takes, you must get the important people on your side.
+STD4=Avoid direct conflict with others because they may be used in the future. STD5= It’s wise to keep track
+of information that you can use against people later. STD6=You should wait for the right time to get back at
+people. STD7= There are things you should hide from other people to preserve your reputation. STD8= Make
+sure your plans benefit yourself, not others. STD9= Most people can be manipulated. STD10= People see me
+as a natural leader. STD12= Many group activities tend to be dull without me. STD13= I know that I am special
+because everyone keeps telling me so. STD14= I like to get acquainted with important people. STD16= I have
+been compared to famous people. STD18= I insist on getting the respect I deserve. STD19= I like to get revenge
+on authorities. STD21= Payback needs to be quick and nasty. STD22= People often say I’m out of control.
+STD23= It’s true that I can be mean to others. STD24= People who mess with me always regret it. STD26= I
+enjoy having sex with people I hardly know. STD27= I’ll say anything to get what I want.
+Moreover, in the general network the highest expected influence and the bridge expected
+BEI1 = 0.468). However, the lowest Expected Influence was between SDT7 (I have been
+compared to famous people; EI1 = 0.503) and SDT26 (I enjoy having sex with people Ihardly
+know; EI1 = 0.483) nodes; while the lowest Bridge Expected Influence was SDT10 (People
+see me as a natural leader; BEI1 = 0.020).
+Notes.
+Blue paths represent positive relationships. Orange cluster: Machiavellianism; Blue Cluster:
+Narcissism; Green Cluster: Psychopathy. BR=Brazil, CH=China, GR=Germany, IN=India, IT=Italy,
+JA=Japan, PE=Peru, SL=Slovakia, SP=Spain, US=United States. Items: SDT2= I like to use clever
+manipulation to get my way. SDT3= Whatever it takes, you must get the important people on your side.
+STD4=Avoid direct conflict with others because they may be used in the future. STD5= It’s wise to keep track
+of information that you can use against people later. STD6=You should wait for the right time to get back at
+people. STD7= There are things you should hide from other people to preserve your reputation. STD8= Make
+sure your plans benefit yourself, not others. STD9= Most people can be manipulated. STD10= People see me
+as a natural leader. STD12= Many group activities tend to be dull without me. STD13= I know that I am special
+because everyone keeps telling me so. STD14= I like to get acquainted with important people. STD16= I have
+been compared to famous people. STD18= I insist on getting the respect I deserve. STD19= I like to get revenge
+on authorities. STD21= Payback needs to be quick and nasty. STD22= People often say I’m out of control.
+STD23= It’s true that I can be mean to others. STD24= People who mess with me always regret it. STD26= I
+enjoy having sex with people I hardly know. STD27= I’ll say anything to get what I want.
+countries: Spain, Brazil, Japan, Slovakia, India, Germany, Peru, China, Italy, and the United
+States. It can be observed that in some cases, such as China, Japan, and Slovakia, the
+network structures are more uniform for each trait of the dark triad compared to other
+countries.
+Notes. Values greater than 1 refer to greater centrality in the network. BR=Brazil, CH=China, GR=Germany,
+IN=India, IT=Italy, JA=Japan, PE=Peru, SL=Slovakia, SP=Spain, US=United States. Items: SDT2= I like to use
+clever manipulation to get my way. SDT3= Whatever it takes, you must get the important people on your
+side. STD4=Avoid direct conflict with others because they may be used in the future. STD5= It’s wise to keep
+track of information that you can use against people later. STD6=You should wait for the right time to get
+back at people. STD7= There are things you should hide from other people to preserve your reputation.
+STD8= Make sure your plans benefit yourself, not others. STD9= Most people can be manipulated. STD10=
+People see me as a natural leader. STD12= Many group activities tend to be dull without me. STD13= I know
+that I am special because everyone keeps telling me so. STD14= I like to get acquainted with important
+people. STD16= I have been compared to famous people. STD18= I insist on getting the respect I deserve.
+STD19= I like to get revenge on authorities. STD21= Payback needs to be quick and nasty. STD22= People
+often say I’m out of control. STD23= It’s true that I can be mean to others. STD24= People who mess with me
+always regret it. STD26= I enjoy having sex with people I hardly know. STD27= I’ll say anything to get what I
+want.
+keep track of information that you can use against people later) showed the highest values
+(>1) of this index, particularly in countries such as Germany, India, Brazil, Spain, USA, Italy,
+and Peru. Likewise, the item SDT6 (you should wait for the right time to get back at people)
+displayed higher expected influence indices in Peru, Italy, Germany, and Slovakia.
+differences in network structures were found in the United States and Spain. Additionally,
+more significant centrality indexes were found in countries such as India and the United
+States.
+Country Network.p Centrality.p Country Network.p Centrality.p Country Network.p Centrality.p
+BR–CH 0.38 0.90 CH–GR 0.09 0.20 PE–SL < .001 0.59
+BR–IN 0.23 < .001 CH–IT 0.79 0.20 PE–SP 0.10 0.04
+BR–JA < .001 0.25 IN–JA 0.11 < .001 PE–US 0.03 < .001
+BR–PE 0.25 0.74 IN–PE 0.25 < .001 PE–GR 0.07 0.21
+BR–SL 0.25 0.36 IN–SL 0.09 < .001 PE–IT 0.08 0.16
+BR–SP 0.03 0.01 IN–SP 0.04 < .001 SL–SP 0.02 < .001
+BR–US 0.06 < .001 IN–US 0.12 < .001 SL–US 0.53 0.01
+BR–GR 0.20 0.27 IN–GR 0.64 0.01 SL–GR 0.22 0.03
+BR–IT 0.26 0.12 IN–IT 0.95 < .001 SL–IT 0.07 0.01
+CH–IN 0.95 < .001 JA–PE 0.01 0.76 SP–US 0.11 < .001
+CH–JA 0.45 0.47 JA–SL 0.10 0.73 SP–GR 0.33 0.39
+CH–PE 0.52 0.85 JA–SP 0.15 < .001 SP–IT < .001 0.43
+CH–SL 0.33 0.36 JA–US < .001 < .001 US–GR 0.56 < .001
+CH–SP 0.12 0.04 JA–GR 0.01 0.12 US–IT < .001 < .001
+CH–US < .001 < .001 JA–IT 0.12 0.02 GR–IT 0.04 0.82
+Notes. Network.p = network structures; centrality.p = network centrality by
+country.BR=Brazil, CH=China, GR=Germany, IN=India, IT=Italy, JA=Japan, PE=Peru, SL=Slovakia,
+SP=Spain, US=United States.
+Other analysis figures are included on the OSF link
+where the significant differences of any two edges can include a zero value (dark squares)
+or not (gray squares). The diagonal displays the magnitude of the original edge, where blue
+squares are positive values. Values at the top were significantly higher than all others.
+significant differences in that index, and gray area non-significant differences. Bootstrap
+correlations. The sample values are represented by the red line, while the bootstrapped
+confidence intervals are indicated by the gray area. Each horizontal line corresponds to each
+association in the network, in descending order from the highest to the lowest association.
+(>.50 correlation between the original and bootstrapped sample).
+Discussion
+Personality models can be represented by an ecosystem where traits, behaviours, domains,
+or facets that interact with each other are integrated, while other connections tend to be
+reduced according to the degree of importance in the network, thus allowing the
+structuring of a unique causal system emerging from the associations between these
+personality measures (Borsboom et al., 2021; Costantini et al., 2019). Therefore, the
+application of this systemic approach that considers associative patterns of individual
+differences in subclinical personality traits is important, as it offers an integrative
+perspective on aversive behavior in everyday life across different cultures. Specifically, the
+present study is essential as it proposes to identify the most representative behaviors
+according to the network centrality metrics of the universal dark triad given the inclusion of
+a multicultural sample of 10 different geographical regions.
+The Short dark triad (SD3) is a widely used measure that has advantages over other similar
+short measures due to its diverse and specific conceptual breadth (Dinić & Jevremov, 2021;
+Maples et al., 2014). However, while the original model was composed of three correlated
+factors, it has been necessary to reformulate the model in some studies to obtain a
+parsimonious structure (Atari & Chegeni, 2016; Boonroungrut et al., 2020), and replicated
+in others (Arseneault & Catano, 2019; Gamache et al., 2018; Onyedire et al., 2019). To
+examine the systemic representation of the dark triad traits across different continents,
+new perspectives are needed. Multivariate relationship network models of darker traits
+may better represent the dynamics of relationships between items with a nature of
+common aversive behavior that reinforces each other, from which particular domains (e.g.,
+Machiavellianism) can emerge (Costantini et al., 2019). Therefore, we believe that network
+analysis can be a valuable methodology for assessing the structure of the SD3 scale in a
+large transcultural sample, especially across multiple countries that have been
+understudied.
+The first objective was to identify the dark features of greater centrality (expected and
+bridge expected influence) in the systemic model given a greater number of connections
+and sum of weights of items and network communities. This reinforces the
+interconnectedness of the system of dark traits and provides greater stability to the
+network (Jones et al., 2021). The present study highlights pathways of interconnection
+between the all three dark clusters through specific traits. Specifically, the short-term verbal
+manipulation item (SDT27, psychopathy) had the highest centrality values in the general
+network. Additionally, items of clever manipulation to get their way (SDT2,
+machiavellianism), waiting for the right time to get back at people (SDT6, machiavellianism),
+and getting acquainted with important people (SDT14, narcissism) were those more
+consistently repeated in all centrality measures. These findings suggest that these particular
+manipulative tendencies and social influence tactics are prevalent even in diverse cultural
+contexts, highlighting the widespread exploitation of others for instrumental purposes and
+their resources at the expense of harming other people and society as a whole (Jonason &
+Webster, 2012; Jonason et al., 2020).
+The prevalence of ‘saying anything to get what one wants’ can encompass broad patterns
+of behavior (seduction, dominance, lying) that are commonly associated with the dark triad,
+as referenced in a meta-analysis (Muris et al., 2017). At the sociocultural level, if the most
+central item “saying anything to get what they want” (SDT27) found in this study is present
+within resource-poor environments, individuals with these dark traits may resort to
+deceptive behavior and exploitation as a means to enhance their social and economic
+position. For example, they may use their skills to influence others through lying, emotional
+blackmail or flattery to gain access to valuable resources such as take advantage of job
+opportunities lacking the qualifications required, to obtain money and protection through
+illegal activities (Kuyumcu & Dahling, 2014). On the other hand, in more developed
+environments, people with these dark triad characteristics may use behaviours such as
+manipulation, influence and deception to gain power, status and social recognition. For
+example, they may persuade and convince others to obtain leadership positions at work or
+in politics. These persuasive behaviours have also been used to manipulate and exploit
+others in financial or work settings in order to gain competitive advantage and achieve their
+personal goals of power and social status (Jonason et al., 2020). These findings of
+interpersonal manipulation are in line with previous network analyzes studies that
+examined various dark traits within individual countries, such as Germany and the United
+States (Marcus et al., 2018; Wehner et al., 2021). Interestingly, these countries, including
+Spain, Brazil, Italy, and Japan, emerged as having the highest centrality indexes in the
+present study as well, although we specifically found it was the item of saying anything to
+get a personal benefit.
+Another item on the SD3 scale that consistently emerged as central in all samples was about
+waiting for the right time to seek revenge on others (SDT6). This was reinforced by the item
+of using information against others (SDT5), which in turn was also connected to the item of
+motivation for quick and cruel revenge (SDT21). These associations suggest that these
+behaviours may be common across cultures. Indeed, people who plan revenge against
+others are probably more likely to realize these motivations through the use of information
+to damage the reputation of others. However, these behaviours may also result in less
+empathetic behaviours related to seeking quick and cruel revenge as a way of repairing the
+perceived harm of unforgiveness and resentment caused in these individuals (Flores-
+Camacho et al., 2022; Jackson et al., 2019).
+The second objective of the study was to identify the items with the highest predictability
+(r2) in the overall SD3 network. These elements stood out for being the most predicted by
+other items due to their strong connections with them. Here, the planned revenge item
+(SDT6) had the highest predictability index in the network, reinforced by using information
+against others (SDT5), which followed closely in high predictability. Additionally, quick and
+cruel revenge from the domain of psychopathy (SDT21) also showed a stronger association
+with item 6 of Machiavellian revenge. While this poses a difference in the mode of revenge
+for each trait, more calculated in Machiavellianism and more callous or impulsive in
+psychopathy (Vize et al., 2018), these connections make sense as both forms of revenge
+involve a desire for no one to interfere with their personal gain objectives, although each
+trait differs in approaches and execution of their actions. However, it can also be
+hypothesized that both forms of revenge may manifest in both traits, depending on other
+individual characteristics, such as sensation seeking or emotional instability that need to be
+addressed in future studies (Poythress & Hall, 2011).
+Other item with high predictability index was the belief of being special based on external
+validation (SDT13) in the narcissism cluster, which was mainly reinforced by the belief of
+being indispensable in social groups (SDT12) and being perceived as a natural leader
+(SDT10). These indicators exemplify the significance of grandiosity in these individuals.
+Narcissistic individuals often assume leadership positions, showcase their talents or
+accomplishments, and actively seek recognition from others. These behaviors are driven by
+their desire to obtain social validation, which serves to reinforce their self-esteem and
+perceived superiority, as some authors have highlighted (Morf & Rhodewalt, 2001; Weiss &
+Miller, 2018). In addition, the belief that others need their presence in various activities may
+also lead the individual to seek to take control given the need to be the center of attention
+in any social dynamic, to reinforce a sense of personal importance and esteem (Krizan &
+Herlache, 2017).
+With regard to the third objective, consideration was given to recognizing traits that can be
+simultaneously included in more than one domain of SD3. This builds on existing evidence
+of an unclear measurement of subclinical dark traits (Persson et al., 2019; Rogoza &
+Cieciuch, 2020) and aims to elucidate their similarities or distinctions. Among them, we
+found that verbal manipulation to get anything (SDT27 item) belonged both to the
+psychopathy and narcissism cluster. In psychopathy, verbal manipulation aligns with the
+manipulative nature of this trait, which involves lying and disregarding the rights and
+feelings of others in order to obtain immediate benefits (Shao & Lee, 2017). Similarly,
+narcissistic individuals may use self-expression to manipulate others' perceptions and
+achieve a desired image, sense of power, and control. This is in line with previous studies
+that report that narcissistic individuals are driven by a desire to be seen as possessing
+grandiose abilities, and they may even use social influence to fulfill their own desires (Dinić
+et al., 2022). As a result, they often exhibit a lack of empathy and engage in exploitative
+behaviors towards others (Morf & Rhodewalt, 2001; Glenn & Sellbom, 2015).
+Another interesting finding was that the item of using clever manipulation (SDT2) was found
+to be shared between the Machiavellianism and psychopathy clusters. This is possible due
+to the shared nature of both traits of gaining benefits through deception and exploitation,
+which makes it more likely that this measure using such traits in a general way shares a
+common identification with both personality domains in the network (Sharpe et al., 2021).
+However, theories of both traits point out that there are differences between the two traits
+that can help differentiate them depending on the nature of the manipulation used.
+Machiavellianism is often associated with a strategic and rational approach to
+manipulation, where people may use calculated and well-planned tactics to achieve their
+goals. In contrast, psychopathy is often associated with a more impulsive and emotional
+approach to manipulation, where people may use deception and manipulation for
+immediate gratification without considering the physical or psychological consequences
+they may cause in others (Jones & Paulhus, 2014; Sharpe et al., 2021).
+Limitations
+Regarding the limitations, although some samples were composed of participants from the
+general population, there was a greater number of university students, which is not
+necessarily representative of the cultural context in a society. In addition, although there
+are other measurements of broader dark traits (e.g. Dark Tetrad), such measures are not
+yet validated in some environments such as South America. Another important limitation is
+that reverse items of the SD3 Scale were not used, due to analysis revealed they did not
+provide an accurate representation of the intended traits within the network estimation.
+Future studies should address this issue further. Additionally, in future research, it may be
+interesting to replicate the study by comparing attributes according to sex, age, or
+socioeconomic indicators that make it possible to better differentiate one culture from
+another and verify new findings. A strength of this study was a more informative approach
+of associations such as the analysis of network structures. Beyond that, we verified that
+certain manipulative social patterns may be prominent and reinforce each other across
+different cultures.
+Conclusion
+In summary, by estimating a global network using items from the SD3 scale in 10 countries,
+we found that certain items promoted connections between clusters and contributed to
+the overall stability of the network. These items included short-term verbal manipulation
+(psychopathy), waiting for the right moment for revenge, clever manipulation
+(Machiavellianism), and motivations for establishing relationships with important
+individuals (narcissism). On the other hand, the most predicted items in the overall network
+of the SD3 were waiting for the right moment to seek revenge on others (SDT6), using
+information against others (SDT5), verbal manipulation (SDT27) and the belief of being
+special based on external validation (SDT13). Finally, using the percolation algorithm, we
+identified that certain items belonged to more than one cluster of the SD3 dark triad,
+including clever manipulation (Machiavellianism and psychopathy) and short-term verbal
+manipulation (psychopathy and narcissism). In essence, our findings highlight the
+importance of verbal manipulation and its intricate interplay within the network dynamics
+as measured by the SD3 Scale. This shows the multifaceted nature of dark triad traits,
+revealing the diverse patterns through which verbal and short-term manipulation can be
+intertwined in a calculated, vengeful manner, while also projecting a high-status image.
+However, this study also revealed some important issues regarding measuring the
+complexity of some traits with the SD3 Scale. Therefore, future studies may benefit from
+using alternative items or complementary scales to evaluate them with greater precision.
+Overall, this study adds to the existing literature on the dark triad traits and highlights the
+importance of taking a transcultural perspective in understanding these complex
+personality traits.

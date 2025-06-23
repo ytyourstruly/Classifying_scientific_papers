@@ -1,0 +1,850 @@
+Facilitating Cooperation by Manipulating Attention
+1 2 1,3
+Claire Lugrin *, Arkady Konovalov *, Christian C. Ruff
+Zurich Center for Neuroeconomics (ZNE), Department of Economics, University of Zurich,
+Zurich 8006, Switzerland
+School of Psychology, University of Birmingham, Edgbaston, B15 2TT Birmingham, United
+Kingdom
+URPP Adaptive Brain Circuits in Development and Learning, University of Zurich
+Please address correspondence to: a.konovalov@bham.ac.uk, christian.ruff@uzh.ch
+* Equal contribution
+ABSTRACT
+Cooperation is essential for human societies, but not all individuals cooperate to the same
+degree. This is typically attributed to individual motives - for example, to be prosocial or to
+avoid risks. Here, we investigate whether cooperative behavior can, in addition, reflect what
+people pay attention to and whether cooperation may, therefore, be influenced
+by manipulations that direct attention. We first analyze the attentional patterns of subjects
+playing one-shot Prisoner’s Dilemma games and find that choices indeed systematically relate
+to attention to specific social outcomes, as well as to individual eye movement patterns
+reflecting attentional strategies. To test for the causal impact of attention independently
+of subjects’ prosocial and risk attitudes, we manipulated the task display and found that
+cooperation is enhanced when displays facilitate attention to others’ outcomes. Machine
+learning classifiers trained on these attentional patterns confirm that attentional strategies
+measured using eye-tracking can accurately predict cooperation out-of-sample. Our findings
+demonstrate that theories of cooperation need to incorporate attention and that attentional
+interventions can improve cooperative outcomes.
+INTRODUCTION
+Cooperation – the ability of individuals to incur a personal cost to achieve a group benefit – is
+1,2 3
+a hallmark of human social behavior and is essential for the functioning of our societies .
+Understanding why people engage in cooperation rather than behaving selfishly, and how we
+can foster cooperation, is important for many pressing global challenges, including
+combatting climate change, curbing infectious diseases, and addressing problems associated
+with aging populations.
+Natural selection implies competition, but cooperation is observed in both animal and human
+groups . Evolutionary biology offers several potential explanations for the emergence of
+5,6
+cooperation, including kin selection, reciprocity, byproduct benefits, and group selection .
+To understand and improve cooperative outcomes in human behavior, it is crucial to pin down
+the specific motivations and decision mechanisms underlying cooperative choices .
+The existing literature suggests several possible motives underlying cooperation. First,
+cooperation may depend on the outcomes of the decisions. This is suggested by lab studies
+using economic games such as the Prisoners’ Dilemma, where two individuals choose to
+either cooperate or defect in the presence of a trade-off between individual and group
+outcomes. These games represent many real-world situations where an individual has the
+incentive to free-ride and take advantage of others - for instance, group projects, the use of
+public goods such as parks and transportation, or the division of household chores. A vast
+behavioral literature exploring individual and group behavior in various possible designs,
+settings, and conditions of these games has developed in economics, psychology, and
+sociology since the early 1960s . In these studies, most individuals do not cooperate or defect
+categorically but choose systematically whether to cooperate in line with the relative size of
+9–15
+the different payoffs .
+Second, individual differences in cooperation may reflect individual beliefs and preferences.
+16–19
+Most prominent in this respect may be social or other-regarding preferences : People
+often cooperate with strangers due to their concern for other people’s wellbeing , but could
+21–23
+also do so due to other motives such as “warm glow” or empathy . Non-social preferences
+related to specific circumstances may also influence cooperation. For example, cooperation
+can break down due to risk aversion: One might refuse to vaccinate due to personal fear of
+potential health issues. If another person then suspects that such an individual will not
+reciprocate and could therefore put their personal outcome (e.g., health) at risk, they might
+also choose not to engage in cooperation .
+Finally, in addition to incentives and individual preferences, cooperation may also relate to
+attention and sampling of the information on which the choices are based. Studies using
+25–32
+choice process data, such as gaze duration and saccades , have revealed that subjects do
+not pay equal attention to all pieces of information but vary considerably in their eye
+movement patterns . This suggests that individuals shift their overt attention in line with
+simplified information sampling strategies, often not using all available information to the
+34,35
+same degree . This may partially reflect goal-directed attention guided by preferences and
+choice strategies. For example, in social dilemmas, individuals with strong other-regarding
+preferences exhibit gaze patterns favoring others’ payoffs . Moreover, individuals who tend
+to play closer to equilibrium strategies – or who use a higher level of strategic sophistication
+– pay attention to both their own and their opponent’s payoffs, whereas individuals who fail
+to play the equilibrium strategies only sample their payoffs . Finally, other studies suggest
+that altruistic individuals attend to both players’ payoffs, whereas selfish ones often only
+sample their own payoff .
+Attention is not only guided by behavioral goals but can also be driven exogenously by
+39–41
+characteristics of the environment and the choice-relevant stimuli , such as the
+42 43
+positioning or visual salience of different choice attributes. However, previous studies of
+cooperative behavior have mainly examined goal-directed attention and have by and large
+not considered how behavior may relate to how attention can be captured exogenously, for
+instance by changing the salience and location of the payoff information on the screen. This
+contrasts with the literature on choices in non-social contexts, where it has been consistently
+shown that value-based choices are strongly affected by exogenous attention
+44–46
+manipulations . For instance, studies on food choice have shown that the visual salience
+of an item leads to a stronger behavioral preference towards the item , and corresponding
+exogenous attention manipulations during moral decisions have shown that directing the
+48,49
+attention of individuals to specific answers can also affect their choices .
+Here, we integrate these separate perspectives and investigate how attentional information
+sampling subserving cooperative decision-making depends on both individuals’ preferences
+and exogenous manipulation of information presentation. To disentangle the effects of
+outcomes, preferences, and attentional mechanisms on cooperative decisions, we use one-
+shot Prisoner’s dilemma (PD) games combined with computational choice models and eye-
+tracking. Such PD games involve four distinct payoffs: reward (R) for mutual cooperation,
+temptation (T) for one-sided defection, punishment for mutual defection (P), and sucker’s
+payoff (S) for one-sided cooperation. In a one-shot PD game, typically T > R > P > S, so the
+dominant strategy for a player is to always defect, as this strategy guarantees a higher payoff
+(T or P) independent of the opponent’s choice. If both players defect (as they should do in
+Nash equilibrium if they are rational and optimal), they both receive a punishment payoff P,
+a worse outcome than they could have obtained if they had cooperated (R).
+In our experiment, subjects played 192 trials of this game with a real opponent seated in a
+separate room and did not receive feedback on the opponent’s choice after each game. To
+capture the effects of outcomes and distinct motives on cooperative choices in different
+individuals, we systematically varied the four payoff values. Specifically, we generated 96
+unique PD games, by varying the four payoffs between 0 and 40, with a step size of 5 Swiss
+estimate individual other-regarding preferences, risk attitudes, and subjective prior beliefs
+about potential cooperation by the opponent. The one-shot games we used circumvented
+other dynamic factors that could also influence cooperation, such as belief updating or direct
+50,51
+reciprocity .
+To evaluate the effects of information sampling on cooperation, we presented the games to
+subjects (N = 88) as a 2x2 matrix and used a high-precision eye tracker (SR Research Eyelink
+1000) to record subjects’ gaze-dwelling times and saccades (see Methods) and estimate their
+attention to different aspects of the payoff displays . To study exogenous attentional effects,
+we randomly alternated across trials between placing cooperative payoffs for the subject and
+their opponent in the left and right columns, fully crossed with the top and bottom rows
+1a), thereby manipulating the salience of the different payoff values. These manipulations
+allowed us to test for the effects of both visual salience and option positions on information
+sampling patterns linked to cooperative decisions. The location of options on the screen has
+53,54
+indeed been associated with differences in information sampling through habitual gaze
+37,42,55
+patterns associated with left-to-right, up-to-down reading conventions in most Western
+56,57
+languages .
+While previous studies of social decision-making have focused on aggregate gaze
+37,38
+patterns , we additionally studied individual temporal dynamics of gaze sequences and
+two columns (labeled A and B). The chosen option was indicated by yellow frames. After a short inter-trial interval (ITI = 1.5
+s) a new choice was presented. b. Payoff matrix: the subject (YOU) and opponent (OTHER) chose between Defect and
+Cooperate (labeled A and B, with labels counterbalanced across subjects). If both subjects cooperated (resp. defected) they
+both received the reward payoff R (resp. punishment payoff P). If the subjects choose different options, the subject who
+cooperated received the “sucker’s payoff” S and the subject who defected received the temptation payoff T. c. Values of the
+four payoffs in the 96 games. The values systematically varied between 0 and 40, with a step of 5, respecting the following
+inequalities: T > R > P > S and 2*S > T. d. Four possible option positions varied randomly across trials.
+how they interacted with habitual viewing patterns and visual salience, leading to changes in
+the information sampled under different positions of payoffs on the screen. These
+manipulations and analyses allowed us to establish a clear causal link between attention and
+choices. We had no prior hypotheses on the complex relationship between the cooperative
+choices, gaze data, and our display manipulation, so we clearly indicate that our results are
+primarily exploratory. However, we used pilot data to confirm that individuals do respond to
+trial-by-trial variation in payoffs. Additionally, we replicated some of the behavioral analyses
+METHODS
+Subjects
+We recruited 88 healthy volunteers (48 females, aged 18 to 35 years old, mean: 24.6, std: 3.1)
+from the subject pool of the Department of Economics at the University of Zurich to take part
+in the eye-tracking experiment. We determined the target sample size (N = 84) needed to
+estimate a significant correlation (significance level of 0.05, power 80%) between an
+individual’s eye tracking measures and behavioral measures such as cooperation rate,
+assuming a weak relationship with a Pearson correlation coefficient of 0.3.
+In parallel, another set of 88 subjects recruited from the subject pool of the Department of
+Economics at the University of Zurich participated in a simultaneous fMRI session and acted
+as partners in the task. All subjects were right-handed, medication-free, and with normal or
+corrected-to-normal eyesight (using contact lenses). All subjects provided written informed
+consent. The study was approved by the ethics committee of the Canton of Zurich. The study
+was not preregistered.
+Task
+trial, two subjects (main subject, playing columns, and their opponent playing rows) chose
+between two options labelled “A” and “B” (corresponding to cooperation or defection, with
+labelling counterbalanced across subjects). The payoffs were determined by the choices of
+both players, leading to four possible outcomes. If both players cooperated, they both earned
+the reward payoff (R). If they both defected, they both earned the punishment payoff (P < R).
+If one player cooperated but the other one defected, the player who defected earned the
+temptation payoff (T > R) while the player who cooperated received the sucker’s payoff (S <
+P). We did not use the words “cooperation” or “defection” anywhere in the instructions or
+display to avoid influencing the subject’s choices. Instead, subjects chose between a left and
+a right column, labelled A and B, and were told that the other player chose between the top
+and bottom row, also labelled A and B. The meaning of the letters (cooperation/defection)
+remained constant for each subject and was counterbalanced across subjects. We
+manipulated the position of the defect or cooperate columns and rows within-subject. The
+position of rows and columns was randomly determined for each trial and counterbalanced
+throughout the experiment.
+At the end of the experiment, one trial was randomly selected, and the decision of the second
+player was shown to the subjects. This trial was then paid according to the choices of both
+subjects, with one point corresponding to 1 Swiss franc (around 1 USD at the time of the
+experiment). The subjects were also paid a 20 CHF show-up fee.
+Trial presentation and timing
+We implemented the task in Matlab 2018b, using the Psychophysics Toolbox 3 extension .
+On each trial, subjects were presented with a new payoff matrix, displayed as four squares
+containing the potential payoffs of the subject (“you”) and the second subject (“other”)
+represented as numbers and green (for “you”) and orange (for the “other”) rectangles. The
+had a maximum of 15 seconds to choose either A or B by pressing the left (for the left column)
+or right (for the right column) arrows on the keyboard. As soon as they chose one option, a
+yellow square framed the column selected for 1.5s, and the payoffs disappeared for 1.5s
+the other player until they completed all trials.
+Trial construction
+We systematically varied the four possible payoffs (reward R, temptation T, sucker’s S, and
+Prisoner’s Dilemma games where payoffs could take values between 0 and 40 points with an
+increment of 5, and where the following rules were respected: T > R, P > S, R > P, T > S, and
+2R > T + S. This procedure yielded 96 distinct games. Each subject played each game twice (96
+games in random order in the first half, and the same 96 games in random order in the second
+half).
+Experimental session
+We brought the eye-tracking and fMRI subjects to the lab separately to make sure they
+remained anonymous. Both subjects were informed of the existence of another subject
+playing the same game in an adjacent room, and that one of their mutual choices would be
+implemented at the end of the experiment. The eye-tracking subject entered the lab after the
+fMRI subject had started the experiment and sat in a separate room. At the end of their
+session, eye-tracking subjects waited until the fMRI session was over. Both subjects received
+simultaneous feedback on one randomly selected trial.
+After completing a short comprehension quiz and two practice trials, eye-tracking subjects
+completed two blocks of 96 trials of the task each. At the end of the experiment, subjects
+filled out a short demographic questionnaire, stating their age, sex, nationality, field of
+studies, religious and political orientation, monthly disposable income, family affluence, and
+community size.
+Eye-tracking recording
+Eye tracking subjects sat at a distance of 55cm from a 22ʺ screen on which we displayed the
+task using a resolution of 1920×1080 pixels. Subjects placed their heads on a chinrest to
+reduce head movements and were instructed to hold their position for the duration of the
+block. We recorded eye motion using an infrared EyeLink 1000 Plus eye tracker system (SR
+Research Ltd.), sampling the gaze position and size of the subject’s pupil at 2000 Hz. We
+calibrated the eye tracker before each block of 96 trials using a standard 5-point calibration
+routine.
+Eye-tracking processing
+We used the horizontal (x) and vertical (y) position of the subject’s gaze to measure the
+saccades and fixations between 12 areas of interest (AOI) on the screen (Supplementary
+(“other”) for the four possible outcomes (R , R , P , P , S , S , T , T ). We recorded all gazes
+Y O Y O Y O Y O
+inside each AOI, occurring during the choice phase (between the stimulus onset and the
+subject’s response) and lasting longer than 100ms for each trial. We recorded the sequence
+of fixations (AOI and location on the screen) and the duration of each fixation.
+We additionally computed heatmaps of eye positions, using any x and y position (within or
+that most fixations occurred within our predefined AOIs.
+To analyze differences between games and subjects, we computed trial-level metrics, using
+aggregates of all fixations for a trial. We computed the total time spent sampling each AOI
+and divided these values by the reaction time (duration of the trial) to obtain the relative time
+spent sampling each AOI on each trial. We additionally analyzed the first, second, and last AOI
+sampled on each trial.
+As a second proxy measuring the importance of each AOI during a trial, we computed the
+frequency of fixation to the different AOIs. As noted in a previous eye-tracking experiment ,
+this number strongly correlated with the time spent looking at each AOI (Supplementary
+subjects, adjusted R-squared > 0.53 for all AOIs). We therefore restricted our analysis to the
+relative time spent sampling each AOI.
+Computational models of cooperation
+To distinguish different motives of cooperation, and characterize individual differences in
+choice mechanisms, we built a series of computational models of cooperation. We considered
+16 87
+three factors that can influence cooperation: other-regarding preference , beliefs , and
+risk , and included them in a single model, estimating the utility of cooperation using the
+following equations:
+! " "
+𝑈(𝐶𝑜𝑜𝑝𝑒𝑟𝑎𝑡𝑒) = 𝑝 ⋅ 𝑅 + (1 − 𝑝) ⋅ 1(1 − α)𝑆 + 𝛼𝑇 7,
+! ! !
+𝑈(𝐷𝑒𝑓𝑒𝑐𝑡) = 𝑝 ⋅ ((1 − α)𝑇 + α𝑆 ) + (1 − 𝑝) ⋅ 𝑃 ,
+where 𝛼 represents other-regarding preference, i.e., preference for high payoffs for the
+opponent (𝛼 = 1 indicates a full consideration for the opponent’s outcome and no
+consideration for one own’s outcomes, while 𝛼 = 0 indicates no consideration for others and
+full consideration for self), 𝑝 represents the fixed individual beliefs about the opponent’s
+action, since it weighs the outcomes resulting from the opponent’s cooperation versus
+defection (thus 𝑝 = 1 represents a certain belief that the opponent will cooperate and 𝑝 = 0
+a certain belief that the opponent will defect), and 𝜌 represents risk aversion using a standard
+power function with diminishing marginal utility.
+To fit the subjects’ choices, we used a softmax function, computing the probability of
+cooperation on each trial t using the difference in utility between the two options ∆𝑈 =
+𝑈(𝐶𝑜𝑜𝑝𝑒𝑟𝑎𝑡𝑒) − 𝑈(𝐷𝑒𝑓𝑒𝑐𝑡) :
+𝑃(𝐶𝑜𝑜𝑝𝑒𝑟𝑎𝑡𝑒) = ,
+1 + 𝑒#$∆&
+where β is the inverse temperature (β = 0 when subjects choose at random, high β values
+for deterministic choices).
+We fitted the model to the subject’s choices using the standard maximum likelihood
+estimation (MLE), using a random grid search and optimization procedures in R. We restricted
+the model fitting to subjects who had enough variability in their data for the model to fit,
+excluding subjects who defected (or cooperated) on less than two trials (22 subjects),
+resulting in a sample size of 66 subjects. The parameter recovery results are shown in
+We compared the winning model to a set of alternative models, using the Bayesian
+Information Criterion (BIC) as a goodness-of-fit measure (see Supplementary Tables 8 and 9
+for the full description of the models and comparison). Alternative models included: (1) a
+model that implements the risk aversion transformation after implementing other-regarding
+preferences, (2) a model that included a constant bias toward cooperation or defection, (3) a
+model with α = 1 (fully selfish), (4) a risk-neutral model with ρ = 1, (5) a model with 𝛼 = 1
+(fully selfish) and a constant bias, (6) a model with a CARA risk aversion function , (7) a model
+with a CRRA risk aversion function 88 , (8) a model with constant risk-seeking (ρ = 1.1), (9) a
+model with the Charness-Rabin social preference function . We found that all these models
+provided a worse fit to the data than the winning model; however, differences between the
+winning model and the risk-neutral (as well as constant risk-seeking) model were not
+significant.
+Statistical analysis
+We analyzed the effects of payoffs, options position, and gaze patterns using generalized
+mixed effect models implemented in R (R Core Team 2017), using the lme4 package. We
+analyzed trial-by-trial choices (cooperation vs defection), and binary eye metrics (first gaze to
+“you” vs “other”, first gaze to payoffs, etc.) using mixed-effects logistic regressions (glmer,
+probit link function) including random intercepts and slopes for all independent variables for
+each subject. We analyzed the effects of option position on fitted model parameters using
+fixed effects linear regression, and the effects of positions and payoffs on gaze duration and
+gaze frequency using mixed-effect linear models including random intercepts and slopes for
+each subject.
+Out-of-sample predictions of cooperation
+We used the trial-specific gaze patterns of each subject to obtain out-of-sample predictions
+of cooperation. We used random tree classifiers (fitctree implemented in MATLAB) trained
+on features representing the fixation of each AOI at different time points and predicting the
+binary outcome (cooperate vs defect) on individual trials. Specifically, we either dummy-
+coded the fixation to an AOI on a specific time point (first, second, third, or last fixation) or
+used the value of the sampled payoff on each fixation to create 32 possible features (8 AOIs
+x 4 fixations). We used the outcome of each trial (cooperate or defect) as labels. Using a leave-
+one-subject-out cross-validation procedure, we trained the classifiers using different
+combinations of features (either all or some fixations, or all or some AOIs) on all but one
+subject and predicted the trial-by-trial cooperation for the left-out subject. We then averaged
+the predicted cooperation, either across games for each subject, or across subjects for each
+game, and compared these out-of-sample predictions to the real subject- or game-specific
+cooperation rates using mean-squared-error (MSE). We additionally trained simpler
+classifiers, using as features the relative dwell time of each AOI on each trial, or the values of
+the four different payoffs on each trial, to compare the performance of classifiers trained on
+sequences versus summary variables.
+Since our dataset was misbalanced (23% of cooperation trials and 77% of defection trials), we
+additionally computed the chance level-cooperation rate by shuffling the training-set label 50
+times on each cross-validation iteration and predicted the cooperation on the left-out trials
+using the classifiers trained on these permutations. We estimated the chance to predict a
+cooperation rate at around 0.2.
+We compared the game- and subject-based goodness of fit (MSE) of classifiers trained on one
+fixation only (first, second, or last) or on a combination of these fixations (first-to-second and
+last, first-to-third and last) using all AOIs and either dummy variables or variables containing
+the normalized payoff being sampled during the fixation (value of the AOI’s payoff, divided
+by the sum of all payoffs of the trial). We additionally compared classifiers trained using data
+from one AOI only, using normalized payoffs and all fixations (first to third and last).
+RESULTS
+Cooperation depends on payoff values, in line with other-regarding preferences
+Subjects cooperated on average in 23% of the trials. Importantly, cooperation rates were
+stable between the first and second parts of the experiment, both on the subject level
+(Pearson correlation r = 0.9, t(64) = 15.9) and the game level (Pearson correlation r = 0.72,
+t(94) = 10.05). The data showed significant individual differences in cooperation rates (from
+0%, observed in 8 subjects, to 100% in 1 subject). These differences may reflect variations in
+the underlying motives for cooperation. To determine the influence of such motives on
+Methods for details). The values of all four payoffs affected cooperation (Supplementary
+Cooperation increased with larger values of the reward R and sucker’s payoffs S (both of
+which subjects can receive when choosing to cooperate) but decreased with the larger
+2a). Given that the subjects played many rounds of the game, we also tested for serial effects
+and found no influence no significant effects of the previous trial’s payoffs (R, P, T, S) on the
+current trial’s choice (mixed effects regression of choice on previous trial R, P, T, S; all p > 0.4).
+The systematic variations of payoff values across trials allowed us to fit a computational
+choice model that could disentangle several factors that may influence cooperation. This
+model computed the utility of different choice options based on a combination of the
+different payoffs, weighted by their link to other-regarding preferences (preference for high
+payoffs for other, 𝛼), prior beliefs about the other subject’s choice to cooperate (𝑝), and risk
+aversion (𝜌, exponentially discounting the values of uncertain outcomes):
+𝑈(𝐶𝑜𝑜𝑝𝑒𝑟𝑎𝑡𝑒) = 𝑝 ⋅ 𝑅 ! + (1 − 𝑝) ⋅ 1(1 − α)𝑆 " + 𝛼𝑇 " 7,
+𝑈(𝐷𝑒𝑓𝑒𝑐𝑡) = 𝑝 ⋅ ((1 − α)𝑇 ! + α𝑆 ! ) + (1 − 𝑝) ⋅ 𝑃 ! ,
+We used these utility functions as inputs to a standard softmax choice function (see
+Methods). Fitted parameters showed a high correlation between individual’s other-regarding
+r(86) = 0.86, p < 0.001), but no simple correlation between cooperation and prior beliefs (r(86)
+= 0.09, p = 0.48) or risk aversion (r(86) = 0.01, p = 0.94), and no correlation between beliefs
+and social preferences (r(86) = -0.18, p = 0.14). When controlling for all model parameters,
+we found that risk aversion also explained a part of the variance in cooperation rates (R
+without 𝜌: 0.75, R 2 with 𝜌: 0.81; coefficient for 𝜌in the full model: 𝛽 = -0.35, t(62) = 4.4, p <
+0.001). In the model that assumed risk neutrality, the belief parameter was a significant
+predictor of cooperation (𝛽 = 0.16, t(62) = 2.4, p = 0.02).
+Previous studies showed a link between both social and risk attitudes evaluated in a separate
+58,59
+task and behavior in the Prisoner’s Dilemma game . However, when comparing alternative
+models (see Methods), we did not find a strong difference between the winning model and a
+model that assumes risk-neutrality (ρ = 1). This suggests that individual risk preference did
+not play an important role in the subjects’ decisions and that social preferences were the
+primary source of variability across individuals.
+Cooperation rates are linked to goal-directed attention to payoffs
+Previous studies established that goal-directed information sampling relates systematically to
+37,38
+social preferences and individual traits that are linked to cooperation. We confirmed
+these links between individual differences in cooperation and information sampling by
+tracking the subject’s eye movements throughout the choice period until the decision. We
+defined several areas of interest (AOI) on the screen, placed around the 8 payoff values
+payoffs T , R , P , S and opponent’s payoffs T , R , P , S ) and measured the fixations on each
+Y Y Y Y O O O O
+AOI, their duration, and their temporal position during gaze sequences on each trial (see
+Methods for more details on the eye-tracking recording and processing).
+First, we focused on individual differences and investigated how each subject’s aggregated
+gaze behavior related to differences in cooperation rates. The relative time subjects spent
+sampling different AOIs was indeed significantly correlated with their cooperation rates
+relative sampling times for each subject and AOI and subject-specific cooperation rate, p <
+0.001 for all AOIs except for R : p = 0.93). One exception was the sampling of own reward R,
+which was not linked to differences in cooperation. The results were similar for the trial-by-
+effect logistic regression of relative sampling times on trial-by-trial cooperation:
+individual preferences, we found that other-regarding preferences estimated using our utility
+model were correlated with the relative time subjects spent sampling the other’s payoffs
+between social preferences and preferential sampling of other’s payoffs .
+Cooperation is influenced by option positions
+While these results confirm that cooperation is linked to individual differences in goal-
+directed attention, they do not imply a specific causal relation between information sampling
+and cooperation rates. Do preferences determine where people look, or are people’s
+preferences influenced by what they look at? While our data cannot answer this question
+conclusively, we note that preferences and goals are not the only possible influence on
+subjects’ attention: Attention can also be captured exogenously by features of the
+environment, like specific spatial positions that people habitually attend first, or other visual
+features that attract attention. We therefore capitalized on such bottom-up influences in
+visual sampling, to exogenously manipulate attention and test for the causal effect of this on
+cooperation.
+To identify these bottom-up effects, we randomly permuted the positions of the options on
+the screen on each trial, in a within-subject and counterbalanced manner, independently
+from the payoff values presented. In half of the trials, the column corresponding to
+cooperation for the subject was placed on the left (vs right) of the screen, fully crossed with
+whether the cooperation option for the other was placed in the top or bottom row. This
+resulted in four possible combinations, which we labelled Mutual Cooperate-up-left, Mutual
+1d). Note that for each of these spatial configurations of the payoffs, people may attend to
+their own payoffs or those of the other in each cell, which we measured with eye tracking.
+These changes in the position of the options had a significant effect on cooperation.
+Surprisingly, the cooperation rate was higher for trials in which the cooperate option of the
+cooperation rate 0.25) compared to the upper half of the screen (Cooperate-up: cooperation
+a.
+b. c.
+d.
+S S T T
+R R P P
+T T S S
+T T S S
+P P R R
+S S T T
+e.
+Preferences, but not beliefs, remain constant across different spatial positions of options
+S S T T S S T T S S T T
+R R P P R R P P R R P P
+T T S S T T S S T T S S
+T T S S T T S S T T S S
+P P R R P P R R P P R R
+S S T T S S T T S S T T
+values and cooperation. Average cooperation rate across trials and subjects for each possible value of the normalized payoffs
+(payoffs divided by the sum of all payoffs on a given trial). Each dot represents one normalized payoff value, the lines are
+fitted regressions of average cooperation on normalized payoffs. The beta and p-values correspond to fixed-effect coefficients
+preference (𝛼) measured using the choice model. Each dot represents the fitted parameter of one subject plotted against the
+average cooperation rate of the same subject. The line and coefficients represent the fitted regression between 𝛼 and
+cooperation (r: correlation coefficient, p: p-value). c. Cooperation rate plotted against average relative time spent sampling
+each AOI (time spent looking at the AOI divided by trial duration). Each dot represents a subject, and the lines and coefficients
+represent fitted regressions of cooperation rate on average relative sampling time, showing higher cooperation rates for
+subjects who sample others’ payoffs longer and lower cooperation rates for subjects focuses on self payoffs. d. Effect of the
+positions of the rows and columns on cooperation rate. Each dot represents the cooperation rate of one subject, the black
+error bars represent the average rate across subjects and the standard error of the mean (s.e.m). The stars are p-values of
+two-tailed t-tests between the subject’s cooperation rates for the different positions: p < 0.017 (*) or non-significant (n.s.),
+using a Bonferroni correction. e. Fitted model parameters across the four different positions. Each dot represents the
+difference between the position-specific parameter and the parameter averaged across all positions of one subject, and the
+error bars represent the mean across subjects and s.e.m. Stars represent p-values of two-tailed t-test inferior to 0.017(*) or
+non-significant (n.s.), applying a Bonferroni correction.
+columns positions: row position p = 0.02; this effect replicated in the fMRI sample (p = 0.01,
+the columns had a significant effect on cooperation: subjects cooperated more when the
+cooperate option for themselves was placed on the left (Cooperate-down-left: cooperation
+rate 0.26) compared to the right (Cooperate-down-right: cooperation rate 0.23,
+Including interactions between the payoff values and option positions in the regression did
+decisions were causally affected by where the cooperation option was presented, regardless
+of the payoff values. To ensure no serial choice effects were affecting these results, we tested
+for the interaction between the option positions and the previous trial choice. This revealed
+no significant effects (mixed effects regression of the current trial choice on the previous trial
+choice, interaction with row order, p = 0.65), confirming that the effect of spatial option
+position was not confounded by temporal patterns of attention allocation.
+To explain these results, we first tested whether the effects of these exogenous manipulations
+were linked to differences in individual preferences as captured by our model. First, we tested
+whether individual differences in model parameters were linked to differences in the effects
+of the option position manipulations, but we found no such link (p > 0.2 for all Pearson’s
+Second, to test whether the option positions may alter subjects’ preferences, we fitted the
+choice model for each row and column position separately. We found that the subject’s other-
+regarding preference and risk aversion were not significantly different across positions
+p > 0.5 for all positions). However, the parameter quantifying the subject’s belief about the
+probability of cooperative choice by the opponent was significantly different for the two row
+This suggests that placing the opponent’s cooperative options in the lower part of the screen
+might lead subjects to expect their opponent to cooperate with a higher probability (across
+all trials, independent of the payoff variation).
+Option positions influence cooperation through changes in gaze sequences
+Changing the option positions on the screen may affect information sampling processes
+through interactions with habitual gaze patterns such as reading top-to-bottom and left-to-
+right. A possible explanation is that these positions affect the information sampled during
+the first saccade of each trial. Indeed, the histogram of gaze location during the first 300 ms
+during the first 300ms of each trial, across all subjects and trials b. Frequency of the first gaze being directed to four main
+screen locations, averaged across all trials for each subject. The bars represent the average across subjects and the error bars
+are the standard error of the mean (s.e.m). c. Distribution of the first gaze being directed to each AOI, computed for each
+subject. The bars represent the average across subjects, and error bars represent the s.e.m. d. Share of trials starting with
+fixation to each AOI in the four different option positions. The colored bars represent the histogram of first fixations to each
+AOI for each position, averaged across subjects, and the error bars represent s.e.m. The black diamonds represent the average
+where the temptation payoff T of the opponent is frequently sampled first.
+row (68% of the trials, paired two-tailed t-test of top vs bottom row frequency, p < 0.001),
+and sampled more frequently the payoffs located on the left vs right column (59% of trials;
+paired two-tailed t-test of left vs right column row frequency, p < 0.001). However, we found
+that subjects cooperate more when cooperation is placed on the bottom, while they start by
+sampling the top row. To identify what may underlie this counterintuitive effect, we first
+examined other features that may drive attention.
+In addition to the locations of the payoffs, their denominations and values may also have an
+effect on exogenous capture of attention - in particular, because self versus other payoffs had
+specific spatial arrangements within each cell, and large payoff values correspond to large
+3c: 72% of the trials) and payoffs of high values first (T and R sampled on 25% and 20% of
+Y Y
+the first fixation, the share of trials where each location is sampled increased with payoff
+Consistent with this assumption, we found that options position differentially affected
+whether people sampled the AOIs corresponding to their own payoffs (often associated with
+cooperation). Own payoffs were sampled more often during the first fixation when they were
+locations on proportions of trials starting with each AOI, main effect of Up location, p < 0.001
+for all own AOIs, b > 0.10). First fixations on other’s payoffs, by contrast, were mainly
+determined by the position of the columns, with subjects looking at others’ payoffs more
+effect of AOI located left, p < 0.001 for all AOIs other).
+In summary, the positioning of the options strongly affected the first saccade, with subjects
+looking preferentially at the upper options for their own payoffs, and the left options for the
+other’s payoff. The share of trials starting with the different AOIs for each individual
+for all AOIs except R p = 0.09), showing that individual differences in first fixations were
+Y,
+linked to individual differences in cooperation rates. When the ‘Mutual cooperate’ option was
+displayed on the bottom-left part of the screen, subjects frequently started sampling the
+condition was also associated with the highest cooperation rate, even though subjects first
+looked at the worst possible outcomes for themselves.
+To summarize, cooperation increased when the cooperate row was placed on the bottom,
+even though the top row (corresponding to defective outcomes) was typically sampled first.
+Cooperation rates are predicted by specific gaze sequences
+Previous research has shown that not only the first saccade, but more complex gaze strategies
+37,55
+such as scan paths, or gaze sequences, may be linked to differences in decision-making .
+This suggests that exogenous manipulations of option positions as employed here may
+influence cooperation not only via their effects on first saccades but also by triggering more
+complex extended gaze sequences. To test for these links between gaze sequences and
+cooperation, we extracted the order of fixations occurring on each trial.
+We first analyzed the effects of the first three fixations for each trial (a larger number was not
+computationally tractable for some of the analyses). This showed that cooperation was
+related to the temporality of payoff sampling, with the effects of sampling a given payoff
+and P ) was generally associated with defection, and sampling Reward payoffs was generally
+associated with high cooperation (mixed effect regression of dummies representing fixations
+rates between trials in which an AOI is never looked at and trials during which it is sampled during the first, second, third or
+last fixation. The cooperation rates are computed for each subject, the bars represent the average across subjects, and the
+error bars are the s.e.m. Stars represent significant two-tailed paired t-tests (p < 0.0125 (*), using a Bonferroni correction)
+between cooperation rates for trials on which the AOI is never looked at and trials on which it is sampled at the specific time-
+point. b. Quality of fit (mean square error) of different classifiers predicting the outcome (cooperate vs defect) on each trial
+using gaze patterns. The quality criterion (mean squared error) is computed using the average across trials for each subject
+(left) or the average across subjects for each trial (right), and used to compare models capturing data the best. Models using
+the first four and last fixation combined with payoff values provide the best out-of-sample predictions. c. Out-of-sample
+predictions of the winning classifier (payoffs; fixations 1 to 4 and last). The predictions are averaged across trials for each
+subject (left) or across subjects for each trial (right) and plotted against the average of the true labels. The models are fitted
+using a leave-one-subject-out procedure, where data from all but one subject are used for training the classifier. The trained
+classifier is used to predict the cooperation of the left-out subject on each trial (out-of-sample predictions), which are
+displayed here, showing that the first four and last fixation combined with payoff values are good predictors of cooperation.
+The dotted lines represent chance level, computed with permutation tests.
+on each AOI during the first, second, or last fixation on trial-by-trial cooperation:
+Y O Y Y
+timepoints at which these payoffs were sampled. Sampling the other’s reward second rather
+than first led to an increase in cooperation rate from 12% to 18%, compared to trials during
+across all trials and subjects, and the cooperation rates associated with these sequences,
+confirmed that sequences including the other’s reward (R) as the second fixation had the
+These results show that beyond the first fixation, the payoffs sampled during later time points
+are key for explaining cooperation.
+To confirm the relevance of gaze sequences for explaining cooperative outcomes, we used
+machine learning classification (random tree, see Methods for details) to predict the out-of-
+sample cooperation rates across subjects and games, using gaze sequences and payoff
+We found that the best predictions were obtained when using the first four and the last
+fixations. These classifiers provided better predictions than simply using the relative dwell
+outperformed classifiers trained using the first 5 and last fixation. This shows that at least the
+first four fixations contribute to cooperative outcomes and that restricting the analysis to one
+or two fixations, or overall dwell time, is not enough to fully capture how behavior relates to
+attentional information sampling.
+subject-specific predicted vs measured cooperation rate r(86) = 0.78, p < 0.001, game-specific
+predicted versus measured cooperation rate r(86) = 0.72, p < 0.001). Thus, not only the first
+fixations but sequential information sampling up to at least the fourth fixation was strongly
+linked to cooperative decisions.
+Gaze sequences are affected by spatial option presentation
+The results until now show that cooperation rates are affected not just by first fixations, but
+also by subsequent saccades. This suggests that the spatial arrangement of the different
+options can influence not just where people look first, but the full sampling sequence. To test
+for these effects, we first computed the four most frequent fixation dyads for each option
+position, and the cooperation rate for trials starting with these sequences (averaged across
+fixation dyads for each option position, which lead to different cooperation rates. The Mutual
+Cooperation-down-left condition provides the most striking example, where a first fixation on
+the other’s temptation (located in the upper left cell), followed by a vertical saccade to the
+other’s reward leads to a cooperation rate of 48%, compared to 27% when own punishment
+is fixated second. Exogenously driving subjects’ attention to a high payoff for others
+(associated with defection) located on the top-left part of the screen therefore can lead to
+high cooperation, but mainly when subjects follow a specific sampling sequence after the
+initial gaze.
+Cooperation rate of the four most frequent gaze sequences in each position. The two most frequent first fixation and
+sequences), and the cooperation rate for each subject when following these sequences is computed. The bars represent the
+average cooperation across subjects and error bars represent the s.e.m. The percentage displayed on top of each bar is the
+share of all trials in the specific option position that follows the represented sequence. The letters represent special gaze paths
+illustrated in b. b. Example of frequent gaze sequences in the different positions, where the first fixation (1) is identical, but
+the second gaze is different (2A and 2B), resulting in strong differences in cooperation rates (displayed in a). c. Frequency of
+the second fixation being within subject (First and second gaze to the same subject: lateral, vertical, or diagonal) or between
+subjects (within-cell or diagonal). The bars are average frequency across subjects and error bars s.e.m. The most frequent
+second gaze is vertical or lateral and within-subject. d. Most frequent gaze patterns: on 26 % of the trials, subjects start
+looking up left at their own payoff, in 25%, they start looking up right at their own payoff. The next most frequent saccades
+are within-subject, lateral or towards the bottom row. e. Distribution of the first gaze being directed to each AOI, computed
+for each subject. The bars represent the average across subjects and error bars the s.e.m
+fixation is to the reward payoff had high cooperation rates, compared to dyads in which other
+payoffs are sampled second. Mixed effect logistic regression of fixation dummies on
+confirmed the strong effects of looking at the other’s reward second on cooperation (positive
+coefficients, p < 0.001 for all positions). These examples illustrate that cooperation rates are
+indeed determined by different sampling sequences – and not uniquely the first gaze – that
+in the percentage of sequences starting with each dyad).
+Such specific sequences may reflect a combination of preferences for looking at specific
+payoffs – specifically others’ payoffs for subjects with strong other-regarding preferences
+37,42,55
+sampling specific types of information not only during the first but also the following fixations.
+56,57
+that is linked to the left-to-right top-to-bottom writing and reading conventions that are
+the norm for most subjects of our sample (predominantly students of European background).
+Our results show that such a sampling pattern, combined with the nature of the payoffs
+located in the upper left area, can lead subjects to sample different AOIs and thereby
+influence their cooperation rate.
+Changes in gaze sequences drive subjects’ attention to other’s payoffs
+In this last analysis, we focus on the differences in the type of information that is sampled in
+the different option positions, as a result of the changes in gaze sequences discussed before.
+First, the different option positions may attract the subjects’ attention toward the payoffs of
+the opponent within a specific cell and lead them to increase their consideration of other’s
+outcomes in their decision. We indeed found that when the cooperate option was placed on
+paired t-test of differences in relative time spent sampling other’s AOIs between column
+positions p < 0.001) and also looked at these payoffs more frequently at the beginning of a
+AOIs on cooperation that replicates the analysis presented here specifically for the first
+fixation of the trial). The more time subjects spent sampling the other’s payoffs, the higher
+the relative time spent sampling the other’s payoffs and cooperation rates p < 0.001;
+Cooperate left: r(86) = 0.35, p < 0.001; Cooperate right: r(86) = 0.35, p < 0.001).
+Subjects who had a stronger difference in time spent looking at the other’s payoff between
+the two column positions also had a slightly larger increase in their cooperation rate for the
+at other’s payoff and cooperation rates between two column positions, r(86) = 0.35, p =
+0.011). This suggests that individual cooperation was influenced by the position of the
+columns, via subject-specific attention attraction to the payoffs of others.
+Column positions affect time Row positions affect time spent
+spent looking at other’s AOIs looking at cooperate row
+b.
+c.
+options positions. a. Relative time spent sampling Other’s AOIs (left) or AOIs on the cooperate row (right) for different column
+and row positions. The relative times are computed for each subject, the bars represent the average across subjects, and the
+error bars are the s.e.m. Significance stars represent a two-tailed paired t-test: p < 0.017 (*) or non-significant (n.s.), using a
+Bonferroni correction. In the left panel, the colors represent the column positions: Cooperate left vs Defect left. In the right
+panel, the colors represent the row positions: Cooperate left vs Defect left. b. Correlations between the relative time spent
+sampling other’s AOIs (left panel) or the cooperate row (right panel) and the cooperation rate of each subject, for the different
+positions of the columns (left panel) or rows (right panel). The dots represent individual subjects and the lines and p-values
+emit
+gnilpmas
+evitaleR
+sIOA
+s’rehtO
+emit
+gnilpmas
+evitaleR
+wor
+etarepooC
+a. Relative time spent sampling the payoffs of Other or the Cooperate row in the four option positions
+S S T T S S T T
+R R P P R R P P
+T T S S T T S S
+T T S S T T S S
+P P R R P P R R
+S S T T S S T T
+Relative time spent sampling the payoffs of Other or the Cooperate row affects cooperation rates
+Other’s payoffs and Cooperate row and
+column positions row positions
+Differences in relative time spent sampling the payoffs the Cooperate row correlate with individual
+differences in cooperation rates
+Cooperate row and
+Other’s payoffs and
+row positions
+column positions
+regressions between the two variables across subjects. c. Differences in time spent sampling others’ AOI (left panel) or the
+cooperate row (right panel) between the two column positions (left panel) or row positions (right panel) and differences in
+cooperation rates between the positions. The dots represent individual subjects and the lines and p-values regressions
+fixation.
+Second, our finding of high cooperation rates for specific option positions may also relate to
+the preferential sampling of the outcomes associated with cooperation. Subjects indeed
+t-test of differences in relative time spent sampling the cooperate row between row
+positions, p < 0.001), but they cooperated more often when this row was placed at the bottom
+cooperation rate showed that subjects indeed cooperated more often when they looked
+right panel, correlation between the relative time spent sampling the cooperate row and
+cooperation rates; r(86) = 0.49, p < 0.001 for Cooperate-down, r(86) = 0.1, p = 0.33 for
+Cooperate-up – note that the same relations were found between the proportion of trials
+starting with fixation to the cooperate row and subject’s cooperation rates: Supplementary
+subjects, but it is unlikely that attention to this payoff drives changes in cooperation rates
+This pattern of results may reflect individual differences in subjects’ goal-directed intentions
+or capacity to overcome a first-gaze bias. Indeed, sampling the cooperation row when it is
+influence cooperation. Sampling cooperation payoffs in the bottom row, on the other hand,
+is not habitual. Subjects who overcome the pattern and sample the cooperation AOIs despite
+their location have a higher cooperation rate, suggesting that the subject-specific capacity to
+overcome a first-gaze-to-the-top-row bias is linked to cooperation. In line with this
+interpretation, the difference in cooperation between the row positions was strongly
+correlated with the differences in the relative sampling time of the cooperate row between
+and cooperation rates between the two row positions, r(86) = 0.49, p < 0.001). The option
+position Cooperate-down-left – which has the highest cooperation rate – combines both the
+effect of cooperation placed left on sampling other’s information, and the effect of
+overcoming attentional bias on sampling cooperation information. This may explain the
+particularly high cooperation rates for this condition.
+demonstrate that longer sampling of the other’s payoff is associated with higher cooperation
+to higher cooperation rates. This suggests that the effect of specific option positions on
+cooperation may be mediated by how a specific option position attracts attention and
+therefore fixation on this option.
+To confirm this mediation effect between the separate observations, we performed the
+following analyses: In the mixed effects regression model showing the effect of the row order
+on cooperation, we included the two effects that are thought to be responsible for the
+identified effects: either the total duration of sampling of the other’s payoffs or a dummy
+variable indicating that the second fixation was to the other’s Reward payoff. In both of these
+analyses, including the mechanism variable led to the effect of the order becoming
+insignificant (p = 0.88 and p = 0.9), indicating that this effect is primarily mediated by the gaze
+variables.
+To confirm this statistically, we ran two mediation analyses that underlined that row order
+affects cooperation through the gaze variables: Both tests showed that the effect of the row
+8, p = 0.01 for the total sampling time for the other’s payoffs and p < 0.001 for the dummy
+indicator of the second fixation being the other’s Reward payoff).
+DISCUSSION
+Our results demonstrate that cooperative behavior is not only affected by the potential
+outcomes of social interactions and individual preferences but also by attentional
+mechanisms (at least when outcomes are viewed on a computer screen as here). Attention
+to others’ payoffs was associated with increased cooperation rates, on both the individual
+and game levels. Exogenous manipulations of the payoff presentation, orthogonal to the
+manipulation of payoff values, changed subjects' gaze patterns, leading to changes in
+cooperation rates. Subjects’ attention at the beginning of a trial was naturally attracted to the
+top-left part of the screen and to higher payoffs. Changes in the option presentation therefore
+affected which payoff information was sampled by the subjects, leading them to specific
+sampling sequences (importantly, increasing the chance to sample payoffs of the opponent).
+Sequences of fixations to the different payoffs, combined with the payoff values, predicted
+trial-by-trial cooperation rates, showing the importance of information sampling patterns in
+cooperative decisions.
+Our study is the first to systematically evaluate cooperation decisions using a wide range of
+payoffs within the same subject, allowing us to simultaneously estimate beliefs, risk, and
+other-regarding preferences using one-shot Prisoner’s Dilemma games. Previous studies have
+shown that cooperation in such games was influenced by the different payoff values, with
+simplified indices derived from payoffs used to predict cooperation across games and showing
+9–15
+the importance of different motives in cooperation decisions . Here we used a different
+approach, explaining individual rather than group behavior using utility models based on
+standard economic choice assumptions such as risk preferences (stemming from diminishing
+59 16
+marginal utility) , other-regarding preferences , and expected utility calculation using prior
+beliefs. Using an extensive set of models, we found that individuals’ behavior was best
+captured by a combination of other-regarding preferences and beliefs about the opponent’s
+choices, while risk preferences (on average) did not play an important role. In our study,
+however, outcomes were deterministic and only depended on both subjects’ choices. Studies
+using stochastic outcomes could be conducted to evaluate the link between risk preferences
+and cooperative behavior in settings closer to real-world decisions.
+37,38
+Previous studies have linked cooperative behavior to information sampling patterns ,
+showing that gaze directed at others’ payoffs is typically associated with cooperation. These
+studies, focusing on goal-directed (endogenous) attentional mechanisms, highlight individual
+differences in cooperation that can be associated with different sampling strategies,
+reflecting individuals’ levels of pro-sociality , rationality (playing according to game-theoretic
+predictions), and strategic sophistication . Supporting these findings, we found that subjects
+who attended to the opponent’s payoffs – and in particular the opponents’ reward –
+cooperated more, while subjects attending primarily to their payoffs often defected. These
+60,61
+effects may reflect that people with the ability to mentalize and employ theory-of-mind
+may focus attention on others’ outcomes to determine whether to cooperate. In addition to
+these subject-level effects, we found that within-trial gaze sequences that included the
+opponent’s payoff were also associated with an increased cooperation rate for those trials.
+To disentangle the informational and preferential components of these attentional effects,
+future studies could use an asymmetric payoff matrix that orthogonally manipulates rewards
+for the subject and their opponent, creating an additional incentive to sample own or other’s
+payoffs.
+We found that exogenous manipulations affecting bottom-up attention impacted
+cooperation. Simple permutations of option positions on the screen affected individual
+cooperation rates, independently from choice outcomes or individual preferences. We found
+that these manipulations did not significantly affect the estimations of risk and social
+preferences, but instead changed the assumed prior beliefs about cooperation. These results
+provide new insights for the important debate on the question of whether attention (affected
+for instance by gaze manipulation) can change the way preferences are constructed or
+47,62
+whether it purely affects the choice process itself . Previous studies focusing on the effects
+of goal-directed attention have shown an effect of attention on the subjective values
+26,62,63
+attributed to attended options , which may partly explain behaviors such as preference
+64–66 67
+reversal or instability .
+Studies exogenously driving attention to some choice options in non-social domains found
+47,68,69
+that such manipulations can bias choices . Extending such exogenous manipulations to
+social decisions, we found that stimulus-driven attention affected information sampling and
+choices, but not estimated social preferences. These findings suggest that even though our
+display manipulations changed attention towards the other’s payoffs, they did not seem to
+change the perception of inequality (captured by the social preference parameter of the
+model) but instead appeared to increase prosocial tendencies overall (captured by the
+cooperation belief parameter). These findings suggest that new models may be needed that
+explicitly address the interplay between these factors that influence subjective valuation
+processes underlying prosocial behavior.
+Examining potential causes of such bottom-up attentional effects, we found that a habitual
+37,55
+information sampling pattern , attributed to the left-to-right and up-to-down Western
+56,57
+writing conventions , may partially underlie these effects. Simple alterations of choice
+interfaces, such as changing the position of the options presented therefore influence
+53,70,71
+information sampling and choices by interacting with this natural pattern. Neural
+evidence suggests that initial information processing plays an important role in social
+decisions . Here we find that manipulating the position of the options on the screen changed
+cooperation rates but did not increase the selection of the top-left option. Instead, after a
+first fixation on higher payoffs placed on the upper part of the screen, more complex
+mechanisms oriented subjects’ attention toward specific gaze sequences.
+Previous studies of binary choices largely focused on the effects of the first and last fixations
+26,47,73
+as well as the relative dwell time of each option on decisions across multiple domains .
+Cooperation decisions in the Prisoner’s Dilemma, however, are more complex, as four
+different payoffs are represented for two different subjects, and the outcomes are conditional
+on others’ decisions. Recent studies of multi-attribute decisions in non-social decisions have
+extended findings that the first fixation and the relative dwell time of different options are
+related to choices , and have shown that gaze allocations to options and attributes have
+interactive influences on choices .
+Studies on multi-attribute decisions in social dilemmas have focused on the frequencies of
+transitions between fixations of different payoffs and found that these reflected distinct social
+36,38 37
+preferences in dictator games , or strategic sophistication in strategic games . However,
+these studies did not evaluate the temporal structure of information sampling, and the
+potential differential effects of fixations occurring in different temporal order. Our results
+showed that the first and last fixations or overall dwell times were not sufficient to accurately
+predict cooperation and that options sampled second had a high effect on behavior.
+Going further than this overall dwell time, our analysis highlighted the importance of specific
+sampling sequences and showed that the order of the fixations of different payoffs was key
+to predicting cooperation. Using machine learning, we were able to accurately predict trial-
+by-trial cooperation from four-fixation (three first and last) gaze sequences, with higher
+accuracy than using the first and last fixations only, showing the importance of studying gaze
+sequences. Scanpaths have been used in vision research to compare information-sampling
+patterns across individuals or to improve users' experience in human-computer
+76 77
+interactions , and they have recently been applied to predict choices in economic games .
+Here we showed that studying such paths in the context of cooperative decisions improves
+predictions of behavior and allows us to explain the effects of exogenous manipulations of
+attention on choices, by showing how positioning options at different locations on the screen
+modified key information sampling patterns, not limited to the first information subjects
+sampled. Extending our results to different games would allow us to test whether the gaze
+patterns we measured here generalize across games and individuals.
+Limitations
+Modifying gaze behavior may affect the content of the information subjects consider for their
+decision, or the way this information is processed. More work is needed to uncover the
+specific computational mechanisms of individual differences in gaze strategies and how
+exactly they influence choices. Further studies could manipulate the temporal presentation
+49 78
+of options , or the size and saliency of the different payoffs and response options, to
+evaluate whether such stronger manipulations could further increase cooperation. Testing
+our protocol with populations of non-western origin with different reading conventions, such
+as right-to-left Hebrew or Arabic, or top-to-bottom Chinese or Japanese readers could
+additionally provide more insight into how different habitual reading patterns combined with
+manipulations of information presentation may affect social choices.
+Finally, we only tested a simple manipulation of option presentation in a Prisoner’s Dilemma
+and found that we could increase average cooperation rates. Our results demonstrate that
+social behavior can be exogenously influenced toward more pro-social choices via clearly
+measurable attentional mechanisms. Previous studies have suggested the general
+79–81
+importance of choice architecture for nudging behavioral outcomes . Our findings provide
+a more mechanistic, attention-based account that could have an impact on the design of real-
+world interventions, such as healthcare measures. One example could be new public health
+policies, with printed information materials drawing individuals’ attention toward the specific
+outcomes of their decisions for others may lead to an increase in cooperation. Another
+potential application is in the charitable giving domain where it has been shown that drawing
+82–84
+attention to specific aspects of donations can increase charitable behavior .
+Data availability
+The data sets generated during and analyzed for the current study are publicly available in
+Code availability
+The code reproducing the analysis is publicly available in the OSF depository at:
+Matlab 2020a.
+Acknowledgments
+This project has received funding from the European Research Council (ERC) under the
+European Union’s Horizon 2020 research and innovation programme (grant agreement no.
+725355, ERC consolidator grant BRAINCODES). C.L. was funded by the Marlene Porsche
+Graduate School in Neuroeconomics and C.C.R. received funding from the University
+Research Priority Program ‘Adaptive Brain Circuits in Development and Learning’ (grant no.
+URPP AdaBD) at the University of Zurich and the Swiss National Science Foundation (grant no.
+100019L-173248).
+Author contributions
+All authors designed the experiment and analyses. C.L. and A.K. programmed the experiment.
+C.L. and A.K. conducted the experiment. C.L. and A.K. performed the data analysis. All authors
+co-wrote the paper. C.C.R. supervised the project.
+Competing interests
+The authors declare no competing interests.

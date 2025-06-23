@@ -1,0 +1,1044 @@
+CHRISTENSEN, ALEXANDER P., M.A. Remotely Close Associations: Openness to
+Experience and Semantic Memory Structure. (2017)
+Directed by Dr. Paul J. Silvia. 72 pp.
+Openness to experience—the enjoyment of novel experiences, ideas, and
+unconventional perspectives—has shown several connections to cognition that suggest
+open people might have different cognitive processes than those low in openness. People
+high in openness are more creative, have broader general knowledge, and show greater
+cognitive flexibility. The associative structure of semantic memory might be one such
+cognitive process that people in openness differ in. In this study, 497 people completed a
+measure of openness to experience and verbal fluency. Three groups of high (n = 115),
+moderate (n = 121), and low (n = 118) openness were created to construct semantic
+networks—graphical models of semantic associations that provide quantifiable
+representations of how these associations are organized—from their verbal fluency
+responses. The groups were compared on graph theory measures of their respective
+semantic networks. The semantic network analysis revealed that as openness increased,
+the rigidity of the semantic structure decreased and the interconnectivity increased,
+suggesting greater flexibility of associations. Semantic structure also became more
+condensed and had better integration, which facilitates open people’s ability to reach
+more unique associations. These results were supported by open people coming up with
+more individual and unique responses, starting with less conventional responses, and
+having a flatter frequency proportion slope than less open people. In summary, the
+semantic network structure of people high in openness to experience supports the
+retrieval of remote concepts via short associative pathways, which promotes unique
+combinations of disparate concepts that are key for creative cognition.
+REMOTELY CLOSE ASSOCIATIONS: OPENNESS
+TO EXPERIENCE AND SEMANTIC
+MEMORY STRUCTURE
+by
+Alexander P. Christensen
+A Thesis Submitted to
+the Faculty of The Graduate School at
+The University of North Carolina at Greensboro
+in Partial Fulfillment
+of the Requirements for the Degree
+Master of Arts
+Greensboro
+Approved by
+Dr. Paul J. Silvia
+_____________________________
+Committee Chair
+APPROVAL PAGE
+This thesis written by ALEXANDER P. CHRISTENSEN has been approved by
+the following committee of the Faculty of The Graduate School at the University of
+North Carolina at Greensboro.
+Dr. Paul J. Silvia
+Committee Chair___________________________
+Dr. Thanujeni Pathman
+Committee Members___________________________
+Dr. Peter F. Delaney
+___________________________
+08/25/2017
+____________________________
+Date of Acceptance by Committee
+08/25/2017
+__________________________
+Date of Final Oral Examination
+ii
+Page
+LIST OF TABLES ...............................................................................................................v
+LIST OF FIGURES ........................................................................................................... vi
+CHAPTER
+I. INTRODUCTION .................................................................................................1
+Semantic Networks ......................................................................................2
+Openness to Experience, Cognition, and Semantic Memory ......................7
+The Present Research .................................................................................16
+II. METHOD ............................................................................................................20
+Participants .................................................................................................20
+Materials ....................................................................................................21
+Procedure ...................................................................................................24
+Statistical Approach ...................................................................................25
+III. RESULTS ............................................................................................................28
+Behavioral Analyses ..................................................................................28
+Individual and Unique Fluency Responses ................................................29
+Early Common Responses .........................................................................29
+Preprocessing for Network Analysis .........................................................30
+Association Slope.......................................................................................31
+Network Analysis.......................................................................................32
+Bootstrapped Partial Network Analysis .....................................................33
+IV. DISCUSSION ......................................................................................................36
+Network Analysis.......................................................................................37
+Bootstrapped Partial Network Analysis .....................................................38
+Association Slope.......................................................................................41
+Early Common Responses .........................................................................42
+Unique Responses ......................................................................................43
+Individual Responses .................................................................................44
+Limitations and Future Directions .............................................................44
+Conclusion .................................................................................................46
+iii
+REFERENCES ..................................................................................................................47
+APPENDIX A. TABLES ...................................................................................................64
+APPENDIX B. FIGURES .................................................................................................68
+iv
+LIST OF TABLES
+Page
+LIST OF FIGURES
+Page
+vi
+CHAPTER I
+INTRODUCTION
+Why are open people creative? There’s a wealth of research that supports the
+relationship between the Big Five dimension of openness to experience (hereafter,
+openness) and creativity. But only a handful of studies have investigated possible
+processes that facilitate their association. For instance, open people have a general
+tendency to explore and diversify experiences (DeYoung, 2014), which has been shown
+to enhance cognitive flexibility—the ability to break old cognitive patterns, overcome
+functional fixedness, and make novel associations between concepts (Guilford, 1967;
+Ritter et al., 2012). Moreover, other factors, such as the motivation to learn and obtain
+broad general knowledge, also contribute to the connections between openness and
+creativity.
+So far, few studies have examined underlying cognitive factors—such as the
+organization of memory—that might support their association. Recent research has
+investigated the structure of semantic memory and found that creative people have more
+flexible, interconnected associations between concepts than people who are less creative
+(Kenett, Anaki, & Faust, 2014). Given these findings, the structure of semantic memory
+might be a cognitive factor that is also linked to openness to experience. Thus, the present
+study compared the organization of semantic associations across high, moderate, and low
+levels of openness using a computational network approach.
+Semantic Networks
+Semantic memory is our knowledge about the world, such as word meanings,
+concepts, and categorization of facts (Jones, Willits, Dennis, & Jones, 2015). The
+structure of semantic memory was first investigated in a seminal paper by Collins and
+Quillian (1969), who found semantic memory was organized into hierarchical categories,
+starting from more general to increasingly specific exemplars. Their ideas set the
+foundation for semantic memory to be investigated as categorizations of within-level and
+between-level features, which have connections that extend across an association
+hierarchy. They proposed that semantic memory could be represented as a sprawling web
+of highly structured associations between concepts—like a network (Steyvers &
+Tenenbaum, 2005). Furthermore, Collins and Loftus (1975) theorized that search through
+semantic memory was the result of activated associations between concepts. Their theory
+of spreading activation suggests that the organization of associations can affect the
+efficiency of search and the amount of associations available in memory. Finally,
+Anderson (1983) proposed the ACT model, which suggests that cognitive units (e.g.,
+semantic concepts) form an interconnected network where retrieval is supported by
+spreading activation throughout the network. Moreover, the level of activation determines
+the rate and probability of recall as well as the potential for interference of retrieval. In
+this way, associative strength and proximity indicate the likelihood a semantic concept
+will be retrieved from long-term memory.
+Despite these pivotal experiments, the complexity of semantic relations has made
+measuring the structure of semantic memory a difficult problem. The development of
+network science and computational graph theory, however, has provided a way to make
+meaningful inferences into the organization of semantic memory by using web-like
+graphs to investigate the associations between concepts.
+Over the last decade, networks have been used by an expanding number of
+scientific disciplines to model complex phenomena and to reveal underlying structure in
+otherwise large, chaotic sets of data (Barabási, 2012; Newman, 2010). In theory, a
+network is simple. A network is a graph with nodes—vertices—connected by edges—
+relations—to other nodes. In an undirected network, edges are bidirectional; in a directed
+network, relationships are directional. In addition to direction, edges can be weighted,
+which signifies the strength of a relationship between two nodes. In a semantic network,
+it’s common to represent a node as an exemplar of a category (e.g., an animal) or an
+association to a target word (e.g., spoon), and edges—undirected and unweighted—as the
+semantic relatedness between exemplars or word associations (Borge-Holthoefer &
+Arenas, 2010; De Deyne et al., 2016; Kenett et al., 2013). Connections between nodes in
+a network form paths, a sequence of associations from a starting node to an ending node,
+so that distances between nodes suggest relational differences in the network. The
+number of edges between two nodes is called a path length, which has important
+implications for network structure. Finally, cliques are connections between a set of three
+nodes that form a fully connected subgraph (i.e., a triangle).
+There are many different ways to measure network structure that imply
+quantifiably different meanings. For example, macro measures examine organization of
+the entire network and characterize global features, while micro measures investigate the
+influence—the connections and positions—of individual nodes in the network
+(Boccaletti, Latora, Moreno, Chavez, & Hwang, 2006; Borge-Holthoefer & Arenas,
+2010). For the purposes of this study, I’ll focus on macro measures and interpret their
+meaning with reference to semantic networks.
+The average shortest path length (ASPL) is the mean distance between any two
+nodes in the network. The ASPL is often referred to as degrees of separation: lower
+values suggest greater interconnectivity between all nodes in the network (Watts &
+Strogatz, 1998). In semantic networks, short path lengths represent smaller distances
+between category exemplars like axolotl and albatross, while greater ASPL suggests
+greater distance between all exemplars (Faust & Kenett, 2014). Another important
+measure is the clustering coefficient (CC), which refers to the extent to which two
+neighbors of a node will be neighbors themselves—that is, whether two connected nodes
+will both be connected to a third node. In this way, the CC represents how “cliquish” the
+network is and indicates finer, more localized organization of semantic information.
+Semantic networks range on these two measures of topology (i.e., ASPL and CC)
+from regular (ordered) to random (chaotic; Faust & Kenett, 2014). Regular networks
+have large clustering coefficients and high ASPL, with connections to their neighbors and
+their neighbors’ neighbors—referred to as a lattice. Random networks are poorly
+clustered (small CC) and mostly have cross-network connections characterized by small
+ASPL values. Networks that make up the intermediate spectrum are called “small-world”
+networks, which have large CC and small ASPL (Watts & Strogatz, 1998). For visual
+networks have been reported in many phenomena, including semantic networks (Borge-
+Holthoefer & Arenas, 2010; Steyvers & Tenenbaum, 2005). A small-worldness measure
+can be computed by comparing the CC and the ASPL of the networks generated by the
+data to an equivalent random graph. The formula for small-worldness is expressed as:
+𝐶𝐶
+𝐶𝐶 (𝑟𝑎𝑛𝑑𝑜𝑚)
+S =
+𝐴𝑆𝑃𝐿
+𝐴𝑆𝑃𝐿(𝑟𝑎𝑛𝑑𝑜𝑚)
+Networks are considered “small-worlded” when this ratio is greater than one (Humphries
+& Gurney, 2008). In semantic networks, small-worldness (S) measures the degree to
+which the network has a high clustering coefficient and small ASPL. Higher S allows
+more flexibility and efficient access to associations in a semantic network, with more
+shortcuts between localized conceptual relations (Benedek, Kenett, Umdasch, Faust, &
+Neubauer, 2017; Borge-Holthoefer & Arenas, 2010). An increasing small-worldness
+measure without structure, however, reflects increasing “chaos” or randomness (Faust &
+Kenett, 2014; Kenett et al., 2016a). Thus, lower small-worldness suggests decreased
+flexibility and increased order between associations. Lower small-worldness, specifically
+higher ASPL, typically means a wider diameter (D) because connections are relatively
+limited in their cross-network connectivity and there is more distance between remote
+concepts. A small diameter suggests a tight, condensed network, which promotes shorter
+links between concepts in the network. In general, D, ASPL, and S measures are directly
+related.
+Finally, modularity (Q) is a measure of network communities or
+compartmentalized sections of a network. Greater modularity suggests greater
+partitioning, which is represented by segregated groupings of nodes in the network
+(Newman, 2006). In a semantic network, these groupings suggest sub-categories of a
+larger category. For example, in a network of animals, sub-categories might be pets,
+neighborhood, and zoo animals. Therefore, modules signify meso—mid-level—structure
+(Borge-Holthoefer & Arenas, 2010). Higher modularity grants greater structure to a
+semantic network but at the cost of lower flexibility and more rigid categorizations,
+which is seen in some clinical samples (Faust & Kenett, 2014; Kenett, Gold, & Faust,
+2016b). Therefore, modularity measures structural properties of the network as well as
+the rigidness of associations. In summary, an effective balance of structural (Q and
+ASPL) and chaotic (S) properties reflects optimal semantic integration between rigidity
+and randomness (Benedek et al., 2017; Faust & Kenett, 2014; Kenett et al., 2016a).
+Semantic networks can help us understand the complex and convoluted
+organization of semantic memory structure (Borge-Holthoefer & Arenas, 2010; De
+Deyne et al., 2016; Steyvers & Tenenbaum, 2005). Semantic memory is an important
+function in human cognition that affects language, how we categorize information about
+the world, and our ability to recognize situations. Using network models, we can glean
+valuable inferences about the development of language, second languages, differences in
+cognition, and psychological disorder (Borodkin, Kenett, Faust, & Marshal, 2016; De
+Deyne et al., 2016; Kenett et al., 2016b; Steyvers & Tenenbaum, 2005; Vitevitch, Chan,
+& Roodenrys, 2012). Representing semantic information in networks allows us to ask
+many questions: What is the structure of semantic memory? Do semantic networks
+complement biological networks? Or, as I explore below, how does semantic memory
+structure relate to personality traits, specifically openness to experience?
+Openness to Experience, Cognition, and Semantic Memory
+Why would openness to experience be related to semantic memory? One reason is
+that openness to experience, more than any other personality trait, is linked to several
+different cognitive abilities such as intelligence, working memory, and creativity
+(DeYoung, 2014; DeYoung, Quilty, Peterson, & Gray, 2014; Kaufman et al., 2010).
+Indeed, in an examination of behavioral, affective, and cognitive processes related to Big
+Five personality traits, openness to experience was found to be epitomized by cognition
+(Zillig, Hemenover, & Dienstbier, 2002). Moreover, openness has also been linked to
+memory processes such as the experience and usage of autobiographical recollections
+(Rasmussen & Berntsen, 2010). The use of autobiographical recall has been shown to
+support the strategic search of semantic memory, allowing more efficient retrieval from
+long-term memory (Unsworth, Brewer, & Spillers, 2014).
+Finally, there are theoretical connections that suggest there should be significant
+links between semantic memory and openness to experience (DeYoung, 2014, 2015). For
+example, semantic memory has been proposed as the root of imagination (Abraham &
+Bubic, 2015) and central to creativity (Mednick, 1962). These processes—imagination
+and creativity—are considered to be core characteristics of people high in openness to
+experience (DeYoung, Grazioplene, & Peterson, 2012; Oleynick et al., 2017; Saucier,
+1992). But despite these intermediary connections, the relation between semantic
+memory and openness to experience have yet to be empirically examined.
+The association between crystallized intelligence and openness to experience is a
+common finding in the personality and individual differences literature. In the Carroll-
+Horn-Cattell (CHC) model of intelligence, crystallized intelligence is defined by the
+acculturation of knowledge over time, including language, information, and concepts of a
+specific culture (McGrew, 2009). The breadth and depth of this knowledge is acquired by
+formal and informal education as well as general life experiences (McGrew, 2005). For
+example, open people are more likely to spend their time reading fiction, non-fiction, and
+fantasy book genres for pleasure (Finn, 1997; Mar, Oatley, & Peterson, 2009; McManus
+& Furnham ,2006). Thus, they engage with semantic and verbal information more often
+than people low in openness to experience, making them more likely to accumulate more
+semantic knowledge. Moreover, because open people have a tendency to engage in a
+broad diversity of experiences, it’s likely that they accrue a lot of general knowledge.
+Indeed, longitudinal evidence has shown that early stimulation seeking is related to
+greater general intelligence at later ages (Raine et al., 2002). Raine and colleagues
+suggest that these curious children create enriched environments for themselves that
+stimulate cognitive development.
+Open people’s curiosity and motivation to learn is a hallmark of the trait, which
+makes them more likely to explore and invest in many knowledge domains (Kashdan,
+Rose, & Fincham, 2004; Silvia & Sanders, 2010). They also tend to be higher in a
+cognitive process called implicit learning—the ability to unconsciously detect patterns of
+covariance in sensory or cognitive information—which might support the acquisition of
+general knowledge beyond motivation. Implicit learning has been shown to be uniquely
+associated with verbal intelligence, independent of general intelligence, and is not related
+to working memory (DeYoung, 2014; Kaufman et al., 2010). Thus, open people have a
+drive for deeper knowledge and may implicitly acquire more knowledge from their
+experiences (Bates & Shieles, 2003; DeYoung et al., 2012).
+This notion is supported by a meta-analysis of personality and intelligence, which
+found moderate correlations between openness and general (β = .33) and crystallized (β =
+.30) intelligence along with knowledge and achievement (β = .28; Ackerman &
+Heggestad, 1997). Ashton, Lee, Vernon, and Jang (2000) also found openness to be
+moderately correlated with crystallized intelligence (r = .37) and a composite score of
+general intelligence (r = .29). Hence open people tend to have broader general knowledge
+than those who are less open, which suggests they have more information to draw from
+when retrieving semantic concepts.
+Openness to experience has a long history and many connections to creativity. At
+one time, there was even consideration of “Creativity” as an alternative label for
+openness to experience (Johnson, 1994). People high in openness are described as
+imaginative, intellectual, curious, unconventional, original, and creative (McCrae &
+Costa, 1997; Saucier, 1992). They are also described as having an affinity to seek out,
+detect, comprehend, and utilize abstract, semantic, and sensory information (DeYoung,
+2011; Kaufman, 2013). The summation of this disposition, termed cognitive exploration,
+promotes flexible interpretations of the world that can facilitate creative and innovative
+ways of solving problems (DeYoung, 2014, 2015).
+Flexible cognition is considered a core component of creativity (Dietrich, 2004;
+Hennessey & Amabile, 2010). Indeed, diverse experiences, which are regularly sought
+out by open people, have been shown to enhance cognitive flexibility (Ritter et al., 2012).
+Consistent with exploration of experiences, open people are motivated to engage in the
+creative process and have more everyday creative hobbies (Prabhu, Sutton, & Sauser,
+2008; Silvia et al., 2014; Tan, Lau, Kung, & Kailsan, 2016). Moreover, openness is
+related to real-world creative achievement. Openness to experience is the most consistent
+predictor of creative achievement in the arts and sciences (Feist, 1998; Kaufman et al.,
+2016). Thus, open people have the ability and motivation to realize creative solutions.
+One of the most influential models of creativity is the associative theory of
+creativity (Mednick, 1962). Mednick’s seminal theory emphasized the structure of
+concepts in semantic memory and suggests that differences in the organization of these
+concepts influence people’s ability to reach remote and subsequently more creative
+solutions. He theorized that creative individuals have a “flat” association hierarchy—
+more, broader associations—and less creative individuals have a “steep” association
+hierarchy—fewer, stereotypical associations. A flat hierarchy suggests lower associative
+strength between concepts: conventional associations are not overly dominant and permit
+other, less probable associations to come to mind. In contrast, a steep hierarchy has high
+associative strength between concepts: conventional connections remain dominant and
+inhibit reaching more remote relations. Therefore, flat hierarchies are more likely to
+generate remote concepts to flexibly combine and form creative associations.
+Remote associates test. To examine his theory, Mednick developed the Remote
+Associates Test (RAT; Mednick & Mednick, 1967), which provides participants with
+three seemingly unrelated words (e.g., cottage, swiss, cake) and asks them to find a single
+fourth word that is related to each (e.g., cheese; Bowden & Jung-Beeman, 2003). The
+RAT is a widely used measure of semantic creativity that associates with creative
+language tasks such as metaphor comprehension (Arden, Chavez, Grazioplene, & Jung,
+2010; Gold, Faust, & Ben-Artzi, 2012).
+Although the task examines the ability to form associative elements into novel
+and remote combinations, there has been some debate about whether the RAT actually
+measures creativity (Lee, Huggins, & Therriault, 2014; Taft & Rossiter, 1966). Most of
+the literature suggests that the RAT is a convergent thinking task (has a single correct
+answer), which is supported by relationships to other measures of convergent thinking
+such as working memory and intelligence (Harris, 2004; Lee & Therriault, 2013). Other
+studies have examined the task with divergent thinking measures—broad, open-ended
+problems with no single solution—and found significant associations (Benedek, Könen,
+& Neubauer, 2012; Kenett et al., 2014). Finally, one study examined the RAT with both
+convergent and divergent thinking tasks, and found relations to intelligence, divergent
+thinking, creative achievement and openness to experience (Benedek et al., 2012). This
+suggests that the task may involve components of both convergent and divergent thinking
+(Klein & Badia, 2015).
+In relation to semantic memory, Gupta, Jang, Mednick, and Huber (2012) found
+creative individuals were less biased toward high-frequency responses and performed
+better, solving more difficult RAT problems. This supports Mednick’s idea that creative
+individuals are less likely to consider high frequency responses, reflecting lower
+associative strength and a flat association hierarchy. Based on the connections between
+openness, creativity, and the RAT, evidence suggests that open people are likely to have
+weaker associations between concepts. Therefore, people high in openness are expected
+to have more unconventional and unique associations that are facilitated by a more
+flexible semantic structure.
+Divergent thinking. Divergent thinking (DT) is a common proxy for measuring
+cognitive flexibility and is considered a hallmark of creative cognition (Guilford, 1959).
+DT is usually measured by alternative uses tasks (AUTs), which require the participant to
+come up with unusual and novel uses for ordinary objects (e.g., bricks, boxes, knives).
+AUTs involve many cognitive components related to creative cognition such as the
+inhibition of common uses, cognitive flexibility, conceptual expansion, and the
+combination of disparate concepts to form unique associations (Gilhooly, Fioratou,
+Anthony, & Wynn, 2007; Guilford, 1967; Hass, 2016).
+Traditionally, these tasks are scored by fluency (number of ideas), flexibility (how
+often a person switches categories), and originality (statistical infrequency of responses;
+Guilford, 1967). There have been some criticisms of this method, such as the confound of
+fluency with originality (Silvia, Beaty, & Nusbaum, 2013; Silvia et al., 2008). To avoid
+this confound, an alternative approach using subjective creativity ratings was developed
+(Silvia et al., 2008). This subjective method has become more common in the literature
+because of its reliability, ease of scoring, and consistency with real-world creativity.
+Despite different methods of scoring, open people overwhelmingly perform better on
+these tasks (Batey, Chamorro-Premuzic, & Furnham, 2009; McCrae, 1987; Silvia et al.,
+2008).
+Newer methods for scoring have been developed using semantic distance, which
+offer an objective alternative for rating originality and flexibility (Dumas & Dunbar,
+2014; Forster & Dunbar, 2009; Harbison & Haarmann, 2014; Hass, 2017). For example,
+a recent study used a novel technique—pointwise mutual information—to measure
+semantic distance, which correlated strongly with subjective ratings of originality and
+performed better than participants’ own assessments of their creativity (Harbison &
+Haarmann, 2014). Typically, semantic distance of DT responses has been determined by
+latent semantic analysis (LSA; Landauer & Dumais, 1997), which judges semantic
+similarity of the word based on its co-occurrences with other words in a large corpus of
+text. Hass (2017) found the semantic distance of DT responses increased with the number
+of responses produced, which is consistent with the serial order effect—ideas get more
+creative as time goes on (Beaty & Silvia, 2012). His evidence suggests that ideas get
+more creative over time because people are reaching more remote associations. In the
+context of semantic networks, spreading activation is diffusing to greater distances to
+arrive at less probable relations.
+LSA has also been used on other semantic creativity tasks to measure the
+remoteness of associations (Beaty, Christensen, Benedek, Silvia, & Schacter, 2017;
+Green, 2016; Prabhakaran, Green, & Gray, 2014). For instance, Prabhakaran et al. (2014)
+examined the semantic distance of verbs from nouns that were produced during a verb
+generation task. Participants were cued to be creative or not when coming up with verb
+responses. Prabhakaran and colleagues found greater semantic distance was associated
+with higher DT scores of fluency, flexibility, and originality, which suggests that the
+ability to think of remote verb associates is also related to divergent thinking ability.
+They also included measures of openness and creative achievement, which were related
+to creativity-cued semantic distance. These studies provide evidence that’s in line with
+Mednick’s theory and that supports the role of remote semantic associates in creative
+cognition. Their findings also suggest that open people are more likely to reach more
+remote associates and have more unique associations.
+Since Mednick’s seminal theory, other theories of creative cognition have
+emerged, and all suggest the structure of associative memory is critical for creative
+cognition (Beaty, Silvia, Nusbaum, Jauk, & Benedek, 2014; Gabora, in press; Sowden,
+Pringle, & Gabora, 2015). The organization of semantic memory, for example, has been
+implicated in the phenomenon of insight. Insight problems involve overcoming
+functional fixedness, making remote associations, reconstructing problems, and are
+typically accompanied by an “Aha!” or “Eureka!” moment upon reaching a solution
+(DeYoung, Flanders, & Peterson, 2008; Weisberg, 2015). Schilling (2005) proposes a
+small-world theory of insight, which promotes efficient search and associative processes
+when considering solutions. She suggests that short path lengths—characteristic of small-
+world networks—act as “shortcuts” to access remote associations and facilitate the
+flexible search through possible solutions.
+Despite this theory, empirical investigation into the individual differences of
+insight problem solving and semantic structure have yet to be examined. Other studies,
+however, have revealed a small-world structure of semantic memory is related to more
+creative achievements and the facilitation of unique conceptual combinations (Kenett et
+al., 2016a; Marupaka, Iyer, & Minai, 2012). Moreover, shorter associative pathways have
+been associated with better performance on divergent thinking tasks (Rossmann & Fink,
+2010).
+In support of these findings, one study examined semantic memory structure in a
+Hebrew sample of high and low creative groups. Kenett and colleagues (2014) used a
+free association task—participants produce as many associates as they can to a target
+word—with 96 cue words from 24 categories to construct their networks. Decision tree
+analysis was used to form high and low creative groups, which were constructed using
+scores from the RAT, a metaphor comprehension task, a battery of divergent thinking
+tasks that were translated to Hebrew (Wallach & Kogan, 1965), and a shortened version
+of Raven’s Progressive Matrices (Van der Elst et al., 2013). Behavioral results show that
+the high creative group generated more unique associations to target words (n = 7,617)
+than the low creative group (n = 5,557). The high creative group’s network, compared to
+smaller ASPL and diameter values. Moreover, the high creative group’s network was
+more small-world and less modular, indicating a more flexible and efficient structure than
+the less creative group. Partial bootstrapped networks were constructed to statistically
+validate the results. The high creative group had significantly larger CC and S values
+along with lower ASPL and Q measures, confirming the full network findings. Finally,
+the high creative group was found to have significantly more positive impact nodes and
+the low creative group had significantly more negative impact nodes, which suggests that
+the high creative group might have more efficient activation spread in the network.
+This notion was supported by a recent study using a random walk technique—an
+algorithm that performs a random search through the network—on the same two groups,
+which showed the high creative group reached more semantically distant associations
+than the low creative group (Kenett & Austerweil, 2016). Moreover, the high creative
+group was less likely to return to previous responses, avoiding repetitiveness and possibly
+interference. In essence, Kenett and colleagues demonstrated highly creative people have
+a more flexible and efficient semantic structure than less creative people, which
+facilitates greater access to remote associations and decreased dominance of conventional
+associations. Their evidence supports Mednick’s view that creative people have a flat
+association hierarchy and demonstrates that they have shorter associative pathways to
+disparate concepts.
+The Present Research
+The present research is the first to examine personality with semantic network
+analysis. Based on the evidence presented above, associative processes of cognition have
+notable influence on the structure and accessibility of semantic memory. Because open
+people have broad general knowledge, are cognitively flexible, and have many
+connections to creativity, I expect that they will have different semantic memory
+structure than those low in openness. To examine differences between levels of openness,
+the sample was split into three groups—low, moderate, and high. The networks were
+organized into groups because of the statistical constraints associated with measuring
+individual networks in the sample (Moreno & Neville, 2013). Using three groups
+provided an advantage that allowed the investigation into stepwise trends across groups.
+Finally, categorical fluency data (i.e., animals) were used to generate the nodes in the
+network. Fluency data was collected because it is easier to collect than free recall tasks—
+verbal fluency tasks are short (i.e., 1 min.) and they offer greater insights into categorical
+knowledge structure. While different semantic categories have been used for this task, the
+animal category is the most widely used, as it is more universal and has shown only
+minor differences across different languages and cultures (Ardila et al., 2006). Moreover,
+because there is a well-known hierarchical structure of the animal category (i.e., the
+animal kingdom in biological taxonomy), its less likely that the semantic network
+representations will be affected by openness to experience.
+Beginning with behavioral hypotheses, I expect that the high openness group will
+have more unique responses than the moderate and low openness group, and the
+moderate group will have more than the low group. This hypothesis is informed from
+previous work on semantic networks and creativity, which demonstrated creative people
+come up with more unique associations to target words (Kenett et al., 2014).
+Furthermore, considering open people tend to have broader general knowledge, I expect
+that they would generate more unique and individual associations than less open people.
+Moreover, analyses were conducted to determine if the high openness group started with
+more unconventional responses than the other openness groups. Given that people high in
+openness have a tendency toward unconventionality, I predict that the high openness
+group will be less likely to start with common responses. In addition, spreading activation
+suggests that starting in an alternative location of a semantic network would enable
+people high in openness to have better access to more remote associations. Finally, the
+frequency proportion of responses were used to detect the “flatness” of each group’s
+association slope. An equal or lower frequency proportion for the most common
+responses and an equal or greater frequency proportion of the least common responses
+would suggest a flatter association slope. Thus, I expect that the high openness group will
+have a smaller slope, suggesting a flatter association slope than the other groups.
+For the network analysis, I expect that the high openness group will have the most
+flexible and efficient structure of all groups. Consistent with previous creativity
+networks, this means that the high openness group will have the highest small-worldness
+measure and the lowest ASPL value. Furthermore, the high openness group is expected to
+be the least rigid, which will be quantified as having the lowest modularity value.
+Conversely, I predict that low openness people will have the most rigid network, which
+will result in the highest Q and ASPL values. Because the diameter is directly related to
+the ASPL, it’s expected that the high openness group will have the smallest diameter and
+the low openness group will have the highest. There are no predictions for the clustering
+coefficient of the networks, but I calculated this measure for comparison and the small-
+worldness measure. Furthermore, there were no predictions for the moderate group, but
+they were used to examine whether the measures demonstrated any stepwise effects (i.e.,
+linear or quadratic). To obtain quantifiable data to test these predictions, I used a
+bootstrapping method that’s been used in previous semantic network research (Kenett et
+al., 2013, 2014, 2016a). In conclusion, the structure of each group-level of openness is
+expected effects as levels of openness increases from low to high.
+CHAPTER II
+METHOD
+Participants
+Participants were obtained from three different studies at UNCG. The first sample
+was collected during the Fall semester of 2015 through UNCG’s psychology SONA
+research pool. The total sample obtained was 311 people, but 63 people were removed for
+missing data and 34 for inattentive responding. The remaining sample of 214 (52%
+Caucasian, 35% African American) consisted of primarily young adults (M = 19.12, SD =
+3.26, 85% female) enrolled in psychology courses.
+The second sample was collected during the 2016 Fall semester and 2017 Spring
+semester. A total of 262 participants were recruited using UNCG’s psychology SONA
+research pool. There were 64 participants excluded for missing data and 41 for inattentive
+responding, which left 157 in the remaining sample. The remaining sample (54%
+Caucasian, 41% African American) consisted of young adults (M = 18.60, SD = 1.10,
+80% female) who were enrolled in a UNCG psychology course in one of the two
+semesters.
+The third sample was obtained from an ongoing fMRI study that provided 132
+total participants. Six of these participants were removed for missing data, leaving 126 in
+the remaining sample. People were recruited using fliers around the UNCG campus and
+local newspaper ads describing an fMRI study on creativity. People were compensated
+with $100 for completion of the study. This study had several exclusion and inclusion
+criteria: participants must be right-handed, have no past psychiatric disorder, and cannot
+currently be taking any medication. People were excluded if any of these restrictions
+were met or if they were unable to complete the neuroimaging procedures (e.g.,
+unremovable piercings, claustrophobia). These participants were adults (M = 22.68, SD =
+6.09, 72% female) drawn from the community and student population at the University of
+North Carolina at Greensboro (70% Caucasian, 25% African American). This sample
+specifically oversampled art, music, and science majors to increase the sample’s
+population of creative domains.
+In summary, the final sample consisted of 497 people who completed the same
+personality and verbal fluency measures.
+Materials
+Openness to experience. Across the samples, two personality scales—NEO-PI-3
+and NEO-FFI-3—were used to measure openness to experience. The NEO-PI-3 is a 240-
+item Big Five personality inventory that has been widely used around the world (McCrae,
+Costa, & Martin, 2005). The NEO-FFI-3 is a shortened version of the NEO-PI-3. The
+NEO-FFI-3 openness to experience scale has good internal reliability (self-report α = .78,
+informant α = .78) when compared with the NEO-PI-3 (McCrae & Costa, 2007). The
+NEO-PI-3 has six items per facet—ideas, values, fantasy, action, depth, aesthetics—for
+48 items total, and the NEO-FFI-3 uses two items per facet for 12 items total. Both
+measurements include items like I think it’s interesting to learn and develop new hobbies
+and I often enjoy playing with theories or abstract ideas. People responded using a 5-
+point likert scale ranging from 1 (Strongly Disagree) to 5 (Strongly Agree). Because all
+of the questions used in the NEO-FFI-3 are used in the NEO-PI-3, only the 12 items that
+are included in both were used to form an average openness score.
+Verbal fluency. To assess semantic associations, the verbal fluency task of
+animals was used. People were asked to generate as many category exemplars as they
+could for animals in one minute. The task was scored for number of responses, excluding
+invalid responses, repetition, and variations on roots. These responses were used to form
+the adjacency matrix that is discussed later.
+Construction of groups. The samples were pooled and people were sorted by
+their standardized score of openness to experience. Three groups were made from low
+openness (n = 118, < -.9 SD), moderate (n = 121, -.2 < SD < .2), and high (n = 115, > .9
+SD). This split gave distinct cut-offs that allowed groups of relatively equal sizes to be
+compared. Eighty-four people between the low and moderate group and 59 between the
+moderate and high openness group did not contribute to the adjacency matrices or group
+analysis. Partitioning openness into three groups instead of high and low groups allowed
+analysis of both linear and non-linear effects.
+Semantic network construction. The fluency data were analyzed using a
+recently developed semantic network approach (Kenett et al., 2013). In this approach,
+each node represents a category exemplar (e.g., frog) and edges represent correlations
+between exemplars, more specifically, in the sample how often word b is generated given
+that word a is generated. This means that if frog is generated with lizard (32 out of 100
+people) and frog is generated with goat (3 out of 100 people), there would be a greater
+correlation between frog and lizard than frog and goat. The size of this correlation
+matters because, later in the process, the data will be screened for weak or spurious
+correlations. In our example, frog and goat would be considered a weak correlation, so
+they would probably not share an edge in this semantic network, but frog and lizard
+probably would.
+To start, a response matrix is created that includes all common responses from all
+groups. Then the matrix is constructed so each row contains all of the responses for a
+single person, and each column is a unique response given by the sample. If a person
+gives a response, a 1 is placed in that column’s cell, and if not, a 0. Therefore, when
+complete, a row should have 1’s and 0’s in its entirety. To compare the networks between
+the groups, I analyzed only the responses that are generated by at least two participants
+(Kenett et al., 2013, 2014; van Wijk, Stam, & Daffertshofer, 2010). Two responses are
+required for later analysis when the responses are correlated between people—one
+response cannot be correlated. Due to later constraints on spurious correlations, many of
+the least frequent responses will be omitted anyways.
+Next, the word correlations are computed from the data matrices using Pearson’s
+correlation. Correlations are created from the word generation profile (number of
+participants who generated that specific word). The more similar connections a word has
+with another word, the higher the correlation between them. This is done for all words
+that have at least two entries, creating a correlation matrix between all the pairs of words
+in the sample.
+The matrix is examined as an adjacency matrix of a weighted, undirected
+network. With this approach, each word represents a node in the network and the edges
+between two words represent the correlation between them. The weight of the edge is
+indicated by the correlation between two nodes. Therefore, an adjacency (or connectivity)
+matrix corresponds to an n x n matrix, where n is the number of words (nodes) and each
+cell represents a correlation between two words. Most of the edges will have small values
+or weak correlations, which represent noise in the network. To overcome this obstacle,
+the Planar Maximally Filtered Graph (PMFG) method was used, which constructed a
+sub-graph capturing the most relevant information within the original network (Kenett,
+Kenett, Ben-Jacob, & Faust, 2011; Tumminello, Aste, Di Matteo, & Mantegna, 2005). To
+examine the structure of the networks, the edges are binarized so that all edges are
+converted to the same weight: 1. Thus, the networks are analyzed as unweighted and
+undirected networks.
+Network analysis. Analyses were performed with the Brain Connectivity
+Toolbox for Matlab (Rubinov & Sporns, 2010). Several network measures were
+calculated for analyses: clustering coefficient, average shortest path length, diameter,
+modularity, and small-worldness.
+Procedure
+Across all samples, people completed all tasks and scales on computers using
+MediaLab (v2012; Empirisoft, 2004). Participants provided informed consent to
+participate in the study and received research credit or $100 in cash for their
+participation. All studies were approved by the University of North Carolina at
+Greensboro’s Institutional Review Board.
+Statistical Approach
+Common early responses. To evaluate if the high openness group started with
+fewer conventional responses compared to the other openness groups, polynomial
+ANOVAs were conducted on the proportion of the two most common responses (i.e., cat
+and dog) for the first, second, and third responses given by each participant. If a
+participant responded with either cat or dog, then they were given a 1, if not, then 0.
+Tukey’s HSDs were used to examine pairwise differences in conventional response
+proportions between groups. Lower proportions of a common response would suggest
+lower dominance of early conventional associations—one feature of a flat association
+hierarchy as well as a tendency towards unconventionality.
+Association slope. To examine the association slope of the responses included in
+the network analysis, the frequency proportion of each response was plotted across all
+groups. The ordering of the responses was based on the total average proportion (from
+largest to smallest) of each response across all groups. This was done to keep the
+response ordering consistent between groups so that qualitative comparisons could be
+made. Because of the logarithmic distribution of the frequency proportions, all
+proportions were log-transformed prior to all analyses. The slope can be interpreted as the
+decreased log-likelihood from the most frequent response to the next—that is, the rate at
+which the logarithmic frequency proportion decreases with each response. Moreover, the
+intercept can be interpreted as the log-likelihood of providing the most common
+response.
+Network analysis. Currently, statistical hypothesis testing methods that are able
+to compare between networks are lacking (Moreno & Neville, 2013). This is due, in part,
+to difficulties in collecting a large sample of empirical networks. A bootstrap method will
+be used to overcome these limitations (Efron & Tibshirani, 1993). Bootstrapping is a
+statistical tool developed to create a random sampling distribution from an empirical
+sample by resampling with replacement. A large number of random samples (1 to 2
+thousand) are created through a large number of iterations (Efron & Tibshirani, 1993).
+Using the bootstrap method, random partial networks that consist of sub-networks taken
+from each group’s network (Kenett et al., 2013, 2014). Bootstrapping generates many
+partial lexical networks, making it possible to examine differences between networks,
+which has been used in a number of other semantic network studies (Bertail, 1997;
+Kenett et al., 2014, 2016). An in-house Matlab code was written for the partial networks
+procedure. Half of the nodes are randomly chosen and used in the bootstrapping
+procedure. From here, partial networks are constructed for each group separately for
+these random words. Lastly, for each partial network, the CC, ASPL, Q, D, and S
+measures will be computed. The procedure is simulated with 1,000 iterations.
+The dependent variables were the network measures: clustering coefficient,
+average shortest path length, modularity, diameter, and small-worldness. The
+independent variable was the openness groups, which were modeled using polynomial
+ANOVAs. Power for the study was calculated using GPower (v3.0.10; Faul, Erdfelder,
+Lang, & Buchner, 2007). Effects for each network measure were examined across groups
+(n ≈ 100 each, about 300 total) using an analysis of variance. Power analysis (β = .80)
+showed, with equal sample sizes of 100, that effect sizes .0289 (η ) and above will be
+detected. Medium (.0625) and large (.16) effects will be detected, but small effects (.01)
+will probably not be reliable (Cohen, 1992).
+CHAPTER III
+RESULTS
+Behavioral Analyses
+Descriptive statistics of age, openness, and number of verbal fluency responses
+dependent variable, the openness groups had a quadratic trend, F(1, 344) = 4.58, p =
+2 2
+.033, η = .01, but no linear trend, F(1, 344) = .00, p = .99, η = .00, for age. Pairwise
+p p
+comparisons revealed that the moderate openness group was not different in age from the
+high (p = .16) and the low (p = .15) openness groups. Similarly, the high openness group
+did not differ in age from the low openness group (p = 1.00). With gender as the
+dependent variable, there were no linear, F(1, 344) = 1.36, p = .24, η = .00, or quadratic
+trends, F(1, 344) = .024, p = .88, η = .00, for gender. Prior to verbal fluency analyses,
+all duplicate responses were removed and plural responses were changed to their singular
+form (i.e., cats  cat). There was a linear trend for the average number of responses per
+person across the openness groups, F(1, 351) = 15.13, p < .001, η = .04, but no
+quadratic trend, F(1, 344) = .85, p = .36 η = .00. Tukey’s HSD comparisons revealed
+that the high openness group provided significantly more responses per person, on
+average, than the moderate (p = .017) and the low (p = .001) openness groups. The
+moderate and low openness groups did not differ in the average number of responses per
+person that were provided (p = .47).
+Individual and Unique Fluency Responses
+Polynomial ANOVAs were used to examine the linear and non-linear differences
+in the number of individual and unique responses across all groups. Across all groups
+there were 321 individual responses, with a linear trend of how many individual
+responses were given by each group, F(1, 960) = 47.97, p < .001, η = .05, but no
+quadratic trend, F(1, 960) = .16, p = .69 η = .00. Post-hoc comparisons were conducted
+using Tukey’s HSD. Pairwise comparisons revealed that the high openness group
+provided 257 individual responses, which was significantly more than the moderate (n =
+221; p = .005) and the low (n = 177; p < .001) openness groups. The moderate openness
+group also provided significantly more individual responses than the low openness group
+(p < .001). Similarly, there was a linear trend for the number of unique responses, F(1,
+2 2
+960) = 31.64, p < .001, η = .03, but no quadratic trend, F(1, 960) = 1.72, p = .19 η =
+p p
+.00. Pairwise comparisons found that the high openness group had significantly more
+unique responses (n = 68) than the moderate (n = 33) and the low (n = 21; both p’s <
+.001) openness groups. The moderate and the low openness groups did not differ in the
+number of unique responses (p = .22). Qualitative inspection of these unique responses
+reveals that the high openness group had both breadth (e.g., axolotl, binturong, galago,
+ibis, tegu) and depth (e.g., beagle, boxer, doberman, pit bull, shiba inu) of associations,
+Early Common Responses
+There were significant linear, F(1, 351) = 5.59, p =.019, η = .02, and quadratic,
+F(1, 351) = 10.53, p = .001, η = .03, trends for the first response proportions of the
+common responses. Pairwise comparisons found the high openness group had a
+significantly lower proportion of the common responses (.46) than the moderate (.71, p <
+.001) and the low openness (.61, p = .049) groups. Despite the significant trends, the low
+openness group’s proportion was not different from the moderate openness group (p =
+.24). For the second response proportion of the common responses, there was a
+significant quadratic trend, F(1, 351) = 6.97, p = .009, η = .02, but no linear trend, F(1,
+351) = 1.36, p = .24 η = .00. Pairwise comparisons revealed that the moderate openness
+group had a greater proportion of the common responses (.80) than the high openness
+group (.63, p = .013) but not the low openness group (.70, p = .21). The low and high
+openness groups’ proportions were not significantly different (p = .47). Finally, there
+were no linear, F(1, 351) = .56, p = .45, η = .00, or quadratic, F(1, 351) = .30, p = .59,
+η = .00, trends for the third response proportions of the common responses.
+Preprocessing for Network Analysis
+In order to construct comparable networks, I standardized the fluency data into
+matrices that included responses that were provided by at least two participants in each
+group, across all groups. In this process, participants who provided responses that
+included multiple species of an animal (e.g., blue jay, cardinal, chickadee, oriole), but not
+the common response (i.e., bird), were given the common response if the specific species
+was not included in the analyses. Across all groups, there were 102 common individual
+responses that were included in the network analysis. This means that there were many
+individual responses that were not included from each group. A polynomial ANOVA
+found that there was a linear trend, F(1, 351) = 30.08, p < .001, η = .08, but no
+quadratic trend, F(1, 351) = .86, p = .36, η = .00, for the number of responses per
+person that were not included in the analysis across groups. Post-hoc Tukey’s HSD
+comparisons revealed that the high openness group had a greater number of responses per
+person that were not included in the network analysis (M = 2.20) than the moderate (M =
+1.37, p = .001) and low (M = .92, p < .001) openness groups. Moderate and low openness
+groups did not differ in the average number of responses per person that were not
+included in the network analysis (p = .12). So, although the high openness group
+provided significantly more responses per person, they also had significantly more
+responses that were not included in the network analysis per person. The number of
+responses per person that were included in the network analysis showed a marginal linear
+trend, F(1, 351) = 3.37, p = .067, η = .00, but no quadratic trend, F(1, 344) = .39, p =
+.53, η = .00, across the openness groups.
+Association Slope
+(blue), moderate (orange), low (grey). The log-transformed frequency proportions are at
+50% transparency and appear behind the linear trendline. A linear trendline was added to
+determine the slope and intercept for each group. The fit for each line was good for each
+2 2 2
+openness group: high (R = .89), moderate (R = .92), and low (R = .90). The high
+openness group had a numerically smaller slope (m = -.031) than both the moderate (m =
+-.033) and the low (m = -.035) openness groups. The high openness group also had a
+numerically smaller intercept (b = 3.88) than both the moderate (b = 3.91) and the low (b
+= 3.95) openness groups. This analysis was repeated for ordering that was fit—largest to
+2 2 2
+improved the linear fit for all groups: high (R = .96), moderate (R = .97), and low (R =
+.98). Consistent with the comparison across groups, the high openness group had a
+numerically smaller slope (m = -.032) and intercept (b = 3.94) than the moderate (m = -
+.034, b = 3.96) and low (m = -.037, b = 4.03) openness groups. These results qualitatively
+demonstrate that the high openness group has a smaller slope and intercept than the other
+openness groups, which suggests that they have a flatter association slope for the
+responses that were included in the network analysis.
+Network Analysis
+The association correlation networks were constructed from the verbal fluency
+endorsement matrices, using the PMFG filtering procedure. Using these networks, I
+calculated the different network measures of the semantic networks for all groups, which
+were used to quantitively examine the differences between them. To visualize the
+networks, open-sourced Cytoscape software (Shannon et al., 2003) was used and each
+node was labelled using each fluency response included in the analysis. Nodes are
+indicated by red circles and the edges are represented by the black lines between the
+nodes. The edges do not indicate association strength (i.e., unweighted) or the direction
+of relations (i.e., undirected), but indicate the association between two nodes.
+There were numerical (i.e., network measures) and qualitative (i.e., visualization)
+differences of each network structure between the groups. Most notably, the moderate
+openness group was much different than the other two groups in network measures and
+much more spread out than the other two groups, which is apparent in the larger diameter
+group had a smaller clustering coefficient than the other two groups. Overall, these
+metrics are all reflected in the lower small-worldness metric of the moderate openness
+group. Interestingly, the low and high openness semantic networks were comparable on
+qualitative and most numerical assessments. The modularity measure, however, differed
+across all groups, decreasing linearly. This suggests that the networks are getting less
+rigid and compartmentalized as openness increased. In summary, 1) the high and low
+openness networks were relatively comparable, 2) the moderate openness group differed
+on all measures, and 3) the rigidity across all networks decreased linearly.
+Bootstrapped Partial Network Analysis
+The bootstrapped partial analysis was applied to statistically examine the
+differences in network structure across the openness groups. For each network, there
+were 1,000 samples for each network measure (CC, ASPL, Q, S, and D). Polynomial
+ANOVAs were used to determine linear and quadratic patterns in the bootstrapped partial
+4).
+Clustering coefficient. The clustering coefficient had a significant quadratic
+trend, F(1, 2997) = 19.33, p < .001, η = .01, with the moderate openness group having a
+higher CC than the other openness groups. There was no linear trend, F(1, 2997) = 2.38,
+p = .12 η = .00. Pairwise comparison revealed that the moderate openness group was
+significantly larger than both the low (p = .007) and the high (p < .001) openness groups.
+The high openness group did not significantly differ from the low openness group (p =
+.27).
+Average shortest path length. There was significant linear trend found for the
+average shortest path length, F(1, 2997) = 29.74, p < .001, η = .01. There was no
+quadratic trend, F(1, 2997) = .38, p = .54, η = .00. Pairwise comparisons revealed that
+that high openness group had a significantly smaller ASPL than the low openness group
+(p < .001) and a marginally smaller ASPL than the moderate openness group (p =.073).
+Moreover, the moderate openness group was significantly smaller than the low openness
+group (p = .003).
+Modularity. There was a linear trend for modularity, F(1, 2997) = 15.72, p <
+2 2
+.001, η = .01, but no quadratic trend, F(1, 2997) = .02, p = .90, η = .00. Pairwise
+p p
+comparison revealed the high openness group was significantly different from the low
+openness group (p < .001) but not the moderate openness group (p = .15). The moderate
+openness group was marginally different from the low openness group (p =.092).
+Diameter. The diameter showed a significant linear trend, F(1, 2997) = 13.73, p
+2 2
+< .001, η = .01, but no quadratic trend, F(1, 2997) = 1.27, p = .26, η = .00. Pairwise
+p p
+comparisons showed that high openness had a significantly smaller diameter than the low
+openness group (p = .001) but was no different from the moderate openness group (p =
+.65). The moderate openness group had a significantly smaller diameter than the low
+openness group (p = .013).
+Small-worldness. The small-worldness measure had a marginally significant
+linear trend, F(1, 2997) = 3.35, p = .067, η = .00, which was supported by the linear
+effect of the ASPL and diminished by the quadratic effect of the CC. There was no
+quadratic trend for the small-worldness measure, F(1, 2997) = 1.96, p =.16 η = .00.
+Pairwise comparison revealed that the marginal linear trend was driven by a marginally
+larger small-worldness measure for the high openness group compared to the moderate
+openness group (p = .084). The low openness group did not differ from the high (p = .16),
+and the moderate (p = .95) openness groups. Consequently, the high openness group had
+a numerically larger small-worldness value compared to the other groups while the
+CHAPTER IV
+DISCUSSION
+The present study was the first to examine the relationship between semantic
+network structure and openness to experience. The results demonstrate that varying levels
+of openness to experience have different associative structures. For example, open people
+tended to come up with more individual responses, more unique responses, and they
+typically started with less conventional responses than people lower in openness. This
+evidence suggests that people high in openness have a flatter association hierarchy—
+conventional associations are not overly dominant and permit other, less probable
+associations—compared to moderate and low openness groups (Mednick, 1962).
+Moreover, the high openness group had a numerically smaller association slope
+compared to the other two groups. This finding is taken as a qualitative explanation for a
+flatter association hierarchy. These findings all supported the bootstrapped partial
+network analysis results, with networks becoming less rigid and more interconnected as
+openness increased. Thus, semantic association structure increased in flexibility as
+openness increased. Overall, these findings are consistent with the notion that open
+people are epitomized by a creative disposition and suggests that associative semantic
+structure underlies the relationship between openness to experience and creativity (Kenett
+et al., 2014; Oleynick et al., 2017).
+Network Analysis
+The semantic network analysis was done to investigate whether openness to
+experience is related to the organization of semantic associations. The full semantic
+structure suggested that the low and the high openness groups were comparable across
+almost all measures except the modularity measure, while the moderate openness group
+was largely different—more spread out (higher D) and less interconnected (higher
+ASPL)—from the other two groups. The decreasing linear pattern of modularity suggests
+that the networks got more flexible as openness increased. Smaller modularity for the
+high openness group is consistent with those higher in creativity (Kenett et al., 2014).
+Based on the full semantic network measures, it appears that the low openness group had
+the best semantic integration with high modularity and small-worldness measures. The
+high openness group’s results, however, suggest that the full semantic network was the
+most flexible and chaotic (lower Q, ASPL, and high S). These findings might be because
+the low openness group’s full semantic network had a fuller representation of their
+semantic structure—having fewer responses removed and fewer unique responses—while
+the high openness group’s structure had a diminished representation of their full semantic
+structure—more responses were removed and more unique responses. Thus, although
+similar on network metrics, the lack of reduction in responses might have made the low
+openness group’s structure better integrated by comparison. This might also account for
+the structural differences seen in the moderate openness group. It’s likely that the
+moderate group’s semantic representation was not as diminished but also not as
+represented as the other groups. This seems to be suggested by more individual responses
+than the low but not high openness group. Moreover, the moderate openness group could
+have had more a stereotypical structure of associations. This interpretation could be
+supported by greater semantic structure (moderate Q and high ASPL) exhibited by the
+moderate openness group. Overall, the full semantic network structures revealed some
+unexpected results that are difficult to interpret.
+Bootstrapped Partial Network Analysis
+The bootstrapped partial network analysis findings proved to be more compatible
+with my expectations compared to the full network findings. In line with my hypotheses,
+there were several linear effects that suggested as openness increased, the semantic
+structures became more creative in organization—increased flexibility and
+interconnectivity between associations. Kenett and colleagues (2014) demonstrated that
+highly creative people have a greater clustering coefficient, shorter average shortest path
+lengths, a smaller modularity measure, and a larger small-worldness measure than people
+low in creative ability. My results were nearly identical: people higher in openness had a
+shorter ASPL, smaller Q, smaller D, and larger S than people lower in openness.
+One difference between Kenett et al.’s (2014) findings and my results was the
+clustering coefficient. Kenett et al. (2014) found a larger CC for the high creative group
+compared to the low creative group. In Kenett et al.’s (2016a) study, however, lower CC
+was related to higher creative achievement. My study found no difference between high
+and low openness groups, but revealed a larger CC for the moderate openness group.
+Thus, Kenett et al. (2016a) and my results do not contradict Kenett et al. (2014), but they
+suggest a subtle difference between studies. One possibility for this difference might be
+the measurement of semantic associations—Kenett and colleagues (2014) used free-recall
+associates for target words, while Kenett et al. (2016a) and I used cued-recall associates
+for animal verbal fluency. A lower CC for cued-recall associates, for example, might
+reflect less localized associations and greater switching between sub-categories of
+animals. This would be in line with the interpretation that the moderate openness group
+had more stereotypical associations, which could potentially indicate sticking within a
+localized area of associations (e.g., higher ASPL and higher CC in the full semantic
+network). In free-recall, however, larger CC might reflect smaller decreases in semantic
+relatedness between local associations. Despite differences in methodology, however,
+there is considerable overlap in the results between these studies.
+An important consideration in the context of the bootstrapped partial network
+analysis results is the interpretation of what a larger small-worldness measure means. It
+can be interpreted as greater flexibility but it can also be interpreted as a more chaotic
+network. For example, Kenett et al. (2016a) examined high and low creative achievement
+and fluid intelligence semantic network structures, using animal verbal fluency, and
+found the highest S was related to low creative achievement and low fluid intelligence.
+The high creative achievement groups were between the highest and lowest small-
+worldness measure, with the high fluid intelligence and low creative achievement having
+the smallest S. In contrast, higher ASPL and modularity reflected greater structure of the
+network, which was highest for the high fluid intelligence group. Here, the low creative
+achievement and low fluid intelligence group had the lowest modularity and ASPL,
+suggesting decreased structure in the network. Again, high creative achievement groups
+were neither the lowest or the highest in Q and ASPL. Thus, a balance between structure
+Faust & Kenett, 2014).
+Although my findings demonstrate a high S and lower Q measure for the high
+openness group, only the modularity was significant across the groups, with a marginal
+effect for the small-worldness measure. Thus, the flexibility of the networks increased as
+openness increased and there was a lesser effect for an increase in chaoticness. In
+addition, ASPL decreased across groups, suggesting that associations became more
+interconnected as openness increased. This is in line with previous research that found
+creative people have shorter distances between associations (Rossmann & Fink, 2010).
+Therefore, in the context of other network measures, the small-worldness measure seems
+to reflect greater flexibility rather than more chaotic. Thus, I propose that as openness
+increases, semantic structure becomes more like the organization of highly creative
+people (i.e., more flexible and interconnected).
+Finally, the full and partial network analyses produced clear inconsistencies in
+their results. For example, the clustering coefficient findings for the bootstrapped partial
+network analysis were in direct opposition to the full network analysis results. In the
+partial network analysis, the moderate openness group had a significantly larger CC than
+the other openness groups. In contrast, the moderate openness group had a smaller CC
+than the other openness groups in the full semantic networks. The results may imply that
+there are significant structural differences depending upon the size of the semantic
+network. A larger clustering coefficient in the smaller network might suggest increased
+structural features in a larger network (i.e., larger ASPL) because there is increased
+localization at a smaller scale. The explanations for the differences between full and
+partial networks, however, are unclear, especially for the moderate openness group. So,
+any interpretation for the discrepancy between these results is merely speculation. Future
+work is necessary to try and sort these incongruities.
+Association Slope
+Consistent with previous work which has demonstrated that the proportion of
+word frequencies follow a power-law distribution (known as the Yule-Simon
+distribution), we found that frequencies of animal exemplars also followed this
+distribution (Simon, 1955). When log-transformed, the high openness group had a
+smaller slope than the moderate and low openness groups. Moreover, the moderate
+openness group had a smaller slope than the low openness group. The intercept followed
+the same pattern, with the high openness group having a smaller intercept than the
+moderate openness group, which had a smaller intercept than the low openness group.
+These findings suggest that the high openness group was equal to or less likely than the
+other groups to provide the most common responses, and equal to or more likely to say
+the least common responses. Based on these results, conventional associations were not
+overly dominant for the high openness group, which allowed a greater frequency of less
+probable associations to come to mind. Thus, although qualitative, this finding suggests
+that people higher in openness have a flatter association hierarchy. Moreover, this result
+seems to support the partial bootstrapped network findings, which found shorter paths
+between concepts and reduced rigidity in conceptual categorizations (i.e., smaller Q and
+larger S measures) as openness increased. Shorter paths between concepts reflects a
+larger likelihood of activation for nearby concepts and reduced rigidity reflects the
+increased probability that local responses could activate disparate others, leading to a
+smaller decrease in the frequency of one response to the next.
+Early Common Responses
+The proportion of conventional responses of the first, second, and third responses
+of each participant was used to determine whether people high in openness displayed a
+lower dominance of conventional associations at the outset of responding—that is, to see
+if they started with unconventional common category exemplars, biasing their search and,
+in turn, their ability to access to more remote associations. By far, the most common
+responses were dog and cat, which were provided by over 95% of the participants across
+all groups. For the first response, the high openness group was less likely to provide dog
+or cat than the moderate and low openness groups. For the second response, however, the
+high and low openness groups were significantly less likely than the moderate openness
+group to provide either conventional response. The third response showed no differences.
+These results suggest that high openness people were less likely to start with a
+conventional response than the other two groups. This is in line with previous research
+that finds open people to be more original than less open people and that they have a
+tendency towards unconventionality (DeYoung, 2014; DeYoung et al., 2012; McCrae,
+1987; McCrae & Costa, 1997). In the context of spreading activation, people high in
+openness were more likely to reach more remote associations in their semantic network
+because they were inclined to start their search in unconventional locations, increasing
+the likelihood of activating other unconventional concepts (Anderson, 1983).
+Unique Responses
+Unique responses were used as an indicator of remote associations because they
+were less probable responses and were provided by only one group. Previous evidence
+presented in this study suggests that the high openness group should reach more unique
+associations because they have a flexible semantic network structure, a flatter association
+slope, and tend to start in less conventional locations of their semantic network, allowing
+better access to remote responses. Indeed, the high openness group had significantly more
+unique responses than the moderate and low openness groups, which did not differ. This
+finding is consistent with previous research, which demonstrated that people high in
+openness provide a greater number of unique associations (Prabhakaran et al., 2014).
+This evidence also supports the relationship between openness and RAT problem solving,
+as open people are less likely to be biased toward high frequency responses (Benedek et
+al., 2012; Gupta et al., 2012). Therefore, people high in openness and creativity are more
+likely to reach remote associations. Indeed, creative people are less likely to perceive
+disparate concepts as unrelated (Rossmann & Fink, 2010) and they tend to come up with
+more unique associations (Kenett et al., 2014). Overall, these results complement the
+network structure of the high openness group, which had shorter paths between concepts
+and decreased rigidity of categorizations. Thus, people high in openness are more likely
+to be creative in part because they are better able to access more remote responses for
+conceptual recombination (Marupaka, Iyer, & Minai, 2012).
+Individual Responses
+Finally, as openness increased, the number of individual responses significantly
+increased, suggesting broader knowledge of the animal category. This is consistent with
+previous work that suggests people high in openness have a broader range of knowledge
+than people lower in the trait (Ackerman & Heggestad, 1997; Ashton et al., 2000). Given
+that there was a one minute time limit, it’s possible that there were no differences in the
+breadth of the knowledge but the cognitive processes underlying knowledge retrieval. For
+example, working memory has been shown to facilitate semantic retrieval (Unsworth et
+al., 2014). Therefore, executive processes could underlie the speed of search and retrieval
+of associations. Because, however, openness is linked to working memory (DeYoung et
+al., 2009; Kane et al., 2017), the contributions of executive processes are confounded in
+this study. Qualitative inspection of the unique responses revealed both depth and breadth
+of responses, which seems to suggest that both executive and associative processes might
+underlie semantic retrieval in people high in openness.
+Limitations and Future Directions
+One limitation of this study was its inability to parse out executive and associative
+processes underlying the relationship between openness and creativity. Although
+differences in semantic network structure suggests associative processes are mainly
+responsible, the nature of the task makes isolating specific contributions difficult. Verbal
+fluency associations are likely driven by associative and executive processes. For
+example, verbal fluency represents a structured form of recall that involves executive
+processes such as controlled and strategic search (Unsworth, Brewer, & Spillers, 2013,
+2014). In comparison, free recall of associations related to a target word might rely on
+more associative processes because knowledge of a specific category is not required.
+Thus, future research should examine the semantic structure of free recall associations
+and openness to experience to see if associative processes specifically underlie the
+relationship between openness and creativity.
+In addition, openness to experience can be split into lower-order aspects,
+Openness and Intellect (DeYoung et al., 2007), so it’s worth examining how they
+differentially relate to verbal fluency semantic structure. For example, openness has been
+shown to be more related to creative achievement (Nusbaum & Silvia, 2011) while
+intellect has been shown to be more associated with working memory (DeYoung et al.,
+2009; Kaufman et al., 2010) and fluid intelligence (Nusbaum & Silvia, 2011).
+Investigating these differences would also provide more fine-grained evidence of
+openness’s relationship to creativity. Current cognitive theories of creativity suggest that
+associative (Mednick, 1962) and executive (Benedek et al., 2014) processes influence
+creative thinking (Beaty et al., 2014, 2016; Sowden et al., 2015) and semantic network
+structure (Kenett et al., 2016a). Already, there is strong evidence for the relationship
+between semantic creativity and openness to experience in their shared overlap of
+neurological markers (Beaty et al., 2017; Beaty, Silvia, & Benedek, 2017; Beaty et al.,
+under review). Another limitation of this study was that the association slope was an
+arbitrary method of examining a flat association hierarchy. Future analyses should
+examine the emergence of associations using dynamic analysis of semantic structure.
+Evaluating the time-dependent development of responses as they are provided would
+allow precise measurement of a flat association hierarchy over time. Mednick (1962)
+suggests that a flat association hierarchy should steadily produce responses and gradually
+get more remote over time, whereas a steep association hierarchy should produce a
+number of responses early on but rapidly decrease in production with fewer responses
+over time.
+Conclusion
+In conclusion, the present study used a network science methodology to examine
+the structure of semantic associations for varying levels of openness to experience. I
+found that as openness increases, the semantic network structure became more flexible
+and interconnected, providing an organization that was conducive for creative cognition.
+Consequently, associations between concepts were more accessible through shorter paths
+(i.e., lower ASPL) and the rigidity of these associations decreased (i.e., lower Q and
+higher S). Behavioral analyses complemented these network findings, with a greater
+number of individual and unique associations for the high openness group. These
+findings provide support for differences in the structure of semantic memory as a
+cognitive factor that facilitates the relationship between openness and creativity. In
+addition, this study provides evidence that differences in personality may have direct
+implications for the structure and recall of semantic information (Kwantes et al., 2016).
+Further investigation into the semantic structure of the lower-order aspects of the
+openness to experience, for instance, might reveal differential contributions of cognitive
+processes that underlie each aspect, which would provide additional evidence of the
+openness-creativity relationship.

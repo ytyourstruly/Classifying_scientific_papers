@@ -1,0 +1,806 @@
+UNFOLDING ITEM RESPONSE TREE MODEL 1
+Accounting for Item Response Process and Response Styles Using the Unfolding Item
+Response Tree (UIRTree) Model
+Zhaojun Li1, Bo Zhang2, Mengyang Cao3, Louis Tay4
+1Department of Psychology, The Ohio State University
+2Department of Psychological and Brain Sciences, Texas A & M University
+3Independent Researcher
+4Department of Psychology, Purdue University
+Draft version 1. This paper is under review. Please do not copy or cite without the authors’
+permission.
+Correspondence concerning this article should be addressed to Zhaojun Li, Department of
+Psychology, The Ohio State University, 240C Lazenby Hall, 1827 Neil Avenue, Columbus,
+OH 43210. Email: li.8282@osu.edu
+UNFOLDING ITEM RESPONSE TREE MODEL 2
+Abstract
+Many researchers have found that unfolding models may better represent how respondents
+answer Liker-type items and response styles (RSs) often have moderate to strong presence in
+responses to such items. However, the two research lines have been growing largely in parallel.
+The present study proposed an unfolding item response tree (UIRTree) model that can account
+for unfolding response process and RSs simultaneously. An empirical illustration showed that
+the UIRTree model could fit a personality dataset well and produced more reasonable
+parameter estimates. Strong presence of the extreme response style (ERS) was also revealed
+by the UIRTree model. We further conducted a Monte Carlo simulation study to examine the
+performance of the UIRTree model compared to three other models for Likert-scale responses:
+the Samejima’s graded response model, the generalized graded unfolding model, and the
+dominance item response tree (DIRTree) model. Results showed that when data followed
+unfolding response process and contained the ERS, the AIC was able to select the UIRTree
+model, while BIC was biased towards the DIRTree model in many conditions. In addition,
+model parameters in the UIRTree model could be accurately recovered under realistic
+conditions, and wrongly assuming the item response process or ignoring RSs was detrimental
+to the estimation of key parameters. In general, the UIRTree model is expected to help in better
+understanding of responses to Liker-type items theoretically and contribute to better scale
+development practically. Future studies on multi-trait UIRTree models and UIRTree models
+accounting for different types of RSs are expected.
+Keywords. unfolding response process, response style, generalized graded unfolding
+model, unfolding item response tree model
+UNFOLDING ITEM RESPONSE TREE MODEL 3
+Accounting for Item Response Process and Response Styles Using the Unfolding Item
+Response Tree (UIRTree) Model
+As more and more studies have found that non-cognitive variables like personality and
+vocational interests are robust predictors of important life outcomes such as job performance,
+academic achievement, and subjective well-being (e.g., Anglim et al., 2020; Judge et al., 2013;
+Nye et al., 2012, 2021; Poropat, 2009), non-cognitive assessment has become increasingly
+popular in many contexts. For example, personality tests are widely used for personnel
+selection (Feintzeig, 2015). The Organization for Economic Co-operation and Development
+(OECD) also included personality and vocational interest as a core assessment component for
+the Programme for the International Assessment of Adult Competencies (OECD, 2018).
+Non-cognitive assessments often rely on Likert scales in which respondents are asked
+to indicate their degree of agreement with items. Responses are then subjected to models like
+Samejima’s Graded Response Model (SGRM; Samejima, 1969) to estimate respondents’
+standings on the latent trait continuum. The legitimacy of using models like SGRM is
+contingent upon two assumptions: (1) respondents follow a dominance response process such
+that there is a monotonically increasing relationship between the latent trait level and the
+probability of endorsing the item, and (2) responses to items within a scale is systematically
+influenced by the focal trait. However, past studies suggest that both assumptions may not be
+tenable. For example, regarding the first assumption, it has been shown that the unfolding
+response process (that assumes an inverted U-shaped relationship between the probability of
+endorsing an item and a respondent’s latent trait level) better represents how individuals
+respond to items measuring non-cognitive constructs (Cao et al., 2015; Drasgow et al., 2010;
+Tay et al., 2009; Sun et al., 2021; Zhang et al., 2020). As for the second assumption, numerous
+studies have shown that there are stable individual differences in response styles (RSs) -- the
+idiosyncratic use of response options regardless of item content and their levels of latent trait
+UNFOLDING ITEM RESPONSE TREE MODEL 4
+(Wetzel et al., 2016). It means that the same observed score on an item may represent different
+levels of trait for different individuals because some individuals are more likely to use extreme
+response options, while others are more likely to use nonextreme options, rendering scores less
+comparable across individuals. Failure to address either assumption will result in biased
+estimates of item and person parameters, which can have severe consequences for scale
+development, scoring, and selection outcomes.
+Many efforts have been devoted to resolving issues of the response process and RSs.
+For example, Roberts and colleagues (2000) developed the Generalized Graded Unfolding
+Model (GGUM) to better model the unfolding response process, which has been successfully
+applied to many non-cognitive assessments. Further, item response tree (IRTree) models have
+been proposed and well-received as a flexible tool for handling RSs (e.g., Böckenholt, 2012,
+2017, 2019; Henninger & Meiser, 2020; Jeon & De Boeck, 2016; Lang et al., 2019; Lang &
+Tay, 2019; Lievens et al., 2018; Sun et al., 2021). However, the two lines of research have been
+developing in parallel, and researchers concerned about the response process often overlook
+the issue of RSs, and vice versa. There is a need to integrate the two lines of research to more
+optimally assess non-cognitive constructs.
+Therefore, the present study presents an unfolding item response tree (UIRTree) model
+that simultaneously accounts for RSs and the unfolding response process for non-cognitive
+assessment. Specifically, Study 1 used an empirical dataset to reveal the magnitude of extreme
+response style (ERS) and the presence of unfolding response process, as well as the (costs)
+benefits of (not) modeling them. Study 2 adopted a simulation design to systematically examine
+the statistical performance of the UIRTree model and the power of AIC and BIC for accurate
+model selection. A user-friendly tutorial on how to fit the model in the R package mirt
+(Chalmers, 2012) is also provided. To the best of our knowledge, this is the first attempt to
+combine the IRTree model and the unfolding model.
+UNFOLDING ITEM RESPONSE TREE MODEL 5
+Unfolding response process and the GGUM
+Two distinct types of models have been proposed to describe how individuals respond
+to Likert-type items. Dominance models assume that the probability of a stronger endorsement
+of an item increases monotonically as their trait level increases. Though often not explicitly
+stated, most commonly used psychometric models belong to dominance models (e.g.,
+Confirmatory Factor Analysis, Rasch model, 2-Parameter Logistic Model [2PLM], and
+SGRM). Dominance models are well suited for tests measuring “maximal behaviors” that
+challenge the limits of individual’s capacity, such as cognitive or psychomotor tests (Tay &
+Drasgow, 2012; Tay & Ng, 2018). One of the most common dominance models is the SGRM
+with the model equation:
+exp⁡(𝛼 𝜃 −𝛿 )
+𝑖 𝑗 𝑖𝑘
+𝑃(𝑌 ≥ 𝑘|𝜃 ) = , (1)
+𝑖 𝑗
+1+exp⁡(𝛼 𝜃 −𝛿 )
+𝑖 𝑗 𝑖𝑘
+where 𝑌 is the subjective response to item 𝑖,⁡𝜃 is the location of individual 𝑗 on the latent
+𝑖 𝑗
+continuum, 𝛼 is the discrimination of item 𝑖 , 𝛿 is the difficulty parameter (also called
+𝑖 𝑖𝑘
+category threshold parameter) of item 𝑖 to achieve a category no smaller than 𝑘.
+For measures that assess “self-reported typical thoughts and behaviors,” such as
+personality, respondents tend to first gauge the degree of match between their true levels of
+thoughts/behaviors and the levels of thoughts/behaviors conveyed by the item (or the distance
+between the item location and the respondent’s latent trait level). The closer the item content
+matches the respondent’s true self, the higher the probability that the respondent will endorse
+the item. For example, the item “I am as extraverted as an average person” describes an average
+level of extraversion. A very extraverted or introverted individual is less likely to endorse this
+item as the degree of extraversion conveyed by this item does not match that of the respondents.
+Moderately extraverted individuals are more likely to endorse this item as there is a close match.
+Therefore, unfolding models are more appropriate for the assessment of typical behaviors (Tay
+UNFOLDING ITEM RESPONSE TREE MODEL 6
+models. Adopting the appropriate measurement model aligned with the response process
+underling the target construct is a fundamental issue for measurement validity (Borsboom et
+al., 2004).
+Among the unfolding models, GGUM is no doubt the most widely used one due to 1)
+its capability to describe the unfolding process, 2) ease of interpretation, and 3) the availability
+of free software for parameter estimation. According to Roberts et al. (2000), the GGUM
+assumes that an observed response can result from two possible subjective responses. Each of
+the two subjective responses corresponds to an individual’s position either above or below the
+item’s location on the latent continuum. As a result, an item with categories 𝑧 = 0,1,2, … , 𝐶
+would correspond to subjective responses 𝑦 = 0,1,2, … , 𝑀, where 𝑀 = 2𝐶 + 1. All subjective
+responses follow a generalized partial credit model (Muraki, 1992) with the model equation:
+UNFOLDING ITEM RESPONSE TREE MODEL 7
+𝑒𝑥𝑝{𝛼 [𝑦(𝜃 −𝛿 )−∑ 𝜏 ]}
+𝑖 𝑗 𝑖 𝑖𝑘
+𝑃(𝑌 = 𝑦|𝜃 ) = 𝑘=0 , (2)
+𝑖 𝑗
+𝑀 𝑤
+∑ {𝑒𝑥𝑝{𝛼 [𝑤(𝜃 −𝛿 )−∑ 𝜏 ]}}
+𝑤=0 𝑖 𝑗 𝑖 𝑘=0 𝑖𝑘
+where 𝑌 is the subjective response to item 𝑖,⁡𝜃 is the location of individual 𝑗 on the latent
+𝑖 𝑗
+continuum, 𝛼 is the discrimination of item 𝑖 , 𝛿 is the location of item 𝑖 on the latent
+𝑖 𝑖
+𝑡ℎ
+continuum, and 𝜏 is the threshold of the 𝑘 option for item 𝑖 . To establish model
+𝑖𝑘
+identifiability, a model constraint is set that ∑ 𝜏 = 0. The model equation for the observed
+𝑘=0 𝑖𝑘
+response to time 𝑖, 𝑍 , is then defined as:
+𝑃(𝑍 = 𝑧|𝜃 ) = 𝑃(𝑌 = 𝑧|𝜃 ) + 𝑃(𝑌 = 𝑊 − 𝑧|𝜃 )
+𝑖 𝑗 𝑖 𝑗 𝑖 𝑗
+𝑧 𝑧
+𝑒𝑥𝑝{𝛼 [𝑧(𝜃 −𝛿 )−∑ 𝜏 ]}+𝑒𝑥𝑝{𝛼 [(𝑀−𝑧)(𝜃 −𝛿 )−∑ 𝜏 ]}
+𝑖 𝑗 𝑖 𝑘=0 𝑖𝑘 𝑖 𝑗 𝑖 𝑘=0 𝑖𝑘
+= . (3)
+𝐶 𝑤 𝑤
+∑ {𝑒𝑥𝑝{𝛼 [𝑤(𝜃 −𝛿 )−∑ 𝜏 ]}+𝑒𝑥𝑝{𝛼 [(𝑀−𝑤)(𝜃 −𝛿 )−∑ 𝜏 ]}}
+𝑤=0 𝑖 𝑗 𝑖 𝑘=0 𝑖𝑘 𝑖 𝑗 𝑖 𝑘=0 𝑖𝑘
+Over the past two decades, GGUM has been shown to provide a better fit than
+dominance models to data of personality (Chernyshenko et al., 2007; Carter et al., 2014;
+Drasgow et al., 2012), interests (Tay et al., 2009), job satisfaction (Carter & Dalal, 2010),
+emotional intelligence (Cho et al., 2015), attachment style (Sun et al., 2021), interpersonal
+values (Ling et al., 2016), and attitude (Roberts et al., 1999). Mis-specifying an unfolding
+model as a dominance model will lead to biased item parameter estimates (e.g., truly well-
+performing items showing low discrimination power) and adversely impact item selection. It
+will also result in distorted rankings of individuals, especially for those at the two ends of the
+trait continuum, thus hampering the quality of selection decision (Stark et al., 2006), reducing
+criterion-related validity (Sun et al., 2021), and lowering the power to detect curvilinear effects
+(Cao et al., 2018; Carter et al., 2017).
+Response styles and the IRTree model
+Response styles (RSs) refer to tendencies to choose response options in systematic but
+content-irrelevant ways (Baumgartner & Steenkamp, 2001). For example, extreme response
+style (ERS) is the tendency to choose extreme options. It has been consistently demonstrated
+that RSs exist in non-cognitive measurements (Batchelor & Miao, 2016; Baumgartner &
+UNFOLDING ITEM RESPONSE TREE MODEL 8
+Steenkamp, 2001; Rorer, 1965), and the presence of RSs may distort the measurement of the
+construct of interest, which leads to estimation bias and threatens measurement validity (Eid &
+Rauber, 2000; Johnson & Bolt, 2010; McDaniel et al., 2011; Moors, 2004; Plieninger, 2017).
+Among the many approaches to handling RSs, the IRTree model (Böckenholt, 2012;
+De Boeck & Partchev, 2012) exhibits its great advantages of disassociating the focal trait and
+RSs while measuring them simultaneously. Evidence from many empirical studies shows that
+different types of RSs can be well addressed by the IRTree model (i.e., Ames & Myers, 2020;
+De Boeck & Partchev, 2012; Jeon & De Boeck, 2019; Zettler et al., 2016). Since IRTree models
+in previous studies all assumed a dominance response process, we term such IRTree models as
+dominance IRTree (DIRTree) models in contrast to the proposed UIRTree model in the rest of
+this article.
+In the DIRTree model, an item with polytomous responses is decomposed into several
+sub-items given a tree structure where the sub-items are represented by nodes, and the item
+categories are represented by leaves (i.e., end-nodes). In RS analyses with the DIRTree model,
+items are decomposed into focal trait-related and RS-related sub-items. In this way, both the
+focal trait and RSs can be measured by their respective sub-items without being influenced by
+each other, and their latent correlations can be easily estimated. For instance, let us consider a
+four-point item with categories 0,1,2 and 3 corresponding to “strongly disagree,” “disagree,”
+“agree,” and “strongly agree,” respectively. We can use an IRTree structure to separate the
+item into three binary sub-items that are to measure whether an observed response is negative
+(i.e., category 0 or 1) or positive (i.e., category 2 or 3); if negative, whether it is extreme (i.e.,
+category 0) or not (i.e., category 1); if positive, whether it is extreme (i.e., category 3) or not
+(i.e., category 2). Furthermore, it is reasonable to assume that the first sub-item measures the
+focal trait while the last two sub-items reflect the ERS. In this way, we are able to fit a two-
+factor item response model with the first sub-item loading on the focal trait and the last two
+UNFOLDING ITEM RESPONSE TREE MODEL 9
+sub-items loadings on the ERS. If we adopt the 2PLM for the first sub-item and the Rasch
+model (Rasch, 1960) for the last two sub-items, the model equations in the DIRTree model are:
+𝑒𝑥𝑝(𝛼 𝜃 −𝛿 )
+𝑖 𝑗 𝑖
+𝑃(𝑈 = 1|𝜁 ) = , (4)
+1𝑖 𝑗
+1+𝑒𝑥𝑝(𝛼 𝜃 −𝛿 )
+𝑖 𝑗 𝑖
+𝑒𝑥𝑝(𝜁 −𝛽 )
+𝑗 2𝑖
+𝑃(𝑈 = 1|𝜁 ) = , (5)
+2𝑖 𝑗
+1+𝑒𝑥𝑝(𝜁 −𝛽 )
+𝑗 2𝑖
+𝑒𝑥𝑝(𝜁 −𝛽 )
+𝑗 3𝑖
+𝑃(𝑈 = 1|𝜁 ) = , (6)
+3𝑖 𝑗
+1+𝑒𝑥𝑝(𝜁 −𝛽 )
+𝑗 3𝑖
+𝑡ℎ
+where 𝑈 is the response to the 𝑛 sub-item of item 𝑖, 𝜃 is the location of individual 𝑗 on the
+𝑛𝑖 𝑗
+continuum of the focal trait, 𝛼 is the discrimination parameter on the focal trait, 𝛿 is the
+𝑖 𝑖
+location of the first sub-item of item 𝑖 on the focal trait, 𝜁 is the location of individual 𝑗 on the
+continuum of the ERS, 𝛽 is the location of the second sub-item of item 𝑖 on the continuum of
+2𝑖
+the ERS, and 𝛽 is the location of the third sub-item of item 𝑖 on the continuum of the ERS.
+3𝑖
+Accordingly, the probability for each observed response to item 𝑖, 𝑈 , can be defined as follows:
+𝑃(𝑈 = 0|𝜃 , 𝜁 ) = 𝑃(𝑈 = 0|𝜃 )𝑃(𝑈 = 1|𝜁 ), (7)
+𝑖 𝑗 𝑗 1𝑖 𝑗 2𝑖 𝑗
+𝑃(𝑈 = 1|𝜃 , 𝜁 ) = 𝑃(𝑈 = 0|𝜃 )𝑃(𝑈 = 0|𝜁 ), (8)
+𝑖 𝑗 𝑗 1𝑖 𝑗 2𝑖 𝑗
+𝑃(𝑈 = 2|𝜃 , 𝜁 ) = 𝑃(𝑈 = 1|𝜃 )𝑃(𝑈 = 0|𝜁 ), (9)
+𝑖 𝑗 𝑗 1𝑖 𝑗 3𝑖 𝑗
+𝑃(𝑈 = 3|𝜃 , 𝜁 ) = 𝑃(𝑈 = 1|𝜃 )𝑃(𝑈 = 1|𝜁 ). (10)
+𝑖 𝑗 𝑗 1𝑖 𝑗 3𝑖 𝑗
+The UIRTree Model and Its Estimation
+Despite the fruitful development in DIRTree models and unfolding models, the two
+lines of research have not crossed paths yet. As noted above, it is equally important to address
+issues of RSs and unfolding responding to achieve better measurement validity and more
+accurate estimates of item and item parameters. Therefore, we take the first step to join the two
+lines of research and propose the UIRTree model.
+Similar to the DIRTree model, the UIRTree model also decomposes items with
+polytomous responses into different nodes representing different sub-items. The major
+UNFOLDING ITEM RESPONSE TREE MODEL 10
+difference between the two models lies in how we model the sub-item that corresponds to the
+focal trait (e.g., “disagree” vs “agree”). As Equation 4 shows, the DIRTree model adopts a 2PL
+model assuming that respondents with a higher level of higher latent trait are more likely to
+“agree.” In contrast, the UIRTree model assumes an unfolding response process for the node
+representing the focal trait and adopts GGUM for it. Take the aforementioned four-point item
+as an example. After being decomposed, the first sub-item representing the focal trait is fitted
+by GGUM with the model equation:
+𝑒𝑥𝑝{𝛼 [(𝜃 −𝛿 )−𝜏 ]}+𝑒𝑥𝑝{𝛼 [2(𝜃 −𝛿 )−𝜏 ]}
+𝑖 𝑗 𝑖 𝑖 𝑖 𝑗 𝑖 𝑖
+𝑃(𝑈 = 1|𝜃 ) = , (11)
+1𝑖 𝑗
+1+𝑒𝑥𝑝{𝛼 [3(𝜃 −𝛿 )−𝜏 ]}+𝑒𝑥𝑝{𝛼 [(𝜃 −𝛿 )−𝜏 ]}+𝑒𝑥𝑝{𝛼 [2(𝜃 −𝛿 )−𝜏 ]}
+𝑖 𝑗 𝑖 𝑖 𝑖 𝑗 𝑖 𝑖 𝑖 𝑗 𝑖 𝑖
+where 𝛿 is the location of the first sub-item of item 𝑖 on the continuum of the focal trait, and
+the meanings of the item parameters 𝛼 , 𝛿 , and 𝜏 are the same as in Equations 2 and 3. The
+𝑖 𝑖 𝑖
+second and third sub-items representing the ERS can be fitted by any dichotomous dominance
+models. If the Rasch model is adopted, then the model equations for the two sub-items are the
+same as Equations 5-6 in the UIRTree model. Lastly, the same as for the DIRTree model, the
+model equations of the observed response to item 𝑖, 𝑈 , are Equations 7-10 in the UIRTree
+model.
+2. It should be noted that, just like the DIRTree model, the UIRTree model represents a general
+framework and can be easily extended in multiple ways to test different hypotheses. For
+example, we can replace the Rasch model for the last two sub-items with more complex models
+such as the 2PL model and use model fit comparison to select the best-fitting model. In addition,
+responses can also be decomposed following different tree structures to explore other types of
+RSs. Multidimensionality of focal traits can also be easily handled. We provided coding
+schemas for different tree structures and corresponding R scripts for estimation in the tutorial.
+UNFOLDING ITEM RESPONSE TREE MODEL 11
+sub-items. The first sub-item is estimated with the GGUM and the last two sub-items
+are estimated with the Rasch model. The four leaves of the tree structure represent the
+four item categories.
+DIRTree models can be easily fitted using many latent variable modeling software
+programs that can deal with categorical data (e.g., Mplus, lavaan). However, the estimation of
+UIRTree model is trickier. Most latent variable modeling software programs are designed for
+dominance models, and software programs for unfolding models like GGUM2004 (Roberts et
+al., 2006) or R packages GGUM (Tendeiro & Castro-Alvarez, 2019) and bmggum (Tu et al.,
+2021) can only handle unfolding models. Fortunately, the R package mirt (Chalmers, 2012) is
+capable of dealing with both dominance and unfolding models. Specifically, mirt allows the
+specification of hybrid models where a subset of items follow dominance models and the other
+subset of items follow unfolding models. Estimation of such hybrid models is what we need
+for the UIRTree models because sub-items related to focal traits need to be fitted by GGUM
+and sub-items related to RSs need to be fitted by dominance models. Another feature of mirt
+that makes it particularly suitable for the UIRTree model is that researchers can easily specify
+priors for any parameters. Marginal maximum likelihood (MML) estimation of GGUM is
+UNFOLDING ITEM RESPONSE TREE MODEL 12
+known for issues of convergence and extreme estimates (e.g., δ = 30 or δ = 100), especially
+est se
+for scales with a smaller number of response categories. Incorporating priors into the estimation
+process (marginal maximum a posterior; MMAP) can greatly stabilize the estimation process
+and provide reasonable estimates without sacrificing computation efficiency (Roberts &
+Thompson, 2011). Additionally, various model/person fit indices, scoring methods, and
+plotting functions are readily available in mirt such that users can easily carry out many post-
+estimation analyses. Therefore, we chose mirt as the estimation engine for the UIRTree model.
+It should be noted that Javaras and Ripley (2007) and Liu and Wang (2018) also
+developed two non-IRTree models to handle the unfolding response process and RSs
+simultaneously. Despite all the merits of these two models, they are still limited in the following
+ways. First, Javaras and Ripley (2007) operationalized RSs as an individual difference in
+thresholds and did not specify the type(s) of RSs that is accounted for. The conceptual
+ambiguity of RSs in this model may make it less useful when researchers are interested in the
+nature of a specific type of RS (e.g., stability and correlates of the ERS). Second, Liu and Wang
+(2018) constrained threshold parameters in their model to be the same across items to achieve
+stable estimates. Such constraints may be hard to justify theoretically. Moreover, both models
+have to be estimated by specific software that is not very accessible to substantive researchers.
+The UIRTree model is intended as an alternative model that shares the same logic as the popular
+DIRTree model, is more intuitive and user-friendly, and overcomes some limitations of the two
+earlier models.
+The Present Study
+Utilizing an empirical personality dataset that included extreme and intermediate items,
+Study 1 aims to demonstrate the necessity of accounting for RSs and the unfolding response
+process by examining (1) the strength of the ERS (2) the type of response process, and (3) the
+consequences of failing to adopt the UIRTree model. Having shown the necessity of the
+UNFOLDING ITEM RESPONSE TREE MODEL 13
+UIRTree model, Study 2 used Monte Carlo simulation to systematically examine the statistical
+performance of the UIRTree model and whether information criteria (AIC & BIC) can
+effectively select the correct model.
+Study 1. Empirical Illustration
+Datasets
+A published personality dataset was reanalyzed, where researchers measured the
+orderliness, dominance, and curiosity facets of personality (Cao et al., 2015). The authors
+included 4 positively worded items, 4 negatively worded items, and 12 intermediate items for
+each construct. Each item was rated on a four-point scale (“strongly disagree,” “disagree,”
+“agree,” and “strongly agree”). The reason why we chose this dataset is that they included
+extreme and intermediate items, which are critical for revealing the unfolding response process.
+The dataset has not been analyzed using the DIRTree or UIRTree model before. Cronbach’s
+αs of the three facets were 0.84, 0.77, and 0.871. There were 355 undergraduates from a large
+Midwestern university in the United States in total. Among them, 71% were female. There
+were 70.1% White, 15.2% Asian, 5.9% Hispanic or Latino, 5.6% Black or African American,
+and 3.1% others.
+Analytic details
+In order to thoroughly examine both the presence of ERS and the type of response
+process, we chose four candidate models: the SGRM (assuming no ERS and a dominance
+response process; Equation 1), the GGUM (assuming no ERS and an unfolding response
+process; Equation 3), the DIRTree model (assuming ERS and a dominance response process;
+Equations 4-10), and the UIRTree model (assuming ERS and an unfolding response process;
+1 We note that the computation of Cronbach’s α is also (implicitly) based on the dominance assumption.
+Technically speaking, Cronbach’s α is not appropriate for unfolding models. Here we presented thess numbers
+just in case some readers may be interested.
+UNFOLDING ITEM RESPONSE TREE MODEL 14
+Equations 5-10 and 11). All models were fitted to each facet of the dataset using the R package
+mirt 1.33.2 (Chalmers, 2012) with the MMAP estimator. In all models, the focal trait was
+specified to follow a standard normal distribution with a mean of zero and a variance of one.
+In the DIRTree and UIRTree models, a Rasch model was adopted for ERS such that the mean
+of ERS was fixed to be zero while its variance and its correlation with the focal trait were freely
+estimated. To stabilize the estimation of the UIRTree model, a log𝑁(0.2, 0.5) prior was set for
+the discrimination parameters 𝛼 , and a 𝑁(0, 3) prior was set for the location parameters 𝛿 .
+𝑖 𝑖
+No priors were set for other parameters. As MMAP is a full-information estimator, missing
+data was automatically handled. The datasets and associated R scripts can be found in the online
+supplementary material.
+Results
+Model comparisons
+AIC and BIC were used to compare the relative model fit of the four candidate models.
+Across all three facets, it was consistent that the UIRTree model outperformed the GGUM and
+the DIRTree model outperformed the SGRM with respect to AIC and BIC, indicating that it is
+necessary to model ERS. As for the comparison between the UIRTree model and the DIRTree
+model, AIC and BIC suggested different results. Specifically, two out of three facets had
+smaller AIC when estimated with the UIRTree model versus the DIRTree model. In
+comparison, all three facets had smaller BIC when estimated with the DIRTree model versus
+the UIRTree model. Therefore, whether the items followed the dominance response process or
+the unfolding response process remained unclear, especially given that the discrimination
+power of AIC and BIC has never been investigated in such scenarios before.
+UNFOLDING ITEM RESPONSE TREE MODEL 15
+Model fit in the empirical study
+Estimation model
+DIRTree UIRTree
+SGRM GGUM
+model model
+AIC
+Orderliness 13069.62 13165.66 12898.69 12955.07
+Dominance 11894.33 11902.19 11821.87 11785.01
+Curiosity 13615.12 13548.35 13539.01 13427.96
+BIC
+Orderliness 13379.39 13552.87 13216.2 13427.47
+Dominance 12200.23 12285.53 12135.51 12253.53
+Curiosity 13924.89 13935.56 13856.52 13900.36
+Note. The smallest AIC and BIC values per row are bolded.
+UNFOLDING ITEM RESPONSE TREE MODEL 16
+Estimates of the ERS
+Across the three facets in the dataset, the variances of the ERS were estimated to be
+1.62, 2.89, and 1.58 in the UIRTree model and 1.61, 2.92, and 1.58 in the DIRTree model,
+suggesting that ERS had a strong impact on item responses.
+The absolute values of estimated latent correlations between focal traits and ERS were
+.33, .33, and.25 in the UIRTree model, and were .31, .34, and .28 in the DIRTree model. The
+weak to moderate correlation estimates indicated that focal traits and ERS were well
+differentiated. We also calculated the correlation between ERS factor scores derived from the
+correlated with each other, with correlations ranging from .54 to .59. The omega coefficient
+based on the one-factor model was .79 for both the UIRTree and the DIRTree models,
+suggesting the existence of a strong general ERS factor. Taken together, these results cogently
+showed that (1) ERS has a strong presence, (2) ERS is distinct from focal traits, and (3) there
+is a strong general ERS factor across scales. Therefore, it is important to model ERS.
+Correlations among ERS factor scores
+1 2 3
+Orderliness -- .59 .55
+Dominance .59 -- .54
+Curiosity .54 .54 --
+Note. Values below the diagonal were from the UIRTree
+model and those above the diagonal were from the DIRTree.
+Key parameter estimates
+Having shown the presence of a strong ERS factor, we further compared a common set
+of estimated parameters from the GGUM and the UIRTree model to examine the benefits of
+UIRTree model. Specifically, both models provided information about the discrimination
+UNFOLDING ITEM RESPONSE TREE MODEL 17
+power (𝛼) and location (𝛿) of each item on the focal trait. These parameters are key to item
+selection during the scale development stage. For example, scale developers often aim for a set
+of items with high discrimination power and varying location parameters for better
+measurement (Tay & Ng, 2018). Items that do not meet these criteria are often removed from
+further consideration.
+Several interesting patterns emerged. First, item discrimination parameters 𝛼 on the
+focal trait obtained from the UIRTree model tended to be higher compared to those from the
+GGUM, indicating that the ERS may mask the discrimination power of items and make
+psychometrically sound items look unsatisfactory2. Second, 𝛿 estimates from the UIRTree
+model for most intermediate items – those predicted to have close-to-zero δs – were close to
+zero and showed clear unfolding while many of these parameters from the GGUM deviated
+substantially from zero. As expected, the positively and negatively worded items had more
+extreme location estimates than intermediate items in both models. The close correspondence
+between theoretical prediction and empirical estimates provides strong support for the validity
+of the UIRTree model.
+Focal trait factor scores
+We further looked into factor scores of the focal traits to examine the impact of the ERS.
+The empirical reliability estimates of factor scores of the focal traits in the four estimation
+relatively lower empirical reliability in the two IRTree models as four data points were
+contributing to the estimation of focal trait scores in the SGRM and GGUM, while only two
+data points contributed in the UIRTree and the DIRTree models. Whereas, in comparison to
+2 Similarly, it was found that the DIRTree model in general had higher item discrimination parameters on the
+focal trait compared to the SGRM, which further provided evidence of the masking effect of the ERS.
+UNFOLDING ITEM RESPONSE TREE MODEL 18
+the DIRTree model, the UIRTree model had clearly better empirical reliability across the three
+facets, which indicated that the estimates from the UIRTree model were more reliable.
+Correlation among focal factor scores and empirical reliability (diagonal) from different models
+Construct Model 1 2 3 4 5 6 7 8 9 10 11 12
+SGRM .85
+GGUM .98 .85
+Orderliness
+DIRTree .88 .87 .73
+UIRTree .85 .88 .97 .76
+SGRM .36 .35 .30 .30 .93
+GGUM .36 .35 .31 .30 .99 .93
+Dominance
+DIRTree .31 .31 .32 .32 .89 .89 .80
+UIRTree .28 .27 .30 .28 .87 .89 .94 .85
+SGRM .12 .11 .09 .09 .23 .21 .19 .19 .89
+GGUM .11 .10 .09 .09 .21 .19 .17 .18 .98 .90
+Curiosity
+DIRTree .06 .06 .07 .07 .23 .21 .20 .20 .93 .93 .83
+UIRTree .09 .07 .10 .08 .20 .19 .17 .21 .90 .92 .94 .87
+Note. Correlations among factor scores for the same focal trait from the four estimation models and
+correlations among factor scores of the three focal traits within each estimation model are bolded. Empirical
+reliability estimates are presented in the diagonal.
+We also calculated the correlations between factor scores of the same personality facet
+derived from the four estimation models to examine the impact of ERS on factor score
+scores of the models that accounted for ERS (i.e., the DIRTree model and the UIRTree model)
+and the models that did not account for ERS (i.e., the SGRM and the GGUM) were from .85
+to .93. While being high, these correlations were still clearly below one, indicating that ERS
+showed that focal-trait factor scores of respondents with extreme values were impacted the
+most by the ERS. It is expected since extreme responses were completely accounted for the
+UNFOLDING ITEM RESPONSE TREE MODEL 19
+focal trait and brought about extreme factor scores in the models without ERS, whereas they
+were explained by the ERS in the models with ERS.
+Discussion
+Using an empirical dataset, we found that (1) AIC and BIC consistently indicated that
+the two IRTree models fitted the data better than the SGRM and the GGUM, though less
+consistent evidence was found for the differentiation between the DIRTree and UIRTree
+models; (2) ERS had a strong presence in the item responses across scales; (3) the UIRTree
+model provided more reasonable item parameter estimates (i.e., higher discrimination
+parameters for most items and less extreme location parameters for intermediate items) that
+were more aligned with theory compared to the GGUM; and (4) unmodeled ERS impacted the
+rank order of individuals and inflated correlations among distinct facets. The results provided
+preliminary support for the validity of the UIRTree model. However, two key questions
+remained to be answered before we can confidently embrace the UIRTree model. First, the
+DIRTree model and the UIRTree model could not be clearly differentiated by AIC and BIC,
+which leads to a question about the discrimination power (i.e., the power to correctly select the
+model that describes the data best) of AIC and BIC in terms of model selection. Second, it is
+also important to determine how accurately parameters can be recovered for the UIRTree
+model and what factors will impact the estimation accuracy. A Monte Carlo simulation study
+is needed to answer these questions. Given that most previous studies on IRTree models did
+UNFOLDING ITEM RESPONSE TREE MODEL 20
+not conduct simulation studies to examine their statistical performance, it is extremely
+important to provide such evidence.
+Study 2. Simulation Study
+Simulation Design
+We generated four types of four-point data sets that were either with or without the ERS
+and following either the unfolding or dominance response process. Specifically, the datasets
+without the ERS and following the dominance response process were generated from the
+SGRM with Equation 1 using R package mirt 1.33.2 (Chalmers, 2012). The datasets without
+the ERS and following the unfolding response process were generated from the GGUM as
+shown in Equation 3 using the R package GGUM 0.4.2 (Tendeiro & Castro-Alvarez, 2019).
+The datasets with the ERS and following the dominance response process were generated from
+the DIRTree model as shown in Equations 4-10 using customized functions. The datasets with
+the ERS and following the unfolding response process were generated from the UIRTree model
+as shown in Equations 5-11 using customized functions.
+The SGRM and the GGUM had the focal trait 𝜃 following a standard normal
+distribution 𝑁(0, 1) and discrimination parameters 𝛼 following a uniform distribution
+𝑢𝑛𝑖𝑓(0.5, 2). In the SGRM, the distance between any consecutive location parameters 𝛿
+𝑖𝑘
+followed a uniform distribution 𝑢𝑛𝑖𝑓(0.3, 1) and all location parameters were zero-centered.
+Location parameters 𝛿 in the GGUM followed a truncated standard normal distribution
+𝑁(0, 1) with −2 < 𝛿 < 2. As for threshold parameters in the GGUM, the R package GGUM
+0.4.2 specified that 𝜏 = 0, and 𝜏 − 𝜏 were constrained to symmetry around zero, that is,
+𝑖0 𝑖1 𝑖7
+𝜏 = 0 and 𝜏 = −𝜏 for 𝑧 ≠ 0. In the DIRTree model and the UIRTree model, the focal
+𝑖4 𝑖𝑧 𝑖(8−𝑧)
+trait and the ERS followed a bivariate normal distribution, (𝜃 , 𝜁 ) ~𝐵𝑉𝑁(𝝁, 𝚺), where 𝝁 = 𝟎,
+𝑗 𝑗
+𝚺 = ( ) with 𝜎 = 1 , and discrimination parameters 𝛼 followed a uniform
+2 𝜃 𝑖
+𝜎 𝜎 𝜌 𝜎
+𝜃 𝜁 𝜃𝜁 𝜁
+UNFOLDING ITEM RESPONSE TREE MODEL 21
+distribution 𝑢𝑛𝑖𝑓(0.5, 2). Location parameters 𝛿 in the DIRTree model followed a uniform
+distribution 𝑢𝑛𝑖𝑓(−2, 2), and location parameters 𝛿 in the UIRTree model had the same
+truncated standard normal distribution as that in the GGUM. Threshold parameters in the
+UIRTree model distributed as 𝑢𝑛𝑖𝑓(−2, −0.5). Lastly, in the DIRTree model and the UIRTree
+model, location parameters regarding the ERS, 𝛽 and 𝛽 , were uniformly distributed as
+𝑖2 𝑖3
+𝑢𝑛𝑖𝑓(−2, 2). Each generated dataset was then estimated with the SGRM, the GUMM, the
+DIRTree model, and the UIRTree model to check the model fit and parameter recovery. The
+number of items was fixed to 12 as it is a common length for personality measures (i.e., Brown
+& Maydeu-Olivares, 2011; Cao et al., 2015; Soto & John, 2017).
+Three factors, sample size (𝑁; with three levels: 300, 500, 1,000), the variance of ERS
+(𝜎 ; with three levels: 0.2, 0.6, 1.0), and the correlation between the ERS and the focal trait
+( 𝜌 ; with three levels: 0, 0.3, 0.6), were manipulated to check their influence on the
+𝜃𝜁
+performance of the estimation models. Since ERS was not involved in the datasets generated
+from the SGRM and the GGUM, we only examined the sample size for these two types of
+datasets. In total, there were three conditions of the datasets generated from the SGRM and the
+GGUM, and 3 × 3 × 3=27 conditions of the datasets generated from the DIRTree model and
+the UIRTree model. The number of replications in each condition was 100. All simulated data
+sets were estimated by the R package mirt 1.33.2 (Chalmers, 2012) with the MMAP estimation
+method as in the empirical study.
+It is expected that as 𝑁 increases, the correctly specified model (i.e., the model that is
+the same as the data generating model) and other models will have larger discrepancies
+regarding model fit and parameter recovery. Larger discrepancies between the models that
+account for ERS and the models that do not account for ERS are expected with the increase of
+𝜎 . As for 𝜌 , Plieninger (2017) found that only when the correlation was non-zero could
+𝜁 𝜃𝜁
+models ignoring the ERS lead to substantial bias in the scale reliability, but the effects of the
+UNFOLDING ITEM RESPONSE TREE MODEL 22
+correlation on model fit and parameter recovery were not studied. Accordingly, we looked into
+these aspects in this simulation study.
+Results
+Even though previous studies documented a substantial proportion of non-convergence
+when fitting the GGUM to data generated from the SGRM (e.g., Cao, Song, & Tay, 2018), we
+note that all models, including those misspecified ones, converged properly in the present
+study. This is likely due to the fact that we incorporated priors for the estimation GGUM, which
+has been shown to be effective in reducing convergence issues and stabilizing estimates (de la
+Torre, Stark, & Chernyshenko, 2006).
+Power of AIC and BIC for model selection
+The discrimination power (defined as the number of replications where the correctly
+specified model had the lowest AIC/BIC divided by the total number of replications in each
+to correctly distinguish the SGRM, the GGUM, and the DIRTree model across all conditions.
+When the data generating model is the UIRTree model, however, AIC and BIC no longer had
+perfect discrimination power as sometimes they wrongly preferred the DIRTree model.
+As we can see, AIC consistently had very high discrimination power that was equal to
+or extremely close to 1 when the sample size 𝑁 was 500 or 1000. When 𝑁 was as small as 300,
+even though without perfect discrimination power, AIC still had the highest probability to
+correctly select the UIRTree model over other models. Furthermore, when the ERS
+variance⁡𝜎 was as sufficiently large as 1.0 (i.e., the same as the focal trait’s variance), a higher
+𝜌 would lead to better discrimination power of AIC for the UIRTree model.
+𝜃𝜁
+The discrimination power of BIC for the UIRTree model was less satisfactory. In
+conditions with 𝑁 = 300, BIC almost always wrongly preferred the DIRTree model over the
+true UIRTree model. The poor discrimination power of BIC may result from the fact that more
+UNFOLDING ITEM RESPONSE TREE MODEL 23
+parameters are estimated in the UIRTree model compared to the DIRTree model, and the
+penalty of complexity was influential when the sample size⁡was small. As 𝑁 increased, the
+discrimination power of BIC for the UIRTree model clearly improved. Besides, similar to AIC,
+BIC tended to have higher power as the latent correlation 𝜌 increased when 𝜎 = 1. When
+𝜃𝜁 𝜁
+𝑁, 𝜌 , and 𝜎 were sufficiently large (in this simulation study, when 𝑁 = 1000, 𝜌 = 0.6,
+𝜃𝜁 𝜁 𝜃𝜁
+and 𝜎 = 1), the discrimination power of BIC approached as high as 0.93.
+Discrimination power of AIC and BIC for the UIRTree model in the simulation study
+Power of AIC Power of BIC
+N=300 N=500 N=1000 N=300 N=500 N=1000
+σ = 0.2
+ρ = 0.0
+0.78 0.97 1.00 0.02 0.23 0.69
+θζ
+ρ = 0.3
+0.78 0.94 1.00 0.03 0.24 0.74
+θζ
+ρ = 0.6
+0.84 0.97 1.00 0.05 0.25 0.79
+θζ
+σ = 0.6
+ρ = 0.0
+0.83 0.98 0.99 0.04 0.2 0.73
+θζ
+ρ = 0.3
+0.82 0.93 1.00 0.02 0.28 0.71
+θζ
+ρ = 0.6
+0.93 0.99 1.00 0.07 0.48 0.89
+θζ
+σ = 1.0
+ρ = 0.0
+0.72 0.95 1.00 0.02 0.15 0.68
+θζ
+ρ = 0.3
+0.81 0.95 1.00 0.02 0.25 0.67
+θζ
+ρ = 0.6
+0.92 0.97 1.00 0.07 0.37 0.93
+θζ
+Parameter recovery
+Parameter recovery was investigated based on mean bias (the mean of parameter
+estimates minus parameter true values), mean absolute bias (the mean of the absolute values of
+parameter estimates minus parameter true values), and root mean square error (RMSE; the
+square root of mean squared error of each parameter). The three indices were calculated for
+each parameter and then averaged across items. We focused on four aspects here. First, we
+examined whether model parameters could be accurately recovered when the correctly
+UNFOLDING ITEM RESPONSE TREE MODEL 24
+specified model was fitted to the data. Second, we examined parameter recovery of the SGRM
+and the GGUM when the data was generated from the DIRTree model and the UIRTree model,
+respectively. Third, we also examined item parameter recovery of the DIRTree model and the
+UIRTree model for datasets generated from the SGRM and the GGUM, respectively. Fourth,
+we looked into parameter recovery of the DIRTree model for datasets generated from the
+UIRTree model.
+When the fitted model was correctly specified
+The most important finding was that parameters for correctly specified UIRTree models
+5). Item parameters for correctly specified DIRTree models could also be estimated accurately
+across conditions. As expected, parameters for the SGRM and the GGUM were all accurately
+recovered as well even in conditions with only 300 respondents.
+UNFOLDING ITEM RESPONSE TREE MODEL 25
+Parameter recovery for the four models as correctly specified models in the simulation study
+Mean Bias Mean Absolute Bias RMSE
+Range Mean SD Range Mean SD Range Mean SD
+SGRM
+[0.005,0.02] 0.01 0.01 [0.08,0.16] 0.12 0.04 [0.11,0.21] 0.16 0.05
+[-0.01,0.01] 0.002 0.01 [0.07,0.15] 0.11 0.03 [0.09,0.19] 0.13 0.04
+GGUM
+[-0.06,0.02] -0.01 0.04 [0.08,0.15] 0.11 0.04 [0.10,0.19] 0.14 0.03
+[-0.05,0.07] 0.01 0.06 [0.04,0.09] 0.07 0.03 [0.06,0.12] 0.1 0.03
+[-0.13,0.05] -0.01 0.06 [0.07,0.14] 0.11 0.03 [0.09,0.18] 0.14 0.03
+DIRTree model
+[0.01,0.05] 0.02 0.01 [0.10,0.21] 0.15 0.04 [0.13,0.27] 0.19 0.05
+[-0.01,0.01] 0.001 0.004 [0.07,0.14] 0.11 0.03 [0.09,0.18] 0.13 0.03
+ζ [-0.01,0.02] 0.003 0.01 [0.02,0.06] 0.04 0.01 [0.02,0.06] 0.04 0.01
+[-0.01,0.02] -0.001 0.01 [0.09,0.18] 0.14 0.03 [0.12,0.23] 0.17 0.04
+[-0.01,0.01] 0.0003 0.01 [0.09,0.18] 0.13 0.03 [0.11,0.23] 0.17 0.04
+[-0.01,0.03] 0.001 0.01 [0.02,0.10] 0.05 0.02 [0.02,0.10] 0.05 0.02
+𝜃𝜁
+UIRTree model
+[-0.01,0.01] -0.005 0.01 [0.12,0.22] 0.18 0.04 [0.16,0.28] 0.22 0.05
+[-0.03,0.03] -0.001 0.01 [0.12,0.26] 0.19 0.05 [0.17,0.35] 0.26 0.06
+[0.02,0.09] 0.05 0.02 [0.11,0.23] 0.17 0.04 [0.16,0.33] 0.24 0.06
+[-0.01,0.01] 0.002 0.01 [0.02,0.05] 0.04 0.01 [0.02,0.05] 0.04 0.01
+2 [-0.01,0.01] -0.001 0.01 [0.10,0.20] 0.14 0.04 [0.12,0.25] 0.18 0.04
+3 [-0.01,0.01] -0.001 0.01 [0.08,0.16] 0.12 0.03 [0.10,0.20] 0.14 0.04
+[-0.02,0.12] 0.02 0.03 [0.03,0.12] 0.06 0.02 [0.03,0.12] 0.06 0.02
+𝜃𝜁
+Note. The means and SDs of parameter recovery indices were computed across all conditions.
+When the ERS was ignored
+It was found in the empirical study that discrimination parameters on the focal trait, α,
+had smaller values in the GGUM compared to the UIRTree model and in the SGRM compared
+to the DIRTree model. This pattern was also observed in this simulation study. For datasets
+generated from the UIRTree model (the DIRTree model), estimates of α from the GGUM (the
+SGRM) had mean bias ranging from -0.70 to -0.61 (from -0.45 to -0.39), mean absolute bias
+UNFOLDING ITEM RESPONSE TREE MODEL 26
+ranging from 0.61 to 0.70 (from 0.41 to 0.45), and RMSE ranging from 0.66 to 0.76 (from 0.46
+to 0.52). The negative mean bias suggested that ignoring response ERS led to underestimated
+the discrimination ability of items. Furthermore, the finding that the sizes of mean bias and
+mean absolute bias were similar suggested that the underestimation occurred in almost all
+replications. No clear effects of 𝑁, 𝜎 , and 𝜌 on the bias of α were found.
+𝜁 𝜃𝜁
+In line with the empirical findings, estimates of location parameters regarding the focal
+trait, δ , had more extreme values in the GGUM compared to the UIRTree model for
+and 𝜌 on the three parameter recovery indices of δ in the GGUM when estimating datasets
+𝜃𝜁
+generated from the UIRTree model. When the ERS and the focal trait were uncorrelated (i.e.,
+𝜌 = 0), the parameter recovery of δ in the GGUM was relatively small regardless of the
+𝜃𝜁
+value of 𝜎 ; when the ERS and the focal trait were correlated (i.e., 𝜌 ≠ 0), the parameter
+𝜁 𝜃𝜁
+recovery of δ in the GGUM became clearly worse and increased with larger 𝜎 . The increase
+of 𝑁 seemed to have no influence on the mean bias of δ while it did decrease its mean absolute
+bias and the RMSE. Results from linear regression analysis also revealed a significant
+interaction effect between 𝜎 and 𝜌 on all of the three parameter recovery indices of δ and
+𝜁 𝜃𝜁
+a significantly negative main effect of 𝑁 on mean absolute bias and RMSE of δ.
+UNFOLDING ITEM RESPONSE TREE MODEL 27
+UIRTree model
+When the ERS was falsely assumed
+When the dataset was generated from the GGUM, the discrimination parameters of the
+UIRTree model had mean bias of 0.62, 0.82, and 0.92, mean absolute bias of 0.62, 0.82, and
+0.92, and RMSE of 0.65, 0.87, and 0.96 in conditions with sample size 𝑁 equal to 300, 500,
+and 1000, respectively, indicating that the UIRTree model consistently overestimated 𝛼 .
+Moreover, the absence of the ERS did not distort the estimation of 𝛿 in the UIRTree model
+substantially, with mean bias of 0.07, -0.05, and 0.01, mean absolute bias of 0.14, 0.09, and
+0.05, and RMSE of 0.18, 0.10, and 0.07. For datasets generated from the SGRM, the DIRTree
+model brought about mean bias of 0.03, 0.02, and 0.004, mean absolute bias of 0.20, 0.15, and
+0.10, and RMSE of 0.26, 0.19, and 0.13 for 𝛼, suggesting that falsely assuming the ERS would
+not substantially impact the estimation of discrimination parameters on the focal trait.
+When the dominance response process was falsely assumed
+Lastly, we investigated parameter recovery of the DIRTree model for datasets generated
+from the UIRTree model. The common parameters of the two models were the variance of the
+ERS 𝜎 , location parameters regarding the ERS 𝛽 and 𝛽 , and the latent correlation between
+𝜁 2 3
+UNFOLDING ITEM RESPONSE TREE MODEL 28
+the ERS and the focal trait 𝜌 . Since the nodes for the ERS were coded and modeled the same
+𝜃𝜁
+for the two IRTree models, the parameter recovery of 𝜎 , 𝛽 , and 𝛽 of the DIRTree model,
+𝜁 2 3
+as expected, were satisfactory with mean bias ranging from -0.01 to 0.01, mean absolute bias
+ranging from 0.02 to 0.20, and RMSE ranging from 0.02 to 0.24. These parameter recovery
+indices were close to those of the UIRTree model. Surprisingly. 𝜌 was sufficiently accurately
+𝜃𝜁
+estimated such that the mean bias ranged from -0.11 to 0.11, the mean absolute bias ranged
+from 0.04 to 0.17, and the RMSE ranged from 0.04 to 0.17 in the DIRTree model.
+General Discussion
+Correctly accounting for item response process and RSs are of fundamental importance
+in psychological measurement. However, previous research on item response process and RSs
+has been growing largely in parallel. The present study aimed to integrate the unfolding
+response process and RSs in a single modeling framework by proposing the UIRTree model.
+The empirical illustration showed that respondents were likely to have followed an unfolding
+response process, and the ERS had a strong presence. Monte Carlo simulations further showed
+that (1) model parameters in the UIRTree model could be accurately recovered under realistic
+conditions, (2) AIC was very powerful in selecting among competing models, (3) BIC was
+biased towards the DIRTree model (i.e., the simpler model) versus the UIRTree model in
+conditions with relatively small sample size, small ERS magnitude, and/or low correlation
+between the focal trait and the ERS, and (4) wrongly assuming the item response process or
+ignoring RSs was detrimental to the estimation of key parameters. Overall, the current study
+presented a flexible framework that is expected to help researchers better reveal how
+respondents respond to non-cognitive items.
+Model Selection
+We investigated the power of AIC and BIC to select among competing models and
+found that AIC was very effective in the absolute sense while BIC was biased towards the
+UNFOLDING ITEM RESPONSE TREE MODEL 29
+DIRTree model when the correctly specified model was the UIRTree model. This finding is
+very important in that it tells us to have more confidence in AIC instead of BIC when choosing
+between the DIRTree and UIRTree models. We suspect that BIC’s heavy penality for model
+complexity is the reason for the weaker power of BIC compared to AIC. Compared with the
+DIRTree model, the UIRTree model has two more parameters per item. In the current
+simulation, the fitted UIRTree model had 24 more parameters than the DIRTree model.
+However, the item response curve of a dominance model can overlap with a substantial
+Tay et al., 2011). The further away an item is from zero, the more overlap. Therefore, the
+degree of model-data misfit might not be as dramatic as we would expect because item
+locations spanned from -2 to 2. The moderate degree of misfit might be countered by BIC’s
+penalty for the 24 additional parameters, thus leading to the low power of BIC.
+Parameter recovery for the UIRTree model
+It is reassuring to see that key parameters in the UIRTree model can be well recovered
+even in conditions with only 300 respondents. Earlier studies on the estimation of the GGUM
+showed that a sample size of 750 would be a requirement for reasonably accurate estimates
+when a marginal maximum likelihood estimator was used (Roberts et al., 2000). Otherwise,
+researchers are likely to obtain some wild estimates (de la Torre et al., 2006). In the current
+study, moderately informative priors were used for discrimination parameters and location
+parameters to softly constrain them parameters within a reasonable range. Our simulation
+showed that the incorporation of priors into the estimation process greatly reduced sample size
+requirement. Future users of the UIRTree model (or GGUM) are strongly encouraged to use
+such priors for more stable and accurate estimates.
+Implications
+UNFOLDING ITEM RESPONSE TREE MODEL 30
+This study has both theoretical and practical implications. Theoretically, we proposed
+an integrative modeling framework that can simultaneously account for the unfolding response
+process and RSs. This modeling framework has the potential to help researchers better
+understand the cognitive processes underlying item responding, which is critical for
+measurement validity (Borsboom et al., 2004). Practically, the UIRTree model may be helpful
+for scale development. It is known that writing intermediate items is difficult because a
+seemingly good item often turns out to have lower discrimination parameters or more extreme
+location parameters than expected when analyzed with the GGUM. Our simulation results
+showed that low discrimination parameters or more extreme location parameters might result
+from unmodeled ERS. Of course, it should be noted that falsely assuming ERS will lead to
+overestimated discrimination parameters (but location parameters were not biased). Therefore,
+for scales that include intermediate items or where intermediate are suspected to exist,
+researchers should first fit the GGUM and the UIRTree model, use AIC to compare model fit,
+and then check the magnitude of the ERS. If AIC selects the GGUM and the magnitude of the
+ERS is small, then results from the GGUM are more trustworthy. If AIC prefers the UIRTree
+and the magnitude of the ERS is substantial, researchers should trust results from the UIRTree
+model more. Moreover, this study also provides tutorials for estimating the UIRTree model,
+which allows the model to be more accessible for practitioners.
+Limitation and future directions
+Despite the merits discussed above, the current study is still limited in the following
+aspects. First, the UIRTree model proposed here only accounted for a single focal trait. Future
+researchers are encouraged to extend the current one to a multi-trait UIRTree model. One
+additional advantage of that multi-trait UIRTree model is that we could formally test whether
+a certain type of RS is generalizable across constructs or not (Zhang, Luo et al., 2021). However,
+caution should be exercised in model estimation since traditional estimation methods for item
+UNFOLDING ITEM RESPONSE TREE MODEL 31
+response models usually have trouble handling high-dimensional structures (Wirth & Edwards,
+2007). Second, the current model implicitly assumes population heterogeneity such that the
+same model applies to everyone. However, studies suggested that different people may follow
+different item response processes, and some people may not engage in extreme responding
+while others do (Tijmstra, Bolsinova, & Jeon, 2018). Therefore, future researchers could
+develop some mixture models to account for such population heterogeneity. Third, other types
+of RSs apart from the ERS were not examined. Given the flexibility of the UIRTree model,
+future researchers are encouraged to extend the current version to include more than one type
+of RSs.
+Conclusion
+With evidence from both the empirical illustration and the simulation study, the
+proposed UIRTree model shows potential in estimating responses with unfolding response
+processes and influenced by RSs. Incorrectly specifying response process or ignoring RSs is
+likely to cause estimation bias and thus distort measurement and item selection procedures.
+Researchers are encouraged to consider the UIRTree model when modeling Likert-scale
+responses.
+UNFOLDING ITEM RESPONSE TREE MODEL 32

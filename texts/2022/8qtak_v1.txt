@@ -1,0 +1,367 @@
+Associations of Personality Traits and Emotional Intelligence
+In Social Network Consumers via Data Mining Techniques
+2 2 1
+Giorgos Stamoulis , Niovi Christina Papavasileiou , Evgenia Gkintoni ,
+2 2
+Constantinos Halkiopoulos , Hera Antonopoulou
+1Dept. of Psychology, University of Crete, Greece
+2Dept. of Business Administration, Technological Educational Institute of Western Greece, Greece
+Abstract
+The present study aims to investigate personality traits and emotional intelligence in young adults’
+consumers who use social networks to make shopping. Consumer behavior has long been of interest to
+researchers. Contemporary research on Consumer Behavior considers a wide range of factors
+influencing the consumer, and acknowledges a broad range of consumption activities beyond
+purchasing. Νowadays, since online purchases is a daily practice, it is useful to study the behavior of
+online consumers who are social network users and make shopping via social media. Two basic
+components that influence consumer behavior are personality and emotional intelligence. Emotional
+intelligence is both characteristic of personality and intellectual capacity, which a person inherits from
+the genetic material of its parents and evolves - develops throughout lifetime. Personality’ refers to the
+pattern of thoughts, feelings and behavior that makes each individual separate from others. These
+affect the way of think, feeling and behaving towards itself and others.
+The data were collected by completion of the self-report questionnaire Trait Emotional Intelligence
+(TEIQue), as far as emotional intelligence concerned, and the Eysenck Personality Questionnaire
+(EPQ) as far as personality traits of personality disorders concerned. Specifically, for the collection of
+data electronic questionnaire TEIQue and EPQ were being created through Google Forms service and
+selected for analysis, with relevant transformations in order to have a suitable form for the
+implementation of the respective machine learning algorithms included in the software package R.
+Furthermore, the parameters of the corresponding set of algorithms were determined depending on the
+case of application to produce inference rules. Some of the algorithms implemented according to
+specific research questions that were applied, were the classification algorithms for the production of
+decision trees, regarding the four more general factors (welfare, self-control, emotionality and
+sociability) of emotional intelligence and also personality traits of social network consumers. The
+results obtained, after weighing and criteria basis, present consumers' rates, which in turn analyze the
+degree of emotional intelligence and personality traits. Personality and emotional intelligence index
+can play a crucial role in clarifying consumer behavior of social network users.
+Keywords: Personality Traits, Emotional Intelligence, Consumers, Social Networks, R, Data Mining
+1. INTRODUCTION
+Contemporary research on Consumer Behavior considers a wide range of factors influencing the consumer
+and acknowledges a broad range of consumption activities beyond purchasing. Two basic components that
+influence consumer behavior are personality and emotional intelligence. Personality’ refers to the pattern of
+thoughts, feelings and behavior that makes each individual separate from others. These affect the way of
+think, feeling and behaving towards itself and others. Emotional intelligence (EI) can be defined as the ability
+to monitor one's own and other people's emotions, to discriminate between different emotions and label them
+appropriately and to use emotional information to guide thinking and behavior. Trait EI is "a constellation of
+emotional self-perceptions located at the lower levels of personality." In lay terms, trait EI refers to an
+individual's self-perceptions of their emotional abilities.
+1.1. Eysenck Personality Questionnaire (EPQ)
+Various personality theories have been proposed. Of these, special mention has already been made in so-
+called "theories of traits". Such have been formulated by Allport, Guiiford, Cattell and Eysenck. These are
+different theories with common trait the factorial analysis of the characteristics and traits of the personality,
+as these are derived from a person's behavior. In this spirit, Eysenck's theory is about. It came from a
+combination of the description of Kant's personality traits in relation to Wundt's four idiosyncrasies and
+system dimensions and to some elements of Galen's
+theory and can be represented schematically as follows:
+The diagram proposed by Eysenck in 1947 distinguished
+the two basic dimensions of the personality, represented
+by two intersecting axes. At the two poles of the vertical
+axis, the maximum and minimum values of the
+dimension that Eysenck called "Emotionality or
+Instability or Neuroticism" were placed. The maximum
+value represented the existence of characteristics of
+instability, neuroticism, while the minimum referred to
+the existence of characteristics of emotional stability. On
+the horizontal axis, the other dimension of the
+personality was placed, the Inwardness - Extraversion.
+As on the vertical axis, the maximum value was
+referring to the personality traits of the extroverted type,
+as opposed to the other pole, that of the minimum value,
+which set the characteristics of introversion.
+Image 1
+The personality dimensions introduced by Eysenck are
+separate types of people, each of which involves a set of features traced back to their habits and their specific
+reactions. In particular, what is proposed is the detection of specific reactions of the individual, which will
+give evidence of his usual reactions and hence of his usual behavior. This will allow conclusions to be drawn
+for some key features of his personality. These attributes are considered as the factors that make up each of
+the three dimensions of personality (types). The relationship between the reactions and their regular
+appearance makes them reliable criteria for rendering certain characteristics to the personality of the person.
+That is, dimensions or types of personality are notions that include a group of related characteristics, which
+we deduce from the study of reactions and behavior of the individual.
+1.1.1. Description of psychometric scale EPQ
+In detail, the three dimensions of the personality that are proposed have the following characteristics:
+Extraversion-introversion: One who is defined as extrovert is social, loves gatherings, has many
+friends, and does not like reading and studying. Also, has a keen desire for emotion, does not lose
+opportunities, likes danger, reacts immediately and is generally impulsive. The typical introvert is
+quiet, isolated, intuitive who prefers books from people, is restrained and stays in a distance, except for
+very close friends and does not love intense emotions, also treats everyday problems seriously and
+prefers well-planned life, controls his feelings, is trustworthy, pessimistic and attaches great importance
+to moral values. Extroverted and introverted differ in their behavior and beliefs.
+Neurotism - Instability - Emotional Stability: Neurotism refers to the general emotional instability of
+the individual, to its emotional hyperactivity and to the tendency to develop neurotic symptoms under
+stress. People with high neurotic values are anxious, sad, sad, and often sad. When neurotism is
+accompanied by high extroversion then the person is irritable, restless, even aggressive. Low prices, on
+the contrary, refer to an emotionally stable person with mild reactions and a generally stable system of
+values, attitudes and behavior.
+Psychoticism: Further exploration of Eysenck's personality dimensions has led to the observation that
+there is one more personality variable that manifests in the population as a whole - that is, in healthy
+and divergent - in the form of reaction patterns and is indicative of the possible appearance of psychotic
+elements. This variable was the third personality dimension, called "Psychotism" (P) and also refers to
+subjective personality traits. This predisposition exists to varying degrees in all individuals, and only its
+very high value may be an indication of some form of psychosis. The result of these observations was
+the development of a measurement scale of the three dimensions of the personality (E, N, P) and a
+complementary dimension of the L, which measures the falsehood of the answers given by the person
+questioned during the questionnaire. The new scale, presented by the Eysenck couple in 1975, was
+named the Eysenck Personality Questionnaire (E.P.Q.).
+1.2. Trait Emotional Intelligence (EI)
+For recording, tracing and evaluation concerning the emotional intelligence was used the standardized
+scale Trait Emotional Intelligence (TEIQue) which examines the Trait model of EI as proposed by
+K.V. Petrides. The Trait Emotional Intelligence Questionnaire is a self-report questionnaire that has
+been developed to cover the trait EI sampling domain comprehensively. Questionnaire measures of EI
+have been proliferating over the past few years, and it is important to mention three advantages of the
+TEIQue over them to justify the focus of this research. First, the TEIQue is based on a psychological
+theory that integrates the construct into mainstream models of differential psychology. Second, the
+TEIQue provides comprehensive coverage of the 15 facets of the trait EI sampling domain. Several
+independent studies have demonstrated the ability of the
+TEIQue to predict criteria (outcomes) significantly
+better than other questionnaires. Third, the full TEIQue
+has excellent psychometric properties. Finally, the
+TEIQue has been used in numerous studies wherein the
+assessment of affective aspects of personality was
+required. These include research in the areas of
+neuroscience, relationship satisfaction,
+psychopathology, addictions, reaction time, general
+health, and behavioral genetics. The TEIQue provides
+an operationalization for the model of Petrides and
+colleagues that conceptualizes EI in terms of
+personality. The test encompasses 15 subscales
+organized under four factors: well-being, self-
+control, emotionality and sociability.
+1.2.1. Description of psychometric scale EI
+Image 2
+Well being: The Well-being factor comprises three different
+traits: Happiness, Optimism and Self-esteem. They measure how people judge their general level of life
+satisfaction. Well-being reflects people's perceptions of how cheerful and content they usually feel,
+whether they are optimistic about the future and how much they value themselves.
+Self control: The Self-control factor describes how far people think they can control their impulses or
+are controlled by them. It comprises three different traits: Impulse Control, Stress Management and
+Emotional Regulation.
+Emotionality: The Emotionality factor comprises four different traits: Empathy, Emotion Perception,
+Emotion Expression and Relationships. Together they indicate how aware you may be of your own
+emotions and feelings, as well as those of other people. Scores on these traits tend to reflect how highly
+you value this 'emotional literacy' and when and how you make use of it. Self-aware people, who use
+emotionality in a balanced way, respond compassionately towards the emotions and feelings of others
+at the right time.
+Sociability: The Sociability factor describes how comfortable people feel in different social contexts,
+from parties and social gatherings to formal business meetings. In completing the questionnaire, you
+have suggested how confident you feel in dealing with diverse sorts of people, how far you believe you
+influence others, and how comfortable you are in arguing your corner. The Sociability factor is a
+combination of Emotion Management, Assertiveness and Social Awareness traits.
+2. METHODOLOGY
+In this paper were applied Machine Learning and Data Mining methods in order to evaluate the
+personality dimensions (EPQ) with emotional intelligence quotient (TEIQue) of social network
+consumers. The methodology, that was adopted, consists of three concrete phases. During the first
+Subsequently, data were collected and preprocessed from the questionnaires. The data set for analysis
+was consisted of demographics elements of responders, such as the gender, the birth-place, the place of
+present residence, educational background of both the respondents and their parents, professional
+occupation of parents and also of subscales of the EPQ and TEIQue tests. During the third phase, the
+data set was analyzed based on Data Mining techniques and evaluate the results. More specifically, we
+utilized classification algorithms so as to manage to describe the hidden patterns underlying in the data.
+Decision trees are a powerful way in order to represent and facilitate statements analysis
+(psychological) principally, comprising successive decisions and variable results in a designated
+period.
+2.1. Personality, Emotions and Decision-Making in Consumer Behavior
+In international literature, the importance of emotion and traits of personality in decision making has
+been studied (Gohm and Clore, 2002; Luce 1998; Ruth 2001). The research is about to fully understand
+how consumers’ use emotional information to make effective decisions according to their traits of
+personality. A growing body of research continues to focus on the emotions present in consumption
+situations; however a better understanding of emotional processing abilities can have important effects
+on consumer performance outcomes. The current research focuses on emotional intelligence, in
+personality of consumer and in consumer behavior of young adults who are social network users.
+Consumer emotional intelligence is defined here as a person’s ability to use emotional information to
+achieve a desired consumer outcome, comprised as a set of first order emotional abilities that allow
+individuals to recognize the meanings of emotional patterns that underlie consumer decision making
+and to reason and solve problems on the basis of them (Mayer and Salovey 1997). A better
+understanding of emotional ability can have considerable value in extending knowledge of consumer
+behavior. For example, it can provide answers to questions such as; how does emotional processing
+influence purchase decisions; which decisions do high vs. low EI consumers more readily make; how
+might EI influence relationships between key consumer variables such as impulsivity and purchase
+intention? Additionally, with this knowledge of emotional ability, we may be able to identify those
+consumer’s who make the highest (and lowest) quality consumer decisions. For instance, consumers
+with high levels of nutrition knowledge who lack the emotional ability to understand which emotions
+are important and how to manage those emotions toward unhealthy eating, are likely to make poor
+quality decisions. Understanding these emotional deficiencies can provide a means to subsequently
+improve the quality of consumption decisions.
+As far as the repercussion of personality traits in consumer behavior, recent advances in personality
+psychology can help us predict consumer motivation. Traits are defined as enduring and stable patterns
+of behavior, attitudes, emotions, that vary between individuals. Traditionally, researchers were
+interested in understanding how individuals differ, and so they put a great deal of effort into
+discovering how to measure, map, and define personality traits. An effort was made through trait
+theory in order to define personality traits. Trait theory suggests that personality is made up of a set of
+quantitative measurable characteristics or units known as traits. Traits are pre-dispositional attribute
+and are relatively stable (McLeod, 2014). Every personality has a unique combination of traits and
+given its stability, people with a given combination of traits can be expected to behave consistently
+across situations and over time. The development of trait theory is attributed to the pioneering works of
+psychologists such as, Gordon Alport, Henry Odbert Raymond Cattell and Hans Eysenck (Myers,
+1995; Burger, 2000; Franzoi, 2002). The trait theory that is being examined through the current paper is
+Eysenck’s theory. Eysenck (1947) developed a model of personality based on three traits:
+“introversion/extroversion, neuroticism/emotional stability, and psychoticism” (Franzoi, 2002: 398).
+Researchers are now reconceptualizing what traits are and where they come from--with traits being
+understood as chronic motivators that drive their decision-making. For example, researchers have
+linked personality traits to diverse outcomes such as experiential buying tendencies, political
+orientation, natural language use, preference in pets, the state of one’s personal living space, and even
+more important life outcomes such as divorce, morbidity, and occupational attainment. Some recent
+data suggests that people who find themselves in disease-ridden environments tend to be less open and
+extraverted, presumably because this makes them less motivated to explore and interact with others
+(which reduces the chance they will become infected).
+2.2. Data Mining Techniques
+Data Mining is an emerging knowledge discovery process of extracting previously unknown,
+actionable information from very large scientific and commercial databases. It is imposed by the
+explosive growth of such databases. Usually, a data mining process extracts rules by processing high
+dimensional categorical and/or numerical data. Classification, clustering and association are the most
+well known data mining tasks. Classification is one of the most popular data mining tasks.
+Classification aims at extracting knowledge which can be used to classify data into predefined classes,
+described by a set of attributes. The extracted knowledge can be represented using various schemas.
+Decision trees, "if-then" rules and neural networks are the most popular such schemas. A lot of
+algorithms have been proposed in the literature for extracting classification rules from large relational
+databases, such as symbolic learning algorithms including decision trees algorithms (e.g. C4.5) and rule
+based algorithms (e.g. CN2), connectionist learning algorithms (e.g. back{propagation networks),
+instance-based algorithms (e.g. PEBLS) and hybrid algorithms. Association rules can be used to
+represent frequent patterns in data, in the form of dependencies among concepts attributes. In this
+paper, we consider the special case, that is known as the market basket problem, where concepts-
+attributes represent products and the initial database is a set of customer purchases (transactions).
+3. RESULTS
+Classification methods aim to identify the classes from some descriptive traits. They find utility in a
+wide range of human activities and particularly in automated decision making. Decision trees are a
+very effective method of supervised learning. It aims is the partition of a dataset into groups as
+homogeneous as possible in terms of the variable to be predicted. It takes as input a set of classified
+data, and outputs a tree that resembles to an orientation diagram where each end node (leaf) is a
+decision (a class) and each non- final node (internal) represents a test. Each leaf represents the decision
+of belonging to a class of data verifying all tests path from the root to the leaf. The tree is simpler, and
+technically it seems easy to use. In fact, it is more interesting to get a tree that is adapted to the
+probabilities of variables to be tested. Mostly balanced tree will be a good result. If a sub-tree can only
+lead to a unique solution, then all sub-tree can be reduced to the simple conclusion, this simplifies the
+process and does not change the final result. Ross Quinlan worked on this kind of decision trees.
+Decision trees are built in "ctree (Conditional Inference Trees)" by using a set of training data or data
+sets. At each node of the tree, "ctee" chooses one attribute of the data that most effectively splits its set
+of samples into subsets enriched in one class or the other. Its criterion is the normalized information
+gain (difference in entropy) that results from choosing an attribute for splitting the data. The attribute
+with the highest normalized information gain is chosen to make the decision. During the construction
+of the decision tree, it is possible to manage data for which some attributes have an unknown value by
+evaluating the gain or the gain ratio for such an attribute considering only the records for which this
+attribute is defined. Using a decision tree, it is possible to classify the records that have unknown
+values by estimating the probabilities of different outcomes. Ctree builds decision trees from a set of
+training data in the same way as ID3 or C4.5, using the concept of information entropy.
+The training data is a set of already classified samples. Each sample consists of
+a p-dimensional vector , where the represent attribute values or features
+of the sample, as well as the class in which falls. At each node of the tree, "ctree" chooses the
+attribute of the data that most effectively splits its set of samples into subsets enriched in one class or
+the other. The splitting criterion is the normalized information gain (difference in entropy). The
+attribute with the highest normalized information gain is chosen to make the decision.
+The "ctree" algorithm then recurs
+on the smaller sublists. In order
+to specify the best result, it was
+necessary to fit the data to the
+model in a proper way. This task
+was carried away by changing
+and testing the controls of
+"ctree".
+The parameters in the control
+function that were altered are:
+• mincriterion: The
+value of the test
+statistic (for testtype
+== "Teststatistic"), or 1 - p-value (for other values of testtype) that must be exceeded in order
+to implement a split.
+• minsplit: The minimum sum of weights in a node in order to be considered for splitting.
+• mtry: The number of input variables randomly sampled as candidates at each node for
+random forest like algorithms.
+• maxdepth: The maximum depth of the tree.
+Tree 1
+✓ Depended variable: birthyear
+✓ Independed variables: sex,
+well_being, sociability,
+emotionality, self_control
+➢ ‘mincriterion’ value: 0.09
+➢ ‘minsplit’ value: 50L
+➢ ‘mtry’ value: Inf (Infinite)
+➢ ‘maxdepht’ value: Inf
+(Infinite)
+Tree 2
+✓ Depended variable: birthyear
+✓ Independed variables: Rest
+➢ ‘mincriterion’ value:
+0.009
+➢ ‘minsplit’ value: 50L
+➢ ‘mtry’ value: Inf (Infinite)
+➢ ‘maxdepht’ value: Inf (Infinite)
+3.1. Mining Association Rules
+Association Rule Mining is a common technique used to find associations between many variables. In
+Data Mining, Apriori is a classic algorithm for learning association rules. Apriori is designed to operate
+on databases containing transactions (for example data collected from surveys in this case). As is
+common in association rule mining, given a set of item sets, the algorithm attempts to find subsets
+which are common to at least a minimum number C of the itemsets.
+Apriori uses a "bottom up" approach, where frequent subsets are extended one item at a time, and
+groups of candidates are tested against the data. The algorithm terminates when no further successful
+extensions are found. Apriori uses breadth-first search and a tree structure to count candidate item sets
+efficiently. It generates candidate item sets of length k from item sets of length k − 1. Then it prunes
+the candidates which have an infrequent sub pattern. According to the downward closure lemma, the
+candidate set contains all frequent k-length item sets. After that, it scans the transaction database to
+determine frequent item sets among the candidates.
+Association rules present association or correlation between item sets. An association rule
+has the form of A B, where A and B are two disjoint item sets.
+The Goal: studies whether the occurrence of one feature is related to the occurrence of
+others.
+Three most widely
+used measures for selecting
+interesting rules are:
+Support is the percentage of cases
+in the data that contains both A and
+B,
+Confidence is the percentage of
+cases containing A that also
+contain B, and
+Lift is the ratio of confidence to the percentage of cases containing B.
+3.2. Apriori rules visualization
+• Grouped Matrix plot
+Antecedents (columns) in the matrix are
+grouped using clustering. Groups are represented
+as balloons in the matrix.
+• Graph
+Represents the rules (or itemsets) as a
+graph. Specifically of our use, the parameters that
+were altered are:
+➢ control=list(type="item
+s")
+• Paracoord
+Parallel coordinate charts
+are a visualization that consists
+of N amount of vertical axes, each
+representing a unique data set of 61
+rules, with lines drawn across the
+axes. The lines show the relationship
+between the axes, much like scatter
+plots, and the patterns that the lines
+form indicates the relationship. We
+can also gather details about the
+relationships between the axes when
+you see the clustering of lines. Let’s
+take a look at this using the chart
+below as an example. Specifically of
+our use, the parameters that were
+altered are:
+➢ control=list(reorder=TRUE)
+Apriori rules
+For the top 61 rules that were extracted from the apriori the following parameters were altered:
+• support: A numeric value for the minimal support of an item set
+• confidence: A numeric value for the minimal confidence of rules/association hyperedges
+Specifically of our use: Support: 0.5, Confidence: 0.9
+After the extraction, the top 12 rules, also, presented lift approximately 1.
+lhs rhs support confidence lift
+Age=[18-23], L_Lie.Social.Desirability=LOW, self_control=HIGH,sociability=LOW => {E_Extraversion.Introversion=LOW} 0.1097561 0.9000000 1.447059
+{Age=[18-23], Mother_job=Housekeeping, well_being=HIGH, sociability=LOW} => {E_Extraversion.Introversion=LOW} 0.1097561 0.9000000 1.447059
+Sex=Female, Mother_edu=Higher Education, self_control=HIGH} => {E_Extraversion.Introversion=LOW} 0.1097561 0.9000000 1.447059
+{Mother_job=Public Servant, self_control=HIGH} => {E_Extraversion.Introversion=LOW} 0.1097561 0.9000000 1.447059
+{Education=Higher Education, P_Psychoticism.Socialisation=LOW, N_Neuroticism.Stability=HIGH, sociability=LOW} => {E_Extraversion.Introversion=LOW} 0.1219
+512 0.9090909 1.461676
+{City=CEPHALONIA, L_Lie.Social.Desirability=LOW, self_control=HIGH} => {E_Extraversion.Introversion=LOW} 0.1219512 1.0000000 1.607843
+{Education=Higher Education, N_Neuroticism.Stability=HIGH, self_control=LOW, sociability=LOW} => {E_Extraversion.Introversion=LOW} 0.1219512 1.0000000 1
+.607843
+{Sex=Female, Age=[18-23], City=ATHENS, sociability=LOW} => {N_Neuroticism.Stability=HIGH} 0.1219512 1.0000000 2.050000
+{Sex=Female, Age=[18-23], self_control=HIGH, emotionality=HIGH} => {N_Neuroticism.Stability=LOW} 0.1341463 1.0000000 1.952381
+{Age=[18-23], City=ATHENS, sociability=LOW} => {N_Neuroticism.Stability=HIGH} 0.1341463 0.9166667 1.879167
+{City=ATHENS, Father_job=Retired,well_being=HIGH, self_control=HIGH} => {N_Neuroticism.Stability=HIGH} 0.1219512 0.9090909 1.863636
+Age=[18-23], City=CEPHALONIA, self_control=HIGH, emotionality=HIGH} => {N_Neuroticism.Stability=LOW} 0.1219512 0.9090909 1.774892
+4. CONCLUSION
+One general determination of the results can be exported in order to conclude and explain the consumer
+behavior of young adults in social networks. This paper can be a useful tool in the field of Marketing in
+order to decode psychological issues of young adulthood in the sector of emotional intelligence
+between males and females.

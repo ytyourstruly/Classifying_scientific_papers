@@ -1,0 +1,1121 @@
+RUNNING HEAD: A dynamic adjustment account of word skipping
+A dynamic adjustment account of word skipping in reading: Evidence from simulations and
+invisible boundary experiments
+1 2 3
+Jarkko Hautala, Otto Loberg, and Paavo Leppänen
+Niilo Mäki Institute, Jyväskylä, Finland
+Department of Psychology, Bournemouth University, Bournemouth, United Kingdom
+Department of Psychology, University of Jyväskylä, Jyväskylä, Finland
+Corresponding author: Jarkko Hautala, jarkko.hautala@nmi.fi, Address: Niilo Mäki Institute,
+Asemakatu 4, FI-40014 Jyväskylän yliopisto, Jyväskylä, Finland.
+Acknowledgments: The authors would like to thank research assistants Nina Kullberg and Julia
+Turok, whose work was supported by Grant 274022 from the Academy of Finland to Paavo H. T.
+Leppänen. The work of Jarkko Hautala was supported by Grant 317030 from the Academy of
+Finland.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Abstract
+Prevalent models of eye movement control in reading of word-spaced orthographies assume a
+discrete control account to explain word skipping. Accordingly, word skipping results from
+advanced parafoveal word activation during preview, leading to the selection of word n+2 as a
+saccade target. Consequently, visual and linguistic content of the parafoveal word affect which
+word is selected as a saccade target. In contrast, according to dynamic adjustment view, saccade
+lengths in reading are affected by current and next word properties in a continuous manner. First,
+these predictions were confirmed via simulations for representative models of discrete and
+dynamic control. Then results of three gaze-contingent invisible boundary experiments studying
+the visuo-attentional mechanism of skipping are being reported. The results support the dynamic
+adjustment view by showing a unimodal landing position distribution across a candidate word for
+skipping and its subsequent word, and that the content of parafoveal word modulates the saccade
+length only slightly and in a continuous manner. In addition, the location of a visual anomaly
+within a word had no effect on saccade length, suggesting that parafoveal vision of next word is
+subject of attention enhancement early enough to affect saccade length computation.
+Keywords: word skipping, parafoveal preview, eye movement control in reading
+RUNNING HEAD: A dynamic adjustment account of word skipping
+1. Dynamic adjustment account of word skipping in reading: Evidence from simulations and
+invisible boundary experiments
+1.1 Discrete or dynamic adjustment control of saccade lengths?
+Despite of considerable differences, prevalent models of eye movement control in reading
+of word-spaced orthographies (Reichle et al., 1999; Reichle & Sheridan, 2015, Engbert et al.,
+2005; Risse et al., 2014; Reilly & Radach, 2006; Snell et al., 2018b; see also Brysbaert & Vitu,
+1998) share the assumption of a two-stage process concerning the computation of progressive
+inter-word saccade length: First, lexical processes related to current and upcoming words
+determine which word will be selected as a target word for a saccade. The saccade is then targeted
+to the center of the selected word, as the center provides an optimal viewing position for parallel
+letter processing during word recognition (McConkie et al., 1988). This intended saccade length is
+affected by a systematic error towards preferred saccade length of seven letters (McConkie et al.,
+1988). The resulting saccade range effect (or systematic error) has been implemented into most
+computational models, including EZ Reader (Reichle et al., 1999; Reichle & Sheridan, 2015),
+SWIFT (Engbert et al., 2005; Risse et al., 2014), Glenmore (Reilly & Radach, 2006), and OB1
+(Snell et al., 2018b). Finally, random oculomotor error proportional to the intended saccade
+length is added. Due to the initial target word selection -stage, the above depicted traditional view
+is labelled hereafter as discrete control account of saccade length.
+However, selecting saccade target word on the basis of lexical information is difficult in
+comparison to planning saccades on the basis of readily available lower-level information, such as
+word spaces. First of all, the vision gradient (i.e. combination of visual acuity and visual crowding
+[Bouma, 1970] influences), is the main determinant of saccade lengths as indexed by the effect of
+word’s spatial width on relative landing position, skipping and refixation probabilities (Hautala et
+al., 2011; Hautala & Loberg, 2015; McDonald, 2006; Hermena et al., 2017). The somewhat blurry
+parafoveal preview may nevertheless activate representations at multiple levels of the cognitive
+RUNNING HEAD: A dynamic adjustment account of word skipping
+hierarchy, from the visual to the semantic (Schotter et al., 2012). However, the eyes seem not to
+wait for the possible activation of high-level representations of previewed word but launch the
+next saccade primarily contingent on the recognition of the foveal word (for a review, see Schotter
+et al., 2012; Brothers et al., 2017). This induces a great time pressure for parafoveal activations to
+affect saccade programming, possibly impeding the readers’ ability to make routinely lexical-level
+skipping decisions.
+A logical alternative to the discrete control is a dynamic control of saccade length,
+suggesting that saccade length is dynamically adjusted according to the properties of current and
+upcoming words. The foundation of a dynamic control lies in the critique of the saccadic range
+effect (Nuthmann et al., 2016; Cutter et al., 2017). It has been criticized that McConkie et al.
+(1988) studied only interword saccades from word n to word n+1, therefore neglecting the
+influence of refixations and skipping saccades on the saccade length computation (see Yao-N'Dré
+et al., 2014). Vitu and colleagues have thoroughly analyzed saccade control in reading including
+also refixation and skipping saccades by predicting saccade length or landing position with launch
+distance to next word and its length (Albrengues et al., 2019; Yang & Vitu, 2007; Yao-N'Dré et
+al., 2014). The conclusion that can be drawn from these studies is that readers tend to proceed with
+much more uniform saccade lengths than what would be expected on the basis of interword
+saccades only. Moreover, Vitu has argued that saccade lengths are dynamically adjusted, that is, in
+a continuous manner without the involvement of a target word selection process, even in word-
+spaced orthographies (Yang & Vitu, 2007). In fact, there is also direct empirical evidence that
+linguistic properties of upcoming word are used at very least to fine-tune interword saccade
+lengths also in alphabetic orthographies (Hyönä et al., 2018; Radach et al., 2004; Albrengues et
+al., 2019). Importantly, it should be noted that the dynamic adjustment models already exist for
+non-spaced orthographies, such as Chinese (for a computational model, see: Liu et al., 2017a-b).
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Recently, a novel dynamic adjustment view of eye movement control in reading for word-
+spaced orthographies was introduced (Cutter et al., 2017, 2018). According to this center-based
+saccade length (CBSL) -account, saccade lengths are computed as follows: First, when
+previewing upcoming words, the distance between centers of words n+1 and n+2 are being
+extracted to represent an optimal length for saccade+2 (a saccade after the next saccade). This
+preliminary plan is then corrected to some extent by the actual landing position to word n+1 (i.e.
+the launch distance to word n+2). Very recently, a computational implementation of the CBSL
+account was found to provide equal or better fit to empirical word length effects for landing
+position, skipping and refixation probability measures, relative to a “benchmark” model EZ
+Reader (Anonymous, preprint; available at:
+implemented as a regression model formula given by the Equation 1, which was derived from a
+linear mixed model fitted to an empirical data, supplemented with an oculomotor error:
+2 2
+Saccade length = 3.8 + 0.53 * CD - 0.018 * CD + 0.27 * LD - 0.026 * LD + σ (1)
+In Equation 1, CD is the distance between the centers of word n+1 and n+2, and LD launch
+distance to the beginning of word n+2 after landing on the word n+1. The oculomotor error σ is
+identical to the one used in the EZ Reader model, that is Gaussian error with mean of zero and
+standard deviation increasing by 0.1 letters on the top of 0.5 intercept value for every one-letter
+increase in intended saccade length, which is the result of the preceding part of the Equation 1.
+Effectively, the intercept of the CBSL model (3.8 letters) sets a minimum length for
+progressive saccades. The CD is the main modulator of saccade length, whereas LD is used to
+As one reviewer noted, a dynamic model needs eventually be expressed as an internal state of
+the model being updated by some temporal evolution according to an equation of motion.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+correct saccade length to some extent according to actualized landing position. This correction is
+made in order to land on a central viewing position of next word. The non-linear reduction in
+coarse skipping of closely positioned next word. This factor may contribute to the reduction in
+saccade length for skips vs. non-skips documented previously (Krügel & Engbert, 2010; Krügel
+et al., 2012). Moderate launch distance, on the other hand, may allow maximal saccade lengths
+because the currently fixated word can still be recognized without a refixation. Similarly, the
+non-linear effect of CD produces an asymptote preventing the saccade length exceeding general
+Estimated Marginal Means of Saccade Lengths from a Linear Mixed Model. Reproduced with
+permission Anomymous (Preprint).
+1.4. Determinants of word skipping.
+Considerable amount of research has investigated to which extent skipping depends on the
+parafoveal processing of next word. To avoid possibly detrimental effects of odd textual
+information for overall eye movement dynamics, most of these studies have utilized a gaze-
+contingent boundary paradigm, in which target words are shown with a preview mask
+disappearing during a saccade that crosses the invisible boundary located at the end of the
+RUNNING HEAD: A dynamic adjustment account of word skipping
+preceding word (Choi & Gordon, 2014; Drieghe, 2008; Gordon et al., 2013; Reingold & Rayner,
+2006; Plummer & Rayner, 2012).
+First, it is well known that the majority of word skipping result from the general
+oculomotor mechanisms discussed above, pushing the eyes to land just over a short word when
+launched from nearby (since McConkie et al., 1988, 1989). In addition, skipping is also affected
+by visual properties of the next word. Depending on their relevancy to the reading task, visually
+highly anomalous word-objects may be skipped with a very high (Reingold et al., 2016) or low
+probability (Drieghe, 2008; Gagl et al., 2014). These strong effects provide evidence that at least
+low-frequency visuospatial information available first in the parafovea, can be used to select
+saccade targets in reading-like tasks.
+Extraction of high-frequency visuospatial information from parafoveal word is
+compromised due to poor visual acuity. Concerning word skipping, ~5 % effect size has been
+observed for faint font manipulation (Drieghe, 2008; Warrington et al., 2018). In addition, faint
+font preview did not affect later foveal fixation durations of young readers (Warrington et al.,
+2018), suggesting that the effects of subtle visual previews may be restricted on the early stages of
+word recognition (see Reingold & Rayner, 2006).
+Concerning linguistic determinants of skipping, according to the review by Brysbaert and
+Vitu (1998), word frequency affects skipping rates by approximately 5% (e.g., Angele & Rayner,
+2013; Angele et al., 2014) and predictability by approximately 8% (Fitzsimmons & Drieghe,
+2013; Rayner et al., 2004; Slattery & Yates, 2018). Obstructing parafoveal lexical recognition
+whatsoever by nonword presentation preserving overall word shape reduces skipping rates
+approximately 10% (Choi & Gordon, 2014; Drieghe, 2008; Gordon et al., 2013; Plummer &
+Rayner, 2012). Yet, nonword previews do disturb lexical processing initiated by the parafoveal
+preview, as evidenced by inflated next fixation durations and regression rates on the target word
+RUNNING HEAD: A dynamic adjustment account of word skipping
+(Choi & Gordon, 2014; Drieghe, 2008; Gordon et al., 2013; Reingold & Rayner, 2006; Plummer
+& Rayner, 2012).
+1.5. Discrete or dynamic control of word skipping?
+To the best of our knowledge, no convincing evidence for the discrete control view of
+skipping has been shown in the literature. Note that the studies of Krügel et al. (2010, 2012, 2014)
+were not informative about the decision process preceding skipping, but were concerned on
+specifying the differences between skipping and non-skipping saccades while controlling launch
+distance. In the present study, it was reasoned that discrete control should lead to bimodal
+distribution of saccade lengths or landing positions corresponding to words n+1 and n+2 in a
+situation where skipping is a likely to happen. Simulation with the EZ Reader model (see
+Instead, according to the CBSL skips are mislocated fixations due to overshooting of a
+target word. This overshooting has autocorrelative bias because overshooting the center of a
+preceding word is only partially corrected. Due to lack of saccade target selection processes, the
+2a).
+Simulated Overall Relative Landing Position Distributions for the (a) CBSL and (b) EZ Reader
+Models.
+One reviewer suggested that the bimodality may appear only for certain range of word
+lengths. We’d like to comment that only short words are typically candidates for skipping and
+the longer the T+1 word, the clearer the bimodality should be.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Note: Panels A and B: Landing positions in relation to short target words (≤ 4 letters) that are highly prone to
+skipping, were simulated with 1000 Monte Carlo runs on a sentence corpus (Schilling, 1998). Values 0-1 represent the
+target word (T), whereas values larger than 1 represent skipping cases (T+1). To ensure that the preceding word (T-1)
+was mostly intentionally fixated, it had to contain at least five letters. For providing enough space for the bimodal
+distribution to appear, the T+1 had to contain at least five letters. As CBSL does not utilize the length of T+1 word in
+saccade planning, results for this model are given in the scale of T. According to the Hartigan’s dip test (Hartigan,
+1985) the distribution is unimodal, D = .0005, p = 1. Instead, EZ Reader results are given in the scale of T and T+1,
+because either of them may be selected as a saccade target. The distribution is not unimodal, D = .013, p < .001.
+Expectedly, the distribution peaks correspond to the centers of the T (0.5) and T+1 (1.5). The sharp peak at value 1.0
+most likely reflect mislocated fixations targeted to word T.
+According to the discrete control view, linguistic properties of next word directly affect
+mechanism responsible for skipping in the EZ Reader model (e.g. Reichle et al., 2012) can be
+summarized as follows: First, high-frequency spatial information from a parafoveal word is
+extracted fast and in parallel while lexically processing the foveal word. As soon as the foveal
+word has been recognized, attention shifts to the parafoveal word starting the first stage of lexical
+processing, the “familiarity check”, consisting of orthographic processing leading to activation of
+a word form. Skipping occurs if this “familiarity check” completes early enough to cancel the
+default saccade to the next word – no full recognition of next word is required. Previous
+simulations have shown that the model produces realistic unique effects of word length, frequency
+and predictability on skipping rates (Pollatsek et al., 2006), and that the speed of “familiarity
+check” is the earliest word-content related process which substantially affects saccade lengths
+(Reichle et al., 2013). Assuming that subtle spatial high-frequency anomalies disrupt letter
+RUNNING HEAD: A dynamic adjustment account of word skipping
+encoding, the suspected locus of such manipulation is the “familiarity check”. However, as
+orthographic processes are not modelled, the model makes no prediction whether a nonword
+preview or subtle visual anomalies in the previewed word should inhibit skipping more.
+Simulated Word Frequency and Predictability Effects on Relative Landing Position Distributions
+for the EZ Reader Model.
+Note: Relative landing position (RLP) values 0-1 belong to word T and values 1-2 to word T+1. Low foveal load at
+word T-1 was set by excluding least frequent words (lowest fifth percentile) and to restrict word length to four to
+seven letters. To restrict the inspection only to a potential skipping situation, word T had maximum of six letters.
+Panel B: The word frequency effect was confounded with the predictability effect. Therefore, highly predictable T
+words (highest fifth percentile) were excluded. Still, lowest frequency words (fifth percentile, 5% of cases) were
+to the fourth percentile group in predictability, explaining the counterintuitive prediction altogether.
+The CBSL model still lacks computational implementation of processes other than those
+concerned on word length information. However, empirical studies (Hyönä et al., 2018; Radach et
+al., 2004) suggest only a minor role of other information than word length and launch distance on
+landing positions. For example, Hyönä et al. (2018) report landing position shifting approximately
+0.13 letters to right per one log-unit increase in word frequency, whereas faint font preview
+reduced progressive saccade length by 0.23 letters in young adult readers (Warrington et al.,
+2018). On these bases, one may expect small and similar-sized influences for nonword and visual
+dot previews on saccadic measures.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Finally, the discrete control should be reflected in fixation duration prior to launching a
+saccade, either due parafoveal-on-foveal effects (Engbert et al., 2005; Risse et al., 2014; Reilly &
+Radach, 2006; Snell et al., 2018b), or due to extra time required for saccadic reprogramming after
+skipping decision (Reichle et al., 1999; Reichle & Sheridan, 2015). Empirical results in this
+respect are mixed as skipping rates seem not to depend on foveal load (Drieghe et al., 2004;
+Eskenazi & Folk, 2015; Rayner et al., 2011; White, 2007), and fixation duration prior skipping is
+generally shorter yet may be slightly inflated for infrequent words (Kliegl & Engbert, 2005).
+However, interactions between launch distance and other independent variables have seldom been
+studied (White et al., 2005).
+1.4. Attentional mechanisms underlying skipping.
+A possible yet an unlikely scenario is that skipping is predominantly driven by vision
+gradient, which mechanism should stress the importance of word beginning information in
+saccade length modulation. On the other hand, it is well known that covert shift of presaccadic
+attention provide temporary reduction in the crowding of the target area (for a review, see Li et al.,
+2016), which explains a large part the preview benefit observed in reading (Briihl & Inhoff, 1995;
+Johnson et al., 2007; see Schotter et al., 2012). However, presaccadic attention occurs too late to
+modulate saccade lengths. A form of attention that is more potent to contribute to saccade-length
+modulation is the early parallel processing of words (Inhoff & Radach, 2014; Inhoff et al., 2005;
+Snell et al., 2018a, 2019; Wang et al., 2009). This process may explain why skipping is slightly
+affected by the holistic linguistic properties of words, such as word frequency.
+Few studies utilizing invisible boundary paradigm seem particularly informative about the
+attentional mechanisms involved in skipping. Gagl et al. (2014) found that skipping was inhibited
+similarly by previews, in which either the beginning or end of a word was subject of clear visual
+degradation. The manipulation was also associated with inflated foveal fixation durations,
+RUNNING HEAD: A dynamic adjustment account of word skipping
+suggesting that the degradation also interfered with higher-level orthographic and lexical
+processes. Hermena et al. (2016) reported tentative evidence that skipping is insensitive to subtle
+diacritical marks of the upcoming word in reading Arabic, while the same diacritics resulted in
+clear preview benefits when the words were later fixated. This finding suggests that the visual
+information that is available for saccadic modulation is functionally poorer than that later
+extracted via presaccadic attention. However, skipping rates are generally low in Arabic and also
+insensitive to parafoveal word frequency, making this complex orthography not an ideal testbed
+for studying skipping (Hermena et al., 2018).
+1.5. The present study
+To study whether word skipping is better explained either by the discrete or the dynamic
+control view or perhaps by the vision gradient, series of gaze-contingent sentence reading
+experiments with invisible boundary manipulation were run. Skipping was maximized by
+presenting spatially narrow 3-5 letter (yet unpredictable) target words (Hautala et al., 2011;
+Hautala & Loberg, 2015; Hermena et al., 2017) surrounded by substantially longer words. This
+configuration enable testing whether there is a bimodal landing position across word n+1 and n+2,
+as predicted by the discrete control, but not by the dynamic adjustment account.
+To study which type of parafoveal word information govern the modulation of saccade
+length leading to word skipping, target words in sentences were previewed either as identical,
+nonwords or containing subtle visual extra dots located either beginning or end of the item. Here
+the dynamic and discrete control views differ how they assume information affecting saccades:
+According to discrete control view, anomalous previews reduce the latter peak of the bimodal
+landing position distribution. On the basis of previous empirical results, dynamic adjustment
+should result in leftward shift of the unimodal landing position distribution due to anomalous
+previews.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Concerning the involvement of attentional mechanisms in skipping, following alternative
+hypotheses could be stated: If the preview information utilized in saccade length computation is
+predominantly constrained by the vision gradient, the visual dot located in the beginning part of a
+word should have a stronger influence on saccade length compared to one in the end part.
+However, if the early perception of candidate words for skipping is already enhanced by attention,
+the location of the visual anomaly should not have any effect (Gagl et al., 2014).
+Finally, the dynamics of saccade control was studied in a post-hoc analysis. According to
+the discrete control, the attentional processing of the next word or decision to skip it should be
+reflected in previous fixation duration especially at short launch distances, because the processing
+of next word has more likely proceeded to the level of affecting saccade target selection (Reichle
+& Drieghe, 2013; Schad & Engbert, 2012). If no such interactions are observed, preview exerts an
+independent influence on saccadic programming, presumably via parallel attention gradient (e.g.
+Snell et al., 2019). This issue is studied in a post-hoc manner for collapsed data across
+experiments.
+1. Methods
+2.1. Simulations.
+Because current simulations served to confirm highly expected model predictions, the
+simulation results were exceptionally reported already in the Introduction. In all of the
+simulations, the standard Monte-Carlo scheme with 1000 runs was adopted, as used in previous
+simulation studies of EZ Reader. Specifics of the simulations are being reported elsewhere
+(Anonymous, preprint; available at:
+data from these previous simulations were used. For the EZ Reader model, an additional
+RUNNING HEAD: A dynamic adjustment account of word skipping
+simulation run for the Schilling corpus (Schilling et al., 1998) with the java applet (retrieved from:
+required for computing landing positions across two-word sequences reported in Figures 2 and 3.
+Default parameter values, with no simulation of interword regressions, was applied. The first and
+last word of each sentence were excluded. Processing and plotting of the simulated data were
+conducted in the SPSS program. First, the fixation sequence data of all 1000 simulation runs was
+merged with a corpus key file (containing complete word sequence for all runs), enabling mapping
+of saccade length and resulting landing position in relation to current, next and its subsequent
+word. Details of plotting are reported in the notes of the Figures 2 and 3, as well as the statistical
+test result for bimodality (see also section 2.7.2. Analysis Method).
+2.2. Sentence-Reading Experiments 1–3
+This research was conducted in three separate experiments with different participants.
+Regarding the differences between the experiments, only parafoveal preview types and their
+conditions (each consisting of 24 target words): 1) In the intact condition, previews were the
+original words. 2) In the nonword condition, the preview included a nonword formed by replacing
+a single letter of the target word. 3) In the dot_begin condition, the preview target word contained
+a four-pixel added dot located in the beginning part of the word. 4) In the dot_end condition, the
+preview target word contained a four-pixel added dot located in the latter part of the word. As will
+be shown, only the nonwords, and not the visual dots, affected the eye movement measurements in
+Experiment 1, suggesting that the dots were too small to be detected. Therefore, the size of the
+dots was slightly increased for Experiment 2 (see the Stimuli section), resulting in a decrease in
+the overall skipping rate and the disappearance of all of the effects between the normal and
+anomalous preview conditions observed in Experiment 1. The most obvious explanation is that
+RUNNING HEAD: A dynamic adjustment account of word skipping
+when 75% of the trials had detectable anomalies, readers adopted a more cautious reading
+strategy. Therefore, for Experiment 3, we balanced the number of intact (48) and anomalous
+previews (24 dot_begin, 24 dot_end) by replacing the nonword previews in Experiment 2 with
+intact previews, resulting in the following preview conditions: 1) intact, 2) large dot_begin, and 3)
+Example of a stimulus sentence.
+Note: The anomalous previews for target words ilo (joy) and ori (stallion), are shown in their original size at the top
+line, and magnified four times in the bottom line. For both of the target words, the two left-most previews are small
+dots used in Experiment 1, the two middle previews are nonwords (iio, öri), and the two right-most are large dot
+previews used in Experiments 2 and 3. The sentence translates as follows: “Matti’s carefully anticipated joy turned out
+to be premature, as the fast-started stallion suddenly lost its position.”
+2.3. Participants
+There were 20 native Finnish-speaking participants in each of the three experiments,
+recruited via student organization mailing lists. The invitation criteria were uncorrected near
+for each experiment. The work was conducted in accordance with the APA ethical standards in the
+treatment of their sample, human or animal, or to describe the details of treatment, World Medical
+Association Declaration of Helsinki, and the research was approved by the Ethical Committee of
+the University of Jyväskylä. The participants signed an informed consent form prior to the study,
+RUNNING HEAD: A dynamic adjustment account of word skipping
+and they received a movie ticket as a reward for their participation. One participant in each
+experiment became aware of the preview manipulations.
+Descriptive Information of Participants in Each Experiment
+Experiment
+Measure 1 2 3
+Gender (male/females) 3/17 6/14 4/16
+Age in years mean (SD) 25.5 (5.1) 25.6 (4.7) 24.2 (4.4)
+Eye dominance left/right 7/13 8/12 8/12
+mean % (SD) 79 (11) 86 (9) 81 (15)
+* *
+Comprehension accuracy min % 58 71 50
+max % 92 100 100
+Sentence reading time (s) mean (SD) 6.5 (1.4) 7.0 (1.7) 7.5 (3.1)
+Note. * The six low-comprehending participants (< 60% accuracy) nonetheless read the sentences properly, with their
+mean sentence reading times ranging between 4.9–8.5 seconds.
+2.4. Stimuli
+Ninety-six spatially narrow nominative target words (e.g., ilo [joy] and tiili [brick]),
+containing three to five letters each, were embedded into experimental sentence frames. Nonword
+previews were constructed by replacing a single letter of a target word with a visually resembling
+letter of equal width (e.g., k-h, i-l, n-u, s-o, a-ä) in letter positions 1–3, with the mean position
+being 1.7. The dot manipulations were drawn manually with image processing software. In the
+context of a narrow exterior letter, the dot was embedded into a letter space, and in the context of a
+wide exterior letter, such as a, o, u, or n, the dot was embedded inside of the letter. For
+Exclusion of the manipulation-aware participants did not change the overall pattern of the results, with the
+exception that the effect of the preview condition on first-pass skipping was no longer significant in Experiment 1
+(p = 0.11).
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Experiments 2 and 3, the size of the dots was increased by adding grey pixels around the black
+To prevent fatigue, the number of sentences was kept low (48), and every stimulus
+sentence contained two target words. To prevent skipping due to predictability, the stimulus
+sentences were designed so that the target word could not be predicted from the earlier sentence
+context, which was confirmed by a near-zero cloze probability (0.012) of the target words within a
+sample of six people. To reduce the skipping of surrounding words, the preceding and following
+words were considerably longer than the target words. Comprehension statements requiring yes-
+or-no answering by pressing a button, were presented for a random 25% of the sentences.
+readers in thorough reading, the statements focused on the meaning of the target words within a
+sentence. The difficulty is clearly reflected in the low response accuracy. For example, this
+sentence with the bolded target words—“According to recent studies, lice spread the plague to
+humans, starting an unfortunate verse in the history of humankind”—was accompanied by this
+statement—“The sentence mentioned an insect”—for which with the average accuracy of the
+responses was 73%.
+2.5. Apparatus
+The EyeLink 1000 with tabletop mount (SR Research Ltd. Canada) was used to measure
+participants’ eye movements. The stimuli were shown on an LCD screen (Asus VG-236, 1920 x
+1080, 120 Hz, 52 x 29 cm) with a 61 cm viewing distance (one pixel corresponding to 0.2646 mm
+and 0.02485 visual degrees horizontally). Horizontal eye movements were recorded with a
+sampling rate of 2000 Hz, and participants’ heads were stabilized with chin and forehead rests.
+Default three-point horizontal calibration covering the entire screen width was conducted prior to
+RUNNING HEAD: A dynamic adjustment account of word skipping
+each experiment, with a mean calibration error of 0.14 degrees. The calibration points were
+presented on the same single line as the experimental sentences.
+2.6. Procedure
+Eye dominance was determined by the distance hole-in-the-paper test (see Rice et al.,
+2008), and only the dominant eye was tracked. There were no effects of the tracked eye on the
+landing position on the target words over the course of the three experiments. Participants whose
+right eye was tracked launched their saccade toward the target word an average of four pixels
+farther than the participants whose left eye was tracked. The tracked eye had no interaction with
+the experimental conditions. Text was shown centered on the screen with proportional Arial 16
+point font. The horizontal width of one letter was by average 3.1 millimeters, which corresponds
+to 0.291 visual degrees and 11.7 pixels at the middle of the screen. The width of a word space was
+3 mm. Although some sentences covered almost the entire screen width, the target words were
+always located within the central 30 degrees of the screen.
+To prevent sentence and word properties from producing effects between the four
+experimental conditions, each target word received every type of parafoveal preview according to
+a Latin-square rotation of the preview conditions, with the restriction that the same type of
+preview was not presented for both the first and the second target word in a sentence. In
+Experiment 3, the nonword conditions in all of the 20 rotations were replaced with intact
+conditions. Thus, each participant in an experiment received a unique assignment of preview
+conditions for target words. Two practice trials were presented at the beginning of the experiment,
+with one of them followed by a comprehension statement. To see a stimulus sentence, participants
+fixated a circle appearing on the left side of the screen. The fixation was validated by the
+experimenter by a key press. If the validation was not successful, a recalibration was conducted.
+One reviewer remarked that the high calibration accuracy may have been compromised to
+some extent by the usage of lengthy sentences and not employing a 3-point validation before
+each trial.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+After reading the sentence, participants pressed the left mouse button to continue on to the next
+sentence or to receive a comprehension statement. The participant and the experimenter were
+situated in separate rooms.
+2.7. Eye-movement data processing.
+Fixation and saccade data were exported by SR Data Viewer software with a default
+saccade detection threshold of 30 deg/s. The functioning of the boundary triggers was inspected
+using the fixation and saccade data. The technical performance of the triggers was acceptable,
+with an average synchronization delay for screen changes of 6.08 ms, with a 2.3 ms standard
+deviation. There were only four occurrences with > 10 ms delays in a sample of 10 datasets.
+Across the three experiments, out of 5,760 target words presented, there were 5,357 first-
+pass fixation progressions from T-1 to T or T+1 word. From this data pool, cases with premature
+trigger firings (1,114) were removed from the analyses of previous fixation duration, first-pass
+skipping, saccade length, and landing position. These early fires were presumably caused by the
+maximum sampling rate of 2000 Hz, which we selected to minimize the screen synchronization
+delay, plus unavoidable hooks (Bahill et al., 1975) and blinks causing momentary deviations in the
+gaze-position signal. Unfortunately, one target word had erroneous invisible boundary coordinates
+that always led to premature trigger firing and, thus, the exclusion of this item from the analysis.
+Luckily, this did not have an effect on the results because the influence of target word identity was
+controlled by a Latin-square protocol and statistically by a random factor for items. In addition,
+trigger firing prior to 20 ms of saccade onset was accepted, as changes in visual stimuli after this
+are unable to cancel the saccadic plan (Buonocore et al., 2015). These early trigger firings
+occurred equally across different preview types (𝜒 = 4.8, p = .186). In addition, for the foveal
+processing measures (total skipping probability, next fixation duration, and probability of
+additional fixation), cases (129) of late trigger firing after the beginning of the next fixation were
+removed
+RUNNING HEAD: A dynamic adjustment account of word skipping
+2.7.1. Independent and dependent measures.
+For all of the measures, only cases including a first-pass progression from T-1 to T or to
+T+1 were included in the analyses. First-pass skip is a case when a previous fixation was located
+at T-1 and the next fixation was located at T+1, prior to the fixating of later words in the sentence.
+Total skip is a case when a target word was not fixated at all. Previous fixation duration is the
+duration of a fixation located at T-1 immediately preceding a first-pass skip or a fixation landing
+on the target word. Launch distance is the difference (in pixels) between the previous fixation
+position and the beginning of a word space preceding the target word, which was also the location
+of the invisible boundary. Saccade length is the difference between the preceding and subsequent
+fixations in angular degrees. In the relative landing position to the target word, values below 1
+corresponded to T, and values above 1 to T+1, indicating how far beyond the target word the
+skipping saccade landed. Next fixation duration is the duration of the first fixation on T or T+1.
+This measure of preview benefit was selected instead of a more commonly used first fixation
+duration on T, for which high skipping rate lead to low number of observations. Additional
+fixation on the target word is a combined measure of a refixation on the target word and an
+immediate regression to the target word after skipping. This measure was used because separate
+analyses of post-skipping refixation and regression measures would have suffered from reduced
+power in relation to the skipping probability analyses.
+2.7.2. Analysis Method
+Eye-movement measures related to the target and the preceding words were analyzed by
+generalized linear mixed modeling (GLMM) in R using lme4 version 1.1-21 (Bates et al., 2011).
+Estimated marginal means, pairwise comparisons, and plots were produced by the emmeans-
+package (Lenth, 2018). Logarithmic transformations were used for gamma-distributed fixation
+5 In Experiment 2 where 70% of target words were fixated, there was an expected trend of longer first fixation
+duration on target word after nonword (222 ms) vs. intact (213 ms) preview, t = 1.23, p = 0.22.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+duration and landing position measures , but not for saccade length measure, which was normally
+distributed. Experiment-specific analyses were run with one fixed predictor of condition
+(dot_begin, dot_end, intact, nonword) and two random intercepts for the participant and the item
+(models with random slopes did not converge). Significant main effects for analysis of variances
+are followed by pairwise comparisons with Tukey p-value adjustment. Beta estimates are given
+for the analyses of continuous dependent variables and odds ratios for the analyses of dichotomous
+variables. An odds ratio is a more intuitive index of effect size, indicating how much more
+probable an event is in one condition relative to another condition. In the relative landing position
+analysis of data collapsed across experiments, convergence was obtained for a model with
+uncorrelated participant and item random slopes, which was achieved using the Afex package
+(Singmann et al., 2018) for the two-level intact mask factor. Finally, the Hartigan’s dip test for
+unimodality (Hartigan, 1985) was run for the overall landing position distribution, using the
+diptest R-package (Mächler, 2013).
+6 The pattern of significant results was not affected by the logarithmic transformation.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+3. Results
+Estimated Marginal Means Derived from Experiment-Specific Analyses
+Exp 1 Exp 2 Exp 3
+Mean SE Mean SE Mean SE
+intact 2.50 0.07 2.30 0.07 2.47 0.12
+dot_begin 2.58 0.07 2.24 0.07 2.33 0.12
+Saccade
+Length
+dot_end 2.52 0.07 2.31 0.07 2.36 0.12
+nonword 2.41 0.07 2.21 0.07
+intact 0.42 0.06 0.31 0.05 0.41 0.07
+First-Pass
+dot_begin 0.44 0.06 0.26 0.05 0.31 0.07
+Skipping
+dot_end 0.46 0.06 0.32 0.06 0.33 0.07
+Probability
+nonword 0.35 0.06 0.29 0.05
+intact 0.26 0.05 0.14 0.03 0.23 0.05
+Total
+dot_begin 0.26 0.05 0.13 0.03 0.17 0.04
+Skipping
+dot_end 0.25 0.05 0.16 0.04 0.18 0.05
+Probability
+i,b,e
+nonword 0.15 0.03 0.15 0.04
+intact 203 6 210 9 211 6
+Previous
+dot_begin 198 6 214 9 212 7
+Fixation
+dot_end 203 6 213 9 211 7
+Duration
+nonword 199 6 213 9
+intact 220 7 213 8 225 5
+Next
+dot_begin 212 7 220 8 218 6
+Fixation
+dot_end 214 7 213 8 225 6
+Duration
+nonword 219 7 215 8
+intact 0.06 0.02 0.10 0.03 0.08 0.02
+Additional
+dot_begin 0.06 0.02 0.06 0.02 0.06 0.02
+Fixation
+dot_end 0.09 0.02 0.07 0.02 0.09 0.03
+Probability
+i,b
+nonword 0.12 0.03 0.10 0.03
+Note. Index specifies significant contrasts between other conditions indicated by the superscripts i (= intact), b (=
+dot_begin), and e (= dot_end).
+RUNNING HEAD: A dynamic adjustment account of word skipping
+3.1. Experiment 1—Small Visual Dots, Intact and Nonword Preview Conditions
+After the removal of failed trigger firings, there were 1,486 observations (77.4 % of
+possible) available for analysis for preview measures (74.3 observations per participant) and 1,456
+(75.8%) observations for foveal processing measures.
+3.1.1. Saccade length.
+The main effect of condition, 𝜒 (3) = 10.26 , p = 0.002, was significant, which was the
+result of a significant contrast between the nonword (M = 2.41 deg) and the dot_begin (M = 2.58
+deg) conditions (𝛽 = 0.17, SE = 0.05, z = 3.18, p = .008). Random effects variances were 0.048
+(0.22) for the participant and 0.11 (0.33) for the item.
+3.1.2. First-pass skipping probability.
+The main effect of condition, 𝜒 (3) = 8.15 , p = .043, resulted from the significant contrast
+between the dot_end (M = 46%) and the nonword (M = 35%) conditions (odds ratio [OR] = 1.58,
+SE = 0.27, z = 2.73, p = 0.032). Random effects variances were 0.83 (0.91) for the participant and
+0.39 (0.63) for the item.
+3.1.3. Total skipping probability.
+Main effect of condition, 𝜒 (3) = 17.6, p < .001, resulted from the significant contrasts
+between the dot_begin (M = 26%) and the nonword (M = 15%) conditions (OR = 2.01, SE = 0.38,
+z = 3.26, p = .001), the dot_end (M = 25%) and the nonword conditions (OR = 1.94, SE = 0.37, z =
+3.45, p = .003), and the intact (M = 26%) and the nonword conditions (OR = 1.99, SE = 0.38 z =
+3.57, p = .002). Random effects variances were 0.71 (0.84) for the participant and 0.45 (0.67) for
+the item.
+3.1.4. Fixation duration and additional fixation measures.
+There were no differences between conditions for previous fixation duration, 𝜒 (3) = 1.53,
+p = .68, or for next fixation duration, 𝜒 (3) = 2.77, p = .43. For the probability of additional
+fixation measure, there was a main effect of preview condition, 𝜒 (3) = 10.8, p = .013, resulting
+RUNNING HEAD: A dynamic adjustment account of word skipping
+from the significant contrasts between the intact (M = 6%) and the nonword (M = 12%) conditions
+(OR = 0.48, SE = 0.13, z = -2.72, p = .033) and the dot_begin (M = 6%) and the nonword
+conditions (OR = 0.48, SE = 0.13, z = -2.69, p = .036).
+3.1.5. Summary.
+By selecting spatially narrow yet unpredictable target words, we were able to induce a
+high first-pass skipping rate of over 40% and a total skipping probability of 25%. Consistently
+with previous findings (e.g. Gagl et al., 2014), the nonword preview condition led to shorter
+saccade length and reduced first-pass skipping probability. The size of the nonword preview effect
+on saccade length was very small, already supporting the dynamic adjustment rather than the
+discrete control account. As expected, the nonword preview was followed by an increase in the
+probability of immediate or delayed additional fixation of the target words, indicating disturbed
+lexical preprocessing. Visual dot preview conditions had no effect on saccadic measures relative
+to intact condition, suggesting that our visual dots were too small to be perceived during the
+preview. Therefore, we increased the size of the visual dots for the second experiment.
+3.2. Experiment 2—Larger Visual Dots, Intact and Nonword Preview Conditions
+After the removal of failed trigger firings, there were 1,408 observations (73.3%) available
+for the analysis of the preview measures (70.4 observations per participant) and 1,380
+observations (71.8%) for the foveal processing measures.
+3.2.1. Saccade length.
+The main effect of condition was not significant, 𝜒 (3) = 6.48 , p = 0.09, nor were planned
+contrasts. The random effects variances were 0.07 (0.26) for the participant and 0.08 (0.28) for the
+item.
+3.2.2. First-pass skipping probability.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+There was no main effect of condition, 𝜒 (3) = 2.96 , p = 0.39. The random effects
+variances were 0.89 (0.94) for the participant and 0.36 (0.60) for the item.
+3.2.3. Total skipping probability.
+There was no main effect of condition, 𝜒 (3) = 1.40, p = .71. The random effects variances
+were 1.04 (1.01) for the participant and 0.54 (0.74) for the item.
+3.2.4. Fixation duration and additional fixation measures.
+There were no differences between conditions for previous fixation duration, 𝜒 (3) = 0.52,
+p = .92, next fixation duration, 𝜒 (3) = 2.17, p = .53, or the probability of additional fixation
+measure, 𝜒 (3) = 5.64, p = .13.
+3.2.5. Summary.
+Increasing the size of the dots abolished all the nonword preview-related effects observed
+in Experiment 1. The most obvious explanation is that skipping had become a less useful reading
+strategy when 75% of the trials had effective anomalies. This conclusion was further supported by
+a significant difference in total skipping probability (z = -2.17, p = 0.03) between Experiment 1 (M
+= 25.5%, SE = 4%) and Experiment 2 (M = 15.1%, SE = 3%). To study the hypothesis that large
+visual dots affect skipping when the probability of intact and manipulated previews are balanced,
+we replaced the nonword previews with intact previews in Experiment 3.
+3.3. Experiment 3—Larger Visual Dots and Intact Preview Conditions
+After the removal of failed trigger firings, there were 1,349 observations (70.2%) available
+for the analysis of preview measures (67.5 observations per participant) and 1,304 (67.9%)
+observations for the foveal processing measures. All of the intact trials, whose number was now
+doubled, were included in the analyses.
+3.3.1. Saccade length.
+The main effect of condition, 𝜒 (2) = 12.07 , p = 0.002, resulted from significant contrasts
+between intact (M = 2.47 deg) and dot_begin (M = 2.33 deg) conditions (𝛽 = 0.15, SE = 0.05, z =
+RUNNING HEAD: A dynamic adjustment account of word skipping
+3.19, p = .004), and intact and dot_end (M = 2.36 deg) conditions (𝛽 = 0.11, SE = 0.05, z = 2.33, p
+= .005). Random effects variances were 0.24 (0.49) for the participant and 0.08 (0.28) for the item.
+3.3.2. First-pass skipping probability.
+The main effect of condition, 𝜒 (2) = 8.81, p = 0.01, resulted from significant contrast
+between the intact (M = 41%) and dot_begin (M = 31%) conditions (OR = 1.50, SE = 0.24, z =
+2.61, p = .025) and from nearly significant intact and dot_end (M = 33%) conditions (OR = 1.41,
+SE = 0.22, z = 2.19, p = 0.07). Random effects variances were 1.40 (1.18) for the participant and
+0.29 (0.54) for the item.
+3.3.3. Total skipping probability.
+The main effect of condition approached significance, 𝜒 (3) = 4.89, p = .087, with non-
+significant contrasts between the intact and dot_begin conditions (OR = 1.42, SE = .25, z = 2.02, p
+= 0.11) as well as between the intact and dot_end conditions (OR = 1.30, SE = 0.23, z = 1.50, p =
+.29). The random effects variances were 1.35 (1.16) for the participant and 0.22 (0.47) for the
+item.
+3.3.4. Fixation duration and additional fixation measures.
+There were no differences between the conditions for previous fixation duration, 𝜒 (3) =
+0.95, p = .95, next fixation duration, 𝜒 (3) = 2.17, p = .34, or probability of additional fixation,
+𝜒 (3) = 1.27, p = .53.
+3.3.5. Summary.
+The target words, now shown with enlarged visual dot previews, were less likely to be
+skipped (41% to 31%), and saccade lengths were shorter than with intact previews. The
+magnitudes of these effects were comparable to what was observed in Experiment 1. This
+interpretation was supported by a nonsignificant interaction (z = -0.19, p = 0.98) between
+experiments (1, 3) and disruptive preview (Exp 1: nonword, other conditions, Exp 3: intact vs.
+large dot conditions). However, unlike what was found for nonword previews in Experiment 1,
+RUNNING HEAD: A dynamic adjustment account of word skipping
+large visual dot previews in Experiment 3 were associated with neither increased additional
+fixation probability nor lower total skipping probability relative to intact preview. This result is in
+line with the previous knowledge of subtle visual manipulations affecting only early word
+recognition processes, but do not interfere with later lexical processing (Glaholt et al., 2014;
+Reingold & Rayner, 2006; White & Staub, 2012; Gagl et al., 2014). Again, there were no
+indications that the location of the dot had any influence on skipping. Thus, it can be concluded
+that the visual processing of an upcoming short word before skipping is holistic in nature rather
+than being strongly governed by degrading visual quality toward larger eccentricity.
+3.4. Analysis of Saccadic Control Underlying Word Skipping
+Experiment-specific analyses indicated that only nonword and large dot previews were
+effective in affecting saccade lengths and, thus, skipping. To gain more statistical power for
+studying interactions between factors potentially affecting saccade targeting, data from
+experiments 1 and 3 were pooled together. Because there were no significant effects of preview
+type in experiment 2, its data was excluded from this analysis. Then, the disruptive preview types
+(nonword in Experiments 1, large dot previews in Experiment 3) were collapsed together and
+compared with ineffective preview types (intact and dot previews in Experiments 1, intact in
+Experiment 3).
+Relative landing position in the scale of target word T was calculated for each fixation
+preceded by a first-pass saccade crossing the invisible boundary. The landing position was
+predicted full-factorially with preview (intact, anomalous), launch distance, and previous fixation
+duration, while random structure included intercepts and slopes for preview type, both for the
+participants and items. Landing position, previous fixation duration, and launch distance values
+larger than three SD from the mean were excluded. According to the results, landing position
+shifts left as a function of increasing launch distance (𝛽 = -0.43, SE = 0.03, t = -13.4, p < .001), as
+well as after the presentation of an anomalous preview (𝛽 = 0.15, SE = 0.04, t = 3.34, p = .002).
+RUNNING HEAD: A dynamic adjustment account of word skipping
+The interaction between launch distance and preview (𝛽 = 0.07, SE = 0.04, t = -1.82, p = .070) was
+approaching significance, yet the effect is too weak to be interpreted with confidence. The stable
+influence of preview type, independent from launch distances or previous fixation durations
+dependent on vision gradient or previous fixation duration.
+The Hartigan’s dip test for unimodality run for the landing positions in intact preview trials
+the scale used: a) pixel distance to end of target word, D = 0.0089, p = 0.47, b) scale of target
+word, D = 0.0075, p = 0.78, c) combined target (values 0-1) and next word (values 1-2), D =
+0.0075, p = 0.78. Visual inspection of the condition-specific density curves indicate that disruptive
+previews are associated with higher probability to land on the side of word n+1.
+Results of the Saccadic Control Analyses on Relative Landing Position
+Note: Panel (a): Estimated marginal means with 95% confidence intervals for a non-significant interaction of launch
+distance (standardized z-value), previous fixation duration (z-value), and preview type (0 = intact preview, 1 =
+anomalous preview). The z-values -1, 0, 1 correspond to launch distances of 0.71, 1.41, and 2.13 visual degrees and
+previous fixation durations of 158 ms, 208 ms, and 276 ms, respectively. Panel (b): Density distribution of relative
+landing position for different previews in experiments 1 and 3. Values 0–1 on the x-axis belong to target word T and
+higher values to word T+1, including word space.
+4. Discussion
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Word skipping has been widely considered as a central phenomenon for the theoretical
+understanding of eye-movement control in reading (Reichle & Drieghe, 2013). To explain
+linguistic level effects on word skipping, prevalent models have relied on the discrete control
+assumption, i.e. the selection of a saccade target word on the basis of parafoveal lexical processing
+(Engbert et al., 2005; Reichle et al., 1999; Reilly & Radach, 2006; Snell et al., 2018b). In contrast,
+according to the dynamic adjustment views (Cutter et al., 2017, 2018; Liu et al., 2017a–b),
+saccade length is computed in a continuous manner as a function of current and next word
+properties. Here, it was shown by simulations that a prominent discrete control model, EZ Reader,
+predict bimodal landing position across a candidate word for skipping and its subsequent word,
+and that linguistic properties of the candidate word affect which one of these words will become
+the saccade target. Instead, a dynamic adjustment model (CBSL) predicted unimodal landing
+position distribution, and previous empirical results provided basis to predict small continuous
+influence of upcoming word on landing position. Finally, the general prediction of attentional
+involvement in skipping was studied by testing whether the vision gradient over candidate words
+for skipping is subject of early attentional enhancement capable to affect saccade planning. These
+predictions were studied in three boundary experiments, in which likely-to-be skipped short target
+words were shown with varying previews, being either intact, nonword neighbors to target words,
+or containing an extra visual dot located either in the beginning part or end part of the word. As
+will be discussed, the results generally favored the dynamic adjustment view over the discrete
+control explanation.
+4.2. Dynamic or Discrete control of Saccades?
+Consistent with the CBSL, but not with the EZ Reader prediction, a unimodal landing
+position distribution was found across target and its subsequent word. This result is in line with
+previous empirical findings studying landing positions across word spaces (Albrengues et al.,
+2019) and the well-known property of landing position distributions being truncated at word
+RUNNING HEAD: A dynamic adjustment account of word skipping
+boundaries (since McConkie et al., 1988, 1989). Neither other signs of discrete control (Engbert et
+al., 2005; Reichle et al., 2017; Reilly & Radach, 2006; Snell et al., 2018b) were observed: The
+anomalous previews did not reduce the probability to select word n+2 as a saccade target, and the
+preview effects were not conditional on near launch distance or long previous fixation duration
+(Eskenazi & Folk, 2015; Rayner et al., 2011; White, 2007). Note that the serial EZ Reader model
+(Reichle et al., 1999) predict inflated fixation durations prior skipping due to saccadic
+preplanning, whereas parallel attention models predict that processing of next word may affect
+fixation duration prior skipping (Engbert et al., 2005; Reilly & Radach, 2006; Snell et al., 2018b).
+Instead, the present results favor the view that the parafoveal perception induce a time-
+independent influence on saccade lengths (Schotter et al., 2012; Brothers et al., 2017). However,
+this aspect of our result should be taken with caution due to reliance of post-hoc data selection
+procedure of effective and non-effective preview conditions. Taken together, the present results
+provide support that dynamic adjustment of saccade length is a potent mechanism to explain also
+word skipping in reading, previously thought to require discrete selection of a target word. In other
+words, skipping saccades seem not to be categorically different from other progressive saccades.
+4.1. The Nature of Parafoveal Preprocessing in Reading.
+The possible involvement of attention in saccade length modulation was studied by
+comparing the effect of location of the visual dot within the preview of the target word; an early
+attentional mechanism should compensate the degrading vision gradient towards larger
+eccentricity so that location of the visual dot should not have an effect (see Snell et al., 2019). This
+hypothesis was clearly confirmed by the results, suggesting that the parafoveal vision is subject to
+attentional enhancement early enough to affect saccade programming (Inhoff & Radach, 2014;
+Inhoff et al., 2005; Snell et al., 2018a).
+RUNNING HEAD: A dynamic adjustment account of word skipping
+To study which type of parafoveal information is used in saccade length modulation
+governing skipping, the effects of subtle nonword vs. visual dot previews was compared. Both
+discrete and dynamics control views predicted that skipping is affected by both types of previews,
+yet with different targeting mechanism: Dynamic adjustment would lead leftward shift in landing
+position for anomalous previews, whereas EZ Reader predict reduced probability to target word
+n+2. The results confirmed equal small effect of preview types on saccade length modulation
+(Choi & Gordon, 2014; Gordon et al., 2013; Plummer & Rayner, 2012; Drieghe, 2008;
+Warrington et al., 2018). After the already discovered unimodal landing position distribution, it
+was not surprise that the anomalous previews affected saccade length through the dynamic
+adjustment mechanism. However, the visual anomalies had to be of sufficient size for being able
+to affect saccadic length, which seems to parallel Hermena et al. (2018) finding no skipping
+effects for the absence of small diacritic marks in the reading of Arabic. Together, the available
+evidence suggests that any detectable information in blurred parafoveal vision is used to guide
+saccades in reading. Tentatively, according to predictive coding framework (for a review, see
+Huang & Rao, 2011), a preview may first induce a visual-orthographic prediction, which need to
+be yet confirmed on the basis of more acuity vision (Friston et al., 2012). Any detected oddity in
+preview may intervene the prediction generation and reduce the saccade length to some extent.
+Instead, highly familiar preview induces fast and reliable predictions, and lower quality visual
+sample may be sufficient to confirm their accuracy.
+4.1. The Cognitive Mechanism Underlying Word Skipping in Reading.
+Combining the present findings with the previous knowledge of the importance of spatial
+width of current (Cutter et al., 2017; 2018) and next word (Hautala et al., 2011; Hautala & Loberg,
+2015; Hermena et al., 2017) on saccadic measures, a following dynamic adjustment mechanism
+for skipping can be drafted: First, as explicated by the CBSL account (Cutter et al., 2017, 2018;
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Anonymous, preprint), the preliminary saccade length is extracted through preview of distance
+between center of words n+1 and n+2. Then, this preliminary program is corrected to some extent
+by the actual launch distance from word n+1 to word n+2. The results of the present study then
+add to this knowledge by showing that the saccade length if also fine-tuned by the preview
+processing of the next word. This preview processing seems to be enhanced by parallel attention
+gradient, instead of being fully determined by vision gradient (Gagl et al., 2014). If this preview
+processing does not encounter anything highly anomalous content (Reingold et al., 2016), its
+influence on saccade length is rather small, yet sufficient to produce the small visual and linguistic
+level effects on word skipping. Together these mechanisms produce uniform landing position
+distribution across words n+1 and n+2.
+Previous studies have compared and modelled landing positions of skipping and non-
+skipping cases (Krügel et al., 2010; Krügel et al., 2014). Such a comparison is based on discrete
+control assumption, but from the the perspective of dynamic adjustment it would mean comparing
+beginning of a distribution with its tail. Nevertheless, skipping saccades are special for the reason
+that two word spaces are crossed, which reduce saccade length (Krügel et al., 2010) and increase
+oculomotor error (Krügel & Engbert, 2014). At least the former effect is fully in line with the
+1).
+4.3. Preview Effects on Later Foveal Processing.
+After fixing the saccadic program, the processing of a parafoveal word continues, and its
+visual perception is further enhanced by the presaccadic attention mechanism (Li et al., 2016;
+Rolfs & Carrasco, 2012). In line with previous studies utilizing faint font manipulation (Glaholt et
+al., 2014; Reingold & Rayner, 2006; Warrington et al., 2018; White & Staub, 2012), but in
+contrast to partial visual degradation manipulations (Gagl et al., 2014), our subtle visual dot
+RUNNING HEAD: A dynamic adjustment account of word skipping
+preview was not associated with foveal processing difficulties. Thus, the task-irrelevant visual
+dots affected only early level of lexical processing of words, which was overcome rapidly during
+later foveal processing (Warrington et al., 2018).
+As expected, orthographically illegal previews led to later foveal processing difficulties,
+which has been observed in several previous studies (Choi & Gordon, 2014; Gordon et al., 2013;
+Hohenstein & Kliegl, 2014; Schotter et al., 2018, 2019; Plummer & Rayner, 2012; Reingold &
+Rayner, 2006). Surprisingly, the effect of nonword preview did not yet manifest in the next
+fixation duration (on T or including also T+1 word), but appeared first in the increased probability
+to make an immediate additional fixation and in later regressions to the target word. A
+contributing factor here was the use of visually similar replacement letters, which are known
+reduce the effect of nonword preview on foveal measures (Marcet & Perea, 2018 Also, the
+).
+present study was not optimized for studying foveal effects due to high skipping rate, which
+reduced the number of first-pass fixations. In line with this explanation, there was a trend towards
+expected direction in the first fixation duration of target words in experiment 2, where the
+skipping rate was lowest.
+4.4. Limitations.
+It is possible that the discrete control disputed herein depends largely on the distinctiveness
+of preview objects controlling the speed and the certainty of parafoveal perception. Supporting
+evidence for this view is provided by Reingold and colleagues (2016), who showed that symbol
+strings unrelated to the text are highly likely to be skipped during reading. Thus, the caveat with
+visual manipulations is that in some circumstances, they may become saccade targets (or non-
+targets) themselves. We did not find such an effect; yet, in Experiment 2, there was a trend toward
+longer saccade lengths when the anomalous dot was in the end rather than in the beginning part of
+a word. Given that the nonword effect was also absent from Experiment 2, it is possible that when
+RUNNING HEAD: A dynamic adjustment account of word skipping
+almost every sentence contains something weird, readers start to invest their attentional resources
+in detecting these anomalies by trying to fixate every word (see Wotschack, & Kliegl, 2013, for
+the strategic control of skipping). Thus, it is recommended that the number of intact and visually
+anomalous trials should be balanced in this type of research.
+Importantly, the present findings may be rather specific to short words and therefore likely
+to represent skipping driven by the visuo-oculomotor mechanism. Instead, the skipping of longer
+words is likely to be driven more by higher-level cognitive processes, perhaps by a genuine
+discrete control mechanism taking place in rare occasions. In fact, there is evidence that word
+predictability has an equal influence on word skipping in short and long words (Rayner et al.,
+2011), meaning that the effect is relatively greater in long than short words. Moreover, readers can
+also strategically adjust their reading, e.g., by skimming parts of a text or skipping redundant
+words or entire parts of sentences.
+Methodological particularities of the present study include insertion of two target words
+into a single sentence, which lead to long carrier sentences. Despite of high calibration accuracy
+values, the long sentences may have induced some extra head movements. The comprehension
+questions tried to guide attention towards target words, being therefore often concerned on minor
+details. Consequently, few participants scored low in these questions, making it somewhat unsure
+if they were fully engaged with reading all of the time. However, their data was kept in the
+analyses because exclusion of any participant would had produced a bias in the latin-square
+rotation of conditions.
+4.5. Conclusions.
+The present findings provide clear support for the dynamic adjustment view of saccade
+length also in word-spaced orthographies (Cutter et al., 2017, 2018; Anonymous, Preprint), as
+previously studied in non-spaced orthography (Liu et al., 2017a–b, 2018). The dynamic center-
+RUNNING HEAD: A dynamic adjustment account of word skipping
+based saccade length model (Cutter et al., 2017, 2018; Anonymous, Preprint) supplemented with
+empirical knowledge, was found to provide a highly tenable and parsimonious account of eye
+movement control underlying word skipping. Boundary manipulations provided also novel
+evidence that attentional enhancement of vision over short next word takes place early enough to
+affect fine-tuning of saccadic length. It can be concluded that dynamic adjustment control
+provides a viable alternative to discrete control family of models, which assume that saccade
+target word selection is driven by lexical processes.
+5. References
+Albrengues, C., Lavigne, F., Aguilar, C., Castet, E., & Vitu, F. (2019). Linguistic processes do not
+beat visuo-motor constraints, but they modulate where the eyes move regardless of word
+boundaries: Evidence against word-based eye-movement control during reading. PlosOne,
+14(7).
+Angele, B., & Rayner, K. (2013). Processing the in the parafovea: Are articles skipped
+automatically? Journal of Experimental Psychology: Learning, Memory, and Cognition,
+39(2), 649.
+Angele, B., Laishley, A. E., Rayner, K., & Liversedge, S. P. (2014). The effect of high-and low-
+frequency previews and sentential fit on word skipping during reading. Journal of
+Experimental Psychology: Learning, Memory, and Cognition, 40(4), 1181.
+Anonymous. (Preprint). A dynamic adjustment model of saccade lengths in reading for word-
+spaced orthographies: Evidence from simulations. OSF.
+Bahill, A. T., Clark, M. R., & Stark, L. (1975). Glissades—Eye movements generated by
+mismatched components of the saccadic motoneuronal control signal. Mathematical
+Biosciences, 26(3–4), 303–318.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Bates, D., Mächler, M., Bolker, B., Walker, S., Christensen, R. H. B., Singmann, H., ... &
+Grothendieck, G. (2011). Package ‘lme4’. Linear mixed-effects models using S4 classes. R
+package version, 1-1.
+Bouma, H. (1970). Interaction effects in parafoveal letter recognition. Nature, 226(5241), 177–
+178.
+Briihl, D., & Inhoff, A. W. (1995). Integrating information across fixations during reading: The
+use of orthographic bodies and of exterior letters. Journal of Experimental Psychology:
+Learning, Memory, and Cognition, 21(1), 55.
+Brothers, T., Hoversten, L. J., & Traxler, M. J. (2017). Looking back on reading ahead: No
+evidence for lexical parafoveal-on-foveal effects. Journal of Memory and Language, 96, 9-
+22.
+Brysbaert, M., & Vitu, F. (1998). Word skipping: Implications for theories of eye movement
+control in reading. In G. Underwood (Ed.), Eye guidance in reading and scene perception
+(pp. 125–147). Elsevier Science Ltd.
+Buonocore, A., McIntosh, R. D., & Melcher, D. (2015). Beyond the point of no return: Effects of
+visual distractors on saccade amplitude and velocity. Journal of Neurophysiology, 115(2),
+752–762.
+Choi, W., & Gordon, P. C. (2014). Word skipping during sentence reading: Effects of lexicality on
+parafoveal processing. Attention, Perception, & Psychophysics, 76(1), 201-213.
+Cutter, M. G., Drieghe, D., & Liversedge, S. P. (2017). Reading sentences of uniform word
+length: Evidence for the adaptation of the preferred saccade length during reading. Journal
+of Experimental Psychology: Human Perception and Performance, 43(11), 1895.
+Cutter, M. G., Drieghe, D., & Liversedge, S. P. (2018). Reading sentences of uniform word length–
+II: Very rapid adaptation of the preferred saccade length. Psychonomic Bulletin & Review,
+25(4), 1435–1440.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Drieghe, D. (2008). Foveal processing and word skipping during reading. Psychonomic Bulletin &
+Review, 15(4), 856–860.
+Drieghe, D., Brysbaert, M., Desmet, T., & De Baecke, C. (2004). Word skipping in reading: On
+the interplay of linguistic and visual factors. European Journal of Cognitive Psychology,
+16(1–2), 79–103.
+Engbert, R., Nuthmann, A., Richter, E. M., & Kliegl, R. (2005). SWIFT: A dynamical model of
+saccade generation during reading. Psychological Review, 112(4), 777.
+Eskenazi, M. A., & Folk, J. R. (2015). Skipped words and fixated words are processed differently
+during reading. Psychonomic Bulletin & Review, 22(2), 537–542.
+Findelsberger, E., Hutzler, F., & Hawelka, S. (2019). Spill the load: Mixed evidence for a foveal
+load effect, reliable evidence for a spillover effect in eye-movement control during
+reading. Attention, Perception, & Psychophysics, 1–12.
+Fitzsimmons, G., & Drieghe, D. (2013). How fast can predictability influence word skipping
+during reading? Journal of Experimental Psychology: Learning, Memory, and Cognition,
+39(4), 1054.
+Friston, K., Adams, R., Perrinet, L., & Breakspear, M. (2012). Perceptions as hypotheses:
+Saccades as experiments. Frontiers in Psychology, 3, 151.
+Gagl, B., Hawelka, S., Richlan, F., Schuster, S., & Hutzler, F. (2014). Parafoveal preprocessing in
+reading revisited: Evidence from a novel preview manipulation. Journal of Experimental
+Psychology: Learning, Memory, and Cognition, 40(2), 588.
+Glaholt, M. G., Rayner, K., & Reingold, E. M. (2014). A rapid effect of stimulus quality on the
+durations of individual fixations during reading. Visual Cognition, 22(3–4), 377–389.
+Gordon, P. C., Plummer, P., & Choi, W. (2013). See before you jump: Full recognition of
+parafoveal words precedes skips during reading. Journal of Experimental Psychology:
+Learning, Memory, and Cognition, 39(2), 633.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Hartigan, P. M. (1985). Computation of the dip statistic to test for unimodality. Applied Statistics,
+34, 320–325.
+Hautala, J., & Loberg, O. (2015). Breaking down the word length effect on readers’ eye
+movements. Language, Cognition and Neuroscience, 30(8), 993–1007.
+Hautala, J., Hyönä, J., & Aro, M. (2011). Dissociating spatial and letter-based word length effects
+observed in readers’ eye movement patterns. Vision Research, 51(15), 1719–1727.
+Hermena, E. W., Liversedge, S. P., & Drieghe, D. (2016). Parafoveal processing of Arabic
+diacritical marks. Journal of Experimental Psychology: Human Perception and
+Performance, 42(12), 2021.
+Hermena, E. W., Liversedge, S. P., & Drieghe, D. (2017). The influence of a word’s number of
+letters, spatial extent, and initial bigram characteristics on eye movement control during
+reading: Evidence from Arabic. Journal of Experimental Psychology: Learning, Memory,
+and Cognition, 43(3), 451.
+Hermena, E. W., Liversedge, S. P., Bouamama, S., & Drieghe, D. (2018). Orthographic and root
+frequency effects in Arabic: Evidence from eye movements and lexical decision. Journal
+of Experimental Psychology: Learning, Memory, and Cognition, 45(5), 934–954.
+Hoedemaker, R. S., & Gordon, P. C. (2014). It takes time to prime: Semantic priming in the ocular
+lexical decision task. Journal of Experimental Psychology: Human Perception and
+Performance, 40(6), 2179.
+Hohenstein, S., & Kliegl, R. (2014). Semantic preview benefit during reading. Journal of
+Experimental Psychology: Learning, Memory, and Cognition, 40(1), 166.
+Huang, Y., & Rao, R. P. (2011). Predictive coding. Wiley Interdisciplinary Reviews: Cognitive
+Science, 2(5), 580–593.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Hyönä, J., Yan, M., & Vainio, S. (2018). Morphological structure influences the initial landing
+position in words during reading Finnish. Quarterly Journal of Experimental Psychology,
+71(1), 122–130.
+Inhoff, A. W., & Radach, R. (2014). Parafoveal preview benefits during silent and oral reading:
+Testing the parafoveal information extraction hypothesis. Visual Cognition, 22(3–4), 354–
+376.
+Inhoff, A. W., Eiter, B. M., & Radach, R. (2005). Time course of linguistic information extraction
+from consecutive words during eye fixations in reading. Journal of Experimental
+Psychology: Human Perception and Performance, 31(5), 979.
+Johnson, R. L., Perea, M., & Rayner, K. (2007). Transposed-letter effects in reading: Evidence
+from eye movements and parafoveal preview. Journal of Experimental Psychology:
+Human Perception and Performance, 33(1), 209.
+Kliegl, R., & Engbert, R. (2005). Fixation durations before word skipping in reading.
+Psychonomic Bulletin & Review, 12(1), 132–138.
+Krügel, A., & Engbert, R. (2010). On the launch-site effect for skipped words during reading.
+Vision Research, 50(16), 1532–1539.
+Krügel, A., & Engbert, R. (2014). A model of saccadic landing positions in reading under the
+influence of sensory noise. Visual Cognition, 22(3-4), 334-353.
+Krügel, A., Vitu, F., & Engbert, R. (2012). Fixation positions after skipping saccades: A single
+space makes a large difference. Attention, Perception, & Psychophysics, 74(8), 1556–
+1561.
+Lenth, R. (2018). Emmeans: Estimated marginal means, aka least-squares means. R package,
+version 1.4.4.
+Li, H. H., Barbot, A., & Carrasco, M. (2016). Saccade preparation reshapes sensory tuning.
+Current Biology, 26(12), 1564–1570.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Liu, Y., Guo, S., Yu, L., & Reichle, E. D. (2018). Word predictability affects saccade length in
+Chinese reading: An evaluation of the dynamic-adjustment model. Psychonomic Bulletin
+& Review, 25(5), 1891–1899.
+Liu, Y., Huang, R., Gao, D., & Reichle, E. D. (2017a). Further tests of a dynamic‐adjustment
+account of saccade targeting during the reading of Chinese. Cognitive Science, 41, 1264–
+1287.
+Liu, Y., Huang, R., Li, Y., & Gao, D. (2017b). The word frequency effect on saccade targeting
+during Chinese reading: Evidence from a survival analysis of saccade length. Frontiers in
+Psychology, 8, 116.
+Mächler, M. (2013). Package ‘diptest’. R Package Version 0.75–5. R: A language and
+environment for statistical computing. Vienna, Austria: R Foundation for Statistical
+Computing.
+Marcet, A., & Perea, M. (2018). Visual letter similarity effects during sentence reading: Evidence
+from the boundary technique. Acta psychologica, 190, 142-149.
+McConkie, G. W., Kerr, P. W., Reddix, M. D., & Zola, D. (1988). Eye movement control during
+reading: I. The location of initial eye fixations on words. Vision Research, 28(10), 1107–
+1118.
+McConkie, G. W., Kerr, P. W., Reddix, M. D., Zola, D., & Jacobs, A. M. (1989). Eye movement
+control during reading: II. Frequency of refixating a word. Perception & Psychophysics,
+46(3), 245–253.
+McDonald, S. A. (2006). Effects of number-of-letters on eye movements during reading are
+independent from effects of spatial word length. Visual Cognition, 13(1), 89–98.
+Nuthmann, A., Vitu, F., Engbert, R., & Kliegl, R. (2016). No evidence for a saccadic range effect
+for visually guided and memory-guided saccades in simple saccade-targeting tasks. PloS
+one, 11(9), e0162449.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Plummer, P., & Rayner, K. (2012). Effects of parafoveal word length and orthographic features on
+initial fixation landing positions in reading. Attention, Perception, & Psychophysics, 74(5),
+950-963.
+Pollatsek, A., Reichle, E. D., & Rayner, K. (2006). Tests of the EZ Reader model: Exploring the
+interface between cognition and eye-movement control. Cognitive psychology, 52(1), 1-56.
+Radach, R., Inhoff, A., & Heller, D. (2004). Orthographic regularity gradually modulates saccade
+amplitudes in reading. European Journal of Cognitive Psychology, 16(1–2), 27–51.
+Rayner, K., Ashby, J., Pollatsek, A., & Reichle, E. D. (2004). The effects of frequency and
+predictability on eye fixations in reading: Implications for the EZ Reader model. Journal
+of Experimental Psychology: Human Perception and Performance, 30(4), 720.
+Rayner, K., Slattery, T. J., Drieghe, D., & Liversedge, S. P. (2011). Eye movements and word
+skipping during reading: Effects of word length and predictability. Journal of
+Experimental Psychology: Human Perception and Performance, 37(2), 514.
+Reichle, E. D., & Drieghe, D. (2013). Using EZ Reader to examine word skipping during reading.
+Journal of Experimental Psychology: Learning, Memory, and Cognition, 39(4), 1311.
+Reichle, E. D., & Sheridan, H. (2015). EZ Reader: An overview of the model and two recent
+applications. In A. Pollatsek & R. Treiman (Eds.), The Oxford handbook of reading (pp.
+277–292). Oxford University Press.
+Reichle, E. D., Liversedge, S. P., Drieghe, D., Blythe, H. I., Joseph, H. S., White, S. J., & Rayner,
+K. (2013). Using EZ Reader to examine the concurrent development of eye-movement
+control and reading skill. Developmental Review, 33(2), 110-149.
+Reichle, E. D., Rayner, K., & Pollatsek, A. (1999). Eye movement control in reading: Accounting
+for initial fixation locations and refixations within the EZ Reader model. Vision Research,
+39(26), 4403–4411.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Reichle, E. D., Rayner, K., & Pollatsek, A. (2012). Eye movements in reading versus nonreading
+tasks: Using EZ Reader to understand the role of word/stimulus familiarity. Visual
+cognition, 20(4-5), 360-390.
+Reilly, R. G., & Radach, R. (2006). Some empirical tests of an interactive activation model of eye
+movement control in reading. Cognitive Systems Research, 7(1), 34–55.
+Reingold, E. M., & Rayner, K. (2006). Examining the word identification stages hypothesized by
+the EZ Reader model. Psychological Science, 17(9), 742–746.
+Reingold, E. M., Sheridan, H., Meadmore, K. L., Drieghe, D., & Liversedge, S. P. (2016).
+Attention and eye-movement control in reading: The selective reading paradigm. Journal
+of Experimental Psychology: Human Perception and Performance, 42(12), 2003.
+Reingold, E. M., Yang, J., & Rayner, K. (2010). The time course of word frequency and case
+alternation effects on fixation times in reading: Evidence for lexical control of eye
+movements. Journal of Experimental Psychology: Human Perception and
+Performance, 36(6), 1677.
+Rice, M. L., Leske, D. A., Smestad, C. E., & Holmes, J. M. (2008). Results of ocular dominance
+testing depend on assessment method. Journal of American Association for Pediatric
+Ophthalmology and Strabismus, 12(4), 365–369.
+Risse, S., Hohenstein, S., Kliegl, R., & Engbert, R. (2014). A theoretical analysis of the perceptual
+span based on SWIFT simulations of the n+ 2 boundary paradigm. Visual Cognition, 22(3–
+4), 283–308.
+Rolfs, M., & Carrasco, M. (2012). Rapid simultaneous enhancement of visual sensitivity and
+perceived contrast during saccade preparation. Journal of Neuroscience, 32(40), 13744–
+13752a.
+Schad, D. J., & Engbert, R. (2012). The zoom lens of attention: Simulating shuffled versus normal
+text reading using the SWIFT model. Visual Cognition, 20(4–5), 391–421.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Schilling, H. E., Rayner, K., & Chumbley, J. I. (1998). Comparing naming, lexical decision, and
+eye fixation times: Word frequency effects and individual differences. Memory & Cognition,
+26(6), 1270-1281.
+Schotter, E. R., Angele, B., & Rayner, K. (2012). Parafoveal processing in reading. Attention,
+Perception, & Psychophysics, 74(1), 5–35.
+Schotter, E. R., Leinenger, M., & von der Malsburg, T. (2018). When your mind skips what your
+eyes fixate: How forced fixations lead to comprehension illusions in reading. Psychonomic
+Bulletin & Review, 25(5), 1884–1890.
+Schotter, E. R., von der Malsburg, T., & Leinenger, M. (2019). Forced fixations, trans-saccadic
+integration, and word recognition: Evidence for a hybrid mechanism of saccade triggering
+in reading. Journal of Experimental Psychology: Learning, Memory, and Cognition, 45(4),
+677.
+Singmann, H., Bolker, B., Westfall, J., Aust, F., Højsgaard, S., Fox, J., ... & Christensen, R. H. B.
+project. org/package= afex.
+Slattery, T. J., & Yates, M. (2018). Word skipping: Effects of word length, predictability, spelling
+and reading skill. Quarterly Journal of Experimental Psychology, 71(1 Special Issue),
+250–259.
+Snell, J., Mathôt, S., Mirault, J., & Grainger, J. (2018a). Parallel graded attention in reading: A
+pupillometric study. Scientific Reports, 8(1), 3743.
+Snell, J., Meade, G., Meeter, M., Holcomb, P., & Grainger, J. (2019). An electrophysiological
+investigation of orthographic spatial integration in reading. Neuropsychologia, 129, 276–
+283.
+Snell, J., van Leipsig, S., Grainger, J., & Meeter, M. (2018b). OB1-reader: A model of word
+recognition and eye movements in text reading. Psychological Review, 125(6), 969.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Wang, C. A., Inhoff, A. W., & Radach, R. (2009). Is attention confined to one word at a time? The
+spatial distribution of parafoveal preview benefits during reading. Attention, Perception, &
+Psychophysics, 71(7), 1487–1494.
+Warrington, K. L., McGowan, V. A., Paterson, K. B., & White, S. J. (2018). Effects of aging,
+word frequency, and text stimulus quality on reading across the adult lifespan: Evidence
+from eye movements. Journal of Experimental Psychology: Learning, Memory, and
+Cognition, 44(11), 1714–1729.
+White, S. J. (2007). Foveal load and parafoveal processing: The case of word skipping. In R. van
+Gompel, M. Fischer, W. Murray, & R. Hill (Eds.), Eye movements: A window on mind and
+brain (pp. 409 – 424). Amsterdam: Elsevier.
+White, S. J., & Staub, A. (2012). The distribution of fixation durations during reading: Effects of
+stimulus quality. Journal of Experimental Psychology: Human Perception and
+Performance, 38(3), 603.
+White, S. J., Rayner, K., & Liversedge, S. P. (2005). The influence of parafoveal word length and
+contextual constraint on fixation durations and word skipping in reading. Psychonomic
+Bulletin & Review, 12(3), 466–471.
+Wotschack, C., & Kliegl, R. (2013). Reading strategy modulates parafoveal-on-foveal effects in
+sentence reading. The Quarterly Journal of Experimental Psychology, 66(3), 548–562.
+Yang, S. N., & Vitu, F. (2007). Dynamic coding of saccade length in reading. In Eye
+Movements (pp. 293-317). Elsevier.
+Yao-N'Dré, M., Castet, E., & Vitu, F. (2014). Inter-word eye behaviour during reading is not
+invariant to character size: Evidence against systematic saccadic range error in
+reading. Visual Cognition, 22(3-4), 415-440.
+RUNNING HEAD: A dynamic adjustment account of word skipping
+Appendix A.
+Stimulus sentences. Target words are bolded for illustration.
+Practise 1: Loppujen lopuksi olen varsin tyytyväinen uuteen polkupyörääni, vaikka siinä olikin aluksi pikkuvikoja.
+Practise 2: Vuosien pohdinnan tuloksena olemme viimein päättäneet muuttaa kaupungin vilskeestä maaseudun rauhaan.
+Luullakseni minulle osoitettu tili kerryttää korkotuloja, vaikka odotettavissa oleva tuotto jäänee liki olemattomaksi.
+Matin tarkoin ennakoima ilo osoittautui ennenaikaiseksi, sillä vauhdikkaasti aloittanut ori menetti asemiaan yllättäen.
+Pekan huolellisesti esittämä iva unohdettiin, sillä yleisössä vallitsivat eri näkemykset aiheesta.
+Vahvoista epäilyksistä huolimatta tie johdattaisi meidät perille, sillä tunnistamani lila rakennus sijaitsi sen varrella.
+Suomessa harvoin esiintyvä koi tuottaa päänvaivaa, etenkin jos tämän kauniin luontokappaleen aie suuntautuu vaatekaappiin.
+Alun tappioasemastaan huolimatta itä kukisti lännen tässä pesäpallon iäti kestäneessä perinnekamppailussa.
+Läheisestä kaupasta ostamani tilli saattoi olla vanhentunutta, mutta keittoon lisäämäni luu ostettiin kyllä varmasti tuoreena.
+Viimeaikaisten tutkimusten mukaan täi aiheutti ruton leviämisen ihmisiin, jonka seurauksena alkoi harmittava jae ihmiskunnan historiassa.
+Tässä tilanteessa etenemme ovi kerrallaan toivoen, että jokin niistä olisi jätetty irti saranoistaan vaikka epähuomiossa.
+Martin selvitystyön perusteella laji näyttäisi leviävän nopeasti kohti pohjoista, vaikka kyseinen hai viihtyy edelleen myös lämpimissä vesissä.
+Äänekkäästä karjaisusta huolimatta tiili vaikutti kestävän karatekan hyökkäyksen, vaikka hänen lyöntinsä yty saavutti ennätysvoiman.
+Kaikista tunnetuista tekijöistä ikä määrittää vahvimmin henkilön kykyä välttää oja tavallisessa maantieajossa.
+Sattumalta löydetty tila vaikutti sopivan asiakkaalle, jonka seurassa kulkenut isä osoittautui huumorimieheksi.
+Yleisön suureksi yllätykseksi kiri irtosi ikämieheltä kuin nuorelta pojalta, joskin hänen esittämänsä villi vauhdinpito jäi kovin lyhytaikaiseksi.
+Pieneliöiden sankoin joukoin erittämä tali liukasti rantakiven, mikä oli näin jälkiviisaasti ajateltuna tae onnettomuuden sattumiselle.
+Useamman tarkastuksen jälkeen rivi osoittautui lottovoitoksi, ja nyt oli vain varmistettava ettei esimerkiksi tuli tuhoaisi käsissäni olevaa aarretta.
+Joudumme toteamaan ettei edes neuvokas äly mahdollista kaikkien ongelmien ratkaisua, minkä ajatuksen viimeinen dia esitti vaikuttuneelle
+yleisölle.
+Kaiken kaikkiaan ajo pohjoisen laskettelukeskukseen tuntui Piiasta lyhyeltä, johon osaltaan vaikutti leppoisa uni kesken automatkan.
+Raimoa alkoi kovasti kiinnostamaan ujo naapurintyttö, jonka tahattomasti esittämä ele saattoi tarkoittaa kiinnostuksen olevan molemminpuolista.
+Nopealla aikataululla alkanut ale saavutti suuren suosion, vaikka kaikkien haluama liivi loppuikin varastosta.
+Keväisen uutisen mukaan kyy heräilee pesistään, ja nisäkkäistä ainakin siili käyttää ravinnokseen käärmeitä.
+Toiveitteni mukaisesti ilta jatkui rauhallisissa merkeissä, vaikka taustalla vaikuttava työ mietitytti varmasti osallistujia.
+Toisinaan kokemani olo liittyy jotenkin siihen näyttääkö iho punoittavan käsissäni.
+Laskelmien mukaan ilmoitettu ala oikeuttaa maataloustukiin, mutta korvauksen lopullinen määrä riippuu kuinka keli kohtelee viljelystä.
+Kokemusteni mukaan jää vaikuttaa usein vahvemmalta kuin se onkaan, mistä jään pinnalle kertynyt utu toimikoon varoitusmerkkinä.
+Juhlissa nauttimani silli osoittautui mainioksi herkuksi, eikä runsaasti nauttimani tee maistunut pahalta sekään.
+Vaikka kilpailijan ote vaikutti lipsuvan riuhtaisun aikana, mittaustuloksen mukaan kivi laskeutui ennätystulokseen.
+Muistathan, että tarjoamasi syli vaikuttaa lapsesi hyvinvointiin pitkälle aikuisuuteen ollen hänelle suunnaton etu elämän polulla.
+Kerrohan minulle syy eroosi pitkäaikaisesta kumppanistasi, jokin muukin kuin sinun pitkäksi venynyt ura jääkiekkoilijana.
+Harvoin tapaamani täti soitti tänään minulle ilmoittaen, että hänen kadonnut veli löytyi hyvässä kunnossa asunnostaan.
+Tämä ensimmäistä kertaa maistamani rae vaikuttaa varsin onnistuneelta pääsiäiskarkilta, mutta sen mukana tullut kori kaipaisi kehittelyä.
+Tarkemmissa tutkimuksissa tyvi paljastui murtuneeksi, vaikka erikoisvalmisteinen hiili tiedetään erittäin lujaksi materiaaliksi.
+Ahkeruudestani huolimatta vyö puristaa edelleen vatsaani, joten en tiedä millä keinoin merkittävä lovi painostani vähennetään.
+Viime viikon keskiviikkona vilu valtasi kehoni kuumeen noustessa äkillisesti, kun taas perjantaiyönä hiki kasteli sänkyni kuumeen laskiessa.
+Etäällä näkynyt väli mitattiin riittävän leveäksi mittalaitteella, joka vaikutti olevan lelu ammattilaisen muiden laitteiden rinnalla.
+Ohjelmassa on mielestäni aika nostaa lasi vastavalmistuneiden kunniaksi, ja karauttaa ilmoille säe tunnettua sävelmää.
+Reseptin mukaisesti riisi keitettiin kypsäksi kattilassa, johon mahtui suunnilleen kilo valmista puuroa
+Kesän tunnusomaisiin tuoksuihin kuuluva piki kuvastaa sitä tarmoa, jolla Suomessa pidetään yllä tiestön kuntoa.
+Päivänsankarin harmiksi paperinen pilli pehmeni hetkessä, jolloin voimakas imu tukkeutti putken kokonaan.
+Tuntemattoman henkilön tyly käyttäytyminen herätti huomiota siinä määrin, että jotkut mainitsivat hänet ilmi kauppakeskuksen vartijalle.
+Varovasti käsitelty öljy läikähti yli astiansa, minkä seurauksena talli jouduttiin väliaikaisesti sulkemaan.
+Selvitystyösi perusteella laki mahdollistaa esitetyn veroratkaisun, vaikka kyseessä olisi moraalisesti arveluttava peli nykyisessä asenneilmastossa.
+On hankala arvioida riittääkö sali osallistujille, joten kokouksessa käytettiin tovi asian pohtimiseksi.
+Neiti Makkosen viimekertainen sija oikeutti viidenteen lähtöruutuun, mistä osoituksena oli nimetty viiri lähtöruudun vieressä.
+Unelmieni tontilla joki virtaisi takapihallani, jota pitkin lohi vaeltaisi kutemaan.
+Epäselväksi jäi minkälainen olio takapihalla oli liikkunut, mutta ainakin sen jättämä läjä siivottiin pois.
+Kalastusverkkoon takertunut kita irrotettiin hellävaraisesti, mikä oli välttämätön apu pahoin kärsineelle eläimelle.
+Dokumentissa näytetty akti analysoitiin tarkoin läpi viikon kestäneen konferenssin aikana.
+Silloin tällöin näkynyt kuu valaisi maastoa, ja heidän jaloissaan suo tuntui pehmeältä patjalta.
+Uskomattoman maukas liha huipensi grillijuhlat, ja ihmiset tuntuivatkin keskustelevan suu täynnä ruokaa

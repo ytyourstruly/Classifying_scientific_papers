@@ -1,0 +1,765 @@
+Mind Meld or Mismatch: A Comparison of Visual Perspective
+Taking Towards Humans and Robots in Face-to-Face Interactions
+Joel Currie Katrina Louise McDonough
+j.currie.22@abdn.ac.uk Katrina.Mcdonough@uea.ac.uk
+University of Aberdeen University of East Anglia
+Aberdeen, United Kingdon Norwich, United Kingdom
+Agnieszka Wykowska Maria Elena Giannaccini Patric Bach
+agnieszka.wykowska@iit.it elena.giannaccini@abdn.ac.uk patric.bach@abdn.ac.uk
+Istituto Italiano di Tecnologia University of Aberdeen University of Aberdeen
+Genova, Italy Aberdeen, United Kingdon Aberdeen, United Kingdon
+ABSTRACT
+robots to be capable of communicative functionality [8]. As with
+human-human collaboration, a complex social-cognitive apparatus
+Visual Perspective Taking (VPT), the ability to spontaneously repre-
+is required for effective human-robot collaboration [9, 23, 35]. As a
+sent how another sees the world, underpins human social interaction,
+toy example, imagine you are fixing a car with your robot partner.
+from joint action to predicting others’ future actions and mentalizing
+You ask the robot to give you the tool on the left. While this may seem
+about their goals and mental states. Due to highly customisable, re-
+a simple request, for it to be successful, both agents need to not only
+peatable behaviours, robots provide an ideal platform to investigate
+be capable of representing what the other can see, but also how they
+cognitive abilities, such as VPT, in tightly controlled face-to-face
+see it. One must represent the robot’s viewpoint to discern what tool
+interactions. Here, we validate a novel experimental paradigm that
+is to their left, and whether what is left to yourself is right of the robot.
+robustly measures the extent that people take a human and robot’s
+The capability of representing what another person sees is known
+visual perspective during an interaction. We do this by measuring
+as visual perspective taking (VPT). In human-to-human social in-
+how much a partner’s perspective is spontaneously integrated with
+teraction, VPT has been shown to help people map their social en-
+one’s own. In our study, participants are paired with either another
+vironment [26], engage in joint action [18], and predict future ac-
+person, an inanimate humanoid robot, or an animate humanoid
+tions of others [2, 12]. Increasing evidence indicates that VPT could
+robot that engages with the task alongside the participant and per-
+also underpin more higher-order social functions, such as inferring
+forms socially interactive behaviours. We show - for the first time
+other’s goals [19] and their affective/mental states [6, 31]. Signifi-
+in a face-to-face interaction - that participants generally take other
+cant progress has been made developing VPT capabilities in artificial
+people’s visual perspectives, but do not take the perspective of either
+entities, such that robots can make successful inferences about their
+the inanimate or animate robot. Our study demonstrates that, unlike
+human partner’s viewpoint [1, 11, 16, 17, 27, 28, 47, 54]. In contrast,
+with 2D depictions of robots, the moderately humanlike appearance
+little is known about how people take a robot’s perspective. Even for
+of a physically present robot is not enough to promote VPT, neither
+human-to-human social interaction, it largely remains unclear what
+are basic socially reactive or goal directed behaviours. We contribute
+features of an interaction partner may facilitate perspective taking,
+an implicit, novel measure of social reasoning towards humans and
+and it is therefore even less clear which features could successfully
+robots in face-to-face interactions, a benchmark for social roboticists
+enable perspective taking towards robots. Resolving this question
+to aim for when creating cognitively penetrable robots, and an open
+is important as the emulation of another’s visual representation is
+challenge to the social robotics community – to create a robot or
+a highly informative signal, helping us make sense of another’s cur-
+robot behaviours that facilitates VPT towards robots.
+rent behaviour or predicting their future actions. When interacting
+CCS CONCEPTS with a robot, taking the robot’s perspective would enable a more
+smooth collaboration enabling seamless sense-making of the robot’s
+• Human-centered computing → User studies; • Applied com-
+current actions and enable us to more successfully anticipate the
+puting → Psychology; • Computing methodologies → Cogni-
+robot’s future actions.
+tive science.
+Two theories have come to dominate the visual perspective taking
+literature. The submentalizing account [10, 22] posits that VPT is
+KEYWORDS
+driven by domain-general processes, such as directional attentional
+Human-Robot Interaction; Perspective-Taking; non-verbal behaviours;
+mechanisms towards what an agent appears to be looking at. This
+humanoid robot; mind perception
+theory argues that when we take another’s perspective, it is not
+necessary to generate imagery of another’s visual access; instead
+1 INTRODUCTION
+fundamental cognitive mechanisms such as attention and spatial
+With the recent advances in humanoid robot development [53], peo-
+awareness are used to implicitly derive an understanding of their
+ple’s expectations for the future role that robots will play in everyday
+viewpoint. In contrast, the perceptual representation account of VPT
+life are changing. People increasingly associate robots with human-
+[24, 34, 59] argues that VPT involves the spontaneous generation of a
+centred use-cases such as healthcare and education, and expect
+quasi-perceptual representation of another’s viewpoint. This theory
+demands the creation of salient, interrogable imagery representing a Several lines of evidence suggest that the robot’s embodiment mat-
+likely estimate of another’s viewpoint, which is then integrated with ters for how it is represented. Putlitz and colleagues [68] found that
+our own sensory input when performing spatial reasoning. It is our embodied robots were perceived to be more likeable and intelligent,
+view that both interpretations are valid, and in fact task context de- while Roesler and colleagues [42] report increased objective mea-
+termines whether people employ simple domain-general processes, sures of anthropomorphism towards physically embodied robots.
+or whether a more complex simulation of another’s viewpoint is Likewise, people’s inclination to attribute mental states to robots
+formed. has been shown to be modulated by socially interactive behaviour
+The empirical challenge that lies at the heart of the stunted state of [30, 49]. Specific to VPT, there is suggestive evidence that action
+research is that the majority of established VPT tasks are delivered on matters for perspective taking. When participants were presented
+spective taking of other human agents [43, 48, 50, 51, 57, 58, 66, 67]. to describe the location of a specific object, they were more likely
+For robot perspective taking in particular, the use of 2D depictions to describe the object’s position from the perspective of the other
+has been adopted more generally as a cheaper, simpler alternative to person when the person was performing a reaching action towards
+using physically embodied robots for human-robot interaction stud- the specified object [55]. Similarly in an object identification task,
+ies. It is therefore unclear whether any of the reported phenomena Lukošiu¯naite˙ and colleagues demonstrated that participants were
+are limited to depictions of artificial agents presented in the absence quicker and more accurate when observing a person perform an
+of an ecological interaction context, and whether VPT would man- object-directed action towards the target [29]. Using the same 6/9
+ifest in a similar way in a real-life situation. In fact, research outside task as in their study above, Zhao [66] reported that people were
+perspective taking has shown that while some findings replicate more likely to take a robot’s perspective if they saw the robot reach
+uniform, and several significant differences between the two forms stimulus). This effect was only found when the action was presented
+of presentation have been reported [3, 15, 25, 68]. as a video (instead of a picture). While this still falls short of full inter-
+Prior research (using depictions of scenes and agents) argues that action, VPT appears to increase the more people perceive the robot
+the robot’s human-like appearance is the primary factor whether as a physical agent acting within its environment. In addition, it is
+people spontaneously adopt its perspective. Some studies, for ex- well established that people attribute reduced mental states towards
+ample, rely on the phenomenon that people often describe numbers two-dimensional representations of animate objects, compared to
+rather than from their own perspective (if a ‘6’ is shown, they may even less of a mind towards an agent presented in a picture of a pic-
+recognise it as a ‘9’) [48]. It has been shown using depictions of ture. These findings suggest that mind perception manipulations
+humans, human-like robots, mechanistic robots and animals that towards even high-fidelity 2D depictions of people and robots may
+this disposition to take the perspective of another is made more be inherently weak, and not generalise towards embodied agents.
+potent by the human-like appearance of the agent. Surprisingly, the As far as we can determine, only a single study has investigated hu-
+agent’s attributed mind or capability to represent visual input did man perspective taking towards a physically present robot [64], with
+not have any influence [66, 67]. Studies from another lab [57, 58] ambiguous results. Two robots (telenoids [36]) were seated around
+the phenomenon that people find it more difficult to report a num- other looked and waved to the participant at the beginning of the
+ber of dots in a room if another agent within the room can, from experiment but otherwise remained passive as well. Participants had
+their perspective, not see all the dots [43]. Again, this interference to indicate whether letters that were oriented either directly towards
+occurred only towards robot agents possessing a humanlike body, the animate or inanimate telenoid were mirrored or not. If partici-
+but not towards robots with animal-like bodies. Interestingly, this pants were simulating the robot’s visual access, they should make the
+was independent of whether the robot possessed a human-like or mirrored/non-mirrored decision more easily for letters oriented to-
+mechanical head, and if the robot was presented as being turned on wards this robot, as these letters would be easily discernable from the
+or off, underscoring again that its ability to act or represent input robot’s perspective. The authors predicted that participants would
+does not matter for adopting its perspective. favour the interactive robot’s perspective over that of the passive ro-
+It is remarkable that the “mere appearance" [57, 58, 66, 67] of a bot. However, instead of the predicted overall advantage when letters
+robot as human-like should be sufficient for people to spontaneously were facing the animate robot, there was only an increase in response
+take its perspective, and more sophisticated elements such as the time difference between the mirrored and non-mirrored letters for
+capability to visually represent an environment, to act, or to possess the previously interactive robot. These results are inconsistent with
+a “mind" contribute little, if anything. We speculate that this - in our usual pattern of perspective taking in such paradigms [59–61], and
+view unexpected - state of research could, to a large extent, reflect the as such are difficult to interpret. In essence, this may only reflect
+artificial and dis-embodied mode of stimulus presentation, instead of that participants are biased to call a letter non-mirrored if it faces
+how VPT could manifest towards a physically present person or robot the animate agent, irrespective of whether they take its perspective.
+in an ecologically valid environment. Depictions of agents do not It is clear from these studies that the investigation of perspective
+share the same task/interaction space as people, and its sophisticated taking towards humans and robots requires real-life tasks that are
+capabilities are not apparent from schematic representations alone. not dissociated from the complex behavioural dynamics when inter-
+acting with an embodied agent in physical space. Such tasks should
+also not be susceptible to confounds and alternate explanations. For Pairing: 24 women including trans women and 9 men including
+knowing
+example, in the 6/9 task, just that a 6 looks like a 9 to others trans men, mean age 22.9 years, SD = 5.82, 30 right handed. Human-
+could be enough to introduce additional uncertainty, and manifest Animate Robot Pairing: 20 women including trans women, 10 men
+seemingly altercentric responses, without the participant visualizing including trans men and one person who preferred not to say, mean
+how the robot perceives the environment [44]. Similarly, as many age 23.5 years, SD = 7.55, 24 right handed. Participants were recruited
+have noted [52, 58], the results in the dot perspective task could sim- from the University of Aberdeen’s research participant pool or with
+ply reflect domain-general processing such as the directional cuing physical/digital advertisements. The study was approved by the Uni-
+of attention towards what an agent appears to be looking at, the sub- versity of Aberdeen’s ethics board (ID 1472204) and adhere to the
+mentalizing account [10, 22] - instead of generating a representation ethical principles of the British Psychology Society (BPS) Code of
+of what an agent can see. Ethics and Conduct for psychological research with human partic-
+Previously, we developed a task that does not suffer from the limi- ipants. Participants gave electronic informed consent as part of the
+tations of prior work investigating VPT [43, 48, 50, 51, 57, 58, 66, 67], experimental briefing and were reimbursed with course credits or
+and is sensitive to measure visual perspective taking towards both £8. Each experiment was approximately 45 minutes in duration. Par-
+humans and robots in face-to-face interactions [14], and when pre- ticipant exclusions due to equipment malfunction and participant
+sented on a computer screen [59–61] The task is built on the clas- task performance metrics (Sect. 2.6.1) yielded a final sample of 90
+sic phenomenon that response times to identify an alphanumeric participants, split evenly across the three experimental groups.
+symbol increase linearly as the letter is oriented away from the
+◦ ◦ 2.2 Task and Experimental Conditions
+participant’s perspective (i.e., from 0 angular disparity to 180 ),
+as participants first have to “mentally rotate" turned away letters
+into their canonical orientation before making these judgments [46].
+mate Robot or Inanimate Robot) to their left or right. In each trial, an
+Our previous work [59–61] demonstrates that when a depiction of
+another person is present in these scenes, this pattern is robustly
+participant, presented normally, or in its mirror inverted form. The
+disrupted. People recognize rotated-away letters more rapidly when
+character was shown at various orientations from upright to upside-
+they are oriented towards another person’s perspective in the scenes,
+down relative to the participant’s viewpoint. Participants simply
+and are slower at identifying letters when they are turned away from
+judged with a button press whether the stimulus was in its canonical
+the other’s perspective. This effect is enhanced when participants
+or mirror-inverted form (“R" vs. “
+are explicitly instructed to take the other agent’s perspective, and
+is eliminated when the agent is replaced by a non-animate object
+such as a lamp [29, 59]. Together, these findings indicate that people
+automatically emulate another’s perspective if the other’s perspec-
+tive has superior visual access to a scene than one’s own, and that
+this perceptual simulation spontaneously interferes with their own
+perspective, disrupting visual processing.
+Our task has been well-validated for human-to-human interac-
+tion with 2D depictions of people [59–61, 65], and in virtual reality
+[63]. We have recently adapted our task into the real-world, such that
+we could investigate VPT in face-to-face interactions with people
+and humanoid robots [14]. Building on this, our current work has
+three main goals:
+(1) To validate our task in a face-to-face real world human-to-
+human interaction, answering, for the first time whether hu-
+really
+mans spontaneously take another person’s perspective
+when interacting with them face-to-face in the task.
+(2) To resolve whether people truly take the perspective of a ro-
+bot with a humanlike appearance in the real world, as prior
+work with schematic displays seems to suggest.
+(3) To identify factors outside of the robot’s appearance such as
+goal-driven and socially reactive behaviours, which could
+facilitate human perspective taking towards robots.
+2 METHODOLOGY
+2.1 Participants
+Participant demographics for each group were as follows: Human-
+Human Pairing: 38 participants, 26 women including trans women,
+11 men including trans men and one non-binary person, mean age
+22.1 years, SD = 4.03, 32 right handed. Human-Inanimate Robot
+R "). We varied between experimen-
+tal blocks whether the participants’ partner (Human, Animate Robot,
+◦ ◦
+Inanimate Robot) was positioned 90 to the right, or 90 to the left of
+them. Usually, response times increase monotonically the more the
+letter is oriented away from the participant [46], reflecting that peo-
+ple first have to mentally rotate it into its usual upright orientation
+before identifying its mirrored or non-mirrored form. However, if
+people take another agent’s perspective, this should depend on both
+the orientation of the letter towards the other agent. When letters are
+facing the other partner, people should find it easier (quantified by
+recognition time, RTs) to judge whether the character is in its regular
+or mirrored presentation. Conversely, when the letter is facing away
+from the other partner, individuals should find the task more difficult
+[59–61]. This suggests that people are spontaneously assimilating
+their own egocentric viewpoint with a quasi-perceptual simulation
+of the likely estimation of the other person’s altercentric viewpoint.
+Here, we tested whether people take the perspective of another
+agent in a face-to-face interaction; whether the type of agent (Hu-
+man/Robot) modules VPT; and finally, whether basic social and task
+behaviours may induce VPT towards robots (Animate Robot/Inan-
+imate Robot). Participants were either paired with another partici-
+pant, a humanoid robot that remained inanimate for the duration of
+the experiment, or the same robot, performing socially reactive and
+goal-directed behaviours. Both social reactivity and goal-oriented
+actions have been shown to be important for human-to-human per-
+spective taking [18, 29]. In a between-subjects design, participants
+were randomly assigned to one of three experimental groups (see
+spective taking.
+2.3 Hypotheses
+Our general predictions for both the Inanimate and Animate robot
+pairings were first described in [14], prior to data collection (referred
+to as Low Social/Task reactivity, and High Social/Task reactivity
+respectively). For the present user study, our full predictions for all
+pairings are as follows:
+• Following prior research on VPT delivered on computer screens,
+the robot’s mere humanlike appearance would be sufficient to
+elicit overall VPT (i.e., VPT would be found when participants
+were paired with both the inanimate and the animate robot).
+• VPT should increase when participants are paired with a
+robot that performs task-oriented and socially interactive be-
+haviours relative to the inanimate robot. We assume that VPT
+requires a humanlike appearance, but that this is amplified by
+both functional and agentitive mental states, characterised
+by the the ad-hoc generation of a model of the other’s func-
+tional behaviour within a task; and the belief that the other is
+an socially reactive agent capable of reacting in real-time to
+an unpredictable social environment. In other words, when
+participants are paired with the animate robot VPT will be
+stronger than participants paired with the inanimate robot.
+• VPT would be largest when participants were paired with
+other humans. Even though the robot’s humanlike appear-
+ance should be sufficient for VPT to manifest towards the
+robot, and the robot’s animate behaviour would amplify this,
+there are near infinite unconsidered social dimensions the
+task and break.
+absence of which in robots will attenuate the strength of
+perspective taking.
+2.4.2 Social Reactivity. The Social Reactivity subcomponent directs
+Pepper’s interactions with the participant outside the task. When
+2.4 Robot and Behaviour
+this is active, Pepper responds to environmental stimuli, turning
+We chose to use the Pepper robot [38] for this study. Pepper was
+its head to look at sources of sound (the participant speaking or
+chosen due to its pre-existing social interaction capabilities, and
+the experimenter). It tracks the position of people in its close vicin-
+relative humanlike appearance (scoring within the top 33% of robots
+ity, and will actuate the yaw and pitch neck motors to achieve a
+rated by humanlike appearance in the ABOT database [39]). Pepper’s
+head-orientation to establish eye contact with the participant and
+behaviour was supervised via a simple Finite State Machine (FSM)
+experimenter. The robot’s posture is upright, and more relaxed than
+programmed in Python 2.7 [56]. Transitions in FSM state were insti-
+in the task state. There are slight periodic movements of Pepper’s
+gated by the Inquisit experimental script. In each state, the FSM made
+upper body simulating breathing. For the animate robot group, Pep-
+the relevant API call to the robot OS module required to execute the
+per’s social reactivity is in its ON state, and in its OFF state for the
+expected behaviour.
+inanimate robot group. Again in its off state the robot is turned off.
+VPT towards humans has been shown to be governed by joint
+task behaviour [18] with agentive partners [48]. We therefore manip-
+2.5 Apparatus and procedure
+ulated our robot’s behaviour with sub-components emulating Pep-
+2.5.1 Apparatus. The study took place in the behavioural testing
+per’s engagement in the same task as the participant, and Pepper’s so-
+environment of the Action Prediction lab of the University of Ab-
+cial behaviour outside of the task, described in the following section.
+erdeen, within a square area (side length ≈2 ) separated from the
+2.4.1 Task Reactivity. The Task Reactivity behaviour subcompo-
+nent codes Pepper’s behaviour during the experimental task. When 𝑐𝑚
+of 60 diameter in the centre of the testing space. The experiment
+active, Pepper exhibits goal-oriented behaviour by appearing to com-
+was administered using Inquisit (Version 6) [33]. Stimuli were pre-
+plete the task alongside the participant. Its posture is stiff, and its head
+sented from an ceiling mounted projector (Sony, XGA VPL-EX7)
+is oriented towards the task stimuli. Like the participant’s, its hands
+miniature keyboard (cimetech Wireless Numeric Keypad) with UP
+it is not responding. For the animate robot group, Pepper’s task reac-
+and DOWN (coloured blue and red respectively) as response keys.
+tivity is in its ON state, and in its OFF state for the inanimate robot
+2.5.2 Procedure. Prior to the experiment, participants received ex-
+group. In its OFF state, the robot is turned off, though its head orienta-
+perimental instruction and completed 8 practice trials, in which
+tion is positioned such that it appears to be looking at task stimulus.
+rotated alphanumeric characters appear on a desktop monitor and
+participants responded with the UP (blue) key for normally presented
+characters, and the DOWN (red) key for mirror-inverted characters.
+The practice trials were near-identical to that of the main experiment,
+with the exception that visual feedback (CORRECT / INCORRECT)
+was given. Participants were then taken to the testing environment,
+where they first encountered their partner. Participants were sat
+For participants paired with the animate robot, Pepper reacted (non-
+verbally) to the participants presence, meeting their gaze, and direct-
+ing attention to any noises the participant or experimenter will make.
+The inanimate robot did not respond to the participant in any form.
+Participants then completed 8 blocks of 32 trials. At the start of
+for 1000 ms. After a pseudo-random delay of 1100 ms to 1800 ms
+that prevents participants from anticipating exactly when the letter
+would appear [59], an alphanumeric character was presented on
+mirror inverted (“ R ", “ F
+## Response Time Models
+## Stepdown Model Human Group
+lmer ( RT ~ ( s e l f _ t h e t a + o t h e r _ t h e t a ) ∗ Progress
+( 1 + Progress + s e l f _ t h e t a _ c e n t r e d +
+o t h e r _ t h e t a _ c e n t r e d | s u b j e c t ) ,
+data =human_data ,
+c o n t r o l = lmerControl ( o p t i m i z e r = " bobyqa " ) )
+## Stepdown Model Animate Robot Group
+lmer ( RT ~ ( s e l f _ t h e t a + o t h e r _ t h e t a ) ∗ Progress
+( 1 + Progress + s e l f _ t h e t a | s u b j e c t ) ,
+data = animate_robot_data ,
+c o n t r o l = lmerControl ( o p t i m i z e r = " bobyqa " ) )
+## Stepdown Model Inanimate Robot Group
+lmer ( RT ~ ( s e l f _ t h e t a + o t h e r _ t h e t a ) ∗ Progress
+( 1 + Exposure + s e l f _ t h e t a + o t h e r _ t h e t a | s u b j e c t ) ,
+data = inanimate_robot_data ,
+c o n t r o l = lmerControl ( o p t i m i z e r = " bobyqa " ) )
+") form, in one of eight possible orientations
+## F u l l Model
+◦ ◦ ◦ ◦ ◦ ◦ ◦ ◦
+relative to the participant (0 , 45 , 90 , 135 , 180 , 225 , 270 , 315 ).
+lmer ( RT ~ ( s e l f _ t h e t a + o t h e r _ t h e t a ) ∗
+Characters were presented for a duration of 3000 ms. During this ( Agent ∗ Progress ) +
+( 1 + Progress + s e l f _ t h e t a + o t h e r _ t h e t a | s u b j e c t ) ,
+time, participants judged whether the presented character is normal
+data =data ,
+or mirror inverted with a handheld miniature keyboard, on labelled
+c o n t r o l = lmerControl ( o p t i m i z e r = " bobyqa " ) )
+keys. Recognition times were measured from character onset.
+For participants paired with another participant, they both com- ###########################################################
+pleted the task alongside each other. For participants paired with the
+## Accuracy Models :
+animate robot, Pepper appeared to complete the task alongside them.
+## Stepdown Model Human Group
+The inanimate robot did not respond to the stimuli and remained
+glmer ( e r r o r _ r a t e s ~ ( s e l f _ t h e t a + o t h e r _ t h e t a ) ∗ Progress +
+static.
+( 1 + s e l f _ t h e t a | s u b j e c t ) ,
+After each block, participants and Pepper were moved around the data = human_data , family = binomial ,
+c o n t r o l = glmerControl ( o p t i m i z e r = " bobyqa " ) )
+the course of the experiment, and the other agent has been on the
+## Stepdown Model Animate Robot Group
+participant’s left and right an equal number of times. This ensured
+glmer ( e r r o r _ r a t e s ~ ( s e l f _ t h e t a + o t h e r _ t h e t a ) ∗ Progress +
+that all potential sources of visual or spatial differences in the testing ( 1 + s e l f _ t h e t a | s u b j e c t ) ,
+data = animate_robot_data , family = binomial ,
+area would cancel each other out in subsequent analysis. Between
+c o n t r o l = glmerControl ( o p t i m i z e r = " bobyqa " ) )
+experimental blocks, the participant was able to rest until they were
+ready to start the next experimental block. For participants paired
+## Stepdown Model Inanimate Robot Group
+with the animate robot, Pepper engaged with them using the social
+glmer ( e r r o r _ r a t e s ~ ( s e l f _ t h e t a + o t h e r _ t h e t a ) ∗ Progress +
+reactivity behaviour subcomponent during this time, as outlined ( 1 + s e l f _ t h e t a | s u b j e c t ) ,
+data = inanimate_robot_data , family = binomial ,
+above. For participants paired with the inanimate robot, Pepper was
+c o n t r o l = glmerControl ( o p t i m i z e r = " bobyqa " ) )
+passive and remained static.
+## F u l l Model
+2.6 Analysis
+glmer ( e r r o r _ r a t e s ~ ( s e l f _ t h e t a + o t h e r _ t h e t a ) ∗
+( Progress ∗ Agent ) +
+To further improve the sensitivity of our analysis, departures have
+( 1 + s e l f _ t h e t a | s u b j e c t ) ,
+been made from our prior work on this task [14, 59–61], but the
+data = data , family = binomial ,
+results are insensitive to these changes. A full replication of our
+c o n t r o l = glmerControl ( o p t i m i z e r = " bobyqa " ) )
+findings using the ‘classic’ analysis is available in the main author’s
+2.6.1 Exclusion Criteria. Participants were excluded if an equip-
+nition time and accuracy
+ment malfunction occurred during the experiment, rendering their
+data unreliable (Human-Human Group: = 4; Human-Inanimate
+2.6.2 Modelling Visual Perspective Taking through Recognition Times.
+Robot Group: = 1). Participants with mean error rates greater than
+To determine whether participant recognition times indicated visual
+20% across all conditions were excluded (Human-Human Group:
+perspective taking, we constructed a series of mixed-linear models
+n = 4; Human-Inanimate Robot: n = 2). Incorrect responses were
+(MLM) [7] for the full dataset containing all groups, and individual
+excluded from the analysis of recognition times (RTs). In addition
+step-down models for each participant groups (Human, Animate
+𝑅𝑇 < 𝑚𝑠 𝑅𝑇 > 𝑚𝑠
+trials with 150 or 2000 were not considered for
+Robot, Inanimate Robot). The lmer function from the lme4 package
+analysis (≈30% of trials). These criteria match exactly our prior work
+[5] of R statistical programming language [40] was used to action
+with this paradigm [59–61].
+our model. Below are our model variables.
+𝑅𝑇
+Recognition Time ( ): The dependent measure in our model were measure for the GLMM being the binary variable ’Error’, reflect-
+the participant’s character recognition times (RTs) for individual ing whether participants incorrectly recognised the character being
+trials measured from character onset. presented as normal or mirrored. The Model construction proce-
+Self Perspective ( ): Self Perspective represents letter orien- dure followed the response time modelling exactly. To this end four
+𝑠𝑒𝑙 𝑓
+tations from the participant’s own perspective, coded as discrete models were constructed, one model utilising the full dataset, and
+. . .
+points between [−0 5→0 5], incrementing by 0 25. Essentially, it is three individual step down models for each group of participants
+a measure of the angular disparity between the letter’s orientation (Human-Human, Human-Animate Robot, Human-Inanimate Ro-
+and the participant’s perspective. If participants show the expected bot). The full model, Human-Human, Human-Animate Robot and
+𝑅2 . ,. ,. ,.
+mental rotation effect, recognition times should increase with the Human-Inanimate Robot models explained = 484 583 419 473
+angular disparity of character to participant. of variance respectively.
+Other Perspective ( ): Other Perspective codifies the letter
+𝑜𝑡ℎ𝑒𝑟
+3 RESULTS
+orientation relative to the perspective of the other agent (Human,
+Animate Robot, Inanimate Robot). It is the angular disparity between
+Complete output and R-script for all models can be found in the main
+the presented stimulus and the other agent’s orientation as discrete
+. . .
+points between [−0 5 → 0 5], incrementing by 0 25. If participants
+take the other agent’s perspective, recognition times should increase 3.1 Response Time
+with the angular disparity between letter and other agent. It is im-
+3.1.1 Self Perspective: We initially verified that our task replicated
+portant to note that due to experimental design Self Perspective
+the classic mental rotation effect [46], that characters orientated
+and Other Perspective are orthogonal across trials and therefore
+towards the participant’s perspective were faster to recognise than
+statistically independent.
+characters orientated away. This effect is independent of VPT and
+𝐸𝑃
+Experiment Progress ( ) Experimental progress is simply the
+acts as a litmus test that the implementation of our paradigm has
+proportion of the experiment that a participant has completed on
+been successful. If our task is implemented correctly we should see
+a given trial. This was included to account for participants’ perfor-
+strong Self-Perspective effect for all groups. Our model constructed
+mance potentially improving throughout the experiment as they
+using the full dataset indicated a strong Self Perspective effect ( =
+became more adept at the task. It is represented as a floating point
+. ,𝐶𝐼 . . ,𝑝 < .
+412 1 = [364 34 − 459 9] 001), which did not interact with
+. . .
+decimal ranging [−0 5→0 5] incrementing by 0 1.
+𝑝 . 𝑝 .
+group ( = 921; = 745 for Human and Inanimate Animate Robot
+Model Construction:We constructed one model using the full
+groups, respectively, when compared with the Animate Robot group
+dataset across agent groups, and three step-down models for each
+as baseline). Indeed, all sub-models indicated strong main effects of
+agent group separately. The model construction process was iden-
+𝐸 . ,𝐶𝐼 . . ,𝑝 <
+Self Perspective: Human-Human ( =415 7 = [370 1−461 2]
+tical among all models, with the exception that the full model has an
+. 𝐸 . ,𝐶𝐼 . . ,𝑝 < .
+001); Human-Animate Robot ( =412 7 = [363 2−462 3] 001)
+additional categorical factor identifying the grouping of participants.
+𝐸 . ,𝐶𝐼 . . ,𝑝 < .
+Human-Inanimate Robot ( =400 3 = [351 6−449 0] 001). As
+To construct our model, we began with the maximal random effects
+structure justified by design and theory (i.e., include all random inter-
+crease in response time as the disparity between self-perspective and
+cepts for within-subject fixed effects, with interactions). The random
+𝜃 𝜃
+stimulus orientation increases( = 0 → = 180). Having established
+effect structure was then pruned incrementally for each element
+the presence of the Self Perspective effect (classic mental rotation
+until model convergence was achieved [4]. Random effects were clus-
+[46]), we can now be confident in the implementation of our task.
+tered for each participant, allowing for potential variance between
+3.1.2 Other Perspective: Following the successful detection of the
+participants. Following model convergence, the model was then sim-
+Self-Perspective effect we now tested whether our models indicate
+plified, by incrementally removing random effects that accounted
+the hallmark signs of VPT, represented by the Other-Perspective
+for minimal variance. Throughout the simplification process, mod-
+effect. Our full-model failed to identify the main effect of Other-
+els were assessed for model fit, and compared against other model
+𝐸 . ,𝐶𝐼 . . ,𝑝 .
+Perspective ( = 0 2 = [−21 4−21 0] = 986), however detected
+iterations using an analysis of variance (ANOVA). The random effect
+an interaction between Other-Perspective, and the Human agent cat-
+structure simplification process stopped when a model was found
+𝐸 . ,𝐶𝐼 . . ,𝑝 .
+egory ( =39 5 = [9 3−69 8] = 010), signalling that the expected
+with a significantly better fit than the simpler next model iteration.
+VPT effect was only present in the group where participants were
+paired with other human participants. Indeed, this was confirmed
+final models for the groups Human-Human, Human-Animate Robot,
+through our step-down models, where we detected the expected
+Human-Inanimate Robot and the combined dataset from all groups
+explained 𝑅2 = . 508; . 461; . 474; . 427 of variance respectively. main effect of the Other-Perspective for the Human-Human group
+𝐸 . ,𝐶𝐼 . . ,𝑝 .
+( =39 2 = [16 4−62 1] = 001), confirming that VPT was not just
+2.6.3 Modelling Error Rates. To ensure results did not reflect a
+a phenomenon limited to 2D stimuli presented stimulus and does,
+speed/accuracy trade-off, we constructed a Generalised Linear Ef-
+in fact, manifest in a face-to-face interaction between two people.
+fects Model (GLMM) for the full dataset and individual step-down
+Importantly, this validates our task’s effectiveness at detecting VPT
+models for each discrete group. As with modelling response times,
+in the real-world. In agreement with our full-model, the step-down
+the lme4 package of R statistical programming language was used
+models found no evidence of participants taking the perspective of
+to develop our model.
+𝐸 . ,𝐶𝐼 . . ,𝑝 < .
+the Animate Robot ( = −0 2 = [−18 3 − 17 9] 983) or the
+Model parameters were identical with the parameters used in
+𝐸 . ,𝐶𝐼 . . ,𝑝 .
+Inanimate Robot ( =0 8 = [−23 4−25 1] = 946). In addition, an
+our response time modelling, with the exception that the dependent
+interaction between Other Perspective and Experiment Progress was
+rived from our full model for each participant across different
+paired agent categories. Other Perspective represented in
+RT(ms)/orientation(1 ) that stimulus is oriented away from
+the other agent.
+𝐸 . ,𝐶𝐼 . . ,𝑝 .
+detected for the Human group ( =−72 4 =−139 7−−5 0 = 035),
+suggesting that people relied most on the other’s perspective at the
+start of the experiment, and this decreased over subsequent trials.
+These findings suggest that people spontaneously take another
+person’s perspective in a face-to-face interaction, but not a robot
+despite its human-like appearance, irrespective of whether it is inani-
+mate, or animate - behaving as a goal directed and socially interactive
+in (a), participants response times were biased by the location of
+another participant, 90 to the left or right of them. Participants’
+RTs were quicker when the letter was facing the other participant,
+compared to when the stimulus was facing away from them. In con-
+trast, this perceptual bias was not present when participants were
+paired with the animate robot (b); or inanimate robot (c). The single-
+participant estimates of the Other Perspective effect in each group
+the other’s perspective explains differences in RTs, while for the
+inanimate, and animate robot no difference was found. Each group
+is shown to be normally distributed, confirmed by Hartigans’ dip
+test for uni-modality [21] (p = .88, .88, .73 for the human, animate
+robot, and inanimate robot pairing respectively).
+The following fixed effects and interactions were not hypothe-
+sized a priori and should be treated as exploratory.
+3.1.3 Experiment Progress: All models detected a strong Experiment
+𝐸 . ,𝐶𝐼 . . ,𝑝 <
+Progress effect: Full model ( = −147 5 = [−204 0 − −91 0]
+mental rotation curve systematically by person location, but Human-Animate Robot ( 𝐸 = −147 . 6 ,𝐶𝐼 = [−194 . 7−−100 . 4] ,𝑝 < . 001),
+Animate robot (b) and Inanimate robot (c) pairing does not. Human-Inanimate Robot ( 𝐸 = −150 . 5 ,𝐶𝐼 = [−200 . 7 − −100 . 3] ,𝑝 <
+RT is expressed in ms. Error bars represent 95% confidence .
+001). This reflects that participants, irrespective of task partner, be-
+intervals of the absolute difference in RT when paired agent
+came quicker at correctly identifying characters as the experiment
+is located ’Left’/’Right’ of the participant.
+progressed.
+3.1.4 Other Perspective * Experiment Progress. Our full model de- analysis. These two interactions were also found in our full-model
+tected a small interaction between Other-Perspective and Experi- when comparing the Human-Human group and Human-Inanimate
+𝑂.𝑅 . ,𝐶𝐼 . . ,𝑝 .
+ment progress and Agent category, when comparing the Human- Robot Group ( =19 00 = [1 45−248 63] = 025).
+𝐸 . ,𝐶𝐼
+Human group with the Animate Robot group as baseline ( =−107 3 =
+. . ,𝑝 . 4 DISCUSSION
+[−200 5−−14 1] = 024), suggesting that participants paired with a
+human agent took this agent’s perspective less the more experiment
+The present study investigated whether VPT manifests in a face-to-
+progressed. This interaction was also reflected in the Human-Human
+face interactions with both other humans and robots. Participants
+𝐸 . ,𝐶𝐼 . . ,𝑝 .
+step-down model ( =72 4 = [−139 7−−5 0] = 035).
+took part in in a letter recognition game with either: (a) another
+human participant; (b) a robot with human-like appearance but be-
+3.2 Error Rates
+ing completely inanimate, or (c) the same robot, programmed to
+To eliminate the possibility that our results could reflect a speed/ac- appear as if performing the task with the participant, and engaging
+curacy trade-off, we conducted analogous analysis of participant in fundamental social signalling such as eye-contact and reacting
+error rates. to environmental changes. We hypothesized that if participants
+would take the agent’s visual perspective, they should experience
+3.2.1 Self Perspective: All models indicated a strong effect:
+𝑠𝑒𝑙 𝑓
+perceptual intrusions such as those shown previously [59–61]. If so,
+𝑂.𝑅 . ,𝐶𝐼 . . ,𝑝 < .
+Full-model ( = 38 2 = [15 7−93 1] 001), Human-Human
+then stimulus recognition times should be faster when the letters
+𝑂.𝑅 . ,𝐶𝐼 . . ,𝑝 < .
+( = 87 9 = [25 4 − 304 7] 001), Human-Animate Robot
+are oriented towards the perspective of the other agent, relative to
+𝑂.𝑅 . ,𝐶𝐼 . . ,𝑝 < .
+( = 16 2 = [6 0 − 43 5] 001), Human-Inanimate Robot
+when the letters are oriented away from them. We predicted that
+𝑂.𝑅 . ,𝐶𝐼 . . ,𝑝 < .
+( = 41 5 = [14 7 − 117 1] 001). This indicates that par-
+participants paired with other humans would show the strongest
+ticipants were more likely to make an error correctly identifying
+VPT. We expected slightly weaker VPT towards the animate robot,
+characters when they were oriented away from them, compared to
+which possessed both a human-like appearance and would present
+when characters were facing towards them.
+itself as a social agent with task-oriented behaviour. Finally, we ex-
+3.2.2 Other Perspective: Crucially, no model identified an pected to find weak VPT relative to the other groups towards the
+𝑜𝑡ℎ𝑒𝑟
+𝑂.𝑅 . ,𝐶𝐼 . . ,𝑝 .
+effect: Full-model ( = 1 18 = [0 76 − 1 83] = 460), Human- inanimate robot, who only possessed a humanlike appearance but
+𝑂.𝑅 . ,𝐶𝐼 . . ,𝑝 .
+Human ( = 1 56 = [0 83 − 2 95] = 171), Human-Animate was inanimate for the duration of the interaction (see [14]).
+𝑂.𝑅 . ,𝐶𝐼 . . ,𝑝 .
+Robot ( = 0 69 = [0 43 − 1 12] = 135), Human-Inanimate The results confirmed, first, the classic finding from mental rota-
+𝑂.𝑅 . ,𝐶𝐼 . . ,𝑝 .
+Robot ( = 1 18 = [0 76 − 1 83] = 457). While error rates tion tasks, that people recognise a stimulus more slowly the larger the
+numerically showed the same pattern as RTs in our primary anal- angular disparity between the stimulus’ orientation and the person’s
+ysis, no statistically reliable differences were found, indicating no egocentric perspective is [46]. This linear relationship was present
+presence of a speed/accuracy trade-off. across groups, irrespective of the agent participants were paired with.
+The following fixed effects and interactions were outwith our This finding acts as a litmus test that confirms that the present task
+initial predictions and as such should be treated as exploratory. is operating correctly and participants engaged with it as expected.
+Second, we showed - for the first time for face-to-face interactions
+3.2.3 Experiment Progress: Our models again detected a strong
+- that this mental rotation effect is modulated by the presence of
+effect of Experimental progress, demonstrating that as the experi-
+another person. When participants were paired with another hu-
+𝑂.𝑅
+ment progressed participants made fewer errors: Full-model ( =
+man agent, response times reflected not only the letter’s angular
+. ,𝐶𝐼 . . ,𝑝 . 𝑂.𝑅 . ,𝐶𝐼
+0 41 = [0 24 − 0 70] = 001), Human-Human ( = 0 13 =
+disparity to the participant’s perspective, but also to the other per-
+. . ,𝑝 < . 𝑂.𝑅 . ,𝐶𝐼
+[0 06 − 0 30] 001), Human-Animate Robot ( = 0 31 =
+son’s perspective. Recognition times decreased the more the letter’s
+. . ,𝑝 < . 𝑂.𝑅 . ,𝐶𝐼
+[0 18−0 56] 001) and Human-Inanimate Robot ( = 0 41 =
+orientation was aligned with the other person’s perspective, and in-
+. . ,𝑝 < .
+[0 24−0 70] 001).
+creased the more they were misaligned. This demonstrates that VPT
+3.2.4 Agent Category: In addition, our full-model revealed a main as measured in our task is not constrained towards agents viewed
+effect of Agent Category when comparing the Human-Human group in representational media such as pictures/videos, but extends to
+𝑂.𝑅 . ,𝐶𝐼 .
+with the Human-Inanimate Robot group ( = 0 39 = [0 20 − face-to-face interactions between two people. This finding validates
+. ,𝑝 .
+0 76] = 005), and no difference between the Human-Animate Ro- the task’s capability to measure VPT in a face-to-face interaction, and
+𝑝 .
+bot and Human-Inanimate Robot groups ( = 784), suggesting that provides us with an essential benchmark of ‘normal’ VPT between
+participants made less mistakes when paired with another person, two humans, that we can compare with Human-Robot VPT.
+compared to being paired with either the animate or inanimate robot. Third, and counter to our expectations and prior research inves-
+tigating VPT towards depictions of robots [57, 58, 66, 67], we found
+3.2.5 Other Perspective * Experiment Progress. Our step-down model
+no evidence of visual perspective taking towards either of the two
+of the Human-Human group identified interactions between
+𝑠𝑒𝑙 𝑓
+humanlike robots, irrespective of the robot’s social interactivity or
+𝑂.𝑅 . ,𝐶𝐼 . . ,𝑝 .
+and Experiment Progress ( = 14 5 = [1 49−141 04] = 021),
+goal-directed behaviour. Participants’ response times showed no in-
+suggesting that participants made fewer errors away from their own
+dication of being modulated by either robot’s perspective, in contrast
+perspective as they experienced more trials. An interaction between
+to what was found for the human-to-human pairing. The pattern of
+and Experiment Progress was also detected for our Human-
+𝑜𝑡ℎ𝑒𝑟
+data therefore suggests not only that a robot’s humanlike appearance
+𝑂.𝑅 . ,𝐶𝐼 . . ,𝑝 .
+Human group, ( =18 26 = [2 26−147 30] = 006), indicating
+was not sufficient to induce VPT, but also that the (limited) social
+that participants made fewer errors from the other participant’s per-
+spective as the experiment progressed, mirroring the response time
+signalling and imitation of goal-directed behaviour we implemented interaction with a pre-programmed humanlike robot with limited be-
+here did not sufficient either. havioural reactivity, such a human-centred social model is less likely
+Our findings have broad implications, both for the general VPT to be employed. Feedback from the interaction, such as countless
+phenomenon and its specific application to HRI. Firstly, for HRI, we missed social cues and limited agentive behaviour, quickly informs
+show that people do not spontaneously take the perspective of a people that the entity people are interacting with is indeed not as
+physically embodied robot even if endowed with a superficial hu- capable as another person. As a consequence, people are not able to
+manlike appearance and when showing limited human-like agentive automatically remap their responses onto the robot’s perspective.
+behaviour. As Pepper scores highly in humanlike appearance metrics Under this interaction-feedback theory of VPT, we predict that
+[39], at the very least our data therefore indicates that the minimum a physically embodied robot with sufficient interaction capabilities
+threshold of human-like appearance to trigger VPT towards a phys- would facilitate perspective taking. Suggestive evidence for this is
+ical robot is much higher than towards a 2D depiction, where simple present in studies where people are more likely to take a robot’s
+static schematic depictions with human-like features (eyes, arms, perspective when the robot is presented as a video, especially when
+etc.) seem to suffice. Our data therefore point to clear differences in that robot is performing an action [66, 67],and even when another
+VPT elicited by schematic and real-life interactions: what facilitates human is represented as acting [18, 55]. If this interpretation is cor-
+VPT towards a depiction of a robot does not necessarily facilitate rect, we may also expect a reduction in perspective taking towards
+perspective taking towards a physically embodied robot. people who are generally less responsive to social cues or with little
+For VPT more generally, our pattern of data does not support the interaction synchrony. Of course, it may be that such cues are only
+submentalizing account [10, 22] of perspective taking. Proponents used when developing expectations towards a novel agent (such as
+of these accounts argue that VPT effects measured in psychological a humanoid robot). For human agents, for whom firm expectations
+tasks do not reflect a perceptual representation of another’s view- about their perceptual, motoric and cognitive capabilities are already
+point, but instead other factors, such as a cuing of attention towards well established, interaction synchrony may be a less important cue.
+what an agent appears to be looking at, or increased uncertainty
+4.1 Limitations and Future Directions
+driven by the mere awareness that another person encodes a stim-
+ulus differently than oneself. However, if VPT reflected attentional
+The present findings provide valuable insights into the features
+cueing, we would not expect a difference between the participants
+that promote VPT towards people and robots, and how these differ
+paired with other people, and those with a humanlike robot. A robot
+between 2D depictions and physically embodied agents. However
+of humanlike appearance has sufficient directional affordances (a
+several open questions remain targets for future investigations.
+face) to cue attention the focus of its gaze, and should therefore have
+First, while we programmed our robot to display some of the social
+elicited the same effects as human interaction partners. In addition,
+and agentive behaviour that would be present in a human-task part-
+our task should not be affected by miscellaneous influences such as
+ner (eye contact; engaging in task; basic awareness of environment),
+the cuing of attention or response uncertainty. One would predict
+this falls short of a full interaction partner. When people interact,
+a general decrease in RTs, if the findings reflected simple directional
+the features of the interaction space are unbounded and intractable.
+cuing, instead of the observed decrease for letters aligned with the
+Indeed, an interaction between two people is often unpredictable
+human agent’s perspective, and increase for non-aligned letters.
+in ways a pre-programmed robot with finite social capabilities can-
+Similarly, general response uncertainty brought about by a different
+not emulate. The lack of a difference between our inanimate and
+alternative perspective cannot explain the observed pattern of data.
+animate robot robot may therefore reflect that our animate robot
+This would manifest as a general slowing when participants believed
+behaviours were too narrow, and not capable of representing the
+an agent was seeing the same stimulus differently to themselves,
+intricacies of fluid social interaction (for example joint attention).
+instead of the observed directional facilitation/interference pattern.
+Additionally, we speculate that, when interacting with a physically
+What can explain the differences in VPT elicited by schematic
+embodied robot, factors such as attribution of mind may play a much
+and real-life interactions? The largest differences between humans
+larger role than for schematic depictions of agents on computer
+and robots lies in behaviour features. Our data show that restricted
+screens. The more uncertainty about a robot’s true capabilities exist,
+animate behaviours such as eye contact, or the presentation of task-
+the more cues to agency and social reactivity will serve to either
+directed behaviours, do not suffice to induce VPT towards a physical
+confirm a belief of human-like capabilities, or disrupt it. Indeed there
+robot. It should be stressed, however, that the robot’s animate be-
+is suggestive neuroimaging evidence indicating overlapping neural
+haviour was very limited, and falls short of a full interaction that
+circuitry for both VPT and theory of mind [45]. For a broad review
+would happen between two people. We therefore speculate that
+of the neurocognitive processes underlying VPT and their potential
+when one sees a representation of a robot in a 2D image, a humanlike
+relationships to theory of mind capabilities, see [20].
+appearance suffices to evoke imagery of a more perceptually, motori-
+The potential relationship between the inferred mental states of
+cally and cognitively capable entity than in reality, perhaps modelled
+a physically embodied robot and VPT is a promising topic of future
+after the other humans one has interacted with before [13]. Without
+research. This could be investigated using a strong mind-perception
+being shown evidence to the contrary in the experiment (e.g., that the
+manipulation in addition to more flexible non-verbal robot behaviour.
+robot does not respond verbally when asked a question) people are
+Such explicit indications of robot possessing mental-states could be
+therefore free to adopt the same social model as they would to another
+achieved from a verbal interaction between the person and robot,
+human, allowing the engagement of the typical social-cognitive appa-
+achieved either through Wizard of Oz [41] or by utilising genera-
+ratus reflected by phenomena such as VPT. In contrast, in a physical
+tive language models [37], however achieving improved non-verbal

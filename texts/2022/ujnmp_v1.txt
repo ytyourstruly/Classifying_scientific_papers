@@ -1,0 +1,378 @@
+Analysis reproducibility in mental health research: challenges and solutions
+Rotem Botvinik-Nezer1,* and Tor D. Wager1
+1Department of Psychological and Brain Sciences, Dartmouth College, Hanover, NH, USA
+* Corresponding author: rotemb9@gmail.com
+Recent years have marked a renaissance in efforts to increase research reproducibility in
+psychology, neuroscience, and related fields. Reproducibility is the cornerstone of a solid
+foundation of fundamental research – one that will support new theories built on valid
+findings and technological innovation that works. The increased focus on reproducibility
+has made the barriers to it increasingly apparent, along with the development of new tools
+and practices to overcome these barriers. Here, we review challenges, solutions, and
+emerging best practices with a particular emphasis on neuroimaging studies. We
+distinguish three main types of reproducibility, discussing each in turn. “Analytical
+reproducibility” is the ability to reproduce findings using the same data and methods.
+“Replicability” is the ability to find an effect in new datasets, using the same or similar
+methods. And “robustness to analytical variability” refers to the ability to identify a finding
+consistently across variation in methods. The incorporation of these tools and practices
+will result in a more reproducible, replicable, and robust psychological and brain research,
+and a stronger scientific foundation across fields of inquiry.
+The last decade has marked a prominent shift in focus towards reproducibility in psychology,
+neuroscience, and related fields. Converging evidence from multiple explorations and large-scale
+collaborations across fields have indicated that many published findings are potentially false
+positives (1–6). Consequently, a “renaissance” (as termed by Nelson, Simmons and Simonsohn
+(7)) was sparked, with researchers re-examining the scientific endeavor, identifying problems and
+challenges–from lack of methodological rigor to underappreciation of replications to misaligned
+incentive structures–and working on improvements and solutions. This renaissance included
+heated debates alongside calls for fundamental changes in how research is performed and
+evaluated. Critical, constructive steps included the development of new tools and approaches to
+increase the reproducibility and transparency of scientific findings (8). This work is ongoing.
+The abundance of new tools requires substantial and rapid adaptations from researchers, which
+are now expected to be as productive as before (if not more) while implementing practices that
+often require more time, resources and knowledge, as well as a broader set of skills than ever
+before. Thus, it is understandable that the adoption of these tools and practices is relatively slow
+(9–11). Nevertheless, increasing the reproducibility of research is vital to its advancement and to
+the ability to translate findings into integrative theories and clinical interventions.
+The reproducibility of scientific findings is fundamental to their validity and utility in guiding further
+research, technological development, and policy. Reproducibility is therefore central to the return
+on investment of public money dedicated to scientific research. For example, results that cannot
+be reproduced using the same data and methods used to derive them are likely to be invalid, or
+at least untrustworthy. Publishing irreproducible results is worse than not publishing at all,
+because it is more difficult to eliminate an idea from scientific discourse than it is to introduce it
+(12,13). Spurious results could mislead other researchers who rely on these published findings to
+conduct follow-up investigations or researchers trying to integrate findings into broader theories
+and models. On the other hand, best practices that are linked to reproducibility, such as data
+sharing, increase the value of datasets by allowing their reuse (14).
+An important development has been to increasingly align incentives with reproducibility and other
+goals that increase the utility of scientific products. These incentives include both rewards and
+requirements. Researchers are increasingly recognized for reproducibility efforts through awards
+and citations, and concomitantly, funding agencies increasingly require researchers to implement
+reproducibility practices, such as data sharing (15). For example, since 2019, the U.S. National
+Institute of Mental Health (NIMH) requires funded projects to share their data via the NIMH Data
+In this review, we aim to facilitate researchers’ transition towards increasingly reproducible
+psychological and neuroscientific research. We provide an overview of challenges, potential
+ability to reproduce the same results using the original data and methods (“analytic
+reproducibility”); (2) The ability to replicate findings with the same methods but new data
+(“replicability”); and (3) The ability to reproduce similar or converging results with the same data
+and hypotheses but different methods (“robustness to analytical variability”) (16). These
+complement other important properties of useful scientific research, including generalizability,
+interpretability and translationality, which are critical for future progress as well.
+Analytic reproducibility Replicability
+Same data Same methods New data Same methods
+Identical results Similar results
+Level 1: • Sample size based on power analyses
+• Transparent, detailed reporting • Large-scale collaborations and
+• Novel publication platforms consortia aggregating data across labs
+• Tools for reporting error detection • Pre-registration
+• Positive controls
+Level 2: • External validation
+• Data and code sharing
+• Best practices for software engineering
+Robustness to analytical variability
+(version control, modularity, documentation,
+Same data New methods
+unit testing, DOI)
+• Code reuse across labs, open-source tools
+• Standardized data structures
+Similar results
+Level 3:
+• Transparent, detailed reporting
+• Reproduction of computing environment
+• Data and code sharing
+• Containers
+• “Multiverse analysis”, multi-analyst studies
+main solutions.
+Analytic reproducibility: same data, same methods
+The minimal requirement of reproducible research is that if the same analytic methods are used
+on the same dataset that generated a result, the result should be reproduced exactly. While this
+may seem like an obvious feature, it has been shown to be much more challenging than expected.
+For example, Hardwicke et al. (17) attempted to reproduce the results of 25 published papers in
+Psychological Science that received open data badges for publicly sharing their data and code
+(thus they might be particularly likely to be reproducible). However, Hardwicke et al. found
+substantial numerical discrepancies between reported statistical values and values obtained from
+reproduction attempts in 64% of these papers (a number that was reduced to 28% following input
+from the original authors). Such discrepancies do not necessarily imply that the original studies’
+conclusions are wrong, but they do limit confidence in their accuracy and raise questions about
+how they were produced.
+This example highlights the fact that reproducibility requires a sufficient, complete description of
+the methods used to select, process, and analyze data. This is a fundamental challenge, as
+textual descriptions are often vague or insufficient to describe complex procedures, particularly
+when it is not always clear which details are ignorable and which are not. For example, the make
+and model of the analysis computer and the operating system used are routinely considered
+ignorable and not reported, but some studies have highlighted effects of such basic background
+variables (18,19). In many cases, even variables that are clearly critical to reproducing an analysis
+are not adequately described. For example, the Reproducibility Project: Cancer Biology attempted
+to replicate 193 experiments from 53 papers in preclinical cancer biology (20). All 193 studies
+were missing important details in the published description and therefore could not be replicated
+based on the published paper alone. Moreover, the authors of these papers were not always
+willing to cooperate to enable replications. Consequently, attempted replication was possible in
+only 50 of the original 193 studies. Other attempts to reproduce published papers have
+encountered similar challenges (21–23). There are many contributors to incomplete reporting,
+including space limitations in scientific journals, reliance on static textual descriptions and two-
+dimensional visualizations, and the challenge of understanding what information is crucial for
+replication. Here, we describe three “levels of defense” that enable increasingly precise
+reproduction of published results.
+The first level is standardization of reporting practices. Many societies have produced consensus
+documents on methods and reporting, and journals increasingly require detailed methods
+checklists and supplements (e.g., Nature journals’ checklists). In some domains, such as
+neuroimaging, best practices for analysis and reporting have been developed (24,25). Novel
+publication platforms allow more flexible and varied research products to be published alongside
+papers (e.g., OHBM’s Apeture journal, and the NeuroLibre preprint server). A related, promising
+development is the emergence of software tools for automatically checking the results in papers
+automatically detect inconsistencies between different components of inferential statistics, like t
+values, degrees of freedom, and corresponding p values. Such tools are already routinely
+implemented by some journals (26).
+The second level is data and code sharing. Many repositories are available for sharing data and
+code alongside published manuscripts (e.g., Github, Open Science Framework, and many more).
+Open sharing makes it easier for interested readers to reproduce the analysis, understand
+precisely what was done, and reuse both methods and data in future studies. However, sharing
+does not guarantee utility, and useful sharing will require a shift in scientific training and allocation
+of time and resources. There are currently few standards in place for code readability, reusability,
+and error checking. Most scientists were not formally trained in software engineering and have
+not dedicated years to perfecting their clear and bug-free code – nor is it practical for them to do
+so. The result, however, is that code and datasets are often not sufficiently clear and well-
+documented to allow reproducibility. In addition, even if the code runs and results are
+reproducible, code errors may make the original results incorrect.
+A number of good practices can help reduce these problems. First, while scientists must learn
+many things beyond software coding, it is increasingly essential for trainees to obtain some
+proficiency in coding and data science. Trainees and established researchers alike can benefit
+from adopting best practices in code writing (27–30). Such practices include version control (e.g.,
+Git) (31), code modularity, code documentation (32,33), unit testing to routinely check for bugs
+and unexpected behavior (34), and linking versioned code releases with persistent Digital Object
+Identifier (DOI) to publications to clearly track which version of the code was used to produce
+published results (this can be done easily and without cost using Zenodo and other platforms).
+In addition, reuse of code shared across many user groups is a crucial advantage, as it increases
+the chances that bugs and failures of robustness will be discovered and fixed. For example, the
+machine learning toolbox scikit-learn (35) is used by thousands of scientific and industry groups
+worldwide. Along with its extensible design and clear structure, it provides a robust and error-free
+analysis platform. In neuroimaging research, there is substantial convergence on popular free,
+open-source toolboxes. Statistical Parametric Mapping (SPM), the FMRIB Software Library (FSL),
+and Analysis of Functional NeuroImages (AFNI) packages are used by hundreds or thousands of
+groups worldwide. These are complemented by hundreds of other open-source toolboxes with
+complementary or specialized functions. For example, the Cognitive and Affective Neuroscience
+Lab Core Tools (canlab.github.io) is an object-oriented neuroimaging analysis toolbox that
+enables complex analytic processes to be run with simple commands, resulting in readable and
+reusable analysis scripts. The Group Independent Component Analysis of fMRI Toolbox (GIFT;
+other packages. Both reuse SPM functions for image reading and writing, building off of a heavily
+vetted code base for basic functions.
+As for data sharing, this key practice has become much more common with the emergence of
+sharing platforms, regulations and requirements by some funding agencies and journals
+(14,36,37). Datasets are now expected to be openly shared along with the publication, unless
+there are specific ethical constraints, and this is required by some journals (e.g., the open-access
+journal PLoS Biology). Free platforms are available for data sharing, such as OpenNeuro for
+neuroimaging data (38).
+Standardized data structures are making it easier for researchers to understand and use data
+they download from repositories. For example, the NIH’s NDA has an extensive set of
+requirements for data sharing, including the use of Common Data Elements that identify the same
+type of data across studies (e.g., the same question in a questionnaire or physiological measure).
+This facilitates making data Findable, Accessible, Interoperable, and Reusable (FAIR) (39). In
+addition to efforts by funding agencies, many of the most important data standardization efforts
+are community-driven. For example, the Brain Imaging Data Structure (BIDS; (40)), a widely
+accepted standard for organizing and describing neuroimaging data, has greatly facilitated
+sharing and reuse, and has been adopted by hundreds of groups over the last years. This has
+allowed dozens of groups to write “BIDS Apps” that perform complex analytic processes on these
+management further help researchers organize, manage, track and share their data (10,41). For
+example, the Neuroimaging Data Model (NIDM) is a standard for provenance information that
+links research products from raw data to derivatives and results (42,43), DataLad is a tool for data
+management and version control (44), and brainlife.io is a free and open platform for reproducible
+neuroscience data management and analysis.
+Level three is the use of software containers and related tools for managing the computing
+environment. As mentioned above, even minor deviations from the original computing
+environment used to generate results (e.g., a different software version or a different computer or
+operating system) could result in meaningful differences in results (18,19,45,46). Thus, tools that
+reproduce the computing environment are crucial for analytic reproducibility. For example, R’s
+on a specific chosen date, thus preventing discrepancies due to changes in code over time.
+Containers go a step farther. They are standalone executable software packages that include an
+operating system, code, and all dependencies (e.g., required packages and software, system
+tools and settings, etc.) to run an analysis. Popular container platforms are Docker and Singularity
+container is independent from the computational environment on which it runs. For example, an
+analytic pipeline developed in Windows could be deployed on a compute cluster running Linux,
+but the pipeline would still run on the same version of Windows bundled within the container.
+In sum, a wide variety of practices, tools, and standards for improving analytic reproducibility have
+emerged over the past decade and come into widespread use. This is encouraging, as
+reproducibility is the most basic expectation for published results and a gateway to replicability
+and robustness. We turn to these next.
+Replicability: new data, same methods
+Replicability is the ability to reproduce findings using the same or similar methods in new samples.
+The first study to provide direct large-scale evidence on replicability of findings across a field was
+the Reproducibility Project: Psychology (RP:P). In this project, the Open Science Collaboration
+attempted to replicate 100 prominent findings in Psychology (2). Strikingly, only 36 of the 100
+studies successfully replicated, with effect sizes about half the size of the original effect sizes on
+average. This study set the stage for similar projects in different fields, which revealed a
+“replication crisis” that spans many scientific fields, from social sciences (48) to economics (49),
+experimental philosophy (50), and preclinical cancer biology (20,51).
+Another series of large-scale collaborations, the “Many Labs” studies, focused on providing
+broader evidence on the replicability of findings in the social sciences and testing potential
+moderating variables. “Many Labs I” successfully replicated 10 of 13 effects (findings) across 36
+independent samples and provided evidence that replicability depends more on the effect being
+studied than on the specific sample or settings (e.g., online versus in-lab settings) (52). “Many
+Labs II” went bigger, attempting to replicate 28 effects, with about 60 pre-registered, peer-
+reviewed protocols per effect. The study successfully replicated 15 effects (54%). Like “Many
+Labs I”, replicability depended mainly on the effect, rather than the sample or context (53). One
+of the main claims against the findings of RP:P was that some effects failed to replicate because
+of lack of adherence to expert review or low power. To test this, “Many Labs 5” conducted multiple
+additional replication attempts of each of 10 of these effects, with pre-registered, peer-reviewed
+protocols (54). These revised replication attempts produced effect sizes similar to those of the
+RP:P, providing evidence against this claim.
+Similar projects are emerging in various fields, such as developmental psychology and EEG (55–
+57). An exciting development is the emergence of scientific organizations that promote cross-lab
+replication. In psychology, the Many Labs projects have led to the foundation of the Psychological
+Science Accelerator, a globally distributed network of psychology labs which coordinates data
+collection for democratically selected studies (58).
+Sample size, effect size, and replicability. The replicability of any particular effect is dependent
+on the underlying effect size and sample size. Sample sizes in neuroscience have often been
+substantially smaller than what is needed for high replicability (59,60). For example, a recent study
+concluded that replicable Brain-wide Association Studies (BWAS)–associations between
+individual differences in brain structure or function and complex cognitive or mental health
+phenotypes–often have very small effects (e.g., r < 0.15) and thus require thousands of
+participants for high replicability, far more than the typical sample sizes of dozens of participants
+(61).
+This is a sobering analysis, but there is cause for hope. Effect sizes from multivariate predictive
+models are often several times larger than univariate BWAS (e.g., r ~= 0.4), which test
+associations one brain region at a time. This confers a dramatic increase in power and
+replicability, with over 80% replicability and power with sample sizes in the hundred s (62). In
+addition, the BWAS analyses did not consider within-person effects of tasks and relationships
+between brain activity and mental state, requiring much fewer participants for high replicability.
+Finally, many of the limitations in replicability stem from the need to replicate many small effects
+in individual brain regions. If multivariate analyses are used to define integrated measures that
+aggregate across brain regions, effect sizes are larger still (e.g., r ~= 0.55-0.85) (63,64) and the
+multiple testing problem is eliminated, allowing findings to be replicated in individual participants
+(e.g., 95% of individual participants in diverse, multi-study samples (65,66)).
+At the same time, large collaborations such as the Human Connectome Project (67), UK BioBank
+(68) and the Adolescent Brain Cognitive Development (ABCD) (69) are generating mega-large
+databases that could be used for more replicable findings, but these projects mostly include
+commonly used and well studied tasks, and cannot replace smaller studies of more novel effects,
+rare populations, or specific experimental designs. To fill this gap, consortia have formed to
+aggregate data across labs into samples with over 1,000 participants, even with rare populations
+like those with depression (ENIGMA-MDD), PTSD, autism, and more (70).
+An overall lesson is that researchers should design their studies to be statistically powered
+enough to detect the effects of interest, considering the likely effect size, type of association
+(between-person trait or within-person state), and analysis (univariate map or multivariate model)
+(71). Larger samples, and the potential for pooling data across studies to increase sample size
+and generalizability, are also important. Other methodological decisions are also key. For
+example, the use of external validation of generalizability by testing independent samples (72)
+and optimization of data acquisition and measurement (73) are important for creating replicable
+biomarkers (74).
+Analysis flexibility. If researchers test multiple analysis pipelines and report only the one that
+yielded significant results (i.e., p-hacking (75,76)), or change their hypotheses after seeing the
+results (HARKing (77)), they introduce a selection bias that is not accounted for in inferential tests
+or reflected in p-values. Thus, effect sizes are inflated and p-values are more significant than their
+true values, increasing false positives and decreasing the likelihood of independent replication.
+Despite the increased awareness of this issue, such questionable practices are still prevalent
+(78–80).
+Pre-registration is a partial solution to these issues. The experimental design, sample size,
+hypotheses, analysis plan, and predictions are registered prior to data collection (or at least prior
+to observing the outcomes), distinguishing between confirmatory and exploratory analyses and
+making transparent what was planned prior to observing the data (81,82). This prevents both p-
+hacking and HARKing, or at least makes them more transparent. Of course, this depends on the
+completeness of the pre-registered plan and how closely it is followed.
+Pre-registration comes with many challenges that are actively being discussed. Many analytic
+choices depend (and should depend) on the characteristics of the data, which are difficult or
+impossible to know in advance, particularly with novel research questions. Thus, the plan that is
+pre-registered is likely to be suboptimal or even problematic. In addition, best practices are
+constantly developing. It is common for strategies to be discovered and consensus developed
+after a study is registered. Thus, deviations from the pre-registered analysis plan are very
+common.
+One way to address this dilemma is the use of positive controls, which are effects that are
+expected in a valid dataset but are not conditional on outcome of interest. For example, a study
+of emotional brain responses could examine visual and motor responses to stimuli. Positive
+controls can be used to examine data distributions (e.g., identify artifacts and outliers) and
+optimize an analysis pipeline. Then, the optimized pipeline can be used to test the effect of
+interest. For example, our laboratory often uses the Neurological Pain Signature (83)–a
+multivariate pattern whose effect size, sensitivity, and specificity have been examined across over
+40 published samples (63)–as a positive control, and to examine and optimize other aspects of
+the analysis (e.g., preprocessing choices) before testing effects of interest. Importantly, the effect
+of interest (e.g., meditation effects) must be independent of the effect that is optimized (e.g., NPS
+responses to pain vs. rest). Such domain-specific positive controls are common in many biological
+assays, and the principle can be used broadly across research domains.
+One way of approaching the uncertainties inherent in pre-registration is to include a range of
+options for processing and analysis that will be explored on independent data or positive control
+effects, with the final selection for the main analyses contingent on those tests. Likewise, in
+machine learning, it is common to test a range of processing and feature selection/engineering
+strategies, as which is optimal for a given dataset cannot be known in advance. But pre-registered
+plans can specify the range of options tested, and how the final choices will be made using criteria
+that are independent of the effect of interest. Alternatively, training sets can be used to explore
+different models, and then the best model can be tested once on a new, independent, test set. If
+followed assiduously, these practices will allow researchers to accommodate data characteristics
+and optimized methods while retaining the ability to test a hypothesis of interest in an unbiased
+fashion.
+Robustness to analytical variability: Same data, different methods
+Data analysis requires many analytical decisions. As discussed above, this “garden of forking
+paths” can lead to false positive results (75,84), but importantly, it also increases the uncertainty
+of any given single result. For example, Carp (85) compared brain maps from nearly 7,000
+analysis pipelines and found substantial variability across pipelines. In a more recent
+collaboration, 70 independent analysis teams tested nine pre-specified hypotheses using the
+same task-fMRI dataset (86). Strikingly, the 70 teams chose 70 different analysis pipelines, and
+this variation affected the statistical maps and conclusions drawn about the hypotheses tested.
+While it is possible that some of these methodological choices were wrong or suboptimal, most
+of them are considered valid and acceptable by current standards. In addition, similar effects of
+analytical variability have since been shown in resting state fMRI (87), diffusion MRI (88),
+structural MRI (89,90), PET (91), and EEG (92), and also in psychology (93–95) and social
+sciences (96,97) more broadly. Even in the absence of p-hacking and other forms of selection
+bias, such variation raises critical questions about which analysis choices lead to correct
+conclusions, and about how robust findings are to variation in methodological choices (98).
+One solution that has been suggested is “multiverse analysis” (99,100), in which a range of
+theoretically and statistically reasonable analysis pipelines are tested and reported. This concept
+has been used across fields, sometimes under different names (e.g., specification curve analysis
+(101,102)). Such analyses can be performed by collaborative teams in “multi-analyst studies”
+whether a finding is robust to variability or not helps to calibrate confidence in its accuracy and
+generalizability. In addition, the inference across a series of models is likely to be more accurate
+than the inference from any single model.
+“Multiverse analysis” “Multi-analyst” studies
+Analysis
+Analyst 1
+pipeline 1
+Analysis
+Analyst 2
+pipeline 2
+Data Results Data Results
+Analysis
+Analyst N
+pipeline N
+Multiverse analysis also comes with challenges that must be addressed for it to become widely
+adopted. First, it requires the specification of a range of valid choices (e.g., data processing
+pipelines). Some choices may be more valid or optimal for a particular dataset than others, and
+this will be difficult or impossible to know in advance when testing novel hypotheses. In addition,
+the choice of options to consider will affect the results, and multiverse analysis can be “p-hacked”
+just like standard analyses (104). Therefore, tools and practices must be developed to guide
+researchers through this process, with different considerations applying in different fields. For
+example, the multi-analyst fMRI study discussed above (86) identified several key factors
+contributing to inferential variability, including data smoothness, the analysis software used, and
+parametric versus nonparametric statistical tests. Future studies could be designed to identify
+such field-specific key analytical choices with more certainty. Alternatively, a machine learning
+approach of “active learning” can be used to learn which subset of analysis pipelines best
+approximate the whole multiverse of analyses (105).
+A second challenge is that multiverse analysis requires extensive computational resources. Tools
+to increase computational efficiency could enable researchers to run them with widely available
+resources. Some preliminary infrastructures and tools for multiverse analysis in neuroimaging are
+starting to be developed (87,106), but there is still a long way to go before they are ready for
+broad use.
+Third, multiverse analysis is complex, making it challenging to integrate, visualize, and summarize
+findings and conclusions. Diverse approaches to visualization and reporting have been developed
+(99,101,107,108). One statistical approach for interpretation of multiverse analysis in fMRI is a
+“consensus analysis”, which is a type of meta-analysis over the statistical maps resulting from the
+different pipelines, adapted to account for their dependency (since they are based on the same
+data) (86,109).
+All in all, multiverse analysis is a developing framework, and is currently easier with simpler
+datasets and analyses than it is with complex, high dimensional data and complex pipelines (as
+is the case in neuroimaging). However, extensive efforts are being made and new tools and
+guidelines are expected in the near future. For simpler analyses, for example with low-
+dimensional behavioral data, multiverse analyses are feasible (101). With more complex datasets
+(e.g., fMRI studies), researchers can perform more limited sensitivity analyses, in which key
+parameters are varied (e.g., inclusion of covariates) and effects of these variations on study
+findings and conclusions are assessed. Importantly, any analysis pipeline that was run and
+observed should be reported, to avoid selection biases (i.e., “p-hacking”). And, finally, multiverse
+analyses can be pre-registered, facilitating the examination of robustness to methodological
+choices.
+Conclusions
+Numerous new tools and practices aiming to increase reproducibility have been developed across
+fields in the last two decades. However, their adoption in the field is still relatively slow, and new
+challenges are being revealed as other issues are being solved. Thus, the quest towards
+reproducible psychological and brain research is an ongoing endeavor. We hope this review,
+together with other resources (e.g., (8)), helps by informing researchers in the field about the main
+challenges and introducing some new solutions.
+Acknowledgements
+Rotem Botvinik-Nezer is an Awardee of the Weizmann Institute of Science - Israel National
+Postdoctoral Award Program for Advancing Women in Science. This work was supported by grant
+NIMH R01 MH076136 (T.D.W.)
+Disclosures
+The authors report no conflict of interest.

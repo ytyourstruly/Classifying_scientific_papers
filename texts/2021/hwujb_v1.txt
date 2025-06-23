@@ -1,0 +1,507 @@
+Individual Deep Fake Recognition Skills are Affected by
+Viewer’s Political Orientation, Agreement with Content
+and Device Used
+Stefan Sütterlin1,2,3[0000-0002-4337-1296], Torvald F. Ask3,4[0000-0002-1907-0004], Sophia Mä-
+gerle1, Sandra Glöckler1, Leandra Wolf1, Julian Schray1, Alava Chandi1, Teodora
+Bursac1, Ali Khodabakhsh4[0000-0002-2873-4140], Benjamin J. Knox4,5[0000-0002-4540-9534], Mat-
+thew Canham6, and Ricardo G. Lugo3,4[0000-0003-2012-5700]
+1 Faculty of Computer Science, Albstadt-Sigmaringen University, Sigmaringen, Germany
+stefan.suetterlin@hs-albsig.de
+2 Centre for Digital Forensics and Cyber Security, Tallin University of Technology, Tallinn,
+Estonia
+3 Faculty for Health, Welfare and Organization, Østfold University College, Halden, Norway
+4 Department of Information Security and Communication Technology, Norwegian University
+of Science and technology, Gjøvik, Norway
+5 Norwegian Armed Forces Cyber Defense, Lillehammer, Norway
+6 Beyond Layer Seven, LLC, United States
+Abstract. AI-generated “deep fakes” is increasingly used by cybercriminals
+conducting targeted and tailored social engineering attacks, and for influencing
+public opinion. To raise awareness and efficiently train individuals in recogniz-
+ing deep fakes, understanding individual differences in the ability to recognize
+them is central. Previous research suggested a close relationship between politi-
+cal attitudes and top-down perceptual and cognitive processing styles. In this
+study, we investigate the impact of political attitudes and agreement with the
+political message content on individual deep fake recognition skills. 163 adults
+(72 females = 44.2%) judged a series of video clips with politicians’ statements
+across the political spectrum regarding their authenticity and their agreement
+with the message content. Half of the presented videos were fabricated via lip-
+sync technology. In addition to agreement with each statement made, global po-
+litical attitudes towards social and economic topics were assessed via the Social
+and Economic Conservatism Scale (SECS). There were robust negative associa-
+tions between participants’ general and social conservatism and their ability to
+recognize fabricated videos, especially when where there was agreement with
+the message content. Deep fakes watched on mobile phones and tablets were
+considerably less likely to be recognized compared to when watched on station-
+ary computers. This is the first study to investigate and establish the association
+between political attitudes and interindividual differences in deep fake recogni-
+tion. The study supports recently published research suggesting relationships
+between conservatism and perceived credibility of conspiracy theories and fake
+news in general. Implications for further research are discussed.
+Keywords: Deep fake recognition, political orientation, social engineering.
+1 Introduction
+In the age of increasing cyber security threats, the technological arm’s race between
+threat actors and cybersecurity specialists spiral into material battles, where ever more
+sophisticated zero-day exploits are required to overcome constantly developing net-
+work defence, and vice versa. The risks attached to purchases of attractive zero-day or
+half-day exploits on the gray or black market, the necessity of trust, and the need for
+trusted double-blind auction opportunities are in principle not very different from
+their physical equivalents. Particularly for Advanced Persistent Threats (APT) to suc-
+cessfully target high- profile actors, the technological efforts that are required, the
+necessary expertise and/or funding required to circumvent or compromise cyber secu-
+rity infrastructure are not affordable for or available to many of those intending to
+launch a cyber attack (Meakins, 2019). As a result, the exploitation of the human
+factor becomes more relevant (Wang, Sun & Zhu, 2020). The term social engineering
+has been described as “any act that influences a person to take an action that may or
+ton et al., 2014). Social engineering relies on stable human traits such as for example
+trust, agreeableness, and conscientiousness (Uebelacker & Quiel, 2014). The methods
+used to take advantage of these evolutionary rooted weaknesses (exploits) are well
+known tactics of persuasion (Cialdini, 1993). Persuasion tactics are particularly suc-
+cessful where they meet unprepared, unaware, and inexperienced individuals who do
+not consider themselves relevant targets, do not recognize the attack situation, and do
+not apply any defence strategies. Social engineering-enabled cyberattacks are estimat-
+ed to account for up to 98% of all cyberattacks in 2020 (Purplesec, 2021), with abso-
+lute numbers continuously rising (IBM Security, 2020; Verizon, 2021). While social
+engineering attacks remain rather unchanged in regard to the human characteristics
+and weaknesses they target, and the persuasion techniques or cognitive vulnerabilities
+they exploit, their modus operandi develops parallel to technological developments
+and societal trends. In more recent years, social engineering attacks benefited increas-
+ingly from technological advancement. Automatized or semi-automatized open-
+source personality assessment allows for resource-efficient individual profiling of
+susceptibilities (Azucar et al., 2018; Golbeck et al., 2011; Kosinski et al., 2013),
+providing the ground for tailored mass-spear phishing campaigns.
+Deep Fakes have the potential to become a disruptive technology changing the way
+we think about security aspects of virtual human-human interaction. The associated
+cost of DF scams was estimated to exceed 250 million USD in 2020 (iProov, 2020).
+The Global Trends Unit of the European Parliament associated the rise of DF with
+increased risks of being impersonated as an individual resulting in increased online
+abuse, and on a societal level contributing to political disinformation and fostering
+social unrest (European Parliament, 2018). AI-generated DF are becoming increasing-
+ly sophisticated and are in some cases hardly distinguishable for human eyes from
+authentic products (Korshunov & Marcel, 2020; Rossler et al., 2019). While the mar-
+ket for software tools producing DF of acceptable quality keeps developing (Lyu,
+2020), it provides individuals and cybercriminal gangs, as well as state actors with a
+constant supply to improve their arsenals. Human targets exposed to DF attacks are
+rendered relatively unaware, with most common cybersecurity awareness campaigns
+not yet preparing their customers for this attack vector. By applying DF, classic social
+engineering attack vectors exploiting human trust tendencies and other vulnerabilities
+are empowered by new technological means. The logic of social engineering, howev-
+er, remains unchanged: the circumvention of technological safeguards by application
+of psychological means. Once a sufficient credibility of DF generation has been
+achieved, only little IT knowledge will be required to implement it for a specific pur-
+pose, such as impersonating a superior in a spear-phishing context. In this asymmetric
+context, forensic detection tools, cyber security experts with knowledge about DF
+risks, and comparable means of detection or mitigation are not in place due to where
+and how the attack can be camouflaged as unsuspicious conversation.
+To date, many adversaries such as individual cybercriminals may not yet have the
+necessary resources, competencies or the required raw material featuring the target to
+produce perfect impersonifications. Available low-tech fakes bear, depending on their
+sophistication, familiarity with the impersonated individual, the situational context
+and the target person’s personal vulnerabilities, an inter-individually varying risk of
+being detected as inauthentic. While there is a constantly progressing field of authen-
+tication tools and strategies available (e.g. Hu et al., 2021; Rossler et al., 2019), cy-
+bersecurity awareness and resilience training needs to take the individual risk factors
+into account in order to develop adaptive training scenarios to improve the vigilance,
+judgment and evaluation performance when encountering synthetic media. This train-
+ing should be developed, implemented, and validated with the same care as is current-
+ly the case in phishing simulation campaigns. One precondition for efficient and ef-
+fective training or awareness interventions is an understanding of the underlying hu-
+man factors contributing to successful or unsuccessful differentiation between imper-
+fect faked and authentic information. Both short-term cognitive factors such as stress,
+workload, and vigilance, and long-term cognitive factors related to personality and
+individual differences (e.g., gender, age, political orientation), expertise, and culture
+may affect situation awareness during a social engineering attack. This occurs by
+influencing the interaction between perception, working memory, decision-making,
+and action (Montañez et al., 2020). While recognition and judgment of faked audio-
+visual material without technological assistance is the major step every countermeas-
+ure against social engineering attack needs to take, there is very little knowledge
+about the individual differences that affect deep fake recognition. Previous social
+engineering attack frameworks (e.g., Uebelacker & Quiel, 2014) have for the most
+part not considered the differing cognitive requirements and cognitive-emotional pro-
+cesses involved in human DF recognition, and it is only recently that these influences
+have started to be addressed (Montañez et al., 2020).
+DF can be classified into five types: (1) face-swap/identity-swap, (2) face-
+reenactment/puppet-mastery, (3) lip-syncing, (4) facial attribute manipulation, and (5)
+entire face synthesis (Masood et al., 2021) which can be separated into two main cat-
+egories of facial manipulation methods (Zollhöfer et al., 2018): 1) facial expression
+manipulation and 2) facial identity manipulation. Glitches and minor errors in imper-
+fect deep fakes such as asynchronous lip movements can reveal the inauthenticity.
+Eye-tracking studies revealed the interplay between attentional focus and imperfec-
+tions of DF, resulting in an eye- tracking database provided by Gupta and colleagues
+(2020). The cognitive processes involved make DF recognition a perceptual task ben-
+efitting from experience and knowledge (top-down), but also determined by attention-
+al control and shifts (bottom-up). It is therefore to be expected that marked and robust
+inter-individual differences in DF recognition performance exist.
+To raise awareness and train individuals in recognizing the most widespread DF,
+the understanding of what may cause individual differences in the ability to recognize
+them is key for the development of educational content and methods suitable to en-
+hance robust DF related cybersecurity awareness. While there is currently a lack of
+research on individual predictors of DF recognition performance, considerable
+knowledge exists regarding the relationships between visual perception and visual
+judgment, cognitive styles, and political orientation. Research on visual perception
+Findings on ambiguous pictures and binocular rivalry suggest that even very early
+attentional processes, such as preconscious attentional resource allocation, is affected
+by higher-level cognitive evaluations of associated sets of stimuli. This suggests both
+bottom-up and knowledge-driven top-down processes from early attentional resource
+allocation to interpretation and evaluation of perceived patterns (e.g., Balcetis et al.,
+2012; Tong et al., 1998; Van Koningsbruggen et al., 2011). Even very openly laid out
+physical properties of the immediate physical environment one interacts with, such as
+distances or slopes, have been mentioned to be perceived differently depending on
+how much a person tries to avoid certain cognitions (Balcetis & Dunning, 2007). Re-
+garding the later processes of higher cognitive judgments of perceived messages and
+the corresponding judgment regarding their authenticity, recent research suggests a
+causal relationship between trait-like conservatism and belief in untrue political
+statements (Garrett & Bond, 2021).
+Our study aims to combine and apply the well-established work on early cognitive
+influences on visual perception, with more recent work on higher cognitive function-
+ing and authenticity judgment, in the context of moderately difficult authentic or inau-
+thentic video clips with political content. We investigated technically unaided human
+fake detection performance featuring politicians making political statements, where a
+part of the presented videos has been faked via lip synchronization (facial expression
+manipulation).
+Fig. 1. Visual representation of top-down perceptual filtering. The PFC exerts top-down control
+on perception by changing the activity in TRN which serves as an inhibitory filter between
+preconscious and conscious perceptual processing (Nakajima et al., 2019; Philips et al., 2016;
+Pinault, 2004). a Visual stimuli enter the eye and are processed in the THL before being relayed
+through the TRN filter to enter conscious processing in V1. b Perceptual information is sent
+from visual cortices to the PFC where it is represented in working memory and processed ac-
+cording to perceptual goals. c The PFC combines perceptual information from V1 with task-
+related information to change how the TRN filters visual information from the THL to V1. d
+Input from V1 to PFC is altered according to top-down control. PFC = prefrontal cortex. THL =
+Thalamus. TRN = Thalamic reticular nucleus. V1 = Primary visual cortex. Blue dots = activat-
+ed nodes. Blue arrows = Excitatory projections. Red dots = inhibited nodes. Red lines = inhibi-
+tory projections.
+To the best of our knowledge, this is the first study to investigate the relationship of
+visual perception in DF contexts and political orientation. We took into account that
+respondents may use smartphones, tablets or desktop/laptop devices when responding
+to the online survey. Remote social engineering techniques can be expected to be
+more successful, where situational awareness is reduced due to for example smaller
+screen size, or simultaneous parallel activities (multitasking) (Canham et al., 2022). In
+order to determine and quantify if and how much device choices impact the individual
+and momentary cybersecurity risk profile and may thus inform attackers choice of
+attack vectors and implementation of social engineering attacks, device choice effects
+need to be taken into account. We thus investigated the device choice effect on the
+relationship between political attitude and specific statement agreement on DF recog-
+nition performance.
+In sum, we hypothesized (Hypothesis H ) trait conservatism to be negatively asso-
+ciated with successful identification of videos as authentic or faked; we also expected
+to see that the subjectively perceived probability of authenticity was positively associ-
+ated with trait conservatism (Hypothesis H ) and the agreement with the video’s
+2a
+spoken message content (Hypothesis H ). Finally, we expected overall recognition
+2b
+performance to be lower on smartphones and tablets compared to laptops or desktop
+devices (Hypothesis H ).
+2 Methods
+2.1 Ethics
+The present study complies with the Declaration of Helsinki and is in line with the
+Recommendations for the Conduct, Reporting, Editing and Publication of Scholarly
+Work in Medical Journals. Participants gave their informed consent prior to the study
+and were debriefed about the study’s purpose after completing the data collection. No
+deception was taking place. Participants were informed that they could withdraw from
+participation at any time. All participation was anonymous, no IP address or any per-
+sonal information that could lead to identification of participants was registered at any
+point. It was made clear to all participants that some of the videos would be faked and
+2.2 Participants and recruitment
+Literature research on related topics of knowledge-driven visual perception resulted in
+a conservatively expected estimated effect size of partial f2=.15. Following common
+conventions, the probability of a type-I-error was set at ⍺ = 0.05 and for type-II-errors
+β = 0.20. Based on the choice of appropriate analytical tools these settings resulted in
+a recommended sample size of 68 participants (G*Power; Faul et al., 2009). A con-
+venience sample of 164 participants was recruited via social media, where 163 (n
+female
+= 72; 44.2%) participants completed the survey and were included in the further anal-
+ysis. Data was collected via Google Forms.
+2.3 Design and procedure
+A correlational approach based on data obtained in an online-survey from individuals
+recruited via social media, students and staff from a university of applied sciences
+was followed. The university has a portfolio of courses within the areas of economy,
+technology and life sciences. Participants provided basic socio-demographic data and
+were presented with twelve video clips of 10 to 26 seconds duration. The clips were
+presented in randomized order and contained brief political statements by German
+politicians covering the breadth of the political spectrum following a consensus deci-
+sion of the authors and categorization into left-wing, neutral and right-wing political
+orientations. Five videos were faked, seven were authentic. Participants were asked
+about the authenticity of the videos (10-point Likert-scale ranging from (“1 = certain-
+ly not authentic” to “10 = certainly authentic”) and about the degree to which they
+agreed with the political statement that was made (4-point Likert-scale ranging from
+“agree not at all” to “fully agree”). General conservative traits were also assessed.
+Following the survey, participants were debriefed in more detail about the purpose of
+the study and had the opportunity to leave an email address to participate in a lottery
+for five prizes in the value of 20 EUR.
+2.4 Equipment and measures
+The 12-Item Social and Economic Conservatism Scale (SECS; Everett, 2013) was
+used for measuring conservatism. The scale consists of 12 items that are rated on a 0-
+100 scale by asking “How positive or negative do you feel about each issue on the
+scale”. The total score as well as two subscales, economic and social conservatism,
+can be computed. Sample items for the social conservatism subscale (7 items) include
+‘abortion, limited government, traditional marriage’ and for the economic conserva-
+tism subscale (5 items) include ‘tax, welfare benefits, fiscal responsibility’. The scale
+shows good overall reliability (Cronbach’s α = .88). For this study, the SECS was
+translated to German and showed acceptable reliability (Cronbach’s α = .71).
+2.5 Videos
+Lip-sync approaches take an arbitrary audio track as input and use it to derive a video
+of a target person with matching mouth region movements. The audio track can be an
+authentic recording, an audio- deepfake recording with a transformed identity (a.k.a.
+voice conversion) or be generated by text-to-speech synthesis. Deep Fakes were made
+using Wav2Lip by uploading one audio track (in .wav format) and one video track (in
+.mp4 format) per DF. Wav2Lip analyses the mouth area and adapts the mouth move-
+ment to the new fake sound, the old sound is replaced by the new one. First, videos of
+real politicians who talk slowly, move little, and do not open their mouths wide were
+collected. Then audio with similar voices or the voice of the same person with a dif-
+ferent statement were collected. The correct percentage of identified fake videos and
+participant agreement with the content of the video were used as dependent variables.
+Deep Fake Identification (DFI) was computed as a binary variable and correct identi-
+fication percentages were computed. Participant agreement with the video content
+was measured on a X-point Likert scale (do not agree- totally agree) and averages for
+both real and fake videos were computed. Reliability was acceptable for both the real
+videos (Cronbach’s α=.79) and the fake videos (Cronbach’s α=.68).
+2.6 Pilot study
+A pilot study with 19 video clips was conducted and a community sample of 39 per-
+sons were recruited. Detection performance, means and distributions were analyzed in
+order to select five clips that showed medium difficulty and covered the whole range
+of the political spectrum (two left-wing, two right-wing, one neutral). This selection
+was included into the main study (see below).
+2.7 Data reduction and analysis
+Statistical analysis was done with JASP version 14.1 (Gross-Sampson, 2020). All
+variables were checked for normality. Where criterion was not met, non-parametric
+alternatives were chosen. Bivariate correlations were calculated, and all variables
+were entered in the calculation. For the regression analysis, the conservatism scale
+including its subscales (SECS) was entered as the independent variable and Deep-
+fakes as the dependent variable. To test the influence of pc/mobile device on DF iden-
+tification, non-parametric independent samples test was used (Mann-Whitney U).
+3 Results
+Descriptive statistics and correlations between conservatism, detection accuracy, and
+3.1 H : Conservativism and deep fake identification
+To test if being more conservative (SECS scores) predicted less correct video clip
+categorization (i.e., recognizing the status as being an authentic or faked/synthetic
+video), a regression analysis was performed where the SECS sub scales were entered
+as the independent variables and the number of correct deep fake identifications was
+entered as the dependent variable.
+The SECS score was associated with more correct identifications (R2 = .056, F =
+tions was due to a significant correlation between the SECS social subscale (beta = -
+.267, t = -3.08, p = .002), while SECS subscale on economic conservatism remained
+insignificant (beta = .129, t = 1.49, p = .139).
+and agreement with content (N = 163).
+Mean SD Min Max 1 2 3 4 5 6 7
+1. SECS total 5.10 1.08 2.92 8.00
+2. Social subscale 5.17 1.45 1.43 8.57 .947***
+3. Economic subscale 5.01 0.94 2.80 8.40 .685*** .449***
+4. Correct identification 7.73 2.29 0.00 12.00 -.203** -.241** -.010
+5. Authenticity rating of
+3.49 0.45 2.00 4.00 -.053 -.136 .175* .609***
+authentic videos
+6. Agreement with con-
+1.75 0.31 1.00 3.00 -.299*** -.305*** -.185* .286*** .264***
+tent in real videos
+7. Authenticity rating of
+2.42 0.90 1.00 4.00 .193** .147 .184* -.576*** .000 -.111
+faked videos
+8. Agreement with con-
+1.66 0.31 1.00 3.00 .123 .100 -.148 -.150 .134 .128 .355***
+tent in fake videos
+Notes. Non-parametric correlations (Spearman’s rho). SECS = Social and Economic Conservativism Scale.
+* p < .050. ** p < .010. *** p < .001.
+Fig. 2. Scatterplot with linear regression line showing correlation between social conserva-
+tivism and number of correctly classified video clips. Confidence intervals to the mean.
+To test if being more conservative (SECS) was associated with the authenticity rat-
+ings and agreement of spoken content, regression analyses were performed where the
+SECS sub scales were entered as the independent variables and video ratings and
+agreement with the statements made in the videos for both the real (H ) and fake
+2a
+(H ) videos were entered as the dependent variables.
+2b
+In line with previous research, age showed positive trends of being associated with
+conservatism (rho = .141, p = .073). When controlled for age (beta = -.063, t = -.808,
+p = .420), the effect of conservatism on deep fake recognition persisted (R2 = .060, F
+= 3.37, p = .020), suggesting that age-typical media consumption habits or age-
+affected IT-literacy did not explain the effect.
+3.2 H : Effect of conservativism on judgment of videos’ degree of
+2a
+authenticity
+For authentic videos, trait conservatism measured as SECS total score predicted per-
+ceived authenticity (R2 = .067, F = 5.75, p = .004), where both the social (beta = -
+.214, p = .014) and the economic subscales (beta = .275, p = .002) were significant
+predictors.
+For faked videos, trait conservatism predicted higher authenticity ratings (R2 =
+.042, F = 3.49, p = .033). While both scales were not significant predictors when ana-
+lysed separately (SECS social: beta = .076, t = .868, p = .387), the economic conserv-
+atism (beta = .158, t = 1.81, p = .072) did show some weak tendencies of being asso-
+ciated with higher authenticity ratings of faked videos for fake video ratings.
+3.3 H : Effect of agreement with message content on judgment of video’s
+2b
+degree of authenticity
+Participants who agreed more with the message content of authentic videos, judged
+with the message content of faked videos, rated them also as more likely to be authen-
+3.4 H : Influence of device used on authenticity judgment accuracy
+deep fakes correctly (U = 1821.50, Z = 2.42, p = .016) when using a laptop or desktop
+device (N = 110; M = 82.94) over a mobile phone or tablet (N = 44; M = 63.90).
+rank rank
+Using a laptop or desktop (M = 81.96) led to higher levels of perceived authenticity
+rank
+ratings (U = 1929.00, Z = 1.98, p = .047) than using phones or tablets (M = 66.34).
+rank
+More female participants used mobile phones or tablets (66%) compared to males (χ2
+= 6.09, df = 1, p = .019).
+Fig. 3. Comparisons of deep fake recognition accuracy between phones/tablets and lap-
+top/desktop devices.
+4 Discussion
+This research investigated how general political orientation on the conservatism do-
+main is associated with detection accuracy of deep faked videos. Due to the novelty of
+the topic of individual differences in DF recognition, we consider this a first pilot
+study into a new thematic topic area which is likely to trigger more research activity
+in the future.
+Previous research indicated a positive relationship between trait conservatism and
+the perceived credibility of conspiracy theories (Garret & Bond, 2021). Our study
+aimed to test this hypothesis in the more specific field of deep fake recognition, which
+is currently an increasingly relevant element of political dis-/misinformation as well
+as the spread of conspiracy theories. Our results suggest a moderate, but statistically
+significant relationship between conservatism and deep fake recognition. According
+to these initial results, more socially (but not economically) conservative political
+views were associated with more susceptibility to believing that video clips to be
+authentic. This association between trait conservatism and deep fake recognition per-
+formance seemed to be carried by the individual’s extent of agreement with the politi-
+cal statement that is transported in the video. There was a positive linear relationship
+between agreeing with the spoken message content and the degree to which the mes-
+sage transporting video was considered authentic. While this association was found
+for both authentic and faked videos, the association was slightly (but not significantly)
+stronger for the category of faked videos.
+This research also showed that using a mobile phone increased DF susceptibility.
+Using a mobile phone led to higher failure rates in detecting DF, thus supporting the
+hypothesis. This may in part be explained by the fact that humans tend to perform
+worse when detecting DF in videos with smaller screen size or due to artifacts from
+the faked videos with low resolution being masked by the quality compression
+(Rossler et al., 2019). Research on susceptibility to remote online social engineering
+(ROSE) attacks suggest a higher vulnerability when portable devices, in particular
+smartphones, are used (Powell & Canham, 2021). This was confirmed to be also true
+for DF recognition in this study. It was beyond the scope of this study to investigate
+causal pathways and disentangle them, but we consider it plausible to assume that
+both factors, the reduced situational awareness resulting from (1) smaller screens and
+(2) multitasking/distraction may have contributed. Since smaller screens are partially
+compensated by the closer distance to the eye and thus a similar visual field angle,
+perhaps (2) is more likely to be true and should be considered in future studies to
+inform human-centered security-relevant design.
+While gender effects were not part of the initial research question, preliminary
+analyses indicate that female participants reported significantly more mobile phone
+use than males (66%). Taken with the findings from the first hypothesis that con-
+servatism would be associated with DF identification, this could explain why females
+performed worse than males on DF detection, but differences are not significant or
+have small effect sizes and are thus not included here in detail. These findings add to
+the previous research that gender might not influence DF detection (Montañez et al.,
+2020). Gender effects have not been reported before in DF recognition. Previous re-
+search suggested women might be more susceptible to social engineering (e.g., Halevi
+et al., 2015; Lin et al., 2019; Sheng et al., 2010) but previous studies mainly focused
+on personality traits and susceptibility to phishing emails.
+The effects from this study are in line with very recent findings on the inaccuracy
+in regards to the judgment of political statements’ truth and conservatism in a US-
+American sample (Garrett & Bond, 2021). It also gives support to recent literature on
+top-down processes of visual perception (Aitken et al., 2020a, 2020b; Panichello &
+Turk-Browne, 2021). The participants were clearly instructed to judge the authenticity
+and can be assumed to have searched for technical glitches, inconsistencies, spectral
+artifacts, and aberrations. These perceptions have to be compared with internal cogni-
+tive representations of what a hypothetical “normal” (authentic) standard model could
+be.
+4.1 Limitations
+This study has several limitations that could have influenced the results. The partici-
+pants were recruited through convenience sampling and from a specific region in
+Germany and are thus not necessarily representative on a national or international
+level. Also, affinity for information technology (IT) was not assessed in the sample.
+People more accustomed to using or being exposed to IT media might have a better
+understanding of social media influence and social engineering. However, previous
+research on other deceptive means applied in cybercrimes, such as phishing simula-
+tions, suggest that IT-affinity may be related to overconfidence and is not per se a
+relevant protective factor (Pattinson et al., 2012). The variable of age, which is com-
+monly related to IT-affinity, did not have any statistically significant impact on the
+overall findings.
+While there were significant findings both at group levels and at the gender levels,
+effect sizes were small. The sample size met the power analysis requirements, but the
+small yet significant findings could be due to the relationship of the variables is not as
+strong as hypothesized, the fact that larger sample sizes produce smaller (and more
+accurate) effects, or that the sample was homogenous in their location, resulting in a
+restriction-of-range effect.
+4.2 Future research
+The present findings have to be replicated in other countries, with larger samples, and
+preferably with an equal distribution of pads, laptops, and mobile phones between
+genders in order to make conclusions about gender effects. The nature of this survey
+and the informed consent required for data collection and processing prepares the
+participants for the challenge and induces a critical evaluation from their side. In real
+life conditions, targets of DF-related social engineering attacks are unlikely to be
+prepared and may have a certain level of personal knowledge and trust in relation to
+the individual shown. Thus, the findings of this study may have stronger relevance for
+the area of political disinformation than individual social engineering as it is carried
+out in for example spear-phishing attacks.
+To investigate perceptual processes underlying individual differences in DF recog-
+nition closer, eye- tracking may be a useful tool to assess whether areas in the videos
+that contain synthetic artifacts are visually scanned equally between individuals that
+perform well, compared to individuals that do not perform well on the DF detection
+task. It may also be necessary to pair eye-tracking data with EEG recordings to see if
+there is a difference in DF artifact-detection associated responses (event related poten-
+tials) between participants who are visually scanning the same areas of the DF. This
+will be important to determine if top-down knowledge (e.g. expectations influenced
+by conservativism) affects perceptual processes at the attention allocation- or encod-
+ing-level of DF stimuli processing. Dissociating the effects of attention and expecta-
+tion on early sensory processing is not straightforward (Rungratsameetaweemana &
+Serences, 2019) and should be properly addressed in future research. Comparing the
+differences in DF detection between DF facial identity manipulation techniques and
+facial expression manipulation techniques may go further in demonstrating the extent
+to which top- down processes influence perceptions. Facial identity manipulation DF
+may have less of the expressive characteristics of the impersonated individual, or a
+timing of expressive behaviors that are a little off from the impersonated individual,
+thus providing additional clues that may give away the DF. To pick up on these char-
+acteristics will, however, require that participants are somewhat familiar with the
+impersonated individual and pose new methodological challenges for future research
+designs. Lastly, very recent research suggests that the relationship between conserva-
+tism and belief in conspiracy theories is partially explained by the personality trait of
+conscientiousness (Lawson & Kakkar, 2021). Despite the conceptual differences be-
+tween the concept of beliefs into conspiracy theories on one hand, and the very per-
+ceptual task of recognizing technical artifacts in deep fakes, future studies should
+consider these findings and the effects personality traits such as conscientiousness
+have on cognitive processing.
+It was beyond the scope of this study to investigate cognitive-perceptual pathways
+on an intraindividual level, as this would have required techniques such as gaze-
+tracking and time-sensitive stimulus presentation. Future research might thus target
+more on these covert processes and their interaction with political attitudes. Since the
+present study used the DF technique of facial expression manipulation (lip syncing).
+Not being familiar with the politician impersonated in a DF will reduce the likelihood
+of detecting micro expressions that are incongruent with that politician's usual facial-
+expressive behaviors. Conversely, not being familiar with the politicians in the videos
+could perhaps go further in isolating the effects of the interaction between partici-
+pant’s political attitudes and the political message in a DF video on perceptual pro-
+cessing. Nevertheless, we believe that the effects related to being familiar with the
+politician in the DF compared to not being familiar with the politician in the DF
+should be addressed sufficiently by using a mix of known and unknown politicians.
+The presented results regarding political attitudes and agreement with message
+content may inform future research on individual perception and recognition process-
+es. It was beyond the scope of this online survey to investigate cognitive processes
+during video presentation, as this would require standardized laboratory conditions
+and a higher degree of repetition. Nevertheless, the identified variables my play a role
+in the future identification of individual cognitive processing styles. Tahir et al.
+(2021) used gaze-tracking and self-report to understand the detection perceptual pro-
+cess on DF data. They discovered that humans tend to focus on the major regions of
+the face such as eyes, hair, and nose, and report eyes, nose, forehead, lips, cheeks, and
+expression as the visual cues they used for detection. In a similar study on face-swap
+data by Wohler et al. (2021), the participants fixated on mouth and nose and reported
+blur artifacts, contour artifacts, and unnatural expressions or eye movements. Partici-
+pants in another study by Thaw et al. (2020) self-reported artifacts such as lack of
+expressions, lack of emotions, and unnatural behavior as well as flickering, blurred
+faces, rendering artifacts, and abnormal mouth movements as justification for their
+decision. Findings from political psychology suggest characteristic stimulus pro-
+cessing, priorisation, risk proneness and sensitivity to threatening stimuli in conserva-
+tive persons compared to those with more liberal attitudes (Schreiber et al., 2012).
+Future research my proceed with combining perceptual psychology and research on
+political attitudes with deep fake recognition skills in order to explain political phe-
+nomena related to disinformation and conspiracy believes, and thus inform the recent
+efforts into the development of countermeasures (see e.g., Compton et al., 2021).
+5 Conclusion
+The study suggests a statistically significant association between conservatism and the
+ability to recognize deep fakes. A driving factor for this effect appears to be the level
+of agreement with the political message transported by the synthetic media. Portable
+devices such as phones have a deteriorating effect on deep fake recognition skills. The
+study is in line with recent research on conservatism and perceived credibility of po-
+litical disinformation and conspiracy theories. While effect sizes being small to mod-
+erate, this study may inform future research to investigate relevant and novel psycho-
+logical aspects in order to provide a more comprehensive overview over influencing
+factors that could explain social engineering processes and vulnerabilities targeted by
+synthetic media.
+Acknowledgements. This study was supported by the Norwegian Research Council
+(project number 302941). A preprint of this article is available at PsyArXiv (Sütterlin
+et al., 2021).

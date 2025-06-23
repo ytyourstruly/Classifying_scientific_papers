@@ -1,0 +1,505 @@
+Hearing with two pairs of ears: Simultaneous bilingual children
+show language-specific phoneme perception for /b/ and /p/ in
+English and Mandarin Chinese
+1 1 2,3 2 1,3
+Lei Pan , Han Ke , Beth A. O’Brien , Yi Ting Leong & Suzy J Styles
+Psychology, School of Social Sciences, Nanyang Technological University, Singapore
+Centre for Research in Child Development, National Institute of Education, Singapore
+Centre for Research and Development in Learning (CRADLE), Nanyang Technological
+University, Singapore
+*Corresponding author at: LIFESPAN Research Centre #14-01, 11 Mandalay Rd, Lee Kong Chian
+School of Medicine, Clinical Sciences Building, 308232, Singapore.
+E-mail: panl0006@e.ntu.edu.sg
+Acknowledgments: We would like to thank Fei Ting Woon, Rui Qi Choo, Annabel Loh Kaihui and
+Wong Jin Yi for their assistance on contacting parents.
+Funding: This research was funded by the National Research Foundation, Singapore, under the
+Science of Learning programme (NRF2016-SOL002-011), and the Centre for Research and
+Development in Learning at Nanyang Technological University, Singapore (JHU IO 90071537).
+Credit Authorship Statement. Conceptualization: LP, SJS and BAO. Methodology and software:
+LP and HK. Validation and formal analysis: LP, HK and SJS. Investigation: YTL and BAO.
+Resources and supervision: SJS and BAO. Data curation: LP and YTL. Writing (original draft and
+editing): LP, SJS, BAO, YTL and HK. Visualization: LP and SJS. Project Administration: YTL.
+Funding Acquisition: SJS.
+Data availability: The data and code generated for this study are available on Open Science
+ORCID
+Abstract
+Adult perception of voice onset time (VOT) for early bilinguals of English and Mandarin shows a
+mix of language-specific features (VOT boundary) and features shared across both languages
+(shared perceptual slope). To understand the development of this pattern, 81 English-Mandarin
+bilingual children in Singapore (7.6y - 9.1y) were tested for identification of words drawn from
+/b/-/p/ VOT continua in each language. Principal Component Analysis of language exposure
+extracted two components: bilingual balance and age of acquisition. In generalized linear mixed-
+effects models, test-language was a significant predictor of perception, with earlier VOT
+boundaries and steeper slopes for English. Contrary to predictions arising from adult studies,
+children’s bilingual balance did not significantly predict phoneme perception. Children also show
+lower slopes than adults overall, suggesting perceptual development is ongoing at this age. These
+findings have implications for phoneme perception in screening for language or reading difficulties.
+Keywords: phoneme perception, perceptual development, bilingual balance, language exposure
+1 Introduction
+Phonological perception of speech sounds in spoken languages is shaped by linguistic experience
+from infancy (Kuhl et al., 1992; Werker & Tees, 1984), and perception continues to develop
+through adolescence into early adulthood (Feng & Peng, 2023; Flege & Eefting, 1986; Hazan &
+Barrett, 2000; Medina et al., 2010; Meng et al., 2022; Sussman, 1993). However, exposure to two
+languages from birth, with dual phonological systems and lexicons, can result in different
+pathways to language development for bilingual children (Hoff et al., 2012), including bi-/ or
+multilingual phoneme development (Sebastian-Galles & Santolin, 2020). At present, the field of
+phonological development is overrepresented by data about monolingual development, leaving a
+gap in our understanding of how phoneme development proceeds for different kinds of bilingually
+exposed children.
+In phoneme perception tasks, adults show lower ability to discriminate between two speech sounds
+drawn from a single phoneme category, than two speech sounds drawn from two contrasting
+categories (Abramson & Lisker, 1970). Experiments can investigate either phoneme
+discrimination (Liberman et al., 1957) or identification (Lisker & Abramson, 1964): During an
+identification task, participants are tasked with making a decision on two target sounds they heard.
+The identification function is described by the proportion of responses identified as one of two
+categories, at each step in the continuum – with responses typically taking the form of a
+characteristic ‘s-curve’ psychometric function. The crossover point denotes the position along the
+speech continuum where an individual transitions from identifying one phoneme category to
+another, and therefore represents the phoneme boundary for each participant. The slope value
+corresponds to the gradient of the identification function precisely at the crossover point, and
+therefore represents how well-defined the transition is between one phoneme category and another.
+Phoneme perception changes rapidly in infancy (Burns et al., 2007; Kuhl, 2007; Werker et al.,
+2012), with early linguistic experiences impacting perception into adulthood, even in the absence
+of continued exposure to early-heard speech sounds (Choi et al., 2017; Singh & Seet, 2019). With
+continued exposure, phoneme perception continues to develop through the childhood years. For
+example, in one phoneme perception study for the /ba/-/da/ contrast, 5- to 6-year-old English
+speaking children (N=10) showed less mature phoneme identification functions than English
+speaking adults (N=10) (Sussman, 1993), and in a study of four consonant contrasts (/ɡ/-/k/, /d/-
+/ɡ/, /s/-/z/ and /s/-/ʃ/) gradual refinement of the steepness of the identification function for
+monolingual English speakers was observed for children (N= 84) across the age range of 6 12
+years, with even further refinement for a comparison group of adults (N=13) (Hazan & Barrett,
+2000). The upper bound of phoneme perception development seems to fall somewhere in the
+teenage years, as shown by one recent study of Mandarin speakers (Meng et al., 2022), in which
+adolescents aged 12 14 years (N=20) exhibited perceptual thresholds and identification functions
+that did not differ from those of adults (N=24). In addition, some studies of the /d/ - /t/ contrast
+have reported age-related differences in both the threshold and the slope of the identification
+function (Flege & Eefting, 1986), while others report only age-related differences in the steepness
+of the slope (Medina et al., 2010) — differences which may be due to different acoustic properties
+of the phonemes in the test languages (English and Spanish, versus French, respectively). Taking
+these studies together, immature responses are often identified by their shallow slope. Some
+researchers have shown relationships between low slopes and developmental differences such as
+weak phonemic awareness (Chiappe et al., 2001) and reading difficulty (Noordenbos & Serniclaes,
+2015), albeit drawing their data from a narrow range of European languages. However, as little is
+known about the nature of the slope of the identity function for children with different kinds of
+linguistic exposures, further research on the trajectory of phoneme development in bi-/ and
+multilingual children is needed.
+Few studies have investigated the trajectory of phoneme perception in bilinguals, with the majority
+of studies focussing on the infant years (c.f., Sebastian-Galles & Santolin, 2020). Following the
+monolingual biases in the literature, many studies have investigated bilingual perception by
+comparison with a supposed monolingual ‘standard’ (Mack, 1989; Williams, 1977). However, in
+communities with stable intergenerational bilingualism, local varieties may emerge through
+contact, whereby the perceptual targets do not align with monolinguals from different speech
+communities. For this reason, it is important to conduct studies where bilingual perceptual models
+are considered adaptive in their context, whether or not a relevant monolingual comparison group
+exists. For example, Garcia-Sierra and colleagues found that Spanish-English bilingual adults
+(N=15) show a dual perceptual model for /g/ and /k/ when presented in the context of their two
+languages, while monolingual English speakers (N=15) did not (Garcia-Sierra et al., 2009).
+According to their study, bilinguals show a skill relevant to their speech context, which
+monolinguals are not able to perform to the bilingual ‘standard’.
+Given the gap in existing knowledge about phoneme perception development in bilingual children,
+this study investigates 7-to-9-year-old children growing up in Singapore. According to the
+Singapore Census, over 90% of young adults, and 70% of 5 to 9-year-olds use two or more
+languages at home (Singapore Census of Population, 2020). In Singapore, due to inter-generational
+bilingualism, most people are exposed to both English (the main language of education, business
+and governance) and another of Singapore’s official languages (Mandarin Chinese, Malay and
+Tamil) from early in development.
+One recent report on phoneme perception in early adult bilinguals of English and Mandarin in
+Singapore has shown that the phonemic processing of stop consonants in bilingual speakers differs
+across a bilingual speaker’s two languages (Pan et al., 2022). Adults’ early bilingual balance
+demonstrates a significant correlation with the comprehensive slope of the identification function,
+affecting both of their languages together: Bilingual adults with more exposure to English during
+early childhood had steeper slope values in general, and those with more Mandarin had shallower
+slope values in general. The present findings imply that individuals with proficiency in multiple
+languages may refine their phoneme perception abilities towards a specific language during early
+childhood. Subsequently, they may apply and adapt their perceptual framework to a language
+acquired later in life, thereby adjusting the perceptual boundary while maintaining the slope
+derived from their stronger language. The Slope Transfer Model was proposed to explain how this
+aspect of tuning may occur across childhood, but to date, no developmental studies have tested
+whether this transfer actually occurs. The current study is a test of whether the Slope Transfer
+Model accurately captures the developmental trajectory of phoneme perception between childhood
+and adulthood in English-Mandarin bilingual children.
+2 Methods
+Building on existing work on bilingual speech perception, we conducted phoneme identification
+tasks in two language contexts and collected language background data for each participant,
+including early language input and age of acquisition for each language. A child-friendly phoneme
+identification task — Categorical Recognition for Onsets of Word Names (CROWN Game; Ke et
+al., 2021) — in English and Mandarin was used to examine the identification of phonemic contrasts
+in both languages known and used by bilingual children in Singapore. This study recruited children
+who are bilingual in English and Mandarin to investigate how bilingual children perceive phoneme
+categories within the context of two linguistic systems characterized by variations in the timing
+and gap between typical articulations of /b/ and /p/ phonemes along the voicing continuum. To
+assess phoneme perception in bilingual children, each individual underwent testing on two
+languages, spaced across different days.
+2.1 Participants
+Participants in the current study were recruited in a longitudinal project that aims to investigate
+the relationship between bilingual English-Mandarin children’s language environment and the
+contribution of auditory skills to later literacy outcomes (O’Brien et al., 2019). In the longitudinal
+project, the first wave of data collection (T1) recruited 155 children, 117 in their second year of
+kindergarten and 38 in their beginning of primary grade 1. At T1, 138 children (age range: 5.7 7.1
+years old, M = 6.3 years, SD = 0.4; 69 girls) performed the phoneme identification task in English.
+The second wave of data collection (T2) included 105 children from T1 in the end of primary grade
+2 to the beginning of primary grade 3. The current study tested phoneme identification in English
+and Mandarin by the bilingual children from T2.
+One hundred and two children bilingual in English and Mandarin participated in the study, seven
+children only completed the English task, and eight children only completed the Mandarin task,
+resulting in 87 children who completed both tasks in their languages. Among them, language
+background questionnaire data were collected for 84 children. Three participants were excluded
+on the basis that they did not perform one of the tasks in line with instructions. In total, data from
+81 children (age range: 7.6 9.1 years old, M = 8.4 years, SD = 0.4; 45 girls) was analysed according
+to the required sample size in the pre-registration. All parents reported the children were born,
+raised, and presently reside in Singapore.
+Parents rated the language proficiency of their children across the domains of ‘understanding when
+people speak’, ‘speaking to others’, ‘reading’ and ‘writing’ using a seven-point scale (ranging from
+7 for native-level proficiency to 1 for limited vocabulary, with 0 indicating non-applicability) for
+each respective language. All children were reported to have strong language skills in English
+(Understanding: Median = 7, IQR: 6 7; Speaking: Median = 7, IQR 6 ; Reading: Median = 7,
+– : –7
+IQR: 6 7; Writing: Median = 6, IQR: 5 7), and a range of language skills in Mandarin
+– –
+(Understanding: Median = 6, IQR: 5 7; Speaking: Median = 5, IQR: 4 7; Reading: Median = 5,
+– –
+IQR: 3 6; Writing: Median = 4, IQR: 2 6).
+– –
+2.2 Stimuli
+Audio stimuli in the CROWN Game for English (Ke et al., 2020) and the CROWN Game for
+Mandarin (Pan et al., 2021) are comprised of 16-step VOT continua of /b/ and /p/ initial words
+ranging from -60ms VOT (pre-voiced) to +90ms VOT (aspirated), representing target words are
+“beach” /biːʧ/ and “peach” /piːʧ/ in English and target words are “鼻” /biː2/ ‘nose’ and “皮” /pʰiː2/
+‘skin’ in Mandarin Chinese. Stimuli for both languages were synthesized from natural tokens
+spoken by a single bilingual native speaker of the Singaporean variety of English and Mandarin,
+using the pitch-cued spoken vowels procedure (Styles, 2017), in a sound attenuating room. 16-bit
+mono wav recordings were made at a sample rate of 44.1kHz with a Sennheiser MKH 416 Shotgun
+Condenser Microphone connected to a ZOOM H4n Pro Handy Recorder. English and Mandarin
+tokens exhibit distinct acoustic properties consistent with the prototypical articulations of their
+respective target languages. Further details of audio processing are reported in Pan et al.'s (2022)
+study. Testing was conducted online as part of a larger study which included a battery of
+standardized assessments that assess sensory processing abilities and language and literacy skills
+in English and Mandarin Chinese. Due to the time constraints in the testing battery, some
+methodological adjustments were made to reduce the testing load for the younger age group. A
+reduced version of the paradigm was created, by selecting alternate tokens to create an 8-step VOT
+continuum, spanning the original VOT range, in 20ms steps. The reduced version comprised
+precisely half the number of trials found in the complete version.
+2.3 Procedure
+We used the reduced English version and Mandarin Chinese version of the open access gamified
+CROWN Game In the task, a participant is presented with audio tokens, and asked to decide which
+of two words they heard (i.e., “beach” or “peach” in English; “鼻” ‘nose’ or “皮” ‘skin’ in
+Mandarin Chinese). To help children engage with the materials, the task is embedded in a gamified
+narrative about a “little monkey” (Chinese: “小猴子” /ɕjɑʊ3 xoʊ2 tsɯ3/), who is collecting tokens
+to go to a party. In each version of the task, children are asked to instruct the monkey to do different
+things depending on which word they hear. In the English version, children instruct the monkey to
+"go to the beach” or "eat a peach". In the Mandarin version, children are asked to help the little
+monkey at mealtime, by instructing him to "find a banana using your nose" or "clean up your
+banana skin." While the target words are depicted on the screen, a speech sound is randomly drawn
+from the continuum, and the participant is asked to respond by pushing a response key located
+below the picture ("c" for the left image or "m" for the right image) to indicate their decision.
+Following the keypress, an auditory 'pop’ plays, accompanied by animated visual feedback, to
+show that the monkey followed instructions. The study begins with a short narrative introduction,
+followed by two practice blocks, in which the /b/ and /p/ tokens were selected from the ends of the
+VOT continua (four practice trials per block). Subsequently, each experimental block is comprised
+of each token in the 8-step VOT continuum, presented in random order. At the end of each block,
+the monkey collects a token, and after 10 blocks, the game is complete, resulting in decisions about
+80 audio tokens.
+screen depicts the presentation of stimuli. Right (Mandarin), a screen displays feedback following the
+selection of the target image.
+Parents of the recruited children were contacted via e-mail with a link to a digital Enrolment Form.
+Upon the submission of the completed Enrolment Form, the parent was signposted to complete
+the online Language Background Questionnaire, and an appointment for participation via Zoom
+was arranged. All participants took part in a technical check session lasting approximately 15
+minutes, and two experimental sessions on different days, within the same week where possible.
+Testing for each session was conducted in the target language (Session 1: English, Session 2:
+Mandarin) with bilingual language support for any child who was unsure of the task instructions
+in one of the languages. Each session lasted approximately one hour, including the CROWN Game
+(approx. 15 minutes). During the Zoom meeting, the researcher explained the CROWN Game to
+the children, before starting the procedure for children to follow. The study was approved by the
+Institutional Review Board (IRB-2018-11-002). Informed consent was obtained from parents of
+all participants. Experimental procedures were in accordance with the relevant guidelines and
+regulations. The study’s design and hypotheses were preregistered on Open Science Framework
+2.4 Measurements
+To assess the impact of bilingual balance on phoneme perception in both languages of bilingual
+children, Generalized Linear Mixed-Effects Models (GLMM) were employed.
+Early-year languages. Parents were asked to complete a Language Background Questionnaire,
+which asked for an estimate of how much of the time each caregiver spent speaking different
+languages to the child, along with the relative amount of time they spent with the child. These
+estimates of language exposure were used to compute a Composite Language Input Profile of
+English (CLIP-E) and Composite Language Input Profile of Mandarin (CLIP-M) were calculated
+according to the formulae below (Woon, 2018).
+CLIP-E = Caregiver 1 (% speaking English × % care time) + Caregiver 2 (% speaking English × %
+care time) + …… + Caregiver 6 (% speaking English × % care time)
+CLIP-M = Caregiver 1 (% speaking Mandarin × % care time) + Caregiver 2 (% speaking Mandarin
+× % care time) + …… + Caregiver 6 (% speaking Mandarin × % care time)
+Age of acquisition. Parents reported the age at which caregivers started using a specific language
+to talk to the child. Age of acquisition of English (AoA-E) and age of acquisition of Mandarin
+(AoA-M) were also collected using the Language Background Questionnaire.
+Threshold and slope. The binary responses were used to calculate the proportion of /p/ selections
+at each step on the continuum, and a psychometric function was fitted using the quickpsy function
+in R (Linares & López-Moliner, 2016). The psychometric curve can effectively be described by
+the 50% crossover point (i.e., point on the continuum where the fitted curve shows a threshold
+between majority /b/ decisions and majority /p/ decisions) and the slope at this threshold (i.e., the
+steepness of the slope at the threshold). Curve fitting was conducted separately for each language.
+3 Results
+A Principal Component Analysis (PCA) was conducted to include all linguistic background
+variables in a multifactorial model of bilingualism. Following a power analysis based on the
+previous study on bilingual adults from the same community, the analysis plan and stop rule were
+preregistered before data linking and analysis.
+3.1 Language exposure pattern
+Correlations were checked for the early language exposure variables from the Language
+inverse correlation between AoA-E and CLIP-E (r = −0.55, p < 0.001), and a positive correlation
+between AoA-E and CLIP-M (r = 0.58, p < 0.001), indicating that earlier acquisition of English
+aligns with more overall English exposure and less overall Mandarin exposure. In addition, the
+early language input in English and in Mandarin are tightly correlated for most participants (r = -
+have other languages contributing to their input profile in their early years.
+Mandarin input) with the colour scales showing a ‘bilingual balance’ factor from more English dominant
+(blue) to less English dominant (red). N=81. Right: scatter plot of AoA-E (age of acquisition of English) and
+AoA-M (age of acquisition of Mandarin) with the colour scales showing a PCA-derived ‘age of acquisition
+variance’ factor from earlier acquired Mandarin (orange) to later acquired Mandarin (green). N=81.
+Horizontal jitter = 0.5; Vertical jitter = 0.3.
+Given the issue of multicollinearity among independent variables in the estimation of GLMM, an
+initial step involved performing a PCA on the interrelated language background variables. This
+approach aimed to identify and extract factors that most effectively capture the shared variance
+among these measures. The suitability of conducting a factor analysis for the correlated variables
+was indicated by the Kaiser-Meyer-Olkin measure of sampling adequacy (KMO = 0.63) and the
+Bartlett's test of sphericity (χ (6) = 183.86, p < 0.001).
+for language background variables.
+Loading Loading Commun
+Variables 1 2 3 4 Mean SD 1* 2* alities
+1. AoA-E 1 0.45 1.08 0.78 0.20 0.64
+2. AoA-M 0.13 1 0.26 0.76 0.05 0.98 0.97
+3. CLIP-E −0.55** 0.10 1 58.97 29.45 −0.94 0.10 0.89
+4. CLIP-M 0.58** −0.03 −0.92** 1 38.56 29.74 0.95 −0.11 0.91
+* two principal components (PC1: bilingual balance, PC2: age of acquisition variance) were extracted
+with initial eigenvalues of 2.39 and 1.03
+** significant correlations at the alpha level of 0.01 (2-tailed)
+variables were entered, with emphasis placed on factors that account for more than 25% of the
+cumulative variance. As initial eigenvalues revealed that the two extracted factors accounted for
+59.69% and 25.75% of the total variance, these factors were considered significant sources of
+linguistic variance among children. The first factor (PC1) was identified as and termed ‘bilingual
+balance’, and the second factor (PC2) was identified as and termed ‘age of acquisition variance’.
+CLIP-E, CLIP-M, and AoA-E exhibited substantial component loadings on the bilingual balance
+factor. Thus, individuals with higher PC1 scores were characterized by greater exposure to early
+Mandarin input, less exposure to early English input, and an earlier acquisition of Mandarin
+compared to those with lower PC1 scores. Two ends of the spectrum of bilingual balance can be
+characterized as “more English dominant” (low scores) and “less English dominant” (high scores).
+Across the board, children were reported to have more exposure to English than Mandarin,
+meaning the less English dominant end of the scale can also be considered more ‘balanced’ in their
+pattern of exposure. AoA-M had a large component loading on PC2, the age of acquisition variance
+factor, such that individuals with higher PC2 scores acquired Mandarin earlier than individuals
+with lower PC2 scores. The two ends of the spectrum can be characterized as “earlier acquired
+Mandarin” (low scores) and “later acquired Mandarin” (high scores). English-Mandarin bilingual
+children recruited in the study exhibited a variation in their degree of bilingualism. In general,
+there was a large degree of diversity in children’s patterns of language exposure. Individual early
+3.2 Behavioural response and curve fitting
+B, C), and a single plot (D) combining the psychometric functions for each child in each language
+(individual with median slope value highlighted). In general, the thresholds for the phoneme
+identification task in English (M = 27ms, SD = 7.8) appear to be earlier than in Mandarin (M =
+33ms, SD = 10.2), a finding which is consistent with previously reported acoustic measurements
+for spoken Singapore Mandarin (Starr & Wang, 2018). Distribution of the individual behavioural
+responses to auditory stimuli presented at each step of the VOT spectrum can be found in
+languages, shown for three example children. The example children were selected according to the
+difference between their slope value in English and in Mandarin, illustrating the interquartile range of
+differences: Lower 25% (A); Median of both languages (B); Upper 25% (C). Bottom: Fitted identification
+curves for all 81 bilingual children, with the median slope for each language highlighted (D). English = blue;
+Mandarin = red.
+This finding aligns with the pattern observed for adults from the same speech community. As the
+logarithm of the slope values. The individual slope values differed between the two test languages,
+with steeper slopes for the English language task (Back-transformed slopes. Median = 0.106;
+Range: 0.021 6.031) and shallower for the Mandarin language task (Median = 0.082; Range:
+3.3 Threshold
+'bilingual balance' shown as a colour scale (blue: more English-dominant; red: less English-
+dominant). To find out whether test language and language background predicted the threshold of
+individual identification functions, a fully factorial GLMM was conducted on threshold using the
+lmerTest R package (Kuznetsova et al., 2017). Fixed effects were test-language (effect coding:
+−0.5; 0.5), PCA-derived bilingual balance, PCA-derived age of acquisition variance, and their
+language had a signification impact on threshold (SE = 1.08, t = 5.26, p < 0.0001), with boundaries
+for English phoneme identification falling at an earlier VOT step on the continuum than for
+Mandarin phoneme identification (M = 27ms, M = 33ms). There were no further
+English Mandarin
+significant main effects nor interactions between the three fixed effects. Hence, we observed
+discrete thresholds for children performing the phoneme identification task in English versus
+Mandarin language contexts, without significant influence from children’s bilingual exposure.
+N=81.
+acquisition variance and their interactions, with random effects of participants (random intercept).
+Fixed effects Estimate 95% CI SE t value* p value
+(Intercept) 30.12 28.48 – 31.76 0.83 36.43 <0.0001
+Test-language (Mandarin) 5.69 3.55 – 7.84 1.08 5.26 <0.0001
+Bilingual balance (PC1) −0.08 −1.82 – 1.65 0.87 -0.10 0.925
+AoA variance (PC2) 0.65 −1.01 – 2.32 0.84 0.78 0.438
+Test-language:PC1 1.30 −0.97 – 3.57 1.14 1.14 0.258
+Test-language:PC2 0.04 −2.12 – 2.22 1.10 0.03 0.973
+PC1:PC2 −0.17 −1.45 – 1.10 0.64 −0.27 0.787
+Test-language:PC1:PC2 1.20 −0.47 – 2.87 0.84 1.42 0.159
+Random effects
+Residual 47.36 (SD = 6.88)
+By-participant intercept 31.68 (SD = 5.63)
+N / Observations 81 / 162
+AIC / BIC 1173.5 / 1204.4
+log-likelihood −576.8
+* Smaller t value in the GLMM for threshold indicates earlier thresholds (ms) in the VOT continuum.
+3.4 Slope
+test-language, with their PCA derived bilingual balance factor. To test whether test language and
+language background predicted the slope of individual identification functions, a fully factorial
+GLMM was conducted on log-transformed slope. Fixed factors were test-language (effect coding:
+−0.5; 0.5), bilingual balance, age of acquisition variance, and their respective interactions, with
+predicted the steepness of the fitted identification curve (SE = 0.14, t = −3.95, p = 0.000168), with
+steeper slopes for the English phoneme identification task and shallower slopes for the Mandarin
+phoneme identification task. Bilingual balance and age of acquisition variance did not predict slope,
+nor did interactions between the three fixed effects. Hence, bilingual children demonstrated
+different slopes in their phoneme perception for each language, and the language-specific
+differences were independent from their bilingual characteristics.
+acquisition variance and their interactions, with random effects of participants (random intercept).
+Fixed effects Estimate 95% CI SE t value* p value
+(Intercept) −2.15 −2.37 – −1.93 0.11 −19.61 <0.0001
+Test-language (Mandarin) −0.57 −0.85 – 0.28 0.14 −3.95 0.000168
+Bilingual balance (PC1) 0.16 −0.07 – 0.39 0.12 1.40 0.165
+AoA variance (PC2) −0.13 −0.35 – 0.09 0.11 −1.16 0.248
+Test-language:PC1 0.11 −0.19 – 0.41 0.15 0.75 0.456
+Test-language:PC2 0.11 −0.18 – 0.40 0.15 0.76 0.450
+PC1:PC2 −0.12 −0.29 – 0.05 0.09 −1.38 0.170
+Test-language:PC1:PC2 −0.10 −0.32 – 0.12 0.11 −0.87 0.389
+Random effects
+Residual 0.83 (SD = 0.91)
+By-participant intercept 0.56 (SD = 0.75)
+N / Observations 81 / 162
+AIC / BIC 518.8 / 549.7
+log-likelihood −249.4
+* Larger t value in the GLMM for slope value indicates steeper slopes of the phoneme identification curve.
+measured threshold of the English phoneme perception in 7.6 to 9.1-year-old bilingual children
+(M = 27ms, SD = 8) is somewhat earlier than one recent report of phoneme perception in 5.5-to-
+6.5-year-old bilingual children (Ke et al., 2021), which reported a threshold for English (M =
+33ms, SD = 13), however no previous studies have investigated perception using the same task in
+Mandarin Chinese speaking children (M = 33ms, SD = 10). The current finding of different
+thresholds in two languages is consistent with one previous report of adults from the same language
+context, where Pan et al. (2022) reported adult bilinguals’ thresholds of phoneme identification
+task in English (M = 26ms, SD = 5) and in Mandarin (M = 36ms, SD = 7). The measured slope of
+the English phoneme perception in 7.6-to-9.1-year-old bilingual children (Median = 0.106, Range:
+0.021 6.031) is relatively mature compared to the recent report of phoneme perception in 5.5-to-
+6.5-year-old bilingual children (Ke et al., 2021), which reported the slope for English (Median =
+0.045, Range: −0.006 0.213). Slope values reported in the current study are substantially different
+for each language, with higher slope values for the English language task than for the Mandarin
+language task (Median = 0.082, Range: 0.008 3.392). However, language-specific differences
+between slope values of the children are independent of their bilingual exposure patterns. The
+current finding of different slope values in two languages differs from one previous report of adults
+from the same language context, where Pan et al. (2022) reported adult bilinguals’ slope values
+did not differ significantly in a phoneme identification task in English (Median = 0.217,
+Range: 0.044 8.656) versus in Mandarin (Median = 0. 171, Range: 0.042 7.902).
+– –
+identification tasks reported in the current study, Ke et al. (2021) study and Pan et al. (2022) study.
+Ke et al. (2021) Current study Pan et al. (2022)
+Children (5.5–6.5 y) Children (7.6–9.1 y) Adult (19–27 year)
+Threshold (ms) Mean (SD) Mean (SD) Mean (SD)
+English 33ms (13ms) 27ms (8ms) 26ms (5ms)
+Mandarin - 33ms (10ms) 36ms (7ms)
+Slope Median (Range) Median (Range) Median (Range)
+English 0.045 (−0.006–0.213) 0.106 (0.021–6.031) 0.217 (0.044–8.656)
+Mandarin - 0.082 (0.008–3.392) 0.171 (0.042–7.902)
+Since all three studies were conducted in the same language context, using the same task, and the
+same language stimuli, comparison of the threshold and slope data across different ages allows
+insights into the developmental trajectory of speech perception in bilinguals. The speech
+perception threshold for the /b/-/p/ VOT contrast in English is not yet adult-like for bilingual
+children by the age of 6.5 as shown by the higher value and larger spread of responses, but aligns
+with adult perception by the age of 9 years. In the studies with both English and Mandarin language
+tasks, children and adults show discrete representations for language-specific thresholds, which
+are not linked to their language exposure patterns. The slope of the identity function for the /b/-/p/
+VOT contrast in English develops gradually for bilingual children across the ages from 5.5 to 9
+years and into adulthood. However, bilingual balance had an impact on adults’ slopes across both
+languages, which was not observed in children in this study: Bilingual children by the age of 9
+years exhibited discrete slopes for phoneme perception in both their languages, without influence
+of their bilingual exposure patterns. Hence, phoneme identification by bilingual children appears
+to mature asynchronously in terms of the threshold (language-specific targets achieved earlier)
+versus slope (language-specific adaptation continues to be influenced by bilingual balance into
+adulthood).
+4 Discussion
+In general, our findings of gradual developmental change in phoneme perception align with
+previous studies on phoneme perception in tonal and non-tonal languages (e.g., Mandarin, English,
+Spanish, French), where age-related differences have been observed in identification and
+discrimination for consonant contrasts by children aged 6 to 12 as compared to adolescents and
+adults (Feng & Peng, 2023; Flege & Eefting, 1986; Hazan & Barrett, 2000; Medina et al., 2010;
+Meng et al., 2022; Sussman, 1993). This is the first study to investigate phoneme perception in
+two languages using a lexical identification task for English/Mandarin bilingual children of early
+school age. We find that 7- to 9-year-old bilingual children exhibit distinct perceptual boundaries
+for English and Mandarin, showing that their perception is ‘tuned’ separately for each of the
+languages they hear.
+Perceptual attunement (or ‘tuning’) to the speech sounds a child hears in the languages of early
+childhood is known to generate enhanced perception for native language contrasts, as early as the
+end of the first year (Kuhl et al., 2006; Werker & Tees, 1984). This process may include increases
+or decreases in perceptual sensitivity depending on statistical exposure to particular speech sounds
+in the languages of exposure (see Kuhl, 2007 for a review). Prior research has established that
+early language exposure can have long lasting impacts on auditory processing and phoneme
+perception throughout adulthood, even for forgotten languages of childhood (Choi et al., 2017;
+Singh & Seet, 2019). In the current study, the finding of discrete slopes independent from language
+exposure rates differed from our preregistered predictions based on the Slope Transfer Model.
+Our findings partially support the Discrete boundary model and the Discrete slope model of speech
+perception for bilinguals (Pan et al., 2022). In these models, for bilinguals who hear languages
+with different acoustic prototypes will show discrete perceptual profiles for each language, guided
+by the acoustics of each spoken language: the language with prototypical articulations occurring
+at earlier VOTs on the spectrum will elicit earlier perceptual thresholds, and the language with
+prototypical articulations that are closer together on the VOT spectrum will exhibit steeper slope
+values at the transition between two nearby categories. However, unlike one previous report of
+bilingual adults having a unified slope which patterns with their bilingual balance, slopes for the
+bilingual children at the age of 7- to 9- years are discrete and language specific.
+Pan et al. (2022). (C, D) Schematic of the revised Slope Transfer Model of bilinguals’ phoneme perception
+proposed in the current study. Phoneme identification curves for English and Mandarin are illustrated in
+blue and red respectively.
+According to the Slope Transfer Model proposed in Pan et al. (2022), an English-dominant
+bilingual may start out with an English-tuned steep slope in childhood, and later transfer their slope
+Mandarin-dominant bilingual may start out with a Mandarin-tuned slope in childhood, and later
+B). However, as the children in the current study did not show the ‘unified slope’ predicted by the
+original model, based on the current findings, we propose a revised Slope Transfer Model. In the
+revised model, children start with discrete threshold and slope for each of their languages, but the
+slope of their identification functions comes to align later in life – as a kind of bias arising from
+the representations of their stronger language. For example, a typical English-dominant bilingual
+may have discrete representations for perceiving phonemes in both languages in childhood (earlier
+threshold and steeper slope for English, later threshold and shallower slope for Mandarin), and
+then later on in development, the slope of their less dominant language (Mandarin) shifts towards
+similar way, a typical Mandarin-dominant bilingual may have discrete representations for
+perceiving phonemes in both languages in childhood (earlier threshold and steeper slope for
+English, later threshold and shallower slope for Mandarin), and then later on in development, the
+slope of their weaker language (English) shifts towards the slope of their more dominant language
+stage it is unclear whether these differences arise from developmental changes across the lifecourse,
+or represent generational differences in children’s language exposure in Singapore over the past
+15 years.
+It should be noted that there were substantial individual differences in the response pattern for
+children in the sample. The majority of children showed the expected language-specific pattern of
+perception, with earlier thresholds for English than for Mandarin, while a few children exhibited
+the opposite (less than 25%), with earlier thresholds for Mandarin than for English. Similarly,
+while most children had steeper slopes for English than for Mandarin, around 25% of children
+exhibited the opposite, with steeper slopes for Mandarin than for English. The wide range of slope
+responses (including patterns of difference uncharacteristic of the group), could be due to large
+differences in perception among the population, or to variable task performance of the individual
+on separate days. Even so, variability in slope remained largely independent of bilingual balance,
+and the findings of the current study suggest that bilingual children typically have dual perceptual
+models for the boundaries and identify function between phoneme categories in their two
+languages, but that their model for how categories differ was independent from bilingual balance.
+In previous literature, children’s slope in a phoneme identity task has been shown to predict reading
+skills later in life (Chiappe et al., 2001; Noordenbos & Serniclaes, 2015), making it an important
+target for possible screening for pre-readers at risk of developing reading difficulties. According
+to the findings of the current study, we show two important caveats for the use of slope as a
+predicter of reading ability in global contexts. First, languages with a larger difference between
+VOTs for typical articulations of voiced and voiceless stops (here, Mandarin Chinese) may
+generate lower slope values in the transition for perception of one category to another. This means
+that a threshold for performance on a screening test developed in one linguistic context may be
+wholly unsuitable for use in another linguistic context. This means that differences in language,
+dialect or even the accent of test takers may generate high rates of false positives in a screening
+test. Second, while the majority of bilingual children exhibit separate perceptual profiles across
+their different languages, but this may not always be the case for an individual bilingual child: At
+the group level we observed a difference between the perceptual profiles for each language,
+however, a small proportion of individuals exhibited a shared slope values across their languages.
+As bilingual’s shared slope might align with the perceptual profile of a non-test language, any
+screening test may need to consider the total language exposure of bilinguals in the determination
+of risk for later reading difficulty. Further studies will be needed to establish whether a single-
+language test of slope is predictive of later reading difficulties.
+5 Conclusion
+In this study, we investigated the perceptual properties of bilingual children’s hearing for speech
+sounds /b/ and /p/ at the onset of familiar words in English and Mandarin Chinese, at around the
+time of school entry. We observed that, on the whole, children do not share a representation for
+these speech sounds across their two languages (a phoneme category merger), but like adults, they
+maintain discrete representations for each of their languages, in a perceptual pattern that aligns
+with the prototypes of the spoken languages. Furthermore, simultaneous bilingual children exhibit
+more discreteness than adult bilinguals from the same speech environment, in that they have
+discrete slopes for the transition from one perceptual category to the other in each of their
+languages, and these slopes are tuned to the acoustic structure of prototypical speech sounds in
+their two languages. This is the first study of its kind to demonstrate superior language-specific
+attunement in school-aged bilingual children, relative to adults from the same linguistic
+community. While slope in a phoneme identity task is thought be a good predictor of reading skills
+later in life, our findings suggest such tests should be treated with caution when applied across
+different linguistic contexts, or when applied to children with diverse bi-/multilingual language
+exposure.

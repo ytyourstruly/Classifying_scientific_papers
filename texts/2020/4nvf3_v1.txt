@@ -1,0 +1,601 @@
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+Daily Stress Reactivity: The Unique Roles of Personality and Social Support
+Aleksandra Kaurin, Aidan G.C. Wright, & Thomas W. Kamarck
+University of Pittsburgh, Department of Psychology
+We wish to thank Dr. Sheldon Cohen for critical comments on a prior draft of this
+manuscript. Additional online material, the preregistration plan, and the analysis scripts
+funded by the National Institute of Aging (R01 AG041778) The authors declare no conflicts of
+interest.
+Correspondence concerning this article should be addressed to Aleksandra Kaurin,
+Department of Psychology, University of Pittsburgh, 3rd Floor Sennott Square, 210 S. Bouquet
+St., Pittsburgh, PA, 15260. E-Mail: kaurinaleksandra@gmail.com
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+Abstract
+Background: The processes through which social support exerts its influence in daily
+life are not well understood. Arguably, its salutary effects as an environmental variable might be
+construed as shared effects of personality. Method: To test this possibility, we investigated the
+unique and shared effects of personality and social support on daily stressor exposure (social
+conflict, task strain) and on the within-person association of stressor exposure with perceived
+stress. A community-sample of N=391 adults completed an ambulatory assessment protocol for
+two 2-day periods with fixed hourly intervals spread across 16 hours. Results: Consistent with
+our preregistered hypotheses, multilevel structural equation models returned that both,
+personality and perceived social support, predicted daily stressor exposure and moderated
+within-person effects of daily stressors on perceived stress. Contrary to our hypotheses, received
+social support had no effect on daily stress processes. When extraversion, neuroticism, and social
+support were added as joint predictors, neuroticism and extraversion were related to stressor
+exposure, and further moderated the within-person link between stressor exposure and stress
+experience, while perceived social support had an incremental beneficial effect on social conflict
+exposure and stress appraisal. Conclusion: Social support does not increment the well-
+established relationships between neuroticism or extraversion and stress reactivity.
+Keywords: social support, ambulatory assessment, multilevel structural modeling, daily
+stress reactivity
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+The idea that social support shapes individual behavior is rooted in Émile Durkheim’s
+(1897) foundational work on suicides, which, he argued, are more prevalent among individuals
+with fewer social ties. Interest in the relationship between social support and psychological
+variables was revived by epidemiological studies in the 1970’s and 80’s, for instance by Cassel
+(1976) and Cobb (1976), which proposed that social support serves as a buffer for stress
+experiences. Ever since, the positive link between social support – generally denoting the
+presence of caring others – and wellbeing has been demonstrated across a broad range of healthy
+and ill populations (Cohen, Gottlieb, & Underwood, 2000; Cohen, Mermelstein, Kamarck, &
+Hoberman, 1985; Rueger, Malecki, Pyun, Aycock, & Coyle, 2016) with studies showing larger
+effect sizes for several aspects of social relationships than other established risk factors across
+health outcomes (Holt-Lunstad, Smith, & Layton, 2010). The specific mechanisms or processes
+through which social support exerts its influences in daily life, however, are not well understood.
+In particular, the unique role of social support effects on health outcomes is clouded by
+evidence that one’s social network likely entails complex associations among individual and
+contextual variables (e.g., Feeney & Collins, 2015). Therefore, this study addresses the relative
+contributions of individual differences in relevant personality traits and social support on daily
+stress processes using an ecological momentary assessment (EMA) design.
+Generally, social support refers to acts of resource provision, that are intended to help an
+individual (Cohen, 2004). More specifically, it has been defined as interactions that lead
+someone to “believe that he [SIC] is cared for and loved, esteemed, and a member of a network
+of mutual obligations” (Cobb, 1976, p. 300). Social support represents a heterogeneous construct
+(Cohen & Wills, 1985; Cohen, 2004; Gottlieb & Bergen, 2010) which can take a variety of forms
+including belongingness, emotional, esteem, informational, and tangible support (Cohen &
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+Wills, 1985; Wills & Shinar, 2000). Conceptually, there is a crucial difference between the
+perceived availability of social support and received support (e.g., Barrera, 1986). Perceived
+social support describes a relatively stable belief that help will be accessible if needed (e.g.,
+Lakey et al., 2010). Received social support, in contrast, refers to retrospective reports of
+supportive acts that have actually been received. Although it is generally known that the
+presence of caring relationships provides coping assistance, particularly at times when the
+confluence of stressors outweighs individual regulatory abilities (e.g., Cohen, Gottlieb, &
+Underwood, 2001), examining both types of support is important. Perceived and received social
+support are interrelated. However, they represent distinct constructs, which demonstrate
+differential relationships with mental health or related outcomes and are – at best – only
+moderately associated with each other (Haber, Cohen, Lucas, & Baltes, 2007).
+Stress is considered to be an important risk factor for a number of health problems (Adler
+& Matthews, 1994). The relationship between social support and stress processes has been
+concisely formalized in Cohen and Wills’ (1985) seminal work discussing the stress-buffering
+effects of social support. The authors proposed two potential mechanisms via which social
+support may protect individuals against the deleterious effects of stress and maintain or enhance
+health and well-being in turn. First, social support may affect the way in which individuals
+appraise stressors that they encounter in daily life (Cassel, 1976; Cobb, 1976; Cohen, 2004).
+Second, the perceived availability of social support has been hypothesized to moderate the
+impact of stress on an outcome (Cohen & Wills, 1985; Kawachi & Berkman, 2001). Both of
+these mechanisms are proposed to be important pathways by which social support may be
+associated with health (Cobb, 1976).
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+Empirically, perceptions of supportive relationships (i.e., perceived social support) have
+been consistently linked to attenuated negative reactions to daily stressors (Eisenberger, Taylor,
+Gable, Hilmert, & Lieberman, 2007; Ditzen & Heinrichs, 2014), have been shown to facilitate
+emotional recovery from stressors (e.g., Bolger, Zuckerman, Kessler, 2000; Hawkley, Preacher,
+Cacioppo, 2007), and have been shown to change stress appraisals (e.g., Pietromonaco &
+Collins, 2017). Meaningful social connections have also been shown to serve a protective role in
+reducing neural and physiological responses to pain and stress including heart rate, blood
+pressure, and neuroendocrine responses (Montoya et al., 2004; Ozbay et al., 2007).
+In contrast to perceived social support, received support has not been consistently
+positively linked to mental health (e.g., Finch, Okun, Pool, & Ruehlman, 1999). In some cases,
+received support has even been linked to poorer, instead of better mental health outcomes
+(Bolger & Amarel, 2007; Bolger, Zuckerman, & Kessler, 2000; Gleason, Iida, Shrout, & Bolger,
+2008). Related work suggests that support receipt may create feelings of obligation, threaten self-
+esteem and the sense of self-efficacy, or evoke guilt, accounting for its deleterious impact
+(Bolger & Amarel, 2007; Gleason, Iida, Bolger, & Shrout, 2003).
+Lakey & Orehek (2011; see also Cohen & Wills, 1985) suggest that the association
+between received social support and stress could be accounted for by the fact that individuals
+who experience generally higher levels of stress also tend to generally receive higher amounts of
+support, while also reporting worse mental health. More specifically, the authors put forward that
+previous work has not sufficiently ruled out the possibility that main effects of social support
+reflect recipient personality. Thus, interpretations of whether research findings reflect personality
+or social processes primarily reflect the fact that social support may be viewed as a construct that
+is either influenced by or shares substantial overlap with personality (Lakey & Drew, 1997;
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+Lakey, McCabe, Fisicaro, & Drew, 1996; Lutz & Lakey, 2001; Swickert, Rosentreter, Hittner, &
+Mushrush, 2002; Swickert & Owens, 2010; see also Bergeman, Plomin, Pedersen, McClearn, &
+Nesselroade (1990) for potential genetic influences on social support). Seeming benefits of
+social support could, therefore, actually reflect individuals’ levels of basic traits, like
+extraversion or neuroticism and consequences of reactive, evocative, or proactive processes
+between individual differences and one’s supportive social environment (e.g., Pierce, Lakey,
+Sarason, Sarason, & Joseph, 1997).
+Individual differences may affect both exposure to as well as the response to stress (Liu
+& Alloy, 2010). For instance, neuroticism, often denoted as emotional instability, has been
+linked to the probability of experiencing distress, the evaluation of an event as taxing, the
+likelihood of enacting certain coping strategies, and the success of these coping strategies (Grant
+& Langan-Fox, 2007; Penley & Tomaka, 2002; Suls & Martin, 2005). Moreover, neuroticism
+might adversely affect the quality of social relationships and increase the probability of exposure
+to interpersonal stress (Branje, van Lieshout, van Aken, 2004; David & Suls, 1999; Hooker,
+Frazier, & Monahan, 1994; Lara, Leader, & Klein, 1997; Suls & Martin 2005). Neuroticism has
+also been linked to lower levels of perceived social support (Ayub, 2015; Branje et al.,
+2004; Swickert et al., 2010). Findings from daily diary studies provide further evidence for the
+link between neuroticism and the experience of more (interpersonal) stress, elevated levels of
+stress intensity and reactivity (Bolger & Schilling, 1991; Howland, Armeli, Feinn, & Tennen,
+2017; Mroczek & Almeida, 2004; Suls et al., 1998), as well as the habitual use of poorer coping
+strategies in response to everyday stress. Neuroticism may facilitate the maintenance of current
+stressors or the generation of future ones (Gunthert, Cohen & Armeli, 1999). Thus, individuals
+who score high on neuroticism may report more daily stressors and – in turn – higher levels of
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+perceived stress, because of less perceived social support, or because they are quicker to appraise
+a situation as stressful (Bolger & Zuckerman, 1995).
+Extraversion, in contrast, relates to perceiving events as challenges rather than threats and
+to positive appraisals of coping resources (Longua, DeHart, Tennen, & Armeli, 2009; Penley &
+Tomaka, 2002; Vollrath, 2001). Also, as individuals high in extraversion are characterized by
+sociability, it is likely that they will enjoy wider social networks and seek out more social
+support than those lower in extraversion (e.g., Ashton, Lee, & Paunonen, 2002; Feiler &
+Kleinbaum, 2015; Morelli, Leong, Carlson, Kullar, & Zaki, 2017; Morelli, Ong, Makati,
+Jackson, & Zaki, 2017; Williams, Morelli, Ong, Zaki, 2018; see Baranczuk (2019) for a meta-
+analysis). In daily diary studies, high levels of extraversion have been linked to fewer instances
+of stress exposure, lower stress-reactivity, and positive appraisals of available coping resources
+(Gunthert, Cohen, & Armeli, 1999; Suls & Martin, 2005). A study based on a community sample
+of men found that those with relatively high levels of extraversion tended to engage more
+frequently in emotion-focused coping strategies (e.g., venting of affect in response to daily
+stressors; David & Suls, 1999). This overall pattern was mirrored by the additional observation
+that more extraverted participants exhibited a tendency to engage their social networks in
+response to daily stressors. A similar ambulatory assessment study in a sample of individuals
+with Rheumatoid Arthritis – a condition associated with a multitude of daily stressors –
+complements this set of findings by showing that individuals high in extraversion were more
+likely to use adaptive coping strategies such as cognitive reframing in response to a daily stressor
+and they were more likely to benefit from engaging in those strategies as well (Newth &
+DeLongis, 2004).
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+Potentially, the daily stress-buffering effects of drawing support from one’s broader
+social network can be accounted for by perceived and received social support, over and above
+personality. Research on social support univocally suggests that those who perceive themselves
+as having social support find negative events to be less aversive than those who perceive that
+they have little or no support. For instance, in daily diary and longitudinal exploratory studies,
+the within-person link between daily stressors and affect was stronger for people who perceived
+themselves as having less social support (Caspi, Bolger, and Eckenrode, 1987; DeLongis,
+Folkman, Lazarus, 1988; Nezlek & Allen, 2006). More specifically, Affleck, Tennen, Urrows,
+and Higgins (1994) found that social support moderated one-day lagged relationships between
+negative events and negative mood but not same-day relationships. The lagged relationship was
+greater for people with less social support than for those with more support. This finding
+resembles work by DeLongis, Folkman, and Lazarus (1988) suggesting that within-person same-
+day relationships between mood and daily hassles are stronger for people who had less social
+support than for those who had more support.
+Global perceptions of support availability, as well as perceptions of support attempts
+from close others, may be associated with the frequency of specific coping strategies, the
+effectiveness of strategies employed (e.g., DeLongis & Holtzman, 2005; Heller, Swindle, &
+Dusenbury, 1986), as well as health-related outcomes more generally (Bisconti, Bergeman, &
+Boker, 2006; Cook, McElwain, & Bradley-Springer, 2016; Gerteis & Schwerdtfeger, 2016).
+The Present Study. What is not entirely clear from existing research is whether
+individual differences in personality relevant to social support, such as neuroticism and
+extraversion, confer shared or unique effects in moderating within-person relationships between
+daily events and stress appraisals. Because of the links between both perceived and received
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+social support with coping processes, the putative salutary effects of support as an environmental
+variable might be construed as effects of individual differences in contextualized personality
+processes. This study seeks to disentangle the effects of recipient traits from perceived and
+received social support, thus clarifying the unique and shared salutary effects of personality and
+social support on daily stress processes. Our study uses an ecological momentary assessment
+(EMA) study design, with intensive and repeated assessments of stress appraisals in an
+individual’s natural environment (Moskowitz et al., 2009; Trull & Ebner-Priemer, 2013; Wright
+et al., 2019). There are three major methodological advantages specific to EMA designs. First,
+collecting data in natural settings permits the examination of socio-affective processes as they
+unfold in real-world contexts. This maximizes ecological validity and generalizability that are
+limited in laboratory settings. Second, momentary measures have been shown to reduce bias and
+systematic error associated with traditional retrospective self-reports (Trull & Ebner-Priemer,
+2013). Third, the use of repeated assessments throughout the day allows us to capture within-
+person variability with a temporal resolution that is not possible with alternative approaches.
+Repeated assessments provide representative samples of everyday stressor exposure along with
+episodic psychological responses that may accompany those events. In that regard, EMA
+represents a unique approach toward harmonizing assessments of stress exposure and
+susceptibility because it allows us to capture both constructs in a way that closely aligns with our
+daily life experience. In sum, EMA permits to reliably model the dynamic interplay of
+environmental triggers on stress processes as they unfold in real-world contexts.
+Stress processes are ideal for studying the joint and distinctive impact of perceived and
+received social support and personality on the contextualized processes that may underlie
+individual differences in health and wellbeing (e.g., Wright, Aslinger, Bellamy, Edershile, &
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+Woods, 2019). Especially interpersonal conflicts have been found to have strong negative effects
+on psychological well-being (Bolger, DeLongis, Kessler, & Schilling, 1989; Rook, 1992), and to
+activate stress physiology (Kiecolt-Glaser & Newton, 2001).
+Conventionally, stress is defined as a transactional process arising from existing or
+perceived environmental demands that can be appraised as threatening or benevolent, depending
+on the availability of coping resources to an individual (e.g., Lazarus & Folkman, 1984). As
+outlined above, personality traits and social support both can influence any point of a coping
+sequence such as exposure or response to stressors, as well as their within-person links across
+time. Thus, stressful experiences during daily life that may evoke different responses as a
+function of individual differences and/or social support are likely to be an important process
+operating in health and wellbeing.
+For this study, two types of events — social conflict and task strain — were selected as
+key determinants of daily stress reactivity on the basis of their hypothesized associations stress-
+induced sympathetic nervous-system responding (Manuck et al., 1991; Schnall et al., 1992).
+The main objective of this study was to determine whether and how basic personality
+traits (i.e., extraversion, neuroticism) and perceived or received forms of social support uniquely
+relate to processes of perceived stress exposure and reactivity in daily life. As preregistered, we
+hypothesized that social support and personality will have unique effects on (i) stressor exposure,
+effect annotations).
+Hypotheses
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+Perceived Stress Exposure. The first set of hypotheses examined the between-person
+portion of our model, concerning effects of personality and social support on individual
+differences in perceived stress.
+Hypothesis 1a: Individual differences in perceived and received social support will be negatively
+associated with ratings of daily life stressor occurrence and intensity (task demand
+and social conflict) during daily life.
+Hypothesis 1b: Levels of extraversion will be negatively, while levels of neuroticism will be
+positively, associated with ratings of daily life stressor occurrence and intensity
+Hypothesis 1c: When entering social support and personality variables simultaneously in one
+model, all variables will uniquely contribute to daily life ratings of stressor
+occurrence and intensity.
+Amplified Stress Response. The second set of our preregistered hypotheses focused on the
+moderating effects of personality and social support on the within-person association between
+momentary stressors and perceived stress in daily life.
+Hypothesis 2a: Low levels of perceived and received social support will amplify the within-
+person association between reports of daily stressor and perceived stress.
+Hypothesis 2b: Both high levels of extraversion and neuroticism will amplify the within-
+person association between reported daily stressors and perceived stress.
+Hypothesis 2c: When entering all variables in one model, each of these four predictors will
+uniquely amplify the within-person association between reported daily stressors and perceived
+stress.
+To further control for the possibility of suppression effects, extraversion and neuroticism
+will be first entered as predictors in separate models, before merging them into one
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+comprehensive model. The concept of a suppressor variable describes cases in which the
+inclusion of a second predictor increases the predictive power of the first predictor by controlling
+for criterion-irrelevant variance (Lynam, Hoyle, & Newman, 2006; Paulhus et al., 2004),
+potentially revealing patterns of stress-specific and nonspecific components that likely operate in
+tension with one another.
+In a parallel set of analyses, we also operationalized momentary perceived stress as
+momentary negative affect. This led to very similar patterns of results.
+The output of all supplementary analyses can be found on the OSF (Tables S1-S7).
+Method
+Open Practices
+consent form did not request permission for open sharing of the data, and therefore we are unable
+to post the data online.
+Procedures
+All study procedures were approved by the University of Pittsburgh Institutional Review
+Board (PRO13010074), and all participants were administered informed consent before
+enrollment.
+Potential subjects for SHINE (Study of Health and Interactions in the Natural
+Environment) were recruited by the University Center for Social and Urban Research (UCSUR)
+at the University of Pittsburgh, using targeted telephone recruitment methods. A telephone
+interviewer contacted all respondents for purposes of study description and initial screening for
+eligibility. If interested and eligible, the potential participant was scheduled for a study visit.
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+Eligible participants were middle aged (age 40-64) and in generally good health. Exclusion
+criteria were based upon an effort to reduce major confounding medical and health-related
+variables that might influence the measures of affect, health behavior, and cardiovascular,
+metabolic, and inflammatory processes that were the focus of the study. Thus, individuals who
+reported chronic illness, diabetes requiring medication, or recent cancer requiring treatment were
+excluded, as were those with untreated high blood pressure (SBP > 180 or DBP > 110), or
+neurological deficit. Furthermore, those taking psychotropic medications, or medications with
+autonomic, HPA axis, inflammatory, or metabolic effects were excluded. Moreover, participants
+were excluded if they reported health habit or life situations that may adversely affect
+participation. These include excessive alcohol consumption (> 5 drinks >3 times per week),
+recent recreational drug use, current shift work, current pregnancy, or less than an 8th grade
+education. Subjects attended 4 laboratory visits: an informed consent and screening visit, a social
+network assessment visit, an ambulatory monitoring training visit, and a debriefing visit. Primary
+data collection occurred over the course of a 4-day period, between visits 3 and 4. Throughout
+this period, electronic diary (ED) monitoring assessments were carried out, along with hourly
+ambulatory blood pressure assessments and measures of salivary cortisol, collected six times
+daily (data not relevant to this current report). During Visit 1, informed consent was
+administered, followed by demographic and social network assessment. Visit 31, usually on
+Monday, was devoted to training in ambulatory monitoring. Each subject was required to meet
+demonstrated competence on use of equipment before being sent into the field for a
+1 Training sessions began with a self-paced tutorial developed as part of our previous research. Each subject was
+required to meet demonstrated competence on use of equipment the “shakedown” trial.
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+“shakedown” trial. Following brief telephone contact to troubleshoot any technical or operational
+difficulties, ambulatory data collection began the next day (typically Tuesday)2.
+For the duration of their ambulatory monitoring session – two two-day periods over the
+course of one week –, participants were given a mobile phone (Nexus S) equipped with
+programmed software previously designed to facilitate EMA assessment. Subjects were
+instructed to use the ED throughout each monitoring day (approximately 16 hrs3) and they
+completed questions administered by the ED at fixed hourly intervals4. Right before bedtime,
+participants were prompted to complete an evening interview, to turn off the device, and to set a
+set a wake-up alarm on the ED for the time of their choosing for the following morning. Upon
+awakening, participants were asked to activate the device and to complete a morning interview.
+Hourly interviews were prompted by the inflation of the ambulatory blood pressure device,
+donned within 45 minutes of awakening. Additional physiological assessments were collected
+during the monitoring period (cortisol and urinary catecholamines), but these were not relevant
+to the analyses reported here. Participants were encouraged to respond immediately following
+each prompt, but they were allowed to ‘delay’ responding, if necessary, if circumstances were
+prohibitive (e.g., meeting or phone call). Responses that were completed 22 minutes or greater
+following each cuff inflation were deemed invalid and were deleted.
+2 To minimize any annoyance and/or frustration that may result from interacting with the electronic diary devices, all subjects
+were appropriately trained on how to use the devices prior to being sent out into the field. Furthermore, during the entire
+monitoring period while subjects were in the field, a research specialist was ready and available (by cell phone) to answer any
+questions.
+3 After an initial morning interview, participants were given an hour to shower and to don their equipment, resulting in a
+maximum of 15 possible interviews per day (or 60 possible prompts over the course of the 4-day study, respectively).
+4The present study drew data from a larger parent project, designed, in part, to explore the link between psychosocial factors and
+acute cardiovascular responsiveness in daily life. In the context of the overarching goal of the parent study, ambulatory diary
+measures of stressor exposure and adaptive reactivity were set to be synchronized with hourly cuff inflations of ambulatory blood
+pressure. More specifically, blood pressure was assessed every 60 minutes throughout the day (which corresponded to
+approximately 16 waking hours per participant). Immediately following each blood pressure measurement, participants were
+prompted to complete a 2-minute electronic diary. This protocol has been applied in a number of previous studies (Kamarck et
+al., 2018), and has been proven useful for the examination of episodic adjustments in hemodynamic activity that may accompany
+ongoing stressor events.
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+At the end of the data collection period, subjects attended a morning lab visit (Visit 4),
+for data download, to return their equipment, to complete a blood draw, to complete additional
+questionnaires, to facilitate subject payment ($350 for completion) and to discuss the study5.
+Sample
+391 participants completed ambulatory assessment procedures. Due to errors in the
+software used to administer questionnaires, 11 of these were missing social support data and 21
+were missing personality data. Other than noted in our preregistration, this yielded a sample size
+of 370 with complete data available for hypotheses involving the cross-level interaction between
+momentary and trait measures. 61.4% of the sample was female (N=240), and 22.5% was
+nonwhite, with a mean age of 52 years. The sample was generally well educated (~64% with
+bachelor's or graduate degree). At the within-person level, this returned N=11275 momentary
+observations of social stressors, and N=19165 momentary observations of task-related stressors,
+with an average compliance rate of 71%.
+Fewer observation numbers for social conflict compared to task demand result from our
+effort for the social conflict variable to extract only responses pertaining to interactions reported
+to be occurring at the time of or within the 10-minute period preceding the ED assessment. An
+average of N=30 ambulatory monitoring observations (i.e., diary entries) per person were
+available for analyses based on social stressors, and N=52 for analyses based on task-related
+stressors.
+Assessment of Personality and Social Support
+measured with the NEO Five-Factor Inventory (Costa & McCrae, 2008).
+5 Based upon their adherence to study procedures, 25 subjects agreed to undertake 1-3 days of additional data collection in order
+to remain eligible to complete the study.
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+Perceived Social Support was assessed with the short form of the Interpersonal Support
+Evaluation List (ISEL-12; Cohen, Mermelstein, Kamarck, & Hoberman, 1985). 12 items assess
+the perceived availability of social support on a four-point scale ranging from “definitely false”
+to “definitely true.” All items are summed to yield a total score (scores range 0-36) or four items
+per subscale. The tangible subscale measures the perceived availability of material aid, the
+appraisal subscale the perceived availability of someone to talk to about one's problems and the
+belonging subscale the perceived availability of people one can seek companionship with.
+Received Social Support was assessed using the Positive Social Exchanges subscale of
+the Positive and Negative Social Exchanges (PANSE; Newsom et al., 2003) scale. Twelve items
+assess the frequency with which positive social exchanges have occurred within the past month
+within the following domains (three items per domain): emotional support, companionship,
+instrumental support, and informational support.
+Assessment of Momentary Stress Processes
+Variables measured in EMA surveys were derived from a self-reported multi-item
+electronic diary assessment tool, used for repeated real-time assessments. Participants completed
+the diary on an hourly basis. The diary includes scales assessing current affect and stressor
+exposures, including measures of task demand and social conflict. For each of the items,
+participants respond using a 10-point scale (with the anchors NO! No no yes Yes YES!). As
+preregistered, due to an error in our assessment software (inability to reliably detect the full
+range of the scale), response options for each item were transformed to range from 1 to 9.
+To assess task/work-related stressors, participants were asked to “Think about mental
+and physical activity in the past 10 minutes.” The three-item task-demand scale (i.e., “Required
+working hard?” “Required working fast?” and “Juggling several tasks at once?”) followed. These
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+items were derived from the Job Content Questionnaire (Karasek et al., 1985), a standard
+instrument used for the assessment of job strain. Retest reliability and criterion validity for this
+EMA-based scale has been previously described (Kamarck, Muldoon, Shiffman, Sutton-Tyrrell,
+Gwaltney, 2004). During each hourly assessment, participants were also administered several
+items inquiring about their most recent social interaction. Social conflict scores for these recent
+interactions were assessed using a three-item scale (i.e., “Someone was insensitive to you?”
+“Someone made you tense?” “Someone interfered with your efforts?”; e.g. Kamarck et al.,
+2018). For both types of stressors, scores were averaged across items for each scale. Between-
+and within-person reliabilities were calculated for these scales using McDonald’s omega (𝜔;
+Zinbarg, Revelle, Yovel, & Li, 2005).
+Momentary perceived stress was assessed with one item: “How feeling? Nervous /
+Focal Preregistered Analyses
+We used Mplus Version 8.3 (2019) to estimate multi-level structural equation models
+observed variables of stressors and stress response was broken down into within- and between-
+person latent variables using latent decomposition. This is analogous to the partitioning of
+variance that occurs with the outcome variable in standard multilevel modeling, however in
+MSEM it is conducted for both outcomes and predictors that are observed at Level 1 (i.e.,
+variables that have both within and between-person variance). The between-person variables
+(i.e., Level 2) are an estimate of an individual’s average (i.e., random intercepts), and the within-
+person variables (i.e., Level 1) reflect deviations from their average during a given repeated
+assessment. Because all the modeled associations are among concurrently assessed variables and
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+not lagged, this means that the within-person associations reflect situation-to-situation dynamic
+processes, but they do not directly establish temporal precedence.
+We used the Bayes estimator. No prior information about parameter values was specified
+(i.e., we used non-informative/diffuse priors that are the default in Mplus). Inferences were based
+on point estimates drawn from their posterior distribution and associated 95% credibility
+intervals. We considered coefficients in which the credibility interval did not include zero to be
+significantly different from the null hypothesis.
+To test our first set of hypotheses, we examined whether dispositional measures of
+personality and perceived or received social support predicted individual differences in random
+intercepts of task-related and social stressors. For analyses based on the second set of our
+hypotheses, we examined whether individual differences in personality and social support
+moderated the within-person association between reported daily stressors and perceived stress
+(i.e., cross-level interaction). For tests of hypotheses 1a/b and 2a/b, extraversion, neuroticism and
+social support were entered as separate predictors to the model, whereas for tests of hypotheses\
+1c and 2c, all three sets of predictors were joined into one model.
+In accordance with previous analyses based on this or similar datasets (Kamarck et al.,
+2004; Kamarck et al., 2018), we used age, gender, race, and education as covariates at the
+between-person level in all analyses. Race was coded using a dichotomous scale
+(white/nonwhite) and education was designated with a 4-point scale (high school, some college
+or associates, BA/BS, post-BA degree). Covariates were modeled only at the between-person
+level. To control for the effects of each, random slopes and intercepts were regressed on
+covariates. Preregistered syntaxes of our analyses can be found on the OSF.
+Supplementary Analyses
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+To harness the full potential of the dataset, we further carried out a series of
+models, perceived and received social support were conceptualized as broad overarching
+constructs. However, because social support is a heterogeneous construct (Cohen & Wills, 1985;
+Gottlieb & Bergen, 2010) its distinct elements may be obscured by the use of an overall score.
+Therefore, we also pre-registered exploratory analyses examining the moderating role of social
+support on stress reactivity based on each of the available subscales of perceived and received
+social support (see below for a detailed overview of subscales). The results of those analyses can
+discussion of this article.
+Finally, for both sets of hypotheses, further exploratory analyses were carried out,
+examining the contribution of agreeableness, conscientiousness, and openness to the probability
+of individuals reporting a stressor in daily life and the efficacy of self-regulatory success after
+experiencing stress in daily life (OSF: Tables S11-S12).
+Results
+Preliminary Analysis
+To validate our momentary models of stress reactivity, we regressed ratings of
+momentary perceived stress on each of the stressor perception domains separately at Level 1 (see
+analyses were described in our preregistration and outputs for all reported models can be found
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+Our analysis returned a significant effect of task demand at the within-person level
+(b =.23, CI= .18; .26) and at the between-person level (b = .39, CI= .28, .48). The results for
+models including social conflict as predictor variable were b = .31 (CI= .29; .34) at the within-
+and b = .65, (CI= .59; .71) at the between-person level, respectively. This pattern of associations
+and variability supports the validity of our measures’ ability to reflect momentary stress
+elevation in response to work- and interpersonally related stressors.
+An overview of zero-order correlation coefficients can be found at the OSF
+Perceived Stress Exposure
+All analyses were carried out in the context of the four demographic covariates specified
+above and the detailed output is available at the OSF.
+social support (H1a) and personality traits (H1b) on the probability of experiencing a stressor in
+daily life, we ran separate simple prediction models. These models returned significant positive
+effects of extraversion on the amount of reported work-related stressors (b=.09, CI: .01; .16), and
+significant positive effects of neuroticism (b=.23, CI: .16; .31) and negative effects of perceived
+social support (b=-.16, CI: -.23; -.08) on social conflict exposure. Received social support, in
+contrast to our prediction (H1a), had no effect on the perceived exposure to stressors.
+unique predictive validity of each variable in a combined prediction model elucidated that
+neuroticism (b=.12, CI: .05; .20) and extraversion (b=.11, CI: .03; .18) incrementally added to
+the explanation of variance in task demand, while neuroticism (b=.20, CI: .12; .26) and
+perceived social support (b=-.10, CI: -.18; -.02) incrementally added to the explanation of
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+variance of social conflicts to emerge in daily life. Except for extraversion, each of these
+variables was associated in the preregistered direction across stressor domains.
+Amplified stress reactivity
+In the context of hypotheses 2a and b, we tested the moderating value of dispositional
+measures on within-person associations between reported daily stressors and perceived stress
+(i.e., cross-level interaction). Coefficients emerging from the “® Reactivity” path of our models
+respectively).
+In line with hypothesis 2a, we found that perceived social support dampened the link
+between daily social conflicts or task demand and perceived stress (b=-.13, CI: -.20; -.04).
+Received social support, however, had no effect on stress reactivity. In line with hypothesis 2b,
+neuroticism enhanced the link between both types of daily stressors and perceived stress (b=.19,
+CI: .09; .27; b=.12, CI: .02; .20), while the predicted effect for extraversion did not emerge.
+Hypothesis 2c predicted that personality and social support would uniquely amplify the
+within-person association between reported daily stressors and perceived stress. In contrast to
+our hypothesis, when entering all predictors concurrently into one model, only neuroticism
+emerged as significant moderator of stress reactivity, and only so in the context of daily work-
+Discussion
+A seldom-tested explanation for the effectiveness of perceived social support in
+ameliorating the detrimental effects of stress is that it may be attributable to relevant personality
+characteristics. In this preregistered study, we tested the extent to which daily stress-buffering
+effects of drawing support from one’s broader social network can be accounted for by perceived
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+and received social support, over and above neuroticism and extraversion, two traits that share
+substantial overlap with processes of social support. Our study illustrates that perceived social
+support has a protective effect on the probability of experiencing a stressor in daily life
+(Hypothesis 1a), even after controlling for traits that are closely related to social support
+(Hypothesis 1c). Neuroticism (Hypothesis 1b) was related to an increased level of overall
+stressor exposure, and extraversion to more frequent reports of work-related stressors. As
+expected, perceived social support (Hypothesis 2a) and personality (Hypothesis 2a) moderated
+relationships between stressor exposure and experienced stress. In contrast to our hypotheses, the
+ability of perceived social support to buffer reactivity to stressful experiences, however,
+disappeared after controlling for personality (Hypothesis 2c). Received social support neither had
+an effect on stressor exposure (Hypothesis 1a), nor stress reactivity (Hypothesis 2a).
+Overall, our results are in line with previous work suggesting that personality, and
+neuroticism in particular, reflects greater reactivity of negative affect to unpleasant events and
+stressors (Bolger & Schilling, 1991; Longua, DeHart, Tennen, & Armeli, 2009; Maples, Miller,
+Hoffman, & Johnson, 2014). To some degree, this overall picture contrasts with previous work
+by Cohen et al. (2015), reporting that perceptions of social support and the frequency of being
+hugged or experiencing interpersonal tension were not influenced by relevant personality
+characteristics (i.e., extraversion, agreeableness, and neuroticism), although all traits that have
+been associated with social interaction styles. It is possible that our findings deviate from those
+reported in Cohen et al. (2015) because the outcomes were differentially indicative of social
+support and personality across both studies. As Cohen et al. (2015) put forward, hugging may
+represent a behavioral indicator of social support, whereas the main outcome in our study (i.e.,
+the within-person link between stressor and stress response) could be viewed to reflect the
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+momentary regulation of trait indicative behavior (Fleeson, 2012; Wright, 2011, 2014), thus
+diminishing the predictive validity of perceived social support after controlling for neuroticism
+or extraversion.
+Alternatively, it is also possible that, even though social support may be mobilized
+instantaneously, the positive effects of such support are likely experienced with some temporal
+distance. Thus, although supportive relationships may not guard against the immediate adverse
+effects of stressful daily events, they may guard against negative long-term health effects of daily
+stress experiences (Caspi et al., 1987).
+Partially aligning with this explanation are findings regarding our first set of hypotheses.
+Although the pattern of our results replicates previous evidence illustrating that neuroticism
+increases the probability of exposure to stressors – and levels of perceived stress in turn – more
+generally (e.g., Suls & Martin, 2005), it also adds to this well-established relationship. The
+incremental effect of perceived social support on the likelihood of reporting an interpersonal
+stressor in daily life may potentially mirror the notion that the occurrence of stressful events
+likely propel individuals with highly supportive social networks into positive social encounters,
+and thus decrease the probability of detrimental health effects in the long run (e.g., Caspi et al.,
+1987; Cutrona, 1986; Nezlek & Allen, 2006).
+The findings presented here are based on a design with a notable ability to approximate
+real-world daily stress processes: We assessed stress reactivity of individuals hourly in their
+daily lives across two two-day periods over the course of a week (i.e., 4 days total) in a
+community sample, combining the twin benefits of increased ecological validity and minimized
+retrospective biases. Although the general picture emerging from this set of analyses is that the
+seeming benefits of social support on daily stress reactivity could be viewed as reflections of
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+individuals’ basic trait levels and consequences thereof (e.g., Pierce et al., 1997), some aspects
+deserve further discussion.
+It is important to note that our sample was relatively well-educated and predominantly
+white which may limit the generalizability of our results to other groups.
+Moreover, because EMA encompasses a methodological approach that is characterized
+by complex sampling procedures and data analytic choices, each individual study’s specifics
+may introduce a new source of variance or capture different aspects of the hypothesized
+processes. Thus, this circumstance may complicate the comparability of results across seemingly
+very similar studies. To illustrate, a recently published study found no evidence for neuroticism
+moderating the within-person link between negative affect and daily stressors (Mey et al., 2020).
+This contradicts the the findings reported in our study, as well as the majority of studies
+revealing an impact of neuroticism on stress reactivity following daily hassles (e.g., Bolger &
+Schilling, 1991; Marco & Suls, 1993; Mroczek & Almeida, 2004; Suls et al., 1998). However,
+Mey et al. (2020) used a small sample (N=70), employed a brief measure of affect valence with
+two uncommonly used items (i.e., discontent, unwell), and had relatively long temporal periods
+covered by each prompt. Thus, it is possible that any number of these choices could have
+impacted their findings. Future studies should, therefore, systematically evaluate alternative
+methodological decisions including selection of affect items and timing of assessments.
+Because it can be argued that self-reported measures of social support and personality
+reflect a blend of social and intraindividual differences (e.g., Lakey & Orehek, 2011), we ran a
+supplementary set of analyses to control for the possibility of plausible suppression effects. A
+those models, extraversion and neuroticism were first entered as predictors in separate models
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+social conflicts per se, a moderating effect of social conflict reactivity arose when we controlled
+for perceived and received social support. This suggests that adjusting for social support
+variables may reveal the predictive power of extraversion, by bringing into clearer focus
+elements that are inherent — but largely hidden —in the overall score of extraversion (e.g.,
+Watson, Clark, Chmielewski, & Kotov, 2013).
+The idea of overlapping variance in constructs of interest is also relevant for study design
+considerations that aim at the disentanglement of effects emerging from the support recipients’
+traits vs. effects that stem from interpersonal influences. The fact that all measures in our study
+were assessed via self-report may hamper the ability of our design to sufficiently distinguish
+between these effects in daily life, because a correlation between a self-reported measure of
+perceived support and stress processes likely reflects large amounts of the traits themselves. If
+respondents make judgments of their social ties, by guessing average supportiveness across
+different providers, then, according to reliability theory (Cronbach et al., 1972), general
+measures of perceived support compound recipient trait variance by averaging out effects due to
+providers (Lakey & Orehek, 2011). As Lakey & Orehek (2011) suggest, future studies should,
+therefore, ask respondents to rate a single, most important support provider. That way the
+magnitude of recipient influences is not overestimated by averaging across multiple providers
+and the magnitude of the confound is reasonably low. Alternatively, future work may also
+employ informant reports of social support and test the effects reported in our study
+systematically across a variety of different, yet related outcomes (e.g., health behaviors,
+physiological processes).
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+To more specifically tackle the question of determinants of perceived benefits of social
+support, future studies may also consider assessing interactive effects of personality and social
+support on momentary stress processes. Because interaction effects require large sample sizes
+(e.g., Rohrer & Arslan, 2020) and thoughtful consideration of the strength and form of the
+effects, we suggest basing related analyses on carefully planned and (ideally) preregistered study
+protocols, thus reducing potential threats to reliability and preventing the introduction of false-
+positives into the literature.
+Moreover, future work may also employ high-resolution studies with more in-depth
+measurements of social support. This notion is built on more recent evidence, suggesting that the
+conceptualization of social support as a static construct may conceal relevant features of social
+support (Coppersmith et al., 2019). Capturing social support with a single assessment does not
+take into account the volatile nature of perceived social support, which is known to fluctuate
+even over short periods of time and relatively restricted scales.
+Although aspects of method variance are key for future studies to carefully parse out
+redundant variance between social support measures and those of closely related personality
+variables, it may also be that an incremental effect of social support on daily stress processes
+may be very small. Thus, it would require very large samples to detect it. Indeed, the effect of
+neuroticism was large, making the detection of additional, likely smaller effects, more difficult to
+emerge.
+Our research points towards the crucial role of one’s supportive social environment to
+increment effects of personality on daily stress processes. However, follow-up studies using a
+more extensive longitudinal design across different methods, and a broader range of outcomes
+are needed to corroborate our findings. Possibly, to the extent that an unhappy or sunny
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY
+disposition itself affects a person’s location in the social structure, correlations between social
+support and daily stress processes could reflect the effects, not the causes of stress regulation.
+Therefore, not the provision of social support per se, but understanding personality profiles
+associated with successful social relationships may aid in increasing social connectedness and
+lower stress experience in the long run. This process needs careful study, combining daily
+indicators of social interaction with measures of daily events and well-being. Our findings
+provide limited evidence of incremental effects of social support and personality, yet a
+mechanistic account that accommodates these nuanced results beckons further study.
+RUNNING HEAD: PERSONALITY AND SOCIAL SUPPORT IN STRESS REACTIVITY

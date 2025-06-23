@@ -1,0 +1,745 @@
+Joint modelling of latent cognitive mechanisms shared across decision-making
+domains
+Niek Stevenson, Reilly J. Innes, Russell J. Boag, Steven Miletić, Scott J. S. Isherwood,
+Anne C. Trutti, Andrew Heathcote, and Birte U. Forstmann
+Department of Psychology, University of Amsterdam, Netherlands
+Joint modelling of latent cognitive mechanisms shared across decision-making
+domains
+Abstract
+Decision-making behavior is often understood using the framework of evidence
+accumulation models (EAMs). Nowadays, EAMs are applied to various domains of
+decision-making with the underlying assumption that the latent cognitive constructs
+proposed by EAMs are consistent across these domains. In this study we investigate both
+the extent to which the parameters of EAMs are related between four different
+decision-making domains and across different time points. To that end, we make use of the
+novel joint modelling approach, that explicitly includes relationships between parameters,
+such as covariances or underlying factors, in one combined joint model. Consequently, this
+joint model also accounts for measurement error and uncertainty within the estimation of
+these relations. We found that EAM parameters were consistent between time points on
+three of the four decision-making tasks. For our between-task analysis we constructed a
+joint model with a factor analysis on the parameters of the different tasks. Our two factor
+joint model indicated that information processing ability was related between the different
+decision-making domains. However, other cognitive constructs such as the degree of
+response caution and urgency were only comparable on some domains.
+Introduction
+Decision making is a critical part of everyday life which underpins many types of
+actions. Even though there is a large range of decisions that individuals regularly engage
+in, researchers posit that various decision-making processes can be described within the
+framework of evidence accumulation models (EAMs; Donkin and Brown, 2018; Forstmann
+et al., 2016).
+EAMs posit that decision-makers gather information for each choice alternative
+until sufficient evidence for one alternative has been accumulated to commit to a decision
+(Donkin and Brown, 2018; Ratcliff and Smith, 2004). Although many implementations of
+EAMs exist, most propose that decision-making is governed by a combination of least three
+latent cognitive processes. First, the drift rate drives the speed of the evidence
+accumulation process. Second, the threshold captures the amount of evidence needed to
+commit to a decision. Third, the non-decision time comprises both the time necessary for
+sensory processing of the stimulus and the time taken to execute the motor response.
+EAMs describe response times and choices simultaneously, providing a model that accounts
+for both modalities of observed decision-making behavior. Given the success of EAMs in
+describing decision-making, and their sensitivity to manipulations of the decision process,
+their use is widespread (Ratcliff et al., 2016). EAMs are applied to study decision-making
+across various domains, such as conflict processing, perceptual decision-making,
+value-based decision-making, learning, working memory, and the speed-accuracy trade-off
+(e.g., Boag et al., 2022; Hübner and Schlösser, 2010; McDougle and Collins, 2020; Miletić
+et al., 2021; Polanía et al., 2014; Rae et al., 2014).
+To accommodate the differences between these tasks within the framework of
+evidence accumulation, EAMs are often adjusted for task-specific processes (e.g., Boag
+et al., 2019; Collins and Frank, 2012; van Ravenzwaaij et al., 2019). Furthermore, cognitive
+psychologists assume that the type of evidence accumulated differs between types of
+decisions. For example, the strength of accumulation for decisions involving working
+memory is assumed to be based on strength of working memory representations (Boag
+et al., 2021), whereas the accumulation process for value-based decision making may
+depend on subjective preference for alternate values (Ratcliff et al., 2016). Nevertheless,
+the underlying architecture of accumulating evidence for various choice options until a
+threshold is met, remains the same. Thus, explicit links between these designs exist in the
+framework of EAMs. If, for example, a subject is generally fast to respond due to a lack of
+caution, this is assumed to hold for different tasks (Hedge et al., 2019). Furthermore, even
+though the type of accumulated evidence differs between tasks, the accumulation process is
+still assumed to be based on information processing ability, a trait that should show
+similarities between tasks (Weigard and Sripada, 2021).
+Previous studies have tested the assumption that the cognitive processes assumed
+by EAMs are related between different decision-making tasks (Lerche et al., 2020; Lerche
+and Voss, 2017; Ratcliff and Childers, 2015; Schmiedek et al., 2007; Schulz-Zhecheva et al.,
+2016; Weigard et al., 2021; Yap et al., 2012). These studies mostly found that an
+individuals’ ability to discriminate information efficiently, as measured by the most
+prominent EAM, the DDM, was related between different decision-making tasks. Still,
+these studies relied on tasks that engaged similar decision-making processes, for example,
+cognitive control.
+Here, we chose to study tasks a wider range of domains of decision making tasks,
+keeping in mind that these domains may require the recruitment of different regions across
+the brain. We were specifically interested in tasks that are known to recruit both cortical
+and subcortical regions, which include the domains of working memory (Rac-Lubashevsky
+and Frank, 2021), value-based decision making and reinforcement learning (Gläscher et al.,
+2010; O’Doherty, 2004), balancing speed and accuracy (Bogacz et al., 2010; Forstmann
+et al., 2008), and cognitive control / conflict tasks (Aron and Poldrack, 2006; de Hollander
+et al., 2017; Isherwood et al., 2022; Miletić, Bazin, et al., 2020). Studying these broader
+domains also allows us to assess whether the parameters in the EAM framework are stable
+across domains for which the neural underpinnings might partly vary.
+To that end we relied on four different decision-making tasks that engage different
+domains of decision-making: 1. A reversal learning task (RL-Rev; Behrens et al., 2007;
+Costa et al., 2015; Miletić et al., 2021); 2. The multi-source interference task (MSIT; Bush
+et al., 2003); 3. The reference-back task (RB; Rac-Lubashevsky and Kessler, 2016a,
+2016b); 4. A reinforcement learning speed - accuracy trade-off task (RL-SAT; Miletić et al.,
+2021; Sewell et al., 2019).
+The four tasks involve different domains of decision-making, however, all four tasks
+were forced choice speeded decision-making tasks that fit within the EAM framework
+(Donkin and Brown, 2018). All task-specific EAMs contained response threshold
+parameters and non-decision time parameters. Furthermore, for each task we
+reparameterized the drift rate as a combination of an evidence dependent part of the
+accumulation process, which is characterized by information processing ability, and an
+evidence independent part of the accumulation process, which can be characterized as
+urgency (Trueblood et al., 2021). Both urgency and response caution allow decision-makers
+to strategically adjust their response speed, however, they have unique contributions to the
+decision-process. Increased urgency only leads to an increased probability of making a
+response with passing time, whereas higher response caution gives more time to choose the
+correct stimulus (Miletić and van Maanen, 2019; Trueblood et al., 2021).
+Besides engaging a broader scope of decision-making domains, the current study
+also uses a new methodology to test the relationships between these domains. Most
+previous studies that investigated the extent to which EAM constructs were related
+between different tasks, correlated the parameters of the EAMs to each other in a second,
+independent, step of analysis. However, recent work has highlighted that in order to best
+account for any relations that may exist between cognitive measures of different tasks,
+these relations should be explicitly accounted for in the model itself. Consequently, the
+model also accounts for measurement error and uncertainty within the estimation of these
+relations (Matzke, Ly, et al., 2017; Turner et al., 2013; Wall et al., 2021).
+To elaborate, cognitive models are often estimated in a Bayesian hierarchical
+framework, in which the cognitive model parameter estimates of individual subjects are
+related through an overarching group distribution of each parameter. Besides having
+desirable effects on the estimation of the parameters of the model (Rouder and Lu, 2005;
+Scheibehenne and Pachur, 2015), such a group level distribution is also beneficial since it
+facilitates inference at the level which is usually the target for analysis in psychological
+science – the population. In most studies that aim to investigate links between different
+decision-making tasks, different EAMs are estimated independently, in that no
+relationships between the different group level parameters of these EAMs are estimated.
+Correlations are then calculated in a second step.
+However, recent advances have used a multivariate normal distribution to describe
+the group level, which allows an explicit account of the covariances between the group level
+parameters (Gunawan et al., 2020; Turner et al., 2013). Including a covariance structure in
+the group level allows us to estimate the likelihood of multiple models (components)
+simultaneously, by simply extending the vector of parameters to be estimated, while
+explicitly allowing the parameters (within and between components) to inform one another
+through the covariance structure. We refer to this approach that explicitly accounts for
+relationships between parameters as the joint modeling covariance approach (Turner,
+Forstmann, et al., 2017).
+Joint modeling of cognitive model parameters of different tasks has two advantages
+compared to standard correlational approaches in which the correlations are calculated
+after the models were fit individually. First, estimation precision is improved and less
+attenuation of the true correlations is achieved by explicitly allowing relationships between
+parameters within the model, since measurement noise and parameter uncertainty are
+accounted for (Matzke, Ly, et al., 2017; Rouder et al., 2019; Wall et al., 2021). Second,
+since the covariances are also estimated in a Bayesian approach it is possible to construct
+credible intervals of correlation estimates, providing us with an inherent estimate of the
+uncertainty of our inferences.
+Building on the covariance approach, recent work suggested to replace the
+multivariate normal at the group level, with a factor analysis decomposition (Innes et al.,
+2022; Kang et al., 2021; Turner, Wang, et al., 2017). This approach reduces the number of
+estimated parameters in the joint model, which can improve estimation with multiple
+components included in the joint model, yet still captures the relationships that exist
+between these parameters. Furthermore, with the hierarchical factor model we estimate
+latent factors that span the decision-making process across different decision-making
+domains and can aid interpretation.
+In this study, we used the hierarchical factor modeling approach to investigate the
+relationships between the aforementioned four decision-making tasks. The participants
+completed each task twice in different sessions. Therefore, we could first test to what
+extent decision-making was related between different time-points. More importantly, since
+the four tasks were completed by the same set of participants, we could test whether the
+latent cognitive processes underlying decision-making, as proposed by EAMs, were related
+between different decision-making domains.
+A. RL-Rev B. MSIT
+C. RB D. RL-SAT
+Visual descriptions of the four decision-making tasks. A) The reversal learning task
+(RL-Rev), the reward contingencies are the reward probabilities associated with the two
+pairs of symbols presented per block. B) The multi-source interference task (MSIT). C) The
+reference-back (RB). D) The reinforcement learning speed - accuracy trade-off.
+Results
+Participants each completed four different decision-making tasks twice. We analyzed
+the data using different joint models that explicitly estimated the relationships between
+sessions or between tasks in the architecture of the model. Of the task-specific models that
+formed the components of the joint models, the models of the RL-Rev and RL-SAT were
+selected based on model comparisons described in Miletić et al. (2021). The models of the
+MSIT and RB were newly developed and selected after a model comparison study (see
+Materials and Methods).
+Between sessions
+For each task, we tested to what extent the behavior of the participants on session 1
+of the task was related to their behavior on session 2 of the task. To that end, we used a
+joint model of both sessions combined. These four between-session joint models had two
+components, the first component comprised the EAM parameters corresponding to the first
+session, and the second component the EAM parameters corresponding to the second
+session. Our between-session joint models relied on a multivariate normal distribution at
+the group-level to account for the relationships between the parameters. We included data
+from 54 participants in the between-sessions joint model of the RL-Rev, 86 participants for
+the MSIT, 85 for the RB, and 54 for the RL-SAT (see Materials and Methods). We
+translated the covariances of the multivariate normal group-level into correlations. We
+examined the within-session correlations from both sessions and the correlations between
+the parameters of the two sessions. For all tasks we constructed credible intervals from the
+marginal posterior distributions, for the correlations between parameters of the different
+sessions that mapped onto the same cognitive construct (e.g., the correlation between t of
+session 1 and t of session 2). We found that these credible intervals spanned only positive
+positive correlations indicate that participants who, for example, showed high response
+caution in session 1, also showed high response caution in session 2.
+diagonal (ρ = ρ ) and we therefore only plot the values below the diagonal.
+v ,b b ,v
+ses1 ses1 ses1 ses1
+The between-session correlations, which are then found in the lower square of the
+triangular plots, are, however, not symmetrical (e.g. ρ ̸= ρ ). We found that
+v ,b b ,v
+ses1 ses2 ses1 ses2
+again for the RL-SAT, RB and MSIT, the visual pattern of correlations observed between
+the parameters within the same session is replicated between the parameters of the
+entails that if, for example, information processing ability and response caution were
+correlated constructs within a session, they were also correlated between sessions.
+For the RL-Rev we found that the 95% credible intervals for the correlations
+between the parameters that mapped onto the same cognitive construct did contain 0 for
+RL-Rev were inconclusive. Furthermore, the same visual pattern of correlations within
+there was lower similarity between the behavior in session 1 and session 2 of the RL-Rev
+compared to the other three tasks.
+95% credible intervals of the correlations between the same parameters of session 1 and 2
+for the different tasks. Correlations with credible intervals not containing 0 are marked in
+bold.
+Correlation estimates
+Variable 2.5% 50% 97.5%
+RL-Rev
+t -0.14 0.16 0.42
+V 0.11 0.41 0.66
+B -0.21 0.11 0.41
+δ -.40 -0.15 0.12
+α -.46 -0.16 0.19
+Σ -.38 -0.08 0.26
+MSIT
+t 0.06 0.39 0.63
+V 0.09 0.36 0.60
+F l
+V 0.33 0.55 0.73
+Si
+strt 0.15 0.44 0.66
+strt 0.14 0.40 0.63
+δ 0.33 0.55 0.72
+V -0.06 0.25 0.55
+B -0.14 0.24 0.54
+RB
+t 0.06 0.37 0.62
+V 0.20 0.48 0.69
+tt
+V 0.17 0.42 0.65
+tt
+δ 0.18 0.48 0.69
+tr
+δ 0.29 0.55 0.74
+tr
+δ 0.27 0.55 0.72
+tr
+δ 0.20 0.47 0.68
+tr
+B 0.23 0.53 0.75
+st
+B 0.29 0.56 0.75
+st
+RL-SAT
+t 0.19 0.46 0.66
+V 0.26 0.55 0.76
+V 0.42 0.64 0.79
+B 0.52 0.72 0.86
+B 0.58 0.76 0.87
+Σ -.15 0.20 0.50
+δ 0.13 0.48 0.72
+α 0.34 0.60 0.78
+Mean parameter correlations of the joint model of the two sessions of the reversal learning
+task. The larger the circles the larger the absolute size of the correlations. The darker the
+red the more negative the correlations, the darker the blue the more positive the correlations.
+Mean parameter correlations of the joint model of the two sessions of the reinforcement
+learning speed - accuracy trade-off task. The larger the circles the larger the absolute size of
+the correlations. The darker the red the more negative the correlations, the darker the blue
+the more positive the correlations.
+Mean parameter correlations of the joint model of the two sessions of the reference-back
+task. The larger the circles the larger the absolute size of the correlations. The darker the
+red the more negative the correlations, the darker the blue the more positive the correlations.
+Mean parameter correlations of the joint model of the two sessions of the multi-source
+interference task. The larger the circles the larger the absolute size of the correlations. The
+darker the red the more negative the correlations, the darker the blue the more positive the
+correlations.
+Between tasks
+To test to what extent the behavior of the participants was related between tasks,
+we constructed a joint model that simultaneously estimated the parameters from all four
+task-specific models, which we will again refer to as components. In order to reduce the
+number of parameters we estimated, we pooled the data of both sessions for each task and
+estimated only one set of parameters per task. Still, the number of estimated group level
+relationships with a multivariate normal distribution could result in uncertain estimates
+with this many parameters. Therefore, to reduce the number of estimated group level
+parameters and improve parameter inference, we used hierarchical factor analysis (see
+Materials and Methods; Innes et al., 2022). Furthermore, we can also examine the latent
+factors given by the hierarchical factor model for meaningful interpretation.
+To determine which number of factors best described the relationships between the
+parameters of the joint model we estimated the marginal likelihood for a one, two and
+three-factor models using a recently developed implementation of IS for hierarchical
+factor models, which relies on importance sampling to obtain estimates of the Bayes factors
+(Innes et al., 2022; Tran et al., 2021). These importance samples can subsequently also be
+used to obtain standard errors of the Bayes factor estimates. We found that the group-level
+relationships were best described with 2 factors, standard errors in brackets
+[BF = 35.97(SE = 2.27), BF = 57.12(SE = 2.90)]. We did not estimate a four-factor
+2−1 2−3
+model, since the increased complexity of a three-factor model was already not preferred
+over the two-factor model (Innes et al., 2022).
+Mean factor loadings of the winning two-factor joint model of the four decision-making
+tasks. The larger the circles the larger the absolute size of the factor loadings. The darker
+the pink the more negative the correlations, the darker the green the more positive the
+correlations.
+95% credible intervals of the factor loadings of the winning two-factor joint model of the
+four decision-making tasks. Loadings with credible intervals outside of 0 are marked in bold.
+Factor 1 loadings Factor 2 loadings
+Variable 2.5% 50% 97.5% 2.5% 50% 97.5%
+RL-Rev
+δ 0.23 0.30 0.40 0 0 0
+B -0.18 -0.05 0.11 0.22 0.28 0.37
+t -0.03 0.02 0.7 -0.07 -0.02 0.03
+V -0.14 0.015 0.20 0.02 0.18 0.36
+α -0.14 -0.05 0.05 -0.05 0.05 0.16
+Σ -0.05 -0.08 0.21 -0.19 -0.06 0.07
+MSIT
+t -0.02 0.03 0.08 -0.04 0.02 0.07
+v 0.01 0.18 0.34 -0.08 0.08 0.23
+F l
+v 0.01 0.18 0.34 -0.29 -0.12 0.04
+Si
+strt -0.08 -0.01 0.05 -0.09 -0.01 0.05
+strt -0.07 -0.02 0.04 -0.08 -0.01 0.06
+δ 0.08 0.34 0.61 -0.08 0.21 0.52
+V -0.38 -0.17 0.03 -0.34 -0.14 0.06
+B -0.25 -0.14 -0.04 -0.17 -0.03 0.11
+RB
+t -0.02 0.03 0.08 -0.05 0.00 0.05
+V 0.16 0.28 0.40 -0.07 0.12 0.29
+tt
+V 0.13 0.25 0.36 -0.03 0.14 0.28
+tt
+δ 0.45 0.66 0.89 -0.22 0.22 0.51
+tr
+δ 0.42 0.66 0.91 -0.10 0.28 0.61
+tr
+δ 0.42 0.63 0.89 -0.18 0.25 0.53
+tr
+δ 0.30 0.45 0.63 -0.18 0.12 0.36
+tr
+B -0.31 -0.19 -0.06 -0.01 0.13 0.27
+st
+B -0.37 -0.22 -0.07 0.02 0.17 0.33
+st
+RL-SAT
+t -0.04 0.02 0.07 -0.10 -0.05 0.00
+V -0.44 -0.13 0.30 0.39 0.61 0.90
+V -0.55 -0.18 0.30 0.42 0.68 0.94
+B -0.43 -0.16 0.20 0.43 0.60 0.81
+B -0.48 -0.17 0.21 0.44 0.65 0.86
+Σ 0.01 0.15 0.31 -0.19 -0.01 0.16
+δ -0.14 0.06 0.26 -0.32 -0.12 0.07
+α -0.09 0.05 0.20 -0.02 0.11 0.27
+We found that all information discrimination ability (δ) parameters, except for the
+RL-SAT, loaded positively onto the first factor. Furthermore, other evidence accumulation
+parameters of the MSIT and the RB also loaded positively onto the first factor. Thus, our
+first factor captured elements of the ability to discriminate information and of general
+evidence accumulation across tasks. Note that we also found weak negative loadings on the
+threshold parameters on the first factor for the MSIT and RB task, which suggests that
+participants who were good at the tasks also set lower thresholds for these tasks, as they
+could discriminate evidence more quickly. Furthermore, we found that parameters that
+related to threshold (B) or urgency (V ) from the reinforcement learning tasks loaded
+highly on the second factor. Thus, our second factor was related to time management in
+the reinforcement learning tasks. Note that the first parameter (δ of the RL-Rev) on the
+second factor was fixed to 0 to satisfy estimation constraints (Ghosh and Dunson, 2009;
+Innes et al., 2022).
+Discussion
+In this study, we investigated to what extent decision-making behavior is related
+between different types of decisions. To that end, we tested participants on four different
+decision-making tasks: a reversal learning task (RL-Rev; Behrens et al., 2007; Costa et al.,
+2015), a reinforcement learning speed - accuracy trade-off task (RL-SAT; Miletić et al.,
+2021; Sewell et al., 2019), a working memory task called the reference-back task (RB;
+Rac-Lubashevsky and Kessler, 2016a, 2016b), and a cognitive control task, called the
+multi-source interference task (MSIT; Bush et al., 2003; Isherwood et al., 2022). We relied
+on evidence accumulation models (EAMs) tailored to each task to to account for both
+modalities of decision-making behavior, responses and response times. Furthermore, EAMs
+facilitate interpretation of the behavior in terms of latent cognitive constructs (the
+parameters in the EAMs) underlying the data (Donkin and Brown, 2018; Ratcliff et al.,
+2016).
+For the two learning tasks, we relied on previously developed and tested models that
+capture the interplay between learning and decision-making (Miletić et al., 2021). However,
+for the RB and MSIT, we developed two novel modelling approaches that provided a
+parsimonious account of the different experimental effects in the respective designs.
+To test relationships between the parameters of our different EAMs, we employed
+the joint modelling framework, where relationships between parameters are measured with
+less attenuation compared to standard approaches, using a hierarchical model that
+explicitly estimates the relationships between the parameters as an integral part of the
+model (Matzke, Ly, et al., 2017; Turner, Forstmann, et al., 2017; Turner et al., 2013; Wall
+et al., 2021). First, for each task, we constructed a between-session joint model of the two
+sessions participants had completed to test to what extent the cognitive constructs, as
+proposed by EAMs, were consistent between different time points. Then we constructed a
+between-task joint model to investigate to what extent these constructs were related
+between different decision-making domains.
+Between sessions
+The between-session joint models of the RL-SAT, RB and MSIT showed high
+correlations between the same latent constructs of the first and second session.
+Furthermore, parameters that were correlated within session for these three tasks were
+predominantly also correlated between the two sessions, which indicates that strategic
+components of the decision-making process were consistent between the two sessions. For
+example, we found that participants who showed higher non-decision times in session one
+not only showed lower response caution within that same session to compensate for the
+time taken, but also in session two. The correlations across sessions between the same
+cognitive constructs and between strategic components, together provide evidence that
+EAMs capture a high degree of similarity in behavior of the RL-SAT, RB and MSIT.
+In contrast to the three other tasks, for the RL-Rev, we did not find these patterns
+of high between-session correlations between the same constructs or strategic components.
+In the RL-Rev, participants learned to identify to most rewarding stimulus within a pair of
+stimuli, however, roughly halfway through each block the least rewarding stimulus of the
+pair became the most rewarding and vice versa (Behrens et al., 2007; Costa et al., 2015).
+This reversal is not explicitly instructed to the participants. Thus, the dissimilarity
+between the two sessions is potentially caused by the participants slightly adjusting their
+behavior in the second session in anticipation of the reversal, and the reversal learning task
+might not be suitable for between-session aims.
+Between tasks
+Our primary interest was, however, to test to what extent the latent cognitive
+constructs as proposed by EAMs were related between different decision-making domains.
+To that end, we constructed a joint hierarchical factor model that captured the
+relationships between the parameters of four different decision-making tasks using latent
+factors (Innes et al., 2022). We found that the relationships between the parameters of the
+joint model were best described using two factors.
+Our first factor indicated that an individuals’ ability to discriminate information
+quickly was related between most of the different types of decisions they faced in our four
+tasks. Furthermore, we also found that for the cognitive control task and working memory
+task, individuals who were good at information processing subsequently also demonstrated
+less response caution, potentially because of their ability to discriminate the correct from
+incorrect choices more quickly. Thus, similar information processing was engaged
+regardless of the type of decision, and in two tasks this lead to lower response caution.
+The second factor in our hierarchical factor model provided additional support that
+although information processing ability was related between all four tasks, strategic
+components were not fully consistent across all tasks. Namely, the second factor indicated
+that participants who demonstrated a stronger sense of urgency, an evidence independent
+part of the evidence accumulation process (Trueblood et al., 2021), also showed higher
+response caution, but only in the two reinforcement learning tasks. The concept of urgency
+as defined in our models has comparable effects on predicted behavior as the concept of
+collapsing bounds in EAMs (Cisek et al., 2009; Hawkins et al., 2015; Miletić and
+van Maanen, 2019; Thura and Cisek, 2016). Thus, presumably participants that exhibited
+a stronger sense of urgency had to compensate this urgency by setting higher thresholds.
+Note that urgency and thresholds have unique contributions to the decision-process. High
+urgency paired with high response caution yields lower accuracy with increasing response
+times compared to the combination of low urgency and low response caution (Miletić and
+van Maanen, 2019; Trueblood et al., 2021). Thus, we found evidence that a strategic
+component of time-management was related across the two reinforcement learning tasks,
+but not the other two decision-making tasks.
+These results are in keeping with earlier work showing that the drift rate, which
+maps onto the latent cognitive process of information processing ability or cognitive
+efficiency, is consistent across decision-making domains (Lerche et al., 2020; Schmiedek
+et al., 2007; Schubert et al., 2016; Weigard et al., 2021). The current work builds on the
+aforementioned approaches, first by taking into account more complex decision-making
+tasks from various domains. Second, by employing the joint modelling framework,
+specifically a joint hierarchical-factor analysis (Innes et al., 2022), that explicitly takes into
+account relationships between the parameters of our models to reduce attenuation of the
+estimated relationships and to therefore obtain more accurate estimates.
+Although we did find information processing ability to be related between different
+types of decisions across our tasks, we found that other strategic components were only
+consistent between some of our tasks. A limitation of the current work is that we cannot
+rule out whether these inconsistencies are caused by the dissimilarity in behavior between
+these tasks, or by the dissimilarity in the modelling architecture, since we could not apply
+the exact same model to all four tasks. Although we attempted to keep the task-specific
+models as similar in architecture as possible, the inherent differences between the different
+tasks also required distinct modelling choices. Within the definition of an EAM
+psychologists attribute meaning to parameters of the model. However, with complex tasks
+we could only keep these parameters as similar in mathematical definition as possible and
+we were limited by the differences in the designs of the tasks. Nevertheless, this limitation
+holds for any analysis aimed at comparing relationships of cognitive processes between
+different types of decisions. Even in studies that performed subtraction analysis of response
+times, these subtractions are mapped onto inferred latent states, which can show even
+weaker consistency compared to the latent constructs as proposed by EAMs (Price et al.,
+2019; Weigard et al., 2021).
+The current study highlights that interpretation of inferred latent states between
+decision-making tasks must be done with proper caution, since what can be referred to as
+urgency in one task, could map onto a different cognitive process in another. Possibly, to
+take response caution for example, people could employ different response caution
+mechanisms for different types of decisions, which is why we did not find strong
+relationships between response caution across all four tasks. Alternatively, people do
+employ the same response caution mechanism across different types of decisions, but our
+models failed to isolate this mechanism in our response caution parameters, and different
+cognitive processes partially mapped onto our response caution parameters. The absence of
+a one-to-one mapping of processes to parameters is of course to be expected, since models
+are inherently simplifications (Guest and Martin, 2021; Marr and Poggio, 1977). However,
+it becomes problematic when the processes-to-parameter mapping differs between different
+models, which could explain the inconsistencies in relationships estimated between our
+parameters. Future work could structurally explore to what extent the cognitive constructs
+proposed by EAMs differ between tasks with varying degrees of similarity, both in terms of
+modelling architecture and design.
+In summary, in the current work, we found that an individuals ability to process
+information quickly and accurately was related between the different types of decisions
+they faced in our four tasks. Furthermore, three of our four tasks showed high consistency
+in the proposed cognitive processes across individuals, and the fourth task had an element
+of surprise that was potentially lost in the second session. Because of the flexibility of the
+proposed framework, our methods can be easily extended to include models of neural data
+to study cortical and sub-cortical networks involved in decision-making. Therefore, we
+believe that the joint modelling framework should be utilized to study cognitive processes
+at the core of decision-making.
+Materials and Methods
+Subjects and Procedure
+150 students from the University of Leiden, the Netherlands, participated in an
+experiment consisting of five tasks that were each to be completed twice online from their
+own computers. The study was approved by the local ethics committee. For between
+session analysis of each task we included all participants that completed both sessions for
+that task above chance level accuracy. Out of 150, we included 86 participants for the
+MSIT, 85 for the RB, 54 for the RL-SAT and 54 for the RL-Rev. For analysis between
+tasks, we included all participants that completed each task twice (with both attempts
+above chance level accuracy), which included 53 participants. The high drop-out rate is
+mostly caused by participants not completing all sessions or having low accuracy, which
+was likely due to the online, rather than in-lab, participation.
+The experiment served as a pilot study for a functional magnetic resonance imaging
+(fMRI) experiment including 5 tasks. One of these tasks was the stop-signal task. The
+model architecture needed to account for the behavioral data of the stop-signal task is
+vastly different to the other tasks (Matzke, Love, et al., 2017; Verbruggen et al., 2019).
+Therefore, we chose not to include the stop-signal task in our analyses. In depth methods
+including task background and design can be found in Appendix A.
+Cognitive Modelling
+We first tested the extent to which the behavior of the participants was related
+between sessions (within-tasks). For this, we constructed a joint model for each task where
+the components of the joint model were the EAMs applied to each session (i.e., EAM for
+session 1 vs EAM for session 2 for each task). Second, we tested to what extent the
+behavior of the participants was related between the four decision-making tasks
+(between-task analysis). To that end we constructed a joint model of all four tasks
+combined, where the components of the joint model were the EAMs for each task. In this
+between-task joint model we aggregated across the sessions, rather than having separate
+parameters for each session, to limit the number of relations between the parameters
+estimated. Here we outline the task-specific models that will function as the components in
+our between-sessions and between-tasks joint models.
+To keep our task-specific models as similar as possible in architecture, we applied
+variants of the racing diffusion model (RDM; Tillman et al., 2020; Zandbelt et al., 2014) to
+all four decision-making tasks. The RDM is an EAM that proposes a race between
+competing choices that each have separate accumulators. The first accumulator to reach
+the threshold determines the choice made, and the time taken to reach the threshold
+determines the response time along with the non-decision time. The RDM combines
+aspects of the DDM as it posits within trial noise in the accumulation process (Ratcliff and
+Smith, 2004), and the LBA as it comprises separate accumulators for each choice (Brown
+and Heathcote, 2008). The choice of EAM was based on the model comparisons in Miletić
+et al. (2021) for the two reinforcement learning tasks, and the architecture was extended to
+the other two decision-making tasks.
+Reinforcement learning tasks
+We replicated the reinforcement-learning speed - accuracy trade-off task (RL-SAT)
+and a reinforcement learning reversal task (RL-Rev) from Miletić et al. (2021), in which
+participants were tasked to learn the reward probabilities associated with different pairs of
+symbols. That experiment studied reciprocal influences of learning and decision-making, by
+integrating EAMs with reinforcement learning models (RL-EAMs; Fontanesi, Gluth, et al.,
+2019; Fontanesi, Palminteri, et al., 2019; Frank et al., 2015; Miletić, Boag, and Forstmann,
+2020; Miletić et al., 2021; Pedersen et al., 2017; Sewell et al., 2019). RL-EAMs propose
+that people make decisions by gradually integrating information of value representations
+associated with each available choice option. When enough evidence has been accumulated,
+they commit to a choice and the associated feedback is used to update the value
+representations. In turn, these value representations drive the speed of evidence
+accumulation the next time the decision-maker is faced with the same choice.
+In the previous study (Miletić et al., 2021), the authors relied on the delta learning
+rule to model the learning process:
+Q = Q + α(r − Q ) (1)
+t+1 t t
+This entails that the difference between reward r and the current expected value Q is
+scaled by the learning rate α to determine how much the current value representation is
+updated to form the new expected value representation following feedback Q . These
+t+1
+value representations drive the drift rate, the speed of evidence accumulation. That study
+showed that the choice of EAM in the RL-EAM greatly influenced the extent to which the
+RL-EAM could describe the data. That study showed that the advantage framework in
+combination with a racing diffusion model (ARD), could best describe the learning related
+increase in response accuracy and response speed. The advantage framework posits that
+the speed of evidence accumulation is a weighted sum of three components. First, a
+baseline, evidence independent component, which can be interpreted as urgency (Miletić
+and van Maanen, 2019; Trueblood et al., 2021). Second, the difference in perceived value
+between the available options. Third, the sum of the perceived values of all options
+(van Ravenzwaaij et al., 2019). Additionally, the evidence accumulation process is subject
+to Gaussian noise W , with standard deviation s, which was fixed to 1 to satisfy scaling
+constraints (Donkin et al., 2009; van Maanen and Miletić, 2020). When faced with two
+choices as in our instrumental learning tasks, the accumulators associated with each choice
+can thus be described as:
+dx = [V + δ(Q − Q ) + Σ(Q + Q )] + sW
+1 0 1 2 1 2
+(2)
+dx = [V + δ(Q − Q ) + Σ(Q + Q )] + sW
+2 0 2 1 1 2
+Furthermore, non-decision time (t ) and response caution (B) were also estimated.
+The same model architecture, a combination of the advantage framework racing
+diffusion model with a reinforcement learning algorithm, was applied to both learning
+tasks. Below we outline task-specific changes to the modelling architecture, if any, for the
+two reinforcement learning tasks.
+Reinforcement learning reversal task
+The reinforcement learning reversal task (RL-Rev) is an instrumental learning task
+in which the associated reward probabilities within a pair are switched roughly halfway
+through a block (Behrens et al., 2007; Costa et al., 2015). This tests the ability of the
+participant to update their representation of the most valuable stimulus within a stimulus
+pair. We used the above described RL-ARD to account for the behavioral data of this task.
+The model predicts that following the reversal, the reward prediction errors will increase,
+which in turn will lead to updating of the Q values. The RL-ARD we used for the RL-Rev
+has six free parameters (α, V , δ, Σ, b, t ).
+0 0
+Reinforcement learning speed - accuracy trade-off task
+In the reinforcement learning speed - accuracy trade-off task (RL-SAT), participants
+complete an instrumental learning task in which they are instructed to emphasize response
+accuracy on half of the trials, and response speed on the other half of the trials (Sewell
+et al., 2019). On these speed trials, participants also have less time to respond, forcing them
+to leverage speed for caution, which is referred to as the speed - accuracy trade-off (Bogacz
+et al., 2010; Ratcliff and Rouder, 1998). Similar to other recent papers (Arnold et al., 2015;
+Heathcote and Love, 2012; Rae et al., 2014; Sewell et al., 2019), Miletić et al. (2021) found
+that such SAT manipulations are best described by both drift rate adjustments (in this
+case separate urgency components, V V ), as well as threshold adjustments (different
+0,spd 0,acc
+thresholds b and b ; Miletić et al., 2021). In total, the model we used for the RL-SAT
+spd acc
+was a RL-ARD with eight free parameters (α, V , V , δ, Σ, b , b , t ).
+0,spd 0,acc spd acc 0
+Reference-back task
+The reference-back task (RB) is a working memory task in which participants have
+to compare the current stimulus to a stimulus held in working memory (the reference) to
+make a binary "same" or "different" response. On comparison trials, the stimulus needs
+only to be compared to the reference stimulus held in working memory, whereas on
+reference trials, the stimulus also becomes the reference for subsequent trials
+(Rac-Lubashevsky and Kessler, 2016a, 2016b). Stimuli were presented as either the letter
+"X" or "O", encircled by a red frame for reference trials and a blue frame for comparison
+trials. Using the RDM we can disentangle the cognitive costs of working memory updating
+(reference trials) from working memory comparison (comparison trials).
+Previous studies showed that participants performed better when responding "same"
+compared to "different" and when there was a comparison rather then a reference trial.
+Furthermore, these studies also found a sequencing effect in that participants were faster
+when previous trial’s trial type (i.e., reference or comparison) was repeated compared to a
+switch in the trial type sequence (e.g. Boag et al., 2021; Jongkees, 2020; Rac-Lubashevsky
+and Frank, 2021; Rac-Lubashevsky and Kessler, 2016b). In the current study we also found
+that participants performed better following stimulus-identity (e.g., X or O) repetitions
+between trials compared to switches in stimulus identity. We aimed to construct the most
+parsimonious model that still accounted for the aforementioned effects and was similar in
+architecture as the RL-ARD described above. Therefore, instead of letting drift rates vary
+across response, trial type, trial type sequence, and stimulus sequence, we used a sensitivity
+parametrization, in which the drift rates for two options can be written as a combination of
+an urgency term and a difference term (similar to Luke Strickland et al., 2018), such that:
+δ δ
+v = V + , v = V − (3)
+correct 0 error 0
+2 2
+Thus, we can estimate some of the aforementioned effects as differences in V (urgency)
+and some as differences in δ (processing ability), effectively reducing the number of
+parameters estimated. This parameterization is essentially a simplification of the
+advantage framework. To elaborate, the V parameter in equation 3, captures both the
+urgency and the sum term of the advantage framework (equation 2), since these cannot be
+disentangled in a task where there are no inherent stimulus values. Analogously, the δ in
+the advantage framework weights the difference of stimulus values, whereas the δ in
+equation 3 captures the difference in evidence for each stimulus. Even though this
+parameterization is a simplification of the advantage framework it still results in a range of
+models that capture all effects associated with the RB task. Since the above described
+model was newly developed we performed a model comparison study to test which
+combination of parameters could best account for our behavioral data (see appendix B). In
+the winning model, the evidence accumulation process for the correct and incorrect choice
+can be described as:
+dx = [V + δ ]dt + sW
+correct 0,type−trans type,response
+(4)
+dx = [V − δ ]dt + sW
+incorrect 0,type−trans type,response
+This entails that the δ parameter varied depending on each combination of what
+would be the correct response ("same" or "different"; same choices are generally easier) and
+trial type ("reference" or "comparison"; comparison trials are generally easier). We also
+estimated an urgency term that differs for type transitions, e.g. repetitions in trial type or
+switches in trial type. Additionally, the winning model comprised a difference in threshold
+between repetitions in stimulus-identity and switches in stimulus-identity. In total, our
+RDM for the RB comprised 10 parameters
+(V V , δ , δ , δ , δ , b , b , t ).
+0,type−trans 0,type−trans resp ,type resp ,type1 resp ,type resp ,type2 stim−trans stim−trans 0
+1 2 1 1 2 1 2 2 1 2
+We numbered the types of trials, transitions of trials, transitions of stimulus identity and
+responses for brevity.
+Multi-Source Interference Task
+The multi-source interference task (MSIT; Bush et al., 2003) combines two types of
+interference with the relevant (target) visual information, either from irrelevant location
+information (the Simon effect; Hommel, 2011) or irrelevant stimuli spatially adjacent to the
+target (the Flanker effect; Eriksen, 1995). In the current experiment we use an adjusted
+version of the MSIT (Isherwood et al., 2022), where Flanker and Simon interference are
+presented both separately and combined in different types of trials (for example trials see
+trial types allowed us to test the extent to which decision-making processes are influenced
+by Flanker or Simon interference and a possible combination of both. We rely on an EAM
+framework that introduces separate drift rates for both Flanker and Simon interference. In
+contrast to our other three decision-making tasks, participants always had three response
+options rather than two.
+To the best of our knowledge, there have been no previous studies that used a
+model-based approach to analyze the MSIT. We therefore constructed a process-oriented
+model of decision making that could best describe the observed behavioral effects. We
+hypothesized that the drift rate for each choice is jointly driven by an urgency component
+and the evidence supporting that choice. To quantify the evidence in support for each
+choice, we described the drift rate for choice A as a combination of possible Flanker
+support, Simon support, and target support (the correct response). Additionally, the
+evidence accumulation process is subject to Gaussian noise W , with standard deviation s,
+which again was fixed to 1 to satisfy scaling constraints. Consequently, the drift rates in
+our MSIT model can be desribed as:
+dx = [V + v + v + δ]dt + sW (5)
+0 F lank Simon
+Where v and v were 0 if there was no Flanker support or Simon effect
+F lank Simon
+respectively. Similarly, δ was only added to the accumulator that matched the correct
+response. Furthermore, we found that response time and accuracy were influenced by the
+position of the target, possibly due to left to right reading effects. We therefore modified
+the starting point of the accumulator corresponding to the target, based on position of the
+target. We fixed start to 0 to set a base positional startpoint modifier to which the
+pos
+other positional modifiers were relative, to satisfy scaling constraints. In total, our MSIT
+model comprised 8 parameters (v , v , δ, start , start , V , B, t ).
+F lank Simon pos pos 0 0
+1 2
+The above described model was selected after model comparison against competing
+models, for details see appendix B.
+Joint model
+For each task, we used the above described models to first test to what extent the
+behavior of the participants on session 1 of a task is related to their behavior on session 2
+of a task. To that end we used a joint model of both sessions combined. These four
+between-session joint models had two components, the first component was the parameter
+set corresponding to the first session, and the second component the parameter set
+corresponding to the second session.
+We concatenated the parameters from the components into a single vector of
+parameters that we estimated per participant (random effects) and for each of those
+parameters we also estimated a mean at the group level that describes the parameters of
+all participants as a group. We were specifically interested in the relationships that existed
+between these group level parameters. Therefore, we used a hierarchical model that allows
+for covariances between the group-level parameters (Gunawan et al., 2020; Turner et al.,
+2013). We applied this joint modelling architecture to construct four joint models of the
+different sessions for the different tasks.
+Besides the between-session joint models, we similarly constructed a joint model
+that simultaneously estimated the parameters from all four task-specific models, which we
+will again refer to as components. In order to reduce the number of parameters we
+estimated, we pooled the data of both sessions for each task and estimated only one set of
+parameters per task. Nevertheless, if we combined the parameters estimated per
+participant from each task-specific model component, we would need to estimate 6
+(RL-Rev) + 8 (RL-SAT) + 9 (RB) + 8 (MSIT) = 31 parameters per participant. If we
+then applied a multivariate normal distribution as a group level distribution it would result
+in 31 means + 31*(31-1)/2 variances and covariances, thus a total of 496 group level
+parameters. To reduce the number of estimated group level parameters and improve
+parameter inference, we used hierarchical factor analysis rather than a multivariate normal
+(Innes et al., 2022). Furthermore, we can also examine the latent factors given by the
+hierarchical factor model for meaningful interpretation. To answer what number of factors
+optimally described our data, we estimated multiple joint factor models each with different
+number of factors and interpreted the model with the highest marginal likelihood (the gold
+standard in Bayesian model comparison; Kass and Raftery, 1995), as estimated by the
+newly developed approach, importance sampling squared (IS ; Innes et al., 2022; Tran
+et al., 2021). IS uses importance sampling on both the individual level and the group
+level of the hierarchical model to obtain an estimate of the marginal likelihood. The
+importance samples can subsequently also be used to calculate Bayes factors (the ratio of
+two marginal likelihoods) and a bootstrapped standard error of these Bayes factors.
+Bayesian MCMC sampling using PMwG
+All models were estimated using particle Metropolis within Gibbs sampling
+(PMwG; Gunawan et al., 2020), which comprises three phases: burn-in, adaptation, and
+sampling. The group-level distributions, in our case the multivariate normal or the factor
+decomposition of it, is described using Gibbs sampling (George and Mcculloch, 1993). For
+the group-level mean parameters we used a multivariate normal prior with variance 1 and
+covariance 0. The prior mean for the group level means was set to 2 for threshold (B)
+parameters, 2 for processing ability (δ) parameters, 1 for urgency (V ) parameters, 0.2 for
+non-decision time (t0) parameters and 0 for all other parameters. For the prior on the
+group level covariance and factor structure we relied on the default priors described in
+Gunawan et al. (2020) and Innes et al. (2022) respectively.
+The parameters at the individual level are estimated using particle
+Metropolis-Hastings sampling (Chib and Greenberg, 1995), which uses different proposal
+distributions in combination with importance sampling. In the burn-in phase, these
+proposals are drawn jointly from the group-level distribution at that Markov chain Monte
+Carlo (MCMC) iteration and a multivariate normal distribution centered on the previous
+set of random effects of that individual in the MCMC chain. Following burn-in, the
+parameters have converged towards their posterior, therefore in the adaptation stage we
+draw samples that approximate the posterior distribution. We subsequently use these
+samples to create a distribution that mimics the posterior to efficiently draw proposals
+from. In the sampling stage, this efficient distribution, together with the group-level
+distribution and the distribution centered on the previous set of parameters of that
+individual are used to draw proposals for the particle Metropolis-Hastings step for each
+individual (Gunawan et al., 2020).
+Code Availability
+Competing interests
+None of the authors declare having competing interests.

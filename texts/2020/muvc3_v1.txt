@@ -1,0 +1,576 @@
+Running Head: OVERLAPPING EMOTION NETWORKS 1
+Emotions as overlapping causal networks of emotion components: Implications and
+methodological approaches
+a b
+Jens Lange & Janis H. Zickfeld
+a b
+University of Hamburg, Aarhus University
+Emotion Review
+in press at
+Author Notes
+Jens Lange, University of Hamburg, Department of Psychology, Germany. Janis H.
+Zickfeld, Aarhus University, Department of Management, Denmark.
+Correspondence should be addressed to Jens Lange, University of Hamburg, Von-
+Melle-Park 5, 20146 Hamburg, Germany, E-mail: lange.jens@outlook.com.
+The research reported in this article was supported by grants from the German
+Research foundation (DFG) awarded to Jens Lange (LA 4029/1-1, LA 4029/2-1).
+We thank the members of the Amsterdam Interdisciplinary Centre for Research on
+Emotion at the University of Amsterdam, the members of the group for General Psychology II
+at the University of Cologne, the members of the group for Social Psychology at the
+University of Jena, and the members of the Affective Sciences Group at the University of
+Oslo for valuable feedback. Jens Lange presented parts of this research at the conference of
+the International Society for Research on Emotions in Amsterdam 2019.
+Data and the analysis script of the example are available on the Open Science
+OVERLAPPING EMOTION NETWORKS 2
+Abstract
+A widespread perspective describes emotions as distinct categories bridged by fuzzy
+boundaries, indicating that emotions are distinct and dimensional at the same time.
+Theoretical and methodological approaches to this perspective still need further development.
+We conceptualize emotions as overlapping networks of causal relationships between emotion
+components networks representing distinct emotions share components with and relate to
+each other. To investigate this conceptualization, we introduce network analysis to emotion
+research and apply it to the reanalysis of a data set on multiple positive emotions. Specifically,
+we describe the estimation of networks from data and the detection of overlapping
+communities of nodes in these networks. The network perspective has implications for the
+understanding of distinct emotions, their co-occurrence, and their measurement.
+Keywords: emotion networks, network analysis, clique percolation
+OVERLAPPING EMOTION NETWORKS 3
+Emotions as overlapping causal networks of emotion components: Implications and
+methodological approaches
+Emotion research has for a long time faced a conundrum. In a dominating school of
+thought, emotions are discrete and evoked by independent mechanisms, causing various
+component changes (e.g., cognitions, facial expressions) that the respective emotion entails
+(Levenson, 1994). From this perspective, emotions are distinct because multiple components
+are uniquely tied to them (Ekman & Cordaro, 2011), allowing to measure a particular emotion
+by assessing its specific changes. However, research converges on the conclusion that all
+emotions share multiple component changes with other emotions (e.g., Ellsworth & Scherer,
+2003; Siegel et al., 2018; Witkower & Tracy, 2019), implying that few components are indeed
+unique indicators of specific emotions. Such observations led to the widely shared perspective
+that emotions are distinct categories with fuzzy boundaries between them (e.g., Cowen &
+Keltner, 2017; Fehr & Russell, 1984) emotions are distinct, yet they share various
+components. A theoretical approach explaining this perspective is not yet available.
+In the present article, we provide such a theoretical approach. Specifically, we
+conceptualize emotions as networks of causally connected emotion components, and we argue
+that the causal networks of different emotions overlap. From this perspective, emotions are
+distinct, while they also share components with and relate to other emotions. Our goal is (a) to
+provide a theoretical conceptualization accounting for the nature of distinct emotions and (b)
+to introduce methodological tools to investigate overlapping causal networks.
+Conceptualizations of Emotions
+Traditionally, theories conceptualized emotions as discrete (for a review of an
+alternative tradition see Gendron & Barrett, 2009). In these conceptualizations, distinct innate
+mechanisms (e.g., neural programs or appraisal patterns) trigger emotions, causing unique
+changes in the person (e.g., Ekman, 1999; Ekman & Cordaro, 2011; Panksepp, 2007).
+Accordingly, research demarcated emotions from each other by testing whether they differ in
+OVERLAPPING EMOTION NETWORKS 4
+specific vocalizations (Cordaro, Keltner, Tshering, Wangchuk, & Flynn, 2016; Sauter, Eisner,
+Ekman, & Scott, 2010), action tendencies (Frijda, Kuipers, & ter Schure, 1989), physiological
+changes (Ekman, Levenson, & Friesen, 1983), or, most prominently, facial muscle
+contractions (Cordaro et al., 2018; for a review on multiple components see also Lench,
+Flores, & Bench, 2011). For instance, research suggested that the appraisal of goal obstruction
+uniquely signals anger (Ekman & Cordaro, 2011), lower somatic activity uniquely signals
+fear (Levenson, Carstensen, Friesen, & Ekman, 1991), or tears uniquely signal sadness
+(Cordaro et al., 2016).
+Even though each emotion may have a distinct mechanism, emotions are not entirely
+independent of each other. Specifically, in daily life, people frequently experience blends of
+distinct emotions (Scherer, Wranik, Sangsue, Tran, & Scherer, 2004) that can even be of
+opposite valence (Larsen & McGraw, 2014; Moeller, Ivcevic, Brackett, & White, 2018;
+Trampe, Quoidbach, & Taquet, 2015). Moreover, theorizing argues that non-basic emotions
+(e.g., shame, guilt) are constructed from or accompanied by basic emotions (Oatley &
+Johnson-Laird, 1987). Relatedly, measures of different emotions are oftentimes positively
+correlated at both the state (e.g., Weidman & Tracy, 2020) and trait level (Diener, Smith, &
+Fujita, 1995) and these correlations between emotions or their components map onto a lower-
+dimensional space, specified for instance, by valence, arousal, or potency (e.g., Fontaine,
+Scherer, Roesch, & Ellsworth, 2007; Russell, 1980; Wundt, 1887). Put to the extreme, the
+same emotion words sometimes measure different emotions (Weidman, Steckler, & Tracy,
+2017). These findings imply that multiple distinct emotions relate to each other, while certain
+dimensions can represent these relationships (for a stricter understanding of dimensions as
+biological primitives see, for instance, Russell, 2003).
+The perspective that emotions may be simultaneously distinct and nevertheless
+arranged on multiple dimensions is widespread. Notably, in a survey among established
+emotion researchers, the majority endorsed this view (Ekman, 2016). Such a position also
+OVERLAPPING EMOTION NETWORKS 5
+prevails in specific emotion theories (Plutchik, 1982) or measurement tools (Scherer, 2005).
+Recently, studies with ratings of thousands of representatively sampled emotional videos,
+vocal bursts, or emotional expressions indeed supported the perspective (Cowen, Sauter,
+Tracy, & Keltner, 2019) even across cultures (Cowen, Fang, Sauter, & Keltner, 2020). The
+emotional stimuli clustered together, and participants consistently labeled these clusters with
+respective emotion terms. Yet, most emotional stimuli elicited states that participants labeled
+with different emotion terms. In line with such findings, it is reasonable to argue that the
+boundaries between emotions are fuzzy, defined as conceptual overlap of emotions that
+manifests in shared (i.e., non-unique) components (Fehr & Russell, 1984; Russell & Fehr,
+1994). For instance, multiple emotions share appraisals (Ellsworth & Scherer, 2003; Kuppens,
+Van Mechelen, Smits, & De Boeck, 2003), have physiological changes in common (Siegel et
+al., 2018), or include similar expressive displays (Witkower & Tracy, 2019). These findings
+indicate that many if not all emotional experiences are in fact combinations of multiple
+— —
+emotions in terms of shared components.
+A satisfactory theoretical conceptualization of how emotions can be distinct and
+dimensional at the same time is still lacking. Such a conceptualization must account for two
+observations. First, emotions are distinct in a sense that they have at least some characteristics
+that distinguish them from other emotions. Second, emotions have fuzzy boundaries in a sense
+that they share components with each other. We aim to provide one theoretical
+conceptualization that accounts for these observations (for a discussion of other models that
+could be extended to alternative conceptualizations see Lange, Dalege, Borsboom, Van Kleef,
+& Fischer, 2020; see also Barrett, 2011; Coan, 2010; Schmittmann et al., 2013).
+Emotions as Causal Networks
+We base our argument on a definition of emotions as synchronized changes in
+multiple components. That is, when people experience an emotion, this changes their feelings,
+cognitions, physiology, motivations, and expressive behaviors (e.g., Moors, 2009; Niedenthal
+OVERLAPPING EMOTION NETWORKS 6
+& Ric, 2017). In fact, most emotion theories share the notion that emotions entail changes in
+multiple components (e.g., Coppin & Sander, 2016; Izard, 2010; Russell, 2003), even though
+different theories emphasize different components. Not all emotions entail changes in all these
+components, but all emotions entail changes in at least some of them (Fehr & Russell, 1984).
+A central finding is that the component changes of an emotion cause each other.
+Specifically, multiple theories of emotions in general (Lewis, 2005; Scherer, 2009) or of
+specific emotions such as shame (Gausel, Leach, Vignoles, & Brown, 2012), envy (Lange,
+Weidman, & Crusius, 2018), or kama muta (Fiske, Seibt, & Schubert, 2019) at least indirectly
+rely on the notion of causal relationships between emotion components. Moreover, research
+implies that there are causal relationships between cognitions and all other components
+(Scherer & Moors, 2019), between motivations and feelings (Carver & Scheier, 1990), or
+between expressive behaviors and feelings as well as physiological changes (Coles, Larsen, &
+Lench, 2019).
+Based on this central finding, we propose to conceptualize emotions as networks of
+causally interacting emotion components (Lange et al., 2020; see also Bringmann et al.,
+2016). According to this conceptualization, emotions are dynamical systems that evolve over
+time (for similar theoretical conceptualizations see Izard, Ackerman, Schoff, & Fine, 2000;
+Lewis, 2005). They are episodes or events that unfold along the causal relationships in the
+network. In line with common terminology, emotion components are then called nodes and
+their causal connections are called edges. In this conceptualization, a network that entails
+causal connections between, for instance, physiological arousal, aggressive thoughts,
+frowning, and attack motivation would constitute anger. In a relevant situation, physiological
+arousal may increase aggressive thoughts, mediating an effect on attack motivation and
+frowning, while frowning could further increase physiological arousal via facial feedback. As
+components of one emotion typically cohere strongly with only some components of the same
+emotion but weakly with others (e.g., Evers et al., 2014; Mauss, Levenson, McCarter,
+OVERLAPPING EMOTION NETWORKS 7
+Wilhelm, & Gross, 2005), one emotion likely entails groups of components that are more
+tightly connected to each other than with other components (Lange et al., 2020). For instance,
+theories of specific emotions such as awe (Yaden et al., 2019), envy (Lange et al., 2018), or
+shame (Gausel et al., 2012) are based on the notion that subgroups of components of the
+respective emotion (e.g., some thoughts and motivations) cohere more strongly with each
+other than with other subgroups of components of the same emotion.
+If emotions are causal networks of emotion components, various networks of distinct
+emotions probably overlap they share various nodes and are related to each other. This
+proposition directly follows from the observation that emotions have fuzzy boundaries.
+Despite such overlap, there can nevertheless be distinct components or distinct relationships
+between components for each emotion (Campos, Shiota, Keltner, Gonzaga, & Goetz, 2013).
+For instance, in both awe the emotion experienced when trying to accommodate vastness
+(Keltner & Haidt, 2003) and admiration the emotion experienced
+— — in response to other’s
+excellence (Schindler, Zink, Windrich, & Menninghaus, 2013) people may wonder about
+something they observe. Yet, awe entails passive contemplation and freeze reactions (e.g.,
+time slowing down), which directly opposes the improvement motivation and activation that
+admiration entails (Onu, Kessler, & Smith, 2016). Moreover, awe and gratitude the feeling
+moral deeds (McCullough,
+that one has been the beneficiary of another individual’s
+Kilpatrick, Emmons, & Larson, 2001) both entail prosocial behavior towards other people
+and are regarded as self-transcendent emotions, but feature different appraisals, subjective
+feelings, and facial expressions (Campos et al., 2013; Stellar et al., 2017). Notably, even when
+the networks representing different emotions share nodes or are related to each other, the
+components of one emotion should be more tightly connected to each other than to the
+components of another emotion, allowing to distinguish emotions from each other.
+These arguments lead to a conceptualization of emotions as overlapping causal
+OVERLAPPING EMOTION NETWORKS 8
+emotions. First, each emotion constitutes a causal network of partly connected emotion
+components. These patterns of components can account for the observation that emotions are
+distinct. Second, some emotion components belong to the networks of multiple emotions or
+relate to components of other networks. Such network overlap accounts for the observation
+that emotions have fuzzy boundaries. Moreover, network overlap provides an explanation for
+why emotions are correlated and, hence, why different emotions can be arranged on
+dimensions. Thus, conceptualizing emotions as networks (Lange et al., 2020) may explain
+how emotions can be distinct with fuzzy boundaries, combining central insights from distinct
+emotion and dimensional approaches.
+Methodological Approach to the Investigation of Overlapping Emotion Networks
+Even though previous research already emphasized that emotions are dynamical
+systems of interacting components (e.g., Izard et al., 2000; Lewis, 2005), a lack of
+methodological approaches hindered the investigation of such a perspective. We want to
+introduce tools to emotion research that help testing a conceptualization of overlapping causal
+emotion networks, that is, tools allowing to gain deeper insight into direct relationships
+between multiple emotion components representing one or more emotions. First, one needs to
+estimate a network of emotion components from data. Second, one needs to analyze the
+structure of this network. To familiarize emotion researchers with this methodological
+approach, we introduce network estimation, as well as one algorithm to identify network
+overlap and apply it to an openly available rich data set on a multitude of positive emotions
+(Weidman & Tracy, 2020).
+Network Estimation
+Network analysis in general facilitates the analysis of systems of relationships
+between multiple entities. In emotion research, network analysis enables the analysis of direct
+relationships between multiple components of an emotion and to investigate properties of the
+entire network structure. In an investigation of a conceptualization of emotions as overlapping
+OVERLAPPING EMOTION NETWORKS 9
+causal networks, the nodes represent the components of one or multiple emotions and the
+edges represent relationships between the components. For instance, a researcher could have
+measurements of all feelings, cognitions, physiological changes, motivations, and expressions
+of admiration, awe, and gratitude for multiple participants in response to a specific situation.
+Network analysis provides methods to estimate the relationships between all the components,
+to investigate how certain components group together, or to determine which components are
+more central (i.e., more strongly connected) and thereby potentially have stronger influence
+on all other components.
+Recent developments offer several ways to estimate networks from multi-
+componential data. Most commonly, researchers estimate networks via pairwise Markov
+Random Field Models. For continuous data for instance when multiple participants rate how
+much each component of the three emotions applied to them during an emotion episode on a
+scale from 1 (not at all) to 5 (very much) the corresponding Markov Random Field Model is
+the Gaussian Graphical Model (Epskamp, Waldorp, Mõttus, & Borsboom, 2018). In the
+Gaussian Graphical Model, two emotion components are (not) connected by an edge if they
+are conditionally (in)dependent given all other components in the network. One way to
+estimate such conditional (in)dependence relationships are partial correlations (Epskamp et
+al., 2018). A partial correlation between two emotion components means that the components
+are correlated with each other after controlling for all other components in the network. Even
+in networks with only a few components, this strategy leads to the estimation of many partial
+correlations, potentially increasing the number of non-zero partial correlations that are
+actually zero (i.e., false-positive partial correlations). One way to reduce the number of false-
+positive partial correlations is regularization. Regularization is a statistical technique that
+decreases the size of all partial correlations and sets small, likely false-positive, partial
+correlations to exactly zero. It is then possible to visualize the entire set of regularized partial
+correlations between a multitude of emotion components, representing a visual depiction of
+OVERLAPPING EMOTION NETWORKS 10
+the estimated network of emotion components (Epskamp, Borsboom, & Fried, 2018;
+Epskamp et al., 2018).
+Conducting the estimation of the Gaussian Graphical Model is straight forward. All
+popular statistical programs allow estimating partial correlations between variables. However,
+applying regularization and visualizing networks is not conveniently implemented in most
+software environments. One software environment that makes network estimation easily
+accessible is R (R Core Team, 2019). For instance, the estimation and visualization of a
+network of regularized partial correlations requires only two short lines of code. Beyond this,
+dedicated software packages in R provide numerous additional features around network
+estimation. A tutorial on central steps in network estimation is available in Epskamp,
+Borsboom et al. (2018; for an extensive discussion of the applicability of the Gaussian
+Graphical Model to different kinds of data, including mathematical details see Epskamp et al.,
+2018).
+Identifying Overlapping Causal Networks: Community Detection
+After the estimation of the network, the investigation of a conceptualization of
+emotions as distinct with fuzzy boundaries based on overlapping networks requires another
+step. Specifically, one needs to investigate whether there are indeed strongly connected
+substructures of multiple components in the full component network that could represent
+distinct emotions. Moreover, one needs to investigate whether these substructures indeed
+overlap such that they share components with each other. For instance, in a network of
+regularized partial correlations between emotion components of admiration, awe, and
+gratitude, are there groups of components that are more strongly related, representing the
+three emotions? And do these groups of components share components with each other such
+that the three emotions overlap? For these purposes, the methodological toolbox of network
+science offers additional algorithms.
+OVERLAPPING EMOTION NETWORKS 11
+Multiple algorithms exist that can detect strongly connected substructures of multiple
+components in a network, called communities (Fortunato, 2010). These communities, hence,
+represent distinct emotions. That some components of an emotion are more tightly connected
+to each other than to other components of the same emotion (Lange et al., 2020) should also
+lead each emotion to include multiple smaller communities. Hence, estimating overlap in a
+large network representing different distinct emotions requires to identify multiple smaller
+communities within and across emotions that share components with each other.
+Community detection algorithms developed in network science are differently
+equipped to fulfill this requirement. A limitation of most community detection algorithms is
+that they allocate each node to only one community, precluding nodes that are shared between
+multiple communities. In contrast to this forced allocation of nodes, a few community
+detection algorithms can account for overlapping community structures, such that nodes may
+belong to multiple communities at the same time. One such algorithm is the clique
+percolation algorithm (Farkas, Ábel, Palla, & Vicsek, 2007; Palla, Derényi, Farkas, & Vicsek,
+2005; Adamcsek, Palla, Farkas, Derényi, & Vicsek, 2006; see also Blanken et al., 2018). For
+networks such as the kind estimated via the Gaussian Graphical Model, the clique percolation
+algorithm first detects k-cliques fully connected subnetworks with k nodes if their
+— —
+intensity (i.e., the geometric mean of the partial correlations) exceeds a specified threshold I.
+This implies that when a node does not belong to a k-clique it would be isolated (never belong
+to a community). Second, two k-cliques are called adjacent, if they share all but one (i.e., k
+1) nodes with each other. A set of adjacent k-cliques then forms a community. As such, the
+algorithm, by definition, allows overlapping communities.
+1 6
+k-cliques with three components (i.e., triangles; 3-cliques), namely C -C -C , C -C -C , C -
+1 2 4 2 3 4 3
+C -C , and C -C -C . Assuming that all 3-cliques are sufficiently strongly connected, such
+4 5 4 5 6
+that their intensity exceeds I, the clique percolation algorithm subsequently checks whether
+OVERLAPPING EMOTION NETWORKS 12
+the 3-cliques share k 1 = 2 components with another 3-clique. Indeed, all of the 3-cliques
+share two components with one of the other 3-cliques. For instance, the 3-cliques C -C -C
+1 2 4
+and C -C -C share the components C and C . Consequently, components C to C belong to
+2 3 4 2 4 1 6
+the same community, collectively constituting Emotion i. Similar considerations allocate
+components C to C into one community, collectively constituting Emotion j. Thus, the
+6 10
+algorithm identifies two communities (i.e., two emotions) that share the component C the
+two communities (i.e., two emotions) overlap and in the current case, no component is
+isolated.
+The clique percolation algorithm is also implemented in R. Specifically, we
+developed an R package CliquePercolation that facilitates running the algorithm and
+— —
+visualizing its results. For more details on the algorithm (including information on how to
+derive optimal values for k and I as well as how to decide in favor of a community partition)
+and its application, the package includes an extensive vignette that is accessible via the
+project.org/web/packages/CliquePercolation/vignettes/CliquePercolation.html).
+Reanalysis of Weidman and Tracy (2020)
+To showcase network analysis with the subsequent application of the clique
+percolation algorithm, we re-analyzed a recently published data set targeting subjectively
+focus on the emotions categorized by Weidman and Tracy (2020) as other-appreciating,
+namely admiration, awe, and gratitude. The proposed methodological approach investigates
+whether the components of the three emotions form an interconnected network of
+relationships and whether there is evidence for overlapping communities representing the
+three emotions. In their Study 2, Weidman and Tracy asked participants to report emotional
+situations in which participants experienced these emotions. In total, we collapsed across 267
+participants who recalled situations for two or three emotions (i.e., the network is based on
+OVERLAPPING EMOTION NETWORKS 13
+573 observations). Participants subsequently rated 56 non-redundant items taken from another
+study in which lay people’s task was to list feelings, thoughts, and action tendencies of each
+of the three emotions. The i
+tems should therefore assess most of the emotions’ central
+components. Yet, a limitation is that these items primarily refer to components of subjective
+experience and, hence, may underestimate the influence of physiological or expressive
+changes. Additional information about the sample and analysis is available in the
+Supplementary Materials.
+We estimated the component network and applied the clique percolation algorithm.
+network of the 56 items, colored according to the communities they belong to. We assigned a
+color to each of the three emotions. When an identified community entailed items from only
+one emotion, we assigned the pure color to its nodes, shaded towards white for smaller
+communities. For communities entailing items from multiple emotions, we assigned
+proportionally mixed colors to its nodes. Shared nodes have multiple colors in pie charts and
+isolated nodes are white. Hence, if distinct emotions are identifiable in the overall network,
+we expect to see various shades of the original colors we assigned to the emotions as
+compared to a uniform mixed color that would result when the components of an emotion are
+as strongly connected to each other as they are to components of another emotion. In Panel B,
+the so-called community graph, a node represents a community and an edge represents the
+number of nodes the two communities share. The more nodes a community includes, the
+larger its size. Hence, if distinct emotions overlap, we expect communities including
+components of different emotions and many edges in the community graph.
+Across both networks, the analysis supports a conceptualization of the three
+emotions as overlapping networks. The areas in the colored shades of admiration, awe, and
+gratitude were pronounced, yet less so for admiration. There were nine communities of which
+only one gratitude community was pure. The other communities entailed items from multiple
+OVERLAPPING EMOTION NETWORKS 14
+emotions but were often largely dominated by items from one emotion. Moreover, 23 nodes
+were shared among communities. For instance, the admiration I had a great deal of
+item “
+respect toward a specific person admiration and gratitude or the awe
+” was shared between
+I was inspired by what I saw awe and admiration. Finally, one
+item “ ” was shared between
+I felt humbled We share the data and reproducible code for this
+node was isolated (“ ”).
+Theoretical Implications and Future Research Directions
+A conceptualization of emotions as overlapping causal networks constitutes a
+theoretical approach explaining why emotions are distinct with fuzzy boundaries between
+them. Network estimation alongside the identification of overlapping communities using the
+clique percolation algorithm provides the methodological tools to investigate this
+conceptualization. As a first example, we applied the methodological approach to the
+reanalysis of a data set of component measures of admiration, awe, and gratitude. The
+reanalysis indicated that despite tight interconnections between the three emotions, all of them
+had partly unique patterns of relationships among their components. However, there was also
+a substantial amount of mixed communities and overlap, suggesting that the three emotions
+share various components with and relate to each other. Thus, it is reasonable to consider
+admiration, awe, and gratitude as three distinct emotions bridged by fuzzy boundaries.
+Conceptualizing emotions as overlapping causal networks contributes to resolving
+theoretical disagreement on the question whether emotions are distinct or dimensional. In line
+with evidence (e.g., Cowen et al., 2019; Fehr & Russell, 1984) and surveys among popular
+emotion researchers (Ekman, 2016), emotions may be distinct and dimensional at the same
+time, captured in a conceptualization of emotions as overlapping causal networks.
+Specifically, the communities in a network of emotion components can represent distinct
+emotions and represent dimensions. We showcased
+the communities’ overlap may
+overlapping networks by investigating admiration, awe, and gratitude. As these emotions are
+OVERLAPPING EMOTION NETWORKS 15
+similar on important dimensions (e.g., valence), their networks were likely to be overlapping.
+Future research should investigate emotions with varying similarity on different dimensions,
+testing whether higher and lower similarity indeed aligns with more or less network overlap,
+respectively.
+Moreover, if causal networks of different emotions overlap, the amount of overlap
+could be a predictor of the probability that these emotions co-occur. So far, research
+documents that emotions co-occur frequently (e.g., Larsen & McGraw, 2014; Moeller et al.,
+2018; Scherer et al., 2004; Trampe et al., 2015) but it is less clear how this comes about. From
+the current perspective, activation of the causal network representing one distinct emotion
+may spread via shared nodes to causal networks representing other distinct emotions. For
+instance, when being inspired by a person, this may activate parts of the awe network, such as
+the motivation to accommodate what is happening, and this may also activate parts of the
+admiration network, such as emulation and goal activation. The stronger the overlap of two
+emotions, the more cross-activation is possible, rendering co-occurring emotions in any
+situation more likely. If, however, different emotions do not share components or do not relate
+to each other, cross-activation is less likely. From a conceptualization of emotions as
+overlapping causal networks, there should be hardly any emotional event that will elicit only
+one emotion at a time, which has been supported by recent evidence (Cowen et al., 2019).
+Thus, the amount of network overlap should relate to the probability of two emotions co-
+occurring, a testable prediction when using the presented methodological approach.
+Furthermore, conceptualizing emotions as overlapping causal networks provides new
+perspectives on the variability of emotions. Evidence widely supports that emotions are
+experienced and expressed differently across and within individuals, cultures, and historical
+timepoints (e.g., Averill, 1983; Crivelli, Russell, Jarillo, & Fernández-Dols, 2016; Jack,
+Garrod, Yu, Caldara, & Schyns, 2012; Kuppens & Tong, 2010; Russell, 1994). From a
+network perspective, this could imply that relationships between emotion components vary
+OVERLAPPING EMOTION NETWORKS 16
+across or within contexts and persons (Lange et al., 2020) fuzziness among emotion
+networks may differ across and within situations, cultures, and individuals. For example, awe
+and admiration might share more edges in some contexts, whereas admiration and gratitude
+might be more strongly connected on other occasions and these differences are likely
+influenced by cultural and social norms, as well as personality traits. When researchers
+complement the estimation of networks and the clique percolation algorithm with cross-
+cultural comparisons as well as manipulations of central contextual variables, or when they
+relate it to expressions of personality characteristics across and within persons, they can
+approach such questions. It would even be possible to investigate how individuals with
+different network structures interact with each other over time, combining psychological
+networks with social networks.
+Finally, when a conceptualization of emotions as overlapping causal networks allows
+emotions to be distinct and dimensional at the same time, it may further contribute to
+integrating insights from affect program theories and constructionist theories (see also Lange
+et al., 2020). Consider for instance the activation of emotions in a situation and subsequent
+attempts to put the experience into words. People may go through a distinct emotion episode
+in line with affect program theories in a sense that the network representing the emotion is
+activated. Spreading activation to overlapping networks will most certainly activate additional
+distinct emotion episodes. The process of putting the overall experience into words may then
+be a conceptual act as outlined in constructionist theories (e.g., Barrett, 2014; see also
+research on affect labeling Torre & Lieberman, 2018). That is, people may recognize patterns
+of component changes in an emotional episode and label the collective experience with a
+respective word. How this process unfolds could depend on internal factors, including the
+amount of overlap between the activated emotions. Or the words used to categorize the
+experience may depend on contextual cues and attributions. People should then more
+frequently assign the same label to patterns of component changes of multiple emotions that
+OVERLAPPING EMOTION NETWORKS 17
+share more components with each other. Network analysis shows promise in contributing to
+address such fundamental issues.
+Methodological Challenges of Network Analysis
+The theoretical implications and future research directions suggest that network
+analysis can move the field forward theoretically. But the application of network analysis also
+has a few challenges that researchers should consider. In what follows, we describe three such
+challenges and how to address them.
+Selection of components and component operationalization. As a first challenge,
+researchers should carefully think about the emotion components they want to assess in their
+study. This consideration includes two tasks. First, the researcher needs to identify all non-
+redundant components of the involved emotion(s). The goal of network analysis as used for
+component networks is to test causal network theories. Not assessing a central component in
+the network can lead to false conclusions about the network structure. Relatedly, when
+including redundant measures of a component, any relationship between these components
+results from their redundancy and not from a causal relationship. Thus, the goal should be to
+assess components that exhaustively capture the emotion (for a discussion see Christensen,
+Golino, & Silvia, 2020), which is a challenging goal to accomplish.
+Strict criteria for choosing the components are difficult to propose. Which
+components are important will depend on the research context (for a discussion see Lange et
+al., 2020). And some emotions will not have certain component changes (e.g., guilt has no
+known facial expression). Hence, researchers will need to decide from study to study.
+Nevertheless, we think that theorizing and evidence can and will inform comprehensive lists
+of components for multiple emotions. There are comprehensive lists of component changes
+for emotions such as awe (Yaden et al., 2019), envy (Lange et al., 2018), or shame (Gausel et
+al., 2012). Moreover, lots of research used prototype approaches for specific emotions (e.g.,
+Luo, Van Horen, Millet, & Zeelenberg, 2020; Shaver, Schwartz, Kirson, & O’Connor, 1987)
+OVERLAPPING EMOTION NETWORKS 18
+which results in an exhaustive list of central and non-central components. Research in the
+distinct emotion tradition often aimed at identifying shared and unique components of
+multiple emotions (e.g., Campos et al., 2013). Or research showed how different contexts may
+require different sets of components for the very same emotion (Boiger et al., 2018). Turning
+the logic around, it may even be possible to not start from an emotion label but to first
+investigate (causal) relationships of numerous components and look for densely connected
+patterns (exemplified in research on kama muta, Zickfeld et al., 2019).
+Second, the researcher needs to operationalize the components. For instance,
+participants may work on questionnaires to assess feelings or thoughts, specific devices may
+assess physiological changes, or EMG recordings may track facial expressions. However, it is
+challenging to combine such multimodal measurements in one study, yet previous research
+already succeeded in creating solutions for this challenge (e.g., Mauss et al., 2005;
+Reisenzein, 2000). Alternatively, it is also imaginable to assess all components only with self-
+report as in the reanalysis (for a discussion of the advantages and disadvantages of using self-
+report see Mauss & Robinson, 2009; Scherer, 2005; Weidman et al., 2017). Deciding which
+operationalization is preferable may be similarly challenging. Eventually, this decision hinges
+on the validity of different measurement approaches for the specific study.
+Sample size. As a second challenge, researchers need to collect rather large sample
+sizes. Simulations can provide insights into the number of participants needed for common
+kinds of networks (for a tutorial and for the example see Epskamp, Borsboom, et al., 2018). In
+such simulations, researchers created a network and generated numerous fictitious random
+samples in which this network should actually be true. They then tested how well the
+networks estimated in each sample mapped onto the true network they created and how this fit
+changed depending on the number of nodes and the size of the sample. For instance, in a
+simulation with a network of 20 nodes, 250 participants led to satisfactory results. Larger
+sample sizes would even improve the fit, yet they are more challenging to collect, especially
+OVERLAPPING EMOTION NETWORKS 19
+with multimodal measurement approaches. Alternatively, if the network would include less
+nodes, the fit would probably be higher even for 250 participants.
+Causality in network analysis. As a third challenge, it is difficult to infer causal
+relationships between emotion components from regularized partial correlation networks
+alone. In line with the goal to estimate causal networks and test causal network theories,
+conditional (in)dependence relationships (e.g., partial correlations) are indeed consistent with
+causal structures (Epskamp, Borsboom, et al., 2018; Epskamp et al., 2018). Yet, it is
+important to point out that an edge, as represented by a conditional dependence relationship
+(e.g., a partial correlation), does not equate a causal relationship between two nodes
+(Epskamp, Borsboom, et al., 2018; Epskamp et al., 2018). An edge between two nodes A and
+B is consistent with a causal effect of A on B, a causal effect of B on A, a bi-directional
+causal effect, or a collider pattern in which A and B cause a third node C (if A and B have no
+zero-order correlation). The absence of an edge, when there has been a zero-order correlation,
+is consistent with a mediation of A via C on B, the reversed mediation, or a common cause
+pattern in which C causes both A and B. Furthermore, testing causal network theories with
+partial correlations requires that the nodes exhibit change during the assessment and that the
+nodes change roughly on the same time scale. If changes of a node proceed more quickly than
+those of other nodes or if certain nodes do not change at all during the assessment period, the
+estimated partial correlations will be biased.
+Therefore, a researcher should be cautious when drawing conclusions about
+relationships between specific components in a regularized partial correlation network. Such
+networks represent one way to investigate causal network theories, but the estimation of
+causal structures remains challenging. Ideally, researchers should investigate all edges of a
+causal network theory experimentally. However, already in networks with few components,
+this quickly leads to an unmanageable amount of experimental variations and required
+measurements. Moreover, it may be hard to design experimental interventions that target only
+OVERLAPPING EMOTION NETWORKS 20
+one component at a time. A somewhat easier approach may be to investigate just one
+particular causal relationship between two components in an experiment (for a review see, for
+instance, Scherer & Moors, 2019), yet such experiments potentially underestimate the effect
+of non-included components. Thus, addressing the challenge of causal conclusions will be an
+important task for future research.
+Comparison of Network Analysis with Other Methods
+Despite its challenges, we argue that network analysis substantially expands the
+methodological toolbox of emotions researchers. In fact, the methodological approach we
+propose extends and complements more traditional methods, especially (exploratory and
+confirmatory) factor analysis. On a conceptual level, network and factor models are radically
+different. The factor model conceptualizes emotions as latent (i.e., unobservable) mechanisms
+that cause emotion components, while the components themselves have no causal
+relationships among each other. In contrast, in the network model, the components have direct
+causal effects on each other. These differences in the theoretical interpretations of both
+models lead to a number of diverging implications (for an extended discussion see Lange et
+al., 2020). One central implication of the factor model is that if one latent variable causes all
+components, changes in these components will (ideally) be identical. If one component gets
+activated by the latent emotion, all other components must as well. The components therefore
+provide redundant information. Accordingly, when using factor analysis during the
+development of questionnaires to measure emotions, researchers often include rather
+redundant items, assessing the same component in slightly different ways. Assessing multiple
+components becomes challenging, potentially explaining why many questionnaires focus on
+single components, most frequently feelings. This recommendation stands in direct opposition
+to the recommendation for the network model, for which researchers should assess all (non-
+redundant) components of an emotion. Put to the extreme, different contexts or cultures may
+require to measure partly different components, such that across contexts or cultures, some
+OVERLAPPING EMOTION NETWORKS 21
+parts of the network are universal and others vary (for a related example see Jackson et al.,
+2019).
+Nevertheless, network and factor analysis are complementary. For instance, to
+control for measurement error, a researcher can include multiple redundant measures of each
+component (e.g., multiple items asking for the same cognition; multiple items asking for the
+same feeling) and model them as latent variables. The latent variables can then be the nodes in
+network analysis (Epskamp, Rhemtulla, & Borsboom, 2017). Moreover, a community in a
+network can be indicative of a factor, allowing community detection algorithms to achieve
+similar goals as factor analysis (Golino & Epskamp, 2017).
+As another method, instead of using network analysis, researchers could also apply
+structural equation modeling. Structural equation modeling is a large class of methods broadly
+concerned with relationships between multiple (latent) variables. Most commonly, researchers
+specify theoretically predicted, directed relationships between variables. This specified model
+implies a certain pattern of correlations between all the variables. Several techniques then
+allow testing whether the implied correlations of the specified model are in line with the
+observed correlations in the data. Accordingly, it is possible to use structural equation
+modeling to investigate specific theoretical models outlining relationships between different
+emotions or emotion components (e.g., Gausel et al., 2012; Leach & Spears, 2008). In such
+models, a causal interpretation of the relationships between emotions or emotion components
+is indeed feasible (Bollen & Pearl, 2013) making them comparable to network analysis.
+However, structural equation modeling can hardly incorporate feedback loops between
+different variables and one specified model can have an almost infinite number of equivalent
+models, that is, models that look entirely different, yet predict the same correlations among
+the variables (Kline, 2011). In contrast, a specific Gaussian Graphical Model has no
+equivalent models (Epskamp et al., 2018). Moreover, it can incorporate feedback loops, which
+emotion networks realistically have. However, specifying a theoretically predicted network
+OVERLAPPING EMOTION NETWORKS 22
+model and testing whether it is in line with the observed correlations is still challenging. So
+far, network analysis is largely exploratory. Yet, inspired by methods from structural equation
+modeling, some confirmatory approaches are already available (e.g., Kan, de Jonge, Van der
+Maas, Levine, & Epskamp, 2020).
+Conclusion
+Emotion research for a long time faced the conundrum that specific emotion
+components are not uniquely tied to distinct emotions, even though this was implied by the
+dominant theoretical model. Instead, substantial evidence suggests that emotions are both
+distinct and dimensional. However, there were neither a theoretical approach explaining how
+emotions can be distinct with fuzzy boundaries nor corresponding methodological tools to
+investigate this perspective. Conceptualizing emotions as overlapping causal networks and
+investigating them with network estimation and the clique percolation algorithm contributes
+to advancing research on emotions in this area.
+Declaration of Conflicting Interests
+The authors declare that there is no conflict of interest.
+OVERLAPPING EMOTION NETWORKS 23

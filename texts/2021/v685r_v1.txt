@@ -1,0 +1,1731 @@
+Movement tracking of psychological processes: A tutorial using
+mousetrap
+ff∗,1,2 ∗,3 3,4 5,6
+Dirk U. Wul , Pascal J. Kieslich , Felix Henninger , Jonas M. B. Haslbeck , and Michael
+1,7
+Schulte-Mecklenbeck
+Authors contributed equally
+Max Planck Institute for Human Development
+University of Basel
+University of Mannheim
+Ludwig Maximilian University of Munich
+University of Amsterdam
+University of Maastricht
+University of Bern
+Movement tracking is a novel process-tracing method that promises unique access to the tem-
+poral dynamics of psychological processes. The method involves high-resolution tracking of a
+hand or handheld device (e.g., a computer mouse) while it is used to make a choice. In contrast
+to other process-tracing methods, which mostly focus on information acquisition, movement
+tracking focuses on the processes of information integration and preference formation. In this
+article, we present a tutorial to movement tracking of psychological processes with the mouse-
+trap R package. We address all steps of the research process, from design to interpretation,
+with a particular focus on data processing and analysis and featuring both established and
+novel approaches. Using a representative working example, we demonstrate how the various
+steps of movement-tracking analysis can be implemented with mousetrap and provide thor-
+ough explanations of their theoretical background and interpretation. Finally, we present a
+list of recommendations to assist researchers in addressing their own research questions using
+movement tracking of psychological processes.
+Keywords: movement tracking, process tracing, cognitive processes, decision making
+Movement tracking is a novel technique aimed at tracking separated options. The result is a sequence of coordinates
+the temporal development of psychological processes. The representing the movement’s spatiotemporal development, a
+technique involves tracking reaching movements of the hand movement trajectory that is assumed to reflect the psycholog-
+using video cameras or movable devices (e.g., a computer ical processes that gave rise to the choice. Movement track-
+mouse) while people choose between two or more spatially ing is being widely employed in investigations of attention
+(e.g., Frisch et al., 2015; Miles & Proctor, 2015), decision
+making (e.g., Koop & Johnson, 2013; Tabatabaeian et al.,
+2015), language (Blazej & Cohen-Goldberg, 2015; Spivey et
+ff // /
+Dirk U. Wul https: orcid.org 0000-0002-4008-8022
+al., 2005), memory (Abney et al., 2015; Papesh & Goldinger,
+Correspondence concerning this article should be addressed
+2012), numerical cognition (e.g., Faulkenberry & Rey, 2014;
+ff
+to Dirk U. Wul , Department of Psychology, University of
+Ganor-Stern & Goldman, 2015), perception (e.g., Grosjean
+Basel, Missionsstrasse 60-62, 4055 Basel, Switzerland. E-mail:
+et al., 2012; van Vugt & Cavanagh, 2012), social cognition
+ff
+dirk.wul @gmail.com
+(e.g., Freeman et al., 2013; Martens et al., 2012), and clini-
+We are grateful to Laura Wiles for editing the manuscript.
+This work was supported by a grant from the Swiss Science cal psychology (Hepp et al., 2021). There are several excel-
+ff
+Foundation (100015_197315) to Dirk U. Wul . Pascal J. Kies- lent reviews summarizing this literature (Dotan et al., 2019;
+lich and Felix Henninger were supported through a grant by the
+Faulkenberry et al., 2018; Freeman, 2018; Kieslich et al.,
+Deutsche Forschungsgemeinschaft (DFG, German Research Foun-
+2019; Lopez et al., 2018; Stillerman & Freeman, 2019; Still-
+dation) [KR2211 5-1] to Frauke Kreuter. Jonas M. B. Haslbeck ff
+man et al., 2018; Tian & Wu, 2019; Wul et al., 2019).
+was supported by the gravitation project ‘New Science of Mental
+and the Dutch Ministry of Education, Culture and Science (NWO
+movement-tracking methodologies can be used to study psy-
+gravitation grant number 024.004.016).
+chological processes. We address the entire research pro-
+WULFF, KIESLICH, HENNINGER, HASLBECK, AND SCHULTE-MECKLENBECK
+cess, from implementing movement tracking to collecting, working example.
+processing, and analyzing movement trajectories. We dis- As with other process-tracing techniques, the usefulness
+cuss the advantages and disadvantages of various analysis ap- of movement tracking rests on key assumptions about the
+proaches, provide practical recommendations for prospective mapping of the cognitive process onto the recorded process
+users, and discuss unresolved theoretical questions in move- data, that is, the movement trajectory. The central assump-
+ment tracking. tion is that the current state of preference—with regard to the
+Throughout the article, we showcase the analysis of available options—influences aspects of the movement, such
+movement trajectories using our mousetrap package, cur- as its angle or speed. Support for this assumption comes from
+rently the most comprehensive analysis package available neuropsychological studies that have revealed close neuronal
+for movement tracking . Built on the R programming lan- links between ongoing cognitive processes and motor output
+guage (R Core Team, 2020), mousetrap supports all steps (Cisek & Kalaska, 2005; Gold & Shadlen, 2001), which sug-
+ff
+of movement-tracking data analysis, including raw data im- gest that the development of preference formation can a ect
+port from a wide array of formats; various algorithms for the ongoing motor output as a choice is executed. How ex-
+processing, analyzing, and visualizing movement trajecto- actly the processes of preference formation impact the move-
+ries; and novel methodology for classifying movement tra- ment, however, is still an open question. Early applications
+ff
+jectories types (Wul et al., 2019). Where available, we of movement tracking worked under the assumption of a
+also point to other, complementary tools. Reproducible code fully continuous mapping, where a continuous evidence ac-
+for all analyses and figures presented in our tutorial can cumulation process (Bogacz et al., 2006; Busemeyer et al.,
+// /
+be accessed at https: pascalkieslich.github.io mousetrap- 2019; Lamberts, 2000) would directly control either the po-
+resources mousetrap_tutorial.html. sition or the angle of movement throughout the movement
+Our article is structured as follows. First, we discuss (Spivey et al., 2005). Recent results, however, point towards
+the promise of movement tracking for psychological re- a more discrete mapping, where the cognitive process influ-
+search, describe a representative movement-tracking study ences movement intermittently during the decision process
+ff
+that serves as our working example throughout this article, (Wul et al., 2019). We will revisit the issue of assumptions
+and provide an overview of the elements of mousetrap. In at the end of this tutorial.
+the two major sections that follow, we provide a detailed Crucially, the usefulness of movement tracking as a
+introduction to movement-tracking processing and analysis. process-tracing method only depends on there being a link
+Finally, we discuss practical and theoretical issues that re- between cognitive process and movement, not whether the
+searchers should consider when designing and interpreting mapping is continuous or discrete. In either scenario, move-
+movement-tracking studies and provide recommendations to ment tracking provides valuable information on the develop-
+guide future movement-tracking research. ment of the preference-formation process, which can be used
+in at least three ways. First, the trajectory of the movement
+The Promise of Movement Tracking can shed light on the relative strength of preference for the
+options, or, in other words, the degree of choice competition.
+Movement tracking promises unique insights into psycho-
+Second, the movement trajectory can be used to identify the
+logical processes. Traditional process-tracing techniques,
+time point at which the preference-formation process com-
+such as eye tracking (Russo, 2019), Mouselab (Willemsen
+mits to a particular option, and in some cases the order of
+& Johnson, 2019), and Flashlight (Schulte-Mecklenbeck &
+commitments, including the detection of changes of mind
+Huber, 2003), closely track the processes of information ac-
+ff
+(Wul et al., 2019). Third, by varying features of the in-
+quisition but only indirectly shed light on the processes of
+dividual choice problems, movement trajectories can reveal
+information integration and preference formation (see also
+at what point these features are considered during preference
+ff
+Schulte-Mecklenbeck et al., 2017; Wul & Hertwig, 2019).
+formation (e.g., Sullivan et al., 2015).
+Although movement tracking can be employed to track in-
+The potential of movement tracking to reveal the cogni-
+formation acquisition, its main purpose is to overcome the
+tive process has been exploited in various domains of psy-
+limitation of other process techniques by directly reveal-
+chology and cognitive science. This research has relied pri-
+ing the process of preference formation. Movement track-
+marily on a particular type of setup involving a forced choice
+ing achieves this in two ways: first, by designing choice
+between two options, with the options varying as a function
+tasks such that there are minimal requirements for informa-
+of the research domain and question. These options can be
+tion acquisition, implying that behavior is governed by the
+anything, but have often been pairs of words (e.g., Dale
+processes of information integration and preference forma-
+et al., 2007), images (e.g., Sullivan et al., 2015), numbers
+tion; and second, by recruiting a temporal resolution that
+(e.g., Faulkenberry et al., 2018), or more complex decision
+is considerably higher than in other process-tracing meth-
+ods (Schulte-Mecklenbeck et al., 2017). We discuss these 1For detailed documentation on mousetrap, visit
+// / /
+two components in the next section, when we introduce our http: pascalkieslich.github.io mousetrap
+MOVEMENT TRACKING OF PSYCHOLOGICAL PROCESSES
+problems such as social dilemmas (e.g., Kieslich & Hilbig,
+Mammal Fish
+2014). Movement tracking is, however, not limited to two-
+alternative, forced-choice settings and has been generalized
+successfully to settings with more than two options (e.g., 250
+Koop & Johnson, 2011; Moher & Song, 2014), responses in
+surveys and questionnaires (Fernández-Fontelo et al., 2021;
+Horwitz et al., 2017; McKinstry et al., 2008), and senso-
+rimotor localization experiments (Fuchs et al., 2020). We
+now turn to an early mouse-tracking study that serves as the
+−250
+working example throughout this tutorial. It follows the two-
+Whale
+alternative, forced-choice paradigm.
+−500
+Tracking Semantic Categorization: A Working Example −500 0 500
+As our working example throughout this article, we use Illustration of the animal categorization task showing three
+a replication of an early mouse-tracking study by Dale et al. exemplary mouse movement trajectories for a trial involv-
+(2007), who sought to use movement tracking to uncover the ing the categorization of “Whale” as either “Mammal” or
+temporal dynamics of semantic categorization. To achieve “Fish.” Axis units are pixels.
+this, they designed a task that required participants to select
+the correct taxonomic class of animals that varied in their
+typicality for their respective class. For instance, participants
+& Henninger, 2017) for mouse tracking.
+would be presented with the word “whale” and then asked to
+classify it as either “fish” or “mammal,” which would con-
+The mousetrap Suite
+stitute an atypical trial, as “whale” is atypical for the correct
+category “mammal.” They hypothesized that the typicality of In this tutorial we showcase all key functions of the
+an animal for its true category should influence the psycho- mousetrap R package, which is part of the mousetrap
+made visible by tracking the movement executing the choice. ther includes mousetrap-OS (Kieslich & Henninger, 2017)
+This hypothesis was based on the assumption that atypical and mousetrap-web (Henninger & Kieslich, in press), two
+trials, compared to typical trials, introduce a higher level of software solutions for implementing movement-tracking
+response competition that should pull trajectories in atypi- studies for the Python-based experiment builder OpenS-
+cal trials more strongly to the nonchosen option compared to esame (Mathôt et al., 2012) and the JavaScript-based on-
+trajectories in typical trials. line experiment builder lab.js (Henninger et al., 2021),
+To test whether the typicality of words influenced the respectively. More information about these companion
+psychological process in the hypothesized way, Dale et al. solutions, including software templates, is available at
+// / /
+(2007) employed a procedure that has become a standard for https: pascalkieslich.github.io mousetrap-resources .
+movement-tracking studies: Participants in front of a com- The functions of the mousetrap R package can be grouped
+puter screen initiated a trial by clicking a start button at the into functions for processing and for analyzing movement-
+bottom center of the screen. The click triggered the display tracking data. The processing functions cover all steps from
+of the critical piece of information (i.e., the animal word) to the raw data to a ready-for-analysis mousetrap object class:
+select one of two response options (i.e., animal categories) reading in the data from one of many supported data types,
+located at the top left and right corners of the screen, respec- including those exported from OpenSesame and Mouse-
+teristic movement trajectories from our replication study. tion to implement movement-tracking studies using the com-
+For the purpose of this tutorial, we replicated this study puter mouse); importing into the mousetrap object class; and
+design (Kieslich & Henninger, 2017) on 60 individuals us- aligning, resampling, and cleaning trajectory data. Analy-
+ing the same 19 stimuli used by Dale et al. (2007) (trans- sis functions then provide access to a number of analytic
+lated into German; additional details regarding the ex- approaches, ranging from the analysis of simple trajectory
+perimental procedure and sample can be found in Kies- summaries (e.g., curvature or initiation time) to advanced
+lich & Henninger, 2017). The raw data are available at approaches focusing on trajectory types and the analysis of
+// / /
+https: pascalkieslich.github.io mousetrap-resources and are temporal dynamics.
+also included in the mousetrap R package. The study The next two sections present, in turn, the two classes
+was implemented using the OpenSesame experiment builder of mousetrap functions for processing and analyzing
+(Mathôt et al., 2012) and the mousetrap-os plugin (Kieslich movement-tracking data, while also delivering necessary the-
+WULFF, KIESLICH, HENNINGER, HASLBECK, AND SCHULTE-MECKLENBECK
+Implementation Processing Analysis
+read_mt mt_derivatives
+mousetrap-OS
+read_opensesame* mt_measures
+mousetrap-Web
+mr_angles
+mt_sample_entropy
+mt_import_mousetrap
+mt_aggregate
+mt_import_long
+Tracking device
+mt_standardize
+mt_import_wide
+Device sensitivity
+Trial layout
+mt_remap_symmetric mt_heatmap
+Starting procedure
+mt_align_start mt_diffmap
+Response mode
+mt_align_start_end mr_animate
+mt_check_bimodality
+mt_length_normalize
+mt_time_normalize
+mt_resample
+mt_cluster
+mt_subset
+mt_plot
+mt_cluster_k
+mt_exclude_initiation
+mt_plot_aggregate
+mt_map
+mt_exclude_finish
+mt_riverbed
+mr_plot
+mt_plot_per_trajectory
+erawtfoS
+ngiseD
+daeR
+tropmI
+egnarrA
+elpmaseR
+naelC
+sepyT
+etaluclaC
+ssessA
+scimanyD
+Overview of the mousetrap suite. The first panel lists two mousetrap-related tools, mousetrap-OS and mousetrap-Web, that
+can be used to implement movement tracking on local machines or via the Web, respectively. It also lists important design
+dimensions discussed in a later section. The second and third panels show the key functions of the mousetrap R package. Note
+that the read_opensesame function is imported from the readbulk package.
+oretical background as well as reproducible analysis code. empty cells at the end of rows to represent shorter trajecto-
+ries. The long data format stores trajectories across rows of a
+narrow matrix, with coordinate pairs and trajectories stacked
+Processing Movement Trajectories
+on top of each other, requiring that an additional identifier
+column be added to the data. Both formats are used in the
+The first step of working with movement-tracking data is
+analysis of movement-tracking data; however, a wide data
+to prepare the data for analysis. Similar to other process-
+representation is often preferred. This is due to the fact that
+tracing techniques, preparing movement-tracking data can
+trajectories are typically resampled before analysis, resulting
+involve several steps and decisions that can be critical for
+in a common number of data points for each trajectory and
+the results of an analysis. In this section, we discuss reading
+rendering the wide format more economical than the long
+in and importing movement-tracking data, adjusting the tra-
+format (see section Resampling Trajectories).
+jectories’ spatial layout, and resampling the trajectory data.
+Importing Data Using mousetrap
+Importing Movement Data
+Processing movement-tracking data with mousetrap first
+Movement tracking records the x,y (and potentially z) co- requires that the raw data is read into R using one of
+ordinates of the hand or a recording device at fixed inter- many available functions for generic data formats (see,
+vals. As these intervals are typically very short (e.g., 10 ms), e.g., the rio package, which bundles functions for import-
+movement-tracking datasets are often large, with up to sev- ing many common file formats) or specialized functions
+eral thousand coordinate pairs (or tuples) per trajectory, for such as mousetrap’s read_mt for MouseTracker files or
+each of potentially hundreds of trajectories per individual. readbulk’s read_opensesame for mousetrap-os generated
+Furthermore, movement trajectories typically vary in length OpenSesame files. The next step is to import the data into the
+ff
+due to di erences in decision time, rendering the import and mousetrap object class using one of several functions named
+storage more complex than in traditional experiments. For mt_import_*, where * is a wildcard that can be either long
+instance, in our working example, there are 19 trajectories or wide depending on the format of the raw data. For data
+for each of 60 participants that are between 72 and 2,159 that has been collected using mousetrap-os, there is also a
+observations long. dedicated mt_import_mousetrap function.
+Trajectory data is usually stored in one of two formats. The mousetrap object initially consists of a list of two ele-
+The wide data format represents trajectories horizontally ments. The first element is a data frame called data with one
+MOVEMENT TRACKING OF PSYCHOLOGICAL PROCESSES
+made by Dale et al. (2007), the chunk first eliminates trials
+with incorrect answers using the subset function and then
+imports the data using mt_import_mousetrap, respecting
+the fact that the working example data has been collected
+using the OpenSesame plugin.
+# 1) Load mousetrap ------
+library(mousetrap)
+# 2) CSV raw data ------
+The two core elements of the mousetrap object. The rectan-
+# Read raw data
+gle on the left hand side represents the data element of the
+library(readr)
+mousetrap object, the rectangles on the right-hand side the
+mt_data_raw <- read_csv("raw_data.csv")
+trajectories element.
+# Import wide data into mousetrap
+mt_data <- mt_import_wide(mt_data_raw)
+jectory. In our working example, this includes the variables
+# Import long data into mousetrap
+subject_nr, identifying the participant; Condition, cod-
+mt_data <- mt_import_long(
+ing whether the animal is typical or atypical; correct, cod-
+mt_data_raw, mt_id_label = "mt_id")
+ing whether the choice was correct; and mt_id, a unique trial
+identifier added by mousetrap that is also used for the row
+# 3) mousetrap-os raw data ------
+names of data. The second element is a three-dimensional
+array called trajectories containing the trajectory data in
+# Read and combine mousetrap-os files
+a wide format. The array’s first dimension distinguishes the
+ff # in folder "raw_data"
+N di erent trajectories, the second dimension distinguishes
+library(readbulk)
+the up to M points on the trajectories, and the third dimension
+mt_data_raw <- read_opensesame("raw_data")
+distinguishes the trajectory features, which initially are time
+stamps (timestamps), x-positions (xpos), and y-positions
+# Import data into mousetrap
+(ypos). To enable matching of trajectories between the two
+mt_data <- mt_import_mousetrap(mt_data_raw)
+elements, the first dimension of trajectories is named ac-
+# 4) Internal package raw data ------
+illustration.
+ff
+The code below shows how trajectory data from di er-
+# Exclude incorrectly answered trials
+ent file types can be read in and imported into mousetrap.
+KH2017_raw <-
+The first chunk loads the mousetrap library, which is neces-
+subset(KH2017_raw, correct == 1)
+sary to be able to run all further processing and analyses.
+The second chunk reads in data from a standard comma-
+# Import data into mousetrap
+separated file (CSV) and then imports the data using ei-
+mt_data <- mt_import_mousetrap(KH2017_raw)
+ther mt_import_wide or mt_import_long depending on
+the format of the raw data. Note that if the raw data has a
+Transforming Movement Trajectories
+long format, the mt_id_label argument must be specified
+to provide the names of the variables that uniquely identify The analysis of movement-tracking data typically requires
+each trajectory. The third chunk makes use of readbulk’s that trajectories are transformed to render them more compa-
+read_opensesame function to read in multiple mousetrap- rable to one another. The two most common transformation
+os CSV files from a folder and then imports them with the steps, which we turn to now, are adjusting the trajectories’
+dedicated mt_import_mousetrap function. spatial arrangement and resampling and interpolating trajec-
+tories.
+Unlike the first three chunks, the fourth chunk shows the
+creation of the data object used throughout this tutorial. It
+Adjusting the Trajectories’ Spatial Arrangement
+makes use of the KH2017_raw object included in the mouse-
+trap package, which contains the complete raw data of our Movement-tracking setups invariably produce trajectories
+ff
+working example. Consistent with the analytics choices that di er in starting position, end position, or both. In
+WULFF, KIESLICH, HENNINGER, HASLBECK, AND SCHULTE-MECKLENBECK
+many studies, including our working example, trajectories normalization and length normalization.
+that started in a common area at the bottom center of the Time normalization (e.g., Spivey et al., 2005) interpo-
+screen end in either the upper left or upper right corner, lates trajectories such that they are represented by exactly the
+where the response buttons for the two options are located same number of temporally equidistant data points (see Fig-
+of concern (for an exception, see section Temporal Analyses), following early work by Spivey et al. (2005), who first intro-
+given that response options are typically counterbalanced be- duced this resampling method. This number of points may
+ff ff ffi
+tween locations, but having trajectories end in di erent loca- represent a reasonable trade-o between retaining su cient
+ffi
+tions greatly impedes comparability. A frequent first step in detail and enabling e cient processing; however, other num-
+processing movement trajectories is therefore to remap tra- bers of points may be justified depending on the length and
+jectories such that all trajectories end (or start) in the same complexity of trajectories. Time normalization is recruited
+location. In the case of our working example, this means in many analyses of movement trajectories, but is especially
+A typical second step is to account for any small varia- ries (see section Temporal Evolution of the Trajectory).
+tions in start or end positions, which result from participants Length normalization interpolates the trajectory into the
+ff
+clicking slightly di erent locations within the start and re- same number of spatially equidistant data points or, in other
+sponse buttons (e.g., Dale et al., 2007). Aligning is achieved words, N-1 equally long movement segments. Compared to
+by shifting the trajectories to the average start or end posi- time normalization, in which the beginning and end of a tra-
+tion or to a specific start or end position. Most commonly, jectory are usually represented with higher resolution due to
+trajectories are aligned by setting the start position to [0,0], lower movement velocity, length normalization distributes
+which has the added benefit that the trajectory coordinates points such that the spatial resolution is constant through-
+can be interpreted as distances relative to the start position. out the trial. Length normalization thereby emphasizes the
+Trajectories can also be aligned at both start and end posi- shape of the trajectory irrespective of changes of movement
+mensions of the trajectory. erty, length normalization is typically used in association
+A third, less common, preprocessing step in spatial ar- with type-based approaches to movement-tracking analysis
+ff
+rangement is projecting trajectories into a new coordinate (Wul et al., 2019, see sections The Bottom-Up Approach to
+system. The MouseTracker software (Freeman & Ambady, Trajectory Types and The Top-Down Approach to Trajectory
+2010), for example, automatically projects trajectories into a Types).
+coordinate system with x-values ranging from -1 to 1 and y- Finally, there is a third resampling method called neu-
+values ranging from 0 to 1.5, with the point [0,0] as the start tral resampling, which interpolates the trajectories such that
+position. Such transformations can assist the interpretability timestamps are equidistant from each other. Neutral resam-
+of trajectories, as well as comparability across studies. How- pling can be useful to correct for variability in sampling
+ff
+ever, mapping trajectories to a new coordinate system a ects rates across trials or computers, which, for instance, is of-
+the trajectories’ aspect ratio and, with that, the relative im- ten a problem in web-based movement tracking (Henninger
+portance of the trajectories’ dimensions in the results. For & Kieslich, in press).
+instance, making a coordinate system narrower emphasizes
+the importance of the vertical relative to the horizontal di- Preparing Trajectories Using mousetrap
+mension. Moreover, projections usually lose the exact pixel
+The mousetrap package provides functions for each of the
+information of the experimental setup.
+spatial and temporal processing operations discussed above:
+mt_remap_symmetric maps trajectories to a common side,
+Resampling Trajectories
+mt_align_start and mt_align_start_end align trajec-
+Due to the fact that movements are typically tracked using tories at the start and or end, mt_time_normalize time-
+ff
+(more or less) constant sampling rates, trials with di erent normalizes trajectories, and mt_length_normalize length-
+ff
+durations result in trajectories of di erent lengths. For exam- normalizes trajectories. By default, each of these func-
+ple, in a setup with a 100 Hz sampling rate, trials lasting 1 s tions works with the standard trajectories element in the
+and 2 s will result in 101 and 201 recorded positions, respec- mousetrap object, containing the raw trajectories. However,
+ff
+tively. The di erences in the number of points of trajectories via the use argument, the functions can be instructed to use
+presents a problem for many analyses that require trajecto- alternative trajectory representations.
+ff
+ries to be comparable in a point-by-point fashion. To address One point of di erence between processing functions
+this, trajectories can be resampled using one of several tech- is how output of the functions is written into the mouse-
+niques that make trajectories consist of the same number of trap object. The spatial transformation functions, such
+points. The two most common resampling methods are time as mt_remap_symmetric and mt_align_start, over-
+MOVEMENT TRACKING OF PSYCHOLOGICAL PROCESSES
+A B
+−250
+−500
+C D
+−250
+−500
+−500 0 500 −500 0 500
+Common trajectory processing steps. Panel A: Three trajectories as they were originally recorded. Panel B: Trajectories all
+mapped to the left side and aligned at the start position. Panel C: Trajectories after time normalization. Panel D: Trajectories
+after length normalization. Axis units are pixels.
+write the standard trajectories element by default, be-
+cause such transformations are typically intended to im- # 2) Resample trajectories
+pact all further analyses. The resampling functions (i.e.,
+mt_time_normalize and mt_length_normalize), on the # Time-normalize trajectories
+other hand, create new trajectory arrays in the mousetrap ob- mt_data <- mt_time_normalize(mt_data)
+ject by default. This allows users to later decide which trajec-
+tory representation to use in a given analysis. Either default # Length-normalize trajectories
+can be overruled using the save_as argument, which allows mt_data <- mt_length_normalize(mt_data)
+users to specify how any of the processing functions store
+their results within the mousetrap object.
+Filtering Movement Trajectories
+The code chunks below show how to prepare trajectory
+data using mousetrap. The first chunk remaps all trajecto-
+A key requirement in movement tracking is that the pro-
+ries to the left-hand side (default) and then aligns the trajec-
+cess of interest is appropriately reflected in all movement tra-
+tories’ start positions at the point [0,0]. The second chunk
+jectories used in the analysis. While it is not always clear
+then adds new, resampled trajectory representations to the
+how to best achieve this, several proposals have been made
+mousetrap object, which will be stored as new elements.
+that at least eliminate the trajectories that likely do not re-
+Specifically, the mt_time_normalize function adds the
+flect the process of interest. First, studies involving factually
+tn_trajectories element containing time-normalized tra-
+correct responses can consider removing trials representing
+jectories, and the mt_length_normalize function adds the
+an erroneous response (e.g., Scherbaum et al., 2010; Spivey
+ln_trajectories element containing length-normalized
+et al., 2005). The argument for excluding these trajectories is
+trajectories.
+ff
+that such trials must have resulted from a di erent, irrelevant
+# 1) Adjust the trajectories’ spatial arrangement cognitive process. However, this reasoning may only be valid
+in easy tasks, such as the categorization task in our working
+# Remap all trajectories to the left example, where erroneous responses (6.7%) likely resulted
+mt_data <- mt_remap_symmetric(mt_data) from lapses of attention or faulty movement execution.
+Second, studies imposing strict requirements for move-
+# Align trajectories to common start ment times (see section The Role of Study Design), can con-
+mt_data <- mt_align_start( sider removing trials exceeding these limits. In the case of
+mt_data, start = c(0,0)) movement initiation, the argument for exclusion is that par-
+WULFF, KIESLICH, HENNINGER, HASLBECK, AND SCHULTE-MECKLENBECK
+fied variables are assumed to be columns in data); however,
+other elements can be specified via the check argument.
+The code chunks below show trajectory filtering using
+mousetrap. The first chunk selects trials where the column
+correct in data has value 1 in order to only retain trials
+with correct responses. The second chunk maps trajectories
+to the standard prototypes (see section The Top-Down Ap-
+proach to Trajectory Types). It then uses mt_standardize
+to determine the standardized distance of a trajectory from
+its closest prototype. Finally, it uses mt_plot to visualize
+anomalous trajectories ( 2 SD) and mt_subset to remove
+these cases. The third chunk uses mt_subset to remove in-
+dividual trajectories (identified, e.g., through manual inspec-
+tion) based on their ID.
+Outlier detection via prototyping. The 34 trajectories from
+# 1) Filter incorrect responses ------
+our working example that deviated more than two standard
+deviations from the respective closest trajectory prototype
+# Only keep correctly answered trials
+are in blue. Axis units are pixels.
+mt_data <- mt_subset(mt_data, correct == 1)
+# 2) Prototype filtering ------
+ticipants might have completed most or all of the decision
+process before the movement was initiated. Indeed, evi-
+# Prototype mapping
+dence suggests that long initiation times are associated with
+mt_data <- mt_map(mt_data)
+more straight, ballistic movement towards one of the options,
+likely reflecting only the outcome of the cognitive process
+# Determine standardized distance
+rather than its development (Grage et al., 2019). Studies
+# to nearest prototype
+ff
+have used various cuto s ranging from 300 ms (e.g., Dshe-
+mt_data <- mt_standardize(mt_data,
+muchadse et al., 2013) to 750 ms (e.g., Martens et al., 2012).
+use = "prototyping",
+A similar argument has been made for total response time,
+use_variables = "min_dist")
+with studies excluding trials exceeding a total response time
+ff
+limit; previously used cuto s ranged from 2 s (e.g., Quétard
+# Visualize anomalous trajectories
+et al., 2015) to 8 s (e.g., Martens et al., 2012).
+mt_plot(mt_data,
+Finally, studies can consider removing trials that produce
+use2 = "prototyping",
+otherwise anomalous trajectories. For instance, Freeman et
+subset = z_min_dist > 2,
+al. (2008) removed movements involving “erratic output pro-
+wrap_var = "mt_id")
+ducing uninterpretable looping cycling leftward and right-
+ward” (p. 677). No precise criteria exist for defining anoma-
+# Exclude anomalous trajectories
+lous trajectories, and most studies have relied on human
+mt_data <- mt_subset(mt_data,
+judgment based on intuition and common sense. An alter-
+z_min_dist <= 2,
+native route to defining and identifying anomalous trajecto-
+check = "prototyping")
+ries exists in analyzing trajectory similarities, as anomalous
+trajectories should, by definition, exhibit low similarity to
+# 3) Filter individual trajectories ------
+potentially anomalous trajectories in our working example
+# Exclude trajectories by id
+identified by comparing the trajectory’s similarity to a set of
+mt_data <- mt_subset(mt_data,
+trajectory prototypes (see section The Top-Down Approach
+!mt_id %in% c("id0426","id0588"))
+to Trajectory Types).
+Analyzing Movement Trajectories
+Trajectory Filtering With mousetrap
+Movement tracking produces rich data that, once pro-
+The mousetrap package provides functions for trajectory cessed, is amenable to a large set of analysis approaches.
+filtering. The mt_subset function selects trials via log- In this section, we discuss three central approaches to
+ical comparisons, which by default are interpreted within movement-tracking analysis. We first discuss trajectory in-
+ff
+the scope of the mousetrap data element (i.e., the speci- dices that summarize di erent characteristics of movement
+MOVEMENT TRACKING OF PSYCHOLOGICAL PROCESSES
+trajectories. The trajectory index approach is still the dom- Single-point measures are often easier to interpret, as the sin-
+inant one in psychological research; however, there are ad- gle point of, for instance, maximum deviation clearly indi-
+vanced approaches that aim to harness more of the rich in- cates how strongly a movement has been pulled to the non-
+formation contained in movement-trajectory data. Two of chosen option. Integrative measures are possibly less easy
+these approaches are analyses of the trajectories’ develop- to interpret, as they integrate curvature across many points,
+ment across time and the more novel type-based analysis of of which some (e.g., the start and end of the trajectory) may
+the trajectories’ spatial distribution. be less influenced by response competition. On the other
+hand, they use more data than single-point measures and
+might therefore be more representative of the movement as a
+Trajectory Indices
+whole. Overall, it is important to note that curvature indices
+Trajectory indices are trial-level summaries of primarily have been proposed with a two-dimensional, two-option sce-
+three distinct characteristics of movement trajectories: curva- nario in mind, similar to the one in our working example;
+ture, temporal development, and spatiotemporal complexity. nevertheless, it should be straightforward to generalize them
+Trajectory indices often serve as the key dependent variables to more complex scenarios.
+ff
+in studies aiming to test the e ect of an experimental manip-
+ulation. One such example is the original study behind our
+Complexity Indices
+working example. To show that movements in atypical tri-
+als are pulled more strongly to the nonchosen option than in
+typical trials, Dale et al. (2007) relied on trajectories indices.
+Complexity indices aim to measure a trajectory’s spa-
+In the next sections, we discuss each type of trajectory in-
+tiotemporal degree of disorder (Hehman et al., 2015). Three
+dices individually before turning to their commonalities and
+complexity indices are commonly recruited in the literature.
+ff
+di erences.
+The most frequently employed index is the number of flips,
+directional changes along the axis of interest, typically the
+Curvature Indices
+horizontal axis (Freeman & Ambady, 2010). Similar to flips,
+reversals measure the number of times a trajectory crosses
+Curvature indices aim to measure how strongly a trajec-
+the midline between options (Koop & Johnson, 2013). A
+tory is bent towards a nonchosen option. Curvature is com-
+ff
+somewhat di erent index is sample entropy, which measures
+monly defined in reference to an idealized movement tra-
+the level of spatiotemporal disorder of a dimension of interest
+jectory that directly connects the start and end points of the
+(Dale et al., 2007; Hehman et al., 2015). Sample entropy,
+observed trajectory through a straight line (e.g., Freeman &
+which is often employed in time-series analysis, achieves
+Ambady, 2010; Spivey et al., 2005). Relative to this line,
+this by quantifying temporal self-similarity (see Yentes et al.,
+curvature is quantified as the perpendicular distance of either
+2013, for details).
+a single or all points on the trajectory.
+Like trajectory curvature, complexity is thought to reflect
+Two single-point measures are maximum absolute devi-
+response competition. The argument is that response com-
+ation (MAD) and maximum deviation above the ideal tra-
+petition not only changes the path of the movement but also
+jectory MD . MAD is the more commonly employed
+above
+its complexity. For instance, Freeman and Ambady (2010)
+measure of the two. It is defined as the signed maximum
+posited: “if both response alternatives simultaneously attract
+absolute distance of the observed trajectory from the straight
+participants’ mouse trajectories (relative to only one), this
+line (in either direction), where the sign indicates whether
+additional stress might manifest as less smooth, more com-
+the distance is toward (positive) or away from (negative)
+plex, and fluctuating trajectories” (p. 230). Consistent with
+the alternative. MD , by contrast, only considers devi-
+above
+this view, manipulations of conflict tend to also produce dif-
+ations in the direction of the nonchosen alternative (Kieslich
+ferences in complexity indices, with higher conflict being as-
+& Hilbig, 2014). Two integrative measures are the average
+sociated with higher complexity (Dale et al., 2007; Koop &
+deviation (AD) and the area under curve (AUC). AD is de-
+Johnson, 2013; McKinstry et al., 2008).
+fined as the arithmetic mean of all signed pointwise devia-
+tions between the trajectory and the ideal trajectory (Koop
+& Johnson, 2013), whereas AUC is typically defined as the
+2Also referred to as maximum deviation (MD) in previous stud-
+area between the observed and idealized trajectories, with
+ies (e.g., Freeman & Ambady, 2010; McKinstry et al., 2008)
+areas below the idealized trajectory being subtracted rather
+ff
+3Note that di erent implementations of AUC can produce dif-
+than added (e.g., Freeman & Ambady, 2010; Spivey et al.,
+ferent results.
+2005) .
+4Instead of counting every directional change as a flip, some
+All curvature indices are thought of as a direct measure
+studies specify a minimum distance that needs to be covered so that
+of response competition, but they vary slightly in how they
+a change in direction is counted as flip. This method is implemented
+may capture competition and how easily they are interpreted. in mt_measures.
+WULFF, KIESLICH, HENNINGER, HASLBECK, AND SCHULTE-MECKLENBECK
+ffi
+Temporal Indices equated with degree of competition or di culty (Cheng &
+González-Vallejo, 2018).
+Temporal indices aim to measure the temporal develop-
+Notwithstanding these claims, empirical results typically
+ment of the movement. There are two sets of temporal in-
+suggest a high degree of overlap both within and between tra-
+dices. The first set of indices decomposes the overall re-
+jectory index classes. Using the data of our working exam-
+sponse time (i.e., the time between the trial onset and the
+ple, for instance, we observed correlations among curvature
+choice) into two components: movement time, defined as the
+= =
+indices between r .79 (AUC x AD) and r .99 (MAD x
+time during which the movement is ongoing, and idle time,
+MD ), among complexity indices between r .49 (flips
+above
+defined as the total time during which there is no movement
+x sample entropy) and r .69 (flips x reversals), and among
+(Cheng & González-Vallejo, 2018). Idle time is sometimes
+temporal indices, excluding initiation time, between r .43
+decomposed further into initiation time, defined as the idle
+(motor pauses x movement) and r .92 (response time x mo-
+time prior to the first onset of movement (Dale et al., 2007;
+Faulkenberry et al., 2015; Freeman & Ambady, 2010), and
+tial correlations between curvature and complexity (mean
+motor pauses, defined as the remaining idle time after move-
+r .50), curvature and temporal indices excluding initiation
+ment initiation (Calcagnì et al., 2017). The second set of
+time (mean r .26), and complexity and temporal indices
+temporal indices summarizes the velocity and acceleration
+excluding initiation time (mean r .37). These correlations
+profiles of the movement, such as maximum velocity or max-
+show a high to very high degree of overlap within indices of
+imum acceleration (Koop & Johnson, 2013).
+the same class, as well as substantial correlations between
+In contrast to curvature and complexity indices, the inter-
+them. Only initiation time deviated from this pattern—likely
+pretation of temporal indices is less uniform and overall less
+due to the compensatory relationship with movement time
+clear. For instance, initiation time, which has received more
+discussed in section Temporal Indices—showing small neg-
+attention in the literature, has been interpreted as a signal
+ative correlations ranging from r −.11 (initiation time x
+of response competition (e.g., Dale et al., 2007). However,
+motor pauses) to r −.21 (initiation time x sample entropy)
+results concerning the relationship between response com-
+with all indices, except overall response time, which includes
+petition and initiation time have been mixed. Recent inves-
+initiation time.
+tigations point to study design as a potential moderator of
+The intercorrelations between trajectory indices imply
+the interpretation of initiation time and possibly other tem-
+that their true dimensionality is much lower than the number
+poral indices. In particular, designs that imposed time lim-
+of available indices. This is further supported by a principle-
+its on movement initiation (e.g., Faulkenberry et al., 2015)
+component analysis on the trajectory indices in our working
+have found initiation time to be less sensitive to competition
+example (excluding response time, to avoid a rank-deficient
+than designs without time limits (e.g., Incera & McLennan,
+correlation matrix) revealing that 53% of variance can be ex-
+2016). For initiation time to capture competition, it might
+plained using a single component, and 92% using five com-
+ffi
+thus be necessary to provide individuals with su cient op-
+ponents. Moreover, analyzing the indices’ sensitivity to the
+portunity to initiate movement on their own terms. Con-
+sequently, the information carried by temporal indices can
+6B), we observed that all indices showed considerable sen-
+hinge on the characteristics of the study design (Fischer &
+sitivity, with Cohen’s d values ranging from .26 (initiation
+Hartmann, 2014; Wirth et al., 2020).
+time) to .60 (AD). The fact that all indices are sensitive to re-
+ff sponse competition can in part be explained by their tremen-
+Commonalities and Di erences Between Trajectory Indices
+dous overlap. However, the overlap between indices is not
+Although trajectory indices have almost all been linked to
+ff
+perfect, leaving some room for psychological di erentiation.
+ff
+response competition, there are proposals aimed at di eren-
+tiating the mapping between trajectory index and psycholog-
+Analyzing Trial-Level Indices Using mousetrap
+ical process. For instance, Freeman and Ambady (2010) sug-
+gested that single-point and integrative indices of curvature The mousetrap package includes several functions to com-
+may capture maximum and overall response competition, re- pute, analyze, and visualize trajectory indices. Most of
+spectively. Furthermore, complexity indices may capture as- the trajectory indices listed above can be calculated using
+pects of the psychological process over and beyond those mousetrap’s mt_measures function. By default, it uses the
+captured by curvature indices. Koop and Johnson (2013), for trajectories element; however, as in other functions, dif-
+instance, distinguished momentary valence (i.e., the current, ferent trajectory elements can be specified via the use argu-
+continuous evaluation of each option) from absolute prefer- ment. The computed measures are stored in a new element
+ence (i.e., the option with the higher valence) and associ- called measures. Additional measures of velocity and ac-
+ated changes in momentary valence with flips and changes celeration are calculated when these trajectory characteris-
+in absolute preference with reversals. Finally, complexity tics were previously added using mt_derivatives. Finally,
+has been equated with wavering, whereas curvature has been sample entropy can be added to measures using a dedicated
+MOVEMENT TRACKING OF PSYCHOLOGICAL PROCESSES
+MAD 0.95 0.95 0.93 0.46 0.66 0.51 0.22 −0.18 0.16 0.47
+MD
+0.99 0.94 0.91 0.54 0.7 0.55 0.26 −0.21 0.21 0.53
+above
+AD 0.9 0.91 0.9 0.48 0.66 0.54 0.25 −0.22 0.21 0.51
+AUC 0.88 0.87 0.79 0.4 0.61 0.43 0.15 −0.19 0.12 0.38
+Flips
+0.45 0.47 0.41 0.34 0.7 0.44 0.37 −0.24 0.4 0.51
+Reversals
+0.65 0.65 0.58 0.52 0.69 0.44 0.29 −0.26 0.3 0.49
+Sample entropy
+0.53 0.54 0.53 0.39 0.49 0.5 0.28 −0.29 0.19 0.67
+RT 0.23 0.24 0.24 0.11 0.35 0.3 0.27 0.19 0.69 0.67
+Initiation time
+−0.14 −0.13 −0.13 −0.13 −0.2 −0.21 −0.21 0.17 −0.3 −0.23
+Motor pauses
+0.13 0.14 0.14 0.06 0.29 0.22 0.12 0.92 −0.11 0.46
+Movement
+0.48 0.5 0.51 0.31 0.54 0.54 0.7 0.64 −0.12 0.43
+DAM
+DM
+evoba
+DA
+CUA spilF
+slasreveR
+yportne
+elpmaS
+TR
+emit
+noitaitinI
+sesuap
+rotoM
+tnemevoM
+A B
+Cohen's d
+.2 .1 0 .1 .2 .3 .4 .5 .6 .7 .8
+MAD
+MD
+above
+AD
+AUC
+Flips
+Reversals
+Sample entropy
+RT
+Initiation time
+Motor pauses
+Movement
+Overlap between trajectory indices. Panel A: Pearson (lower triangle) and Spearman (upper triangle) intercorrelations be-
+tween the four curvature, three complexity, and four temporal indices discussed in the text for our working example. Panel B:
+Indices’ sensitivity to the typicality manipulation of our working example in terms of Cohen’s d. MAD maximum absolute
+= = =
+deviation; MD maximum deviation above the ideal trajectory; AD average deviation; AUC area under curve; RT
+above
+response time.
+mt_sample_entropy function. fied via the use2_variables and subject_id arguments,
+respectively. The aggregated MAD values are then compared
+To facilitate statistical comparisons, mousetrap provides
+between conditions using the standard paired t test.
+two functions for aggregating trajectory indices: The
+To carry out analyses at the trial-level, the final chunk be-
+mt_aggregate function aggregates trajectory indices within
+low first uses R’s standard merge function to join the infor-
+condition, whereas the mt_aggregate_per_subject func-
+mation contained in the grouping variable(s) in the data el-
+tion does so within individuals (and conditions). To com-
+ement with the trial-level indices in the measures element
+pare trajectory indices between conditions, studies often first
+of the mousetrap object. Then it employs the lmer function
+aggregate values within individuals per condition and then
+of the lme4 package to run a mixed model predicting MAD.
+ff
+carry out comparisons using o -the-shelf statistical tests.
+For a tutorial on mixed models, see Demidenko (2013).
+However, it is generally preferable to analyse the disaggre-
+gated data on the trial level, while accounting for potential
+# 1) Compute trajectory indices ------
+heterogeneity between individuals. This approach typically
+ff
+o ers greater statistical power and permits flexible inclusion
+mt_data <- mt_measures(mt_data)
+of additional covariates, for instance to account for item ef-
+fects. Appropriate models are provided by the lme4 (Bates et
+# 2) Subject-level analysis ------
+al., 2015), afex (Singmann et al., 2015), and brms (Bürkner,
+2017) packages.
+# Aggregate MAD for each
+The code below illustrates simple analyses based on tra- # condition and participant
+jectory indices. The first chunk uses the mt_measures func- agg_data <- mt_aggregate_per_subject(
+tion to compute indices. The next chunk carries out a subject- mt_data,
+level analysis of the MAD values computed in the previous use_variables = "MAD",
+chunk, using the mt_aggregate_per_subject function to use2_variables = "Condition",
+aggregate MAD values, specified via the use_variables subject_id = "subject_nr")
+argument, per experimental condition and participant, speci-
+WULFF, KIESLICH, HENNINGER, HASLBECK, AND SCHULTE-MECKLENBECK
+ff
+# Compare conditions using t-test tracking as a direct and continuous e ect of temporally un-
+t.test(MAD ~ Condition, folding, gradual response competition (Freeman & Ambady,
+data = agg_data, 2010; Spivey et al., 2005). The supposed outcome of this
+paired = TRUE) view are trajectories that are all homogeneous in shape and
+vary only with the respect to the degree of pull to nonchosen
+# 3) Trial-level analysis ------ options. However, it is not at all clear whether or when this
+view holds and, thus, whether trajectories will necessarily be
+ff
+# Merge grouping variables with indices distributed in a homogeneous fashion (Wul et al., 2019).
+trial_data <- merge(mt_data$data, One alternative scenario to the traditional view on movement
+mt_data$measures, tracking is that psychological process and movement trajec-
+by = "mt_id") tories map onto each other in a more discrete and intermit-
+tent way. For instance, in one of the first movement-tracking
+# Compare MADs using linear-mixed model studies, Spivey et al. (2005) considered as a rival hypothesis
+# including a random intercept per participant an intermittent process that would give rise to two distinct
+library(lme4) types of trajectories: trajectories that, on the basis of a single
+lmer(MAD ~ Condition + (1|subject_nr), readout of the psychological process, move directly to the
+data = trial_data) chosen option and trajectories that, based on two readouts,
+first move all the way to the nonchosen option before revers-
+Advanced Mouse- and Hand-Tracking Analyses
+ing course towards the eventually chosen option. The result
+is a highly heterogeneous distribution of trajectory types.
+Despite the widespread use of trajectory indices in the lit-
+Trajectory heterogeneity presents a problem for all an-
+erature, their ability to unveil the dynamics of psychological
+alytic approaches involving the aggregation of trajectory
+processes is limited. This has to do with the high correlations
+points, including the temporal dynamics approach. The rea-
+among indices largely precluding a fine-grained characteri-
+son is that in the presence of trajectory homogeneity, ag-
+zation of the movement and the underlying processes. But,
+gregate trajectories (or aggregate trajectory indices) are not
+possibly more importantly, this is due to the fact that they
+representative of the actual distribution of trajectories. Con-
+compress the dynamic pattern within trajectories into a sin-
+sequently, one should assess the homogeneity of trajectories
+gle number, thereby losing valuable information contained in
+before choosing the temporal-dynamics approach and use the
+the full movement trajectory.
+type-based approach instead whenever trajectories are het-
+There are two main approaches that aim to make use of
+erogeneous.
+the full information in trajectory data: the type-based ap-
+proach and the temporal-dynamics approach. The type-based There are two approaches to assessing trajectory homo-
+approach focuses on the spatial characteristics of trajecto- geneity. One is based on evaluating the distribution of cur-
+ries, with the goal of uncovering distinct movement types vature indices (e.g., MAD or AUC) for signs of bimodality,
+ffi
+that might correspond to distinct modes of the underlying using, for instance, the bimodality coe cient (Pfister et al.,
+cognitive process. The temporal-dynamics approach focuses 2013) or Hartigan’s dip statistic (Hartigan & Hartigan, 1985).
+on the temporal characteristics of the trajectory in order to This approach is based on the assumption that trajectory het-
+ff
+shed light on the development of the psychological process erogeneity expresses in extremely di erent types of trajec-
+over time. Both approaches promise distinct insights into tories that form two clearly distinct modes in the curvature
+the psychological process; however, in addition to focusing distribution. However, this assumption may often not be met
+ff ff
+on di erent characteristics of the trajectory, they are based (Pfister et al., 2013; Wul et al., 2019). Recent evidence
+ff
+on di erent assumptions. The temporal-dynamics approach suggests that when trajectories occur in types, there are typi-
+generally assumes that trajectories are distributed in a ho- cally more than than two types that may be distinguishable in
+mogeneous fashion, whereas type-based approaches thrive terms of curvature or other trajectory indices (Kieslich et al.,
+ff
+when there is heterogeneity. This distinction implies that 2020; Lepora & Pezzulo, 2015; Tomlinson et al., 2013; Wul
+either of the two approaches is most useful precisely when et al., 2019). Consequently, the bimodality approach should
+the other is not. Consequently, it is important to assess the be used with caution.
+homogeneity of trajectories before implementing one of the
+The second approach, which is arguably simpler and more
+two approaches.
+robust than the bimodality approach, is based on visualizing
+the spatial distribution of trajectories. An example is pre-
+Assessing Trajectory Homogeneity
+The question of trajectory homogeneity has been raised ple. It shows the trajectories of typical trials in yellow and
+in the literature for its importance for a particular theoretical of atypical trials in blue, with the trajectories’ endpoints all
+view on movement tracking. This view conceives movement mapped to the left side. This simple visualization clearly
+MOVEMENT TRACKING OF PSYCHOLOGICAL PROCESSES
+ff
+reveals the di erent kinds of trajectories present in the data.
+There appear to be two dominant types of trajectories—those
+that go straight to the chosen option and those that first visit
+the nonchosen option—as well as a number of trajectories
+that fall between these two types.
+The distribution of trajectories in our working example as
+jectory types present for traditional movement-tracking anal-
+ysis. First, the assumption of a gradual process mapped con-
+tinuously to movement trajectory is not met: The trajecto-
+ries are clearly the type of intermittent processes discussed
+by Spivey et al. (2005). Second, a hypothetical average tra-
+jectory would fall in between the two dominant types and
+thereby fail to accurately represent the distribution of trajec-
+tories. Third, a comparison between aggregate trajectories
+of the two conditions may wrongly suggest a small spatial
+shift for the nonchosen option for atypical versus typical tra-
+jectories, whereas in fact the exact same trajectories may oc-
+ff
+cur in both conditions, only in di erent proportions. This
+version of the between-condition comparison illustrated in
+ff
+marily in the region of the two dominant trajectory types,
+with the typical condition having higher density in the re-
+gions of the straight trajectory type and the atypical condi-
+tion having higher density in the region of the trajectory type
+that first moves to the nonchosen option before turning to the
+Assessment of trajectory homogeneity. Panel A: Spatial dis-
+chosen option. This highlights that analyses based on ag-
+tribution of trajectories of the atypical (blue) and typical
+gregating trajectories may strongly misrepresent not only the
+(yellow) trajectories from our working example. Panel B:
+ff
+distribution of trajectories, but also the e ect of experimental
+Same trajectories of the two conditions after applying a high
+manipulations, and that in such cases type-based analyses are
+degree of smoothing. Note that transparent regions reflect-
+preferable.
+ing equal density may or may not be populated by trajectory
+points, as can be seen when comparing the two panels.
+Assessing Trajectory Homogeneity Using mousetrap
+The mousetrap package provides functions for assessing
+trajectory homogeneity using bimodality tests and visual- ing the kinds of trajectories contained in a dataset.
+ization. The mt_check_bimodality function evaluates bi-
+ffi
+modality by calculating the bimodality coe cient (Pfister
+et al., 2013) and Hartigan’s dip statistic (Hartigan & Harti- The code below demonstrates how to create visualizations
+gan, 1985). The functions mt_plot and mt_heatmap pro- of movement-tracking data that will help with assessing tra-
+vide basic visualizations of the trajectory distribution using jectory homogeneity. The first line uses mt_plot to plot all
+lines or densities, respectively. The mt_plot is based on trajectories in a single panel. Setting alpha = .1 reduces
+the widely used ggplot2 package (Wickham, 2016), which the line opacity, which helps distinguish overlaying trajecto-
+means it can be flexibly extended using ggplot2 functions, ries. The second line uses mt_heatmap to create a trajectory
+including facets to show the distribution separately for con- heatmap showing the spatial distribution of trajectory points.
+by contrast, is built on custom code that provides unique an appropriate opacity. The third line uses mt_diffmap
+ff
+features, such as smoothing or coloring the densities by a to create a di erence heatmap, which contrasts the trajec-
+third trajectory dimension. Another visualization function, tory densities between the typical and atypical trials in our
+mt_diffmap, uses mt_heatmap to provide a visual compar- working example. The arguments smooth_radius = 10
+ison of trajectory densities between conditions as shown in and n_shades = 10 specify a high level of smoothing and
+ff
+animation of trajectories, which can help greatly in identify- ferences between the conditions. Finally, mt_animate pro-
+WULFF, KIESLICH, HENNINGER, HASLBECK, AND SCHULTE-MECKLENBECK
+duces an animated visualization of all trajectory data . of trajectories distances between groups. Clustering algo-
+ff
+rithms di er in the criteria that they recruit or permit, imply-
+# Plot individual trajectories
+ff ff
+ing that di erent clustering algorithms will produce di erent
+mt_plot(mt_data, alpha = .1)
+solutions.
+# Create a trajectory heatmap
+ing example that was derived using Euclidean distance and
+mt_heatmap(mt_data)
+a hierarchical clustering algorithm that optimizes within-
+# Create a difference heatmap
+ff
+rithm successfully distinguished di erent kinds of trajecto-
+mt_diffmap(mt_data,
+ries. The first two clusters (representing 34% and 33% of
+condition = "Condition",
+all trajectories, respectively) consist of trajectories that are
+smooth_radius = 10, n_shades = 10)
+almost straight, the third cluster (15%) consists of trajecto-
+ries that are somewhat curved towards the nonchosen op-
+# Animate trajectories
+tion, the fourth cluster (12%) consists of trajectories that
+mt_animate(mt_data)
+first go straight to the nonchosen option before continuing
+straight to the chosen option, and the fifth cluster (6%) con-
+The Bottom-Up Approach to Trajectory Types
+sists of trajectories that first move towards the chosen and
+The type-based approach to movement-tracking analysis
+then towards the nonchosen option before eventually revers-
+rests on the idea that trajectories can be separated into distinct
+ing course once more to the chosen option. These clusters
+types on the basis of their spatial distribution or, put sim-
+and trajectories show that the data of our working example
+ply, their shape. The natural first step to a type-based analy-
+ff
+likely consist of at least four di erent types. These types in-
+sis is therefore to establish a grouping of trajectories. Here,
+clude not only the two dominant types previously revealed in
+two approaches have emerged: a bottom-up approach using
+cluster analysis and a top-down approach based on match-
+3 and 5).
+ff
+ing trajectories to predefined prototypes (see Wul et al.,
+Bottom-up clustering is able to uncover types in trajec-
+ff
+2019). The two approaches di er in their suitability for dif-
+ffi
+tory data that are di cult to detect using visualizations alone.
+ferent types of analysis: The bottom-up approach is primar-
+The bottom-up clustering approach is thus a powerful tool
+ily suited for exploratory analyses, such as to identify which
+for data exploration, but less so for confirmatory testing, for
+types of trajectories exist in a dataset, whereas the top-down
+two reasons. First, results of the bottom-up approach always
+approach is suited primarily for confirmatory goals, such as
+depend on a match between assumptions of the clustering
+ff
+to test whether the distribution of trajectories types di ers
+algorithm and the data at hand that is rarely perfect. This is
+between conditions.
+The bottom-up approach uses cluster analysis to group
+ff
+proach identifies two clusters (1 and 2) that e ectively con-
+trajectories into a predefined number of types in two steps.
+tain the same type of trajectories. This is due to a combi-
+In the first step, the trajectories are compared to one an-
+nation of setting the number of clusters a priori to five and
+other to determine their distances (or dissimilarity) using
+using an objective function that tends to create evenly sized
+a distance function. A common example of a distance
+clusters. As a result, the algorithm was unable to group
+function is the Euclidean distance, which for a pair of
+the large number of straight trajectories into a single clus-
+movement trajectories determines the distance as d
+i, j ter. Second, the outcome of the bottom-up approach will
+(cid:112)
+(cid:80)
+(x − x )2 (y − y )2, with k being the index of tra-
+k ik jk ik jk vary based on the data at hand. This implies that cluster-
+jectory points. The calculation of distances according to this
+ing solutions for two datasets may not be comparable, given
+formula requires that the trajectories each consist of the same
+that the clustering solutions will likely group trajectories in
+number of points, which can be achieved using trajectory ff
+a somewhat di erent fashion. There are ways to mitigate
+resampling. The resampling method typically recruited in
+these issues. For instance, it is possible to try to estimate a
+type-based approaches is length normalization, as it places
+suitable number of clusters in advance using k-selection al-
+equal emphasis on all parts of a trajectory, which helps em- ff
+gorithms (Haslbeck & Wul , 2020), which should improve
+ff
+phasize di erences in trajectory shapes (see section Resam-
+the usefulness of a clustering solution and increase compara-
+pling Trajectories). In the second step, the set of all distances
+bility across datasets. However, ultimately it is not possible
+between trajectory pairs, typically represented as a distance
+to identify the right settings a priori, as bottom-up clustering
+matrix, is analyzed using one of many clustering algorithms,
+is an unsupervised learning problem (Hennig, 2015). Conse-
+such as k-means or hierarchical clustering. Such algorithms
+quently, confirmatory questions concerning trajectory types
+group the trajectories into a typically predefined number of
+should be addressed using the top-down approach.
+clusters by iteratively optimizing a criterion, such as the av-
+erage distance of trajectories within a group over the average 5Note that mt_animate requires installation of imagemagick.
+MOVEMENT TRACKING OF PSYCHOLOGICAL PROCESSES
+Clustering movement trajectories. Panel A: Five clusters identified using hierarchical clustering. Panel B: Five of the pro-
+ff
+totypes in the mousetrap package (see also Wul et al., 2019). Panel C: Clustering based on assigning trajectories to the
+closest prototype. Thick lines in panels A and C represent the average trajectory. cCoM continuous change of mind; dCoM
+= =
+discrete change of mind; dCoM2 discrete double change of mind.
+The Top-Down Approach to Trajectory Types neous and more meaningful, avoiding situations such as that
+The top-down approach addresses the limitations of the
+prototypes are defined a priori, trajectory clusters no longer
+bottom-up approach by presupposing a set of prototype tra-
+depend on the dataset under investigation, thereby permitting
+jectories. This means that trajectories are no longer grouped
+straightforward statistical comparisons of experimental con-
+based on their similarity to each other. Instead, they are
+ditions or covariate analyses.
+grouped according to their similarity to the prototype tra-
+jectories, which is achieved by mapping trajectories to the As analyses based on the top-down approach hinge
+most similar prototype with respect to a distance function, strongly on the choice of prototype trajectories, how should
+such as Euclidean distance. There are two reasons that this they be selected? There are at least three avenues. First,
+approach is more suitable for confirmatory analyses. First, when there are clear expectations concerning the kinds of
+by selecting a suitable prototype set, the top-down approach trajectories that either could occur or would matter in a given
+will generate trajectory clusters that are both more homoge- study, the prototype trajectories should be defined to match
+WULFF, KIESLICH, HENNINGER, HASLBECK, AND SCHULTE-MECKLENBECK
+the expectations. For instance, in the case of the discrete
+Type-Based Statistical Comparisons of Typical and Atypical
+scenario discussed by Spivey et al. (2005), in which trajecto-
+Trials: Frequencies and Residuals
+ries may either be attracted by the competing option or not,
+one could specify prototypes that capture these two discrete Type Straight Curved cCoM dCoM dCoM2
+scenarios. The case of a priori expectations represents the
+Frequencies
+preferred scenario. Second, in the absence of a priori ex-
+Typical 506 116 54 52 16
+pectations, prototypes can be borrowed from existing sets,
+(68%) (16%) (7%) (7%) (2%)
+such as the one included in the mousetrap R package, which
+Atypical 165 38 37 56 24
+was derived from a large number of published datasets us-
+(52%) (12%) (12%) (18%) (8%)
+ff ff
+ing the bottom-up approach (cf. Wul et al., 2019; Wul et
+al., 2021). The set includes five prototypes: straight, curved,
+residu-
+continuous change of mind (cCoM), discrete change of mind
+als
+(dCoM), and discrete double change of mind (dCoM2) tra-
+Typical 1.70 .80 −1.21 −2.71 −2.26
+Atypical −2.59 −1.22 1.84 4.13 3.45
+useful prior, but it may not perfectly capture the kinds of tra-
+jectories occurring in a given study. Third, prototypes can be = =
+Legend: cCoM continuous change of mind; dCoM dis-
+generated using the bottom-up approach based on clustering. =
+crete change of mind; dCoM2 discrete double change of
+This approach can lead to prototypes that are more tailored to
+mind.
+the study at hand, but it also risks creating unwanted depen-
+dencies between the identification of prototypes and down-
+stream statistical analyses. One way to mitigate this risk is to
+ff 2 =
+icant e ect (χ (4) 57.97, p < .001). An inspection of the
+base bottom-up and top-down analyses on separate datasets.
+ff ff
+this di erence is primarily driven by di erences in propor-
+working example. Trajectories were mapped to mousetrap’s
+tions of change-of-mind trajectory types.
+default trajectory prototype set using Euclidean distances.
+The ordinal route of analyzing trajectory types is based
+The resulting grouping of trajectories shares many similar-
+on ordering the trajectories along a dimension of interest.
+ities with the one produced by the bottom-up approach, but
+For instance, the mousetrap default prototypes can be or-
+ff
+there are two important di erences. First, where the bottom-
+dered according to the level of competition that they might
+up approach separated straight trajectories into two equally
+reflect: straight trajectories representing the least amount of
+sized clusters, the top-down approach reliably assigned all
+competition, followed by curved, cCoM, dCoM, and finally,
+straight trajectories into a single large cluster (63% of all tra-
+dCoM2. The ordering can then be used as an outcome in
+jectories). Second, where the bottom-up approach lumped
+ordinal statistics, such as ordinal linear regression models. A
+mildly and strongly curved trajectories into a single cluster,
+benefit of the ordinal approach is that inferences can be made
+the top-down approach was able to separate these kinds of
+with reference to meaningful dimensions like competition.
+trajectories more clearly (curved and cCoM). Overall, the
+top-down approach produced a cleaner separation of trajecto-
+Analyzing Trajectory Types Using mousetrap
+ries into homogeneous clusters. This does not imply that the
+The mousetrap package provides implementations of all
+clustering is strictly better than others, including those pro-
+type-based trajectory analyses described in the sections The
+duced by the bottom-up approach (or other prototype sets).
+Bottom-Up Approach to Trajectory Types and The Top-Down
+ff
+However, it is likely more useful, as the di erent clusters
+Approach to Trajectory Types. Bottom-up clustering of a
+ff
+likely correspond more directly to the di erent ways that the
+mousetrap object can be performed using the mt_cluster
+underlying cognitive process unfolded.
+function. The function will look for length-normalized tra-
+jectories, but can, in principle, also work with other tra-
+Statistical Comparisons of Trajectory Types
+jectory transformations, including time-normalized trajecto-
+There are two ways to conduct statistical comparisons of ries. If length-normalized trajectories have not yet been com-
+trajectory types: treating them as nominal or ordinal. The puted, they can be added to the mousetrap object using the
+nominal route is based on a comparison of type frequencies. mt_length_normalize function, which will represent each
+and atypical trials in our working example, illustrating that ified using the n_points argument). The mt_cluster func-
+ff
+there are di erences in the frequencies of trajectory types tion extracts a default number of five clusters using agglom-
+ff
+between the two conditions. These di erences can be tested erative hierarchical clustering and ward.D linkage (Murtagh
+against chance using a χ test for stochastic independence, & Legendre, 2014). However, key aspects of the cluster-
+which in the case of our working example revealed a signif- ing procedure, including the number of clusters (n_cluster
+MOVEMENT TRACKING OF PSYCHOLOGICAL PROCESSES
+argument) and the clustering algorithm (method argument), alpha =.05)
+can be adjusted. The result of mt_cluster is stored in a
+new data frame element within the mousetrap object called # 4) Chi-square test ------
+clustering. Top-down prototype mapping can be per-
+both the prototype set and the distance function can be cus- mt_data$prototyping$prototype_label)
+tomized. The result of mt_map is stored in a new data frame
+element in the mousetrap object called prototyping. # Perform test
+The code below demonstrates the application of these ap- chisq.test(prototypes_by_condition)
+proaches to our working example. The first chunk uses
+mt_length_normalize to length-normalize the trajecto- # 5) Ordinal regression ------
+ries, which provides the basis for the steps that follow. The
+second chunk uses mt_cluster to extract the default of five # Merge trial data and prototype mapping
+clusters using the bottom-up approach. mt_plot is used with prototype_data <- merge(mt_data$data,
+use2 = "clustering" and facet_col = "cluster" to mt_data$prototyping,
+8A (but with the clusters spread out over columns instead
+of rows). The third chunk uses mt_map to perform top-down # Run ordinal regression including random
+clustering using mousetrap’s standard prototype set and then # intercept per participant
+similarly visualizes the resulting clustering using mt_plot. library(ordinal)
+Building on the third chunk, the fourth chunk produces a ta- clmm(
+ble of the prototype mapping for typical and atypical trials prototype_label ~
+and compares the respective frequencies using chisq.test. Condition + (1|subject_nr),
+The final chunk uses the clmm function of the ordinal pack- data = prototype_data)
+age (Christensen, 2019) to perform the same comparison us-
+ing ordinal statistics, with mousetrap’s prototypes ordered as The Temporal Dynamics Approach
+suggested in the previous section.
+The temporal dynamics approach to movement-tracking
+# 1) Length-normalize trajectories ------ analysis aims to reveal and explain the development of choice
+commitment or competition by analyzing the temporal devel-
+mt_data <- mt_length_normalize(mt_data) opment of key trajectory features (see Stillman et al., 2018).
+ff
+Variants of this approach di er in their level of sophistica-
+# 2) Bottom-up clustering ------ tion. Here, we focus on two variants, a basic variant recruit-
+ing aggregation and a more sophisticated variant recruiting
+# Perform bottom-up clustering approach regression modeling. As noted in the section Assessing Tra-
+mt_data <- mt_cluster(mt_data) jectory Homogeneity, these analyses implicitly assume a ho-
+mogeneous distribution of trajectories that is not met by our
+# Plot bottom-up clusters in separate panels working example. We will nevertheless rely on our working
+mt_plot(mt_data, example to demonstrate the temporal-dynamics approach, as
+use2 = "clustering", a failure to meet the homogeneity assumption mostly con-
+facet_col = "cluster", cerns the interpretation of the results, not their applicability.
+alpha = .05) The basic approach to temporal dynamics is to analyze ag-
+gregate trajectory features, such as position or angle, across
+# Perform top-down mapping onto prototypes axis as a function of time steps, which were determined us-
+mt_data <- mt_map(mt_data) ing time normalization and reflect proportions of total trial
+duration (see section Resampling Trajectories). The fore-
+# Plot top-down mapping in separate panels ground shows aggregate trajectories for the typical (yellow)
+mt_plot(mt_data, and atypical (blue) trials; the background shows the individ-
+use2 = "prototyping", ual trajectories. The plot reveals three key insights. First, on
+facet_col = "prototype_label", average, trajectories turn to the chosen option (located at an x
+WULFF, KIESLICH, HENNINGER, HASLBECK, AND SCHULTE-MECKLENBECK
+of the trials, suggesting that there is a notable period of inde- ment to the chosen option in atypical trials relative to typical
+cision at the beginning of trials. Second, the aggregate trajec- ones. Identifying the amount of time in which trajectories are
+tory of atypical trials turns to the chosen option substantially shifted by a single categorical factor can itself be powerful,
+later than the aggregate trajectory of typical trials does, sug- but the real value of temporal analyses emerges once mul-
+gesting a longer period of indecision and delayed commit- tiple predictors are included in the model. For instance, in
+ment to the chosen option. This is confirmed by mixed mod- the analysis of our working example, we could have consid-
+ff
+els that show significant di erences between time steps 51 ered word frequency as another driver of the categorization
+individual trajectories show considerably more variation in Forster, 2004). Including both typicality and word frequency
+both timing and location. The aggregate trajectories should in a joint model produces two sets of regression weights that
+not be viewed as a representation of the unfolding cognitive can be used to infer the relative strength and order in which
+processes. This does not subtract from the fact that there are the two predictors covary with the movement . Studies have
+ff
+reliable di erences in position across time, but it implies that used this approach, for example, to show that the tastiness
+ff
+these di erences must be interpreted carefully. In light of the of food is processed earlier than its healthiness (Sullivan et
+analyses in the section The Top-Down Approach to Trajec- al., 2015), or that values are processed earlier than delays in
+tory Types, the best interpretation of the results is one that an intertemporal choice task (Dshemuchadse et al., 2013).
+ff ff
+accounts for the di erent types of trajectories with di erent These inferences were based on studying the two sets of beta
+temporal profiles. We will return to this issue in the section weights across time and comparing their relative magnitude
+Theoretical and Practical Considerations. and temporal location. In line with most other work, these
+Aggregate analyses of temporal dynamics are amenable two cases used movement angle as the dependent variable.
+to any trajectory feature (Koop & Johnson, 2011). Next to However, these types of temporal analyses can also be car-
+position, one popular alternative feature is movement angle, ried out using movement position or other features of the tra-
+determined relative to the vertical axis. A angle of 0 there- When using the step-by-step regression approach it is im-
+fore implies a movement straight upwards and π (−π) im- portant to be aware of several underlying assumptions. First,
+plies a movement directed 90° to the left (right), the side of as discussed in the section Assessing Trajectory Homogene-
+the chosen (nonchosen) option. Compared to the analysis ity, temporal analyses assume spatial trajectory homogeneity.
+of position, the analysis of angle provides a more detailed This assumption is necessary to interpret aggregate trajectory
+picture, showing that atypical and typical trials deviate at features (e.g., angle or position) as representative of the tra-
+two points. First, shortly after the temporal midpoint, typ- jectories from which they are calculated, and may also be
+ical trajectories show an earlier increase in angle, implying required by the statistical tests recruited. This assumption
+a movement towards the chosen option. Second, before the is not met by our working example, as demonstrated in the
+end of the trial, atypical trajectories have more positive an- section The Bottom-Up Approach to Trajectory Types, im-
+gles than typical trajectories, suggesting that they still move plying that the temporal analyses should be interpreted with
+towards the chosen option, while typical trajectories are ar- caution. Second, modeling the time steps separately assumes
+riving or have already arrived at the response box of the cho- independence between time steps, which is unlikely to be the
+ff
+sen option. Despite the presence of two di erences in angles case for movement trajectories, thus introducing challenges
+rather than one in positions, both analyses suggest that there for statistical inference in the face of multiple testing. It has
+is a later choice commitment in atypical than in typical trials. been suggested that this issue can be addressed by consid-
+However, the same caveats about trajectory homogeneity and ering only a certain minimum number of consecutive signifi-
+aggregate trajectories apply. cant results (e.g., Dale et al., 2007). However, ultimately, the
+only appropriate approach to dealing with multiple testing is
+Modeling the Temporal Dynamics of Trajectories a joint statistical model 7 . Third, temporal analyses assume
+that the predictors are uncorrelated with absolute trial dura-
+A more sophisticated approach to temporal dynamics re-
+tion. This assumption arises from the use of time normaliza-
+lies on statistical models to evaluate the moderating role of
+ff
+tion, where trajectories of di erent durations are resampled
+one or more independent variables or covariates of the tem-
+to the same number of points. As a result, points at the same
+poral dynamics of trajectories. The standard way of doing
+this is to apply general linear models in a step-by-step fash-
+6Scherbaum and Dshemuchadse (2020) proposed that Gaussian
+ion, such that each time step is analyzed separately (Dale &
+mixtures could be used to additionally infer the duration, peak
+Duran, 2011; Scherbaum et al., 2010). With a single cat- ff ff
+strength, and peak duration of the e ect of di erent predictors on
+egorical predictor, this approach is equivalent to the basic
+the movement trajectory.
+approach comparing aggregate values per condition, which 7See Cox et al. (2012) for one proposal.
+MOVEMENT TRACKING OF PSYCHOLOGICAL PROCESSES
+ff
+Temporal dynamics across time steps. Panels A and B show the e ect of typicality on the trajectories’ x-axis positions (A) and
+angles relative to the vertical axis (B) across 101 time steps. Aggregate trajectories of typical (yellow) and atypical (blue)
+trials in the foreground are the arithmetic mean of the respective individual trajectories shown in the background. The line of
+ff
+asterisks at the top of each panel indicates regions where the average lines di er significantly from each other according to
+separate linear mixed models per time step and α .05. See text for details on statistical analyses.
+ff
+relative time may be at very di erent positions in absolute ship between response time and typicality, with typical trials
+time. This can be problematic when the goal is to derive (median 1, 519.5 ms) being, on average, much faster
+RT
+conclusions with respect to absolute time. Consider, for in- than atypical ones (median 2, 032.5 ms). However, a
+RT
+ff ff
+stance, the di erence between the aggregate trajectories of di erence in this direction, if anything, emphasizes the claim
+ff
+this di erence as an early commitment for typical as com- cal trials. The second option is to rerun the temporal analysis
+ff
+pared to atypical trials in absolute time, typical and atypical for di erent strata of the response time distribution in which
+trials must be roughly equal in their average response time. response times are comparable, to assess robustness. This
+panels show an earlier commitment to typical as compared
+There are ways for researchers to evaluate these assump-
+to atypical trials in all three strata, suggesting once more that
+tions. The assumption of spatial homogeneity can be evalu-
+the qualitative results of the analysis should hold in absolute
+ated using the approaches outlined in the section Assessing
+ff
+time. Notably, however, the magnitude and timing of e ects
+Trajectory Homogeneity. The assumption of stochastic inde-
+seem to vary somewhat across the strata. For small response
+pendence can be tested using conventional tests of statistical
+ff
+times, the e ect is smallest and seems to emerge at about
+dependence. Finally, the assumption of temporal consistency
+ff
+500 ms; for medium response times, the e ect is consider-
+can be evaluated in two ways. First, researchers can inspect
+ably larger and seems to emerge at about twice the absolute
+the distribution of absolute response times as a function of
+time (about 1,000 ms); and for large response times the ef-
+the predictor variables. When relationships exist, it is impor-
+fects seem largest, emerging again at about 1,000 ms. These
+tant to assess whether they are in conflict with the results ob-
+patterns can be traced back to the trajectory types uncovered
+in the section The Bottom-Up Approach to Trajectory Types.
+10A shows the distribution of response times in our working
+example as a function of typicality. There is a clear relation-
+WULFF, KIESLICH, HENNINGER, HASLBECK, AND SCHULTE-MECKLENBECK
+function of trajectory types, which shows that small absolute ) +
+response time trajectories are overwhelmingly straight and # Add aggregate x-positions
+curved, whereas the cCoM, dCoM, and dCoM2 types only mt_plot_aggregate(
+enter with larger response times, once again illustrating the mt_data, use = "tn_trajectories",
+importance of change-of-mind trajectory types. x = "steps", y = "xpos",
+color = "Condition",
+Analyzing the Temporal Evolution Using mousetrap size = 2,
+return_type = "geom"
+The mousetrap package provides functions to calculate
+and aggregate relevant trajectory features across time. The
+mt_angles function calculates angles between two-point
+# 3) Plot angles across time ------
+segments and the vertical axis, as well as angles at the cen-
+ter of three-point segments. The mt_derivatives function
+# Calculate angles across time
+calculates distances, velocities, and acceleration values. Fea-
+# for time-normalized trajectories
+tures are by default calculated for and added to the standard
+mt_data <- mt_angles(
+trajectory element. However, via the use argument they
+mt_data, use = "tn_trajectories")
+can also be calculated for and added to other trajectory ele-
+ments available in the mousetrap object. To aggregate trajec-
+# Plot individual angles
+tory features across time, the mt_aggregate function can be
+mt_plot(
+used. To visualize trajectory features across time, mt_plot
+mt_data, use = "tn_trajectories",
+and mt_plot_aggregate can be used to plot the temporal
+x = "steps", y = "angle_v",
+development for individual and aggregated trials per condi-
+alpha = .10, color = "Condition"
+tion respectively.
+) +
+The code below shows how to compute and visual-
+# Add aggregate angles
+ize trajectory features across time. The first chunk uses
+mt_plot_aggregate(
+mt_time_normalize to add time-normalized trajectories
+mt_data, use = "tn_trajectories",
+to the mousetrap object, which will be used in the
+x = "steps", y = "angle_v",
+steps that follow. The second chunk uses mt_plot and
+color = "Condition",
+mt_plot_aggregate to plot the individual and aggregated
+size = 2,
+return_type = "geom",
+addition. Setting use = "tn_trajectories" ensures the
+.funs = ~ mean(.x, na.rm = TRUE)
+plot is based on the time-normalized trajectories, whereas
+setting x = "step" and y = "xpos" ensures that time
+steps and x-position are placed on the x and y dimensions of
+Theoretical and Practical Considerations
+the plot. Setting color = "Condition" results in separate
+This tutorial has thus far focused on how an existing
+colors for trajectories belonging to typical and atypical trials.
+ff
+movement-tracking dataset can be analyzed in di erent ways
+Note that the addition of individual and aggregate visualiza-
+tions is enabled by the setting return_type = "geom" in to learn more about the underlying cognitive processes.
+mt_plot_aggregate. The third chunk uses mt_angles to However, there are important theoretical and practical issues
+that should be considered in the design stage of movement-
+compute angles for the time-normalized trajectories and then
+ff
+tracking studies, as they can have large e ects on the type of
+visualizes the angles in a fashion analogous to the approach
+8 data produced and their interpretation. In this section, we dis-
+used for x-positions .
+cuss two critical issues: the theoretical view on the mapping
+between movement trajectories and the role of study design
+# 1) Time-normalize trajectories ------
+choices.
+mt_data <- mt_time_normalize(mt_data)
+The Mapping Between Cognitive Process and Movement
+# 2) Plot x-positions across time ------
+The traditional perspective on movement tracking is that
+it is a continuous process of evidence accumulation that con-
+# Plot individual x-positions
+tinuously translates into movement. This view is clearly
+mt_plot(
+mt_data, use = "tn_trajectories",
+8In this case, a custom aggregation function is employed to deal
+x = "steps", y = "xpos",
+with the missing values arising from a lack of movement between
+alpha = .10, color = "Condition"
+some time stamps.
+MOVEMENT TRACKING OF PSYCHOLOGICAL PROCESSES
+Temporal dynamics in absolute response time. Panel A: Distribution of absolute response times of typical (yellow) and atypical
+ff ff
+(blue) trials in ms. Vertical dashed lines indicate the 1,500 ms and 2,500 ms cuto s used for panels B–D. Panels B–D: E ect
+of typicality on the trajectories’ x-axis positions across absolute time for trials with absolute response of 0–1,500 ms (B),
+1,501–2,500 ms (C), and 2,501–5,000 ms (D). Panel E: Distribution of response times as a function of trajectory type (see
+> =
+= =
+change of mind; dCoM discrete change of mind; dCoM2 discrete double change of mind.
+embodied by extant computational accounts of movement- late into features of the movement, such as its current angle
+tracking processes such as attractor models (Frisch et al., (Wong et al., 2015) or location (Spivey et al., 2005), in an im-
+2015; Scherbaum et al., 2016; Spivey et al., 2005; Zgonnikov mediate and continuous fashion. However, although attractor
+ff ff
+et al., 2017) and drift–di usion models (Calluso et al., 2018; and drift–di usion models today are widely adopted as plau-
+Wong et al., 2015). According to these models, a latent sible models of human decision processes (Busemeyer et al.,
+preference for the available option evolves until either a sta- 2019; Gold & Shadlen, 2007), it is not clear whether these or
+ff
+ble (attractor models) or an extreme enough (drift–di usion other processes translate uninterruptedly into movement.
+models) point of preference for one of the options is reached.
+The alternative perspective to the continuous-link view
+This ongoing evolution of preference is thought to trans-
+is that cognitive processes and movements are linked in a
+WULFF, KIESLICH, HENNINGER, HASLBECK, AND SCHULTE-MECKLENBECK
+straight curved cCoM dCoM dCoM2
+0 25 50 75 100 0 25 50 75 100 0 25 50 75 100 0 25 50 75 100 0 25 50 75 100
+Time step
+yticolev
+egarevA
+straight curved cCoM dCoM dCoM2
+0.01
+0.00
+−0.01
+0 25 50 75 100 0 25 50 75 100 0 25 50 75 100 0 25 50 75 100 0 25 50 75 100
+Time step
+noitarelecca
+egarevA
+Velocity and acceleration profiles of trajectory types. The two panels show, respectively, the average velocity and acceleration
+in pixels per time step of trajectories assigned to our five prototypes. To better align the temporal development of trajectories
+and reduce noise, initiation times and idle times immediately preceding choice were cropped from the raw trajectories before
+velocity and acceleration were computed. Velocity and acceleration were then time-normalized and smoothed across time
+= = =
+steps using a Gaussian filter. cCoM continuous change of mind; dCoM discrete change of mind; dCoM2 discrete double
+change of mind.
+more intermittent fashion (Friedman et al., 2013). Support tory types, with the exception of straight trajectories. These
+for this position comes from research on motor control in dips reflect pauses in the movement, possibly as a result of
+basic reaching tasks. According to the predominant view in the cognitive process controlling and re-orienting the move-
+this field, reaching consists of multiple submovements, usu- ment at the these points. This suggests that all trajectories,
+ally involving at least two stages: an initial preplanned, fast, not only discrete trajectories, have been produced by a small
+ballistic movement that gets the limb into the target area and number of intermittently controlled submovements.
+a smaller and slower corrective movement (Battaglia-Mayer An intermittent link between the cognitive process and
+et al., 2014; Elliott et al., 2010). Similar proposals have been movement would have important implications for the inter-
+made in research on human–computer interaction (Martin et pretation of movement trajectories. Consider, for instance,
+al., 2021). If basic reaching movements are controlled inter- the dCoM trajectory type. Under the traditional, continuous-
+mittently, then this might also hold for reaching movements link view, this trajectory type suggests a discrete decision
+that are the product of higher-order cognitive processes. process that first strongly prefers the alternative option until it
+almost reaches the threshold for a decision, before reversing
+Recent movement-tracking studies have reported evidence
+completely to a strong preference for the eventually chosen
+clearly favoring the intermittent view for at least a subset
+option. Under an intermittent-link view, the decisions pro-
+of trajectories (Freeman, 2014; Friedman et al., 2013; Kies-
+cess could still evolve gradually, with distinct points in the
+ff
+lich et al., 2020; Tomlinson et al., 2013; Wul et al., 2019).
+decision process triggering ballistic submovements. How-
+These studies have observed trajectories involving abrupt di-
+ever, it is not known which points of the process triggered
+rectional changes similar to those embodied by the discrete
+the submovements, only that there must have been preference
+change-of-mind trajectories (dCoM and dCoM2) revealed in
+states consistent with their direction.
+the clustering analyses in the section The Bottom-Up Ap-
+It is also possible that the cognitive process itself is, at
+proach to Trajectory Types. It seems probable that, at the
+some level, discrete in nature, or at least can be described
+very least, these trajectories are the product of large, separate
+submovements. This possibility is underpinned by an analy-
+9For better alignment, any initiation and idle periods before
+choice have been removed from the underlying trajectories. Note
+that due to the reliance on time-normalized trajectories, dips may
+ff
+acceleration profiles for the discrete and nondiscrete trajec- occur at di erent positions in absolute time.
+MOVEMENT TRACKING OF PSYCHOLOGICAL PROCESSES
+ff
+as such. Many models of cognition assume an inherently e ects being associated with lower homogeneity and small
+ff
+discrete process incorporating, for instance, serial memory e ects with higher homogeneity. This has, for instance, been
+ff ff
+search (e.g., Raaijmakers & Shi rin, 1981; Wul et al., shown for click versus hover response modes (Grage et al.,
+2020), serial information acquisition (e.g., Krajbich et al., 2019; Kieslich et al., 2020), mouse as compared to touch-
+ff
+2012; Pachur et al., 2018; Wul et al., 2018), or lexico- screen as recording device (Wirth et al., 2020), and for in-
+graphic decision rules (e.g., Hertwig et al., 2019; Johnson structing participants to initialize their movements within a
+et al., 2008; S¸ ims¸ek, 2020). Such discrete processes would specific time limit as compared to no specific instructions
+produce discrete movements, even if the link between pro- about movement initialization (Kieslich et al., 2020). How-
+cess and movement were a continuous one. ever, this relationship has not been shown for all design as-
+ff
+We hope that future research will clarify the nature of cog- pects. For example, di erent settings of device sensitivity
+ff
+nitive processes and their link to movement trajectories. One only a ected homogeneity but not the magnitude of experi-
+ff
+possibility to consider in this enterprise is that the process mental e ects (Grage et al., 2019; Kieslich et al., 2020).
+and the link between process and movement vary as a func- The strong role of study design could have impor-
+tion of the study subject and design. Research on movement tant implications for designing and interpreting movement-
+ff
+tracking has identified several dimensions of study design trajectory studies. The strong e ect on homogeneity suggests
+ff
+that critically impact the types trajectories produced. We re- that design choices could a ect the link between cognitive
+view these results next. process and movement trajectory, with designs associated
+with homogeneous trajectories possibly triggering a more
+The Role of Study Design continuous link and designs associated with heterogeneous
+trajectories possibly triggering a more intermittent link. The
+Designing movement-tracking studies involves several ff
+negative association of the magnitude of experimental e ects
+key choices, including selecting and setting up a recording
+and trajectory homogeneity further suggests that settings in
+device and selecting the starting procedure, layout, and re-
+line with a continuous-link view do not necessarily result in
+sponse mode used in trials of the study. Past work has shown
+better signals of the underlying process. More than anything
+that these choices play a critical role in shaping the move-
+else, this suggests that the usefulness of movement tracking
+ment trajectories recorded (Blinch et al., 2018; Burk et al.,
+is not dependent on subscribing to the traditional perspective
+2014; Grage et al., 2019; Kieslich et al., 2020; Scherbaum
+of a continuous link between cognitive process and move-
+& Kieslich, 2018; Schoemann et al., 2019; Schoemann et
+ment. However, it is important to note that the understanding
+of the role of study design aspects is still limited and more
+of movement-tracking design aspects and empirical findings.
+research is needed to investigate the many combinations of
+These findings mainly concern the magnitude of the exper-
+study design choices.
+ff ff
+imental e ects, such as the e ect of typicality on trajectory
+curvature in our working example, and the homogeneity of
+Summary and Recommendations
+movement trajectories which show notable, albeit sometimes
+Movement tracking is a relatively young methodology,
+inconsistent dependencies with design aspects. These depen-
+with both practical and theoretical questions yet to be set-
+dencies are important as they can determine the magnitude of
+tled. Even so, the literature has made considerable progress
+ff
+experimental e ects, the suitability of analysis pathways, and
+in establishing movement tracking as a useful tool for study-
+potentially even the cognitive process. However, we should
+ing cognitive processes. In this final section, we summarize
+note that across the existing investigations the choice of de-
+several key takeaways and derive concrete recommendations
+sign aspects has hardly impacted the presence or absence of
+to help researchers make the best possible use of movement
+ff
+e ects of interest, pointing to the robustness of the movement
+tracking as a means to studying psychological processes.
+tracking methodology.
+The reported results of design factor investigations sug-
+Implementation
+gest, among other findings, that larger rather than smaller dis-
+tances between start and response options and a click rather Study setup. The experimental setup of movement-
+than a hover response mode produce larger experimental ef- tracking studies impacts the magnitude of experimental ef-
+fects. The use of robotic handles and camera-based tracking fects and trajectory homogeneity, which have been found to
+devices rather than other tracking devices, dynamic rather be inversely related for many design aspects. Larger exper-
+ff
+than static starting procedures, and touch rather than click re- imental e ects but also fewer homogeneous trajectories are
+sponse modes tend to produce larger trajectory homogeneity. associated with click rather than hover response modes and
+ff
+data of Kieslich et al. (2020). One emergent pattern of these a specific time window. The setup of a movement-tracking
+ff
+findings is that the magnitude of experimental e ects and tra- study should ultimately be chosen with the theoretical back-
+jectory homogeneity tend to be inversely related, with large ground and the planned analyses in mind. Higher temporal
+WULFF, KIESLICH, HENNINGER, HASLBECK, AND SCHULTE-MECKLENBECK
+Summary of Selected Design Aspects of Movement-Tracking Studies and Findings Concerning Their Role in Shaping Move-
+ment Trajectories
+Aspect Option Description Findings
+ff
+Recording Computer Standard computer mouse (e.g., Spivey Larger experimental e ects for trajectory curvature,
+device mouse et al., 2005) as well as a higher degree of responsiveness (i.e.,
+Touchscreen Touchscreens of, e.g., tablets, operated faster redirection of movements in response to
+using a finger (e.g., Wirth et al., 2016) changes in target location), for camera-based as
+or stylus (e.g., Buc Calderon et al., compared to mouse and touchscreen tracking
+2015) (Moher & Song, 2019). Smaller experimental
+ff ff
+Wiimote Handheld infrared pointing device e ects for curvature, larger e ects for movement
+(e.g., Dale et al., 2008) initiation time, and higher trajectory homogeneity
+Camera Electromagnetic tracking system (e.g., for touchscreen as compared to mouse tracking
+Friedman et al., 2013) (Wirth et al., 2020).
+Robotic Handle in apparatus that restricts
+handle movement to the 2D plane (e.g., Resu-
+laj et al., 2009)
+ff
+Device sen- Speed Ratio of translation between the phys- No change in experimental e ects for trajectory
+sitivity ical movement and the virtual move- indices, but fewer discrete change-of-mind
+ment recorded by the software trajectories for less sensitive as compared to more
+Acceleration Linear or accelerated translation ratio sensitive mouse settings (Grage et al., 2019;
+Kieslich et al., 2020).
+ff
+Starting Static Clicking on the start button triggers Larger experimental e ect on trajectory indices, but
+procedure presentation of the choice-critical in- lower trajectory homogeneity under timed as
+formation (e.g., Dale et al., 2007) compared to static procedures (Kieslich et al.,
+ff ff
+Timed Static procedure with time limits on 2020). No di erences in experimental e ects, but
+movement initiation and or overall re- more curved trajectories in dynamic as compared to
+sponse time (e.g., Papesh & Goldinger, static procedures (Kieslich et al., 2020). Larger
+ff
+2012) e ects in temporal analyses and higher trajectory
+Dynamic Passing a movement threshold trig- homogeneity for dynamic compared to static
+gers presentation of the choice-critical procedure (Scherbaum & Kieslich, 2018;
+information (e.g., Scherbaum et al., Schoemann et al., 2019). Larger experimental
+ff
+2010) e ects on trajectory curvature in static as compared
+to dynamic procedures (Wirth et al., 2020).
+ff
+Layout Button size Size of the response buttons Larger experimental e ects on trajectory curvature
+Start–response Distance between start position and re- for larger distances between start and response
+ff
+box distance sponse boxes boxes, but no change in experimental e ects for
+Response box Distance between response boxes distance between response boxes or the size of the
+distance response buttons (Wirth et al., 2020). Fewer
+change-of-mind trajectories for larger distances
+between response boxes (Burk et al., 2014).
+ff
+Response Click Clicking within a designated response Larger experimental e ects on trajectory indices and
+mode box or area indicates the choice in temporal analyses, but also less homogeneous
+Hover Moving within a designated response trajectories for click as compared to hover response
+box or area indicates the choice mode (Grage et al., 2019; Kieslich et al., 2020).
+MOVEMENT TRACKING OF PSYCHOLOGICAL PROCESSES
+ined in Kieslich et al. (2020). Panel A: Trajectories for four implementations of the starting procedure. Panel B: Comparison
+of the click and the touch response mode. Panel C: Two common device-sensitivity settings, the default Windows settings
+(medium speed and acceleration enabled) or a slow setting (reduced speed and acceleration disabled).
+resolution of the cognitive process in the movement trajec- resampling by carrying out the analysis using the raw data.
+tory might be achieved by designs associated with homoge- mousetrap facilitates this by storing resampled trajectories as
+ff
+neous trajectories. Conversely, larger e ects and likely richer new elements, retaining the raw data.
+behavioral outcomes, including one or multiple changes of
+mind, might be achieved by designs associated with hetero- Analysis
+geneous trajectories.
+Analysis pathway. There are three main analysis path-
+ways, focusing on trajectory indices, on the trajectories’ tem-
+Processing
+poral evolution, and on trajectory types. The choice between
+Filtering. Movement tracking produces data that can ben- these should be motivated by the theoretical questions and
+efit from filtering. Theoretically, filtering seeks to remove should match the distribution of trajectories at hand. Analy-
+trajectories that do not reflect the intended cognitive pro- ses of trajectory indices and, in particular, temporal analyses,
+cesses (e.g., decision errors or lack of attention). Trajectory are based on the assumption of homogeneous trajectories.
+filtering should be kept to a minimum and avoided wherever Type-based analyses are best suited for heterogeneous trajec-
+possible; in any case, trajectory cleaning must be explicitly tories. Trajectory homogeneity should always be assessed,
+documented. ideally using visualizations of individual, unprocessed tra-
+Spatial transformations. Mapping trajectories to a single jectories.
+side as well as starting point alignment are common and un- Trajectory indices. Trajectory indices characterize tra-
+controversial steps during trajectory processing. Transfor- jectories along three main dimensions: curvature, complex-
+mations that stretch or compress trajectories or change their ity, and time. Curvature indices characterize how strongly
+original coordinate system should be avoided, unless the aim a trajectory is bent towards the nonchosen option, and can
+is to render trajectories comparable across study setups. be distinguished into point-based and integrative variants.
+Resampling. Trajectory resampling is a common, but Correlations among trajectory indices are usually extremely
+not always necessary or inconsequential, processing step. high (r ∼ .9), implying that the choice of curvature in-
+Resampling choices should be made with the analysis in dex might be motivated by ease of interpretation, which fa-
+mind. Time normalization facilitates temporal analyses such vors MAD and AD. Complexity indices characterize a tra-
+as step-by-step trajectory regression. Length normalization jectory’s level of disorder. Flips, reversals, and sample en-
+is suitable for type-based analyses such as clustering. Wher- tropy capture the number, locations, and unpredictability of
+ff
+ever possible researchers should test for unexpected e ects of directional changes, respectively. Correlations among com-
+WULFF, KIESLICH, HENNINGER, HASLBECK, AND SCHULTE-MECKLENBECK
+plexity indices are high (r ∼ .5), yet small enough to cap- sights into their own research questions and advance move-
+ture unique information. Temporal indices characterize the ment tracking as a process-tracing technology.
+temporal aspects of the trajectory by decomposing the total
+Declarations
+response time. Initiation time measures the duration until
+movement initiation, whereas motor pauses and movement
+Open practices
+time measure the still and active parts after initiation. Mo-
+tor pauses and movement time are highly similar to response The data and code associated with this article are publicly
+time (r ∼ .78), but may capture unique nuances. Initia- available via the package itself and the package web page at
+tion time, however, is largely uncorrelated and could capture pascalkieslich.github.io mousetrap-resources.
+unique psychological aspects. All three types of trajectory

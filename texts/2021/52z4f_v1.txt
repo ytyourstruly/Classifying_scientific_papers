@@ -1,0 +1,661 @@
+Interactions within the social brain: Co-activation and connectivity
+among networks enabling empathy and Theory of Mind
+Lara Z. Maliskea*, Matthias Schurzb,c,d, Philipp Kanskea,e
+Clinical Psychology and Behavioral Neuroscience, Faculty of Psychology, Technische
+Universität Dresden, Chemnitzer Straße 46, 01187 Dresden, Germany
+Institute of Psychology and Digital Science Center, University of Innsbruck, Innrain 52,
+6020 Innsbruck, Innsbruck, Austria
+Donders Institute for Brain, Cognition, & Behaviour, Radboud University, Heyendaalseweg
+135, 6525 Nijmegen, Netherlands
+Wellcome Centre for Integrative Neuroimaging, Department of Experimental Psychology,
+University of Oxford, 13 Mansifield Road, Oxford OX1 3SR, United Kingdom
+Max Planck Institute for Human Cognitive and Brain Sciences, Stephanstraße 1a, 04103
+Leipzig, Germany
+*Corresponding author.
+Abstract
+While empathy and Theory of Mind (ToM) have classically been studied as separate social
+functions, recent advances demonstrate the need to investigate the two in interaction:
+Naturalistic settings often blur the distinction of affect and cognition and demand the
+simultaneous processing of such different stimulus dimensions. Here, we investigate how
+empathy and ToM related brain networks interact in contexts wherein multiple cognitive and
+affective demands must be processed simultaneously. Building on the findings of a recent
+meta-analysis and hierarchical clustering analysis, we perform meta-analytic connectivity
+modeling to determine patterns of task-context specific network changes. We analyze 140
+studies including classical empathy and ToM tasks, as well as complex social tasks. For
+studies at the intersection of empathy and ToM, neural co-activation patterns included areas
+typically associated with both empathy and ToM. Network integration is discussed as a means
+of combining mechanisms across unique behavioral domains. Such integration may enable
+adaptive behavior in complex, naturalistic social settings that require simultaneous processing
+of a multitude of different affective and cognitive information.
+Key words: social cognition, fmri, meta-analysis, functional connectivity, co-activation
+1. Introduction
+Successfully navigating everyday social interactions requires the ability to flexibly adapt to
+constantly changing environmental demands. This ability is greatly benefitted by an
+understanding of others’ overt behaviors, but also of the motives underlying their behavior,
+that is, others’ affective and cognitive states. Over the past 20 years of neuroimaging research,
+processes enabling us to smoothly navigate these social encounters have been extensively
+studied and gained more and more popularity. Especially the constructs of empathy and
+Theory of Mind (ToM) have attracted attention as key processes enabling social interactions.
+Empathy describes an affective representation of others’ emotions (Gallese, 2003; Titchener,
+1909), that is, the ability to share others’ emotional states, while being aware that others are
+the source of those emotions (de Vignemont and Singer, 2006). ToM, on the other hand,
+describes a cognitive representation of others’ mental states (Adolphs, 2009; Kanske, 2018),
+reasoning about and inferring others’ thoughts, beliefs, or emotions (Frith and Frith, 2005;
+Mitchell et al., 2005; Premack and Woodruff, 1978).
+At the neural level, empathy and ToM are commonly associated with two distinct brain
+networks. Areas associated with ToM fall into bilateral temporo-parietal and anterior
+temporal cortex, medial prefrontal cortex, posterior cingulate cortex (PCC), and precuneus
+(Amodio and Frith, 2006; Frith and Frith, 2006; Mitchell, 2009; Schurz et al., 2014), areas
+largely overlapping with the so-called Default Mode Network (DMN, see Raichle et al., 2001;
+for an overlap of social affect and cognition networks with canonical resting-state network
+parcellations, see Schurz et al., 2020). The DMN is assumed to mediate self-generated
+cognition which is decoupled from the physical world (Andrews‐Hanna et al., 2014), a
+necessary function for a wide range of ToM tasks (Buckner and Carroll, 2007; Bzdok et al.,
+2013; Frith and Frith, 2003; Lieberman, 2006; Mars et al., 2012a). As for empathy,
+activations are typically observed in bilateral anterior insular cortex, inferior frontal gyri
+(IFG), midcingulate cortex, supramarginal gyrus, as well as somatosensory cortex (Bzdok et
+al., 2012; Decety and Jackson, 2004; Kanske et al., 2015; Lamm et al., 2011). These areas
+largely overlap with the Ventral Attention (VAN) or Salience Network (Menon and Uddin,
+2010; Schurz et al., 2020; Yeo et al., 2011), which has been associated with detecting
+behaviorally salient stimuli and directing neural resources towards their processing. Using
+prototypical tasks, empathy and ToM have been shown to be unrelated, both at the behavioral
+and task-related neural level (Dziobek et al., 2006; Kanske et al., 2015; Rice et al., 2016;
+Shamay-Tsoory et al., 2009; Shamay-Tsoory and Aharon-Peretz, 2007): Kanske and
+colleagues (2016), for example, used Principal Component Analysis to show that behavioral
+measures and task-related neural activation of empathy and ToM are organized into clearly
+distinguishable, uncorrelated composites. This separability holds true not only in terms of
+social task-related behavioral measures and neural activity, but also for other, non-social task
+contexts and in terms of task-free brain organization. Networks associated with empathy
+(VAN) and ToM (DMN) have been found to be unrelated (Alcalá-López et al., 2018) and
+even anti-correlated in certain task-contexts and during rest (Bzdok et al., 2013; Chai et al.,
+2012; Fox et al., 2005; Trautwein et al., 2016; Zhou et al., 2018).
+In contrast to this notion of independence, there is a considerable number of social affect and
+cognition studies yielding neural activation patterns that overlap with both, networks related
+to empathy and ToM, such as the VAN and DMN (for a review, see Schurz et al., 2020). For
+example, as part of a meta-analysis on neural networks of empathy for pain, Lamm and
+colleagues (2011) found not only engagement of the typical empathy network, but also of
+brain regions involved in ToM. The precuneus, ventral medial prefrontal cortex, medial and
+superior temporal gyrus, temporo-parietal junction (TPJ), and temporal pole were activated in
+a sub-set of studies wherein participants had to infer upcoming nociceptive stimulation from
+simple cues, rather than being shown the painful stimulation directly.
+To further explore the relationship between empathy and ToM, we took an approach that went
+beyond a simple “semantic differentiation” between empathy and ToM and used a data-driven
+approach to distinguish between both constructs (Schurz et al., 2021). We identified 11 types
+of social tasks from the neuroscientific literature on empathy and ToM, covering a wide range
+of different stimuli and instructions. We then performed a meta-analysis and subsequent
+hierarchical clustering analysis (Schurz et al., 2021) to address the separability of these
+functions at the task- and overarching process-level. Interestingly, next to the two well-known
+and clearly separable empathy and ToM related networks described above, we also observed
+task-related neural activation falling into a third category. This category comprised tasks that
+contained both, affective and cognitive stimulus elements (e.g., reasoning about a character’s
+next actions based on their emotions, see Kim et al., 2010; Sebastian et al., 2012; Völlm et al.,
+2006). At the neural level, activations associated with these tasks fell in areas typically
+Our previous meta-analysis has identified studies that concurrently engaged empathy and
+ToM networks (termed the “intermediate cluster”). However, our findings were based on
+averaging of activation patterns across different studies and not on measuring co-activation
+among areas. That is, the meta-analysis might yield conjoint activation of empathy and ToM
+areas when averaging across multiple studies, that may, however, not reflect systematic co-
+activation of these regions in individual studies. While the results of our previous meta-
+analysis yielded a comprehensive hierarchical model of how social affect and cognition is
+organized in the brain, questions regarding the nature of this neural organization remain
+unanswered: does the concurrent activation of regions associated with empathy and ToM in
+the intermediate cluster actually reflect cross-network interaction? And if so: how do these
+networks interact and what probes cross-network interactions? To address these issues, we
+here use meta-analytic connectivity modeling (MACM, Robinson et al., 2009; see also
+Friston, 1994; Koski and Paus, 2000) to estimate how empathy and ToM networks are
+functionally coupled, using the studies included in our previous meta-analysis (Schurz et al.,
+2021). Co-activation maps as identified using MACM correspond well with functional
+networks identified using resting-state functional connectivity (Kerestes et al., 2017;
+Robinson et al., 2012, 2009) and can be seen as a measure of functional coupling of different
+regions. During cognitive tasks, both MACM (Van Overwalle et al., 2015) and functional
+connectivity mapping (Krienen et al., 2014; Smith et al., 2016) show that functional networks
+systematically differ depending on the cognitive state elicited by stimuli and instructions.
+We aim to investigate differing patterns of co-activation in social affect and cognition tasks to
+address our overarching question of the nature of context-dependent social network
+interaction. Using MACM, we want to probe situation-specific neural network configuration
+for tasks in which classical empathy and ToM networks are conjointly activated, integrating
+both processes: How do empathy and ToM networks interact in tasks that require conjoint
+processing of affective and cognitive information? We follow up on previously observed co-
+activation patterns (Schurz et al., 2021) by first identifying common regions of activation
+across all sub-domains of social affect and cognition. We then identify studies that show
+activation at the corresponding region of interest (ROI) and perform MACM on these studies.
+Lastly, we compare observed co-activation patterns with other meta-analytical and functional
+connectivity patterns.
+2. Methods
+We employed a modified version of MACM (see Robinson et al., 2009) similar to Van
+Overwalle, D’aes, and Mariën (2015) to determine patterns of co-activation across social
+affect and cognition dimensions. More precisely, in order to investigate specific patterns of
+co-activation within the realm of empathy and ToM paradigms, we used the assorted task
+groups from our previous meta-analysis (Schurz et al., 2021) as input into a MACM analysis.
+In the following, we will describe the study selection and clustering of social affect and
+cognition tasks that is based on our previous meta-analysis, the methods of ROI selection,
+implementation of MACM as well as additional analyses to further characterize the co-
+activation patterns.
+2.1 Hierarchical model of social cognition: a meta-analysis and hierarchical clustering
+As the current study is based on the sample and clustering approach from our previous meta-
+analysis (Schurz et al., 2021), we will briefly describe methods relevant to this study here.
+2.1.1 Literature Search
+For a complete description of search strategy and inclusion criteria, we refer the interested
+reader to our previous meta-analysis (Schurz et al., 2021). In short, we performed literature
+searches in common databases (PubMed, ISI Web of Science core collection) and included
+literature published up until November 2019. We identified studies using a combination of the
+following search terms: neuroimaging or fmri or PET AND empathy or empathetic or
+altruism or sympathy or emotional contagion or compassion (to represent studies in a broad
+empathy category) as well as neuroimaging or fmri or PET AND theory of mind or
+mentalizing or mindreading (to represent studies in a broad ToM category). Additionally,
+studies fulfilled selection criteria as required for coordinate-based meta-analysis (see e.g.,
+Radua et al., 2012): reported coordinates had to correspond to standard space (MNI or
+Talairach), stem from whole-brain analysis, and use a consistent threshold throughout the
+entire brain. Only data from non-clinical, adult samples were included. Using these criteria,
+we obtained 188 studies (85 from the empathy literature, 103 from the ToM literature) across
+11 more narrow task categories within the respective fields of research (for an overview of
+included task groups, see Schurz et al., 2021, or supplementary tables S2 and S3).
+2.1.2 Meta-analysis method and hierarchical clustering
+For a detailed description of meta-analysis method and method of hierarchical clustering, we
+refer the reader to our previous meta-analysis (Schurz et al., 2021). In short, we performed
+effect-size based meta-analysis across 188 studies and 11 more narrow task-groups to receive
+task-group specific activation maps. We then applied agglomerative hierarchical clustering to
+the assorted task-group activation maps to identify a hierarchical structure of social affect and
+cognition task groups. While multiple levels of clustering solutions were compared (e.g., one
+cluster representing all studies within the database), the optimal solution regarding our
+concepts of interest was found at a three-cluster level. These represented a) classical ToM
+tasks (“cognitive” task cluster, comprising False Belief, Trait Judgment, Strategic Games), b)
+classical empathy tasks (“affective” task cluster, comprising Observing Pain, Observing
+Emotions, Sharing Emotions or Pain, Reading the Mind in the Eyes), and c) tasks presenting
+affective and cognitive stimulus elements together (“intermediate” task cluster, comprising
+Evaluating Situated Emotions, Reasoning about Emotions, Rational Actions, Social
+Animations). Our initial database contained 57 studies from the cognitive, 58 studies from the
+analysis workflow.
+clustering, we identified 188 studies (103 Theory of Mind, 85 Empathy) to be included in the
+meta-analysis. (b) Meta-analysis across 11 task groups revealed distinct associated neural
+patterns, (c) best described by a hierarchical three cluster solution, comprising classical
+Theory of Mind tasks (cognitive), classical empathy tasks (affective), complex social tasks,
+that present affective and cognitive information in concert (intermediate). To identify how
+empathy and Theory of Mind networks interact during combined affective and cognitive
+information processing, we performed meta-analytic connectivity modeling (MACM) on
+selected studies from our initial meta-analytic sample. (d) We identified ROIs for the MACM
+analysis that showed activation across all tasks groups, allowing for a fine-grained
+differentiation between them in the course of the analysis, namely anterior cingulate cortex
+(ACC), posterior cingulate cortex (PCC), temporo-parietal junction (TPJ), and insula. (e) For
+each ROI, we determined studies within our sample that showed activation at the
+corresponding ROI and performed meta-analytic linear contrasts to determine activation
+patterns specific to each of the three overarching task group clusters (cognitive, affective,
+intermediate). (f) Finally, we compared the task-group wise activation patterns with other
+meta-analysis maps (using Neurosynth decoding), and determined their overlap with basic
+networks of the brain (Yeo et al., 2011), as well as task-free functional connectivity profiles
+of the corresponding ROI.
+In the following, we base our analysis on the sample obtained from the literature search
+described above and will retain the three-group clustering of studies to describe neural
+activation patterns associated with classical empathy and ToM tasks, as well as tasks
+presenting elements from both empathy and ToM subfields.
+2.2 Meta-analysis method, Region of Interest Definition, and Study Selection
+Arguably, ROI definition is the most important parameter to be set in any MACM analysis. In
+order to compare co-activation patterns between social affect and cognition task clusters, our
+ROIs should correspond to areas that show activation across all three task clusters. To identify
+areas that fulfill this criterion, we investigated common peaks of activation across all task
+groups in a meta-analysis across all 188 studies from our database (the one-cluster solution in
+our agglomerative hierarchical clustering, Schurz et al., 2021).
+To identify ROIs to be included in the further MACM analysis, activation peaks from our
+cross-task meta-analysis must fulfill the following additional criteria: they must ensure
+sufficient sample size to perform robust meta-analysis on and determine linear contrasts
+between task clusters (i.e., enough studies from each task cluster must show activation at the
+corresponding ROI, see e.g., Eickhoff et al., 2016), the ROI should lie within a network
+associated with social affect and cognition processes (to reduce the influence from processes
+secondary to our main research question, such as processing of visual or somatosensory
+information, see e.g., Schurz et al., 2020). Activation peaks were selected as ROIs for further
+analysis for which i) the ROI is located within a canonical neural network related to social
+affect and cognition processes (i.e., VAN, Frontoparietal Network, FPN, and DMN, see
+Schurz et al., 2020), and ii) at least 10 studies within each of the three task clusters show
+activation at the corresponding ROI (note that it is suggested to include at least 20
+experiments in a meta-analysis to obtain results of moderate effect size, see Eickhoff et al.,
+2016. For reasons of feasibility, we here decided on a more liberal sample size threshold for
+our ROI selection but remain cautious to draw conclusion from analyses wherein less than 20
+experiments per comparison group are included). To identify studies in our database that
+showed activation at the corresponding activation peaks, we calculated Euclidean distance
+from each reported coordinate from within our study database to each activation peak. Studies
+were deemed to show activation at the corresponding activation peak where Euclidean
+distance was smaller than 20 mm.
+In a final step, we then performed a meta-analysis across the studies we identified in the
+previous step for each ROI. We carried out effect-size based meta-analyses using the
+anisotropic effect-size based algorithm of the seed-based d mapping method (AES-SDM 5.15,
+to other widely used meta-analysis methods such as Activation-Likelihood Estimation
+(Eickhoff et al., 2016), SDM incorporates the effect sizes of reported activations into the
+analysis, allowing for a detailed description of the reported activation peaks from the
+literature. Based on studies’ t-values and reported sample sizes, effect size and variance maps
+are created for each study (Hedge’s g effect size measure, variance maps derived from
+reported effect size distribution). Statistical significance is determined by permutation tests
+randomizing the location of the voxels within a grey-matter mask (100 randomizations were
+performed). Results are reported in MNI space at a statistical threshold of p < 0.005
+uncorrected (voxel-level) and at a cluster threshold of 10 voxels, which has been found to
+optimally balance specificity and sensitivity equivalent to a corrected threshold of p < 0.05 in
+the original studies (Radua et al., 2012). To determine differences in co-activation patterns
+between our three task clusters, we calculated contrasts using SDM’s linear model function,
+which calculates the difference in effect size between meta-analyses while accounting for
+an overview of MACM analysis workflow).
+2.3 Analysis of overlap with resting-state functional connectivity atlas and other meta-
+analyses
+MACM approximates functional connectivity by looking at patterns of co-activation
+commonly observed for a specific ROI or set of ROIs (Robinson et al., 2009). Please note,
+however, that reported clusters of activation represent regions that are commonly observed to
+be activated in conjunction. We cannot, however, infer the underlying neuronal functional
+relationship between two areas, but rather infer functional relationship from common patterns
+of co-activations.
+Analogous to Yang and colleagues (2015), we furthermore compared our co-activation maps
+to maps of functional magnetic resonance imaging (fMRI) resting-state functional
+connectivity, as these provide ample information about the functional relationship between
+two spatially isolated neural regions (Cole et al., 2016; Passingham et al., 2002; Smith et al.,
+2009; Tavor et al., 2016). We obtained resting-state functional connectivity maps for each
+ROI as seed regions in a sample of 1000 subjects (for details of data collection, acquisition
+parameters, data preprocessing, and connectivity analysis, see Buckner et al., 2011; Choi et
+al., 2012; Yeo et al., 2011). Maps were obtained from the Neurosynth location tool (Yarkoni
+et al., 2011). In order to determine common activations between meta-analytic co-activation
+patterns, networks from a resting-state functional connectivity parcellation (Yeo et al., 2011),
+and corresponding patterns of fMRI seed-based functional connectivity, we used conjunction
+minimum analysis (see e.g., Nichols et al., 2005) as implemented in the image calculator
+wise overlap using a variant of the dice score: for each result map, we calculated the
+percentage of voxels that fell within different canonical resting-state networks (or seed-based
+functional connectivity maps). As our main interest lay in the overlap with specific parts of
+the functional connectivity atlas (namely the VAN, FPN, and DMN), we restricted our
+analysis of overlap to these three networks.
+We also compared our results with a set of automatically generated meta-analyses across a
+multitude of topics. This allowed us to discuss our results in the context of a wide range of
+processes (we restricted our analysis of overlap to social processes, as these are of particular
+interest to the present study). We used the decoding tool from the Neurosynth database
+(Yarkoni et al., 2011), accessed through the neuroimaging repository Neurovault.org
+(Gorgolewski et al., 2015). Here, we input un-thresholded co-activation maps per ROI and
+task group (cognitive, intermediate, affective). We display posterior probabilities of the
+decoding, which describe the similarity between our result maps and automatically generated
+meta-analyses for topics identified by text mining of literature databases (i.e., the probability
+of a term being reported when brain activation at a certain voxel is present). We also display
+only those topics with highest similarity (posterior probability). Furthermore, we discarded
+topics of little interest to this analysis (anatomical labels, such as insula), as well as language-
+related terms (such as word, sentence, or syntactic).
+3. Results
+We investigated meta-analytic findings of 188 social affect and cognition studies to identify
+ROIs commonly activated across a wide range of empathy and ToM tasks. We then
+performed MACM, in order to investigate patterns of network co-activation specific to sub-
+processes of social affect and cognition (more cognitive, more affective, or complex social
+tasks).
+We expected simultaneous processing of affective and cognitive stimuli (intermediate cluster)
+to be reflected in increased levels of cross-network interactions. Individual processing of
+either affective (affective cluster) or cognitive stimulus elements (cognitive cluster) should be
+reflected in co-activation patterns within the respective previously found empathy and ToM
+networks. Furthermore, at the network level (in terms of networks described by Yeo et al.,
+2011), we expected to find network configurations to resemble observed patterns from our
+previous work (Schurz et al., 2020).
+3.1 ROI Selection and study inclusion
+In the meta-analysis across all 188 studies in our database, we identified three broad clusters
+peaks). Using our criteria described above, we identified four ROIs as the basis of our
+following analysis, namely right anterior cingulate cortex (ACC, with coordinates in MNI
+space at 2, 36, 32), PCC (at 0, -36, 34), left TPJ (at -52, -60, 16), and left insula (at -46, 2, -
+10).
+they are divided among the different ROIs and task groups. Note that, since most studies
+within our database reported multiple regions of activation, studies could be included in the
+analysis for more than one ROI (e.g., one study might report activation in a False Belief task
+at the PCC and TPJ and would therefore be included in the meta-analyses for both our PCC
+and our TPJ ROI). Supplementary tables S2 and S3 give an overview of all studies included in
+the overall meta-analysis, as well as which studies were included in the MACM analysis.
+number of participants.
+ROI incl. studies participants cognitive intermediate affective
+ACC 50 1289 22 studies 16 studies 12 studies
+(502 participants) (502 participants) (362 participants)
+PCC 46 1115 18 studies 18 studies 10 studies
+(392 participants) (547 participants) (176 participants)
+TPJ 93 2177 36 studies 38 studies 19 studies
+(751 participants) (1054 participants) (372 participants)
+Insula 55 1211 12 studies 19 studies 24 studies
+(292 participants) (396 participants) (523 participants)
+Note. ROI: region of interest, ACC: anterior cingulate cortex, PCC: posterior cingulate cortex,
+TPJ: temporoparietal junction, cognitive: cognitive social task group, intermediate:
+intermediate social task group, affective: affective social task group.
+3.2 Task-group specific patterns of network re-configuration
+For each of our ROIs, we observed task-group specific network re-configurations. ROI-
+we will focus our discussion on the three most strongly co-activated regions per ROI and task-
+depth account of each ROI and task-group specific co-activation network), but still discuss
+overall patterns of network re-configurations.
+contrasts between task-group clusters (cognitive cluster in blue, intermediate cluster in green,
+affective cluster in red) reveal patterns of network co-activation overlapping to some extent
+but showing clearly discernable differences between task groups. Results are portrayed for the
+anterior cingulate cortex ROI (box ACC co-activations, top), posterior cingulate cortex ROI
+(box PCC co-activations), temporo-parietal junction ROI (box TPJ co-activations), as well as
+the insula ROI (box Insula co-activations, bottom).
+3.2.1 Cognitive Cluster
+Across our samples, studies within the cognitive task cluster exhibited similar patterns of co-
+activation. For our four ROIs, we observed strongest co-activation patterns for areas within
+the DMN. And while for some ROIs we observed significant co-activations with areas from
+networks other than the DMN, these were only sparse (e.g., subcortical areas within the PCC
+co-activation maps, areas that fall at the borders of VAN and DMN within the TPJ co-
+activation map). All ROI co-activation maps from the cognitive task groups displayed largest
+overlap with the DMN (with 71.6%, 69.4%, 62.8%, and 81.5% of activation for the cognitive
+co-activation maps lying within the DMN, for ACC, PCC, TPJ, and insula, respectively; see
+Besides clusters of co-activation at or approximately at the ROI itself, we observed clusters of
+highest co-activation in the precuneus (for TPJ and insula, we found coupling with the right
+precuneus; for the ACC, we observed coupling with the left precuneus), left middle temporal
+gyrus (within PCC and insula co-activation maps), angular gyrus (ACC, PCC, TPJ, and insula
+co-activation maps), and superior frontal gyrus (TPJ co-activation maps).
+3.2.2 Affective Cluster
+In terms of co-activation patterns for studies from our affective task cluster, we expected to
+observe a similarly homogeneous picture. However, we found co-activation patterns to be
+somewhat more complex. Overall, the co-activation maps from the affective task cluster for
+the ACC, TPJ, and insula ROIs displayed largest overlap with the VAN (39.6%, 33.2%, and
+36.8%), yet loadings on the FPN and DMN did not trail far behind. Interestingly, the co-
+activation map from the PCC ROI displayed a reversed picture, more similar to the patterns
+observed in the cognitive task clusters: Here, largest overlap for the co-activation map was
+observed in the DMN, FPN and VAN displayed similar loadings (see discussion section for
+possible explanation of this result pattern).
+We observed clusters of strongest co-activation in the insula (left insula within the PCC co-
+activation maps, right insula within the ACC and TPJ co-activation maps), left supramarginal
+gyrus (ACC co-activation map), left superior temporal gyrus (PCC co-activation map) and
+middle temporal gyrus (TPJ and insula co-activation maps), and left IFG (TPJ co-activation
+maps).
+3.2.3 Intermediate Cluster
+As expected, patterns of co-activations for studies from the intermediate cluster showed the
+most heterogeneous picture. For all four ROIs, the co-activation maps from the intermediate
+task cluster showed activation clusters lying within most of the seven resting state networks
+(except for the Limbic Network), as well as within subcortical regions. For all four ROI co-
+activation maps, the majority of activation fell within the DMN (42.8%, 47.2%, 41.6%, and
+56%, for ACC, PCC, TPJ, and insula, respectively), but we also observed considerable
+overlap with the VAN (16.2%, 13.3%, 17.8%, and 12.7%, for ACC, PCC, TPJ, and insula,
+respectively). Note, though, that in contrast to co-activations from the cognitive cluster,
+overall overlap was considerably smaller, and overlap with other canonical resting-state
+networks was not negligible.
+Clusters of highest co-activations were observed at the left middle temporal gyrus (ACC, TPJ,
+and insula co-activation maps), superior temporal gyrus (ACC and insula co-activation maps),
+paracingulate gyrus (ACC and PCC co-activation map), superior frontal gyrus (PCC and TPJ
+co-activation maps), left supramarginal gyrus (PCC co-activation map), and left IFG (TPJ co-
+activation map).
+3.2 Analysis of overlap with resting-state functional connectivity
+As we wanted to analyze the underlying neural functional relationship of our ROIs and their
+co-activation patterns, we compared co-activation maps with the respective seed-based
+functional connectivity maps of the ROIs. An interesting pattern emerged when looking at the
+ACC and PCC, a substantial amount of the co-activation map overlapped with the
+corresponding seed-based connectivity map (for ACC: overlap cognitive cluster 30.4%,
+intermediate cluster 44.2%, and affective cluster 30.6%; for PCC: for cognitive cluster 50.6%,
+for intermediate cluster 35.7%, and for affective cluster 47.1%). The opposite pattern was
+present for the overlap of TPJ and insula co-activation and corresponding seed-based
+connectivity maps: Here, only a maximum of 16% of a co-activation map overlapped with the
+corresponding functional connectivity map (for TPJ intermediate cluster 16.4%; for cognitive
+cluster 10.1%, for affective cluster 9%; for insula: cognitive cluster 3.3%, intermediate cluster
+9.1%, and affective cluster 15.2%). This points to a rather high level of network integration
+(that is to say, cross-network interaction); possible mechanisms and implications of these
+results will be explored in the discussion section.
+functional connectivity maps. (a-c) Overlap of task-group specific co-activation patterns with
+canonical resting-state networks associated with empathy and ToM, (d) as well as
+corresponding seed-based functional connectivity maps.
+3.3 Analysis of overlap with other meta-analyses
+Finally, we used Neurosynth decoding to characterize patterns of co-activation in terms of
+our ROIs and each task group. Interestingly, resulting topics overlapped substantially for the
+cognitive and intermediate cluster, while the affective cluster displayed a more independent
+topic-profile. For the cognitive and intermediate cluster, decoding showed mostly ToM-
+related terms, such as “theory mind”, “mentalizing”, “social cognition”, and “belief”.
+Furthermore, a high posterior probability for the term “social” was also decoded for cognitive
+and intermediate co-activation maps, while this association was not as strong for the affective
+cluster co-activation maps. Additionally, for the cognitive cluster, terms such as “self-
+referential” or “intentions” showed high posterior probabilities (terms also associated with the
+DMN). Decoding for the affective cluster revealed terms such as “pain” or “painful”,
+“valence”, “emotional”, as well as the clinical term “asd” (autism spectrum disorder). One
+term that showed similar posterior probabilities across task groups in most ROIs was the term
+“empathy”. Interestingly, decoding maps did not differ substantially between ROIs in terms of
+which topics were decoded. Only their association (the posterior probability) differed between
+task clusters (for terms that were associated with cognitive and intermediate cluster, all terms
+showed higher association with the cognitive cluster).
+decoding of un-thresholded task-group wise linear contrast maps for each ACC ROI (a), PCC
+ROI (b), TPJ ROI (c), and insula ROI (d). Displayed are posterior probabilities (pearson
+correlation coefficient) of terms associated with neural activation patterns. For illustrative
+purposes, we only included social terms (note that while asd is technically a clinical term, the
+diagnosis is closely linked to difficulties in relevant social domains and was therefore
+portrayed as well), that were associated with more than one task group to allow comparison
+between groups. We discarded anatomical or other non-social/ cognitive terms, as these were
+not as relevant to our analysis.
+4. Discussion
+In this meta-analysis, we investigated task-related patterns of cross-network interactions and
+re-configurations in two domains of social cognition (empathy, ToM). We evaluated whether
+patterns of co-activation would change, depending on the different tasks employed to measure
+each domain. Furthermore, we compared resultant domain-specific patterns of co-activation
+with basic (resting-state) networks of the brain and other existing meta-analyses. Our main
+hypothesis was that while empathy and ToM represent independent processes, some task
+characteristics require conjoint activation of both networks.
+Our previous analysis (Schurz et al., 2021) introduced a tripartite hierarchical model of social
+affect and cognition, including robust and data-driven evidence for co-activation of areas
+typically associated with empathy and ToM. This analysis did not, however, allow us to test
+whether the common activation of those networks arose from the simultaneous activation of
+both networks within one task, or whether an averaging of activation across multiple task-
+specific activation patterns drove these effects. Furthermore, our method of analysis did not
+allow for us to investigate how the social context modulated the emerging patterns of co-
+activations. Nonetheless, these findings pose the question how social processing is
+implemented within the brain when socio-affective and -cognitive demands are
+simultaneously present. Here, we followed up on this finding and show that for tasks
+presenting affective and cognitive stimulus elements in combination (intermediate task
+cluster), empathy and ToM networks are indeed engaged simultaneously (see e.g., Amodio
+and Frith, 2006; Bzdok et al., 2012; Fan et al., 2011; Frith and Frith, 2006; Lamm et al., 2011;
+Mitchell, 2009; Saxe and Kanwisher, 2003; Schurz et al., 2014).
+More specifically, across our four social affect and cognition ROIs, strongest co-activations
+were observed in the left middle temporal gyrus, superior temporal gyrus, left median
+cingulate/ paracingulate gyrus, superior frontal gyrus, left supramarginal gyrus, and left IFG,
+areas previously associated with both empathy and ToM networks (Schurz et al., 2021). Our
+findings of cross-network interaction are in line with a considerable number of social affect
+and cognition studies that report neural activation patterns distributed among a range of
+different networks related to empathy and ToM, such as the DMN and VAN (for a review, see
+Schurz et al., 2020). Co-activation of both empathy and ToM networks has been associated
+with more naturalistic social cognition (e.g, Harvey et al., 2013; Hildebrandt et al., 2021;
+Kanske et al., 2015; Reyes-Aguilar et al., 2017; Tholen et al., 2020; Zaki et al., 2009) and
+everyday social interactions (e.g., Deuse et al., 2016; Schilbach et al., 2013, 2008; Wolf et al.,
+2010). It could be argued that cross-network interactions might represent one process enabling
+or inhibiting the other (in the sense that, e.g., sharing another’s emotion might facilitate taking
+their perspective, in the case of positive coupling of empathy and ToM networks). In line with
+this notion, Kanske and colleagues (2016) observed inhibitory cross-network interaction from
+nodes of the FPN onto DMN, a pattern that became even more pronounced in highly
+emotional situations, which could represent processing of affective stimulus elements (i.e.,
+empathizing with the demonstrator) being prioritized over processing of cognitive stimulus
+elements (i.e., mentalizing). They suggest that a down-regulation of the DMN might represent
+re-orienting of attentional resources towards salient aspects of a social situation that require
+the most immediate action (Menon and Uddin, 2010). On the other hand, positive coupling
+(excitatory influence from one network onto another) has been observed in response to
+increased task complexity (Shine et al., 2016) or when information from different sources
+must be integrated for successful task performance (see e.g., Schuwerk et al., 2017). A pattern
+of positive coupling between empathy and ToM networks is commonly seen, for example, in
+studies wherein participants must infer a character’s beliefs or intentions based on linguistic
+information (Tettamanti et al., 2017; van Ackeren et al., 2016) or another’s actions
+(Ciaramidaro et al., 2014; Schippers et al., 2010, 2009; Sperduti et al., 2014; Spunt and
+Lieberman, 2012a; Thioux et al., 2018). This example of informational integration (e.g.,
+participants must integrate information about another’s actions in order to infer their mental
+state) is a potentially relevant process for multiple studies from our intermediate task group,
+and also a common pattern of co-activation that we observed for our intermediate task group.
+For example, the co-activation map for our insula ROI (located in the VAN) presents strong
+coupling with the superior temporal gyrus, superior frontal gyrus, middle temporal gyrus, and
+IFG, areas located within the DMN. Similarly, for the TPJ ROI co-activation pattern (located
+in the DMN), we observed strong coupling with the left insula located in the VAN.
+4.1 What are the task characteristics requiring cross-network interaction?
+Our analysis of co-activation on the basis of activation peaks does not allow for a comparison
+of directed connectivity as is discussed above, however our results show that in tasks from the
+intermediate cluster especially, informational exchange between nodes of the DMN and the
+Control Networks (as VAN, FPN, and DAN are sometimes referred to, see Cole et al., 2014;
+Dosenbach et al., 2008) seems to be especially relevant. Rich, naturalistic social cognition and
+social interaction tasks (Schilbach et al., 2008; Zaki et al., 2009) require simultaneous
+processing of a multitude of different information, blocking out those that are irrelevant to the
+task at hand and integrating those functions that are required to be performed conjointly (see
+e.g., Anticevic et al., 2012; Goulden et al., 2014; Trautwein et al., 2016; Vatansever et al.,
+2015; Wen et al., 2013). Our tasks included in the intermediate task cluster paint a rather
+heterogeneous picture in terms of task characteristics. However, most tasks gave participants
+contextual information about the content of the task, portray social interactions (dynamically
+using videos, statically using written text) with human or abstract non-human demonstrators
+(e.g., a comic character, anthropomorphic geometric forms), and required participants to
+reason about and/or report their own or an observed other’s state of mind (emotional,
+cognitive).
+In contrast to classical ToM tasks, for example in tasks from the intermediate cluster,
+participants are presented with both cognitive and affective information simultaneously.
+Inference of mental states is supported by giving the participants information about the
+context of a social situation, for example through narrations. Similar to our results presented
+here, this intricate pattern of cross-network interactions between “social cognition networks”
+has been shown in studies wherein participants were asked to infer mental states from
+linguistic information (such as mutterings, see Tettamanti et al., 2017; van Ackeren et al.,
+2016), from actions (see e.g., Ciaramidaro et al., 2014; Spunt and Lieberman, 2012b; Thioux
+et al., 2018), or in socially-guided attentional reorienting (Schuwerk et al., 2017; for a
+comprehensive review of cross-network connectivity in the context of social affect and
+cognition, see also Schurz et al., 2020). This aspect of informational integration for tasks from
+the intermediate cluster is also very pronounced in the comparison of our results with other
+meta-analyses (Neurosynth decoding). The decoding patterns for co-activation maps from the
+intermediate and cognitive task group appear to be quite similar for the social terms, but the
+decoding patterns for non-social terms for the intermediate (and affective) task group were
+much more diverse than portrayed above. Next to anatomical, we also found a multitude of
+language-related or other non-social terms (e.g., “task”, “monitoring” or “error”). This points
+to the importance of an integration of different processes for tasks from the intermediate task
+group: while the decoding profile for classical ToM tasks is rather “clean cut” in that we
+primarily found terms related to mentalizing, the more complex social tasks seem to require a
+wider range of different processes to be engaged conjointly (Schilbach et al., 2013; Zaki et al.,
+2009).
+4.2 Network integration paves the way for complex, naturalistic social cognition
+The VAN and DMN are richly interconnected networks, portraying extensive brain-wide
+patterns of connectivity, and studies have shown that these can be flexibly updated to adapt to
+changing task demands (Ciaramidaro et al., 2014; Power et al., 2011; Sakai, 2008; Spunt and
+Lieberman, 2012b). Core nodes of the empathy and ToM networks, which we have so far
+largely equated with the VAN and DMN, are furthermore characterized by a high degree of
+connectivity to other regions. Therefore, a holistic model of, for instance, TPJ and insula
+functioning can benefit from considering how they are connected with the rest of the brain.
+While network organization is constrained by anatomical and functional connections (see e.g.,
+Bullmore and Sporns, 2009; Honey et al., 2009), neural systems can flexibly reconfigure their
+structure to adapt to changing environmental or task demands (for a review, see Shine and
+Poldrack, 2018). Several studies found that network segregation, strong grouping of a network
+into its’ sub-components, showing high intra-network and low inter-network connectivity, is
+associated with more automatic processing (e.g., motor learning: Bassett et al., 2015;
+sustained vigilance: Sadaghiani et al., 2015). Network integration, on the other hand, that is,
+how modular networks interact among their sub-components, has been shown to be associated
+with tasks requiring more effortful and controlled processing, or in response to cognitively
+demanding tasks (e.g., memory recall: Fornito et al., 2012; Spreng et al., 2010; high-level n-
+back task and social animations: Shine et al., 2016).
+For complex, naturalistic social cognition tasks, network integration as a means of integrating
+mechanisms across unique behavioral domains can potentially be a relevant mechanism for
+enabling complex social cognition (Shine and Poldrack, 2018). We observe high levels of
+network integration (in the sense of co-activation of different networks) especially for the
+intermediate cluster, but interestingly also for the affective cluster. While a large part of the
+different ROIs’ co-activation maps for the intermediate cluster falls into the DMN, we also
+observed large overlap with other social cognition related networks, such as the VAN and the
+FPN. Interestingly, we furthermore observed considerable network integration for the co-
+activation patterns of our affective task cluster, pointing to a wider range of processes that
+enable classic empathic processing. Previously, we reviewed cross-network interactions for
+different classes of empathy tasks and found a similar pattern, namely that certain empathy
+tasks required interaction of different canonical brain networks (Schurz et al., 2020). Greater
+co-activation of visual and sensorimotor networks points to the relevance of lower-level
+sensory processing for some classical empathy tasks, while for tasks from the intermediate
+cluster, we observed more involvement of other higher cognitive and social-cognitive
+networks in addition to sensory networks.
+Apart from simultaneous DMN and VAN activation as a measure of cross-network
+interaction, we can furthermore attempt to quantify levels of network integration and
+segregation in terms of overlap of co-activation patterns with seed-based functional
+connectivity patterns for the corresponding ROI. Here, large overlap would point to lower
+levels of network integration, while smaller overlap would point to higher levels of network
+integration (as the co-activation patterns in response to a certain task would represent patterns
+of activation that go beyond or are even opposite to how that region is connected at rest). We
+see largest overlap for ACC and PCC co-activation maps (cognitive: 30.4%, affective: 30.6%,
+intermediate: 44.2%; cognitive: 50.6%, affective: 47.1%, intermediate: 35.7%; respectively)
+and lowest for insula co-activation maps (cognitive: 3.3%, affective: 15.2%, intermediate:
+9.1%). This could suggest that in the context of social cognition tasks, the TPJ and insula take
+over hub roles, where patterns of co-activation can flexibly re-configure across a wide range
+of other networks.
+A considerable number of neural regions have been associated with the neural representation
+of empathy and ToM (Fan et al., 2011; Lamm et al., 2011; Schurz et al., 2014; Timmers et al.,
+2018). In our own and other previous work, insula and TPJ have been found as key nodes of
+the social affect and cognition networks (Schurz et al., 2021), and have been preferentially
+linked to empathy and ToM, respectively (Kanske et al., 2015). Our results provide evidence
+that relativizes the notion of independent empathy and ToM networks: We show that certain
+task characteristics probe the interaction of empathy and ToM networks, namely tasks that
+simultaneously process affective and cognitive information. This is in line with previous
+findings showing that the interaction of empathy and ToM is crucially dependent on the
+specific context in which they are experienced. With more complex contextual demands
+placed on empathy and ToM processing, the separation of empathy and ToM becomes blurry
+(see e.g., Hillebrandt et al., 2014; Kanske et al., 2016; Schuwerk et al., 2014; Tettamanti et al.,
+2017), despite the processes being principally separable (as seen, for example, in selective
+impairments or developmental trajectories of empathy and ToM, see Reiter et al., 2017; Stietz
+et al., 2019; Winter et al., 2017).
+Given their structural integration into whole-brain architecture, TPJ and insula lend
+themselves as key network hubs facilitating interaction between networks and functions
+necessary to complex social tasks. A plethora of work speaks to the heterogeneity of TPJ and
+insula functional profiles: they have been associated with processes such as empathy, ToM,
+self-other distinction, attention, and sensorimotor integration (Cauda et al., 2011; Decety and
+Lamm, 2007; Dosenbach et al., 2007; Jakobs et al., 2012; Menon and Uddin, 2010). In fact,
+functional connectivity, meta-analytic clustering, and MACM studies suggest a bipartite (e.g.,
+Cauda et al., 2012; Krall et al., 2015; Numssen et al., 2021) or tripartite (e.g., Bzdok et al.,
+2013; Chang et al., 2013; Mars et al., 2012b) subdivision of functional clusters within the
+insula and TPJ, including diverse connectivity profiles for each cluster. For example, Chang
+et al. (2013) suggests a subdivision of the insula into a dorso-anterior, ventro-anterior, and
+posterior cluster based on a resting-state functional connectivity parcellation and large-scale
+meta-analysis. Based on the connectivity profiles associated with each insular cluster and
+specific functional profile associated with them, the authors name the insula as perfectly
+suited to be an integrational interface between feelings, cognition, and action. Furthermore,
+the (anterior) insula has been named an integral hub in mediating dynamic interactions
+between large-scale networks (Menon and Uddin, 2010; Power et al., 2013; Sridharan et al.,
+2008). The TPJ has mainly been associated with attentional and social cognitive processing,
+linking processing of internal and external information (Bzdok et al., 2013; Krall et al., 2015).
+However, connectivity profiles associated with a three-cluster subdivision arguably could
+suggest that TPJ may well be engaged in a wider range of processes (Mars et al., 2012b), and
+suggest a critical role in contextual integration (Jakobs et al., 2012). Taken together, it could
+be argued that insula and TPJ represent dynamic social affect and cognition hubs that, given
+how they are embedded in overall brain network architecture, are integral in facilitation of
+cross-network interaction in complex social tasks.
+4.3 Limitations
+In this meta-analysis, we investigated the nature of social cognition cross-network
+interactions, and the conditions that prompt these cross-network interactions. We should note,
+however, that our meta-analysis set-up left some limitations that might constrain the
+generalizability of our results. First, the data and ROI selection for our analysis might have
+introduced some bias into our analysis. Typically in a MACM analysis, widely available
+online neuroscience data-repositories such as Neurosynth or BrainMap are employed to
+identify studies that report activation at the corresponding ROI (see e.g., Robinson et al.,
+2012, 2009). However, since our focus lay on a narrowed field of study (social cognition), we
+decided to limit our database in this regard (see also Van Overwalle et al., 2015 for a similar
+approach). We furthermore decided to select our ROIs from within our database rather than
+select ROIs that have been shown to be involved in different domains of social cognition
+(such as the superior temporal sulcus, see e.g., Alcalá-López et al., 2018; Deen et al., 2015).
+While it would also have presented advantages to select an “external” ROI, due to the focus of
+our study (we wanted to investigate network co-activation of empathy and ToM, exclusively)
+and for reasons of feasibility (ensuring sufficient sample size for further analysis), we decided
+on a data-driven approach for ROI selection. Note that we did, however, perform the same
+analysis with anatomically defined social cognition ROIs (namely bilateral TPJ and anterior
+insula), which yielded similar results to the ones reported here (see supplementary tables S7
+for results, and section 3 of the supplementary material for an overview of additional analysis
+methods and included studies).
+Furthermore, we must note the difference in sample sizes of our different sub-analyses. For
+reasons of feasibility, we decided to choose those ROIs for our analysis that showed
+activation in at least ten studies per task group, which yielded a somewhat un-balanced
+sample size both between ROIs and between task groups. However, we did find comparable
+results across ROIs and task-groups (especially with those subsets of analysis wherein the
+sample size is relatively balanced across task-groups, i.e., the TPJ) and therefore believe our
+results to be principally generalizable (see also results of jackknife sensitivity analysis in
+Finally, we would like to point out that, while we can assume functional connectivity from
+observed patterns of co-activation, we cannot make causal claims as to the nature of this
+relationship. Future studies might address these points using appropriate methods of analysis,
+as has already been done in several studies (see e.g., Kanske et al., 2016; Regenbogen et al.,
+2013; Schuwerk et al., 2017, 2014; Tettamanti et al., 2017).
+5. Outlook
+Humans are an inherently social species, and processes enabling us to successfully navigate
+through our social world are continually attracting more and more research interest. In the
+present meta-analysis, we summarize neuroimaging research relating to social affect and
+cognition from the past 20 years, putting a special focus on how these two functions jointly
+activate and interact in situations where both affective and cognitive information must be
+processed simultaneously. We perform meta-analytic connectivity modeling on a sample of
+140 studies (including 3201 participants) and show an intricate and complex pattern of social
+domain-specific network re-configuration, and cross-network interactions for those social
+domains that present affective and cognitive stimulus elements in conjunction.
+While co-activation patterns associated with classical empathy and ToM tasks resemble
+neural patterns previously termed empathy or ToM-networks (see e.g., Bzdok et al., 2012;
+Fan et al., 2011; Lamm et al., 2011; Schurz et al., 2021, 2014), co-activation patterns
+associated with our intermediate task cluster show activation in regions associated with both
+empathy and ToM. We discuss our findings in the context of brain network organization
+(Shine and Poldrack, 2018), and examine network integration as a mechanism required in
+complex, naturalistic social situations. Here, multiple sources of (affective and cognitive)
+information must be processed simultaneously in order to facilitate social interactions. Taken
+together, our findings highlight the importance of a holistic, integrative account of social
+information processing at the neural level to understand the full extent of how the social brain
+functions, a key question not only in the context of basic research, but also in applied contexts
+(e.g., clinical psychology: Lehmann et al., 2019).
+Declaration of Interest
+Declarations of interest: none.
+Acknowledgement
+LM was supported by a scholarship of the Friedrich Ebert Foundation. MS was financially
+supported by an Erwin Schrödinger Fellowship (FWF-J4009-B27) and a Marie-Skłodowska-
+Curie Individual Fellowship (MSCA-IF 844734). The Wellcome Centre for Integrative
+Neuroimaging is supported by core funding from the Wellcome Trust (203139/Z/16/Z). PK
+was supported by the German Federal Ministry of Education and Research within the ASD-
+Net (BMBF FKZ 01EE1409A), the German Research Foundation (KA 4412/2-1) and Die
+Junge Akademie at the Berlin-Brandenburg Academy of Sciences and Humanities and the
+German National Academy of Sciences Leopoldina. MS and PK were additionally supported
+by the German Research Foundation Network ‘Understanding Others’ (SCHN 148/2-1).

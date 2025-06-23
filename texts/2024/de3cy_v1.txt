@@ -1,0 +1,787 @@
+TEXT SPEAKS LOUDER: INSIGHTS INTO
+PERSONALITY FROM NATURAL LANGUAGE
+PROCESSING
+David Saeteros David Gallardo-Pujol
+Department of Clinical Psychology and Psychobiology Department of Clinical Psychology and Psychobiology
+Universitat de Barcelona Institut de Neurocie`ncies (UBNEURO)
+Barcelona, Spain Institute of Complex Systems (UBICS)
+david.saeteros@ub.edu Universitat de Barcelona
+Barcelona, Spain
+david.gallardo@ub.edu
+Daniel Ortiz-Mart´ınez
+Department of Mathematics and Computer Science
+Universitat de Barcelona
+Barcelona, Spain
+daniel.ortiz@ub.edu
+August 14, 2024
+BSTRACT
+In recent years, advancements in natural language processing (NLP) have enabled new approaches
+to personality assessment. This article presents an interdisciplinary investigation that leverages
+explainable AI techniques, particularly Integrated Gradients, to scrutinize NLP models’ decision-
+making processes in personality assessment and verify their alignment with established personality
+theories. We compare the effectiveness of typological (MBTI) and dimensional (Big Five) models,
+utilizing the Essays and MBTI datasets. Our methodology applies log-odds ratio with Informative
+Dirichlet Prior (IDP) and fine-tuned transformer-based models (BERT and RoBERTa) to classify
+personality traits from textual data. Our results demonstrate moderate to high accuracy in person-
+ality prediction, with NLP models effectively identifying personality signals in text in line with
+previous studies. Our findings reveal theory-coherent patterns in language use associated with dif-
+ferent personality traits, while highlighting important biases in the MBTI dataset that yielded less
+robust results. The study underscores the potential of NLP in enhancing personality psychology and
+emphasizes the need for further interdisciplinary research to fully realize the capabilities of these
+transparent technologies.
+Keywords Personality Models · Natural Language Processing · Artificial Intelligence · Big Five · MBTI ·
+Explainability
+1 Introduction
+Language is one of the most fascinating tools human beings have invented. Researchers in psychology have regarded
+it as a source of insights into the inner world, leading to groundbreaking discoveries about the interplay between
+language use and psychological characteristics. From Freud [1901]’s controversial analysis of slips of the tongue,
+through the use of self-reference pronouns to detect psychological phenomena [Tackman et al., 2019, Tausczik and
+Pennebaker, 2010, Weintraub, 1981] until more recent computational approaches, the field has evolved significantly
+[Boyd and Markowitz, 2024].
+A - A 14, 2024
+PREPRINT UGUST
+The interest derived from language as a window to psychological features led into the words-as-attention premise that
+posits verbal behavior as a reflection of what someone is paying attention [Arnold, 1910, Pool, 1959], and push the
+research into studying personality [Boyd and Pennebaker, 2017], life experiences [Chung and Pennebaker, 2018], and
+even cultures [Michel et al., 2011], and societies [Iliev et al., 2016].
+The exploration of this linguistic-psychological landscape was significantly advanced by the development of the Lin-
+guistic Inquiry Word Count (LIWC) [Pennebaker and Francis, 1999]. This algorithm compared input words with a
+predetermined dictionary, calculating proportions of word categories to infer psychological characteristics. This would
+finally lead to computing correlations with psychological and social outcomes [Tausczik and Pennebaker, 2010].
+Despite its limitations, particularly in contextual understanding, LIWC demonstrated significant correlations with
+various outcomes in the field of psychology [Holmes et al., 2007, Mehl et al., 2006, Pennebaker and Stone, 2003,
+Rude et al., 2004, Simmons et al., 2005, Tausczik and Pennebaker, 2010], paving the way for more advanced linguistic
+analysis in psychology [Xue et al., 2021].
+Another field in which language has played a pivotal role is personality psychology. The lexical hypothesis —the
+assumption that all significant individual differences are codified in languages [de Raad and Mlacˇic´, 2017]— has
+informed the most influential taxonomical solution for the problem of personality (i.e. the Big Five). Starting with
+the nearly 18,000 words selected by Allport and Odbert [1936] from the Webster’s unabridged dictionary, the lexical
+hypothesis in personality has consisted in trying to define what personality is and taxonomizing it: the words that
+describe personality will give us an insight on what personality is and how to study it [de Raad and Mlacˇic´, 2017].
+This creative approach to the problem has provided us with a taxonomy that is common knowledge in the field,
+however it is not free of limitations. For one, all the studies carried out with the lexical approach in mind have relied
+on lists of words [Allport and Odbert, 1936, Cattell, 1943, Goldberg, 1981] but such lists were not exhaustive from a
+syntactical point of view. Most of them were lists of adjectives and they excluded other lexical categories like nouns,
+verbs and adverbs. This limitation was acknowledged by some isolated efforts in personality assessment [de Raad and
+Barelds, 2008, Saucier, 2003] but it never received extensive attention in the field.
+Furthermore, the lexical hypothesis was never designed to limit itself to a list of words only, however syntactically
+exhaustive they might be. Instead, it was designed to encompass the whole universe of lexical production and from
+there obtain the building blocks of a theory of psychological constructs, particularly for personality; although it has
+also been used for the study of situations [Parrigon et al., 2017].
+As early as the 1990s, McCrae foresaw a shift in focus:
+[. . . ] I think that the future may lie in the analysis of phrases, sentences and paragraphs rather than
+single terms. The vast range of this material makes systematic analyses difficult or impossible but
+such studies can be used to seek new aspects of personality and thus extend the provisional taxonomy
+offered by lexical studies [McCrae, 1990, p. 127].
+Years before, Cattell [1945, p. 70] would acknowledge that even the reduction of Allport and Odbert’s [Allport and
+Odbert, 1936] list of adjectives was a ”matter of unhappy necessity”.
+These early insights from Cattell and the more recent from McCrae foreshadowed the need for more comprehensive
+approaches to analyzing language in personality research. As technology has advanced, researchers are beginning to
+explore new methods that could address the limitations of traditional lexical approaches [Cutler and Condon, 2022].
+The advent of big data and sophisticated computational techniques has opened up new possibilities for examining
+personality through language [Boyd and Markowitz, 2024]. In particular, the introduction of transformers technology
+[Vaswani et al., 2017] in AI language analysis has revolutionized our ability to process and understand complex
+linguistic patterns at scale.
+Recent discussions in psychological science have highlighted the need for more rigorous theoretical development,
+particularly through the use of computational methods [Grahek et al., 2021]. This approach is especially relevant in
+personality psychology, where its driving hypothesis has a lot of potential yet to reveal [Cutler and Condon, 2022].
+Computational modeling can help refine our understanding of personality traits and their interactions, it can also
+explore the semantic space beyond an adjective list or a questionnaire, potentially leading to more precise and testable
+theories. In line with this call for improved theoretical rigor, our study aims to leverage computational approaches
+—Large Language Models (LLM) and Explainability algorithms, in particular— to advance personality theory.
+With the introduction of new AI tools, we have seen a surge of studies that aimed to capture the signal from personality
+A - A 14, 2024
+PREPRINT UGUST
+1 ). These studies serve to bridge the gap between the original lexical hypothesis and the world of natural language
+production. Most of these results, presented later in the Introduction, have performed highly at classifying texts
+according to personality labels.
+These results indicate that the Traditional Personality Assessment (TPA) is at a disadvantage compared to the recently
+introduced NLP personality assessment (NLP/PA). According to Cutler and Condon [2022], TPA employs a smaller
+sample size (e.g. college students) than NLP could potentially use (e.g. BERT has been trained on millions of words),
+TPA is time-consuming and costly whereas generating data with language models is inexpensive, NLP can also be
+more representative of the different sectors of society and it introduces less noise; although it is also true that NLP is
+not only focused on personality information and might provide insights that do not belong to personality. However,
+we are only at the beginning of applying LLM to the study of psychological variables and its complete potential is yet
+to be discovered.
+It is important to remember that the TPA and the NLP/PA rely on different information to infer personality and use
+different methods to analyze it [Tippins et al., 2021]. While the TPA has used personality questionnaires to evaluate
+people, the NLP/PA analyzes texts that are not inherently personality descriptions and supposes that personality signals
+can be found in any kind of human linguistic production, a hypothesis that, although having some evidence [Park et al.,
+2014], is too early to say it has been well tested: the field is still working to confirm how accurately personality can be
+inferred from various linguistic contexts.
+Another distinction is that TPA uses personality-related questions to gather information, NLP/PA relies on the assump-
+tion that language production reveals a lot about personality given that language is a behavior [Boyd and Markowitz,
+2024]. It can reveal the inner world of a person and the things they pay attention to, they think about, they are trying
+to avoid, how they feel, organize, and analyze the world [Tausczik and Pennebaker, 2010]. NLP/PA also answers the
+desire to have a personality science based on less subjective data [Stachl et al., 2021].
+It is also important to highlight that even if NLP/PA can analyze sources of spontaneous texts, this has no a priori
+overlap with the lexical hypothesis. Some researchers have wrongly conceptualized the lexical hypothesis as the
+personality-related information that can be found in everyday languages [Abdurahman et al., 2023, Ramezani et al.,
+2022b, Uher, 2013], when in fact it is something deeper than that, namely that every relevant psychological individual
+difference —including personality— should be found in some way codified in human languages, in a representative
+and exhaustive corpus of any given language [de Raad and Mlacˇic´, 2017, Goldberg, 1981]. Recent applications of
+this approach for the study of personality traits in African and Japanese populations can be found in Thalmayer et al.
+[2020] and Hashimoto et al. [2024] respectively.
+Building on this understanding of the lexical hypothesis, we claim that the NLP/PA still needs to reveal its full potential
+in studying psychological variables through text analysis. Most current applications can be divided into two groups:
+the first includes studies that use textual data to predict personality attributes, either traits or types [El-Demerdash
+et al., 2022, Liu, 2022, Majumder et al., 2017, Mehta et al., 2020a, Pradhan et al., 2020, Ramezani et al., 2022a, Safari
+and Chalechale, 2022, Sun et al., 2018, Xue et al., 2021, Yan et al., 2024, Zhao et al., 2022].
+The second group is exploring novel applications like modeling and predicting a wide range of traits, scales, and
+constructs [Abdurahman et al., 2023, Cutler and Condon, 2022], using chatbots for personality assessment [Fan et al.,
+2023], inferring personality questionnaire item-responses from texts [Yang et al., 2023], guiding LLMs to respond
+according to a specific personality configuration [Serapio-Garc´ıa et al., 2023], generating items for personality ques-
+tionnaires [Hommel, 2023, Hommel et al., 2022], exploring the overlap between the semantic representation of LLM
+and personality data generated from questionnaires [Cutler and Condon, 2022], and the field holds great promises
+for the following years. These innovative approaches demonstrate the potential of NLP/PA to not only complement
+traditional methods but also to open up new avenues for personality research and assessment.
+In the first group of articles many text datasets are available online [Mehta et al., 2020b, Teli and Chachoo, 2022,
+Zhao et al., 2022]. Three datasets, in particular, have been extensively explored using LLM and neural networks: the
+Facebook data from myPersonality project [Kosinski et al., 2015, Stillwell and Kosinski, 2015] —no longer available
+for research purposes—, the Essays dataset [Pennebaker and King, 1999], and the MBTI dataset [Jolly, 2023].
+The MBTI dataset is of particular interest due to its basis on the Myers-Briggs Type Indicator (MBTI), a measure that,
+while highly popular online, has questionable validity in the field of personality psychology [McCrae and Costa, 1989].
+This dataset comprises authors’ posts from a personality psychology online forum that brings together individuals
+interested in the topic. The most evident bias in this dataset is the authors’ prior knowledge of the MBTI theory and
+their own types. A more detailed explanation of this dataset is provided in the Methods section.
+Henceforth referred to as SM1
+A - A 14, 2024
+PREPRINT UGUST
+Tables 1 and 2 in SM1 summarize the studies that have explored both the Essays and the MBTI dataset, focusing
+on the accuracies or similar metrics achieved in the classification tasks. As is evident from these results, improving
+methodological accuracy has been a primary objective of these studies. To this aim, researchers have employed a varied
+range of methods, from traditional machine learning (e.g., SVM, Random Forest) to more advanced neural network
+architectures (e.g., BERT, CNN). The accuracies found vary considerably across studies and traits/types, ranging from
+just above chance (around 0.5) to high accuracy (above 0.8). A notable observation is the consistent analysis of the
+MBTI dataset, which can be explained by its huge popularity online and the predominance of computer scientists over
+psychologists among researchers. Interestingly, this trend persist despite extensive criticism of MBTI from personality
+This persistent focus on the MBTI dataset, despite its known limitations and the higher accuracies it yields, highlights
+a potential disconnect between computer science and personality psychology. The emphasis on improving accuracy
+metrics, as noted in the studies summarized, may sometimes come at the expense of theoretical validity. This un-
+derscores the need for interdisciplinary collaboration in the new applications as a necessary step for a more steadfast
+advancement of psychology and for avoiding what Boyd and Schwartz [2021] described as the ”square peg into a
+round hole” problem.
+For the second group of articles, researchers have to get more creative. One of the most relevant efforts in this
+group is the work published by Cutler and Condon [2022]. In three separate studies, they introduce useful practices
+and concepts to bridge the gap between NLP and personality assessment; such as the idea that personality traits are
+word vectors [Cutler, 2023] or the idea of testing the conceptual and functional overlap of personality terms studied
+with psychometrics and NLP techniques. These studies show great promise and should be pursued further in future
+research.
+The field’s singular focus on improving accuracy or other performance metric sidesteps the question of what drives the
+model’s decision. Moving forward, it’s crucial to balance the pursuit of improved accuracy with critical evaluation of
+the underlying constructs and data quality. Specifically, we need to determine whether the accuracy values are really
+obtained from personality signals in the data or if they result from noise, overfitting or model hallucinations. Explain-
+ability techniques can help researchers understand how these models make decisions [Saha et al., 2022], ensuring that
+high accuracy is not achieved at the expense of theoretical validity or interpretability.
+This approach is crucial for an effective advancement of the field, given that some researchers have started to advocate
+for a replacement of TPA with NLP/PA [El-Demerdash et al., 2022], and this claim might be supported by the data only
+by biases inherent to the model performance. To address this, personality psychology should incorporate explainability
+algorithms, already widely used in NLP tasks [Saha et al., 2022]. This will allow us to analyze how individuals with
+different personality traits or types use language, providing new insights into the relationship between personality and
+linguistic expression.
+Our study aims to predict the Big Five and MBTI labels from the Essays and MBTI datasets respectively. Upon that, we
+are interested in determining if this classification aligns with the theory behind each personality model by exploring the
+decisions taken by the model for the classification task. These aims respond to our ultimate goal: to study personality
+using new tools, such as explainable AI and advanced NLP techniques, to obtain a more comprehensive understanding
+of it.
+1. The accuracy for classification of the Big Five traits on the Essays dataset will range from low to moderate
+due to the nature of the input data to the classifier. H1 stems from the characteristics of the Essays dataset. While
+it provides a balanced distribution across categories, it contains stream-of-consciousness writing that may not always
+clearly reflect personality traits. This type of spontaneous, unstructured text can be challenging for classification
+algorithms, accounting for a moderate rather than perfect accuracy.
+2. The accuracy for MBTI types will not reflect its true predictive power due to the unbalanced nature of the
+MBTI dataset. The Area Under the Curve (AUC) will provide a more reliable measure of model performance.
+Because of this, the accuracy will be higher for the MBTI dataset than for the Big Five, and the comparison of accuracy
+scores between the Big Five and MBTI datasets is inappropriate.
+3. The words most influential in Big Five classification will be theory coherent with the Big Five traits content.
+This hypothesis is grounded in the theoretical foundation of the Big Five model. As it is based on empirically derived
+personality traits that are thought to be reflected in natural language use, we expect the words most influential in
+classification to align with the theoretical content of these traits. Given that the classification performance is not
+perfect, we also expect to find a few words with no coherence with the theory.
+A - A 14, 2024
+PREPRINT UGUST
+4. In the MBTI model, the most influential words will include a high frequency of the MBTI categories, re-
+flecting the dataset’s bias towards explicit discussion of MBTI concepts rather than natural language patterns
+associated with personality. The hypothesis arises from the nature of the MBTI dataset, which consists of posts from
+users who are aware of their MBTI classification and are discussing personality topics. This self-awareness and topical
+focus may lead to frequent use of MBTI-related terminology, potentially stemming from the MBTI’s limitations as a
+robust personality model.
+Although we advocate for more second-group studies, this study is relevant and increasingly perceived as a necessity
+by psychologists [Debelak et al., 2024]. Our research aims to assess the robustness of the Big Five model across
+diverse data treatments [Saucier and Iurino, 2020], in this case NLP techniques. Additionally, we demonstrate the
+utility of LLMs in detecting personality traits and types in texts. By exploring our LLM’s decision-making processes
+using explainability algorithms [Saha et al., 2022], we address ongoing discussions about model evaluation [Chang
+et al., 2023]. This approach aligns with substantive validity recommendations outlined by Bleidorn and Hopwood
+[2019] and contributes to improving personality assessment as a key element in social change [Gallardo-Pujol et al.,
+2022].
+2 Methods
+This study employs a multi-faceted approach to explore personality through natural language analysis. Our method-
+ology combines traditional NLP techniques with advanced NLP models and explainable AI methods. We begin with
+data preprocessing of two distinct datasets. We then apply various analytic techniques, including log-odds ratio anal-
+ysis, fine-tuned language models, and integrated gradients for model interpretation. Our evaluation uses both standard
+classification metrics and novel approaches to visualize and interpret model decisions. This comprehensive approach
+allows us to not only predict personality traits from text but, more importantly, to understand the linguistic features
+driving these predictions.
+2.1 Data Collection and Preprocessing
+This study employs two datasets to explore personality through natural language analysis. The first dataset, known as
+the stream-of-consciousness or the Essays dataset, was compiled by Pennebaker and King [1999] and annotated by
+Mairesse et al. [2007]. It employs the binary classification methodology outlined by Oberlander and Nowson [2006].
+The second dataset originates from the MBTI forum and includes labels based on the Myers-Briggs Type Indicator
+(MBTI).
+The Essays dataset consists of a collection of essays gathered between 1997 and 2004 where participants were
+prompted to write for 20 minutes about whatever came to mind. It contains 2479 essays totaling approximately
+absence of each of the Big Five traits, namely Openness to Experience, Conscientiousness, Extraversion, Agreeable-
+ness, and Neuroticism. These labels were derived from participants’ self-reports on the Five Factor Inventory [John
+et al., 1991].
+The MBTI dataset, publicly available on Kaggle, comprises information from 8600 individuals who posted on the Per-
+sonality Cafe´ forum. Each individual is associated with 50 forum posts, separated by three pipe characters ("|||"),
+and categorized into one of the 16 MBTI types. We augmented this dataset by adding columns representing each pair
+of MBTI types (I/E, N/S, T/F, J/P) with binary values assigned based on the presence of specific MBTI indicators
+perspective on personality assessment albeit with acknowledged limitations regarding its psychometric validity.
+Due to the fact that both the Essays and the MBTI datasets are composed of a collection of long texts that exceed
+the word limit of the models used to process them (typically, the maximum word length is 512 words), we created
+modified versions where those long texts were divided into fragments of 256 words. This treatment allowed us to take
+advantage of all the information contained in the datasets, in contrast to the approach adopted in other works, where
+the texts were simply truncated to the word limit imposed by the models.
+As it was explained in the introduction, the MBTI dataset participants were aware of their classification, which may
+introduce an artificial bias in the content of the texts. Indeed, a visual analysis of some of them clearly showed that, on
+many occasions, the participants were openly discussing their own classification or that of other participants, writing
+the individual letters that correspond to the MBTI indicators (e.g. I, N, T, J) or combinations of them (e.g. INTP).
+Because of this, we generated an additional version of the MBTI dataset, where each possible MBTI indicator and their
+combinations were masked, replacing them with a special symbol used to denote the unknown word (for a detailed
+list, check A1 in SM1). This masking process affected a small portion of the words of the dataset, more specifically,
+A - A 14, 2024
+PREPRINT UGUST
+a 1.6% of them. However, in order to verify that any possible change in the results when masking the words was
+exclusively due to masking the MBTI words and not because of the quantity of masked words, we decided to create a
+third version of the MBTI dataset where we randomly masked the same proportion of words as for the masked dataset.
+We will refer to this version as the randomly masked MBTI dataset.
+Finally, we preprocessed the text of the Essays and MBTI datasets (including original and masked versions) using a
+standard preprocessing library , which incorporates basic cleaning and filtering operations.
+By leveraging these diverse datasets, we aim to explore the nuances of personality representation in natural language
+despite the inherent challenges and limitations posed by each dataset.
+2.2 Analytic Techniques
+1. Log-Odds Ratio with Informative Dirichlet Prior (IDP) [Monroe et al., 2008]: by using the log-odds ratio
+method we seek to identify words that significantly differ in usage between the positive and negative cases of
+a certain trait or personality type. In this context, the odds of a particular word is the ratio of the probability
+of the word not occurring in a set of texts to the probability of it not occurring. When calculating the log-odds
+ratio for a word, we obtain the logarithm of dividing the odds for a word when a trait or personality type is
+present by the odds when it is not. In our work, we calculate the log-odds ratio using the IDP method.
+2. Language Models: a language model is a probabilistic model of a natural language. We used BERT (Bidirec-
+tional Encoder Representations from Transformers) [Devlin et al., 2018] and its optimized version RoBERTa
+(a Robustly Optimized BERT Pretraining Approach) [Liu et al., 2019]. They are notable for their huge im-
+provement with respect to previous state-of-the-art language models. Essentially, these models process text
+through a series of interconnected components. First, text is broken into tokens, which are the basic units of
+meaning in the input, in a process called tokenization. These tokens can be words, but often subwords are
+used—parts of words that constitute common prefixes, suffixes, or root words— to handle a wider vocabulary
+more efficiently. Next, the tokens are converted into numerical representations called embeddings, which in-
+corporate semantic and syntactic information. When generating the embeddings, a bidirectional approach is
+adopted, considering both left and right contexts for each token. The heart of BERT and RoBERTa consists
+of multiple attention layers, each containing multi-head attention mechanisms and feed-forward networks.
+These layers progressively refine the initial token representations, capturing complex contextual relation-
+ships. Both BERT and RoBERTa are pre-trained with a large collection of texts composed of millions of
+words, resulting in models with a deep understanding of language structure and meaning. The pre-trained
+models can be adapted to perform different tasks by means of a fine-tuning process, which typically requires
+much less training data than model pre-training. In our work, the fine-tuning process is used to adapt BERT
+and RoBERTa for predicting personality traits or typologies for the texts contained in the Essays and MBTI
+datasets. BERT and RoBERTa were used in this study because of their extensively demonstrated perfor-
+mance in multiple language processing tasks, including text classification, and also because of their public
+availability, that ensures the reproducibility of results. We did not consider the use of the DeBERTa model
+[He et al., 2021], which can be seen as an enhanced version of RoBERTa, because of its substantially higher
+memory requirements with respect to BERT and RoBERTa. Such requirements made it very difficult to pro-
+cess the long texts contained in the Essays and MBTI datasets using available hardware without introducing
+aggressive text truncation or fragmentation steps.
+3. Integrated Gradients [Sundararajan et al., 2017]: a method that helps us understand how a model makes
+decisions in a classification task. In the context of our work, the technique will allow us to identify which
+words are important for the BERT and RoBERTa models when making classification predictions. More
+specifically, given a prediction, the technique returns an attribution score for each word, that can be positive or
+negative. If a particular word has a positive attribution score, this means that the word increased the likelihood
+of the prediction returned by the classifier. For instance, assuming that the classifier has predicted the trait
+Agreeableness for a text belonging to the Essays dataset, the word ”forgive” having a positive attribution
+score means that the presence of such a word in the text increased the likelihood of the text being classified as
+Agreeableness. In contrast, a negative attribution score means that the word decreased the likelihood of the
+prediction. The attribution scores of individual words in a text can be combined to provide an overall score for
+the entire text. In the context of our work, integrated gradients constitute a particularly interesting technique,
+since it enables a more detailed analysis of the words relevant to a particular personality trait or type. More
+specifically, the words can be studied in individual texts instead of in groups of texts, as it is the case of less
+sophisticated techniques such as the log-odds ratio with IDP explained above. We chose to use integrated
+gradients as an explainability technique due to its desirable properties: i) they constitute an approximation
+A - A 14, 2024
+PREPRINT UGUST
+of the Aumann-Shapley values, see [Friedman, 2004], which are axiomatically justified (axioms refer to
+conditions that the explainability technique should ideally satisfy), and ii) they can be efficiently calculated
+as long as the model used is piecewise differentiable.
+4. Word Clouds [Halvey and Keane, 2007]: word clouds constitute a very useful tool to summarize textual data.
+Word clouds visually display words, typically sized according to their frequency in a set of texts. In our work,
+word frequency is replaced by a measure of word importance according to the attribution scores generated by
+the integrated gradients technique. Due to the fact that such a technique produces one attribution score per
+each word contained in a text, it is necessary to define summarization techniques that produce a single score
+per each word (see next section for more details). Generating word clouds with summarized attribution scores
+will allow us to study significant words for the different personality traits or types, and check for congruence
+with the theory supporting the Big Five traits and the MBTI typologies, respectively.
+2.3 Evaluation Metrics
+When calculating the IDP-based log-odds ratios for the different words and personality traits or types, we obtain the
+z-score to provide a measure of statistical significance. This measure is useful for hypothesis testing to determine
+whether the observed effect of a particular word is likely to be genuine or due to random chance. A large, positive
+z-score for a word indicates its strong relevance to a particular personality trait or type. Conversely, a small, negative
+z-score suggests that the word is more likely associated with the absence of that trait or type.
+The performance of the classification using BERT and RoBERTa was evaluated with two metrics: accuracy and Area
+Under the Curve (AUC). Accuracy is defined as the ratio of the number of correct predictions to the total number
+of predictions made. It measures how well the classifier correctly identifies both positive and negative instances
+in a dataset. On the other hand, AUC refers to the area under the Receiver Operating Characteristic (ROC) curve.
+The ROC curve is a graphical representation that illustrates the diagnostic ability of a binary classifier system as its
+discrimination threshold is varied. The AUC measures the model’s ability to distinguish between classes.
+Both performance metrics go from 0 to 1 with values approaching 1 showing better performance. In two-class classifi-
+cation problems where the data is imbalanced (one of the classes is more frequent than the other), the accuracy can be
+misleading, since the classifier can learn to always return the more frequent class as output, resulting in a poor model
+with a high accuracy (e.g. if 95% of instances belong to one class, a model that always predicts the majority class will
+have 95% accuracy). In contrast, the AUC is robust to class imbalance.
+While classification metrics provide an overall assessment of model performance, they don’t offer insights into which
+specific words or features contribute most to the model’s decisions. To address this, we employed several techniques
+on the attribution scores obtained by the integrated gradients technique to measure word importance, particularly in
+the context of generating word clouds and visualizing influential words.
+To effectively summarize and interpret these attribution scores, we developed multiple summarization techniques.
+These techniques allow us to quantify and visualize the importance of individual words in both positive and negative
+attribution to the model’s decisions. Specifically, we evaluated word importance using the following methods:
+• Frequency counting: we selected words based on their rate of appearance in either the positive and the
+negative attribution score. This highlights words that consistently contribute to or detract from a classification.
+• Accumulation: we selected words based on their attribution scores and accumulated the score for each
+time the word appeared. This emphasizes words that consistently contribute to the model’s decision across
+multiple instances.
+• Maximum attribution: we selected only the highest score for each word. This captures words with a strong
+impact in at least one case.
+• Average: where we selected the accumulation of the word and divided by their frequency counting. This
+balances frequency and impact, providing a measure of a word’s overall importance across all instances.
+• Geometric mean: we calculated the geometric mean of the accumulated and maximum scores. This tech-
+nique gives weight to both consistent performance (accumulation) and peak performance (maximum), offer-
+ing a balanced view of a word’s importance.
+Each technique provides a different perspective on the data, allowing us to capture various aspects of the attributions.
+For each summarization technique, word clouds were generated to visually represent the significant words contributing
+to both positive and negative attributions for each label. We also created bar plots for the average and geometric mean
+techniques, as these better capture overall tendencies and influential examples (see OSF for all the bar plots). However,
+these visualization techniques fall short when representing entire essays or posts.
+A - A 14, 2024
+PREPRINT UGUST
+2.4 Experiments Configuration
+The Log-odds ratio with IDP method was implemented by means of a publicly available software package , which
+was applied to both the Essays and MBTI datasets. For the case of the MBTI dataset, the IDP-based log-odds ratio
+technique was applied to the original and masked versions. Regarding the language models, before applying BERT and
+RoBERTa for trait/type identification, it was necessary to fine-tune the parameters of both models. For this purpose,
+we first split each dataset with a 90:10 training-test ratio respectively. Additionally, we reserved a random 10% of
+training data to create the validation set for all models. Once the partitions for each dataset were created, we used a
+grid search procedure to find the best model. The search explored different values of the hidden and attention dropout
+probabilities (with the aim to reduce model overfitting) and also of the learning rate (so as to control how quickly or
+slowly the model learns). For the Essays dataset, 5 training epochs were executed, while for the MBTI dataset, only
+3 were executed, due to the greater computational requirements, and also because of the fact that overfitting often
+started before the third epoch. Due to its robustness against class imbalance, the AUC metric was used to evaluate
+model performance. In all cases, we kept the model achieving a higher AUC for the validation set from all the epochs.
+The fine-tuning process was executed using the ”bert-base-uncased” and ”roberta-base” versions of BERT and
+RoBERTa, respectively. Both versions were operated by means of the Huggingface Transformer library [Wolf et al.,
+2020] for PyTorch [Paszke et al., 2019].
+From the traits, Agreeableness was the only one where RoBERTa was used to implement a classifier, given that BERT
+did not produce good performance results. In contrast, the MBTI dataset was only processed with BERT, due to the
+fact that both, BERT and RoBERTa, achieved very similar performance, but the memory requirements involved in the
+calculation of the attribution scores were significantly higher for RoBERTa, due to the fact that its tokenizer generated
+substantially longer tokenized texts (BERT and RoBERTa follow different tokenization strategies). Additionally, for
+MBTI we focused mainly on the AUC metric, given the disproportion in the frequency of most of the classes in the
+masked and randomly masked MBTI datasets.
+On the other hand, we used the Transformers Interpreter library [Pierse, 2021], which provides an integrated gradients
+implementation for transformers, to compute the attribution scores at the word and whole text levels for each dataset.
+All the experiments were executed in a computer with an Intel Core I7 processor and 32GB of RAM. The BERT and
+RoBERTa models, including fine-tuning and integrated gradients computation, were operated by means of an NVIDIA
+GeForce RTX 3090 GPU.
+A - A 14, 2024
+PREPRINT UGUST
+2.5 Data Analysis Procedure
+The Essays dataset was used to fine-tune five models, four of them employing bert-base (O, C, E, & N) and one
+employing roberta-base (A). On the other hand, the MBTI dataset was used to fine-tune eight models with bert-base:
+four with the original data and four with the data masked.
+After the models were trained, we used the Transformers Interpret library to attribute the models’ prediction to indi-
+vidual words in the text. This process assigns two types of attribution scores: (1) word-level scores: indicating the
+importance of each word in contributing to the model’s prediction; and (2) text-level scores: indicating the overall
+importance of a text for a given prediction.
+To focus on significant results and ensure correct interpretation of attribution scores, we implemented several criteria.
+We verified congruence between true and predicted labels from the classification task, meaning we only considered
+instances where the model’s prediction matched the actual label. For example, a high attribution score for a word in
+relation to the trait of agreeableness is meaningful only if the corresponding class prediction is also agreeableness. In
+our code and plots, this relationship is indicated by label 1 (classified as presenting the trait of interest) and label 0
+(classified as not presenting the trait of interest).
+Additionally, we only considered words that appeared at least 10 times in the texts highlighted by the Transformer
+Interpret. This approach allowed us to identify the most relevant and frequently occurring words in correctly classified
+instances. We also analyzed the contexts where entire paragraphs containing high-attribution words achieved the
+highest scores. This approach helps us see how the model interprets the broader context in which each class appears.
+We identified the top 5 highest word-level attribution scores from the average and geometric mean bar plots for both
+label 1 and label 0, for each trait and MBTI dimension. We then selected texts where these top words appeared,
+focusing on those texts that also had high text-level attribution scores.
+We read these selected texts to understand the context of the highly attributed words and to evaluate the performance
+of the classification. For the sake of completeness, we also read the texts with the highest overall text-level attribution
+scores to ensure we captured the most representative examples for each class (having the trait/type or not). Each output
+was read and compared with the content of the personality items used by the original authors of the data to see if its
+content matched aspects of the theory of personality traits and types.
+In summary, to filter the most significant and pertinent texts, we performed the visualization on each of the classi-
+fication classes (label 1 or 0) with three different approaches: (1) we obtained the 10 texts with the highest overall
+text-level attribution scores for each class, (2) we identified the 5 words with the highest attribution scores using the
+geometric mean summarization technique, then selected the 10 texts containing these words that had the highest text-
+level attribution scores, and (3) we followed the same process as in (2), but using the average summarization technique
+to identify the highest-attributed words. This multi-faceted approach allowed us to capture texts that were significant
+both at the overall text level and for their highly impactful individual words.
+For the MBTI dataset, we explored our hypothesis by masking the terms in the data that represented all the types
+from the MBTI list and other elements that might resemble the MBTI list. This list was obtained through a process
+of trial and error. In a similar way that occlusion techniques work [Zeiler and Fergus, 2014] we decided to check the
+improvement of performance metrics to determine the weight these terms had in the model accuracy (for a detailed
+list of these terms check A1 in SM1).
+3 Results
+Our analysis yielded several key findings regarding the relationship between the manifestation of personality on lan-
+guage. We present these results in three main parts: first, we examine the words most relevant to each personality
+trait or type as identified by the Log-Odds Ratio with Informative Dirichlet Prior method. Next, we report the classi-
+fication performance metrics for our models. Finally, we delve into the insights gained from applying explainability
+techniques to our classification results. These findings collectively shed light on the linguistic markers of personality
+and the efficacy of NLP techniques for personality assessment.
+3.1 Log-Odds Ratio with Informative Dirichlet Prior
+The goal of this technique is to identify those words that are relevant for the different personality traits or typologies.
+Tables 5, 6 and 7 present the top words identified for each trait in the Essays dataset, or for the personality types in the
+original and masked versions of the MBTI dataset, respectively.
+A - A 14, 2024
+PREPRINT UGUST
+The Big Five analysis reveals a mix of words that can be associated with their respective traits, as well as some that
+For Openness to Experience, word related to art and abstract concepts appear with positive z-scores, such as ‘guitar’ (z-
+score = 1.61) and ‘music’ (z-score = 1.34), as well as ‘world’ (z-score = 1.4) and ‘words’ (z-score = 1.31). Conversely,
+words associated with routine and concrete experiences show negative z-scores, including ‘home’ (z-score = -2.6),
+‘school’ (z-score = -2.1), or ‘class’ (z-score = -2).
+Conscientiousness displays a less clear pattern. Words like ’hope’ (z-score = 1.3), ’ ’ (z-score = 1.25), ’tonight’
+(z-score = 1.24), and ’able’ (z-score = 1.2) show positive z-scores, while ’im’ (z-score = -1.73), ’Damn’ (z-score =
+-1.21), and ’Squirrel’ (z-score = -1.2) have negative z-scores. The connection between these words and the trait’s
+conceptualization is not immediately apparent.
+For Extraversion, words related to social activities appear with positive z-scores, like ‘Sorority’ (z-score = 1.8), ‘Fun’
+(z-score = 1.53), ‘Boyfriend’ (z-score = 1.42), and ‘Love’ (z-score = 1.32). On the other hand, ambiguous words
+appear with negative z-scores, like ‘Perhaps’ (z-score = -1.62), ‘Da’ (z-score = -1.4), ‘Cold’ (z-score = -1.03), and
+‘Write’ (z-score = -1.03).
+Agreeableness shows words related to relationships with positive z-scores, like ‘Family’ (z-score = 1.5), ‘Home’
+(z-score = 1.1), and ‘Emily’ (z-score = 1.05). Conversely, profane vocabulary obtained negative z-scores, like in
+‘Fucking’ (z-scores = -1.5) and ‘Stupid’ (z-scores = -1.4).
+Neuroticism obtained words related to affective states like ‘Feel’ (z-scores = 1.55), ‘Want’ (z-scores = 1.41), ‘Scared’
+(z-scores = 1.4), with positive z-scores; and words with no clear relationship with negative z-scores, like ‘Beat’ (z-
+scores = -1.22), ‘Pledge’ (z-scores = -1.2), ‘Game’ (z-scores = -1.12).
+Regarding the MBTI, our H4 is supported by the IDP-based log-odds ratio results, which predominantly show words
+syntactically related to the typologies. The classification’s unreliability on this dataset is evident in how frequently
+letter abbreviations of the types themselves. For the I/E dimension, the words ’INFP’ (z-score = 5.12), ’INFJ’ (z-score
+= 3.6), ’INTP’ (z-score = 3.33) are the top words indicating Introversion, while ’ENFP’ (z-score = -13.8), ’ENTP’
+(z-score = -13.3), ’ENTPs’ (z-score = -8) are the most indicative of Extraversion.
+This pattern is consistent across all MBTI dimensions. For the N/S dimension, ’INFJ’ and ’INFP’ are top indicators
+for Intuition, while ’ISTP’ and ’ISFP’ lead for Sensing. In the F/T dimension, ’INFP’ and ’INFJ’ are strong indicators
+for Feeling, with ’INTP’ and ’INTJ’ leading for Thinking. Finally, for the J/P dimension, ’INFJ’ and ’INTJ’ are top
+demonstrating that the most influential elements include a high frequency of MBTI categories.
+words and their z-scores. The words used obtain scores notably below the ones reported with no masking. Additionally,
+in some of the types, the term ’[UNK]’, which for the BERT model, represents the unknown word that was used to
+mask words, appears with a high z-score suggesting that the masked words had an influential effect on the data.
+Importantly, this term appears codified as ’unk’ with the Logs-Odds Ratio with Informative Prior.
+For the I/E dimension, ’music’ (z-score = 1.78) and ’dream’ (z-score = 1.72) are the top words indicating Introversion,
+while ’unk’ (z-score = -9.31) and ’7w6’ (z-score = -3.98) are the most indicative of Extraversion. For the N/S dimen-
+sion, ’aˆ’ and ’a˜’ lead for Intuition whereas ’rave’ and ’rant’ lead for Sensing. For the F/T dimension, ’feel’ and ’:)’
+are the top words for Feeling, and ’ti’ and ’shit’ for Thinking. Finally, for the J/P dimension ’ni’ and ’dear’ lead for
+Judging and ’ ’ and ’really’ for Perception.
+Notably, terms like ’7w6’ or ’7w8’ also appear in this analysis. These terms belong to the Enneagram, a different
+and similarly problematic theory of personality [Hook et al., 2021]. Their presence indicates the broad knowledge
+of personality theories among Personality Cafe´ participants. Despite these limitations, some influential words show
+conceptual coherence with the MBTI theory. In the case of F/T, the words align with theoretical expectations. How-
+ever, this alignment might still be influenced by the self-reference effect we observed with the type abbreviations, as
+participants may use language similar to the type names when discussing their personality.
+3.2 Accuracies and AUCs
+The Essays dataset followed a data partition procedure that included training, validating, and testing to avoid overfit-
+ting. The accuracies for the Big Five obtained in the test dataset were 0.637 for Openness to Experience, 0.601 for
+A - A 14, 2024
+PREPRINT UGUST
+values between the validation and the testing dataset do not differ much, indicating no overfitting. The accuracies
+obtained for the Big Five support H1, indicating moderate classification accuracy.
+to most of the accuracies reported in prior studies, with Ramezani et al. [2022a] being the only exception. Their
+higher accuracy likely stems from their use of a Knowledge Graph Attention Network (KGrAt-Net) rather than BERT,
+representing text as knowledge graphs and applying graph attention mechanisms unlike our contextualized approach.
+BERT and RoBERTa are specialized in language processing, trained on massive text data, and publicly available,
+ensuring reproducibility. In contrast, the KGrAt-Net is not public and its implementation is not straightforward.
+While not our primary objective, our accuracy results lend credibility to the generalizability of our conclusions on
+explainability that will be presented later.
+The accuracy and the AUC for the original, masked, and randomly masked versions of the MBTI dataset are presented
+being the former consistently higher. This is due to the fact that the accuracy metric is not robust against the class
+the MBTI accuracy with that of the Big Five dataset, since the latter does not present the class imbalance problem.
+In summary, these observations support H2. On the other hand, it is striking to observe the large difference between
+the AUC results for the original and masked versions of MBTI, revealing the true performance of the model when the
+self-reference MBTI terms are removed from the texts being analyzed.
+The I/E original AUC was 0.739 while the masked AUC was 0.596; interestingly, the randomly masked AUC remained
+at 0.729. For N/S, the original AUC was 0.735, the masked AUC decreased to 0.565, while the randomly masked AUC
+slightly increased to 0.751 (although we attribute the small increase to chance). The F/T dimension showed the least
+variation, with an AUC of 0.816 and 0.814 for the original and randomly masked datasets respectively, and 0.744,
+for the masked dataset. Finally, for J/P, the original AUC was 0.743, the masked AUC decreased to 0.600, and the
+randomly masked AUC maintained a similar level at 0.731. Notably, AUC was nearly identical between original and
+randomly masked datasets, in clear contrast with the masked dataset, showing the stark influence of the MBTI terms
+on the classification.
+These results show strong support for H4, namely, knowing the MBTI terms previously assigned to oneself will impact
+the classification performance. Notably, the F/T dimension was the one with less difference in AUCs between original
+and masked datasets, suggesting it was less susceptible to the bias the others suffered from.
+Our results support the use of BERT or RoBERTa for personality prediction from human-generated text, but with a
+crucial caveat: the effectiveness depends heavily on the quality of the training data. While these models performed
+well with the Essays dataset, their performance on the original MBTI dataset highlights the importance of using truly
+informative data, free from self-reference biases, for accurate personality assessment.
+3.3 Explainability - Word Attribution Scores
+To analyze the importance of individual words in the model’s decision-making process, we employed several summa-
+rization techniques for the word attributions. While each technique offers a unique perspective on word importance,
+we chose to focus primarily on the geometric mean for our analysis and visualization. In Figures 2, 4 and 6, we
+present the words that obtain the highest scores after obtaining their geometric mean for Agreeableness, the original
+Feeling/Thinking, and the masked Feeling/Thinking. The word clouds for all the techniques, traits and types will be
+available in the OSF.
+To provide a more quantitative perspective, we present barplots of the top words with the highest attribution scores
+for each trait, obtaining a rank of the most influential words (Figures 3, 5, and 7). These bar plots provide a clear
+and concise visualization of the words that have the highest impact on the model’s prediction for each trait. Below,
+we analyze these results for each of the Big Five personality traits. The complete list of barplots and wordclouds are
+available in the OSF.
+may not immediately align with the conceptualization of the trait. However, words such as ’like’ and ’well’
+also appear, more closely aligning with the trait’s features. The presence of ’hate’ among the top contributions
+highlights the complex nature of language use in relation to personality traits.
+• Conscientiousness: Words like ’work’, ’homework’, ’assignment’, and ’classes’ align with the trait. Inter-
+estingly, ’people’ and ’love’ are two top contributors possibly reflecting the responsibility entailed in social
+relationships. The presence of ’money’ and ’time’ might reflect financial and time organization.
+A - A 14, 2024
+PREPRINT UGUST
+• Extraversion: ’Sorority’ and ’college’ top the list, strongly aligning with the social aspect of the trait. Words
+like ’awesome’, ’like’, and ’definitely’ may reflect the enthusiastic expression often associated with this trait.
+Social and active words are represented in ’football’, ’weekend’, and ’tonight’.
+• Neuroticism: ’Hate’ tops the list, aligning with the negative emotionality of this trait. Words like ’hurt’
+and ’wrong’ reinforce the anxious and worrying aspects of this trait. Interestingly, ’love’ and ’people’ also
+appear high on the list, possibly explaining intense emotional experiences or the moderate accuracy in the
+classification.
+• Openness to Experience: ’College’ and ’class’ are among the top five on the list, potentially reflecting
+intellectual curiosity. ’Music’ also appears, aligning with aesthetic interests. Words like ’life’, ’time’, ’love’,
+and ’people’ also appear indicating a broad interest in abstract concepts.
+These findings reveal the complex nature of how personality traits manifest in language use. While some words
+clearly align with our understanding of each trait, others suggest more nuanced or context-specific expressions. The
+prevalence of college life-related words across traits is an indicator of the demographics of the participants.
+The MBTI barplots from the masked dataset showed some reference to the MBTI’s theory but the results are less clear
+than for the Big Five. Below, we present some of these results for each dimension. The barplots and wordcloud for
+the rest of the MBTI are available in the OSF.
+• Feeling - Thinking (Figures 6 & 7): The Feeling dimension is characterized by words like ’feel’, ’love’,
+’people’, and ’feeling’, aligning with MBTI’s description of Feeling as prioritizing emotions. The Thinking
+A - A 14, 2024
+PREPRINT UGUST
+dimension, however, while showing MBTI-consistent terms like ’logic’, ’argument’, and ’research’, places a
+stronger emphasis on academic and scientific concepts.
+• Introversion - Extraversion: Introversion emphasizes ’music’, suggesting solitary activities, alongside in-
+trospective terms like ’mind’ and ’think’, however it also includes words like ’people’ and ’world’ with a less
+direct link to Introversion. Extraversion is led by ’people’ and ’happy’, aligning with traditional views of
+social relationships and positive affect. It features enthusiastic terms like ’awesome’, and ’great’, reflecting
+energy. Other terms are more ambiguous and less easy to assign to either dimension.
+• Judging - Perceiving: Judging focuses on structure and planning, with top words like ’plan’ and ’work’, sug-
+gesting organized, goal-oriented approaches. Perceiving highlights spontaneity and flexibility, with ’yeah’,
+’fun’, and ’music’ dominating, indicating a more casual, open lifestyle. Notably, both of them share ’people’
+and ’time’, suggesting either a difference in interpretation (commitments vs. fluid social engagements) or
+ambiguity in the classification.
+• Intuition - Sensing: Intuition focuses on abstract concepts and big-picture thinking, with top word like ’life’,
+’world’, and ’idea’, suggesting a preference for theoretical and conceptual approaches. Sensing is more
+difficult to explain with its top words. Mostly they refer to concrete actions like ’ran’, ’work’, and ’help’,
+focusing on tangible and immediate realities. Both sides of the dimension suggest a potentially ambiguous
+classification.
+A - A 14, 2024
+PREPRINT UGUST
+Given that the model is able to capture contextual information about the words, they should be analyzed in the original
+texts they belong to, so as to get a deeper understanding of how they contribute to the model’s decision-making process.
+This will be presented in the next section.
+3.4 Explainability - Whole Text Exploration
+As detailed in the methods section, we employed three approaches to select the most significant texts: the highest
+overall text-level scores, highest attribution scores according to the geometric mean, and the highest according to
+the average. Among these, the geometric mean technique proved particularly effective in capturing true positives,
+providing a nuanced view of word importance in context. This method ensured texts that best exemplified the linguistic
+patterns associated with each personality trait.
+Notably, the outputs from these three approaches largely overlapped, with only minor exceptions, suggesting a consis-
+tency in the model’s focus across different approaches. This convergence lends additional confidence to the selected
+drawn from this comprehensive selection process, offering a robust representation of how our model interprets and
+classifies personality traits and types based on textual data. A full version of these examples are in SM2 and in the
+OSF organized in folders.
+For the Big Five traits, we identified texts with high attribution scores that exemplified or contradicted each trait.
+A - A 14, 2024
+PREPRINT UGUST
+patterns associated with high and low levels of each trait. These texts illustrate the linguistic patterns and content
+that the model found most indicative of each trait or type, providing concrete examples of the features driving the
+classification decisions.
+Analysis of these high-scoring texts revealed clear linguistic markers for Agreeableness, Extraversion, Neuroticism,
+and Openness to Experience. Conscientiousness, however, proved more challenging to identify, with clear examples
+appearing only in isolated cases. These findings support H3, demonstrating that the words and their context most
+influential in Big Five classification are often semantically coherent with the trait’s content.
+While many high-scoring words aligned directly with the semantic content of the traits, our analysis also revealed
+more nuanced patterns that initially seemed counterintuitive. For example, Agreeableness showed words like ’hate’
+with high attribution scores which seemingly does not have coherence with its meaning. Closer examination revealed
+these instances often occurred in contexts that reinforced agreeable tendencies, like ’I hate it when my parents have to
+put up money for me’ or ’I hate to admit it but I really do miss them’. These findings, that were found across traits,
+underscore the importance of considering words within their broader context and demonstrate the model’s ability to
+capture subtle linguistic nuances beyond word choice. This contextual sensitivity further supports H3, showing that
+the model identifies semantically similar language used in trait-coherent versus trait-incoherent ways.
+original dataset, high-scoring texts often contained explicit mentions of MBTI types, supporting our earlier findings
+A - A 14, 2024
+PREPRINT UGUST
+about self-reference in prediction. The masked dataset results (full version in the OSF) showed how the model adapted
+to more subtle linguistic cues when explicitly type indicators were removed. For F/T, for instance, many texts con-
+tained words related to feelings and thinking styles. Importantly, in the masked results, the texts were showing the
+masking term we are using (’UNK’), signaling the strong influence of the types terminology on the classification. The
+less clear results for the MBTI when compared to the Big Five, demonstrate stronger coherence with theory in the
+Essays dataset and the Big Five Theory.
+These contextual examples provide crucial insights into how our models interpret personality traits and types in text.
+They demonstrate that the model captures nuanced expressions of personality that go beyond simple word usage, often
+identifying complex patterns of language use associated with different personality traits, but being less clear for types.
+This visualization analysis complements our word-level findings by illustrating how individual words contribute to
+broader linguistic patterns indicative of personality traits.
+4 Discussion
+In this study, we introduce a novel approach on text-based personality research that works with unstructured text,
+leveraging AI explainability techniques. Moving beyond mere performance metrics (accuracy or AUC) improvements,
+we identify influential parts of the input text to examine the inner workings of the algorithms. This approach allows
+us to explore the data considered for text classification, improving the content validity of the LLM-based approach
+[Bleidorn and Hopwood, 2019]. By analyzing unstructured language data, through this lens of explainability, we aim
+A - A 14, 2024
+PREPRINT UGUST
+to ensure the replicability of two personality theories in text [Bleidorn and Hopwood, 2019, Yarkoni and Westfall,
+2017] and understand the algorithm’s decision-making process in a more naturalistic context.
+We found accuracies and AUCs for the two datasets in the classification task, close to what has been reported in
+prior studies [El-Demerdash et al., 2022, Majumder et al., 2017, Mehta et al., 2020a, Mohades Deilami et al., 2022,
+data partitioning and fine-tuning serves as warranty for good classification performance.
+An exhaustive review of the texts identified as significant by the explainability algorithm revealed abundant evidence
+of theory coherence between the Essays texts and questionnaire items for most traits, with Conscientiousness being
+the exception. For the MBTI dataset, our findings confirmed H4, showing that in the original data, posts contained
+explicit typologies, while masked data results were more ambiguous.
+Our analysis also revealed the model’s nuanced understanding of language in personality assessment. Words seemingly
+incongruent with a trait often received high attribution scores in trait-coherent contexts (e.g. the word ’hate’ for
+Agreeableness). This contextual sensitivity, observed across traits, demonstrates the model’s ability to distinguish
+between trait-coherent and trait-incoherent language use, further supporting the theory coherence found in the Essays
+dataset. This nuanced interpretation was less evident in the MBTI dataset. These findings highlight the need to revisit
+past studies that relied on techniques like the LIWC [Pennebaker and King, 1999, Tackman et al., 2019, Tausczik and
+A - A 14, 2024
+PREPRINT UGUST
+Pennebaker, 2010], as contextual embeddings from our models may uncover more nuanced patterns of personality and
+psychological expression in text.
+The stark contrast between the effects of targeted and random masking on our MBTI classification model provides
+compelling evidence for the self-referential nature of personality type discussions in the Personality Cafe´ forum,
+supporting H4. The model’s reliance on explicit mentions of personality types, rather than subtle linguistic cues, would
+be in line with what Stein and Swan [2019] pointed out, where conventional tests made to determine the MBTI type
+of individuals would indicate their knowledge and preference of MBTI types rather than their underlying personality
+characteristics. This aligns with MBTI theory’s internal consistency problems and indicates a potential self-fulfilling
+prophecy where people reinforce their typological identities through language. However, this phenomenon may be
+amplified by the dataset’s selection bias, as participants willingly engage in type-focused discussions. While some
+texts, particularly in the F/T category, showed coherence with dimensions theory, these were exceptions rather than
+the norm.
+While studies comparing the Big Five and the MBTI using NLP approaches are limited, our findings align with
+previous research. Notably, Celli and Lepri [2018] reported similar results in classification tasks and a preference of
+the Big Five over the MBTI, albeit using less advanced techniques. Our study extends these findings, employing more
+sophisticated NLP methods to further validate these earlier observations.
+These results underscore the importance of critically evaluating the construct validity of personality assessments de-
+rived from text data [Tay et al., 2020], especially when dealing with popular but scientifically contested models like
+the MBTI. Furthermore, they highlight the potential of NLP techniques not just for personality assessment, but also
+for uncovering the ways in which personality theories shape discourse and self-presentation.
+Our study also highlights methodological concerns in personality assessment via NLP. The dichotomous classification
+of the Essays dataset, following Oberlander and Nowson [2006], is problematic: using the mean as a threshold to
+delineate the two groups [Mairesse et al., 2007]. This classification methodology leads to minimal differences between
+individuals with varying scores [Oberlander and Nowson, 2006], contradicting the continuous nature of personality
+traits and favoring an artificial dichotomy. This artificial dichotomy might have contributed to lower accuracy scores
+and affected the explainability of results, particularly for traits like Conscientiousness, suggesting the need for more
+research into this trait [Roberts et al., 2014] Efforts to perform these analyses with the correct type of data should
+be pursued. Studies employing alternative datasets have been more attentive to this key consideration [Rangel et al.,
+2015, Sun et al., 2024].
+The use of the MBTI dataset, despite its questionable psychometric validity [Furnham, 1996, Pittenger, 2005] and
+extensive criticism [Barbuto Jr, 1997, McCrae and Costa, 1989, Stein and Swan, 2019], is justified by its widespread
+use and societal impact [Mehta et al., 2020a,b]. We demonstrate that the seemingly better performance of MBTI over
+Big Five classification is largely due to reporting accuracies instead of AUC and not accounting for the use of MBTI-
+related terminology. This conclusion alone is key to encourage the field for research beyond performance metrics in
+classification tasks for personality psychology [Bleidorn and Hopwood, 2019, Chang et al., 2023].
+Our study contributes significantly to making personality detection more accountable and transparent. By going be-
+yond performance metrics and exploring the decision-making processes of our models through explainability, we have
+uncovered important insights about the nature of personality expression in text and the limitations of current assess-
+ment methods. This analysis not only highlights the need for a contextualized approach to explainability results in
+text data, but also underscores the potential of NLP techniques to uncover subtle linguistic markers of personality
+that might not be immediately apparent from traditional trait descriptions and less advanced computerized techniques
+[Boyd and Markowitz, 2024]. These findings not only advance our understanding of personality assessment through
+NLP but also highlight the complex interplay between personality theories, individual self-perception, and language
+use.
+4.1 Limitations
+One important question in the integration of personality psychology and NLP is the quality of the prompts used to
+elicit data in humans or generative agents alike. For our datasets, both generated by humans, we found biases implicit
+to each scenario.
+The Essays dataset should be used considering that it might not be the best prompt to detect personality traits as
+low-level resolution constructs, or capturing the multi-faceted components expressed in their facets and nuances at a
+high-level resolution. It might be better suited to capture the signal of other psychological constructs (e.g. impulsivity,
+disinhibition, sensation seeking, etc.). Conversely, the MBTI dataset, sourced from an online community deeply
+interested in personality theories, likely influences selection bias. Of note, although online data might appear more
+A - A 14, 2024
+PREPRINT UGUST
+authentic, our results suggest that stream-of-consciousness prompts can effectively elicit authentic data, in line with
+previous related research [Marriott and Buchanan, 2014].
+Another important limitation in our two datasets, is the inability to use external criteria for validation, as is the golden
+standard in psychometry [Bleidorn and Hopwood, 2019]. In this sense, explainability results should be associated
+with behaviors and life outcomes as established in the field of personality psychology [Ozer and Benet-Mart´ınez,
+2006, Stewart et al., 2022].
+The use of dichotomous classification for the Essays dataset is problematic. This approach contradicts the continuous
+nature of personality traits and may have contributed to lower accuracy scores and affected the explainability of results,
+particularly for traits like Conscientiousness.
+Our interpretation of explainability had one limitation: while comprehensive, our approach to evaluating coherence
+between explainability outputs and personality theories was subjective, as it involved human evaluation, in contrast to
+the rest of the methodology employed, which was driven by data.
+Finally, another limitation of our work is related to the explainability technique. Commonly used techniques, including
+the one used here, can only produce information for individual features —words in our case— of the input. This makes
+the interpretation of results more difficult, since the semantic aspects of a particular word are strongly influenced by
+the surrounding words. Explainability techniques such as the one proposed by Sikdar et al. [2021], are able to capture
+information about the interaction between features or words, constituting a very interesting option to extend the work
+presented here.
+4.2 Future Directions
+Analysis of personality-labeled texts with LLM should be extended to other types of texts. This study applied it to
+stream-of-consciousness texts and web posts that although useful might not be the best option to elicit words and
+topics with personality signals. The data collected from Facebook has shown better scores in all the metrics scores
+for all traits [Christian et al., 2021] suggesting that the fidelity of the output is directly correlated to the quality of the
+input. Generally, it appears that data collected from social media contain higher levels of self-disclosure than other
+datasets [Naaman et al., 2010], although the evidence for this is mixed [Marriott and Buchanan, 2014].
+However, it would be insightful to study the same dataset without any pre-established structure, adopting a more
+exploratory approach. This method aims to uncover other psychological processes that may influence the production
+of spontaneous texts. This exploration could also yield valuable insights into the underlying mechanisms of personality
+expression in unstructured writing and might provide information for a more complex theory of personality.
+Further confirmation of H4 in the MBTI datasets should be conducted with a dataset that does not rely completely on
+topics on personality theories. The PANDORA Talks dataset [Gjurkovic´ et al., 2021] could be a valuable resource for
+this purpose.
+Many authors have used the labeled Essays dataset without proper consideration of its origins and with misconceptions
+about its construction. Ultimately, we are predicting labels that are questionably assigned to the essays. Future studies
+should move beyond dichotomous labels for traits that are not founded in sound research [Oberlander and Nowson,
+2006] and explore personality prediction with the tools presented in this study, thus respecting the continuous nature
+of personality traits [Sun et al., 2024].
+One exciting avenue for research is to push the lexical hypothesis out of its current boundaries. While adjectives
+have been extensively studied to build a taxonomy of personality, more complex language productions like whole
+sentences or even paragraphs would also hold valuable personality information —e.g. The Characters of Theophrastus
+[Theophrastus, 2018]. For instance, a sentence like ”He always arrives early to meetings and has a detailed agenda pre-
+pared” might capture conscientiousness more comprehensively than single adjectives like ”organized” or ”punctual”.
+The Essays dataset has not been explored in this direction, and using sentences and paragraphs with their respec-
+tive embeddings could help build a more comprehensive personality taxonomy, as suggested by early personality
+researchers [McCrae, 1990].
+Future research should also examine differences in trait expressions across demographic variables. For instance,
+women and men might have different ways of expressing through verbal behavior their extraversion or introversion
+[Peters and Matz, 2023]. Additionally, predicting life outcomes, such as academic performance or subjective well-
+being should be considered [Sun et al., 2024].
+Future research should focus on developing computerized evaluation approaches for explainability techniques in per-
+sonality assessment, with objective NLP methods. Further exploration of explainability data using quantitative ap-
+proaches can reduce human interpretation and enhance objectivity when analyzing results within the framework of
+A - A 14, 2024
+PREPRINT UGUST
+personality theory (e.g. given a set of words identified by the explainability technique, use a data-driven technique
+to infer the trait that better explains the set of words). These approaches would significantly advance the field by
+establishing consistent, data-driven methods for analyzing explainability outputs with minimal human intervention.
+We believe that the introduction of the toolbox of techniques from the field of NLP aligns with the fundamental tenets
+of the lexical hypothesis, as it facilitates a contextualized analysis of text beyond individual words. This approach
+also enables the examination of longer text strings, offering a more comprehensive understanding of language usage.
+While further research in this direction is warranted, it is essential to validate LLMs within the current personality
+psychology framework before addressing these challenges. Our study was designed with this notion in mind.
+Some authors suggest that LLMs will eventually replace questionnaires [El-Demerdash et al., 2022]. However, we
+are still far from dispensing with questionnaires entirely and their influence is still present even in NLP/PA studies
+despite concerns on using them as ground truth for personality research [Boyd and Pennebaker, 2017]. Future efforts
+in our field should first expand the current theory to move beyond questionnaires and these efforts should integrate not
+only textual data but multimodal and behavioral data [Curto et al., 2021]. This could involve incorporating behavioral
+observations, peer reports, digital behaviors and other objective measures alongside language data.
+Additionally, NLP/PA and TPA should at some point be compared in terms of the variance they explain in predicting
+personality, to reveal the relative strengths and limitations of each approach. This could potentially lead to more
+integrative and robust models of personality assessment.
+Ultimately, our study contributes to the effort of making personality automatically detected with better accountability
+of the processes behind each classification decision. Although it raises ethical concerns, automatic personality can be
+used for improving personal assistants and generative agents, allowing the creation of more intelligent empathetic sys-
+tems, personalizing experiences and suggestions, job screening, political forecasting, forensics [Mehta et al., 2020b],
+and ultimately influence the pursuit and measurement of social change outcomes [Gallardo-Pujol et al., 2022].
+Acknowledgments
+This research was supported by the 2021SGR0709 grant from the Government of Catalonia and Grant PID2020-
+119755GB-I00 funded by MCIN/AEI/ 10.13039/501100011033. The authors declare no conflict of interest.

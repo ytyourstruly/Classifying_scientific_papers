@@ -1,0 +1,1132 @@
+Cognitive networks for knowledge modelling: A gentle tutorial for
+data- and cognitive scientists
+Edith Haim and Massimo Stella*
+CogNosco Lab, Department of Psychology and Cognitive Science, University of Trento, Italy
+*Corresponding author: massimo.stella-1@unitn.it
+Abstract
+In this tutorial paper, we discuss cognitive networks as powerful models for understanding human
+cognition and knowledge. Cognitive networks are representations of associative knowledge between
+concepts in a cognitive system apt at acquiring, storing, processing and producing language, i.e. the
+mental lexicon. In a cognitive network, nodes represent concepts with links expressing relations, such
+as semantic, syntactic, phonological and visual connections, e.g. “canine” and “dog” (nodes) linked
+by “being synonyms” (link). Hence, cognitive networks represent associative knowledge in
+mathematical, measurable and quantifiable ways. Can such structure be used to gain insights over
+cognitive phenomena? We explore this research question by reviewing recent, pioneering key
+applications and limitations of cognitive networks across visual, auditory, and semantic language
+processing tasks, either in healthy or clinical populations. We also review applications of cognitive
+networks modelling language acquisition, reconstructing text content and assessing creativity or
+personality traits in individuals. Our tutorial also gently introduces the reader to mathematical
+notations, definitions and measures about single-layer and multiplex networks as well as hypergraphs.
+Last but not least, across phonological, semantic and syntactic networks, we guide the reader through
+relevant psychological frameworks, datasets and software packages that might all aid current and
+future cognitive network scientists.
+1. Introduction
+The mental representation of linguistic knowledge is a complex system where several abstract
+units - such as sounds, words and structures - interact together at multiple levels to convey knowledge,
+meaning and emotions (Tulving 1972; Aitchison 2012; Zock 2020; Hills & Kenett 2021). The
+complexity of such a cognitive system originates from the fact that “more is different”: Combining
+ideas with specific features can create novel cognitive entities with distinctive characteristics, e.g.
+“clause” (proposition) with “santa” (saint). Complexity is not limited to the spheres of meaning or
+emotions but rather extends also to other aspects of knowledge. For instance, we have the ability to
+remember and piece together phonemes (i.e. sound units) to form words as phoneme sequences
+(Vitevitch 2008). We can also stack words to create sentences. When combined, multiple sentences
+create narratives that shape ideas, viewpoints, emotions, and contexts, making all these aspects highly
+interconnected. All this information is stored and processed across several cognitive mechanisms,
+either sequentially or in parallel (Aitchison 2021; Doczi 2019). These idealised linguistic forms are
+structured representations of knowledge as encoded within human cognition. Other examples include
+mental images or conceptual frameworks, e.g. visualising a red apple when thinking about the concept
+“apple” (Ciaglia et al. 2023). Notice that the terms “words” and “concepts” are distinct - words
+represent linguistic units whereas concepts are cognitive reflections of ideas in the human mind
+(Vigliocco et al. 2018). However, despite this distinction, since our focus is on modelling cognition
+via models yet unable to distinguish between concepts and words, we use these two terms
+interchangeably.
+If concepts can be assembled together, shaping our knowledge systems, the necessity arises for
+models that can elucidate, quantify, and explore such assembling or associative structures (Doczi
+2019; Hills & Kenett 2021). These models should also focus on highlighting the interplay between
+associative structure and other cognitive phenomena, dynamics and functions, grounded on such
+organisation of concepts and ideas (Stella et al. 2017). In pursuit of this goal, cognitive modelling
+introduced the metaphor of a mental lexicon (Collins & Loftus 1975; Aitchison 2012). Contrary to
+its name, this is not a mere dictionary but rather a complex cognitive system, comprising multiple
+interacting elements. The mental lexicon mostly includes semantic memory, acting as a repository
+for linguistic knowledge about concept meanings (Sizemore et al. 2018; Kenett et al. 2018; Kumar
+2021), alongside other subsystems handling phonological knowledge (Vitevitch 2008), visual cues
+(Kennington & Schlangen 2015), and more (Doczi & Kormos 2015; Zock 2020). In this lexicon,
+mental representations can share similar features, forming a “cobweb” of interactions influencing
+knowledge acquisition, storage, processing, and production (Steyvers & Tenenbaum 2005; Aitchison
+2012). This analogy aligns with the concept of a complex network (Collins & Loftus 1975) but with
+a unique twist: links in the mental lexicon are “invisible” unlike those in physical systems, making
+the structure of the mental lexicon inaccessible for direct, exact reproduction in a lab setting. For
+instance, whether a researcher might explore and tinker with brain connections in the anatomy of a
+real brain in a given lab setting, researchers cannot directly observe whether two ideas are encoded
+as synonyms in an individual's mental lexicon but rather need to rely on external tasks or definitions,
+i.e. indirect probing.
+Consequently, the structure of the mental lexicon has to be indirectly investigated through
+cognitive tasks. A key issue with these tasks is that they represent linguistic data without providing
+insights into the cognitive structure of associative knowledge behind the data itself. For instance, the
+data coming from a fluency task (see Section 2.6) remains a sequence of words, with no explicit
+information about relationships between them. Hence, accessing only data from cognitive tasks still
+misses information about how concepts are organised within human cognition. This research gap is
+filled by network models, which act as representation proxies of the structural organisations of
+concepts in the mental lexicon, with all due limitations relative to using proxies (Kenett & Hills 2022).
+Notice that cognitive networks, the main topic of this tutorial, are not artificial neural networks
+(Fatima et al. 2021). The latter are interconnected computational units, i.e. artificial neurons, which
+can integrate or modify signals over time, thus possessing a distinctive computational power, e.g.
+reproducing the OR logic. The cognitive networks reviewed in this tutorial paper are rather
+representational models, i.e. they explicate the layout of conceptual relationships in associative
+knowledge, even in absence of computational elements. Despite this distinction, cognitive network
+science has grown over the years as a data-centric field, employing multidisciplinary techniques from
+cognitive science, psychology, social science, mathematics, physics, statistics, and computer science
+(Hills et al. 2009; Kenett et al. 2018; Siew et al. 2019; Siew & Castro 2020; Stella 2022).
+This tutorial paper integrates excellent pre-existing reviews (Siew et al. 2019; Siew & Castro 2020)
+by focusing on: (i) outlining the most recent advancements and cognitive interpretations in the field
+focusing on network science methods and relevant literature as to appeal to computational scientists,
+and (ii) reviewing the latest large-scale datasets and coding packages that can support computational
+scientists in using cognitive networks as models for understanding human cognition and behaviour.
+2. Basic Definitions
+Let us start by defining in simple terms what is a cognitive network:
+Definition 1: A cognitive network is a data-informed model explicating associations (links)
+between cognitive representations of concepts (nodes).
+Being data-informed implies that cognitive networks draw their insights and structure from empirical
+data and psychological models (Siew et al. 2019; Stella 2022), reflecting real-world patterns and
+interactions in combination with underlying theoretical assumptions and psychological constructs.
+The phrase “explicating associations” underscores the networks´ ability to account for one or several
+connections or relationships present between concepts in the mental lexicon, e.g. phonological
+similarities (Vitevitch 2008), memory recall patterns (De Deyne et al. 2013), syntactic dependencies
+(Stella 2020) and so on. Furthermore, “cognitive representations of concepts” pertains to the mental
+constructs that individuals hold for various ideas or entities, ranging from meanings to visual,
+phonological, emotional, and syntactic features, among others (Doczi & Kormos 2015).
+Examples of nodes in cognitive networks include various linguistic elements, such as semantic
+representations of words or idioms (one or more words conveying a unique meaning, e.g. “leap of
+faith”). Morphemes capturing the root or stem of a word encode another type of node (e.g. “happi”
+being the stem of “happiness”), as well as phonological transcriptions of words (see Fig. 1) and many
+others (Doczi & Kormos 2015; Sizemore et al. 2018; Valba et al. 2021). Conceptual associations
+within cognitive networks encompass a diverse array of aspects within the mental lexicon and include
+semantic, phonological, syntactic, sensorimotor, affective, and visual aspects of the mental lexicon,
+among many others (Martinčić-Ipšić et al. 2016; Stella et al. 2018; Siew et al. 2019; Castro & Siew
+2020; Levy et al. 2021; Stella 2022). For instance, semantic associations involve connecting words
+like “apple” with concepts sharing some features or overlapping in meaning, like “fruit” or “red”
+(Doczi 2019). Phonological associations might be observed in recognising sound similarities between
+words such as “cat” and “cab” (Vitevitch 2008). Syntactic associations involve understanding
+grammatical structures, as demonstrated in sentences like “The cat looks at the cab” (Stella et al.
+2022). Moreover, affective associations involve linking emotions to words, such as associating
+positivity with “celebration” or negativity with “failure” (Semeraro et al. 2022). Lastly, mental
+imagery can be evoked through visual associations - like imagining a beach, palm trees, and waves
+when encountering the word “vacation” - and sensorimotor associations, illustrated by mentally
+envisioning actions like riding a bicycle when the word “bike” is mentioned (Ciaglia et al. 2023).
+Even psychometric networks (Golino & Epskamp 2017) would fall into Definition 1, although
+their link construction is considerably more advanced (Golino et al. 2020) than the scope of this
+tutorial paper. In fact, psychometric networks encapsulate correlations between numerical sets (e.g.
+responses to items) and are thus not equivalent to cognitive networks of conceptual associations.
+Some pioneering approaches (Stanghellini et al. 2023) are entwining the structures of cognitive and
+psychometric networks, merging the semantic content of items in psychometric questionnaires with
+numerical responses. Notice that Definition 1 does not include brain networks (Beaty et al. 2018),
+which can be used to predict cognitive phenomena or traits (e.g. creativity levels) but encode
+relationships between brain circuits rather than between cognitive representations of concepts.
+2.1. Simple mathematical definitions: Edges, vertices and sets
+When considering only a single type of conceptual association (Siew et al. 2019; Stella 2022),
+cognitive networks can be represented as a couple of sets (𝑉, 𝐸), which includes a vertex set 𝑉 =
+{𝑖, … , 𝑠, … , 𝑗} (consisting of the concepts) and an edge set E, e.g. {(𝑖, 𝑗), … (𝑠, 𝑖)} (consisting of the
+links between concepts). In undirected conceptual associations, the relationship between two words,
+represented as the link (i, j), is symmetrical, meaning it is equivalent to the reverse order (j, i). This
+symmetry is denoted as i-j, indicating that the connection between the two words is bidirectional. For
+example, considering the synonyms “land” and “earth”, the undirected link “land”-“earth” conveys
+that both terms are conceptually related with no directionality or hierarchy between them.
+Importantly, in undirected links, the order in which words are connected is irrelevant, emphasising
+the mutual and interchangeable nature of these types of associations.
+Instead, in directed associations the order of words is relevant (Stella et al. 2018). For instance, in
+the sentence “birds are a broader category of doves”, the fact that “bird” is a hypernym of “dove”
+could be coded as a directed connection 𝑏𝑖𝑟𝑑 → 𝑑𝑜𝑣𝑒. Specifically, this coding signifies that “bird”
+is a broader category encompassing the more specific term “dove”. The directional arrow (→)
+captures the hierarchical flow, from the hypernym “bird” to the hyponym “dove”. This emphasises
+the directional relationship between these two words. Such a connection could be represented as a
+couple of elements in case of considering the order, i.e. the source node will appear first in the list,
+followed by the target node. Hence, 𝑏𝑖𝑟𝑑 → 𝑑𝑜𝑣𝑒 could be represented as (𝑏𝑖𝑟𝑑, 𝑑𝑜𝑣𝑒). Instead,
+(𝑑𝑜𝑣𝑒, 𝑏𝑖𝑟𝑑) or, equivalently, 𝑑𝑜𝑣𝑒 → 𝑏𝑖𝑟𝑑, would not encode a hypernym but rather a hyponym.
+Networks where all links are undirected are called undirected networks (Newman 2018). Networks
+with only directed links are called directed networks. Networks combining directed and undirected
+connections can be recast as special cases of directed networks in case undirected connections are
+split in reciprocated directed connections, for instance the relationship “good”-“positive” could be
+undirected cognitive network, with a vertex set 𝑉 = {𝑐𝑎𝑡, 𝑐𝑎𝑛, 𝑐𝑎𝑏, 𝑚𝑎𝑛, 𝑐𝑟𝑎𝑏}. The links between
+the entries map phonological similarities between their transcriptions. Such phonological similarities
+regard words differing by the addition, substitutions or deletion of one phoneme (Vitevitch 2008).
+/r/ sound, while substituting the /c/ in “can” for /m/ results in “man”. These examples showcase how
+slight phonological modifications can result in a series of words with interconnected phonological
+similarities, i.e. sounding similar with each other.
+represented as 𝐸 = {(𝑐𝑎𝑡, 𝑐𝑎𝑏), (𝑐𝑎𝑛, 𝑐𝑎𝑏), (𝑐𝑎𝑛, 𝑐𝑎𝑡), (𝑚𝑎𝑛, 𝑐𝑎𝑛), (𝑐𝑎𝑏, 𝑐𝑟𝑎𝑏)}, indicating the
+relationships among the words in terms of phonological similarities (Turnbull 2021). What is reported
+nature (Stella et al. 2017).
+words in the IPA alphabet (see also Turnbull 2021). The links between transcriptions indicate
+phonological similarities (i.e. two words differing for the addition, substitution or deletion of one
+phoneme only and thus sounding similar to each other).
+2.2. Single-layer, multilayer and multiplex lexical networks
+Extensive psycholinguistic research has shown that among the very same set of concepts there can
+be multiple types of conceptual associations (Fay & and Cutler 1977; Aitchison 2012; Abrams &
+Davis 2016). In other words, the concepts can relate to one another in multiple ways. For instance,
+“cat”, “dog” and “wolf” in terms of them belonging to the category of animals. A single-layer network
+can contain these relationships, although it may lack a broader picture of the various other
+relationships connecting these words on other levels. The same set of words can also be related in
+terms of semantic overlap, as in “dog” overlapping semantically with “wolf”, i.e. sharing certain
+characteristics. Furthermore, considering the phonological level “cat” would be related to “mat” due
+to their phonological similarity (see Fig. 2, right).
+containing only relationships through free association on a single network layer. Left: Multilayer
+language network capturing how distinct semantic features and phonemes are mapped onto a set of
+words. Each layer contains a different set of nodes. Right: Multiplex lexical network featuring
+associative, semantic and phonological relationships. Each layer contains the same set of nodes,
+indicating different relationships between them.
+Since single-layer networks capture only one type of relationship, this limits the analysis to a single
+dimension of connectivity (Newman 2018). However, multiple types of relationships being present
+among the same set of concepts calls for networks with multiple layers to adequately represent the
+depicts two possible network types featuring multiple layers: multilayer networks (left) and multiplex
+networks (right).
+Multilayer networks are highly flexible, allowing each layer to contain different sets of nodes and
+interactions (Newman 2018). This makes multilayer networks well-suited for systems where not all
+entities are involved in every type of relationship (Kivelä et al. 2014). For example, in a language
+dog → is alive), while another layer represents the phonemes the phonological form of the word
+consists of (e.g. dog → /d/, /o/, /g/). Not all phonemes or semantic features map exactly onto all
+words, thereby creating layers with potentially differing numbers of nodes and interactions (Stella et
+al. 2024).
+In contrast, multiplex networks are a specific subtype of multilayer networks where the same set
+of nodes exist across all layers. Each set of concepts is mapped exactly onto the next layer, with each
+layer representing a distinct type of interaction among the same entities (Stella et al. 2017; Stella et
+al. 2018; Stella 2020b). This structure is especially useful when studying how different types of
+a multiplex lexical network could represent the same set of words (e.g. “mat”, “cat”, “dog”, “wolf”)
+and capture a different dimension of connectivity among them, such as free associations, semantic
+overlap or phonological similarities, among many other types. In general, in a multiplex lexical
+network, multiple edge-lists 𝐸 , … , 𝐸 co-exist, each one composing a distinct network layer with the
+1 𝐿
+same set of nodes (Stella et al. 2024).
+Historically, the idea of different layers originated in social science contexts for mapping different
+types of social relationships among the same set of individuals (Newman 2018). In cognitive science,
+instead, relationships of different colours indicate different aspects of associative knowledge being
+simultaneously or sequentially used for acquiring, storing, and processing concepts (Hills et al. 2009;
+Citraro et al. 2023). For instance, the phenomenon of malapropism (Fay & Cutler 1977) occurs when
+someone can access the phonological information relative to a given target word but then fails at
+activating the correct semantic information that would lead to using the target word in the correct
+context. An example of malapropism could be “I band but I don´t break” where we use “band” instead
+of “bend”. The occurrence of malapropism in common language signifies that phonological and
+semantic layers are distinct but interact with each other during language processing and production
+(see also Doczi 2019). This importance is further underlined by another phenomenon rising from the
+interactions between semantic and phonological aspects of the mental lexicon, i.e. the so-called “tip
+of the tongue” event (Abrams & Davis 2016). This takes place when someone can access the semantic
+features of a given target word but is unable to retrieve and produce the phonological instruction for
+naming the target. For instance, someone might be familiar with the concept of a crane (e.g. being a
+bird, having wings, flying) but ultimately being unable to say the name at the moment and rather use
+a common English expression: “I have it on the tip of my tongue.” Malapropisms and tip-of-the-
+tongue events both underline how important it is to identify models that can encapsulate at the same
+time semantic and phonological relationships between concepts, like multiplex lexical networks.
+Multiplex networks can exist with (Fig. 3, right) or without (Fig. 3, left) explicit links between
+different layers. Some multiplex networks include explicit links between layers to model
+social networks, users may have accounts on multiple platforms (e.g. Instagram, Facebook) and
+interlayer links can represent the association of accounts belonging to the same user (Khdir et al.
+2024). In contrast, in many multiplex networks, once one identifies all the replicas of the same entity
+(e.g. all the replicas of “mat” across layers) there is no need to further specify direct unweighted links
+separate visually distinct layers and drawing connections between them (see Fig. 3, right), this visual
+representation without explicit interlayer links collapses all layers together onto one level. The
+different types of relations between nodes as based on a different layer are indicated by links being
+drawn in different colours (see Fig. 3, left). Therefore, multiplex networks without explicit interlayer
+links are also called “edge-coloured” graphs (Stella et al. 2017; De Domenico 2022). The left panel
+and semantic associations (highlighted in cyan).
+(cyan) associations. These networks can be visualised by either emphasising their multi-layer
+structure (right, multiplex representation), where all nodes are replicated across layers, or by
+collapsing layers together while preserving different colours (left, edge-coloured representation). The
+largest connected component of the network is highlighted in yellow.
+In cognitive networks, modelling interactive or subsequent transitions between phonology and
+semantics poses a challenge. As a result, most multiplex lexical networks in the current literature are
+presented as edge-coloured graphs (see Fig. 3). In these edge-coloured graphs, different types of
+the semantic layer is portrayed in cyan while the phonological layer is depicted in red. This coding
+via colours allows for a clear visual distinction between the various types of associations within the
+multiplex network (Stella et al. 2017; Stella et al. 2018).
+An alternative approach to visualising multilayer networks is through feature-rich graphs (Citraro
+et al. 2023b), which allow for the integration of multiple attributes into a single representation. These
+graphs not only capture the connections between elements (e.g. words) but also information about
+an exemplary network constructed for the Woseco (Word-sentence-construction) task. In this task,
+participants create a chain of sentences that are linked to each other through a shared word repeated
+in both sentences (Haim et al. 2024). For example, a Woseco text could go: “In school we learn about
+based on their sequence within the sentences, with edges reflecting the syntactic relationships
+between them. The nodes are colour-coded to indicate their grammatical properties such as word
+category (nouns are blue, verbs are orange and adjectives are pink). This feature-rich design of a
+Woseco network highlights both the structural and grammatical aspects of the network.
+Example Woseco sentences:
+In school we learn about chemistry.
+In chemistry I love the experiments.
+During the experiments we are careful.
+If you are not careful, the chemicals explode.
+Chemicals can explode or start boiling.
+You shouldn't boil things without a lab coat.
+My lab coat is stained.
+repeated across the chain of sentences. The edges represent the syntactic relationships between the
+words within the text. Nodes are colour-coded to indicate their word category. Nouns are depicted in
+blue, verbs in orange and adjectives in pink.
+Why use multiplex rather than simpler single-layer networks? The combination of network layers
+might highlight phenomena that could not be observed in individual networks. For instance, in (Siew
+& Vitevitch 2019) orthographic and phonological similarities highlighted facilitative effects in visual
+word recognition that were not observed in orthographic similarities or phonological similarities
+separately. Other examples include phenomena such as enhanced preferential acquisition (Stella et
+al. 2017) and improved lexical processing based on word distance in clinical populations (Castro &
+Stella 2019; Castro et al. 2020; Baker et al. 2023). These phenomena emerged only when semantic
+and phonological layers were combined in the multiplex structure: Multiplexity might open up novel
+perspectives when modelling semantic memory. For a more comprehensive review on the topic, we
+refer to Stella et al. (2022).
+Edge-coloured graphs and multiplex lexical networks (Stella et al. 2018) can be used as synonyms
+whenever there are no explicit costs for transitioning between layers. Explicit costs for transitioning
+between layers could entail the effort, resources or time required to navigate across these layers. For
+instance, in a cognitive network, moving from a semantic layer, containing conceptual information,
+to a phonological layer, representing the sound form of a word, may involve overcoming activation
+thresholds or activation costs (Siew & Vitevitch 2019; Stella et al. 2024). Consider spreading
+activation in this context. When a word is activated (e.g. the word is read on a screen) its associated
+activation spreads to its neighbouring nodes and through the network. The spreading activation
+diminishes over distance and with each node it traverses (Collins & Loftus 1975; Koponen 2021).
+Similarly, inter-layer transitions may also encounter diminishing activation energy or increased
+cognitive load, representing certain costs for traversing from one layer to the next. These costs may
+be higher for weak or distant connections and lower for strong connections between layers. For
+example, a weak semantic-phonological coupling for an infrequent word might lead to difficulty in
+word retrieval, whereas stronger links could make transitioning more efficient (Koponen 2021; Siew
+2019).
+In cases where there are no explicit costs associated with transitions between layers, the
+connections may be highly efficient or seamlessly integrated, facilitating a free flow of activation
+without significant energy loss, delays or cognitive effort. For instance, a strong coupling of the
+semantic and phonological layers for highly frequent words might result in spreading activation from
+the conceptual representation (e.g. a concept is shown as a picture and shall be named) to its
+phonological form without significant costs. This scenario could occur when inter-layer links are
+strong or tasks are highly automated, such as in fluent speech or reading, though empirical validation
+of such cases remains limited (Stella et al. 2018; Koponen 2021).
+2.3. Simple mathematical definitions: Adjacency matrices
+Both single- and multiplex networks can be represented as matrices (Newman 2018; De Domenico
+2022). An adjacency matrix 𝑆 encodes the connectivity of any single-layer network in its elements,
+e.g. 𝑠 where each element represents the presence (1) or absence (0) of a connection between nodes
+𝑖𝑗
+i and j. If there is a link between i and j then 𝑠 = 1, otherwise 𝑠 = 0 (see Fig. 5). This also means
+𝑖𝑗 𝑖𝑗
+that the dimensionality of 𝑆 is 𝑁 × 𝑁, where 𝑁 = |𝑉| is the number of nodes in the network. In
+undirected networks, 𝑆 must be symmetric, i.e. 𝑠 = 𝑠 ∀𝑖, 𝑗 ∈ 𝑉. 𝑆 encapsulates the so-called
+𝑖𝑗 𝑗𝑖
+“topology” of a network, specifying how links are organised between nodes. Elements 𝑠 , when
+𝑖𝑖
+present, are called self-loops. An undirected, unweighted network without self-loops is also called a
+network with its respective adjacency matrix.
+A B C D
+A 0 1 1 0
+B 1 0 1 0
+C 1 1 0 1
+D 0 0 1 0
+matrix (right). The existence or absence of connections between the entries A, B, C and D is indicated
+in the adjacency matrix as either 1 (link exists) or 0 (no link exists).
+Weighted networks extend this representation by including a weight matrix 𝑊 where each element
+𝑤 represents the strength of the connection between i and j. For example, in a semantic network,
+𝑖𝑗
+𝑤 might represent the frequency with which words i and j co-occur with each other in a text,
+𝑖𝑗
+indicating their associative relationship. In phonological networks, weights can encode the degree of
+phonetic similarity between words, highlighting how closely related they are in their sound form
+(Castro & Siew 2020). Alternatively, weights might indicate the co-occurrence of words in fluency
+experiment tasks coded as semantic networks (Kenett et al. 2018).
+Weights also allow researchers to capture asymmetries or varying intensities within cognitive
+systems. For instance, two words such as “degree” and “freedom” might co-occur frequently in a
+context of statistics (as in “degrees of freedom”) but rarely in another more general context, resulting
+in different weights for their connections in different subsets. Weighted networks allow the
+identification of hubs with disproportionately strong connections. In contrast, simple unweighted
+networks (see Fig. 5) treat all connections equally, which may hide meaningful variations in the
+occurrences with its respective adjacency matrix. In case of bigger weight, the strength of the
+connection between two nodes is indicated through thicker links and nodes with higher weight are
+depicted larger.
+A B C D
+A 0 2 5 0
+B 2 0 3 0
+C 5 3 0 1
+D 0 0 1 0
+(right). The strength of connections between the entries A, B, C and D is reflected in the adjacency
+matrix with higher numbers indicating greater weight of the link.
+2.4. Simple mathematical definitions: Degree, power-laws, hubs and degree distributions
+In simple networks, summing over the 𝑖-th column or row of matrix 𝑆 provides the total number
+of links featuring node 𝑖. This total is known as the network degree 𝑘 . The network degree 𝑘 is a
+𝑖 𝑖
+local network measure specific to node i: Degree counts only interactions that directly consider one
+node while neglecting the rest. In phonological networks, network degree has long been called
+phonological neighbourhood density (PND), counting words which are phonologically similar to a
+given target (Vitevitch 2008; Turnbull 2021). Degree/PND has been shown to influence lexical
+identification in confusability tasks and even short-term retainment (cf. Vitevitch & Mullin 2021).
+For example, consider a node in a semantic network with a high degree, meaning it is connected to
+numerous other nodes. In a confusability task, i.e. say whether a sequence of phonemes represents a
+real word, participants might find it challenging to quickly and accurately identify this node due to
+the abundance of interconnected associations, leading to potential confusion with closely related
+concepts. Conversely, in short-term retention tasks, e.g. memorise and reproduce words, a node/word
+with a high degree may be recalled more easily, as its rich connectivity aids in creating a robust and
+interconnected mental representation, facilitating easier retrieval from memory according to a
+spreading activation phenomenon (Vitevitch & Mullin 2021).
+Much attention has been devoted to characterising a network based on the statistical distribution
+of its degrees (see also Steyvers & Tenenbaum 2005). Consider the probability 𝑝(𝐾 = 𝑘) of
+sampling one node in a network and finding it has a degree equal to 𝑘. Sampling means considering
+one node at random by picking it among all available nodes in a given network structure. Thus, 𝑝(𝐾 =
+𝑘) is the fraction of nodes with that degree. If the probability distribution of finding a node with a
+specific degree follows a power-law distribution, then the network is said to be a power-law one. This
+−𝛼
+power-law distribution can be noted as 𝑝(𝐾 = 𝑘) = 𝑧 ⋅ 𝑘 where z is a normalisation factor and
+𝛼 a power-law exponent. In cognitive networks, a power-law distribution might manifest as the
+majority of concepts having a low degree of semantic connections, while a few concepts gather a vast
+amount of connections or associations. Fitting a power-law distribution directly to 𝑝(𝐾 = 𝑘) suffers
+from high error margins over nodes with infrequently high degrees (cf. Alstott et al. 2014). This issue
+can be reduced if one considers the cumulative degree distribution 𝐶(𝐾 ≥ 𝑘), i.e. the probability of
+finding a node with a degree equal to or higher than 𝑘. Notice, however, that fitting a specific equation
+to an empirical degree distribution can be daunting not only in statistical terms but also for the
+interpretation of degree distributions. Power-law degree distributions are interesting mostly because
+they indicate the presence of a few hub nodes, i.e. nodes with high degrees, thanks to their heavy-
+tailed decay. The “tails” of a distribution refer to the extreme ends of the distribution, where the
+probability of observing values becomes progressively smaller. A distribution can have a “heavy tail”
+if the probability of extreme events, located in a tail, decreases more slowly than it would in a normal
+or exponential distribution. This implies that rare and high-magnitude events, e.g. hubs, occur more
+frequently than expected in heavy-tailed rather than non-heavy-tailed distributions (e.g. Gaussian
+distributions). Hence power-law degree distributions in networks imply that a few nodes have
+exceptionally high degrees (Champagnat et al. 2013). However, this can be the case also in presence
+of other heavy-tailed distributions, e.g. log-Gaussian distributions or stretched exponentials. Since
+from a cognitive perspective it remains unclear whether cognitive representations have a specific
+benefit in displaying power-law degree distributions, the emphasis should be put not on detecting
+power-lawness but rather in identifying hubs. For large values of 𝑘, the probability of finding a node
+with a high degree, i.e. a hub, can be considerably higher for a heavy-tailed than for an exponential
+distribution with the same average degree 〈𝑘〉. For example, in a semantic network with a heavy-tailed
+degree distribution, a small number of concepts - yet higher than in random graphs with exponential
+degree distributions - may serve as prominent hubs, forming numerous connections, while the
+majority of concepts have fewer connections (De Arruda et al. 2017; Newman 2018).
+In semantic networks, hubs often represent pivotal concepts that play significant roles in
+information flow and cognitive processing (Stella 2020b). These hubs may correspond to central ideas
+or key semantic components that hold considerable influence over the overall network structure (De
+Arruda et al. 2017). A commonly used non-parametric definition identifies hubs as nodes falling in
+th
+the upper percentiles of the degree distribution, e.g. nodes with degrees in the 95 percentile of
+𝑝(𝐾 = 𝑘) (cf. Stella 2020b and De Domenico 2022). By identifying and understanding these hubs,
+cognitive network scientists can gain insights into the organisational principles of cognitive networks,
+discerning the key nodes that shape information flow and contribute substantially to cognitive
+processes. For instance, hubs might be general-level cues that mediate memory recollections of many
+other concepts (De Deyne et al. 2013). It was recently shown that hubs tend to be acquired earlier by
+normative English-speaking toddlers, i.e. children who follow typical language development
+timelines (Hills et al. 2009; Sizemore et al. 2018). In contrast the acquisition of semantic hubs is
+impaired in late learners (Beckage et al. 2011). Late learners are children who develop language skills
+more slowly than the majority of children, i.e. normatively developing children, due to environmental
+or social factors (e.g. reduced language exposure) rather than any clinical or neurological issues
+(Beckage et al. 2011). A normative English-speaking toddler might readily acquire a semantic hub
+such as “apple” due to its common use and broad applicability in everyday contexts. In contrast, a
+late learner might struggle to acquire such foundational concepts, leading to difficulties in
+comprehending fundamental terms that serve as central nodes in their cognitive network which further
+interferes negatively with their ability to learn and connect other words in their semantic network
+(Beckage et al. 2011; Hills et al. 2009; Sizemore et al. 2018).
+2.5. A bit less simple mathematical definitions: Network Laplacians and spreading activation
+For any single-layer simple network, let us consider a degree matrix 𝐷 which indicates the degree
+of a node on its main diagonal and 0s everywhere else. Let us also consider the adjacency matrix 𝑆
+of this network which represents the actual connections a node has, indicated by 1 for existing edges
+and 0 if there is no edge between a given pair of nodes. Through 𝑆 and 𝐷 we can define a network
+Laplacian as 𝐿 = 𝐷 − 𝑆 (cf. Koponen 2021). A Laplacian matrix encodes how each node in the
+network is connected to other nodes and provides a mathematical way of representing how activation
+can spread across a network. When a node is activated, the activation spreads through the edges and
+visual representation of a simple network consisting of four nodes and their respective degree matrix,
+adjacency matrix and Laplacian matrix.
+Degree Matrix Adjacency Matrix Laplacian Matrix
+A B C D A B C D A B C D
+A 2 0 0 0 A 0 1 1 0 A 2 -1 -1 0
+B 0 2 0 0 B 1 0 1 0 B -1 2 -1 0
+C 0 0 3 0 C 1 1 0 1 C -1 -1 3 -1
+D 0 0 0 1 D 0 0 1 0 D 0 0 -1 1
+matrix. The degree matrix captures the degree of each node on the main diagonal. The adjacency
+matrix highlights which nodes are connected with 1 if there is an edge between two nodes and 0 if
+there is no edge. The Laplacian matrix is calculated by subtracting the adjacency matrix from the
+degree matrix, indicating how easily the activation in the network can spread.
+Let us discuss diffusive processes through a physical metaphor. Imagine a liquid with droplets
+main diagonal of 𝐿 comes from 𝐷 (for simple networks) and it encodes information over the total
+flow that can accumulate across links surrounding each node, e.g. one droplet per link. However, 𝐿
+contains also entries from the adjacency matrix 𝑆 so each off-diagonal entry in 𝐿 indicates where
+droplets can arrive into or leave nodes when flowing through connections. Overall, it is expected that
+𝐿 regulates the diffusion of droplets across links and over nodes in a given network (Newman 2018).
+The Laplacian 𝐿 is also relevant to cognitive scientists modelling spreading activation in lexical
+retrieval (Siew 2019). Spreading activation was introduced by Collins and Loftus to model semantic
+priming (Collins & Loftus 1975). A prime/node 𝑖 receives an initial activation level 𝑎 (0). At the
+next time step, the activation 𝑎 (0) spreads uniformly across the 𝑘 links of 𝑖 to its neighbours. When
+𝑖 𝑖
+the activation spreads, at each time step the activation level from a given node - or part of it - is
+transmitted to its connected neighbours, influencing their subsequent activation levels. The signal can
+receive dampening or spread integrally based on factors such as the strength of connections between
+nodes. For instance, when flowing along connections, a part of the activation signal might get lost
+(uniform dampening). It might also be that some conceptual associations might be weaker and thus
+receive lower activation units, whereas other associations might be stronger and thus able to channel
+stronger activation signals (Collins and Loftus considered this latter case as “highways” able to
+withstand higher traffic loads, see Collins & Loftus 1975). Iteratively, the activation signals of all
+nodes with some activation levels have to spread across neighbours. The process continues iteratively
+until a final time step is reached, typically when the system achieves a stable state or a desired number
+of iterations have been reached (Collins & Loftus 1975; Castro & Siew 2020). Simulated activation
+levels on phonological networks were shown to replicate key findings in lexical processing (Vitevitch
+& Mullin 2021), indicating a crucial link between this model and some instances of knowledge
+processing in the mental lexicon.
+For an example of spreading activation, consider activating the word “dove” in the semantic
+over successive timesteps with each timestep represented by a distinct colour. At the first timestep
+(indicated by blue edges), activation flows from node A (“dove”) to nodes B and C (“bird” and “fly”).
+For this example, we assume that each node retains 50% of its activation and distributes the remaining
+50% evenly to its neighbours. This results in “bird” and “fly” receiving 25% of the initial activation.
+At the next timestep the activation gets spread on further, for instance from “bird” to “fly”,
+contributing to an additional 12.5% of activation to node C. The strength of activation spreading is
+noted on the edges while the total activation received by each node is displayed at the node and
+marked in yellow. This highlights how activation spreads and accumulates across timesteps.
+Laplacian Matrix
+A B C D
+A 2 -1 -1 0
+B -1 2 -1 0
+C -1 -1 3 -1
+D 0 0 -1 1
+the activation they receive and spread the remaining 50% equally to their neighbouring nodes. The
+strength of this spread of activation is noted next to the edges. The total activation received by a node
+is marked in yellow next to the node.
+The Laplacian matrix helps to track how activation levels ripple through the network and how
+much activation remains after it has spread throughout the network. The off-diagonal elements in the
+Laplacian matrix (highlighted in yellow) show the direct connections between nodes with negative
+values indicating the strength of potential activation flow. The diagonal elements (marked in pink)
+represent the node degrees and quantify the capacity of each node to spread activation to its
+neighbours. Nodes with higher degree possess greater potential to spread activation and have more
+influence on the overall activation dynamics within the network. For example, consider node A in
+𝐴𝐴
+weights of -1 for the connections to B and C (off-diagonal entries 𝐿 and 𝐿 ). When node A is
+𝐴𝐵 𝐴𝐶
+activated, its energy is distributed proportionally to these links, meaning that activation flows equally
+to nodes B and C.
+Importantly, network structure can influence the amount of activation a target node can receive,
+thus influencing its cognitive processing. Clustering, degree and distance (see down below) can
+promote the concentration of activation over nodes related to the prime and thus suggest potential
+candidates for recollection (Siew 2019; Kumar et al. 2021). In cognitive networks representing the
+associative knowledge of students in the history of science, an appropriately normalised Laplacian
+was shown to capture nodes representing prominent scientists (Koponen 2021).
+2.6. Generalisations to multiplex lexical networks
+The above notions can all be extended to multilayer networks. In the case of this tutorial paper let
+us focus on the simpler instance of multiplex networks (Battiston et al. 2017). A supra-adjacency
+matrix and a supra-Laplacian matrix can be built as block matrices, with the diagonal elements being
+set to the adjacency (Laplacian) of individual layers and off-diagonal elements being equal to
+diagonal matrices expressing inter-layer relationships. An example of a supra-adjacency matrix for a
+and three nodes. All nodes on the first layer are linked to their respective counterparts on the second
+layer. Notice that B also has intra-layer links to A and C .
+1 2 2
+For more details we refer the interested reader to (De Domenico 2022). Applying multilayer or
+multiplex Laplacians to cognitive networks remains a scarcely explored research direction.
+Instead, extending the idea of degree to multiplex networks is relatively simpler. Summing degrees
+across layers, the multidegree 𝑚 of node 𝑖 is defined as:
+(𝛼)
+𝑚 = ∑ 𝑘 ,
+(𝛼)
+where 𝑘 is the degree of node 𝑖 in layer 𝛼, e.g. the number of cognitive links of layer 𝛼 surrounding
+layer multiplex network.
+three nodes. Node B has a multidegree of 4 since it has one edge within layer 1 and three intra-layer
+links to A , B and C .
+2 2 2
+In multiplex networks, 𝛼 can enumerate the different replicas of a node across each layer. These
+multiple representations of a single node across different layers of the network are called replica
+nodes. Each replica node represents the same entity (e.g. a word) but in different layers, such as
+as “cat” in node A could have two replica nodes: one on the phonological layer (A ) representing its
+sound structure as [kæt] and one on the semantic layer indicating its meaning as a small feline animal
+(A ) (Battiston et al. 2017).
+that, when considering cognitive links across different layers, that node is connected to four distinct
+other nodes across all layers. The multidegree of a node might thus be different from the single-layer
+th
+degrees of the node’s replicas. Multidegree can be used to define multiplex hubs: Nodes in the 95
+percentile of the multidegree distribution. Stella (2020b) showed that a multiplex network
+representation of the mental lexicon with 16,000 English words over 4 semantic/phonological layers
+relied heavily on multidegree hubs to preserve connectivity (and thus a chance for activation
+spreading) among large portions of words. Removing these hubs made the network highly fragmented
+and disconnected, which hindered activation spreading from reaching several network regions, thus
+impairing word retrieval and comprehension.
+In semantic multiplex lexical networks, multidegree is also called semantic richness, i.e. the
+number of concepts syntactically or semantically related to a target node/concept (Aitchison 2012;
+Stella 2020). Nodes with higher semantic richness correspond to more general concepts that may be
+used together with several other concepts or appear in a wider range of contexts (Semeraro et al.
+2024). These words tend to be involved in more syntactic links within the network, which supports
+easier activation in a variety of linguistic contexts. Psychologically, this relates with the idea of
+priming, where activation of a concept facilitates the retrieval of related concepts (Siew 2019; Siew
+and Vitevitch 2019). Multidegree hubs can be especially effective during priming due to their high
+degree of connectivity across multiple layers. Such multidegree hubs might not only receive priming
+more easily because they are linked to a broad array of concepts across different layers, but they can
+also serve as relevant prime activators. Multidegree hubs’ central role across multiple layers allows
+them to quickly spread activation, facilitating the retrieval of related words. For instance, when a
+multidegree hub like “cat” is activated, it can rapidly prime other related words in both the semantic
+layer (e.g. “dog” or “pet”) and the phonological layer (e.g. “bat” or “hat”) (Siew 2019). The
+investigation of these nodes in the framework of cognitive multiplex networks (Stella et al. 2024)
+remains an open yet interesting research area at the time of writing this tutorial.
+2.7. Beyond degree: Local clustering coefficient and global clustering coefficient
+Whereas degree is a local feature of nodes, local clustering and closeness centrality, respectively,
+capture meso-scale (intermediate-sized structures or patterns within the network) and global aspects
+(overall structure and efficiency of information flow across the entire network) of network topology
+(Siew et al. 2019).
+Local clustering is a meso-scale measure in that it characterises a node based on links between its
+neighbours. Let us denote with 𝜕 the neighbourhood of nodes adjacent to 𝑖 in a given network, i.e.
+the set of nodes linked with 𝑖. The local clustering coefficient 𝐶 is a property of node 𝑖 counting the
+ratio of pairs in 𝜕 that are connected with each other:
+|{(𝑘, 𝑙) ∈ 𝐸 𝑓𝑜𝑟 𝑘, 𝑙 ∈ 𝜕 }|
+𝐶 = .
+|𝜕 |(|𝜕 | − 1)
+𝑖 𝑖
+In other words, the local clustering coefficient measures a tendency for a node’s neighbours to
+be linked with each other. 𝐶 ranges between 0 (no neighbours are linked) and 1 (all neighbours are
+linked) (Siew & Vitevitch 2019). Alternatively, 𝐶 measures how much the neighbourhood of 𝑖
+“remark” has three neighbours that are all linked with each other, so 𝐶 = 1.
+𝑟𝑒𝑚𝑎𝑟𝑘
+High local clustering is associated with small-worldness, a network property that combines high
+local clustering with short average path lengths between nodes (Newman 2018). In cognitive
+networks, this small-world structure supports connectivity within clusters and rapid traversal across
+the network, similar to mechanisms underlying associative processes and memory retrieval (Siew
+2020). In psychological terms, the property of small-worldness reflects how efficiently information
+can be retrieved and connected in the human mind, supporting rapid access to related concepts
+(Newman 2018).
+However, studies found that higher local clustering in phonological networks corresponded to
+degraded lexical identification, exemplified by the increased difficulty participants faced in
+accurately and swiftly recognizing and retrieving specific words during linguistic tasks (Chan &
+Vitevitch 2009). This can be understood through the lens of lexical competition, where densely
+clustered phonological representations lead to greater interference among similar words, slowing
+down retrieval. Activation for a target word accumulates along nodes in the neighbourhood of node
+i, in formulas 𝜕 , which makes it more difficult for 𝑖 to stand out. Thus, in a phonological network
+with higher local clustering, participants were found to struggle to quickly distinguish between
+similar-sounding words due to the increased interference and competition among closely
+interconnected/clustered phonological representations (Chan & Vitevitch 2009; Castro & Siew 2020).
+In multiplex networks 𝐶 cannot be generalised in a single way, depending on how links from
+different layers are counted (De Domenico 2022). Siew and Vitevitch (2019) aggregated orthographic
+and phonological similarities and found that a higher 𝐶 corresponded to a facilitatory effect over
+spoken word recognition. In a multiplex network combining orthographic and phonological layers, a
+higher 𝐶 value might indicate a more interconnected relationship between written and spoken
+representations of words, leading to enhanced facilitation in recognizing and processing those words
+in spoken form (Siew & Vitevitch 2019).
+2.8. Connectedness, distance and closeness centrality in single-layer and multiplex networks
+Network distance is the shortest number 𝑑 of links connecting any two nodes (cf. Steyvers &
+𝑙𝑒𝑡𝑡𝑒𝑟,𝑝ℎ𝑟𝑎𝑠𝑒
+path of any finite, non-zero, length between 𝑖 and 𝑗 then the latter are said to be connected. In simple
+networks, the largest set of connected nodes is also called the largest connected component (LCC).
+In directed networks, one has to consider directionality for navigating the network structure from one
+node to another. Two nodes might have a sequence of links between them (i.e. a path) but
+directionality might impede getting out from one node to access another along the path. If this
+happens, those nodes would be said to be weakly connected (Newman 2018). Otherwise, if
+directionality would still provide access from one node to another along any given path, those nodes
+would be said to be strongly connected (Newman 2018).
+associations (i.e. two words were mentioned as cue and recall in a free association game). The shortest
+path between “letter” and “phrase” is highlighted in red. Node size is proportional to their closeness
+centrality.
+In multiplex lexical networks, multiplex connectivity can exploit paths across all available layers
+such as connections between phonological and semantic layers within the same multiplex network
+(Stella et al. 2018). Consequently, multiplexity provides more shortcuts or opportunities for
+connecting any two nodes. Furthermore, replica nodes disconnected in one layer might be connected
+on another layer and thus, potentially, on the whole multiplex network too (see Fig. 10).
+Cognitive network distance proves effective in capturing semantic relatedness and priming effects,
+as demonstrated by Kenett et al. (2017), Kumar et al. (2020), and Wulff et al. (2022). Kenett and
+colleagues (2017) found that in Hebrew, network distance in a free association network (where links
+indicate memory recall patterns) outperformed advanced models like latent semantic analysis when
+predicting data from a semantic relatedness judgement task. Kumar and colleagues (2020) replicated
+these findings in English and expanded the exploration of semantic distances to predict reaction times
+in priming tasks. They observed a linear increase in response latencies with network distance,
+revealing significant differences between prime-target cases 𝑑 = 1 and 𝑑 = 4. For reviews on
+𝑝𝑡 𝑝𝑡
+this topic see (Kumar 2021; Wulff et al. 2022).
+Notably, network distance has also illuminated variations in sequential lexical retrieval across
+different populations, including those with distinct traits such as task-quantified creativity levels
+(Stella & Kenett 2019). Assessments like the verbal fluency task serve as valuable tools for exploring
+creativity and its relation to semantic networks (see also Section 3.2). In a verbal fluency task
+individuals are asked to generate words within specific constraints, e.g. naming as many animals as
+possible in two minutes (animal fluency task) (Goñi et al. 2011). Fluency tasks can be used in various
+forms, such as semantic fluency, where participants need to generate words belonging to a certain
+semantic category, or phonological fluency with the restriction that words need to begin with a
+particular letter. In semantic fluency tasks, individuals with higher creativity levels were found to
+produce recalls separated by longer network distances, on a multiplex network including almost 16k
+English words, compared to controls with lower creativity levels (Stella & Kenett 2019).
+Whereas distance is a network property considering two nodes at a time, one could be interested
+also in assessing whether a single node is distant or close to all other nodes in a given connected
+component. In simple networks, this can be done by considering closeness centrality (Newman 2018).
+If 𝑖 belongs to a connected component with 𝑁 nodes, then the closeness of 𝑖 is defined as:
+1 𝑁 − 1
+𝑐 = = ,
+〈𝑑 〉
+∑ 𝑑
+𝑖𝑗
+𝑗 𝑖𝑗
+where the normalisation 𝑁 − 1 factor excludes contributions from self-loops with 𝑑 = 0.
+𝑖𝑖
+Closeness centrality is a global network feature because it considers the whole layout of
+shortest paths between a node and its whole connected component. A shorter average network
+distance is supposed to be advantageous for mental navigation because it allows for quicker and more
+efficient access to information, facilitating faster information retrieval and processing (Hills et al.
+2012; Dubossarsky et al. 2017; Stella et al. 2018; Levy et al. 2021). In phonological networks, higher
+closeness centrality of words is associated with quicker reaction times in an auditory lexical decision
+task. In this task, participants must quickly determine whether a presented string of letters forms a
+real word or a non-word. A quicker reaction time during this task highlights a beneficial role of shorter
+network distance, thus higher closeness, for facilitating faster lexical decision making (Goldstein &
+Vitevitch 2017).
+In multiplex lexical networks, where there is no explicit cost for transitioning from one layer
+to another, network distance is defined as the shortest path length connecting any two nodes through
+links of any layer/colour (Stella et al. 2018). For instance, if “cat” and “crab” are connected by a
+direct link in the semantic layer (since both are animals) and another direct link in the phonological
+layer (due to their phonological similarity), the network distance between “cat” and “crab” is
+considered as 1, regardless of the layers involved in the connection. Castro and Stella (2019) showed
+how higher multiplex closeness centrality predicted better performance in picture naming by people
+with aphasia disorders. As already mentioned above, multiplexity can provide additional shortcuts,
+lowering down the distance between words (Quispe et al. 2021). Levy and colleagues showed that
+the links provided by a phonological network present substantially more shortcuts to free association
+networks than random expectation, thus, enhanced cognitive advantage over word processing from
+combining free associations and phonological similarities (Levy et al. 2021). Words with higher
+multiplex closeness centrality were found to be learned earlier by normative learning toddlers (Stella
+et al. 2017). This latter finding is in agreement with the preferential acquisition hypothesis in
+cognitive psychology (Hills et al. 2009; Sizemore et al. 2018; Borovsky et al. 2021; Cox & Haebig
+2022). The preferential acquisition hypothesis states that children exhibit a tendency to preferentially
+acquire information that is more central and well-connected in their environment (cf. Cox & Haebig
+2022). Essentially, the preferential acquisition hypothesis suggests that the ease of access and
+interconnectedness of a concept within one's cognitive structure both positively influence the
+likelihood of that concept being learned earlier in the developmental process (Hills et al. 2009). In
+this framework, high multiplex closeness centrality was shown to support early learning by making
+words more accessible within the whole multiplex network compared to individual layers (Stella et
+al. 2017). These empirical findings align with the tendency of children to acquire centrally connected
+concepts earlier (Cox & Haebig 2022; Hills et al. 2009).
+2.9. Beyond pairwise networks: Hypergraphs as cognitive models
+Hypergraphs extend the concept of traditional networks by allowing edges (called hyperedges) to
+connect more than two nodes simultaneously. Cognitive hypergraphs (introduced in Citraro et al.
+2023; Citraro et al. 2023c) exploit a richer, more powerful mathematical representation compared to
+pairwise cognitive networks. In mathematical terms, an undirected hypergraph H is denoted as 𝐻 =
+(𝑉, 𝐸) with V being a set of nodes or vertices and E being a set of hyperedges. Each hyperedge is a
+nonempty subset of V. A normal graph with edges containing exactly two nodes is called a 2-
+hypergraph (Bretto 2013). In k-regular hypergraphs, all hyperedges link exactly k different nodes. If
+k is not mentioned, then a hypergraph can feature hyperedges linking a variable number of nodes. For
+example, if 𝑘 = 3 every hyperedge would link three distinct nodes (Bretto 2013).
+Hypergraphs are especially valuable in cognitive network science when dealing with situations
+where relationships naturally involve more than two entities. Consider free association tasks, where
+a cue word elicits multiple related responses. In these tasks, an individual reads a cue and then recalls
+at most three responses related to it (De Deyne et al. 2013). Mathematically, for a cue 𝑐 and its
+responses 𝑟 , 𝑟 and 𝑟 the hyperedge between them can be represented as 𝑒 = {𝑐, 𝑟 , 𝑟 , 𝑟 }. For
+1 2 3 1 2 3
+instance, when prompted with “complex” a participant might think of “system”, “emergent” and
+“more”. The responses from the free association task can be linked to the cue word as a “normal”
+graph with each response receiving its distinct edge (Fig. 12 left) or a 4-hypergraph with one
+hyperedge connecting all four nodes e = {complex, system, emergent, more} (Fig. 12 right).
+(left) and a 4-hypergraph (right). Left: The normal graph (pairwise network or 2-hypergraph) consists
+of three edges connecting exactly two nodes each; i.e. the cue word with each response separately.
+Right: The 4-hypergraph consists of one edge connecting all four nodes; i.e. the cue word with all
+responses combined.
+Representing this scenario as a pairwise network (or 2-hypergraph) where edges exist only
+between the cue and individual nodes loses the information that all three responses were elicited
+together. De Deyne and colleagues (2013) showed that building pairwise free association networks,
+i.e. featuring only links between the cue and its three responses, led to structural network measures
+that predicted a variety of lexical processing tasks better than alternative pairwise networks linking
+the cue and all responses with each other or considering only a connection between the cue and the
+first response.
+hypergraph (Fig. 13, left) encodes each set of responses as a hyperedge, preserving the full contextual
+grouping. In contrast, the pairwise network (Fig. 13, right) connects one two nodes at a time, resulting
+in a loss of higher-order relational information.
+relative to {{"dove", "bird"},{"bird","animal","fly","sky"},{"weather","sky","rain","sun"}}. Each
+set of responses is coded as a hyperedge with the first entry representing the cue, followed by the
+responses.
+Revisiting free association data, Citraro and colleagues (2023; 2023b) introduced cognitive
+hypergraphs as a new idea at the interface of psychology and data science. Cognitive hypergraphs,
+where an hyperlink encapsulated both the cue and its responses, provided better models than pairwise
+networks in predicting psycholinguistic features like concreteness, a psycholinguistic norm indicating
+whether concepts are perceived as tangible or easy to picture (cf. Citraro et al. 2023) or predicting
+normative early word learning across self-reported norms and empirical norms in toddlers (cf. Citraro
+et al. 2023c). These findings underline that in some specific tasks relative to lexical acquisition and
+access, considering weak relationships between targets can be insightful. Hypergraphs provide more
+flexible tools for capturing conceptual relationships between more than two elements at a time and
+the above pioneering results indicate cognitive hypergraphs as a promising direction for future
+research in cognitive network science.
+3. Datasets and software for building cognitive networks
+Computational scientists interested in analysing cognitive networks should be aware of relevant
+datasets tailored to specific research interests. This section reviews both historical and more recent
+datasets, organised across different aspects of the mental lexicon. Python libraries like NetworkX
+make it easy to import networks as edge lists, while providing a wide variety of pre-implemented
+network measures. Notice that igraph works also in R and Mathematica. For R users, MuxViz is a
+powerful tool for multiplex network analysis and visualisation (De Domenico 2022). SemNA is
+another valuable R package that specialises in generating semantic networks out of verbal fluency
+data (Christensen & Kenett 2021).
+3.1. Datasets and software for phonological networks
+Phonological networks map sound similarities between words (Vitevitch 2008). These similarities
+can be identified through shared phonemes, rhyme patterns or similar phonetic features (Vitevitch &
+Mullin 2021). Building phonological networks thus requires phonological transcriptions. A widely
+used approach is to adopt the International Phonetic Alphabet (IPA) and consider IPA transcriptions
+as strings of characters with each character representing a phoneme (Turnbull 2021). This is advisable
+due to potential problems with orthographic writing, where the same sequence of letters may represent
+different sounds in different words for non-transparent languages (Aitchison 2012), e.g. the English
+word “meet” differing from its IPA transcription /miːt/. IPA also contains characters not representing
+phonemes directly but still encoding for the duration of other phonemes. Therefore, it is most common
+to use phonetic word transcriptions for generating phonological networks (Vitevitch 2008), including
+or excluding non-phoneme characters (Turnbull 2021). For “transparent languages”, where there is a
+consistent mapping between phonemes and letters, phonological networks can be built out of
+orthographic word transcriptions (Martinčić-Ipšić et al. 2016). The “transparency” of these languages
+is constituted by these consistent rules for grapheme-phoneme mapping, e.g. learning that “ie” in
+German is always pronounced /iː/. For non-transparent languages, like English, ad-hoc datasets are
+required to build phonological networks. The command WordData[] in Mathematica contains
+phonological transcriptions for over 35,000 English words. A more extensive resource is the IPA-
+transcriptions for 23 languages in multiple formats (including tsv, JSON and csv). Data scientists
+might also consider procedural pipelines, which read an orthographic input and apply sequences of
+transformations to get phonological transcriptions. One of these pipelines is the Epitran project
+(Mortensen et al. 2018), which comes as an easy-to-install Python library and supports over 90
+languages.
+As mentioned above, the local topology of words in a phonological network can correspond to
+facilitative/inhibitive patterns in word retrieval, confusability or short-term retention (cf. Siew et al.
+2019; Vitevitch & Mullin 2021). The R package spreadR simulates spreading activation over any
+single-layer network structure, including phonological ones, to capture patterns of lexical retrieval
+like false alarm rates and inhibited spoken word recognition (Siew 2019). The package can be loaded
+via CRAN and gets as an input a network topology, the starting node, a retention rate (how much
+activation should not spread across links at each timestep), a dampening factor, the initial activation
+level and how many steps should be executed. The package can output the whole spreading dynamics,
+i.e. sequences of activation levels across all timesteps for all nodes in the network. Extensively tested
+in phonological and semantic networks, spreadR represents a practical tool for harnessing how
+patterns of word recall or identification might emerge from the interplay of network structure and
+spreading dynamics (cf. Siew 2019).
+3.2. Datasets and software for semantic networks
+Semantic networks codify meaning similarities or memory-based relationships between words
+such as hierarchical relationships like “animal” and “mammal”, or associative links like “sun” and
+“day” (Kenett et al. 2018; Wulff et al. 2019; Valba et al. 2021). Dictionaries historically represented
+key data sources for building semantic networks (Miller 1995). However, Big Data and mega-studies
+are quickly enriching the landscape of semantic data by providing vast automatic datasets (Steyvers
+& Tenenbaum 2005; Kennington & Schlangen 2015; Kumar et al. 2020). For example, Big Data
+about language from sources like social media have been used to track shifts in conceptual knowledge
+in response to real-world events. Davis (2023) used Twitter data to study how the concept of COVID-
+19 reshaped the meanings and relationships of related words in the semantic network, especially those
+tied to social interactions or emotions like fear. Tweets were collected mentioning specific topics and
+were investigated via a sliding window approach. This approach examines clusters of words within a
+fixed range (e.g. a window of five words on either side of a target word) to identify which words
+commonly appear in close proximity. By constructing semantic networks from this big language data,
+Davis (2023) observed that the semantic network shifted in such a way that emotionally and socially
+related words became more central in the network structure, acting as hubs for connecting diverse
+clusters of related concepts. This reflects their pivotal role in organising concepts within the network,
+mirroring their heightened importance in societal discourse during the pandemic (Davis 2023).
+Similar analyses were performed by Semeraro and colleagues (2022) to identify keywords and shifts
+in network structure from over 5K Italian news about COVID-19 vaccines and discussed on Twitter.
+While studies on Big Data about language as discussed above provide valuable insights into how
+the societal discourse around a topic can shift, in this tutorial paper we will instead focus on: (i)
+dictionary-based data, and (ii) behavioural/psychological data.
+For dictionary-based data, one of the largest corpora of semantic relationships is WordNet (Miller
+1995), where words are organised according to sense and semantically related senses create synsets.
+For instance, “duck.n.01” refers to the animal with n.01 referring to a noun, whereas “duck.v.01” is
+a movement with v.01 referring to a verb. WordNet maps six semantic relationships:
+1. Synonyms: Synonymous words that share an overlap in meaning in some contexts, e.g. “forest”
+and “woods”;
+2. Hypernyms: Hypernyms represent superordinate generalisations, i.e. a concept representing a
+whole category of more specific concepts, like “bird” being a generalisation of “dove”;
+3. Hyponyms: Hyponyms are specifications of broader categories, i.e. a concept being a specific
+instance of another concept representing a broader category, like “apple” being a specification of
+“fruit”.
+4. Antonyms: Antonyms denote contraries, like “trust” and “distrust”.
+5. Meronyms: Meronyms highlight a concept being a part of another, as seen in “wheel” being a
+part and, thus, a meronym of “car”.
+6. Holonyms: Holonyms refer to concepts that include other parts within them. For example, “car”
+is a holonym for “engine”, “wheel” and “seat” since these parts are components of a car. Thus,
+holonyms are the counterpart of meronyms with holonyms describing the whole concept (“car”)
+and meronyms referring to a part of that whole (“wheel”).
+In Python, WordNet 3.0 is available via the wordnet package in NLTK (the Natural Language
+available in R and, natively, in Mathematica through the WordData[] command. Through the
+packages, one can access synsets and use them as edge lists (Steyvers & Tenenbaum 2005).
+A pioneering study by Sigman and Cecchi (2001) examined the graph structure of WordNet to
+uncover how the English lexicon is globally organised. They found that WordNet behaves as a small-
+world network, where a few highly connected hubs dominate the structure. These hubs often represent
+abstract, polysemous terms (i.e. terms with multiple meanings such as “head” being used for a human
+head, a letter head, or the head of a department). Polysemy plays a crucial role in compactly
+organising the semantic network, facilitating efficient navigation through the network (Sigman &
+Cecchi 2001).
+Whereas dictionary-based data comes from lexical resources mostly curated by expert linguists,
+behavioural/psychological data include different types of semantic data coming from experimental
+setups. One type of data where semantic networks can be highly valuable tools is data on language
+acquisition. Semantic networks can offer insights into vocabulary development and the structure of
+lexical knowledge. They can reveal patterns in how words are learned, grouped and interconnected
+by children acquiring a first language or adults learning a second or third language and can shed light
+on delayed language development (Agustín-Llach 2023; Jimenez & Hills 2023; Stella et al. 2017).
+Research into early language acquisition reveals that children tend to group words by associative,
+categorical and phonological links, which facilitates robust word learning. Simulations of vocabulary
+growth suggest that children have a tendency to acquire hubs earlier, a phenomenon known as
+preferential acquisition and increasingly studied with the help of cognitive network science
+(Borovsky & Peters 2019; Citraro et al. 2023c; Stella et al. 2017; Stevyers & Tenenbaum 2004).
+The semantic networks of typically developing children are characterised by high connectivity,
+clustering, and the presence of hub nodes. These structural characteristics support efficient navigation
+through the network and retrieval of words (Borovsky & Peters 2019; Stella et al. 2017). In contrast,
+late talkers (i.e. children with delayed language onset despite no other developmental delays or
+cognitive impairments) exhibit less complex lexical networks, with fewer connections and reduced
+clustering. These structural differences suggest difficulties in integrating new words into existing
+semantic structures and, thus, in establishing robust associative links between words (Jimenez & Hills
+2023).
+Another type of semantic data where constructing semantic networks can be highly informative is
+free association data. Free association data allow us to examine how individuals recall information in
+relation to a specific task, with the resulting patterns of retrieval being coded as empirical data, i.e.
+requiring an experiment to be obtained rather than coming from dictionaries (De Deyne et al. 2013;
+Kenett et al. 2018; Wulff et al. 2022; Wulff et al. 2022b). Free associations can be enriched with
+emotional data to obtain forma mentis networks, i.e. structural representations of how individuals or
+groups emotionally perceive and associate ideas in their memory (Ciringione et al. 2024). Free
+associations can also be used to identify individuals' perceptions of general topics (Aeschbach et al.
+2024) or key target ideas, like maths anxiety (Ciringione et al. 2024).
+As mentioned in Section 2.9, in the continued free association task a participant reads a cue (e.g.
+“pen”) and has to react with up to three responses that come to their mind as quickly as possible (e.g.
+“paper”, “writer”, “pencil”) (De Deyne et al. 2013; De Deyne et al. 2019). Free associations encode
+memory recalls, which are mostly semantic (Stella et al. 2017) but also multidimensional (De Deyne
+et al. 2019; Ciaglia et al. 2023): Free associations can come from phonological, orthographic, visual
+and other types of similarities between words. Currently, the Small World of Words (SWOW) project
+is the largest repository of free association data across 17 languages
+Unlike traditional dictionaries or thesauri, SWOW utilises word associations to uncover the meanings
+and centrality of words in the human mind. The SWOW project involves presenting participants with
+words and prompting them to provide spontaneous associations, i.e. to perform the continued free
+association task. SWOW represents a rich, large-scale dataset: Currently, SWOW counts over
+700,000 links between 40,000 English words and it keeps growing (De Deyne et al. 2019). Free
+associations powered a wide variety of applications in the last few years, including the interplay
+between semantic memory and concepts related to beauty and wellbeing (Kenett et al. 2021), or
+suicide ideation (Teixeira et al. 2021), or personality traits (Kenett et al. 2018). Free association
+networks using SWOW enabled researchers in exploring also the intricacies of word relationships,
+including complex dimensions like individual differences (Wulff et al. 2022), creativity levels (Stella
+& Kenett 2019), mental well-being (Fatima et al. 2021) and cognitive processes across ageing
+(Dubossarsky et al. 2017; Wulff et al. 2019; Wulff et al. 2022b). SWOW thus represents a promising
+dataset for next-generation models of cognition and human behaviour.
+Other notable mentions of free association datasets include the University of South Florida Free
+Association norms - 70,000 links between 10,000 American English words/nodes (Nelson et al. 2004)
+- and the Edinburgh Associative Thesaurus - 325,000 links between 23,000 British English
+words/nodes (Wilson & Kiss 1988).
+Behavioural semantic data can come also as fluency lists (Rastelli et al. 2022; Fatima et al. 2021;
+Siew & Guru 2023), i.e. ordered sequences of words relative to a given category (as already
+mentioned in Section 2.8). For instance, in a category task, individuals produce fluency lists of as
+many words as possible from a given category within a time limit of 2 minutes (Goñi et al. 2011).
+The number of responses measures the so-called linguistic fluency and it has been used historically
+as a psychometric measurement of language skills (see also Zemla et al. 2020). However, fluency
+lists should be seen as the outcome of mental search and retrieval processes of a highly complex
+nature and potentially foraging/exploiting some network aspects of the mental lexicon (Hills & Kenett
+2021). Cognitive networks built from fluency lists can go beyond simple fluency measures and unveil
+the structure among consecutive responses. How to assess the cognitive network structure embedded
+but not immediately apparent in fluency lists? There is no unique answer to this research question,
+however most studies on the topic tend to follow mostly two psychometric approaches: (i) consider
+fluency lists as ordered sequences of cognitive data where subsequent or co-occurring responses share
+stronger semantic similarities than concepts further apart in the sequence, or (ii) consider fluency lists
+as observed data coming from a latent cognitive network structure, which can be inferred via
+mathematical modelling.
+Historically, the first approach was the first one to appear in the literature (cf. Goñi et al. 2011),
+inspired by word co-occurrences (Amancio 2015). Goñi and colleagues (2011) introduced a simple
+yet elegant co-occurrence Binomial filtering for tracing which concepts tended to co-occur more than
+randomly expected in sets of fluency lists (Goñi et al. 2011). Their approach was thus psychometric
+in that they considered a null model and filtered against spurious co-occurrences. When conducting
+the category fluency task on the topic “animals”, the resulting fluency networks were typically
+characterised such that animals sharing several semantic features (such as appearance or habitat)
+tended to be more tightly connected to each other than to other animals/nodes in the network.
+Fluency data can also be considered as the outcome of random walks over latent cognitive
+structures. Hence, making semantic networks based on fluency data can be considered the outcome
+of an inference problem. This means that building such networks involves making mathematical
+inferences based on the fact that the observed fluency data is the outcome of a stochastic/random
+process, one observation among many possible ones. A tool that can be utilised for building fluency
+Accessed: 04/12/23). SNAFU stands for Semantic Network and Fluency Utility and helps, among
+other functions, with counting clusters, perseverations and calculating word frequency (Zemla et al.
+2020). This reconstruction approach created cognitive networks whose features automatically
+classified people affected by early Alzheimer’s Disease (against healthy controls) with an accuracy
+of over 92% and an F1 score of 0.88 (Zemla & Austerweil 2019). These datasets and methodologies
+all open the way to exciting data-informed explorations of mental search processes.
+An intermediate (set of) approach(es) between network inference and co-occurrence analysis is
+the recent SemNA package, which transforms fluency data in cognitive networks and provides
+accessible tools for network analysis with a comprehensive point-and-click interface (Christensen &
+Kenett 2021). This package incorporates several R modules, including SemNetDictionaries,
+SemNetCleaner, and SemNeT. These modules play integral roles in preprocessing, data cleaning, and
+semantic network generation. Notably, SemNA facilitates the generation of four distinct networks,
+of example code in R for using the SemNA package. In a first step, the verbal fluency data is prepared
+by using the textcleaner function for automatic spelling correction, identification and exclusion of
+inappropriate words. Next, group data is divided in order to generate semantic networks and calculate
+differences for each group, including statistical testing via t-tests and bootstrapping. Finally, the
+SemNetShiny() command opens an easily accessible point-and-click interface where statistical and
+graphical semantic network analyses are conducted.
+package has an integrated module for preprocessing and cleaning raw fluency data. Dictionaries for
+British and American English are available and can be extended with custom-made dictionaries (see
+dictionary = “NAME OF DICTIONARY”). Lastly, by launching SemNetShiny(), one is forwarded to
+an easily accessible point-and-click interface where semantic network analyses are conducted.
+Recent studies used fluency networks (built in either ways) that can unveil crucial differences in
+the way groups of individuals with different altered cognitive states (Rastelli et al. 2022), age
+(Cosgrove et al. 2021), education levels (Denervaud et al. 2021) or domain knowledge proficiency
+(Siew & Guru 2023) structured their semantic memories. These recent and intriguing results underline
+how giving structure to fluency data can unveil interesting cognitive and psychological patterns.
+3.3. Datasets and software for syntactic networks
+Syntactic networks explicate grammatical and meaning relationships between words in sentences
+(Ferrer i Cancho et al. 2004). For instance, “Love is weakness” syntactically specifies a property
+(“weakness”) of a noun, “love”, through a verb. This sentence might thus be represented as the
+undirected link (love, weakness). Extracting syntactic relationships is known as parsing. In the human
+mind, this complex task involves a variety of complex phenomena taking place in sequences that are
+partly unknown (cf. Doczi 2019) but include: breaking down sentences into their grammatical
+components, identifying the relationships between words and understanding the overall meaning
+conveyed by the arrangement of linguistic elements. In the context of syntactic analysis for research,
+the task of parsing has long been left to human coding (Carley 1993), which refers to the manual
+process of annotating and categorising linguistic elements and relationships between them within a
+given text. The time-consuming process of human coding has been revolutionised with the advent of
+soft computing models like the Stanford Universal Parser (Dozat et al. 2017) or spaCy’s library
+automatic syntactic parsing via Artificial Intelligence (AI).
+Before automatic syntactic parsing, word co-occurrences have been a computationally
+advantageous proxy for extracting local syntactic relationships from text (Amancio 2015). Word-
+word co-occurrences identify which words in sentences tend to appear as adjacent or separated by 𝑙
+words. Co-occurrences can be discarded if below a threshold (Amancio 2015; Teixeira et al. 2021)
+or filtered against random expectation (Quispe et al. 2021). For a pedagogic tutorial about how to
+build word co-occurrence networks in Python, see the Semantic Brand Score Package
+monitor brand perceptions online via co-occurrences in users’ reviews (Colladon 2018). Word co-
+occurrences in adults’ child-directed speech contributed to predicting early word learning (Stella et
+al. 2017) and differed in structure from adults’ general speech (Cox & Haebig 2022).
+While more computationally costly, automatic syntactic parsing captures non-local syntactic
+dependencies that would be lost with co-occurrences. Consider the sentence “Climate change is such
+a terrible, disastrous, problematic issue” in which “change” and “issue” are syntactically related but
+separated by three adjectives. Thus, co-occurrence networks with 𝑙 < 3 would miss this syntactic
+relation due to the number of intervening specifications.
+Capturing all syntactic relationships in a text means automating content mapping (Carley 1993)
+and operationalising the automatic constructions of sets of words all referring to a given target word
+x, i.e. the automatic construction of the semantic frame for x (Fillmore & Baker 2012). Both frame
+semantics and content mapping are frameworks capturing stances, frames, mindsets or perceptions,
+which in general terms all rely on specific ways of associating and combining ideas in communicative
+intentions (Stella 2022). According to the theory of frame semantics (Fillmore & Baker 2012),
+reconstructing the semantic frame of a word is enough to understand its meaning in a given text.
+Differently put, frame semantics indicates that the meaning of a word can be inferred from other
+words that “keep it company”, i.e. syntactically related concepts.
+Syntactic networks can, thus, reconstruct a set of stances, frames and even, to a limited extent, a
+fragment of the mindset of a text author, as shown with recent work about textual forma mentis
+networks (TFMNs, forma mentis meaning “mindset” in Latin) (Stella 2020). Differently from other
+NLP (Teixeira et al. 2021) or co-occurrence (Quispe et al. 2021) proxies to syntactic links, textual
+forma mentis networks enrich AI-detected syntactic links with cognitive/synonym relationships and
+affective/emotional norms to better represent the cognitive/affective content of texts. Importantly,
+TFMNs use an AI to perform syntactic parsing and then, on the resulting tree of syntactic
+dependencies, TFMNs link only pairs of words possessing meaning and at a distance lower than a
+threshold t on the syntactic tree, rather than in the original sentence. This difference with word co-
+occurrence networks crucially makes it possible for TFMNs to capture syntactic relationships
+between words not adjacent or close in a sentence and yet syntactically related.
+The Emotion Lexicon by Mohammad and Turney 2013). However, in the sentences “Failure and
+success are both sides of the same coin. Learn how to face failure.” (see Fig. 15) it is syntactically
+linked with mostly positive concepts such as “learn” and “success”. The TFMN approach thus unveils
+that “failure” in that sentence is framed along a positive connotation (i.e. overcoming failure). Textual
+forma mentis networks can be built through the EmoAtlaslibrary in Python
+stances as well as emotional profiles of different texts. The EmoAtlas package can either be used in
+Last Accessed: 22/11/2024) and, once imported, enables the extraction of TFMN edge lists and the
+visualisation of specific semantic frames (like the one in Fig. 15, left) with the aid of colours and
+hierarchical edge bundling (i.e. a heuristic placing nodes on a circle and putting those sharing links
+closer). This granularity has been used in studies to highlight crucial differences in the ways COVID-
+19 vaccines were framed by mainstream media and alternative news outlets (Semeraro et al. 2022).
+sides of the same coin. Learn how to face failure.” Words are highlighted in red (black, cyan) if rated
+as negative (neutral, positive) in the Emotional Lexicon. Syntactic links are coloured as the words at
+their endpoints. Synonyms are in green and come from WordNet. TFMNs can be visualised as either
+edge-coloured graphs (left) or multilayer networks (right).
+Another compelling option for generating text for syntactic analysis is the Woseco task, short for
+“word-sentence-construction” (Haim et al. 2024). Originating as a teaching method developed by
+Haim and Aschauer (2022), the Woseco task aims to enhance the verbal creativity of pupils within
+the context of a specific school subject. In this task, an instructor provides a technical term from a
+broad category. Task participants have then to construct a factually correct sentence that not only
+includes the provided category but also incorporates a second technical term - of their choice - with
+which they will build another sentence, related to the category. The process is iterated several times
+(Haim & Aschauer 2022). Leveraging automated analysis tools like spaCy in Python
+from these sentences, building a network of syntactic dependencies that differs from TFMNs. This
+integration of Woseco into syntactic analysis not only provides a valuable resource for understanding
+language dynamics but can also enrich the exploration of verbal creativity in educational contexts
+(Haim et al. 2024).
+Syntactic parsing can also be enhanced by entity recognition. Entity recognition involves
+identifying and classifying specific entities, such as names, locations, or other meaningful elements,
+within a given text or context. Enhancing syntactic parsing through entity recognition allows for a
+more detailed understanding of the relationships and roles of identified entities in the analysed text.
+Accessed: 04/12/23) can disambiguate entities in texts, e.g. “Exeter – the University” vs “Exeter –
+the city”, and draw syntactic relationships between clusters of them, such as “Exeter –> is a red brick
+–> University” (Nettekoven et al. 2022). Relying on CoreNLP and its recurrent neural
+currently available in Python. When analysing transcripts produced by people affected by psychosis,
+netts unveiled key differences in network structure compared to healthy controls. This represents
+evidence that syntactic networks can enable a deeper understanding of ways of thinking as encoded
+also in texts written by clinical populations. The sentence structure and grammar of such clinical texts
+can provide insight into the thought processes of clinical populations which can be better understood
+through cognitive network science (Lydon-Staley et al. 2019; Parola et al. 2022).
+3.4. Software for network visualisation
+In analysing the above-mentioned phonological, semantic and syntactic networks, visualisation
+plays an important role in giving form to the network and allowing a more intuitive understanding of
+complex relationships within the network. Here, we briefly introduce igraph, NetworkX, ggraph and
+tidygraph, four useful toolboxes for creating customisable network plots. Since they can be applied
+for both phonological, semantic and syntactic networks alike, we discuss them in this separate section
+to emphasise how they support cognitive network research across different types of networks.
+For users of Python, igraph and NetworkX are practical visualisation tools. Both libraries support
+easy import of networks as edge lists, adjacency matrices and a variety of built-in network measures,
+such as clustering coefficients, centrality measures and path lengths. The igraph package, which is
+also available in R, performs especially well on large networks and offers both 2D and 3D
+user-friendly for moderately sized networks and is practical for exploratory analysis and interactive
+Both ggraph and tidygraph are part of the tidyverse ecosystem in R. The ggraph package is
+designed for visualising complex network structures and works seamlessly with igraph
+16, which displays syntactic associations to the word “bed” in a corpus of positive hotel reviews, as
+gathered in Semeraro et al. (2024). The graphical layout, obtained in Python, organises associations
+along a circular layout, bundling edges so that words more interconnected with each other are closer
+in the layout. This visualisation was obtained in Python, via igraph and a user-friendly package called
+textual forma mentis networks from text (Semeraro et al. 2024; Stella 2020).
+reviews. The bundling, obtained via igraph and EmoAtlas, organises associations along a circular
+layout and bundles edges together by putting words more connected with each other closer on the
+circular layout. As in textual forma mentis networks, nodes are coloured according to their valence
+(cyan for positive, red for negative, black for neutral) and links are coloured according to the valences
+of its connected words (e.g., links between positive words are thicker and cyan).
+Users can also choose tree views, which are useful for displaying nested structures
+data manipulation within network structures, allowing researchers to prepare and customise data
+easily. The tidygraph package enables filtering, transforming and arranging network elements. This
+can be essential for larger networks where certain nodes or edges require highlighting or adjustment
+4. Limitations and Future Work
+Cognitive network science is deeply rooted in the mental lexicon metaphor and in associative
+knowledge modelling. Cognitive networks are powerful tools for revealing underlying structures in
+data that may appear unorganised or lack explicit structure, such as raw texts, recall data or responses
+from lexical tasks. By mapping these data onto a network, cognitive networks unveil patterns in the
+organisation, acquisition and framing of conceptual representations that might remain hidden with
+other, unstructured modelling frameworks. For example, cognitive networks outperform latent
+semantic spaces in explaining similarity ratings (Kenett et al. 2017). However, there are also several
+limitations to the field that should be acknowledged, discussed and potentially relaxed via future
+research.
+Firstly, whereas the mental lexicon is highly dynamic (Aitchison 2012; Zock 2020), most cognitive
+network models are currently static, i.e. the layout of conceptual associations does not change over
+time. However, pioneering studies with free associations (Dubossarsky et al. 2017; Wulff et al. 2019;
+Wulff et al. 2022b) and fluency data (Cosgrove et al. 2021) have shown that indeed semantic memory
+in the lexicon changes over time. Alterations in the mental lexicon can be due to various factors such
+as experience, learning and exposure to new information (Wulff et al. 2022). As individuals encounter
+new words and concepts, their mental lexicon dynamically adapts, incorporating new associations to
+reflect evolving semantic structures and relationships (Storkel 2002; Beckage et al. 2011). Next-
+generation cognitive network models should thus be able to account for time-evolving conceptual
+associations. Relevant applications could be the investigation of treatment effects (Veltri 2023) or
+other aspects of ageing (Wulff et al. 2022). A promising route would be the adoption of recent
+frameworks like stream graphs, where individual links can appear, persist and vanish over time,
+altering node centrality and network dynamics (cf. Citraro et al. 2021).
+Secondly, the mental lexicon is multi-faceted (Zock 2020) and cognitive networks must
+encompass multiple aspects of knowledge at once. Multiplex lexical networks already account for
+multiple types of conceptual links (Stella et al. 2017; Stella et al. 2018). The combination of these
+various conceptual links highlights phenomena invisible to single-layer networks, e.g. distance-based
+mechanisms in predicting picture naming performance in people with aphasia (Castro & Stella 2019).
+However, these models are limited to mapping only the same set of nodes across layers, e.g. only
+words, whereas the mental lexicon might include elements like phonemes or sentences (Aitchison
+2012), or even specific regions of the human brain activated by priming (Zaharchuk & Karuza 2021).
+Multilayer networks, i.e. generalisations of edge-coloured graphs where different sets of nodes can
+be linked across layers (De Domenico 2022), represent a valuable future direction for quantitative
+interpretations of psycholinguistic data. With some pioneering studies investigating the multilayer
+structure of language (Martinčić-Ipšić et al. 2016), future research should deploy these models for
+interpreting more psychological data.
+Thirdly, whereas most studies work at group level (Castro & Siew 2020), e.g. comparing creativity
+between scientists and artists (Merseal et al. 2023) or across different age groups (Cosgrove et al.
+2023), cognitive network models of individuals’ mental lexica might provide a major modelling
+advancement. Cognitive networks generated on the level of individuals might be especially beneficial
+in digital ecosystems where user-level data is already available (Mokryn & Ben-Shoshan 2021), thus
+potentially mapping how individuals perceive, link and express ideas through online communicative
+intentions. The SWOW database (Small World of Words,
+associations at individual level (Wulff et al. 2022; Wulff et al. 2022b). This enables a granularity that
+is crucial for pushing cognitive network science towards embracing individual assessment and
+variability, making cognitive networks interesting objects of investigations even for researchers
+already familiar with complex networks, e.g. from network psychometrics (Golino & Epskamp;
+Golino et al. 2020).
+Fourthly, cognitive networks are not always the best model for explaining cognitive phenomena.
+Kumar and colleagues found that word embeddings obtained from the word2vec method provided
+results slightly better than network distances in explaining priming data (Kumar et al. 2020).
+However, the patterns reproduced by word2vec and cognitive networks differed, so that combining
+model results together could be more informative. When not directly superior, word embeddings
+might confirm results found through cognitive networks. Analysing narratives provided by clinical
+populations, the word embedding approaches of Litovsky et al. (2022) and of Parola et al. (2022) both
+identify abnormal patterns analogous to ones detected by syntactic networks in Nettekoven et al.
+(2022) or described in Lydon-Staley et al. (2019). Next-generation models should use vectorial and
+network aspects of the mental lexicon in synergy. A promising example is DASentimental (Fatima et
+al. 2021), which combines semantic network distance and word embeddings to predict levels of
+anxiety, depression and stress from combinations of emotional words. Using a cognitive network
+embedding technique, a multi-perceptron model was trained that demonstrated an ability to predict
+emotional distress levels in individuals with a performance comparable to that of human raters (cf.
+with AI techniques might improve the explainability of the latter and power the creation of human-
+centred models where associative knowledge might improve not only AI performance but also foster
+novel methodological tools for computational social science and affine fields (Veltri 2023).
+Last but not least, cognitive networks primarily examine the structure of conceptual connections,
+yet the mental lexicon includes a distributional dimension, representing words as numerical vectors
+(Kumar 2021; Litovsky et al. 2022). Addressing the challenge of reconciling these two aspects, the
+recent Feature Rich Multiplex Lexical Network (FERMULEX) framework integrates both the vector
+and network elements of associative knowledge. This approach reveals patterns in early sentence
+production by toddlers that remain unnoticed by models solely focused on either network or vector
+representations (Citraro et al. 2022). While FERMULEX considers only language-based features (e.g.
+frequency, length, polysemy), future models should account also for word-level task-based features
+such as concreteness (Citraro et al. 2023), specificity or how context-specific concepts are perceived
+(Bolognesi & Caselli 2023) or even latency - how easily concepts can be recalled or identified (Kumar
+et al. 2020; Litovsky et al. 2022). Extending network measures to feature-rich networks might also
+provide additional insights over the dichotomous network/vector nature of the mental lexicon. As an
+idealised system, the mental lexicon influences knowledge processing in ways mediated by vector
+similarities in some phenomena and by network structure in others (cf. Aitchison 2012; Zock 2020;
+Kovacs et al. 2021; Hills & Kenett 2021; Citraro et al. 2022). This underlines the need for
+computational investigations of such complex cognitive systems through a multiverse approach
+(Parola et al. 2022), where multiple models are compared, combined and reconciled.
+5. Conclusions
+This tutorial paper has explored recent advancements in cognitive networks, emphasising their
+role as models for understanding human cognition and behaviour. Their applications range from
+deciphering cognitive processes across visual, auditory, and semantic tasks in diverse populations to
+predicting cognitive development, decline, and performance in both clinical and healthy contexts.
+Additionally, cognitive networks contribute to the reconstruction of semantic framing within texts
+and media. As a useful tool for modelling human behaviour, the field of cognitive networks stands
+poised for growth, guided by meticulous statistical modelling, collaborative synergy with other
+interpretable frameworks, and the availability of rich datasets and powerful software packages
+spanning various tasks and contexts.

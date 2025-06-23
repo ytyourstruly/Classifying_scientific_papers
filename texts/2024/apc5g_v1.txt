@@ -1,0 +1,301 @@
+L L M C I P
+ARGE ANGUAGE ODELS AN NFER ERSONALITY
+F -F U I
+FROM REE ORM SER NTERACTIONS
+Heinrich Peters Moran Cerf Sandra C. Matz
+Columbia University Columbia University Columbia University
+hp2500@columbia.edu mc5424@columbia.edu sm4409@columbia.edu
+BSTRACT
+This study investigates the capacity of Large Language Models (LLMs) to infer the Big Five
+personality traits from free-form user interactions. The results demonstrate that a chatbot
+powered by GPT-4 can infer personality with moderate accuracy, outperforming previous
+approaches drawing inferences from static text content. The accuracy of inferences varied
+across different conversational settings. Performance was highest when the chatbot was
+prompted to elicit personality-relevant information from users (mean r=.443, range=[.245,
+.640]), followed by a condition placing greater emphasis on naturalistic interaction (mean
+r=.218, range=[.066, .373]). Notably, the direct focus on personality assessment did not
+result in a less positive user experience, with participants reporting the interactions to be
+equally natural, pleasant, engaging, and humanlike across both conditions. A chatbot mim-
+icking ChatGPT’s default behavior of acting as a helpful assistant led to markedly inferior
+personality inferences and lower user experience ratings but still captured psychologically
+meaningful information for some of the personality traits (mean r=.117, range=[-.004,
+.209]). Preliminary analyses suggest that the accuracy of personality inferences varies
+only marginally across different socio-demographic subgroups. Our results highlight the
+potential of LLMs for psychological profiling based on conversational interactions. We
+discuss practical implications and ethical challenges associated with these findings.
+Keywords LLM, GPT-4, Chatbot, Personality, Big-Five, Assessment
+1 Introduction
+Large Language Models (LLMs) have emerged as an important technological innovation with far-reaching
+implications for research and practice. Models like OpenAI’s GPT-4 [1], Anthropic’s Claude [2], Meta’s
+Llama [3] or Google’s Gemini [4] show a remarkable ability to understand and generate human-like text. In a
+striking departure from previous modeling approaches, the capabilities of LLMs tend to generalize well to
+previously unseen scenarios, contexts, and tasks [5, 6]. This includes their ability to represent complex aspects
+of human psychology.
+As past work has shown, LLMs can solve theory of mind tasks, indicating their ability to impute mental
+states to other entities [7]. Similarly, it has been demonstrated that LLMs exhibit behavioral patterns that
+map onto psychometric inventories originally developed to measure individual differences in humans. While
+past research has raised concerns about the validity of such questionnaires when applied to LLMs [8, 9],
+commonly used LLMs seem to differ systematically in their reactions to items from standard inventories
+assessing non-cognitive psychological characteristics such as personality, values, moral norms, and diversity
+beliefs [10]. Inversely, LLMs are able to produce behavior that is aligned with human traits when prompted to
+do so. For example, a model that is instructed to adopt an extraverted persona would score high on that trait
+when presented with a personality questionnaire [11, 12].
+In addition to mimicking aspects of human psychology, LLMs can also decode people’s psychological traits
+from various forms of user-generated text. For example, past work has shown that LLMs can infer personality
+from essays using chain-of-thought reasoning based on items from personality inventories [13]. Similarly, past
+work has examined the ability of LLMs to infer personality from transcripts of asynchronous video interviews
+[14], as well as social media posts [15]. In many cases, the predictions made by LLMs can compete with those
+made by supervised machine learning models. Yet, given the fact that LLMs do not require researchers to
+collect their own data and train a separate model for every psychological dimension of interest, they offer an
+unprecedented opportunity to investigate and apply psychological traits at scale and outside the lab [15].
+As the outlined examples show, most existing research evaluating the capabilities of LLMs to make inferences
+about psychological traits has focused on their capacity to interpret static written content using relatively
+simple prompting strategies. Yet, many real-world applications of LLMs involve dynamic interactions between
+AI chatbots and users. Compared to static data sources, these conversational interactions provide a more
+naturalistic setting that closely mirrors everyday human interactions and can have similar psychological effects
+on users [16]. Conversations also offer unique opportunities for personality judgments as they allow AI
+chatbots to elicit personality-relevant information from users. Relatedly, conversations might reveal more
+subtle aspects of an individual’s psychological makeup, such as their ability to adapt to new information,
+manage conversational flow, and respond to emotional cues.
+Building on the unique opportunities afforded by naturalistic user interactions with LLM-based chatbots,
+this paper examines the ability of LLMs to infer personality traits from free-flowing conversations. In doing
+so, it addresses three related research questions. First, we examine whether LLM-based chatbots can infer
+people’s Big Five personality traits under a series of conditions that provide different instructions to the
+chatbots and users. Specifically, we prompted the LLM chatbot to either (i) assess their users’ personality, (ii)
+have a naturalistic conversation, or (iii) act as a “helpful assistant,” a commonly used default setup in popular
+chatbots like ChatGPT. At the same time, we instructed users to (i) have a naturalistic conversation or (ii)
+freely use the chatbot according to their own preferences (e.g., for question answering). Second, we analyze
+potential trade-offs between the accuracy of personality inferences and user experience across conditions.
+For example, prompting the model to elicit personality-relevant information from users might negatively
+impact their appraisal of the conversation. Finally, we analyze potential biases in LLM-based personality
+inferences with regard to several important demographic characteristics, such as gender, age, race, education,
+and socioeconomic status.
+2 Method
+2.1 Sample and Data Collection
+We recruited 600 US participants through Prolific Academic in February 2024. Out of the recruited participants,
+32 dropped out during data collection, and two were removed for failing to pass attention checks. In the final
+sample of 566 participants, 50.2% of participants identified as female, 62.7% identified as White, and 55.7%
+had obtained at least a college degree. The average age was 37.67 years (SD=13.01). All participants gave
+informed consent. The research was covered under the Columbia University IRB (Protocol #AAAV0800).
+2.2 Research Design and Procedure
+We employed a 3x2 factorial between-subjects design to test ChatGPT’s ability to predict psychological
+traits across different interaction modes (i.e., prompts and instructions given to ChatGPT and participants).
+The different chatbots were prompted to (i) evaluate the users’ big five personality traits in a naturalistic
+conversation (assessment condition), (ii) get to know the user in a naturalistic conversation (acquaintance
+condition), or (iii) act as a helpful assistant (assistant condition). Similarly, participants were instructed to (i)
+have a naturalistic conversation (conversation condition) or (ii) interact with the chatbot however they wanted
+(unconstrained use condition). Participants were randomly assigned to one of the resulting six conditions.
+After participants had provided informed consent, they were directed to a web app where they interacted with
+a chatbot built on top of the ChatGPT API. As is common in AI-powered chatbots, the conversation was
+structured such that participants and the chatbots took turns of one message each. Participants were made aware
+that they would interact with an AI agent, but they did not receive any information about the purpose of the
+study. The interaction lasted for a predetermined length of 15 turns per participant, during which participants
+could freely interact with the chatbot, asking questions and answering questions about themselves. After 15
+turns, participants received a confirmation code and were directed to an online questionnaire, where they
+were presented with a brief user experience survey and a personality questionnaire (BFI-2) [17]. Moreover,
+participants were prompted to provide basic socio-demographic information (age, gender, ethnicity, income,
+and education). The median completion time was 19 minutes and 17 seconds.
+2.3 Materials and Measures
+The chatbot user interface was set up as a custom web application with a chat window, running on Google
+AppEngine. We constructed the web application on top of the ChatGPT API using the GPT-4 [1] model
+version gpt-4-0613. All messages and message metadata were saved to a Firestore NoSQL database in real
+time. In order to generate inferred personality scores, each conversation was parsed into a transcript that
+included the messages from the chatbot and the user, marked as “GPT: . . . ” and “User: . . . ” and then fed back
+to the model. Inferred personality scores were obtained by making three additional API calls, each prompting
+the GPT-4 model to return personality scores based on the transcript of the conversation. The scores used in all
+analyses are the means across three rounds of scoring. ChatGPT system prompts and user interactions for the
+The questionnaire participants completed after their interaction with the chatbot consisted of six questions
+aiming to evaluate different aspects of the user experience: 1) “The conversation was natural.” 2) “The
+conversation was pleasant.” 3) “The conversation was engaging.” 4) “My conversation partner asked good
+questions.” 5) “My conversation partner gave good answers.” 6) “My conversation partner was humanlike.”
+Responses were coded on a 7-point Likert scale. While the items were not intended apriori to measure a single
+construct, the high internal consistency of Alpha=0.898 (all Alpha>0.843 when computed separately within
+conditions) suggests that an aggregate score could be interpreted as a positive versus negative appraisal of the
+overall user experience.
+In addition to the user experience items, self-reported personality scores were captured using the BFI-2
+questionnaire [17], a widely used measurement with excellent psychometric properties. The questionnaire
+consists of 60 items with a 5-point Likert scale answer format, ranging from 1 = strongly disagree to 5 =
+strongly agree. Socio-demographic characteristics were captured using single-choice and multiple-choice
+Condition Type Condition Name System Prompt / Instruction
+Bot Conditions Assessment Have a natural conversation with the user, trying to get to know them
+and rate their Big-5 personality traits Openness, Conscientiousness,
+Extraversion, Agreeableness, Neuroticism. Make sure it does not feel
+like an assessment and under no circumstances let them know you are
+evaluating them. Do not provide feedback on their personality during
+the conversation. Keep the conversation going for as long as possible
+and continue to collect useful information. Be concise in your questions
+and responses.
+Acquaintance Have a natural conversation with the user, trying to get to know them
+and get a sense of their character. Imagine you meet them for the first
+time. Keep the conversation going for as long as possible and continue
+to collect useful information. Be concise in your questions and
+responses.
+Assistant You are a helpful assistant.
+User Conditions Conversation In the first part of the study, you will engage in a short conversation with
+a chatbot. The idea is to have a natural conversation - the same way you
+would have with a person you’ve just met. There are no right or wrong
+answers, but please make sure that you engage in a real and meaningful
+exchange (we will otherwise not be able to use your responses).
+Unconstrained Use In the first part of the study, you will engage with a chatbot. The idea is
+to use it the way you would typically use a bot like ChatGPT. You can
+ask questions, make it solve tasks for you, or simply have a conversation
+with it. There are no right or wrong questions, but please make sure that
+you engage in a real and meaningful user experience (we will otherwise
+not be able to use your responses).
+manipulate the behavior of the LLM through prompting. User conditions manipulate the behavior of the user
+by instructing them to interact with the bot in a particular way.
+menus for gender, age, education, race/ethnicity, and income. The full list of items, including all response
+options, can be found in SI B.
+3 Results
+3.1 Can LLMs Infer Personality Traits from Free-Form User Interactions?
+We tested ChatGPT’s ability to infer users’ Big Five personality traits by computing Pearson’s correlation
+coefficients between self-reported and inferred scores separately for each condition. We used one-sided
+significance tests to test whether the correlations were greater than zero
+As expected, the accuracy of personality inferences was the highest in the assessment conditions where
+the chatbot was explicitly prompted to collect information about the user’s big five personality traits, with
+correlations ranging from r=.326 to r=.590 (mean r=.438) when users were tasked to have a naturalistic
+conversation with the chatbot. When users interacted with the chatbot in an unconstrained fashion, the
+correlations ranged from r=.245 to r=.640 for (mean r=.448). All correlations were significantly greater than
+zero and there was no significant difference in correlations across both user conditions.
+The accuracy of inferred scores in the acquaintance conditions where the chatbot was instructed to get to know
+the user was overall lower than in the assessment condition. When users were tasked to have a naturalistic
+conditions (assessment, acquaintance, assistant) are shown in different columns. User conditions (conversation,
+unconstrained) are shown across rows. The vertical black lines represent two-tailed 95% confidence intervals.
+The horizontal black lines represent one-tailed lower 95% confidence intervals.
+conversation with the chatbot, the correlations between self-reported and inferred trait scores ranged from
+r=.166 to r=.373 (mean r=.248). When users interacted with the chatbot in an unconstrained fashion, the
+correlations ranged from r=.066 to r=.317 (mean r=.188). The majority of correlations were significantly
+greater than zero. The correlations did not significantly differ across the two user conditions.
+Finally, the accuracy of inferred scores was the lowest in the assistant condition, where the chatbot did not ask
+personal questions and simply reacted to user prompts. Yet, the correlations between self-reported and inferred
+trait scores were predominantly positive and significantly greater than zero for several traits, highlighting that
+even users’ regular day-to-day interactions with bots like ChatGPT can contain psychologically meaningful
+information. When users were tasked to have a naturalistic conversation with the chatbot, the correlations
+between self-reported and inferred trait scores ranged from r=-.004 to r=.209 for (mean r=.126). When users
+interacted with the chatbot in an unconstrained fashion, the correlations ranged from r=.018 to r=.193 (mean
+r=.109). As before, the correlations did not differ significantly across both user conditions.
+The outlined findings suggest that the prompted behavior of the chatbot greatly impacts the quality of
+personality inferences by eliciting more or less relevant information. The user instructions (conversation vs
+unconstrained use), on the other hand, did not appear to have a strong impact on the accuracy of inferences.
+3.2 How Do Different Interaction Modes Affect User Experience?
+We examined the potential trade-offs between inference accuracy and user experience across conditions
+by comparing participants’ ratings on six dimensions (i.e., whether the interaction was natural, pleasant,
+The conversation was engaging; My conversation partner asked good questions; My conversation partner gave
+good answers; My conversation partner was humanlike) and conditions. The vertical black lines represent
+two-sided 95% confidence intervals.
+and engaging, the perceived quality of the chatbot’s questions and answers, and whether the chatbot was
+perceived as humanlike). Participants rated their interaction as the most natural, pleasant, and engaging in the
+acquaintance condition and as the least natural and humanlike in the assistant condition. Importantly, however,
+there was no systematic pattern of significant differences in participants’ experience between the assessment
+and acquaintance conditions. This suggests that the chatbot’s direct focus on personality-relevant topics – and
+the resulting boost in accuracy – does not necessarily come at the cost of a less positive user experience. For a
+statistics can be found in SI D
+3.3 Does the Quality of LLM-based Personality Inferences Vary Across Demographic Groups?
+In order to examine potential biases in personality inferences, we analyzed the differences in the residuals of
+inferred and self-reported scores, as well as differences in the correlations between inferred and self-reported
+scores across demographic groups. Residuals were computed by subtracting the self-reported scores from the
+inferred scores, such that positive values represent an overestimation in inferred scores and negative values
+represent underestimations. Correlations were computed separately within each demographic group such
+that a lower correlation coefficient in one group would indicate a lower level of accuracy compared to the
+other group. To achieve sufficient coverage within subgroups, we pooled the sample across conditions and
+dichotomized each of the five sociodemographic variables of interest: age (median split at 36 years), race
+(non-white, white), education (no college education, college education), and income (less than $50k, more
+than $50k). Distribution statistics and group sizes are reported in SI E.
+As the residual graphs on the left suggest, ChatGPT tended to underestimate participants’ personality traits
+across the board. However, while there were a few instances with significant differences across subgroups
+(e.g., gender differences for Neuroticism, or age differences for Conscientiousness), the overall trend seems to
+suggest a relatively unbiased prediction accuracy across the five socio-demographic categories and personality
+traits. The same pattern was found for the within-group correlations, with only two significant differences for
+income and Conscientiousness and Agreeableness. Detailed statistics can be found in SI F.
+were computed as the difference between inferred and self-reported personality scores, such that a negative
+value indicates a negative bias in inferred scores. A larger bar indicates larger residuals for the specified
+group. Correlations were computed as Pearson’s correlation coefficients between inferred and self-reported
+personality scores within each group. A larger bar indicates higher accuracy for the specified group.
+4 Discussion
+4.1 Interpretation of Results
+The present study investigates the ability of LLMs to infer the big five personality traits from free-form
+user interactions. Highlighting the potential of conversational approaches, the personality inferences were
+more accurate than those reported in previous work based on static text in combination with both supervised
+learning [18–20] and LLM-powered approaches [15]. Notably, both the acquaintance and assistant conditions
+provided meaningful psychological information for better-than-chance performance. While the accuracy in the
+acquaintance condition was still on par with results from the prior literature for several traits, the accuracy
+in the assistant condition was expectedly lower. The overall pattern of results suggests that LLMs possess
+accurate representations of personality constructs and are able to elicit personality-relevant information by
+asking pointed questions.
+We did not observe systematic differences in user experience between the assessment and acquaintance
+conditions, suggesting that there are no stark trade-offs between accuracy and user experience regarding
+personality inferences from free-flowing conversations. Practitioners and researchers can hence implement a
+prompting strategy targeting personality-related information without the concern of alienating users. Both
+the assessment and the acquaintance conditions were judged more favorably than the assistant conditions,
+which only stood out with regard to users’ assessment of the quality of answers provided by the chatbot. This
+preference suggests that a more naturalistic interaction style may enhance users’ experience with LLMs and is
+aligned with prior work showing reciprocity effects in user interactions with chatbots [21].
+The comparison of accuracies across subgroups suggests that there is little heterogeneity across different
+socio-demographic variables, both with regard to residuals and within-group correlations. The few exceptions
+could be explained by a number of different factors. First, the training data for LLMs may contain biases that
+skew toward the experiences and expressions typical of certain demographic groups, particularly those that
+are overrepresented in the data [22–28]. Additionally, language use and cultural factors might influence how
+personality traits are expressed and perceived [29, 30], potentially affecting the model’s ability to accurately
+interpret and score these traits across diverse groups. However, given the small sample size and the resulting
+need to dichotomize the demographic variables, we consider these findings preliminary and encourage future
+research.
+Taken together, our results highlight the potential of LLMs for psychological profiling based on conversational
+interactions and that interaction modes greatly influence the efficacy of LLM-based personality assessments.
+4.2 Limitations and Directions for Future Work
+There are several limitations and areas for future research that warrant consideration. First, despite the
+conversations unfolding across multiple turns, the study investigates a zero-shot learning scenario with very
+simple prompts. It is likely that a more sophisticated prompting strategy (e.g., chain-of-thought prompting)
+[13] or additional fine-tuning [31] could yield more accurate personality inferences. Our results, therefore,
+represent a lower bound of inference performance. Additionally, as the interactions were relatively short, it
+stands to reason that longer or repeated interactions could provide a richer data set, potentially leading to better
+inferences [15, 32].
+Second, the experimental setting may not fully capture the quality of intrinsically motivated user interactions
+that occur in more naturalistic settings. For instance, in the assistant condition, users engaging with the
+chatbot out of genuine need or interest – rather than being asked to do so – might reveal more about their
+daily circumstances, possibly leading to improved personality inferences. Future research should examine this
+hypothesis by utilizing user data from non-experimental settings.
+Third, our study was conducted exclusively with ChatGPT, one of many LLMs available to the public. As
+there is a general convergence in the capabilities of different LLMs [see 1, 2, 4], we expect that our results
+would translate across various other models. However, the precise extent of generalizability of our findings to
+a broader range of models remains a question for future research.
+4.3 Implications
+Our study has implications for a wide range of domains, including social science research, personalization,
+privacy, and AI ethics. On the one hand, the ability of LLMs to infer personality from free-form user interactions
+offers promising avenues for psychological assessment at scale. While the assessment of individual differences
+had previously been limited by the need to ask people stylized questions as part of personality tests [e.g., 17,
+33] or access historical records of their digital footprints [19, 32, 34, 35] the ability to infer personality through
+more dynamic, conversational approaches could help scale automated assessments and expand the study of
+individual differences to larger and more diverse samples. LLMs can, therefore, contribute to novel insights
+into human behavior and psychology [see 36, 37].
+Beyond academic research, the ability to scale psychometric assessments via LLM-based chatbots makes
+individual differences a viable contestant for large-scale personalization across a broad variety of domains,
+creating both opportunities and risks. As prior work has suggested, LLMs are not only able to make accurate
+personality inferences but also to craft persuasive messages tailored to people’s personality traits [38]. Given
+our results, it would be possible for artificial agents to interact with internet users to unobtrusively collect
+information about their psychological makeup and then use this information for targeted advertisements,
+customized product recommendations, or political campaigns. While such automated content recommendation
+and creation could facilitate more engaging and personalized user experiences online, they could also influence
+behavior in unprecedented and potentially harmful ways [39]. The tension between opportunities and the
+potential for misuse calls for a balanced approach to the deployment and regulation of AI technologies. We
+recommend clear regulations regarding the identification of artificial agents when they interact with humans
+and a transparent disclosure of the inferences made by the AI as a result of these interactions.
+4.4 Conclusion
+This study demonstrates the potential of LLMs to infer the Big Five personality traits from free-form user
+interactions, surpassing the performance of previous supervised learning approaches based on static text
+data. The findings highlight the effect of conversational context on the accuracy of LLM-based personality
+inferences while showing that user experience remains highly positive even when LLMs are specifically
+prompted to solicit personality-relevant information. Together, these insights open up new avenues for social
+science research and the application of personalization at scale. However, they also raise ethical and privacy
+concerns regarding the use of LLMs in psychological profiling and assessment.
+Ethics Approval
+The study was approved by the Columbia University IRB (Protocol #AAAV0800). All methods were carried
+out in accordance with relevant guidelines and regulations.
+Availability of Data and Materials
+Competing Interests
+The authors declare no potential conflicts of interest.
+Author Contributions
+HP: Conceptualization, Methodology, Software, Formal analysis, Investigation, Data curation, Writing -
+Original Draft; MC: Funding acquisition; SCM: Conceptualization, Methodology, Writing - Original Draft,
+Funding acquisition
+Acknowledgments
+The research was supported by the Digital Future Initiative at Columbia Business School.

@@ -1,0 +1,945 @@
+Running head: HORSESHOE PRIORS FOR LATENT REGRESSION MODELS
+Fully Gibbs Sampling Algorithms for Bayesian Variable Selection in Latent Regression
+Models
+Kazuhiro Yamaguchi
+University of Tsukuba
+Jihong Zhang
+University of Iowa
+This paper was accepted by the Journal of Educational Measurement.
+Author Note
+The data analysis code is available in the Open Science Framework page:
+JSPS KAKENHI 19H00616, 20H01720, 21H00936, and 22K13810.
+Correspondence concerning this article should be addressed to Kazuhiro Yamaguchi,
+Faculty of Human Science, University of Tsukuba, Institutes of Human Sciences A314, 1-1-1
+Tennodai, Tsukuba-shi, Ibaraki-ken, 305-0006, Japan.
+Email: yamaguchi.kazuhir.ft@u.tsukuba.ac.jp
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 1
+Abstract
+This study proposed Gibbs sampling algorithms for variable selection in a latent regression
+model under a unidimensional two-parameter logistic item response theory model. Three types
+of shrinkage priors were employed to obtain shrinkage estimates: double-exponential (i.e.,
+Laplace), horseshoe, and horseshoe+ priors. These shrinkage priors were compared to a uniform
+prior case in both simulation and real data analysis. The simulation study revealed that two types
+of horseshoe priors had a smaller root mean square errors and shorter 95% credible interval
+lengths than double-exponential or uniform priors. In addition, the horseshoe prior+ was slightly
+more stable than the horseshoe prior. The real data example successfully proved the utility of
+horseshoe and horseshoe+ priors in selecting effective predictive covariates for math
+achievement.
+Keywords: latent regression, item response theory model, Bayesian variable selection,
+Gibbs sampling algorithm
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 2
+Fully Gibbs Sampling Algorithms for Bayesian Variable Selection in Latent Regression
+Models
+1. Introduction
+One major interest in educational and psychological research is the exploration of
+factors that can explain latent psychological traits. In various educational contexts, such targeted
+latent traits are seen as indicators of academic proficiency, such as strong mathematical or
+linguistic abilities. Unidimensional item response theory models (IRT models; Embretson &
+Reise, 2000) have been employed to estimate students’ academic proficiency in the Programme
+for International Student Assessment (PISA; OECD, 2019) or Trends in International
+Mathematics and Science Study (TIMMS; Mullis et al., 2020). In addition, latent proficiencies
+have been cross-sectionally compared among countries, with their growth tracked over time.
+Furthermore, students who participate in the educational assessments are usually asked various
+additional questions, such as their learning attitudes, habit of study, and background information
+in order to assess which factors influence academic proficiencies. Statistical models explaining
+latent proficiency with covariates are called latent regression models (von Davier & Sinharay,
+2007, 2010) or explanatory item response models (De Boeck & Wilson, 2004). In this study, we
+use the term “latent regression models” rather than “explanatory item response models”
+hereafter. In short, latent regression models are regression models with a latent dependent
+variable.
+The questionnaire for students in PISA or TIMMS has a lot of items (von Davier &
+Sinharay, 2010) from different aspects, but it is not obvious which variable should be included in
+the model before the data analysis. This is known as the variable selection problem (George,
+2000). Usually, researchers choose covariates based on their research interests and theories.
+However, if important covariates are dropped from the data analysis, this causes the so-called
+omission variables problem, which results in biased parameter estimates. If too many variables
+are included, the regression model can be overfitted, and the generalization error becomes larger.
+This means that the prediction based on the estimated model becomes meaningless for the
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 3
+purpose of predicting new data. Moreover, the number of covariates is also related to the bias-
+variance trade-off (Bishop, 2006, p.147; Jacobucci et al., 2019), which indicates that more
+complex and flexible models have smaller bias but larger variance, while simpler models show
+larger bias but smaller variance. Furthermore, a dependent variable in latent regression models is
+latent proficiency. Re-analyzing estimated latent proficiency scores can lead to biased estimates
+of regression coefficients (Grice, 2001). Therefore, statistical estimation methods that can
+simultaneously estimate latent proficiency and select covariates that have a large effect on the
+dependent variable are necessary for latent regression models.
+In this study, Bayesian variable selection methods based on the Bayesian lasso (Park &
+Casella, 2008) and horseshoe shrinkage priors (Carvalho et al., 2009, 2010) were developed to
+measure data with a set of predictive covariates. We also developed Gibbs sampling algorithms
+to sample all parameters and latent variables from fully conditional posteriors. Thus, the
+sampling strategy is more efficient than the rejection sampling type Markov chain Monte Carlo
+methods (MCMC; Brooks et al., 2011). Another Bayesian way to select an appropriate variable
+is preparing a possible model set and assigning prior probabilities for each model (Ray & Szabó,
+2021). This allow us to calculate posterior probability of each model, and it can be used for
+model selection. Moreover, information-criteria-based model selection is possible (Zhang et al.,
+2019). Bayesian method requires priors, which are sometimes determined subjectively (Ames &
+Smith, 2018), to get posterior. Shrinkage priors reflect the assumption that most coefficients are
+close to zero and provide the uncertainty of parameter estimates as posterior credible intervals.
+These credible intervals can be employed to select the coefficients that should be included (e.g.,
+Li and Lin, 2010, p.157; van Erp et al., 2019). In addition, Bayesian shrinkage estimation
+methods generally do not require tuning hyperparameters. The hyperparameter tuning is required
+for maximum likelihood (ML)-based regularization methods (lasso; Tibshiranit, 1996; elastic
+net; Zou & Hastie, 2005), which are often employed in psychometric research (Helwig, 2017;
+Jacobucci et al., 2019; McNeish, 2015). ML-based regularization methods are employed for
+variable selection and dealing with differential item functioning (DIF) in IRT study (Lee, 2020).
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 4
+The proposed Bayesian estimation method can be easily applied to real-life data analysis
+scenarios without complicated settings.
+Bayesian variable selection methods have been actively studied in the field of
+statistical science. In a review, van Erp et al. (2019) summarized various shrinkage priors in a
+regression model with observed values and reported that regularized horseshoe and hyper lasso
+priors showed better performance in terms of the prediction mean squared error. However, van
+Erp et al. (2019) were limited to regular multiple linear regression models. Meanwhile,
+Culpepper and Park (2017) developed a Bayesian estimation method for multiple latent variable
+regression with a generalized asymmetric Laplace prior distribution. They employed a normal-
+ogive IRT model rather than a logistic IRT model, which required them to tune hyperparameters
+as the ML-based regularization method (Culpepper & Park, 2017, p. 603), even though their
+method is Bayesian. Therefore, multiple MCMC runs were applied to cross-validation samples to
+select appropriate hyper parameters controlling the strength of shrinkage, which minimizes the
+cross-validation error. This is usually very time consuming, especially in a Bayesian estimation
+setting when there is a large sample size. For example, if there are ten divided samples, the
+MCMC procedures are run ten times for each candidate of hyper parameters. This decreases
+utility of their method. Feng et al. (2017) developed a Bayesian (adaptive) lasso for a generalized
+latent variable model that could deal with continuous, ordinal, and nominal variables. Their
+method assumes a classical Laplace prior, which is also known as double-exponential prior, for
+the regression coefficients among latent proficiencies, where the prior is not theoretically
+appropriate. The horseshoe prior has a property of variable selection optimality (Bhadra et al.,
+2017) but a double-exponential prior does not. Specifically, the double-exponential prior is less
+robust as variable selection than the horseshoe prior. In summary, there is still a lack of effective
+Bayesian estimation methods with theoretically appropriate shrinkage priors (horseshoe priors)
+for latent regression models whose measurement model is logistic IRT models without
+hyperparameter tuning. We will review the theoretical aspects of shrinkage priors later.
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 5
+To solve previously mentioned problem, the objective of this study is to develop
+effective Gibbs sampling methods with three types of shrinkage priors’ settings: double-
+exponential (i.e., Laplace), horseshoe, and horseshoe+ priors for a latent variable regression
+situation in which the measurement model is a two-parameter logistic (2PL) IRT model. The
+novelty of this study lies in employing theoretically preferable horseshoes shrinkage priors that
+have not been employed for latent regression models. The contributions of this study are (1)
+enabling concurrent estimation of latent traits with a logistic item response model and predictive
+variable selection in a Bayesian manner, (2) providing Gibbs sampling algorithms that can not
+only sample the regression coefficient but also all parameters in the 2PL IRT model, and (3)
+comparing both simulation and real data situations to provide evidence of which prior setting is
+more appropriate for sparse latent regression situations. The horseshoe and horseshoe+ priors
+employ pre-specified hyper parameters but have stronger shrinking effects than usual double-
+exponential priors, as seen later. For example, the latent regression coefficients of predictive
+covariates have shrinkage priors with the pre-determined hyper parameters, in which no tunning
+is required (see more details in Sections 2.2.2 and 2.2.3). This point is attractive in time-
+consuming Bayesian estimation situations in latent variable models because the priors can skip
+multiple MCMC runs for hyper-parameters selection.
+The study is structured as follows. Section 2 introduces the latent variable regression
+model and derives the conditional posteriors for several shrinkage priors. Section 3 provides a
+Gibbs sampling algorithm using previously introduced conditional posteriors. Sections 4 and 5
+discuss the simulation study conducted to compare the three shrinkage priors against a uniform
+prior setting as a reference. Section 6 presents the application of developed methods to real data.
+Finally, Section 7 provides suggestions about the proposed methods and offers recommendations
+regarding which shrinkage prior has the best performance in the latent regression situation and
+discusses the benefits and limitations of the three types of Bayesian variable selection methods.
+2. Bayesian Variable Selection Methods for Latent Regression Models
+2.1. Formulation of Latent Regression in Two Parameter Logistic Item Response Model
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 6
+The item response is represented as 𝑦 ∈ {0, 1}, which is a realization of a random
+𝑖𝑗
+variable 𝑌 and if individual 𝑖 ∈ {1, … , 𝐼} correctly responds to the item 𝑗 ∈ {1, … , 𝐽}, then
+𝑖𝑗
+𝑦 takes one otherwise zero. The probability of a correct response of the 2PL IRT model is
+𝑖𝑗
+formulated with a latent proficiency variable θ ∈ ℝ and two item parameters, namely the
+discrimination parameter 𝑎 ∈ ℝ and difficulty parameter 𝑏 ∈ ℝ:
+𝑗 𝑗
+P(𝑦 = 1|θ , 𝑎 , 𝑏 ) = . (1)
+𝑖𝑗 𝑖 𝑗 𝑗
+1 + exp⁡(−𝑎 (θ − 𝑏 ))
+𝑗 𝑖 𝑗
+In the latent regression model, the θ is regressed on covariance 𝒙 = (𝑥 , … , 𝑥 , … , 𝑥 ) ⁡in
+𝑖 𝑖 𝑖1 𝑖𝑘 𝑖𝑝
+which the number of the covariance is 𝑝 and 𝑥 ∈ ℝ, 𝑘 = 1,2, … , 𝑝:
+𝑖𝑘
+θ = μ + ϵ = 𝒙 𝛃 + ϵ , (2)
+𝑖 θ 𝑖 𝑖 𝑖
+where 𝛃 is a 𝑝-length vector of regression coefficients written as 𝛃 = (β , … , β , … , β ) and
+1 𝑘 𝑝
+error term ϵ follows independently normal distribution: ϵ ∼ 𝑁(0, σ 2). Here, μ = 𝒙 ⊤ 𝛃
+𝑖 𝑖 θ 𝑖
+is the conditional mean of latent proficiency of individual 𝑖 given covariate vector 𝒙 and
+regression coefficients 𝛃. This implies that the distribution of individual latent proficiency θ is
+2 2
+a normal distribution with mean μ and variance σ . Moreover, σ or at least one of 𝑎
+θ 𝑗
+should be fixed for identifiability. In this study, we fixed σ = 1.
+Before constructing the Bayesian variable selection Gibbs sampling for 𝛃, we first
+constructed full conditional posteriors for the parameters of 2PL based on the discussion of Jiang
+and Templin (2019). The prior distributions for 𝑎 and 𝑏 are normal distributions whose
+𝑗 𝑗
+2 2
+means are μ and μ and variances are σ and σ :
+𝑎 𝑏 𝑎 𝑏
+𝑗 𝑗 𝑗 𝑗
+𝑝 (𝑎 |μ , σ
+) = 𝑁(μ , σ
+)𝐼(𝑎 > 0), (3)
+𝑗 𝑎 𝑎 𝑎 𝑎 𝑗
+𝑗 𝑗 𝑗 𝑗
+(4)
+2 2
+𝑝 (𝑏 |μ , σ ) = 𝑁(μ , σ ),
+𝑗 𝑏 𝑏 𝑏 𝑏
+𝑗 𝑗 𝑗 𝑗
+where 𝐼(⋅) is an indicator function taking one if its argument is true, otherwise zero.
+To derive full conditional posteriors for 2PL IRT parameters, we need to introduce an
+additional auxiliary variable 𝑤 following Pólya-Gamma distribution with parameters 1 and
+𝑖𝑗
+𝑎 (θ − 𝑏 ) (Polson et al., 2013; Scott & Sun, 2013), expressed as
+𝑗 𝑖 𝑗
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 7
+𝑤 ∼ PólyaGamma (1, 𝑎 (θ − 𝑏 )). (5)
+𝑖𝑗 𝑗 𝑖 𝑗
+Let 𝑑 > 0 and 𝑐 ∈ ℝ be the parameters of the Pólya-Gamma distribution and
+PólyaGamma(𝑑, 𝑐) = 1/2π 2 ∑ ∞ 𝑙 , 𝑔 follows a gamma distribution with
+𝑙=1 𝑙
+2 2 2
+(𝑙−1/2) +𝑐 /(4𝜋 )
+parameters 𝑑 and 1, which is the probability density function of variable 𝑥 having a gamma
+distribution defined as 𝑓(𝑥; 𝑎, 𝑏) = 𝑥 𝑎+1 exp(−𝑏𝑥), where Γ(𝑎) is a gamma function.
+Γ(𝑎)
+Moreover, item response 𝑦 is converted as
+𝑖𝑗
+(6)
+𝑘 = 𝑦 − .
+𝑖𝑗 𝑖𝑗
+Based on Equations (7)-(9) in Jiang and Templin (2019) and the local independence assumption
+and exchangeability of individuals, the full conditional distribution of item discrimination
+parameter 𝑎 is proportional to
+𝑝 (𝑎 |𝒚 , 𝛉, 𝑏 , 𝒌 , 𝒘 , μ , σ )
+𝑗 𝑗 𝑗 𝑗 𝑗 𝑎 𝑎
+𝑗 𝑗
+(7)
+1 𝑘
+𝑖𝑗
+∝ 𝑝 (𝑎 |μ , σ ) exp {− ∑ 𝑤 ( − 𝑎 (𝜃 − 𝑏 )) } 𝐼(𝑎 > 0),
+𝑗 𝑎 𝑎 𝑖𝑗 𝑗 𝑖 𝑗 𝑗
+𝑗 𝑗 2 𝑤
+𝑖𝑗
+where 𝒚 is an 𝐼-length item response vector of item 𝑗 defined as 𝒚 = (𝑦 , … , 𝑦 ), 𝛉 is the
+𝑗 𝑗 1𝑗 𝐼𝑗
+𝐼-th length latent proficiency vector (θ , … , θ ), 𝒌 is a vector of 𝑘 s defined as (𝑘 , … , 𝑘 ),
+1 𝐼 𝑗 𝑖𝑗 1𝑗 𝐼𝑗
+and 𝒘 is a vector of 𝑤 s written as (𝑤 , … , 𝑤 ). After additional calculation, the posterior
+𝑗 𝑖𝑗 1𝑗 𝐼𝑗
+distribution of item discrimination parameter 𝑎 becomes a normal distribution:
+𝑝 (𝑎 |𝒚 , 𝛉, 𝑏 , 𝒌 , 𝒘 , μ , σ
+) = 𝑁 (μ
+, σ
+2∗
+) 𝐼(𝑎 > 0), (8)
+𝑗 𝑗 𝑗 𝑗 𝑗 𝑎 𝑎 𝑎 𝑎 𝑗
+𝑗 𝑗 𝑗 𝑗
+∗ 2∗
+where its mean μ and variance σ are
+𝑎 𝑎
+𝑗 𝑗
+∗ 2∗
+μ = σ ( + ∑ 𝑘 (𝜃 − 𝑏 )) ,
+𝑎 𝑎 𝑖𝑗 𝑖 𝑗
+𝑗 𝑗
+σ2
+(9)
+−1
+2∗
+σ = ( + ∑ 𝑤 (𝜃 − 𝑏 ) ) .
+𝑎 𝑖𝑗 𝑖 𝑗
+σ2
+{ 𝑎
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 8
+The same discussion can be applied to the derivation of posterior of 𝑏 :
+𝑝 (𝑏 |𝒚 , 𝛉, 𝑎 , 𝒌 , 𝒘 , μ , σ )
+𝑗 𝑗 𝑗 𝑗 𝑗 𝑏 𝑏
+𝑗 𝑗
+(10)
+1 𝑘
+𝑖𝑗
+∝ 𝑝 (𝑏 |μ , σ ) exp {− ∑ 𝑤 (( + 𝑎 𝑏 ) − 𝑎 𝜃 ) },
+𝑗 𝑏 𝑏 𝑖𝑗 𝑗 𝑗 𝑗 𝑖
+𝑗 𝑗 2 𝑤
+𝑖𝑗
+where 𝒃 is a 𝐽-length item difficulty vector (𝑏 , … , 𝑏 ). Therefore, the full conditional
+1 𝐽
+distribution of 𝑏 is a normal distribution:
+𝑝 (𝑏 |𝒚 , 𝛉, 𝑎 , 𝒌 , 𝒘 , μ , σ 2 ) = 𝑁 (μ ∗ , σ 2∗ ), (11)
+𝑗 𝑗 𝑗 𝑗 𝑗 𝑏 𝑏 𝑏 𝑏
+𝑗 𝑗 𝑗 𝑗
+where
+∗ 2∗
+μ = σ ( + 𝑎 ∑(𝑘 − 𝑎 θ 𝑤 )) ,
+𝑏 𝑏 2 𝑗 𝑖𝑗 𝑗 𝑖 𝑖𝑗
+𝑗 𝑗 σ
+𝑗 𝑖
+(12)
+−1
+2∗ 2
+σ = ( + 𝑎 ∑ 𝑤 ) .
+𝑏 2 𝑗 𝑖𝑗
+𝑗 σ
+𝑗 𝑖
+Finally, the full conditional distribution of latent proficiency parameter θ is
+𝑝(θ |𝒚 , 𝒂, 𝒃, 𝒌 , 𝒘 , μ , σ = 1)
+𝑖 𝑖 𝑖 𝑖 θ
+1 𝑘 (13)
+𝑖𝑗
+∝ 𝑝(θ |μ , σ
+= 1) exp {− ∑ 𝑤 (( + 𝑎 𝑏 ) − 𝑎 θ ) },
+𝑖 θ 𝑖𝑗 𝑗 𝑗 𝑗 𝑖
+𝑖 2 𝑤
+𝑖𝑗
+where 𝒚 is 𝑖-th student item response vector expressed by (𝑦 , … , 𝑦 ), 𝒌 is a vector
+𝑖 𝑖1 𝑖𝐽 𝑖
+defined as (𝑘 , … , 𝑘 ), and 𝒘 is a vector represented as (𝑤 , … , 𝑤 ) and this becomes a
+𝑖1 𝑖𝐽 𝑖 𝑖1 𝑖𝐽
+normal distribution:
+𝑝(θ |𝒚 , 𝒂, 𝒃, 𝒌 , 𝒘 , μ , σ
+= 1) = 𝑁 (μ
+, σ
+2∗
+), (14)
+𝑖 𝑖 𝑖 𝑖 θ θ θ
+𝑖 𝑗 𝑗
+with parameters
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 9
+∗ 2∗ 𝑖
+μ = σ ( + ∑ 𝑎 (𝑎 𝑏 𝑤 + 𝑘 )) ,
+θ θ 𝑗 𝑗 𝑗 𝑖𝑗 𝑖𝑗
+𝑖 𝑖
+σ2
+(15)
+−1
+2∗ 2
+σ = ( + ∑ 𝑎 𝑤 ) .
+θ 2 𝑗 𝑖𝑗
+𝑗 σ
+𝑖 𝑗
+⊤ 2
+Note that μ equals to 𝒙 𝛃 and σ is fixed to one.
+θ 𝑖
+2.2. Bayesian Shrinkage Priors
+A family of priors that aim to lead parameter estimates toward zero is called shrinkage
+priors (van Erp et al., 2019). In the Bayesian statistical method, shrinkage priors can be seen as
+an analog to the regularization term in ML methods. While various Bayesian shrinkage priors
+have been proposed (Bhadra et al., 2019; van Erp et al., 2019) for various purposes, we selected
+three famous priors that led to tractable Gibbs sampling algorithms: double-exponential
+(Laplace; Park & Casella, 2008), horseshoe (Carvalho et al., 2009, 2010), and horseshoe+ priors
+(Bhadra et al., 2017).
+The double-exponential prior can be viewed as a Bayesian version of the ML lasso
+method (Park & Casella, 2008). This is one of the most famous shrinkage priors and has been
+employed in various data analyses (e.g., Feng et al., 2017). However, Bayesian variable selection
+with the double-exponential prior needs to specify hyperparameters similar to the method of
+Culpepper and Park (2017). We selected this prior as a refence in this study to compare
+horseshoe and horseshoe+ priors. Horseshoe priors can be classified as global-local priors
+(Bhadra et al., 2019), while a discrete mixture of point math of zero is known as spike-and-slab
+priors (Ishwaran & Rao, 2005), which has also been employed in variable selection problems.
+However, spike-and-slab priors require heavy computation to sample from posteriors in a high-
+dimensional regression case (Bhadra et al., 2017). That is why the double-exponential and two
+horseshoe priors that can employ tractable Gibbs sampling algorithms are preferred in prior
+studies. For example, the sampling method for horseshoe priors has been shown in Makalic and
+Schmidt (2016a), while Makalic and Schmidt (2016b) provide full conditional posteriors under
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 10
+the horseshoe+ case. Comparing double-exponential, horseshoe, and horseshoe+ priors clarify
+the difference of shrinkage priors in latent regression model.
+Other priors also provide shrinkage estimators (Bhadra et al., 2017) such as generalized
+Pareto priors (Armagan et al., 2013) or normal-gamma priors (Griffin & Brown, 2010).
+Compared to these priors, the horseshoe prior has variable selection optimality and is known as a
+robust variable selection method (Bhadra et al., 2017). This theoretically favorable nature is
+useful for interpretation when selecting variable selection methods. Furthermore, horseshoe
+priors are under the umbrella of a normal-scale mixture distribution family (Andrews &
+Mallows, 1974), which has a strong shrinkage effect for small value regression coefficients but
+not for large coefficients. In particular, horseshoe+ has stronger shrinkage effects than the usual
+horseshoe prior. The horseshoe+ prior-based Gibbs sampling algorithm is easily applied with
+only a small modification of the usual horseshoe prior settings. Other detailed theoretical
+properties of horseshoe priors have been described by Bhadra et al. (2017, 2019) and Carvalho et
+al. (2009, 2010). In a nutshell, horseshoe priors are considered cutting-edge priors of Bayesian
+shrinkage methods.
+2.2.1 Double-Exponential Prior
+In this section, we describe the full conditional posterior of regression coeffects under
+the double-exponential prior, which is the most fundamental Bayesian shrinkage prior. The
+double-exponential prior case Gibbs sampling algorithm can be compared to the horseshoe
+priors’ case because it is a de facto standard prior for the Bayesian variable selection method.
+The double-exponential prior for the regression coefficients in Equation (2) is expressed as
+𝑝(β |λ) = exp(−λ|β |). (16)
+𝑘 𝑘
+However, random sampling from a double-exponential prior is inefficient. Park and Casella
+(2008) derived a hierarchical representation of the prior of β as
+𝑝(β |𝑢 ) = 𝑁(0, 𝑢 ), (17)
+𝑘 𝑘 𝑘
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 11
+𝑝(𝑢 |λ 2) = Exp ( ), (18)
+𝑝(λ 2 |𝑎, 𝑏) = Gam(𝑎 , 𝑏 ), (19)
+λ λ
+where Exp(ψ) is an exponential distribution with parameter ψ whose probability density
+function is 𝑓(𝑥; ψ) = ψ exp(−𝑥ψ). Moreover, Gam(𝑎 , 𝑏 ) are gamma distributions with
+λ λ
+shape parameter 𝑎 and rate parameter 𝑏 , which should be specified manually. Note that, in
+λ λ
+the previous literature formulation, the prior variance of β is σ 𝑢 rather than 𝑢 . However,
+𝑘 𝑘 𝑘
+in this study, the variance of the latent trait of individual proficiency was fixed at one: σ = 1,
+while the prior variance of the regression coefficient was also fixed at one. Under this
+formulation, if the latent proficiency vector 𝛉 is obtained, the joint conditional distribution of
+𝛃, 𝒖 = (𝑢 , … , 𝑢 ), and λ 2 given 𝛉 and 𝐗 that is 𝐼 × 𝐽 data matrix (𝒙 ⊤ , … , 𝒙 ⊤ )⊤ is
+1 𝑝 1 𝐼
+proportional to the product of the complete data likelihood and the priors:
+𝑝(𝛃, 𝒖, λ 2 |𝛉, 𝐗, 𝑎 , 𝑏 ) ∝ 𝑝(𝛉|𝐗, 𝛃)𝑝(𝛃|𝒖)𝑝(𝒖|λ 2)𝑝(λ 2 |𝑎, 𝑏). (20)
+λ λ
+The logarithm of the joint conditional distribution is
+log 𝑝(𝛃, 𝒖, λ 2 |𝛉, 𝐗, 𝑎 , 𝑏 )
+λ λ
+2 2
+1 1 β λ 1
+= ⁡ − (𝛉 − 𝐗𝛃)⊤(𝛉 − 𝐗𝛃) − ∑ − ∑ 𝑢 − ∑ 𝑢
+(21)
+𝑘 𝑘
+2 2 𝑢 2 2
+𝑘 𝑘 𝑘
++ (𝑎 + 𝑝) log(λ 2) − 𝑏 2 λ 2 + 𝐶,
+λ λ
+where 𝐶 is the normalization constant.
+From Equation (21), the full conditional posterior of 𝛃 is a multivariate normal
+distribution:
+𝑝(𝛃|𝛉, 𝐗, 𝒖) = 𝑁(𝛍 , Σ ), (22)
+𝛃 𝛃
+where
+𝛍 = Σ 𝐗 𝛉,
+𝛃 𝛃
+⊤ −1
+{ Σ = (𝐗 𝐗 + 𝐃) , ⁡ (23)
+−1 −1
+𝐃 = diag(𝑢 , … , 𝑢 ).
+1 𝑝
+−1
+The posterior distribution of 𝑢 can be expressed as
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 12
+λ2
+𝑝(𝑢 −1 |λ 2 , β ) = InvGauss (√ , λ 2 ),⁡ (24)
+𝑘 𝑘 2
+where “InvGauss” is an inverse Gauss distribution with density function 𝑓(𝑥; μ, η) =
+3 2
+η η(𝑥−μ)
+√ 𝑥 exp {− }, which μ is mean and η is the dispersion parameter (Giner & Smyth,
+2π 2μ 𝑥
+2016). Finally, the posterior distribution of λ is the gamma distribution.
+∑ 𝑢
+𝑘 𝑘
+𝑝(λ 2 |𝒖, 𝑎 , 𝑏 ) = Gam (𝑎 + 𝑝, 𝑏 + ). (25)
+λ λ λ λ
+As mentioned above, the full conditional distributions are all tractable distributions. The double-
+exponential shrinkage prior sometimes overly shrinks large value coefficients (Carvalho et al.,
+2009) but it still plays an important role as a reference method.
+2.2.2 Horseshoe Prior
+This section introduces the horseshoe prior. The horseshoe prior of the latent
+regression coefficient is
+𝑝(β |λ 2 , τ 2) = 𝑁(0, λ 2 τ 2), (26)
+𝑘 𝑘 𝑘
+2 2
+and local shrinkage λ and global shrinkage τ parameters with distributions
+𝑝(λ
+) = C
++(0,1),
+(27)
+𝑝(τ
+) = C
++(0,1),
+(28)
+where C
++(0,1)
+is the standard half-Cauchy distribution with a probability density function
+𝑓(𝑥; 0,1) = 2/π(1 + 𝑥 2 )⁡for 𝑥 > 0. The local shrinkage parameter λ 2 controls the strength of
+shrinkage of the 𝑘-th regression coefficient. In addition, the global shrinkage τ parameter
+controls the overall shrinkage of all regression coefficients. As mentioned before, σ was fixed
+2 2 2 2 2
+to one, and the variance term was expressed as λ τ rather than λ τ σ , which was shown in
+𝑘 𝑘
+previous sparse Bayesian regression literature. Similar to the double-exponential prior case, the
+half-Cauchy distribution can be expressed in a hierarchical form with two simple distributions
+(Makalic & Schmidt, 2016a). The prior distribution of λ is decamped as
+1 1
+𝑝(λ |𝜈 ) = InvGam ( , ), (29)
+𝑘 𝑘
+2 𝜈
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 13
+(30)
+𝑝(𝜈 ) = InvGam ( , 1),
+where “InvGam” is the inverse gamma distribution with parameters 𝑎 and 𝑏: 𝑓(𝑥; 𝑎, 𝑏) =
+𝑎+1
+𝑏 1 𝑏
+( ) exp (− ). The same expression for τ can be applied, and the result is
+Γ(𝑎) 𝑥 𝑥
+1 1
+𝑝(τ 2 |ξ) = InvGam ( , ), (31)
+2 ξ
+(32)
+𝑝(ξ) = InvGam ( , 1).
+These hierarchical representations allow us to derive full conditional posterior with given 𝛉, and
+posterior is
+𝑝(𝛃, 𝛌 2 , 𝛎, τ 2 , ξ|𝛉, 𝐗) ∝ 𝑝(𝛉|𝐗, 𝛃, 𝛌 2 , τ 2)𝑝(𝛌 2 |𝛎)𝑝(𝛎)𝑝(τ 2 |ξ)𝑝(ξ), (33)
+2 2 2
+where 𝛌 = (λ , … , λ ) and 𝛎 = (ν , … , ν ) while independence is assumed among the
+1 𝑝 1 𝑝
+regression coefficients. The logarithm of the posterior distribution is
+log 𝑝(𝛃, 𝛌 2 , 𝝂, τ 2 , ξ|𝛉, 𝐗)
+1 𝑝 + 1 1 β
+= − (𝛉 − 𝐗𝛃)⊤(𝛉 − 𝐗𝛃) − ( + 1) log(τ 2) − 2 ∑ log(λ 2 ) − ∑
+2 2 𝑘 2τ2 λ 2
+(34)
+𝑘 𝑘
+1 1 1 1
+− ∑ ( + 1) − 2 ∑ log 𝜈 − 2 log ξ − − + 𝐶.
+𝜈 λ 2 ξτ2 ξ
+𝑘 𝑘
+𝑘 𝑘
+Sorting out Equation (34), the full conditional distribution of the regression coefficients
+𝛃 can be seen as a multivariate normal distribution, similar to the double-exponential prior case:
+𝑝(𝛃|𝛉, 𝛌 2 , τ 2) = 𝑁(𝛍 , Σ ),⁡ (35)
+𝛃 𝛃
+where
+𝛍 = Σ 𝐗 𝛉,
+𝛃 𝛃
+⊤ −1
+{ Σ = (𝐗 𝐗 + 𝐃) , ⁡ (36)
+−2 −2 2
+𝐃 = diag(λ , … , λ )/τ .
+1 𝑝
+2 2
+The full conditional distributions of λ , 𝜈 , τ , and ξ are all inverse gamma distributions with
+𝑘 𝑘
+different parameters:
+β 1
+𝑝(λ 2 |β , τ 2 , 𝜈 ) = InvGam (1, + ), (37)
+𝑘 𝑘 𝑘
+2τ2 𝜈
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 14
+𝑝(𝜈 |λ
+) = InvGam (1,1 + ),⁡ (38)
+𝑘 𝑘 2
+𝑝 + 1 1 1 β
+(39)
+𝑝(τ 2 |𝛃, 𝛌 2) = InvGam ( , + ∑ ),⁡
+2 ξ 2 λ
+(40)
+𝑝(ξ|τ 2) = InvGam (1,1 + ).⁡
+τ2
+The full conditional posteriors are a multivariate normal distribution or inverse gamma
+distribution. Shrinkage estimation can be achieved through a combination of simple well-known
+distributions. The detailed derivation is shown in Supplemental material A.
+The theoretical mechanism of how horseshoe prior shrink coefficients is obtained by the
+shrinkage weight κ = 1/(1 + λ τ). If κ ≈ 1, the 𝑘-th regression coeffect may be a strong
+𝑘 𝑘 𝑘
+signal, and if κ ≈ 0, it indicates that the coefficient has totally shrunk to zero (Carvalho et al.,
+2010). The shrinkage prior defined in Equations (27) and (28) can be transformed to the
+shrinkage weight scale, which provides a beta distribution with two 1/2 parameters in the case
+1/2
+𝜏 = 1: 𝑝(κ ) = κ (1 − 𝜅 )1/2 . The distribution shape of κ concentrates on zero and one
+𝑘 𝑘 𝑘
+and looks like a horseshoe, which is the reason for the prior name.
+2.2.3 Horseshoe+ Prior
+The extension of horseshoe prior to horseshoe+ prior is straightforward. We changed
+𝑝(λ 2 ) = C +(0,1) to
+𝑝(λ 2 |ϕ ) = C +(0, ϕ ), (41)
+𝑘 𝑘 𝑘
+𝑝(ϕ ) = C +(0,1). (42)
+This is a hierarchy of two half-Cauchy distributions. The hierarchical representation of Equations
+(41) and (42) is
+1 1
+𝑝(λ
+|𝜈 ) = InvGam ( , ), (43)
+𝑘 𝑘
+2 𝜈
+(44)
+1 1
+𝑝(𝜈 |ϕ ) = InvGam ( , ),
+𝑘 𝑘 2
+2 ϕ
+1 1 (45)
+𝑝(ϕ |ζ ) = InvGam ( , ),
+𝑘 𝑘
+2 ζ
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 15
+(46)
+𝑝(ζ ) = InvGam ( , 1).
+With this hierarchical representation, the full conditional posterior of λ is the same as Equation
+(37), and those of 𝜈 , ϕ , and ζ are
+𝑘 𝑘 𝑘
+1 1
+𝑝(𝜈 |λ
+, ϕ
+) = InvGam (1, + ),⁡⁡ (47)
+𝑘 𝑘 𝑘 2 2
+ϕ 𝜆
+𝑘 𝑘
+1 1 (48)
+𝑝(ϕ |𝜈 , ζ ) = InvGam (1, + ),⁡
+𝑘 𝑘 𝑘
+𝜈 ζ
+𝑘 𝑘
+(49)
+𝑝(ζ |ϕ ) = InvGam (1,1 + ).⁡
+𝑘 𝑘 2
+The full conditional posteriors of the other parameters are the same as in the horseshoe prior
+setting.
+3. Sampling Algorithms for Shrinkage Priors in Latent Regression Models
+We introduced the full conditional posterior distributions of the 2PL IRT model
+parameters and latent regression coefficients in the previous section. Combining them will prove
+fully Gibbs sampling algorithms. Introducing the upper script (𝑚) for the MCMC iteration
+number, the Gibbs sampling algorithm of the double-exponential prior model is as follows:
+1. Initialize 𝛉, 𝒂, 𝒃, 𝒖, and 𝛌, and set iteration counter 𝑚 = 0.
+(𝑚+1)
+2. Sample 𝛃 ⁡from normal distribution in Equation (22).
+−1(𝑚+1)
+3. Sample 𝑢 , 𝑘 = 1, … , 𝑝, from inverse Gauss distribution in Equation (24).
+2(𝑚+1)
+4. Sample λ from gamma distribution in Equation (25).
+(𝑚+1)
+5. Sample 𝑤 , 𝑖 = 1, … , 𝐼, 𝑗 = 1, … , 𝐽, from Pólya-Gamma distribution in
+𝑖𝑗
+Equation (5).
+(𝑚+1)
+6. Sample 𝑎 , 𝑗 = 1, … , 𝐽 from normal distribution in Equation (8).
+(𝑚+1)
+7. Sample 𝑏 , 𝑗 = 1, … , 𝐽 from normal distribution in Equation (11).
+(𝑚+1)
+8. Sample θ , 𝑖 = 1, … , 𝐼 from normal distribution in Equation (14), and 𝑚 =
+𝑚 + 1.
+9. Repeat Steps 2-8 until 𝑚 reaches the pre-specified iteration number.
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 16
+For Horseshoe prior case,
+2 2
+1. Initialize 𝛉, 𝒂, 𝒃, 𝛌 , τ , and ξ, and set iteration counter 𝑚 = 0.
+(𝑚+1)
+2. Sample 𝛃 from normal distribution in Equation (35).
+2(𝑚+1)
+3. Sample λ , 𝑘 = 1, … , 𝑝, from inverse gamma distribution in Equation (37).
+(𝑚+1)
+4. Sample ν , 𝑘 = 1, … , 𝑝, from inverse gamma distribution in Equation (38).
+2(𝑚+1)
+5. Sample τ from inverse gamma distribution in Equation (39).
+(𝑚+1)
+6. Sample ξ from inverse gamma distribution in Equation (40).
+(𝑚+1)
+7. Sample 𝑤 , 𝑖 = 1, … , 𝐼, 𝑗 = 1, … , 𝐽, from Pólya-Gamma distribution in
+𝑖𝑗
+Equation (5).
+(𝑚+1)
+8. Sample 𝑎 , 𝑗 = 1, … , 𝐽 from normal distribution in Equation (8).
+(𝑚+1)
+9. Sample 𝑏 , 𝑗 = 1, … , 𝐽 from normal distribution in Equation (11).
+(𝑚+1)
+10. Sample θ , 𝑖 = 1, … , 𝐼 from normal distribution in Equation (14) and 𝑚 =
+𝑚 + 1.
+11. Repeat Steps 2-10 until 𝑚 reaches the pre-specified iteration number.
+Finally, for the horseshoe+ prior case, we slightly changed the fourth step in the horseshoe prior
+case and inserted the following sampling steps:
+2(𝑚+1)
+4.1 Sample ν , 𝑘 = 1, … , 𝑝, from inverse gamma distribution in Equation
+(47).
+2(𝑚+1)
+4.2 Sample ϕ , 𝑘 = 1, … , 𝑝, from inverse gamma distribution in Equation
+(48).
+(𝑚+1)
+4.3 Sample ζ , 𝑘 = 1, … , 𝑝, from inverse gamma distribution in Equation
+(49).
+This small change can provide stronger shrinkage effects on the estimation of 𝛃.
+We also developed Gibbs sampling with a uniform prior for the regression coefficient 𝛃 as
+another reference algorithm. The full conditional distribution given 𝛉 and 𝐗 becomes a
+multivariate normal distribution
+𝑝(𝛃|𝛉, 𝐗) = 𝑁((𝐗 ⊤ 𝐗) −1 𝐗 ⊤ 𝛉, (𝐗 ⊤ 𝐗) −1). (50)
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 17
+We can use this conditional distribution when sampling 𝛃 instead of those with shrinkage
+priors. The sampling part of the 2PL IRT model parameters did not change.
+4. Simulation Study 1
+4.1. Simulation Settings
+In the simulation study, we compared four types of Gibbs sampling methods
+introduced in this study: double-exponential, horseshoe, horseshoe+, and uniform priors with
+varied conditions. We manipulated three factors: (1) number of IRT items (10 and 30), (2)
+sample size (100 and 1,000), and (3) number of covariates (20 and 40), which leads to eight
+conditions in total. The true discrimination parameter 𝑎 and difficulty parameter 𝑏 were
+𝑗 𝑗
+randomly generated from 𝑈𝑛𝑖𝑓(1.3, 2.5) and 𝑈𝑛𝑖𝑓(−2.5, 2.5), respectively, for each
+simulation replication, where 𝑈𝑛𝑖𝑓(𝑎, 𝑏) is a uniform distribution from 𝑎 to 𝑏. The difficulty
+parameters covered a reasonably wide range of latent trait, and discrimination parameters were
+not particularly small or large. These settings were cleaner situation than real data situation
+(OECD, 2017; Appendix A). We start a relatively simple case to compare estimation algorithms.
+The number of true nonzero regression coefficients was fixed to eight. The first four
+coefficients generated positive range uniform distributions, which were β , … , β ∼ 𝑈𝑛𝑖𝑓(1, 4),
+1 4
+while the fifth to eighth coefficients generated a negative range uniform distribution,
+β , … , β ∼ 𝑈𝑛𝑖𝑓(−4, −1). The remaining 12 or 32 regression coefficients were fixed to zero.
+5 8
+The covariates were assumed to follow a multivariate normal distribution with zero means and
+0.5 correlation for all pairs of covariates and 0.2 standard deviation for all covariates. In the
+previous variable selection study, the study assumed a simulation setting with regression
+⊤ 2
+coefficient 𝛃 = (3,1.5,0,0,2,0,0,0) and residual variance σ = 9. Covariate 𝐗 was generated
+from a multivariate normal distribution with 0 means and variance covariance matrix whose
+diagonal elements were 1 and the other elements were 0.5 (e.g., van Erp et al., 2019). We used
+𝑈𝑛𝑖𝑓(1, 4) to simulate strong coefficients in previous simulation studies. Moreover, it was not
+realistic to assume only positive coefficients, so 𝑈𝑛𝑖𝑓(−4, −1) was employed to extend
+previous simulation. The range of uniform distribution covered previous nonzero coefficients,
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 18
+1.5, 2, and 3. Further, we selected an SD = 0.2 of covariates to limit the deviation of dependent
+variable θ. When SD = 1, there was a large deviation of θ; so, smaller SDs were selected. The
+correlations were similar to previous simulation study. With the covariate and regression
+coefficients, true latent proficiencies θ were generated from a normal distribution with unit
+variance using Equation (2). Finally, an item response 𝑦 was randomly generated from the
+𝑖𝑗
+−1
+Bernoulli distribution with success probability (1 + exp(−𝑎 (θ − 𝑏 ))) with true
+𝑗 𝑖 𝑗
+parameters 𝑎 , 𝑏 , and θ . The four Gibbs sampling algorithms were applied to the same dataset
+𝑗 𝑗 𝑖
+to maintain comparability, and the simulation was replicated 50 times.
+Hyper parameters 𝑎 and 𝑏 in the double-exponential prior were set to 1. For the
+λ λ
+MCMC setting, the number of MCMC chains was three, with 10,000 iterations for each chain.
+The first 5,000 iterations were discarded during the burn-in period. A convergence check was
+conducted for the regression coefficients, latent proficiency, discrimination, and difficulty
+parameters. The Gelman-Rubin 𝑅 index (Brooks & Gelman, 1998) was selected as the
+convergence criterion, and if the value was 𝑅 ≤ 1.10 then the MCMC chain is considered to
+have converged. The 𝑅⁡was calculated using the CODA package (Plummer et al., 2006). The
+MCMC starting values were randomly selected. The posterior mean was employed for point
+estimates, except for the double-exponential prior case. The posterior median was used for the
+point estimate of the double-exponential prior because the posterior median rather than the mean
+was the shrinkage estimator for the prior setting.
+The evaluation criteria of algorithms are bias, root mean square error (RMSE), and an
+average length of 95% credible interval (95% CI length). In the regression coefficients, bias,
+RMSE, and 95% CI length were calculated for each parameter, and they were averaged over 50
+replications for the first eight coefficients (nonzero coefficients) and the other eight coefficients
+(zero coefficients). This is because the estimates behave differently for the nonzero and zero
+coefficients. According to previous studies, it was expected that horseshoe+ and horseshoe priors
+would show smaller bias and shorter 95% CI length than double-exponential priors. The uniform
+prior was expected to have the largest RMSE and longest 95% CI length among the four
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 19
+algorithms. The three evaluation indicators were also calculated for the IRT discrimination and
+difficulty parameters and were averaged over the items. The recovery of the latent trait parameter
+was evaluated as the average correlation between the estimated and true values. The reason for
+selecting correlation was as follows. The correlation and bias and RMSEs were different
+evaluation criteria. The individual latent trait recovery was a random effect that depends on the
+assumption of scale of location. Additionally, in the latent regression context, individual latent
+trait recovery was not a primary purpose. A high correlation between estimated and true traits
+was a necessary condition for an appropriate estimation method because if estimation method
+could not recover the latent traits, it was considered invalid. Biases and RMSEs were important
+evaluation criteria in our context. The purpose of latent regression model was to assess the
+effects of covariates on latent traits. Therefore, unbiasedness and smaller RMSEs of regression
+coefficients were preferable features of estimation methods.
+4.2. Results
+The 𝑅 for all important parameters was less than 1.10, so the MCMC iterations were
+The bias results were not very different for the four Gibbs sampling algorithms. In general, the
+nonzero coefficient showed a larger bias than the zero coefficients. Increments in sample size
+and number of items reduced bias. The number of increases in covariates inflated biases for
+nonzero coeffects. It should be noted that even for 10 items, 100 sample size, and 40 covariate
+conditions, the bias values were small – the largest bias was less than 0.1.
+Explicit differences among the four were shown in RMSE and 95% CI length. In the
+100-sample size and 10 item conditions, horseshoe and horseshoe+ priors had smaller RMSEs
+than double-exponential and uniform priors. Particularly in the 20 covariates case, the RMSE for
+zero-coefficients of two horseshoe priors was half that of the double-exponential priors.
+Furthermore, in the case of 10 item, 100 sample size, 40 covariate condition, horseshoe prior,
+double-exponential prior, and uniform prior indicated 1.978, 3.926, and 7.466, respectively, on
+the RMSE of nonzero coefficients. Approximately, the horseshoe prior was twice and four times
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 20
+more stable than the double-exponential and uniform priors, respectively, among non-zero
+coefficients. Under similar condition, horseshoe prior, double-exponential prior, and uniform
+prior indicated 0.492, 2.636, and 4.814, respectively, on the RMSE of zero coefficients. Again,
+the horseshoe prior was 5 times and 10 times more stable than the double-exponential and
+uniform priors, respectively, in zero coefficients. These results clearly indicated that the
+estimation with the horseshoe prior was stable than the double-exponential or uniform prior
+cases.
+In addition, the 95% CI length for zero-coefficients of two horseshoe priors was
+approximately one point smaller than the double-exponential prior. The difference was larger in
+the 40 covariate conditions. Moreover, the 95% CI length for zero coefficients of two horseshoe
+priors was shorter than half of the uniform prior. The RMSE and 95% CI length for nonzero
+coefficients of the horseshoe priors in 100 sample size, 10 items, and 40 covariate conditions
+were much smaller than the double-exponential and uniform prior situation.
+In a large-sample size setting, the difference in RMSEs between horseshoe priors and
+the other ones was smaller. However, even under 1,000 sample size conditions, the RMSEs of
+the horseshoe priors for zero coefficients were approximately half the double-exponential case or
+better. In summary, the horseshoe priors provided more stable estimates than the double-
+exponential prior or uniform prior setting, especially for small sample sizes. Horseshoe+ was
+slightly better than the usual horseshoe prior.
+The simulation results of the discrimination and difficulty parameters in the IRT model
+horseshoe priors showed smaller biases and RMSEs than the double-exponential and uniform
+priors, which was rather unexpected. Previous studies of horseshoe priors only mentioned
+regression coefficient, but the horseshoe priors indicated similar effects on the discrimination
+parameters in this study. In particular, biases and RMSEs for two horseshoe priors in the 10
+items and 100 sample size conditions were substantially smaller than the other two prior settings.
+The 95% CI length results of the double-exponential and uniform priors tended to be slightly
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 21
+shorter than the horseshoe priors. However, larger sample sizes and items decreased the
+estimation difference among the four algorithms.
+the 10 items, 100 sample size, and 40 covariate conditions were also smaller than those with the
+other two prior settings. In addition, the RMSEs of the horseshoe priors were also smaller than
+the double-exponential or uniform prior in the case of 10 and 30 items, 100 sample size, and 20
+and 40 covariates. The other results of the four algorithms were almost the same, but the
+horseshoe priors were slightly better in some cases. The correlation between true and estimated
+correlations.
+5. Simulation Study 2
+5.1. Simulation Settings
+The second simulation aims to check the estimation quality of four shrinkage priors
+when weak regression coefficients exist. In total, 8 of 30 regression coefficients are weak, 8
+coefficients are strong, and the other 16 coefficients have zero effect. Specifically, 8 strong
+regression coefficients were generated from 𝑈𝑛𝑖𝑓(1, 4) or 𝑈𝑛𝑖𝑓(−4, −1), and the weak
+regression coefficients β , … , β and β , … , β were generated from 𝑈𝑛𝑖𝑓(0,1)
+9 12 13 16
+and⁡𝑈𝑛𝑖𝑓(−1,0). Therefore, 16 coefficients were active and the remaining 4 or 24 regression
+coefficients were fixed to zero. Furthermore, we increased the number of simulation replication
+up to 200 to reduce sampling error. The rest of simulation settings was similar to the first
+simulation study.
+5.2. Results
+The MCMC chains satisfied convergence criterion. Most results in the 2PL IRT model
+were similar to the simulation study 1, so the results tables were shown in Supplemental
+of simulation result of the regression coefficients. The coefficient types were nonzero strong,
+nonzero weak, and zero. Biases of horseshoe and horseshoe+ priors were slightly smaller than
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 22
+the double-exponential or uniform priors, but the absolute values were generally small. That is,
+the four priors were not largely different in terms of bias. However, the biases results indicate
+that horseshoe and horseshoe+ priors can correctly recover small magnitude regression
+coefficients.
+The general tendency of RMSE and 95% CI lengths were similar to the first simulation
+study. The horseshoe and horseshoe+ priors indicated smaller RMSES for nonzero weak
+covariates or zero covariates than the double-exponential or uniform priors especially in larger
+number of covariates conditions. For example, the RMSEs of nonzero weak coefficients of the
+horseshoe, horseshoe+ prior, double-exponential, and uniform priors in 10 items, 100 sample
+size, and 40 covariates condition were 0.691, 0.662, 3.055, and 5.926, respectively. In this
+condition, the horseshoe and horseshoe+ priors displayed three to five times better stability than
+the other prior settings. Furthermore, we found that the horseshoe and horseshoe+ priors worked
+better in high dimensionality than in relatively lower dimensionality condition. For example, in
+the 40 covariate conditions, the RMSE of the nonzero weak and zero coefficients with the
+horseshoe and horseshoe+ priors was generally smaller than the case of 20 covariates. However,
+the corresponding RMSE of the double-exponential and uniform priors in the 40 covariates
+conditions was larger than the 20 covariates conditions.
+Regarding the uncertainty of Bayesian estimates, the horseshoe and horseshoe+ priors
+performed better than the other priors. For example, the 95% CI length of the nonzero weak and
+zero coefficients with the horseshoe and horseshoe+ priors in 100 sample conditions was shorter
+than the double-exponential and uniform priors. In a lager sample size setting, the RMSE
+difference among four priors became trivial. In addition, the estimates of nonzero strong
+coefficients among the horseshoe, horseshoe+, and double-exponential priors were similar.
+However, the RMSE of nonzero strong coefficients with the three shrinkage priors were smaller
+than the uniform prior case, indicating that the uniform prior has worst estimation accuracy
+among all shrinkage methods. Therefore, the horseshoe and horseshoe+ priors can recover
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 23
+regression coefficients, and their RMSE and shorter 95% CI length for the nonzero and zero
+coefficients are smaller and shorter than the other priors especially in a small sample size setting.
+6. Application to PISA Data
+In this section, we demonstrated an application to real data obtained from the PISA
+2018 math assessment. The goal was to examine whether Bayesian latent regression modeling
+with shrinkage prior approaches can select the important predictors of students’ mathematics
+achievement. The construct of mathematical literacy used in this study was intended to describe
+the capacities of individuals to reason mathematically and use mathematical concepts,
+procedures, facts, and tools to describe, explain, and predict phenomena. The real data analysis R
+6.1. Data analysis setting
+Since participating students took different mathematics clusters and student
+questionnaires in the PISA 2018, only the data from a completed cluster of mathematics
+measures and 19 questions from students’ questionnaires answered by students in the United
+States were taken into consideration. After omitting missing values, 422 students with an average
+age of 15.8 were kept for further analysis. The sample consisted of 206 males (48.8%) and 216
+females (51.2%). The data used in this study included nine mathematical items: (I1-I9), and 19
+covariates from the student questionnaire. The descriptive statistics of the measurement items
+raw scales of the variables of the samples. Continuous predictive covariates were standardized
+before conducting the analysis.
+and 0 = incorrect, including four difficult items (I1-I4), one moderately difficult item (I5), and
+four easy items (I6-I9). As for predictive covariates, apart from SEX (0 = Female, 1 = Male) and
+REPEAT (0 = No grade repetition, 1 = Have grade repetition) as binary variables, other
+covariates were normalized continuous variables. All continuous covariates were standardized
+with a mean of zero and a standardized deviation of one for the proposed methods.
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 24
+The proposed Bayesian variable selection methods with double-exponential, horseshoe,
+horseshoe+, and uniform prior methods were fitted to the samples using R ver. 4.2 (R Core
+Team, 2021). Gibbs sampling algorithms were used with four MCMC chains. Each MCMC
+chain had 10,000 iterations, with the first 5,000 iterations considered as burn-ins. Credible
+interval-based variable selection criterion was employed in the real data analysis setting, which
+was proposed in previous research (e.g., Li and Lin 2010, p. 157; van Erp et al., 2019). Li and
+Lin (2010) mentioned ad hoc treatment for variable selection in Bayesian approaches and
+suggested the credible interval criterion. The credible interval criterion assumes that a covariate
+is excluded from the set of covariates if its 95% credible interval covers zero and retained
+otherwise.
+6.2. Results
+The results showed that all four algorithms converged according to the Gelman-Rubin
+It was clear that the model with the double-exponential priors provided results with similar
+magnitude and 95% credit interval (CI) length as the model with the uniform prior. Models with
+horseshoe and horseshoe+ priors had coefficients with smaller magnitudes and shorter 95% CI
+lengths in all predictive covariates. Eleven covariates — parents’ emotional support, teacher
+instruction, home education resources, family wealth, students’ attitudes, students’ sense of
+belonging to a school, instructional time per week, grade repetition, perception of cooperation at
+school, subjective well-being, and mastery of goal orientation—negatively affected the latent
+mathematical proficiency of students. The REPEAT (grade repetition) covariate had the largest
+negative effect on estimated math proficiency. Conversely, eight covariates—gender, home
+possessions, parental educational level, the learning time in mathematics, adaptation of
+instruction, perceived teacher’s interest, perception of competitiveness at school, and
+resilience—had positive coefficients on outcomes in which home possessions had the highest
+coefficient predicting math ability.
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 25
+horseshoe and horseshoe+ approaches, double-exponential prior and uniform prior approaches
+had more nonzero covariates (𝑝⁡ = ⁡7). The horseshoe+ approach had the most parsimonious
+feature set among the four approaches, which has only two nonzero covariates, while the
+horseshoe approach selected three features as nonzero covariates. Home possession
+(HOMEPOS) as one of surrogate variable of social-economic status (SES; Lee & Stankov (2018)
+considered parental education and home possessions as the two SES-related variables) and learning time
+in mathematics (MMINS) were the two covariates selected by all approaches, indicating that the
+SES status of students and learning time in math had an important impact on the improvement of
+mathematics capacities. These results are consistent with prior literature (e.g., Gamazo &
+Martínez-Abad, 2020; Kalaycıoğlu, 2015; Lee & Stankov, 2018), and the horseshoe+ priors
+identified fewer but stronger predictors to predict mathematical ability.
+7. Conclusion
+In the present study, we proposed fully Gibbs sampling algorithms for Bayesian
+variable selection under a unidimensional IRT model latent regression model. The shrinkage
+priors that were double-exponential, horseshoe, and horseshoe+ were compared to the uniform
+prior case in both the simulation and real data example. The two simulation studies revealed that
+the horseshoe priors had smaller RMSEs and shorter 95% CI length of regression coefficients
+than double-exponential or uniform priors. The prior setting difference was drastic when there
+were fewer samples, lesser measurement items, and several covariates. Moreover, the stability
+results of the estimation were shown not only in regression coefficients but also in item
+discrimination parameters. The horseshoe+ prior had slightly better scores than the usual
+horseshoe. From the simulation study, we recommend using horseshoe+ prior for Bayesian
+variable selection, even in the latent regression context.
+The real data example indicates the utility of Bayesian variable selection with
+horseshoe priors. Both horseshoe and horseshoe+ priors selected only home possessions
+(HOMEPOS) and learning time in mathematics (MMINS) as the most predictive variables for
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 26
+students’ mathematical proficiency. These findings are consistent with prior studies that SES and
+self-efficiency are the most important predictors of math achievement. It should be noted that in
+previous studies, multiple factors (such as home possession and parental education) are
+considered as SES-related variables, while our approach selects only one most important factor.
+This may help in big data mining for large-scale assessments when multiple predictors exist.
+One limitation of the proposed Gibbs sampling algorithm is that it can be applied to
+binary-valued item responses without guessing parameters. For future studies, a more flexible
+algorithm is needed to analyze nominal, ordinal, or partial credit type item responses. Another
+limitation of this study is that we assumed only one latent trait. In many applications, we
+assumed unidimensional latent proficiency, so the utility of the proposed algorithms would not
+be compromised. However, treating multiple latent proficiencies as Culpepper and Park (2017)
+did may be required for more flexible real data analysis. Bayesian shrinkage priors, especially
+horseshoe priors, have great flexibility and can easily be expanded to various psychometric
+models such as multidimensional IRT or diagnostic classification models. This has great
+implications for future studies.
+Our method has several benefits for operational practice in educational measurement
+as follows. First, when we select several background characteristics of individual such as
+individual ethics, we can assess DIF of those group variables on the assessment from the
+estimation, which means that a distinct DIF study is not required. Second, we can efficiently
+omit noise in large-scale assessment setting with the proposed approach, which benefits data
+analytics. To be specific, it may be difficult to judge whether the estimated coefficient is large in
+a large sample size setting because null hypothesis H : β = 0 tends to be rejected even if the
+estimated coefficient is a smaller value. However, shrinkage prior can automatically shrink the
+coefficient to zero if the value is close to zero. Third, horseshoe priors can provide stable item
+parameter estimates even when sample size is relatively small, and this feature helps to reduce
+the number of sample when calibrating item parameters. Item parameter calibration needs large
+samples but including coefficients can help to reduce the number.
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 27
+One limitation of proposed method is that the latent trait is unidimensional. In the
+future study, the method needs to be extended to be suitable for multidimensional latent traits
+similar to Culpepper and Park (2017). However, unidimensional IRT model is sometimes
+preferred in real application field (e.g., OECD, 2017, Chapter 9) and the prior setting is
+theoretically appropriate than double-exponential prior that has been employed in many studies.
+Therefore, the proposed method provided a new way to conduct sparsity induce analysis in IRT
+model setting.
+Focusing on spike-and-slab priors is a future research direction. Spike-and-slab prior is
+famous in Bayesian variable selection, and variational Bayesian inference algorithm for spike-
+and-slab priors has already been developed (Ormerod et al., 2017; Ray & Szabó, 2021).
+Developing variational inference methods for horseshoe priors in latent regression and
+comparing them with spike-and-slab variational inference can extend the applicability of sparse
+estimation in latent regression models.
+HORSESHOE PRIORS FOR LATENT REGRESSION MODELS 28

@@ -1,0 +1,855 @@
+Received: Added at production Revised: Added at production Accepted: Added at production
+DOI: xxx/xxxx
+A R T I C L E T Y P E
+Improving human and machine classification through
+cognitive-inspired data engineering
+1,2,3 4 3 1,5
+Gunnar P. Epping Andrew Caplin Erik Duhaime William R. Holmes
+6 1,2
+Daniel Martin Jennifer S. Trueblood
+Cognitive Science Program, Indiana University, Abstract
+Indiana, USA
+Crowdsourcing offers a fast and cost-efficient approach to obtaining human labeled datasets. However,
+Department of Psychological and Brain Sciences,
+crowdsourced datasets and the models trained on them can inherit the cognitive constraints and biases of
+Indiana University, Indiana, USA
+their annotators. In a process we refer to as cognitive-inspired data engineering, we investigate whether ideas
+Centaur Labs, Massachusetts, USA
+from cognitive science can be applied to mitigate the presence of cognitive constraints and cognitive biases
+Department of Economics, New York University,
+in crowdsourced datasets and, as a result, improve the performance of models trained on these datasets. We
+New York, USA
+evaluate our approach by crowdsourcing labels for medical image diagnostic tasks using two different crowd-
+Department of Mathematics, Indiana University,
+sourcing platforms across two experiments. In Experiment 1, we collect subjective probability judgments
+Indiana, USA
+from novice annotators through Amazon Mechanical Turk and, in Experiment 2, we collect subjective prob-
+Department of Economics, University of
+ability judgments and binary classifications from skilled annotators though DiagnosUs, a crowdsourcing
+California, Santa Barbara, California, USA
+platform specializing in medical and scientific data annotation. In both experiments, we find that de-biasing
+Correspondence
+subjective probability judgments via recalibration leads to more accurate crowdsourced datasets and more
+Gunnar P. Epping (gunnarepping@gmail.com)
+accurate models trained on these datasets. Our results suggest that cognitive-inspired data engineering of-
+Jennifer S. Trueblood (jstruebl@iu.edu)
+fers a promising avenue to improve the quality of crowdsourced datasets.
+Present address
+K E Y W O R D S
+1101 E 10th St, Bloomington, IN 47405
+crowdsourcing, subjective probability judgments, medical image decision-making, machine learning, med-
+ical artificial intelligence, recalibration
+1 INTRODUCTION
+Integrating artificial intelligence (AI) systems into a wide range of perceptual decision-making tasks, such as airport baggage
+screening decisions (Vukadinovic et al., 2022), refereeing decisions in sporting events (Thomas-Acaro & Meneses-Claudio,
+2024), medical image decisions (Panayides et al., 2020), and threat detection based on satellite and sonar images (Surma, 2024),
+holds great promise. However, in many cases, the training of these systems relies on humans annotating images. Despite the
+recent success of unsupervised machine learning (ML) (Van Gansbeke et al., 2020), training on human-labeled data is still the
+norm and is a multi-billion-dollar business. For example, Scale AI was valued at $13.8 billion in May 2024 (A. Wang, 2024).
+Having a single person annotate an entire dataset can be very time-consuming, if not impossible, since many ML models
+require thousands, if not millions, of training instances to reach high levels of accuracy on out-of-sample data. As a result, online
+crowdsourcing (Deng et al., 2009) has emerged as a primary avenue to facilitate the curation of human-labeled datasets and has
+become increasingly popular with the availability of platforms, such Amazon Mechanical Turk (MTurk) (Chen et al., 2011),
+which connect ML practitioners with large pools of annotators (Eickhoff et al., 2012). Crowdsourcing dramatically reduces
+the amount of time required to collect human labels by breaking down the task of annotating an entire dataset into several
+micro-tasks where people only annotate a small subset of the data.
+High-skill domains such as medical image diagnostics initially shied away from online crowdsourcing because many tasks
+are complex and require some level of expertise to accurately annotate data (Tucker et al., 2019). Hiring individuals with
+;:0–28 wileyonlinelibrary.com/journal/ © Copyright Holder Name 0
+2 Author Name
+domain-specific expertise (experts) adds another hurdle to the creation of labeled datasets because experts are low in supply
+and expensive relative to individuals on crowdsourcing platforms. The need for expert annotators has led to a lack of large
+labeled datasets in high-skill domains and this lack is the primary bottleneck in the development of AI systems in these domains
+(Ørting et al., 2019; Willemink et al., 2020). However, the belief that only experts can accurately annotate these datasets is,
+for the most part, unfounded. For example, while no one would expect an MTurk worker to diagnose images of potentially
+cancerous skin lesions as accurately as a board-certified dermatologist, the MTurk worker does not need to match the accuracy
+of the expert in order for the accuracy of the crowdsourced dataset to match that of the expert-labeled dataset. Crowdsourcing
+enables ML practitioners to collect several judgments on each image and harness the “Wisdom of the Crowds” (WoC). WoC
+describes a phenomenon where the consensus opinion of a group of people is more accurate compared to the single opinion
+of an individual within the same group (Galton, 1907; Surowiecki, 2005). The WoC is theorized to rely on functional diversity
+which, in the context of a classification task, describes the unique way people represent the task and arrive at their classification
+decision (Hong & Page, 2004; Davis-Stober et al., 2014). By aggregating annotations across a group of functionally diverse
+individuals, crowdsourcing leads to improved accuracy by identifying the common signal while negating noise among the
+annotators. Researchers have demonstrated that with either a skilled group of annotators or sufficiently sophisticated aggregation
+algorithms (algorithms used to combine several opinions into a single consensus label), crowdsourced labels can not only match
+but also exceed the accuracy of individual, credentialed experts in medical image diagnostics (Duhaime et al., 2023; Hasan et
+al., 2024; Maier-Hein et al., 2014). Therefore, crowdsourcing offers an antidote to the primary bottleneck in the development of
+AI systems in high-skills domains by reducing the cost and amount of time required to annotate the dataset without sacrificing
+accuracy compared to datasets annotated by experts.
+Crowdsourcing does not solve all of the challenges involved in collecting human-annotated datasets, as both novices and
+experts alike have cognitive constraints and biases that influence their decision-making processes (Dror et al., 2018). Labeled
+datasets can inherit the biases of their annotators which will then become embedded in the models trained on that data (Bolukbasi
+et al., 2016; Bender et al., 2021). Since these biases enter the ML model development pipeline at its inception, they can be
+corrected by (1) de-biasing the data itself (Feldman et al., 2015; Kamiran & Calders, 2009; Jiang & Nachum, 2020), (2) by
+adapting the model algorithm to account for biases, such as correcting the model output post-training (Doherty et al., 2012;
+Hardt et al., 2016), or (3) by modifying the objective function (Kamishima et al., 2012; Goh et al., 2016; Zafar et al., 2017). We
+approach the problem by de-biasing the data itself. In a process we will refer to as “cognitive-inspired data engineering”, we
+investigate whether ideas from cognitive science can be applied to mitigate the presence of cognitive biases in crowdsourced
+datasets and, as a result, improve the performance of ML models trained on that data.
+Two primary steps in the crowdsourcing process involve eliciting the annotations from individuals and aggregating annota-
+tions across individuals to create crowdsourced labels. For classification tasks, the most common method of eliciting annotations
+from human raters is having each rater provide single labels (i.e., selecting a single discrete class out of all possible classes)
+(K. M. Collins et al., 2022). While effective, single labels are inefficient because they constrain people to a small number of
+choice alternatives, potentially throwing away valuable information when annotators are unsure of the correct classification.
+Subjective probability judgments, unlike single labels, allow people to express uncertainty in their decision. However, the
+additional information conveyed in these judgments is a double-edged sword. With the additional information, there are more
+ways for cognitive biases to enter the data. For example, with single labels, the main bias is a response bias, where a rater tends
+to provide one label more than the others. A responses bias can arise due to a variety of factors, such as unbalanced base rates
+across classes (Wolfe & Van Wert, 2010; Roy & Lerch, 1996; Trueblood et al., 2021). In probability judgments, a response bias
+can appear with a rater favoring one side of the probability scale compared to the other. Another bias that appears in subjective
+probability judgments is over/underconfidence (Harvey, 1997; Keren, 1997). Similar to response biases, over/underconfidence
+can be caused by several factors such as the hard-easy effect (Suantak et al., 1996), where people are overconfident in difficult
+classification tasks and underconfident in easier ones.
+As a result of response biases and over/underconfidence, subjective probability judgments rarely equate to the likelihood
+of being correct and are therefore poorly calibrated (Griffin & Tversky, 1992; Shekhar & Rahnev, 2021; Zhang & Maloney,
+2012). While the presence of these biases may paint a bleak picture, the important fact is that subjective probability judgments
+are correlated with the likelihood of being correct (Pleskac & Busemeyer, 2010; Baranski & Petrusic, 1998; Vickers, 2014),
+which is referred to as the resolution of confidence (Murphy, 1972). Therefore, even though subjective probability judgments
+are contaminated with several cognitive biases, the uncertainty conveyed in these judgments provides valuable information that
+can be leveraged to improve the quality of the crowdsourced labels.
+Author Guidelines 3
+Biases in subjective probability judgments can be addressed by using cognitive models, such as the linear in log odds (LLO)
+function (Birnbaum & McIntosh, 1996; Tversky & Fox, 1995; Turner et al., 2014), to correct these biases. This function
+recalibrates subjective probabilities by transforming them into probabilities more aligned with objective truth. The two free
+parameters in this function have cognitive interpretations related to a response bias and over/underconfidence in subjective
+probability judgments (Gonzalez & Wu, 1999). Therefore, the LLO function recalibrates subjective probability judgments by
+minimizing biases present in these judgments.
+We evaluate the efficacy of cognitive-inspired data engineering using the task of classifying peripheral blood cells, a critical
+step in the diagnosis of malignant blood diseases such as leukemia and lymphoma. While this is a medical decision-making
+task, our research objective is not limited to the medical domain. We are broadly interested in high-skill perceptual decision-
+making tasks and the development of AI systems for these tasks. The task of classifying blood cells is an excellent sandbox for
+studying these questions because (1) it uses naturalistic images from an important real-world task, (2) it is simple enough that
+novices can achieve approximately 65% accuracy with minimal training (Trueblood et al., 2018), (3) it is difficult enough to
+challenge experts, and (4) it is possible to train ML models on the task with only a few hundred images (rather than thousands
+that are required for similar tasks). For these reasons, we believe this task and the associated images best suit the current work.
+In this article, we focus on recalibrated probability judgments as an example of cognitive-inspired data engineering. We
+evaluate whether recalibrated probability judgments, compared to uncalibrated probability judgments and binary choices, lead
+to a more accurate ML training dataset and whether a more accurate training dataset leads to a more accurate ML model. We
+investigate the efficiency of the labels by comparing the accuracy of the training sets and models as a function of the number of
+annotations per image. Finally, we examine how the number of judgments used to train the LLO function impacts the accuracy
+of the crowd labeled datasets.
+Our analyses are carried out over two experiments. Both experiments were approved by the Institutional Review Board (IRB)
+of at the first author’s university (#18017). Experiment 1 crowdsources annotations from minimally trained novices recruited
+through MTurk. Experiment 2 tests to see if the findings from Experiment 1 generalize to a real-world setting, where skilled
+annotators are recruited through DiagnosUs (Press, 2021), a crowdsourcing platform designed specifically for medical data
+annotation.
+2 EXPERIMENT 1
+2.1 Behavioral methods
+2.1.1 Participants
+A total of 400 Amazon Mechanical Turk (MTurk) workers participated in Experiment 1. Participants were recruited from MTurk
+through CloudResearch (Litman et al., 2017; Hauser et al., 2023), a crowdsourcing data acquisition platform. The study was
+approved by the IRB at the first author’s university (#18017). Participants were presented with a study information sheet before
+beginning the study. An informed consent was not required because the IRB classified this work as exempt research. Across all
+participants, 61.25% of participants identified as a woman (N = 245), 37% of participants identified as a man (N = 148), 1%
+of participants identified as other (N = 4), and .5% of participants preferred not to list their gender identity (N = 2). We did
+not receive the demographic information from one of the participants. The mean age was 44.0 (SD = 13.1; IQR = 34.0-53.0).
+All participants who completed the 25-minute experiment were paid a $1 base rate and had the potential to earn a $5 bonus
+to incentivize effort. The probability that a participant would receive the bonus was computed using the binarized, quadratic
+scoring rule (Brier, 1950; Selten, 1998). Overall, 72.25% of participants (N = 289) received the $5 bonus.
+First, any trial with a response time of 180 seconds or greater was excluded from the data analysis. Overall, .0125% of test
+trials were excluded (N = 6). Next, participants were excluded from the data analysis if their mean response time on testing
+trials was either in the fastest 5% or the slowest 5% across participants. In total, 10% of participants (N = 40) were excluded.
+After the exclusions, 360 participants remained. The exclusion criteria and sample size were pre-registered on AsPredicted
+4 Author Name
+2.1.2 Materials
+The stimuli were 549 digital images of Wright-stained white blood cells taken from anonymized patient peripheral blood smears
+at Vanderbilt University Medical Center (VUMC) used in Trueblood et al. (2018). The images were taken by a CellaVision
+DM96 automated digital cell morphology instrument (CellaVision AB, Lund, Sweden). Three hematopathology faculty from
+the Department of Pathology, Microbiology and Immunology at VUMC independently classified each image and rated the
+classification difficulty of each image on a scale of 1-5. We only use images with three-way classification agreement among
+curators and define ground truth as the agreed upon classification. Further details regarding how each image was classified and
+rated can be found in Trueblood et al. (2018).
+nonblast images. Based on the mean difficulty rating provided by the three experts, images were partitioned into 5 difficulty
+categories (very easy, easy, medium, hard, and very hard).
+Out of all of the images, 30 blast images and 30 nonblast images were randomly selected to be part of a calibration set.
+The images were randomly sampled such that the expected number of images in the calibration set was equal across difficulty
+categories and, within a given difficulty category, each image was equally likely to be sampled. This random sampling approach
+was used throughout Experiment 1 and will be referred to as equal-difficulty random sampling going forward. Collectively,
+there are 60 images in the calibration set (30 blast and 30 nonblast) and 489 images in the non-calibration set (236 blast and
+253 nonblast images).
+Out of the 30 blast images in the calibration set, 4 were in the very easy category, 8 were in the easy category, 8 were in
+the medium category, 4 were in the hard category, and 6 were in the very hard category. Out of the 30 nonblast images in the
+calibration set, 3 were in the very easy category, 5 were in the easy category, 7 were in the medium category, 8 were in the
+hard category, and 7 were in the very hard category. Out of the 236 blast images in the non-calibration set, 35 were in the very
+easy category, 61 were in the easy category, 60 were in the medium category, 55 were in the hard category, and 25 were in the
+very hard category. Out of the 253 nonblast images in the calibration set, 58 were in the very easy category, 62 were in the easy
+category, 42 were in the medium category, 33 were in the hard category, and 58 were in the very hard category.
+2.1.3 Procedure
+There were two conditions in Experiment 1, manipulating the type of feedback participants received during practice: an accuracy
+feedback condition and an accuracy plus calibration feedback condition. In both conditions, participants first read instructions
+explaining that they would be presented with images of white blood cells and that their task would be to judge the likelihood
+that each image contained a blast cell.
+Following the initial instructions, participants in both conditions completed an acquisition phase which consisted of 16 trials
+with four labeled images per trial. In each trial, participants were simultaneously shown two blast images on the left side of
+were randomly selected using equal-difficulty random sampling from the non-calibration set with the constraint that the same
+image was never presented twice on a single trial. These trials allowed participants to identify both commonalities within each
+image category as well as differences across the image categories. Participants were allowed to examine the images for as long
+as they wanted before proceeding to the next trial.
+Next, participants in both conditions completed a practice phase which consisted of 24 trials. In each trial, participants were
+shown a single image and asked “What do you think is the probability (from 0% to 100%) that this is an image of a blast cell?”.
+Feedback was provided after each trial. The images were randomly selected using equal-difficulty random sampling from the
+non-calibration set with the constraint that half the trials were blast images, the other half were nonblast images, and no image
+was repeated during the practice phase.
+In the accuracy feedback condition, participants received feedback only regarding whether the image was a blast cell. In the
+calibration feedback condition, participants received feedback regarding whether the image was a blast cell and also regarding
+the participant’s likelihood of receiving the bonus given their response and the true class of the image.
+Finally, participants in both conditions completed a testing phase which consisted of 5 blocks with 24 trials per block. Similar
+to the practice phase, participants were asked “What do you think is the probability (from 0% to 100%) that this is an image
+and testing trials). Within a given block, 10 of the images were blast images from the non-calibration set, 10 of the images
+Author Guidelines 5
+were nonblast images from the non-calibration set, two of the images were blast images from the calibration set, and two of the
+images were nonblast images from the non-calibration set. Each image was randomly selected using equal-difficulty random
+sampling, with the constraint that images were never repeated for a single participant across the entire testing phase. Feedback
+was not provided during the testing phase.
+(a) Example acquisition trial. (b) Example practice/testing trial.
+F I G U R E 1 Example trials in Experiment 1. Each image contains a white blood cell, centered in the image, surrounded by
+red blood cells. Panel (a) shows an example acquisition trial where participants view four images for as long as they like. Panel
+(b) shows an example of a practice / test trial where participants provide probability judgments on a single image.
+2.2 Modeling Methods
+2.2.1 Recalibration method
+Participants’ responses were calibrated using the linear in log odds (LLO) function, which is a technique used to transform
+subjective probabilities into probabilities that are more in line with objective truth (Birnbaum & McIntosh, 1996; Tversky
+& Fox, 1995; Turner et al., 2014). As shown in equation 1, the LLO function recalibrates judgments by first transforming a
+participant’s subjective probability judgments (denoted p) on images in the calibration set into log odds values (denoted p ):
+( )
+p = ln . (1)
+1 – p
+Then, the log odds values are used to fit a logistic regression model (eq. 2) using the true labels for the images in the calibration
+set:
+f(p) = . (2)
+1 + e–(αp +β)
+The LLO function can also be written as in equation 3:
+( ) ( )
+f(p) p
+ln = α ln + β. (3)
+1 – f(p) 1 – p
+After fitting the logistic regression model, a participant’s responses on the non-calibration set are also transformed into log
+odds values and the fitted logistic regression model is used to map these log odds values into recalibrated probability judgments.
+Since a unique LLO function is fit to each participant’s responses in the calibration set, the recalibration transformation is unique
+to each participant. Recalibration is carried out separately for each annotator because the biases present in their judgments is
+subject to large individual differences (Baron et al., 2014; Pallier et al., 2002). The two parameters of the LLO function, α and
+β, each offer psychological interpretations regarding correcting biases in subjective probability judgments (Gonzalez & Wu,
+The slope parameter (α) impacts the curvature of the LLO function, which corrects for biases due to over or underconfidence
+in the raw subjective probability judgments. If |α| > 1, the LLO function will increase the spread of the probability judgments,
+6 Author Name
+(a) α = 2 and β = 1. (b) α = 2 and β = 0. (c) α = 2 and β = –1.
+(d) α = .5 and β = 1. (e) α = .5 and β = 0. (f) α = .5 and β = –1.
+(g) α = –.5 and β = 1. (h) α = –.5 and β = 0. (i) α = –.5 and β = –1.
+∈ ∈
+F I G U R E 2 Form of the LLO function for combinations of parameters when α {2, .5, –.5} and β {1, 0, –1}. On the
+x-axis, p is the uncalibrated probability judgment and f(p), on the y-axis, is the recalibrated probability judgment.
+≈ ≈
+β = 0, a probability judgment of p = 20% is mapped to f(p) 5.9% and p = 80% is mapped to f(p) 94.1%, so the LLO
+function spreads the raw subjective probability judgments by pushing them towards the extreme ends of the probability scale.
+If |α| < 1, the LLO function will decrease the spread of the probability judgments, which indicates a participant’s probability
+≈ ≈
+mapped to f(p) 33.3% and p = 80% is mapped to f(p) 66.7%, so the LLO function constrains the raw subjective probability
+judgments by pulling them towards a more central point on the probability scale. To be precise, the LLO function pushes/pulls
+the judgments away from/towards 1/(1 + e
+β/α
+). Note, while the LLO function will always be monotonic, it will only be strictly
+increasing when α > 0. We allow α to be less than 0 so that the LLO function can also be strictly decreasing. For example, in
+Author Guidelines 7
+to f(p) 33.3%, so the LLO function flips the ordering of the probability judgments. This can be beneficial in cases where a
+participant is particularly poor at estimating the likelihood that an image contains a blast cell.
+The intercept parameter (β) impacts the height of the LLO function, which corrects for biases in overall response tendency. If
+β > 0, the LLO function will shift the distribution of probability judgments towards 1, which indicates that the participant was
+biased towards responding with low probabilities (underestimating the likelihood of blast and overestimating the likelihood of
+and p = 50% is mapped to f(p) 73.1%, so the LLO function increases the values of the subjective probability judgments. If
+β < 0, the LLO function will shift the distribution of probability judgments towards 0, which indicates that the participant was
+biased towards responding with high probabilities (underestimating the likelihood of blast and overestimating the likelihood of
+and p = 80% is mapped to f(p) 42.4%, so the LLO function decreases the values of the subjective probability judgments.
+Two special cases are when α = 1 and β = 0 and when α = 0 and β = 0. When α = 1 and β = 0, the LLO function reduces
+to the identity function. When α = 0 and β = 0, the LLO function maps all probability judgments to 50%.
+Going forward, the raw subjective probability judgments will be referred to as elicited beliefs (EB) and the recalibrated
+subjective probability judgments will be referred to as recalibrated elicited beliefs (rEB).
+2.2.2 ML training and hyperparameter selection
+The 489 images in the non-calibration set are used for hyperparameter selection and model training/testing. For convolutional
+neural network (CNN) training and hyperparameter selection, we generated EB and rEB crowd labels for these images using 5
+judgments per image, 9 judgments per image, and all judgments per image. On average, each image received 73.6 judgments.
+When using all judgments per image, we first took the mean judgment for that image and then binarized the judgment at 50%:
+if the mean judgment was less than 50%, then the image was assigned a nonblast label, and if the mean judgment was greater
+than 50%, then the image was assigned a blast label. No images had a mean judgment of exactly 50% in the EB or rEB dataset.
+When using only a subset of judgments per image, we would randomly sample N (either 5 or 9) judgments, take the mean across
+those judgments, and then binarize the judgment at 50%. If the average judgment was 50% across the subset of judgments,
+we would randomly sample another N judgments and repeat the process until the average judgment was not equal to 50% to
+avoid ambiguity when binarizing the labels. We chose to create datasets using a subset of judgments on each image because
+anecdotal evidence from real-world medical data annotation tasks suggests that crowdsourced labels rarely exceed more than 10
+annotations per image, as crowd accuracy typically plateaus around 10 annotations per image (Duhaime et al., 2023). Therefore,
+we have 6 different types of labeled datasets: EB with 5 judgments per image, EB with 9 judgments per image, EB with all
+judgments per image, rEB with 5 judgments per image, rEB with 9 judgments per image, and rEB with all judgments per image.
+The 489 images in the non-calibration set were divided into training and testing sets using stratified 5-fold cross-validation.
+As a result, each model is trained using roughly 80% of the images and evaluated using roughly 20% of the images, with the
+constraint that the proportion of blast images and nonblast images are approximately equal in the training and testing sets and
+each image appears in the testing set an equal number of times across all folds. Each CNN was trained via transfer learning
+using PyTorch (Paszke et al., 2019). To implement this, we modified a GoogLeNet CNN (Szegedy et al., 2015) which was pre-
+trained on the ImageNet database using the same transfer learning procedure in Holmes et al. (2020). Each CNN was trained
+to minimize the cross-entropy loss between the CNN output and the training labels using the ADAM optimizer.
+To identify the optimal hyperparameters for models trained on each type of labeled dataset, we performed a grid search
+over the number of training epochs (5, 10, and 15), learning rate (1e
+–4
+, 5e
+–4
+, and 1e
+–3
+), L2-regularization strength (1e
+–3
+, 5e
+–2
+and 1e
+–2
+), and minibatch size (16, 24, and 32). For hyperparameter selection, the stratified 5-fold cross validation process was
+repeated 6 times resulting in 30 unique sets of training and testing splits. While the labels were the same across all sets of training
+and testing splits for the datasets generated using all judgments per image, they could be different for the datasets generated
+using only a subset of judgments per image. This is because the process of randomly sampling a subset of judgments to obtain
+crowd labels was repeated for each set of training and testing splits and, as a result of the random sampling process, one image
+could have a blast label on one set of crowd labels and a nonblast label on another set of crowd labels. The hyperparameters
+of the model that yielded the lowest cross-entropy loss between the model’s output and the crowd labels on the testing split
+averaged across the 30 testing splits were deemed optimal. The results from the grid search over the candidate hyperparameters
+can be found in the supplementary material.
+8 Author Name
+After the optimal hyperparameters were identified for each type of labeled dataset (so there were 6 unique sets of optimal
+hyperparameters), the model training and testing process was again carried out using these hyperparameters with more train-
+ing/testing splits. For the CNN training and evaluation, the stratified 5-fold cross validation process was repeated 20 times
+resulting in 100 unique sets of training and testing splits. The models were still trained using the crowd labels, but now were
+evaluated with respect to the true labels on out-of-sample images. The crowd labels for each image were generated the same
+way as was done for the hyperparameter selection process, meaning the datasets generated using only a subset of judgments per
+image could have different labels for a single image across two random training/testing splits.
+2.3 Behavioral results
+For Experiment 1, we combined the data across the two conditions because there was no apparent differences in participants’
+performance. To verify this, we performed a two-sample Kolmogorov-Smirnov test comparing the distribution of participants’
+accuracy on images in the non-calibration set in one condition versus the other and found no significant differences in the
+distributions of participants’ accuracy (p = .999). The distribution of participants’ accuracy in each condition can be found in
+the supplementary material.
+2.3.1 Individual performance
+Accuracy was evaluated by binarizing participants’ probability judgments. Similar to how crowd labels were obtained by bi-
+narizing average judgments at 50%, accuracy was evaluated by first binarizing participants’ probability judgments and then
+comparing them to the true labels. As a result, a probability judgment was deemed correct (accuracy = 1) when either the image
+was a blast cell and the judgment was greater than 50% or the image was a nonblast cell and the judgment was less than 50%.
+Likewise, a probability judgment was deemed incorrect (accuracy = 0) when either the image was a blast cell and the judgment
+was less than 50% or the image was a nonblast cell and the judgment was greater than 50%. Since participants were allowed
+to respond with 50%, a 50% judgment was regarded as partially correct (accuracy = .5) regardless of whether the image was a
+blast cell or a nonblast cell since there is no way to unambiguously binarize 50%.
+On average, participants were 65.3% accurate classifying images in the non-calibration set before recalibrating using the
+scores across all participants before and after applying the LLO function to transform each participant’s responses.
+(a) Participant accuracy distribution before their judgments (b) Participant accuracy distribution after their responses were
+were calibrated using the LLO function. calibrated using the LLO function.
+F I G U R E 3 Participant accuracy distributions on images in the non-calibration set in Experiment 1.
+While recalibration had a marginal impact on accuracy, it had a much stronger impact on the distribution of participants’
+Author Guidelines 9
+across all participants and the corresponding calibration curve before and after applying the LLO function to transform each
+user’s responses.
+(a) Participant response distribution before their responses were (b) Calibration curve before participants’ responses were calibrated
+calibrated using the LLO function. using the LLO function.
+(c) Participant response distribution after their responses were (d) Calibration curve after participants’ responses were calibrated
+calibrated using the LLO function. using the LLO function.
+F I G U R E 4 Participant response distribution and calibration curves on images in the non-calibration set in Experiment 1.
+For the calibration curves in the right panels, the y-errorbars indicate the 95% confidence interval for the proportion of blast
+cells in each bin. There are also x-errorbars indicating the 95% confidence interval for the mean judgment in each bin, but these
+intervals are so small it is difficult to see the errorbars.
+The calibration curves were generated by binning participants’ probability judgments into 10 equally spaced bins. The x-
+value of the leftmost point on the calibration curve is the mean probability judgment in the first bin (mean judgment out of all
+judgments between [0, .1)) and the y-value is the proportion of images that were blast cells for the responses in that bin. Using
+that received a probability judgment between [0, .1), 28% of them were blast cells. The y = x line reflects a perfectly calibrated
+distribution because when a point of the calibration curve lies on that line, then the average probability judgment in a given bin
+is equal to the proportion of blast images in that bin. The further away the calibration curve deviates from the y = x line, the
+worse the calibration of the distribution is.
+10 Author Name
+participants thought there was a 100% chance an image contained a blast cell, only 68% those images contained a blast cell.
+After applying the LLO function, participants’ judgments are transformed such that they are much more evenly distributed
+across the entire probability scale, with the majority of judgments being squeezed toward the center of the distribution (see
+parameters are between -1 and 1, indicating that most participants were overconfident in their judgments. This aligns with
+as compared to after. Also, while most of the α parameters are greater than 0, a few are less than 0, indicating that the LLO
+that some participants had below chance accuracy. Since some were exceptionally poor at discriminating between blast and
+nonblast images, the calibration of their judgments could be improved by flipping the ordering of their judgments, which is
+what the LLO function did using α < 0.
+F I G U R E 5 Best fit α and β parameters for the LLO function for participants in Experiment 1.
+The β parameters are centered at 0 and roughly symmetrically distributed, indicating that most participants did not display
+a strong response bias towards one end of the probability scale. However, there are a few outliers whose strong response bias
+was corrected by the LLO function.
+In sum, the majority of participants learned to classify with above-chance accuracy, and therefore we can conclude that most
+successfully learned to distinguish between blast and nonblast cells. Although recalibration did not improve the accuracy of the
+participants’ judgments, it greatly improved their calibration, mainly by correcting overconfidence.
+2.3.2 Crowd performance
+Accuracy for the crowd labels was evaluated by binarizing average judgments at 50%, similar to how accuracy was evaluated
+for the participant’s probability judgments. First, we compared the accuracy of the EB crowd labels to that of the rEB crowd
+Author Guidelines 11
+overall accuracy of the WoC labels from 81.6% to 85.1% when all judgments are used to generate the labeled dataset. When
+only five or nine judgments per image are used, the accuracy drops for both EB and rEB datasets.
+Dataset Number of judgments per image Accuracy Accuracy on nonblast images Accuracy on blast images
+EB 5 .735 [.732, .739] .777 [.773, .781] .691 [.685, .697]
+EB 9 .766 [.763, .769] .800 [.795, .804] .730 [.725, .735]
+EB all .816 .830 .801
+rEB 5 .778 [.775, .781] .733 [.729, .738] .826 [.821, .830]
+rEB 9 .813 [.810, .816] .756 [.752, .761] .873 [.870, .876]
+rEB all .851 .763 .945
+T A B L E 1 Crowd label accuracy on the non-calibration set in Experiment 1. For each dataset, one set of crowd labels is
+generated for each training and testing split. Since the ML models were evaluated using 100 unique sets of training and testing
+splits, the brackets indicate the 95% confidence intervals for the mean accuracy across the 100 sets of crowd labels. There are
+no brackets for the two datasets generated using all judgments per image because the label for each image does not vary across
+the sets of crowd labels.
+Next, we further examined how the accuracy of the crowd labels changes as a function of the number of judgments per
+image. To do this, we randomly sampled N judgments from each image, generated the crowd label for each image, computed
+the accuracy, repeated this process for each image in the non-calibration set, and then took the mean accuracy across all images
+6 depicts the impact of the number of judgments per image on accuracy.
+F I G U R E 6 Crowd label accuracy as a function of the number of judgments per image in Experiment 1. The errorbars
+represent the 95% confidence interval for the mean accuracy across the 100 simulations for each value of N. The two gray bars
+highlight the crowd label accuracy at 5 and 9 judgments per image because these datasets are used in the ML model training
+and evaluation.
+We see that not only do the rEB labels reach a higher level of accuracy compared to that of the EB labels, but the accuracy
+also initially increases at a quicker rate. Therefore, the rEB labels are more efficient in that they reach an arbitrary level of
+accuracy using fewer judgments.
+Finally, we investigated how the number of judgments used to fit each participant’s LLO function impacted the rEB crowd
+accuracy in the non-calibration set. Recall, in the testing phase, participants made judgments on 20 images in the calibration set
+(10 blast and 10 nonblast), and these judgments were used to calibrate the remainder of their judgments in the non-calibration
+set. To evaluate the impact of the size of the calibration set, we randomly sampled a set of N judgments on calibration images
+for each participant (where N is an even number such that there was always an equal number of judgments on blast and nonblast
+images), used these judgments to fit the LLO function and transform a user’s judgments on the non-calibration set, repeated
+12 Author Name
+this process for each user, and finally pooled the newly recalibrated judgments across users to obtain new crowd labels and
+evaluated the accuracy of these labels. N ranged from 2 to 18 and this process was simulated 100 times for each value of N. The
+F I G U R E 7 rEB crowd label accuracy as a function of the number of judgments used to fit the LLO function in Experiment
+1. The errorbars represent the 95% confidence interval for the mean accuracy across the 100 simulations for each value of N.
+We were surprised to find that the benefit of the calibration set leveled off with as few as 6 judgments (3 on blast images and
+3 on nonblast images). To better understand why this is, we looked at the distribution of recalibrated judgments, calibration
+curves after recalibration, and distribution of α and β parameters using 2, 6, and 10 judgments used to fit the LLO function.
+These figures can be found in the supplementary material. With only 2 judgments, most of the LLO function parameters are
+clustered around α = 0 and β = 0, which is a special case of the LLO function that maps the raw judgments to 50%. Mapping
+the raw judgments to 50% effectively removes participants who performed poorly on the two judgments being sampled from
+the crowd label computation because the crowd labels are binarized at 50%. Since two judgments is a very small sample, the
+LLO function likely applies this mapping to judgments from well-calibrated and poorly calibrated individuals with a similar
+frequency. Unsurprisingly, the calibration curve using on 2 judgments looks very similar to that of the raw judgments since two
+judgments do not provide enough information for the LLO function to remove annotators’ responses biases. With 6 judgments,
+many responses are still mapped to 50%, but far fewer compared to with only 2 judgments. This is further supported by the
+distribution of LLO function parameters, with fewer parameter combinations clustering around α = 0 and β = 0. The resulting
+distribution of recalibrated judgments exhibits much more variability and the calibration curve lies closer to the y = x line.
+With 10 judgments, the variability of the distribution of recalibrated judgments further increases and the calibration curve
+converges even closer to the y = x line, but the changes resulting from increasing the number of judgments from 2 to 6 is greater
+label accuracy increases by 2.2 percentage points (from 82.6% to 84.8%) when the number of judgments used to fit the LLO
+function increases from 2 to 6, but increases by only 0.4 percentage points (84.8% to 85.2%) when the number of judgments
+increases from 6 to 10. Therefore, with a sample size of 6 judgments, there’s enough information for the LLO function to
+effectively down-weight the judgments of poorly calibrated individuals in the crowd label computation, without doing the same
+to judgments from well-calibrated individuals. This demonstrates that even a very small calibration set can potentially yield
+marked improvement in crowd label accuracy.
+2.4 The effect of data re-calibration on CNN performance
+We wanted to know if the differences in accuracy on the crowd labeled datasets translated to the ML models trained on these
+In both tables, Acc(crowd | true) is the accuracy of the crowd labels with respect to the true labels, Acc(ML | crowd) is the
+accuracy of the ML model with respect to the crowd labels, and Acc(ML | true) is the accuracy of the ML model with respect
+Author Guidelines 13
+to the true labels. Since accuracy is usually defined with respect to ground truth, it may be helpful to think of Acc(X | Y) as the
+proportion of images where X and Y agreed on the same label.
+Dataset Number of judgments per image Acc(crowd | true) Acc(ML | crowd) Acc(ML | true)
+EB 5 .736 [.732, .740] .840 [.837, .844] .814 [.808, .820]
+EB 9 .766 [.762, .770] .875 [.871, .878] .828 [.823, .833]
+EB all .816 [.814, .818] .949 [.947, .952] .837 [.834, .841]
+rEB 5 .777 [.773, .780] .861 [.857, .864] .847 [.842, .853]
+rEB 9 .813 [.809, .816] .912 [.909, .915] .855 [.851, .860]
+rEB all .851 [.849, .852] .957 [.954, .961] .853 [.848, .857]
+T A B L E 2 Mean accuracy on the 80% training splits with 95% confidence intervals for Experiment 1.
+Dataset Number of judgments per image Acc(crowd | true) Acc(ML | crowd) Acc(ML | true)
+EB 5 .734 [.725, .743] .730 [.722, .739] .814 [.804, .824]
+EB 9 .765 [.757, .774] .777 [.769, .785] .834 [.826, .843]
+EB all .816 [.809, .823] .863 [.856, .869] .853 [.844, .861]
+rEB 5 .783 [.776, .791] .785 [.776, .793] .853 [.844, .862]
+rEB 9 .813 [.807, .819] .819 [.812, .827] .860 [.852, .868]
+rEB all .851 [.845, .857] .898 [.892, .904] .851 [.843, .860]
+T A B L E 3 Mean accuracy on the 20% testing splits with 95% confidence intervals for Experiment 1.
+First, Acc(crowd | true) increases as the number of judgments per image increases in both tables. Note, Acc(crowd | true)
+only differs across the two tables due to random sampling because the images were randomly divided into training and testing
+splits. Also, for a fixed number of judgments per image, the accuracy of the rEB labels is always greater than that of the EB
+number of judgments per image increases for both EB and rEB labels and the rEB curve always lies above the EB curve.
+Next, Acc(ML | crowd) increases as the number of judgments per image increases in both tables. Recall, the ML model is
+trained on the crowd labels, which contain less noise as the number of judgments per images increases. As the amount of noise
+in the labels decreases, the model can more easily align its output with the data it is trained on. Therefore, Acc(ML | crowd)
+increases as the number of judgments per image increases because the amount of noise in the crowd labels decreases.
+We also notice that, for a fixed number of judgments per image, Acc(ML | crowd) is always higher for the rEB labels com-
+pared to the EB labels. The LLO function counteracts biases in subjective probability judgments, and both the degree and the
+direction of these biases are subject to individual differences. By reducing these biases in subjective probability judgments, the
+LLO function serves as a way to normalize the judgments across annotators before combining them into crowd labels. From
+this perspective, LLO calibration can be viewed as another form of data pre-processing (similar to min-max scale, z-score nor-
+malization, etc.) but specific to this type of data (García et al., 2016). Therefore, the set of rEB labels contain less noise due
+to annotators’ biases compared to EB labels because participants’ judgments are semi-normalized by the LLO function. As a
+result, compared to the EB labels, the rEB labels are easier for the ML model to learn at a fixed number of judgments per image.
+Unlike Acc(crowd | true), Acc(ML | crowd) can differ across the two tables. More specifically, if Acc(ML | crowd) is greater
+for the training set than the testing set, this is a sign that the models are overfitting to the training labels. We see that Acc(ML
+| crowd) is much higher in the training split compared to the testing split at a fixed number of judgments for both EB and rEB
+datasets. This is expected given that we are working with a very small dataset which makes it difficult to train a model without
+overfitting.
+Lastly, the pattern of how Acc(ML | true) changes as a function of the number of judgments is less clear. Note, we are mainly
+interested in Acc(ML | true) in the testing split since the overall objective is to maximize the accuracy of the ML model with
+respect to the true labels on out-of-sample images (which would be the accuracy of the model when deployed into production).
+Nevertheless, Acc(ML | true) differs very little across the training and testing splits.
+To understand how Acc(ML | true) changes as a function of the number of judgments, it helps to view Acc(ML | true) as an
+emergent property of two conflicting trends: (1) Acc(crowd | true) increases as the number of judgments increases, and (2) the
+14 Author Name
+capacity of the model to improve upon the accuracy of the data on which it is trained decreases as the number of judgments
+Acc(crowd | true) in the training split changes as a function of the number of judgments per image.
+F I G U R E 8 Acc(ML | true) in the 20% testing split minus Acc(crowd | true) in the 80% training split as a function of the
+number of judgments per image in Experiment 1. The error bars represent the 95% confidence interval for the mean difference
+in accuracy across the 100 training and testing splits for each value of N.
+training split and that the difference between the two measures decreases as the number of judgments increases. Since Acc(ML
+| true) is almost always greater than or equal to Acc(crowd | true), Acc(crowd | true) acts as a lower bound on the accuracy
+of Acc(ML | true). Acc(crowd | true) increases as the number of judgments increases and it follows that the lower bound on
+the accuracy of Acc(ML | true) also increases with the number of judgments. In contrast to this, the capacity of the model to
+improve upon Acc(crowd | true) decreases as the number of judgments increases. We believe this is caused by Acc(ML | crowd)
+increasing as the number of judgments increases. In order for the ML model to generalize from the training data such that it is
+more accurate compared to the crowd labels it is trained on, the ML model needs to disagree with the crowd labels (in order
+for the ML model to be correct and the crowd to be incorrect, they need to predict different labels). As a result, the capacity of
+the model to improve upon Acc(crowd | true) decreases as Acc(ML | crowd) increases.
+To summarize, when the number of judgments per image increases, the lower bound of Acc(ML | true) increases because
+Acc(crowd | true) increases. However, because Acc(ML | crowd) increases as the number of judgments increases, the capacity
+of the ML model to improve upon the Acc(crowd | true) decreases and therefore Acc(ML | true) is not guaranteed to increase as
+the number of judgments increases. In the cases analyzed here, most of the models trained on the rEB datasets outperform those
+trained on the EB datasets and this effect is most prominent with smaller crowd sizes which reflect more practical numbers of
+judgments per image. Further, the effect of model smoothing, where the model outperforms the data on which it is trained, is
+also greater with fewer judgments per image.
+3 EXPERIMENT 2
+For complex medical diagnostics tasks such as the one used in our experiments, companies will typically turn towards more
+specialized crowdsourcing platforms rather than using the more domain-general ones such as MTurk. Experiment 2 extends Ex-
+periment 1 into a ‘real-world’ setting by using the same task of classifying white blood cells but performed through DiagnosUs, a
+free publicly available app on the IOS App Store produced by Centaur Diagnostics Inc. (Press, 2021), which is a crowdsourcing
+platform that specializes in medical data annotation. Using this platform, we evaluate our cognitive-inspired data engineering
+approach of recalibrating individual probability judgments with the aim to improve crowd and machine classification accuracy.
+Author Guidelines 15
+The key to our recalibration approach is the inclusion of a hold out set of images used to fit a recalibration model that can then
+be used to correct cognitive biases on the remaining judgments. DiagnosUs presents labeling tasks to annotators in the form
+of contests and users can choose whether to participate in each contest. In a contest, gold standard (GS) images (images with
+ground truth labels) are randomly shuffled in with unlabeled images to provide feedback to users and continually assess their
+performance. Since these are images for which there are existing ground truth labels, GS images serve as a natural calibration
+set. Thus, we are able to leverage the existing task structure on DiagnosUs for our recalibration approach.
+3.1 Behavioral methods
+3.1.1 Participants
+A total of 175 participants were recruited through DiagnosUs for Experiment 2. Participants agreed to the terms of service
+agreement on DiagnosUs where they consented to their data being used for commercial and academic purposes. We have
+some demographic information regarding geographic location and occupation for 85 out of the 175 participants. Regarding the
+geographic location of the 85 participants for whom we have some demographic information, 23 were from Asia, 22 were from
+Africa, 12 were from North America, 6 were from Europe, 1 was from South America, and 21 did not provide their geographical
+location. Regarding the occupation of those same participants, 32 were medical students, 21 were not in a profession related to
+the medical field, 12 were other healthcare students, 3 were pharmacy students, 3 were medical doctors, 2 were nurse practitioner
+students, 1 was a physician assistant student, 1 was a nurse practitioner, and 10 did not provide their occupation.
+Participants competed to win prize money, which was determined by their position on the contest leaderboard. Their place
+on the leaderboard was determined by their performance in the contest. In order to be eligible for the prize, participants had
+to complete at least 200 competition trials. Responses from users who completed fewer than 200 trials were excluded from
+further analysis. In each condition, first place received a $30 prize, second place received a $25 prize, third place received a
+$20 prize, fourth and fifth place received a $15 prize, sixth place received a $10 prize, seventh place received a $5 prize, and
+eighth through twelfth place received a $1 price. All other participants did not receive any prize money.
+3.1.2 Materials
+The same 549 images of Wright-stained white blood cells used in Experiment 1 were also used in Experiment 2. The images
+were randomly divided into a quality assurance (QA) set containing 300 images (150 blast and 150 nonblast images) and a
+gold standard (GS) set containing 249 images (116 blast and 133 nonblast images). Splitting the data into GS and QA sets is
+standard practice due to the incentive structure of the DiagnosUs app. The distribution of the mean difficulty ratings for images
+in the GS and QA sets are included in the supplementary materials.
+3.1.3 Procedure
+There were two conditions in Experiment 2, which differ based on the type of response elicited from participants: an elicited
+beliefs (EB) condition and a binary choice (BC) condition. For binary classification tasks, the industry-standard method of elic-
+iting responses from annotators is to elicit binary choices (indicating one class or the other), rather than probability judgments
+(K. M. Collins et al., 2022; Duhaime et al., 2023). We included the binary choice condition to better compare our approach to
+the industry-standard elicitation method in terms of the accuracy of both the crowdsourced datasets and the models trained on
+these datasets. To ensure participants did not compete in both conditions, we randomly divided the app’s userbase such that half
+of the users were only presented with the EB version of the contest and the other half of the users were only presented with the
+BC version of the contest. A total of 97 users participated in the BC condition, and 78 users participated in the EB condition.
+In both conditions, participants first read instructions explaining that they would be presented with images of white blood
+cells. In the EB condition, participants were informed that their task would be to judge the likelihood that each image contained
+a blast cell. In the BC condition, participants were informed that their task would be to determine whether an image contained a
+blast cell. After the initial instructions, participants completed 8 practice trials to familiarize themselves with the task. On each
+practice trial in the EB condition, participants were asked “What is the likelihood that this is a blast cell?”. Participants entered
+their response using a slider mechanism and were given feedback in terms of the correct answer and a score which was computed
+16 Author Name
+using the binarized, quadratic scoring rule. Similarly, on each practice trial in the BC condition, participants were asked “Do
+you think this image is a blast cell?”. Participants would either select ‘yes’ or ‘no’ and they were provided feedback (just the
+correct answer) after each response. Images in the practice trials were randomly sampled from the GS set with replacement.
+(a) Example trial in the binary choice (BC) condition. (b) Example trial in the elicited belief (EB) condition
+with feedback.
+F I G U R E 9 Example trials in Experiment 2 on the DiagnosUs app platform.
+After the 8 practice trials, participants were free to complete as many competition trials as they would like. The answer
+prompts and response elicitation mechanisms in the competition trials were identical to those employed in the practice trials.
+For both practice and competition trials, there was no time limit set for each trial so participants could take as long as they
+liked to make their judgment. However, any response on a competition trial that took longer than 3 minutes was excluded from
+further analysis, similar to Experiment 1. Images in the competition trials were randomly sampled such that 1/3 of the images
+came from the GS set and 2/3 of the images came from the QA set, with the constraint that no user saw the same image twice
+within a 24 hour period and that it was equally likely for a blast or nonblast cell to be sampled on each trial. Participants received
+feedback on competition trials in the same format as the practice trials, but only on trials where images were sampled from the
+GS set. No feedback was provided for responses on QA images.
+In the EB condition, participants’ performance (and therefore their place on the leaderboard) was based on their average
+score on competition trials for images in the GS set. Similarly, in the BC condition, participants’ performance was based on
+their accuracy on competition trials for images in the GS set.
+Because each contest ran for 48 hours, it was possible for users to see the same image twice. If a user saw an image more
+than once, we only included their response in the data analysis from the first time they saw the image. This was done to ensure
+that each user contributed at most one judgment to each crowd label and to remove any confounds due to memory effects on a
+user’s decision-making process.
+Author Guidelines 17
+3.2 Modeling methods
+3.2.1 Recalibration method
+In the EB condition, participants’ judgments for images in the GS set were used to recalibrate their judgments for images in the
+QA set using the LLO function, just like how participants’ judgments for images in the calibration set were used to recalibrate
+their judgments for images in the non-calibration set in Experiment 1. Hence, the true labels are used to provide feedback to
+users and also to fit the LLO function that will transform their judgments on images for which we aim to create crowd labels
+for ML model training.
+3.2.2 ML training and hyperparameter selection
+The 300 images in the QA set were used for hyperparameter selection and model training/testing. For the CNN training and
+hyperparameter selection, we generated BC, EB, and rEB crowd labels for these images using 5 judgments per image, 9 judg-
+ments per image, and all judgments per image. On average, each image received 51.8 judgments in the EB condition and 62.4
+judgments in the BC condition. EB and rEB crowd labels were created using the same process as described in Experiment 1.
+BC crowd labels were created by taking the majority judgment. If there were more ‘yes’ (blast) judgments than ‘no’ (nonblast)
+judgments for an image, then the image was assigned a blast label, and if there were more ‘no’ (nonblast) judgments than ‘yes’
+(blast) judgments for an image, then the images was assigned a nonblast label. No image had an equal number of ‘yes’ and ‘no’
+judgments. Therefore, we have 9 different sources for our labeled datasets: BC with 5 votes per image, BC with 9 votes per
+image, BC with all votes per image, EB with 5 votes per image, EB with 9 votes per image, EB with all votes per image, rEB
+with 5 votes per image, rEB with 9 votes per image, and rEB with all votes per image.
+The hyperparameter selection and model training/testing procedure was nearly identical to Experiment 1, with the only
+difference being the set of images used (QA set here whereas non-calibration set was used in Experiment 1). The results from
+the grid search over the candidate hyperparameters can be found in the supplementary materials.
+3.3 Behavioral results
+3.3.1 Individual performance
+Similar to Experiment 1, accuracy was evaluated in the EB condition by binarizing participants’ probability judgments. On
+average, participants were 68.7% accurate classifying images in the QA set before recalibrating using the LLO function and
+68.2% accurate classifying those images after recalibration. In the BC condition, participants were on average 69.8% accurate
+condition and before and after recalibration in the EB condition.
+(a) Participant accuracy distribution in the BC (b) Participant accuracy distribution in the EB (c) Participant accuracy distribution in the EB
+condition. condition before their judgments were calibrated condition after their judgments were calibrated
+using the LLO function. using the LLO function.
+F I G U R E 10 Participant accuracy distributions on images in the quality assurance (QA) set in Experiment 2.
+18 Author Name
+Similar to Experiment 1, recalibration had an extremely minor impact on accuracy, but had a much stronger impact on the
+judgments pooled across all participants and the corresponding calibration curve before and after applying the LLO function
+to transform each participant’s responses for images in the QA set.
+(a) Participant response distribution before their responses were (b) Calibration curve before participants’ responses were calibrated
+calibrated using the LLO function. using the LLO function.
+(c) Participant response distribution after their responses were (d) Calibration curve after participants’ responses were calibrated
+calibrated using the LLO function. using the LLO function.
+F I G U R E 11 Participant response distribution and calibration curves on images in the QA set in the EB condition of Exper-
+iment 2. For the calibration curves in the right panels, the y-errorbars indicate the 95% confidence interval for the proportion
+of blast cells in each bin. There are also x-errorbars indicating the 95% confidence interval for the mean judgment in each bin,
+but these intervals are so small it is difficult to see the errorbars.
+Before recalibration, participants were heavily biased towards responding at the extreme ends of the probably scale and at
+11b illustrates that participants’ responses tended to be overconfident. Compared to the calibration curve before recalibration
+especially judgments towards the middle of the probability scale, which were very well calibrated. Nonetheless, transforming
+the judgments using the LLO function led to a major improvement in calibration, as the calibration curve after recalibration in
+impact on the overall distribution of responses pooled across participants compared to Experiment 1, where the majority of
+responses were squeezed towards the middle of the probability scale.
+Author Guidelines 19
+all α parameters fall between -1 and 1, indicating that the majority of participants were overconfident in their judgments. This is
+a similar trend to that of Experiment 1, and also aligns with the changes in the calibration curve as the result of recalibration in
+had α < 0. This is not surprising given that most participants were above chance accuracy, meaning they did a fairly good job at
+discriminating between blast and nonblast images. Also, many more judgments were used to fit the LLO model in Experiment 2
+(111.3 judgments, on average), so a participant was less likely to perform poorly on the calibration set of images due to random
+chance.
+F I G U R E 12 Best fit α and β parameters for the LLO function pooled across participants in Experiment 2.
+Unlike Experiment 1 where the β parameter was symmetrically distributed around 0, the β parameter is skewed in the
+negative direction, indicating that participants were biased towards responding with high probability (i.e., overestimated the
+likelihood of an image containing a blast cell). We believe this could result from the population of users on the DiagnosUs app.
+Out of the 75 users for whom we have demographic information and provided information regarding their occupation, 65 of
+them ( 86.7%) reported an occupation in the medical domain. In the medical domain, false positives are often viewed as less
+costly compared to false negatives. As a result, the users may have been more likely to err on the side of diagnosing a white
+blood cell as cancerous (a blast cell) when they were unsure of the true category of the image.
+3.3.2 Crowd performance
+Similar to Experiment 1, accuracy for the crowd labels was evaluated by binarizing the judgments at 50% for the EB and rEB
+datasets. Accuracy for the crowd labels in the BC datasets was evaluated by taking the more popular judgment for each image
+(i.e., majority rule) and comparing that label to the true label.
+accuracy of the crowd labels across the conditions when all judgments were used to generate the labels. We found that the
+accuracy of the crowd labels in the EB and BC conditions were extremely similar, both 88.3% accurate. Recalibration had a
+very positive effect, increasing crowd accuracy from 88.3% to 96.7%. Similar to Experiment 1, with only five or nine judgments
+per image, the accuracy drops for BC, EB, and rEB datasets. Overall, crowd accuracy in Experiment 2 was higher compared to
+20 Author Name
+that of Experiment 1, but this was expected given the MTurk participants in Experiment 1 are novices whereas the participants
+on the DiagnosUs app are skilled annotators.
+Dataset Number of judgments per image Accuracy Accuracy on nonblast images Accuracy on blast images
+BC 5 .788 [.784, .792] .680 [.673, .688] .896 [.892, .900]
+BC 9 .826 [.823, .829] .706 [.700, .711] .947 [.944, .950]
+BC all .882 .780 .983
+EB 5 .795 [.791, .799] .674 [.667, .681] .916 [.911, .920]
+EB 9 .826 [.822, .829] .692 [.687, .698] .959 [.956, .963]
+EB all .883 .767 1.000
+rEB 5 .836 [.832, .840] .811 [.805, .817] .861 [.855, .867]
+rEB 9 .890 [.887, .893] .855 [.850, .860] .925 [.920, .929]
+rEB all .967 .940 .993
+T A B L E 4 Crowd label accuracy on the non-calibration set in Experiment 2. Since the ML models were evaluated using
+100 unique sets of training and testing splits, the brackets indicate 95% confidence intervals for the mean accuracy across the
+100 sets of crowd labels. There are no brackets for the three datasets generated using all judgments per image because the label
+for each images does not vary across the sets of crowd labels.
+Next, we further tested how the accuracy of the crowd labels changes as a function of the number of judgments per image.
+of judgments per image on accuracy. The EB and BC curves are almost identical, but the rEB curve lies well above both of
+them. Therefore, the rEB labels reach a higher level of accuracy overall and reach an arbitrary level of accuracy using fewer
+judgments compared to the EB and BC (industry-standard) labels.
+F I G U R E 13 Crowd label accuracy as a function of the number of judgments per image in Experiment 2. The errorbars
+represent the 95% confidence interval for the mean accuracy across the 100 simulations for each value of N. The two gray bars
+highlight the crowd label accuracy at 5 and 9 judgments per image because these datasets are used in the ML model training
+and evaluation.
+Additionally, we observed that the improved gains in accuracy as a result of recalibration in Experiment 2 (8.4 percentage
+point increase) exceeded that of Experiment 1 (3.5 percentage point). We believe the improved gains in accuracy are the result
+of participants having more accurate responses for the calibration set of images in Experiment 2 compared to that of Experiment
+1. Participants were on average 62.9% accurate (σ = 13.4%) at classifying images in the non-calibration set in Experiment 1
+and were on average 69.5% accurate (σ = 12.9%) at classifying images in the GS set in Experiment 2. To confirm this, we
+investigated how the number of judgments used to fit each participant’s LLO function impacted the rEB crowd accuracy in
+Author Guidelines 21
+number of judgments in the calibration set on rEB crowd accuracy. Similar to Experiment 1, there are diminishing returns in
+terms of accuracy improvement with more than 10 judgments per participant. The fact that almost all the gains in accuracy
+due to recalibration can be obtained using 10 judgments or less suggests that the improved gain in accuracy in Experiment 2
+compared to Experiment 1 is unlikely to be the result of having more judgments to fit the LLO function, but rather the result
+of having more accurate judgments to fit the LLO function.
+F I G U R E 14 rEB crowd label accuracy as a function of the number of judgments used to fit the LLO function in Experiment
+2. The errorbars represent the 95% confidence interval for the mean accuracy across the 100 simulations for each value of N.
+3.4 The effect of data re-calibration on CNN performance
+We wanted to know if the differences in accuracy on the crowd labeled datasets translated to the ML models trained on these
+Dataset Number of judgments per image Acc(crowd | true) Acc(ML | crowd) Acc(ML | true)
+BC 5 .787 [.783, .792] .903 [.899, .907] .829 [.822, .836]
+BC 9 .827 [.824, .831] .928 [.925, .931] .849 [.843, .855]
+BC all .882 [.880, .883] .960 [.958, .963] .884 [.881, .887]
+EB 5 .795 [.791, .800] .902 [.898, .906] .836 [.830, .842]
+EB 9 .826 [.822, .830] .928 [.925, .931] .850 [.844, .857]
+EB all .883 [.881, .885] .971 [.969, .973] .883 [.879, .886]
+rEB 5 .836 [.831, .840] .880 [.876, .884] .906 [.901, .911]
+rEB 9 .890 [.886, .893] .939 [.935, .942] .929 [.926, .932]
+rEB all .967 [.966, .968] 1.000 [.999, 1.000] .966 [.965, .968]
+T A B L E 5 Mean accuracy on the 80% training splits with 95% confidence intervals for Experiment 2.
+First, Acc(crowd | true) increases as the number of judgments per image increases for BC, EB, and rEB datasets in both
+tables. For a fixed number of judgments per image, the accuracy of the rEB labels exceeded that of the EB and BC datasets,
+how accuracy increases as a function of the number of judgments per image, with rEB crowd labels being consistently more
+accurate than the EB and BC crowd labels.
+Next, Acc(ML | crowd) increases as the number of judgments per image increases for BC, EB, and rEB datasets in both tables.
+Also, for a fixed number of judgments per image, the accuracy of the rEB labels almost always exceeds that of the EB and BC
+datasets, with the EB and BC datasets being roughly equal in terms of accuracy. Similar to Experiment 1, we see that Acc(ML
+22 Author Name
+Dataset Number of judgments per image Acc(crowd | true) Acc(ML | crowd) Acc(ML | true)
+BC 5 .791 [.781, .802] .768 [.759, .777] .819 [.809, .830]
+BC 9 .823 [.813, .833] .818 [.807, .829] .836 [.825, .847]
+BC all .882 [.875, .888] .889 [.881, .897] .873 [.865, .881]
+EB 5 .794 [.784, .804] .785 [.775, .794] .832 [.821, .843]
+EB 9 .826 [.817, .835] .816 [.807, .824] .838 [.829, .848]
+EB all .883 [.876, .891] .894 [.887, .900] .866 [.857, .874]
+rEB 5 .837 [.828, .846] .801 [.790, .812] .893 [.884, .902]
+rEB 9 .890 [.882, .898] .870 [.862, .878] .924 [.917, .932]
+rEB all .967 [.962, .971] .963 [.959, .968] .959 [.954, .963]
+T A B L E 6 Mean accuracy on the 20% testing splits with 95% confidence intervals for Experiment 2.
+| crowd) is much higher in the training split compared to the testing split for BC, EB, and rEB labels, which was expected given
+that we trained models on a relatively small dataset.
+Lastly, Acc(ML | True) consistently increases as the number of judgments increases for BC, EB, and rEB datasets in both
+tables, unlike Experiment 1. Though, similar to Experiment 1, the accuracy of the rEB labels is greater than that of the EB and
+BC datasets for a fixed number of judgments. In fact, even with only 5 judgments per image, Acc(ML | True) for models trained
+on rEB labels is greater than that of the EB and BC datasets when using all judgments. Also similar to Experiment 1, we find
+that the model accuracy on out-of-sample images exceeds the accuracy of the training data with 5 and 9 judgments per image,
+F I G U R E 15 Acc(ML | true) in the 20% testing split minus Acc(crowd | true) in the 80% training split as a function of the
+number of judgments per image in Experiment 2. The error bars represent the 95% confidence interval for the mean difference
+in accuracy across the 100 simulations for each value of N.
+4 DISCUSSION
+In this work, we set out to investigate the use of cognitive-inspired data engineering to improve human and machine perceptual
+classification. Specifically, we evaluated the impact of recalibrating subjective probability judgments on the accuracy of crowd-
+sourced medical image datasets and the ML models trained on them. To do so, we collected judgments for a medical imaging
+task across two experiments: one where annotations were collected from a general crowdsourcing platform with novice anno-
+tators (MTurk) and another where annotations were collected from a more specialized crowdsourcing platform with skilled
+Author Guidelines 23
+annotators (DiagnosUs). In both experiments, we used annotators’ judgments on a holdout set of images to recalibrate the re-
+mainder of their judgments. Our results were largely consistent across the two experiments in that recalibration via the LLO
+function led to more accurate labeled datasets and ML models.
+First, in both experiments, we found that annotators tended to be overconfident in their judgments, favoring extreme judg-
+ments of 0% and 100% likelihood of blast. While recalibrating their judgments using the LLO function had little effect on
+individual annotator accuracy, it greatly improved the calibration of their judgments and transformed their response distribution
+to be more conservative, with the majority of recalibrated judgments falling between 35% and 65%. Furthermore, recalibration
+notably improved the accuracy of the resulting crowdsourced data, improving accuracy when using all judgments per image
+from 81.6% to 85.1% in Experiment 1 and from 88.3% to 96.7% in Experiment 2.
+Comparing the results across the two experiments, we found that the individual annotators were more accurate in Experiment
+2 (68.7% accurate in the EB condition and 69.8% accurate in the BC condition) compared to that in Experiment 1 (65.3%
+accurate). Not only were the annotators more accurate, but their calibration curves also reflected better calibrated responses
+with the calibration curve for the EB condition in Experiment 2 more closely following the y = x line compared to that in
+Experiment 1, both before and after recalibration. The improved annotator performance in Experiment 2 also lead to more
+accurate crowdsourced datasets. This is best observed by comparing the crowd datasets using five judgments per image as this
+allows us to hold the number of judgments constant during comparison. Plus, five judgments per image reflects a more practical
+number of annotations per image compared to 50 or more annotations per image. In Experiment 2, with five judgments per
+image, we observe 78.8% accuracy for the BC dataset, 79.5% accuracy for the EB dataset, and 83.6% accuracy for the rEB
+dataset compared to Experiment 1 where we observe 73.5% accuracy for the EB dataset and 77.8% accuracy for the rEB dataset.
+Additionally, we observe more accurate models with respect to the true labels on out-of-sample images for Experiment 2 (81.9%
+accurate for models trained on the BC dataset, 83.2% accurate for models trained on the EB dataset, and 89.3% accurate for
+models trained on the rEB dataset) compared to that in Experiment 1 (81.4% accurate for models trained on the EB dataset and
+85.3% accurate for models trained on the rEB dataset).
+Domains such as medical image diagnostics have begun to turn to crowdsourcing as a viable method to annotate unlabeled
+data because of the speed and cost-efficiency offered by crowdsourcing (Eickhoff et al., 2012). These two objectives can be
+further optimized by reducing the number of annotations per stimulus without degrading the quality of the dataset. In both
+experiments, we found that as few as seven rEB judgments per image produce a dataset that is as accurate as a dataset generated
+using 25 EB or BC judgments per image. While recalibration does require an additional set of judgments on a holdout set of
+images used solely for the purposes of recalibration, we found that most of the gains in accuracy due to recalibration can be
+achieved with as few as 6 judgments on images from the holdout set. Therefore, beyond just improving the accuracy of the
+crowdsourced labels at a given number of judgments per image, recalibrated crowdsourced datasets achieve an arbitrary level of
+accuracy at a fraction of the number of annotations compared to uncalibrated crowdsourced datasets, which can greatly reduce
+the time and cost spent on annotating data. This improved annotation-efficiency can accelerate the creation of large, labeled
+datasets, addressing the present-day, primary bottleneck in the development of medical AI (Ørting et al., 2019).
+In both experiments, we found unambiguous evidence that recalibration leads to improvements in the accuracy of the crowd-
+sourced datasets. The results of training ML models on the datasets are not as straightforward to interpret, but still offer
+promising evidence in favor of recalibration. Using an arbitrary number of judgments per image, models trained on the rEB
+dataset either matched or, in most cases, exceeded the accuracy of models trained on EB or BC datasets with respect to the true
+labels on out-of-sample images.
+Unexpectedly, we found that the accuracy of the models with respect to true labels on out-of-sample images does not always
+increase monotonically as a function of the number of judgments per image. This finding contrasts with the established result
+that the accuracy of the labeled dataset with respect to the true labels increases as a function of the number of judgments per
+label (Surowiecki, 2005; Armstrong, 2001), which was also found in our work. Therefore, the accuracy of the ML model is not
+guaranteed to improve when the accuracy of the crowdsourced dataset improves.
+We posit that this result is due to two factors: (1) the ML models are capable of generalizing to out-of-sample images such
+that they are more accurate with respect to the true labels compared to the labels they are trained on and (2) the accuracy of
+the ML model with respect to the crowdsourced labels increases as the number of judgments per image increases due to the
+crowdsourced labels containing less noise. As the output of the ML model becomes more in-line with the labeled dataset, it
+loses the capacity to improve upon the accuracy of the dataset it is trained on. Indeed, we see that as the number of judgments
+per image increases, the difference between the accuracy of the ML model with respect to the true labels on out-of-sample
+images and the accuracy of the training dataset with respect to the true labels decreases monotonically for all datasets. Therefore,
+24 Author Name
+ML practitioners ought to be careful when crowdsourcing datasets, and we suggest to iteratively evaluate the quality of the ML
+model as annotations are collected since the optimal accuracy of the ML model on out-of-sample images is not necessarily
+achieved using the most accurate dataset with the most judgments per stimulus. Rather, based on our results, some intermediate
+number of annotations per image may lead to the optimal ML model accuracy with respect to the true labels on out-of-sample
+images. Developing a better understanding of the relationship between ML model accuracy with respect to the true labels on
+out-of-sample images and the number of annotations per crowdsourced label will require further investigation.
+4.1 Relation to previous work
+Turner et al. (2014) also used the LLO function to recalibrate individuals’ judgments and studied the impact on aggregated
+judgments on forecasting accuracy. Unlike in our work, Turner et al. (2014) included a model variant which constrained the
+parameters of the LLO function using a hierarchical distribution when fitting to each annotator because they had few judgments
+from some annotators. We did not find this additional step necessary since we collected several judgments per annotator to fit
+the LLO function. Moreover, we found that fitting the LLO function with very few judgments led to gains in crowdsourced
+dataset accuracy. Our study also differs from Turner et al. (2014) in that we studied the impact of recalibration in the context of
+crowdsourcing ML training datasets for a complex perceptual task, whereas Turner et al. (2014) used recalibrated judgments on
+176 forecasting questions (e.g., regarding Greek debt default and US credit rating). Despite the different goals of our work and
+Turner et al. (2014), we find it promising that recalibration is successful at improving accuracy across the disparate domains
+of forecasting and medical image classification. This suggests recalibration is a general technique likely to succeed in other
+domains.
+4.2 Limitations
+As the primary goal of our work was to investigate the impact of recalibration on crowdsourced dataset and model accuracy,
+we limited ourselves to simple algorithms when aggregating individual annotations into crowdsourced labels. That is, for the
+BC dataset, the crowd label for a given image was the label with the most annotations for that image and, for the EB and rEB
+datasets, the crowd label was the mean judgment across annotations for that image. More sophisticated aggregation algorithms
+involve taking each annotator’s past performance into account, such as only using annotations from the most accurate annotators
+(Himmelstein et al., 2023; Budescu & Chen, 2015; Galesic et al., 2018) or weighting judgments based on a labeler’s performance
+(Armstrong, 2001; Atanasov et al., 2017; Duhaime et al., 2023; G. Wang et al., 2011; R. N. Collins et al., 2023). While we
+chose to simplify our aggregation algorithms to focus on the impact of recalibration, we believe recalibrating judgments using
+the LLO function offers several advantages over the previously mentioned aggregation algorithms.
+First, weighting judgments based on annotator performance requires a large number of judgments on labeled images and a
+decision regarding how to convert past performance into a weight (R. N. Collins et al., 2023). For example, annotators could
+be weighted using a moving average accuracy, but the number of judgments taken into account when computing the moving
+average is an additional decision to make. Second, only taking annotations from the most accurate labelers increases the overall
+number of judgments that need to be collected. For example, even if the same level of accuracy can be achieved using 5
+recalibrated judgments per image as using 5 high-quality, uncalibrated judgments per image, and high-quality judgments are
+only sampled from the more accurate half of labelers, then one would still need to collect 10 judgments per image overall. Plus,
+the threshold used to determine whether a labeler’s annotations should be included in the crowd label computation needs to be
+determined and will likely differ on a case-by-case basis. Finally, more sophisticated algorithms introduce complexity which
+adds another layer of difficulty to curating labeled datasets, for examples see Hasan et al. (2022); Wilson & Farrow (2018);
+Soule et al. (2024). Altogether, recalibration using the LLO function is a simple transformation that can be applied to any task
+involving crowdsourced subjective probability judgments and this transformation does not involve additional decisions and is
+very label-efficient in that high levels of accuracy can be achieved without filtering out labels from less capable annotators.
+Note, the recalibration technique outlined here does not preclude any of the other accuracy-based approaches and therefore can
+be combined with them to potentially improve the quality of crowdsourced datasets further.
+Another limitation is that we only used one set of stimuli in our study. We chose to use the same dataset in both experiments
+so that we could more easily test whether our results generalize from the lab to the field. While Turner et al. (2014) also
+demonstrated recalibration via the LLO function also leads to improved accuracy of crowdsourced judgments for a variety of
+Author Guidelines 25
+forecasting problems, the extent to which recalibration leads to gains in accuracy will likely vary based on the task and the pool
+of annotators from which the labels are crowdsourced.
+5 CONCLUSION
+Supervised ML models are designed to learn statistical regularities in their training data and therefore are likely to inherit
+labeler biases embedded in their training dataset. Many techniques to correct these biases in ML models have approached the
+problem from a model perspective (adjusting the model algorithm or objective function) rather than from a data perspective,
+which is unsurprising given that model engineering has received far more attention compared to data engineering (Sambasivan
+et al., 2021; Wagstaff, 2012). Cognitive-inspired data engineering approaches the problem from the data perspective, focusing
+specifically on the cognitive biases that pervade annotators’ decision-making processes. Cognitive scientists have long studied
+cognitive biases in human judgment and decision-making and a better understanding of these biases can assist in mitigating
+their presence in ML training datasets. In this paper, we borrowed ideas from cognitive science to de-bias individual annotators
+and found that this de-biasing leads to more accurate crowdsourced datasets and ML models trained on these datasets.
+6 ACKNOWLEDGMENTS
+This work was supported by the Alfred P. Sloan Foundation grant Cognitive Economics at Work.
+7 DATA AVAILABILITY
+9be0a79e323a4009bdcaf7af9eb3f917. The white blood cell images are available on request.

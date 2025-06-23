@@ -1,0 +1,762 @@
+Assessing the value of civic crowdfunding:
+Goteo.org social impact calculator
+Enric Senabre Hidalgo [1,2]*, Ricard Espelt [1], Rubén Bagüés Vicente [3], Olivier Schulbaum [2,4]
+1. Dimmons Research Group, Universitat Oberta de Catalunya
+2. Platoniq Foundation
+3. Heres Social SCCL
+4. Europeana Impact Assessment Steering Committee
+* Corresponding author: esenabre@uoc.edu
+Abstract
+Although fintech and collaborative funding platforms have evolved into sophisticated information
+and interaction systems, it is still complex to measure their social impact, especially when it comes
+to public value-driven platforms such as civic crowdfunding. Addressing this problematic question,
+at both the conceptual and technical levels, in this article we present a novel dynamic system
+framework and implementation for assessing the social impact of crowdfunding campaigns through
+the Goteo.org platform. Our contribution derives from an interdisciplinary team effort led by the
+non-profit Platoniq Foundation (founder and main promoter of the Goteo platform) in which social
+researchers and software developers worked together in order to improve the accuracy and
+visibility of crowdfunding campaigns in relation to their social impact. This approach for calculating
+and visualizing social impact, as a proof-of-concept, is based on a methodological framework
+inspired by previous advancements in the non-profit and social responsibility sectors, integrating
+user-generated data and external data sources and indicators. As a recently launched system, in
+its current implementation on Goteo it integrates the first version of a virtual calculator embedded
+in the campaign design interface. This new digital affordance allows project promoters to better
+estimate monetary and non-monetary-related impact regarding social value, public return of
+investment and other specific concepts related to their initiative if successfully crowdfunded.
+Results of this social impact calculator, which translates diverse value variables and proxies into
+economic estimations, is also made visible to all users as potential campaign donors, and operates
+in connection with previously implemented SDGs indicators and social, democratic and ecological
+footprints in the Goteo system.
+1. Introduction
+Until date, there have been limited ways to measure the social impact of crowdfunding. Given the
+expansion in recent years of this popular type of collaborative funding and other similar digital
+social innovations (DSI) and civic technologies (Certomà & Corsini, 2021), this represents a
+missing opportunity for developing useful, actionable knowledge in our current context of
+socio-ecological emergencies and challenges (Davison et al., 2022). Social impact assessment
+constitutes both a conceptual and a technical challenge for the development of civic technologies
+or “civic tech”, which can be understood as emergent collectivistic forms of DSI (Bonina et al.,
+2021). In this paper we present the work developed so far regarding a novel approach to social
+impact assessment by one leading civic crowdfunding platform, Goteo.org, which integrates
+previous system implementations for open data visualizations and for the estimation of campaigns’
+monetary and non-monetary impact. For this, we first provide a contextual summary about the
+current development of civic tech, relating to crowdfunding in this area, and afterwards we present
+previous work developed by Goteo for impact assessment, and what in our understanding have
+been recent advances for assessing social impact in different fields. In this introduction we also
+present what guides our research and development process, which is an ongoing collaboration
+between civic tech practitioners and academic researchers. Secondly, we outline our
+methodological approach adapting previous studies in the field of social impact assessment for
+organizations, and the details of several criteria and indicators for an integral calculation of social
+value in civic crowdfunding campaigns. Apart from providing, as an example, the results of such
+calculation in a hypothetical Goteo campaign, we also present the derived technical work
+implemented so far based on the previous, which already allows to partially use the social impact
+calculator in the mentioned digital platform. Finally, we conclude by reflecting further questions for
+the specific implementation of our approach, not only in the Goteo platform but also in other similar
+digital tools, promoting an open standard to assess the social impact of civic crowdfunding under
+an open knowledge prism.
+1.1 Civic tech and civic crowdfunding
+In parallel to open government initiatives and other DSI advancements, the current landscape of
+civic tech is represented by a long trend of community-led tools and platforms, developed and used
+by social movements, NGOs, solidarity economy organizations and open source contributors,
+which usually share similar democratic, Commons-oriented goals and philosophy (Certomà, 2021).
+In this sense, scholars establish a basic distinction between government-centric (“top-down” digital
+solutions created by public institutions) and citizen-centric civic tech (where its development and
+use are led by civil society), and regarding the latter connecting with wider perspectives for the
+co-creation of public value (Meijer & Boon, 2021). Skaržauskienė and Mačiulienė (2020), in this
+sense, identify a recent increase in civic tech solutions to address social issues and concerns
+implemented by civil society organizations and local communities. Saldivar et al. (2019), on the
+other hand, show how regardless of who is behind a given civic tech project, these have been
+mainly adopted locally and situated at city scales and in specific community contexts, followed by
+region and country levels. Another key consideration for our understanding of civic tech and its
+social impact has to do with a broader conceptual perspective, by which these platforms should be
+studied not as mere technological tools but also as complex “socio-technical systems” with an
+evident political dimension (Deseriis & Vittori, 2019). In this respect, Poblet and Plaza (2017)
+highlight the complexity of scaling up civic participation by mere technological progress, and the
+need for integral approaches where trade-offs between institutional and public involvement should
+address other values beyond digital participation per se. In front of this, as another relevant
+perspective, Foth and Brynskov (2016) argue how action research –that is, outcomes of research
+which can be implemented in practice by participants– constitutes a needed paradigm for the study
+and development of civic tech. Taking these perspectives into consideration, a paradigmatic
+example of civic tech is “civic crowdfunding”, which has received increased interest as platforms for
+collaborative fundraising that enable local initiatives by citizens and civil society organizations
+(Charbit & Desmoulins, 2017). In contrast to other crowdfunding models, they allow alternative
+modes of participatory budgeting and social cohesion, stimulating civic participation and
+community involvement while providing validation of urgent needs as perceived by citizens
+(Passeri, 2019).
+One of the most relevant examples and studied cases of civic crowdfunding at the European level
+is Goteo.org, an open source platform led by the Platoniq Foundation non-profit organization,
+which allows for additional modes of support beyond monetary funding ‒like services,
+infrastructures and microtasks (Senabre Hidalgo & Fuster Morell, 2018). Goteo, which represents a
+paradigmatic example of civic tech for the Social and Solidarity Economy (ESS), is an open source
+crowdfunding platform with currently more than 290,000 users and 1,788 projects funded since
+2011, with an above-average percentage of successfully funded initiatives in the crowdfunding
+sector (83%)1, and which has a radical approach to transparency and openness via digital tools2.
+Among its more relevant characteristics as a civic tech infrastructure, in line with other non-profit
+Barcelona-based platforms like Decidim (Aragon et al., 2017), is that Goteo also operates at the
+intersection between social movements, NGOs and public institutions. Adopted by a broad
+diversity of Social and Solidarity Economy (SSE) projects beyond Barcelona, Goteo is
+characterized by an average user of highly educated female participants, close to the cause being
+co-funded and with previous participatory experience in the social and political spheres (González
+Cacheda, 2021). One of the advances regarding civic-public participation through Goteo is the
+regular deployment of match-funding campaigns by diverse types of organizations (like coops, city
+councils, universities and other institutions), which focus on specific social needs and areas,
+multiplying civic society’s donations through specific calls (Senabre Hidalgo et al., 2020). Results
+from these and other key social and digital dynamics in Goteo are already providing open
+knowledge about the social and solidarity connections, for example, between match-funding
+initiatives connecting urban and rural areas in Spain3.
+1.2 Previous approaches for assessing the impact of crowdfunding
+The impact of crowdfunding campaigns has been a topic of increasing interest among information
+systems researchers in recent years. This is due in part to the growing popularity of crowdfunding
+platforms in the last decade, which have enabled a wide range of individuals and organizations to
+raise funds for a variety of projects and causes. One overall approach so far, for measuring
+crowdfunding impact, has been to consider the volume of money raised and the number of donors
+who contributed to crowdfunding campaigns, but that hardly provides a proxy of a project’s reach
+and popularity through its fundraising process (De Luca et al., 2019). Another line of work has
+been to try to assess the social impact of institutions and organizations behind campaigns –for
+example, if a campaign was raising money for a charitable organization, trying to measure the
+social impact of that organization's work on the community it serves (Ba et al., 2022). The limitation
+with that approach, however, is that such post hoc assessment tends to be disentangled from the
+details of the crowdfunding campaign itself, which usually concentrate on specific resources and
+activities rather than the organization as a whole. More specifically, other studies have looked at
+the impact of crowdfunding campaigns on the development of new technologies or digital projects,
+and found that funded initiatives tended to have a positive impact on innovation and job creation
+(Brem et al., 2019). However, this approach has been usually limited to study specific projects with
+external available data for evidence, and not departing from structured information provided by
+crowdfunding platforms.
+In line with this need for better visibility, awareness and identification of social value in civic tech, in
+recent years Goteo has developed diverse content-oriented system implementations in its core
+content and functionalities for a better impact assessment approach. As an open knowledge
+inspired resource and a digital tool under constant development and improvement following open
+source practices4, the more relevant contributions to this area from Goteo have been twofold. On
+the one hand, the platform has developed and implemented since 2018 its own triple system of
+civic impact areas regarding (1) Social, (2) Democratic and (3) Ecological “Goteo Footprints”,
+which project promoters define while designing their crowdfunding campaigns –in parallel to
+specific topics of civic concern they address, or the project outcomes for the wider community and
+society. This has allowed to already estimate and define potential areas of influence of projects, in
+case of being funded, and also allowed for alternative navigation of crowdfunding campaigns by
+potential donors or researchers5. On the other hand, in order to allow third parties to access and
+use crowdfunding open data from civic crowdfunding, in 2019 Goteo started to publish open
+datasets connecting the Sustainable Development Goals (SDG)6 with its core activity data,
+disseminating the importance of such an approach for DSI (Qureshi et al., 2021) among other
+crowdfunding platforms and the wider civic tech research community (Fuster Morell et al., 2020).
+Regardless of these developments, and other significant efforts based on scraped data from
+platforms like Kickstarter (Mollick, 2016) or mapping the added value of crowdfunding for small and
+medium enterprises (Kukurba et al., 2021), attempts to measure the social impact of crowdfunding
+still lack systematic ways to determine the connection between specific funded goals and the
+derived, specific social impact of these, not only during the fundraising period but especially once
+the project or initiative has been implemented. On the other hand, the expected social impact of
+crowdfunding should (ideally) also play a role in the preliminary key stages of campaign design, in
+which promoters could estimate the impact of their initiatives at the moment of determining needs,
+costs and goals –and backers could afterwards donate motivated by visualizing such value-related
+calculations.
+Considering all the previous, and its connection with Platoniq Foundation’s goals of increasing
+open knowledge practices around civic technologies (Gagliardia et al., 2021), the main objective of
+this project was the development and application of a tool to measure the social impact of
+individual crowdfunding campaigns, tailored to its specifics during the design phase but also
+afterwards, once the derived project has been implemented. Developing this impact calculator
+would allow, more concretely, to: (1) Sensitize the promoting teams behind each crowdfunding
+campaign by "budgeting" the potential social impact that their initiative will have, if funded, with a
+global vision taking into account all interested parties and stakeholders; (2) Give more context and
+motivation to potential donors, and in particular to “matchers” (campaign multiplier organizations
+and public institutions in match-funding schemes), to understand in a measured way the potential
+social impact of the campaigns they support; and (3) Create a pioneering tool that can be of
+reference for other crowdfunding platforms, and that can also be adapted to them, this way
+promoting the social impact of civic crowdfunding as a standard model –rather than for an unique
+platform. Moreover, we consider that civic crowdfunding communities, and especially those from
+the SSE sector, are in need of better digital affordances to measure their social impact and
+stakeholder engagement (Barrett et al., 2016), which requires imaginative and innovative
+approaches since no crowdfunding platform to our knowledge measures this type of impact.
+1.3 Relevant frameworks for measuring social impact
+In the non-profit, SSE and third sector fields, as well as in social responsibility practices from
+diverse types of companies and organizations, being able to calculate the social impact of funded
+initiatives and economic activity represents a challenging question, both conceptually and
+technically. Advances in the growing SSE in Catalonia, for example, have so far provided joint
+efforts for impact assessment of cooperatives and community-owned SMEs like the Social Balance
+led by the Xarxa d'Economia Solidària (XES, Solidarity Economy Network), an organization formed
+by almost 500 members from SSE organizations. The Social Balance is a tool for self-evaluation
+and continuous improvement, which identifies a series of specific characteristics that respond to
+the needs, questions and indicators focused on evaluating the community impact of initiatives.
+More concretely, it addresses the following five areas: economic progress and profit policies;
+iInternal equity and democracy; environmental sustainability; social commitment and cooperation;
+and labor quality (Romero Carrillo, 2022). Following this line of work, recent advances at
+measuring the impact derived from digital platforms has also been developed paying attention to
+polymeric frameworks of value in the context of digital platforms, for example considering
+dimensions like its democratic qualities (Fuster Morell et al., 2021a) or its connection with the
+SDGs (Fuster Morell et al., 2021b).
+On the other hand, in the corporate and social responsibility sector, beyond classic economic
+impact assessments, approaches like Social Return of Investment (SROI) or Social Impact Rating
+(SIR) are being devised to better capture the non-monetary effects of several types of initiatives, as
+well as the relevance for society of their related objectives. However SROI, as a framework aiming
+to measure the social, environmental and economic outcomes of a given investment or intervention
+–in order to provide a more holistic view of its overall impact– is still complex and can be difficult to
+implement in practice (Arvidson et al., 2010). Also in contrast to traditional financial metrics, which
+often focus narrowly on financial return and ignore the broader social and environmental impact of
+an investment, SIR aims to provide a more comprehensive evaluation of the impact of an
+investment (Wisebrod, 2007). SIR assesses the social and environmental performance of a funded
+project and provides investors with a numeric indication of its potential positive impact. In addition
+to general social and environmental performance, SIR also includes criteria specific to each type of
+investment, such as workforce diversity, corporate governance or environmental stewardship.
+Another approach that originated from the field of environmental assessment, towards an
+integrated evaluation process including social values and indicators, is the Social Impact
+Assessment (SIA), as originally proposed by Vanclay (2003). As a promising tool based on an
+integrated assessment, SIA approach considers the biophysical and social impacts of projects,
+programs and policy initiatives, which it tries to have equally acknowledged and evaluated
+(Dendena & Corsi, 2015). However, although social scientists and SIA practitioners generally
+understand the diverse dimensions of social impact, not all stakeholders are involved and
+understand the complex ways projects are deployed and affect local issues and communities
+(Vanclay, 2020).
+More recently, an alternative but concrete methodological proposal for addressing and displaying
+the social value generated by organizations has been developed with a process model analysis
+and calculation named “SPOLY methodology”7, based on previous work for monetizing and
+visualizing social value (Retolaza et al., 2015; Retolaza et al., 2016) and social accounting based
+on evidence (Retolaza & San-Jose, 2021). Departing from a polyhedral model of social value for
+stakeholders, this approach proposes a standard system capable of valuing, in an objective and
+comparable way, the overall social value generated by any type of organization. The SPOLY
+methodology aims to reflect not only the value generated by shareholders, but also the value
+generated by and for other stakeholders or interested parties, such as suppliers, customers, public
+administrations, society, etc. More concretely, what’s interesting regarding this model for social
+impact assessment is that other specific impact calculation perspectives –like the SROI, SIR and
+SIA– are presented in an integrated way across three main value ecosystems: (1) social value
+generated though economic activity; (2) associated socio-economic return generated for public
+administrations; and (3) specific value generate for diverse groups of stakeholders. More
+2).
+This formula offers, with some key modifications and adaptations for crowdfunding projects instead
+of organizations –as we will see below in the methodology section–, a clear, flexible but concrete
+framework that can be adapted to the specific case of social impact assessment in civic
+crowdfunding, and therefore as a proper conceptual basis for its system implementation in the
+Goteo platform at an experimental level.
+7 For more information on the GEAccounting and SPOLY see (in Spanish)
+2. Methodological approach
+The approach chosen for the development of a social impact calculation tool for crowdfunding
+campaigns, as mentioned, is based on the SPOLY social value calculation methodology, which
+represents a solid base and point of departure for the required system development within the
+Goteo platform. It represents a standard system that is capable of valuing, in an objective and
+comparable way, the overall value generated, or destroyed, by any type of organization, reflecting
+not only the value generated by shareholders, but also that generated by other stakeholders or
+interest groups, such as suppliers, customers, public administrations, society, etc. This
+methodology originally, as mentioned, was designed for its application to organizations, but in our
+case, it had to be adapted to civic crowdfunding campaigns, especially regarding two core
+questions. On the one hand, an adaptation needed to be made regarding original variables
+referring to the "social value of economic activity", which in the original model were extracted from
+the accounting of an organization, and in this case were oriented to the accounting and diverse
+economic and non-economic details of crowdfunding campaigns. On the other hand, and in a
+similar way, it was necessary to adapt the variables relating to the return to public administrations,
+focusing on the characteristics of crowdfunding campaigns and projects instead of companies and
+organizations. Finally, due to this adaptation and criteria for integrating the framework in
+crowdfunding, instead of “consolidated social value” we adopted the concept of “integrated social
+value” (ISV), in line with recent advances in measuring social impact of the SSE sector (Lazcano et
+al., 2019).
+For implementing the methodology, and following the recommended process of the SPOLY
+approach, the research and development team around this implementation project proceeded
+sequentially by a series of steps which helped to focus, identify, plan and test the corresponding
+calculations and technical implementations in the platform:
+1. Setting the team and schedule. An interdisciplinary research team, under the umbrella
+project Crowdcoop8, was composed by the Platoniq Foundation, Heres Social SCCL and
+Facto Cooperativa, which led the analysis and systematization process, establishing a
+schedule and a frame of reference which later on incorporated researchers from the
+Dimmons.net group (Internet Interdisciplinary Institute, UOC).
+2. Identification of the organization's interested parties or stakeholders. In parallel to
+developing a stakeholder map around the community of users, supporters and beneficiaries
+of Goteo, a series of brainstorming and co-creation meetings allowed to clearly identify key
+actors and criteria for social impact in the specific context of crowdfunding projects.
+3. Identification of value variables –that is, the aspects in which projects generate value for
+third parties. This phase was implemented in dialogue with the different stakeholders, and
+included in a short survey to 130 Goteo users to identify many of the variables. In this
+variable identification we obtained two types: emotional values –not easy to define as an
+indicator– and non-emotional values –where it is easier to define indicators, as we explain
+next.
+4. Monetary values of outputs. A fourth stage required an extensive effort to define how to
+quantify the outputs linked to each value variable, first defining indicators to measure de
+added value identified, and secondly, through proxies to “translate” results in monetary
+values. Being aware of the difference that intangibles are much more complex to agree on
+than tangibles, each proxy represented a challenge when not directly related to budgeting
+in crowdfunding campaigns.
+5. Calculation and visualization of the integrated social value. On the one hand, prior to
+the system implementations and platform improvements required with the Goteo social
+impact calculator, we defined a series of calculations following four areas of core data and
+indicators (presented in next section) and applied in a series of spreadsheets (Annex 1)
+allowing to see the results of example calculations for each stakeholder (section 2.2). On
+the other hand, the visualization of some of the key areas and calculations, as mentioned,
+are being implemented in the system (presented in section 2.3).
+6. Feedback and continuous improvement process. As part of a wider effort in the Catalan
+SSE sector and beyond, for the impact assessment of civic initiatives and alternative
+economy models, the process described here and the derived implementations in existing
+digital systems can only work with constant updates, for which our work is a preliminary
+step that still requires refinement, discussions and improvements.
+3. Results of the research and development process
+In this section we present the results of the research and development process described above in
+three main sections. Firstly, we show the tables of values that guide each of the predefined impact
+areas, justifying in detail the variables and data for each of them. In the following subsection we
+offer a sample example of how these social impact calculations are applied to an existing
+crowdfunding campaign on Goteo. Thirdly, we finally show the details of implementations in
+progress on the platform, which include the interfaces for designing campaigns and donations in
+relation to social impact assessment.
+3.1 Core data and indicators for assessing social impact
+The specification of four sets of variables for measuring the social impact in civic crowdfunding
+needs to be calculated both before the crowdfunding campaign and ideally also afterwards
+–concretely one year after funding–, in order to refine the calculation and improve its estimates,
+based on real data after the project implementation. More concretely, these four areas key for the
+social impact calculation are:
+● SVEA: Social Value of Economic Activity, with calculation variables derived from the
+budget and economic impact of the crowdfunding campaign itself.
+● RPA: Return to Public Administrations, with calculation variables related to a return
+either in the form of taxes generated by the campaign or performing tasks normally
+managed by public administrations.
+● SSV: Specific Social Value, with variables resulting from the analysis of stakeholders
+composition and the value crowdfunding campaigns have generated for them. This part is
+the most enriching step of the calculation, because it is not usually measured in economic
+or monetary variables, and with our approach allows for an integral perspective on a broad
+range of areas (with specific proxies for each one).
+● EMVA: Emotional Value, is an additional criteria (not always covered in the SPOLY model)
+which defines another set of additional variables with the result of a post hoc survey to
+donors and participants of the crowdfunding campaign, and which can work as a multiplier
+or reducer in the final impact calculation.
+Regarding the data required for the social impact assessment guided by the above criteria, as
+mentioned it has two key moments:
+● PRE-Crowdfunding data: Data before starting the campaign, with a "social impact budget"
+that the promoting team must fill in with an impact estimation, taking into account that a
+minimum of donations is reached. It is important to emphasize that for some data an
+estimate will have to be made as realistic as possible. This pre-crowdfunding data is the
+one presented here as implemented.
+● POST-Crowdfunding data: User-generated data collected approximately one year after the
+campaign is funded, and which must be entered by the promoting team. These data can
+generate and show more refined results about the campaign and derived project social
+impact, against which the promoting team can compare estimations and final results. This
+post-crowdfunding data is not presented in detail in this article, being currently under further
+conceptualization and development to be implemented progressively as well.
+In the next sections we explain in detail each of the four key areas of the calculation, as well as
+the type of derived results, which in the majority of cases departs from previously defined data
+about the crowdfunding budget, goals and needs –as defined for the design phase of Goteo
+campaigns.
+3.1.1 Social Value Economic Activity (SVEA)
+To calculate the social value generated by an entity, in this case by a crowdfunding campaign, all
+the variables derived from accounting management must be taken into account. In our model,
+these economic data have been divided into two typologies:
+a) Direct Social Value of the Campaign (DSVC-D): These are data that can be related to the
+generation of wealth and impact directly connected to the realization of the project derived from the
+crowdfunding campaign: collected funds, derived salary wages, taxes linked to employees,
+Variable Data
+Economic volume collected with the campaign Sum of the total gross value collected with the
+Goteo campaign
+Salaries of people hired as a result of the Sum of net salaries
+campaign during the first year
+Social security for workers linked to the Sum of company social security + employee social
+campaign during the first year of activity security (we estimate 30% of the base salary) and
+calculated with respect to the total wages
+IRPF of workers Income tax deduction for employees (we estimate
+15%)
+Other taxes generated by the campaign Sum of taxes
+VAT VAT generated - VAT passed on
+Economic result in case of exceeding the Pre-tax profits generated by the campaign
+crowdfunding goal
+b) Indirect Social Value of the Campaign (ISVC-D): Here we also refer to data with economic
+origin, but in this case is generated indirectly if the crowdfunded project is implemented. These
+data are basically related to the purchase of services or products, generating wealth and impact in
+two aspects: (a) volume of purchases made, and (b) VAT generated as return to public
+Variable Data
+Purchase from SSE and/or local economy Total purchase sum made from SSE and/or local
+suppliers suppliers (without VAT)
+Purchase from other suppliers Total purchase sum made from other types of
+suppliers (without VAT)
+Purchase from suppliers Total purchase sum made to suppliers (without
+VAT)
+VAT Purchases from SSE / local suppliers 21.00%
+10.00%
+4.00%
+0.00%
+VAT Purchases from other suppliers 21.00%
+10.00%
+4.00%
+0.00%
+Added Value SSE / local economy With a repercussion index of added value of 0.60
+Added value other suppliers With a repercussion index of added value of 0.50
+It is important to highlight that there is a key distinction made for suppliers linked to the SSE and/or
+local economy, with a slight differentiation favoring them instead of other types of suppliers –so we
+can also integrate the impact on this type of alternative economy consequently.
+3.1.2 Return to Public Administrations (RPA)
+Another relevant source of information for the assessment of social impact in this case is the
+calculation of return to public administrations (RPA) that crowdfunding campaigns generate. To
+make this calculation, the system collects data from fields from already existing economic
+Variable Data
+Return of social value from Direct
+economic activity of the campaign
+Indirect
+Savings for public administrations Volunteering for the project linked to the campaign, in activities
+that otherwise would be carried out by public administrations
+Acquisition of specific knowledge (training, information, etc)
+Contribution activating donations and money to compensate
+effects of the socio-economic crisis (inequalities)
+Contribution activating donations and money to promote
+cultural activities
+Contribution activating donations and money to promote SSE
+and alternative economy models
+Contribution activating donations and money to develop and
+implement environmental sustainability
+Contribution activating donations and money to boost the rural
+economy or disadvantaged areas
+We divide the calculation into two main sections, the first one "Return of social value from
+economic activity of the campaign" has a direct link to the previous calculation of SVEA,
+specifically to data about direct and indirect impact. These represent taxes and tributes that return
+to public administrations, and therefore to be transformed into social improvements for citizens.
+The second part of RPA is fed by information from the SSV (Specific Social Value, as defined in
+next section) which, among other variables and indicators, determines concepts that represent a
+specific social value in some area that, under normal conditions, can be developed by public
+administrations, but which instead is developed for the project linked to the campaign, and
+therefore represents a "saving” for public administrations.
+3.1.3 Specific Social Value (SSV)
+This is the most complex set of variables and required significantly more work and effort for the
+creation of the social impact calculator. Due to its definition and non-market original value, a wide
+diversity of perspectives on social value could be applied, so an ad hoc study was necessary with
+more than 130 people and entities linked to the crowdfunding campaigns in Goteo, where they
+were asked about the added generated for them through their participation in specific campaigns.
+The question was not at all simple, since Goteo covers a wide diversity of civic-related topics like
+ecology, education, culture, social movements, SSE coops, etc., but fortunately, the precision of
+the responses obtained helped to tabulate and define a number of distinct and complementary
+specify that as another core characteristic of Goteo –similar to other NGOs and social sectors–
+users beyond monetary donations can also confirm their support in specific defined tasks for each
+campaign.
+Variable Data
+Volunteering for the project linked to the Total hours of people developing tasks for the
+campaign, in activities that otherwise would be funded project on a voluntary basis
+carried out by public administrations
+Crowdfunding rewards Number of defined rewards in the campaign
+Acquisition of specific knowledge (training, Number of training hours * Number of people
+information, etc) participating in the training
+Re-sale and/or distribution of the products / Number of products / services (as rewards) sold to
+services generated thanks to the crowdfunding distributors
+campaign
+Connection with other initiatives (network Number of entities / organizations / public
+creation) administrations that collaborate in the campaign
+Contribution activating donations and money to % of the money collected (part of the collection)
+compensate effects of the socio-economic directed to activities linked to helping in
+crisis (inequalities) socio-economic crisis situations
+Financial savings for beneficiaries receiving the Number of people benefited by the activity or
+product or service developed thanks to the product developed
+campaign (not donors)
+Contribution activating donations and money to % of the money collected (part of the collection)
+promote cultural activities directed to activities linked to the promotion of
+culture
+Contribution activating donations and money to % of the money collected (part of the collection)
+promote SSE and alternative economy models directed to activities linked to promote SSE and
+alternative economy models
+Raising awareness of people about the social, Number of unique visits to the campaign page
+solidarity and cooperative economy
+Contribution activating donations and money to % of the money collected (part of the collection)
+develop and implement environmental directed to activities linked to develop and
+sustainability implement environmental sustainability
+Contribution activating donations and money to % of the money collected (part of the collection)
+boost the rural economy or disadvantaged directed to activities linked to the promotion and
+areas implementation of alternatives in the rural economy
+or disadvantaged areas
+Donations made to Platoniq Foundation outside Volume of "tips" or direct donations made right after
+the crowdfunding campaign, to continue Goteo contributing to a given crowdfunding campaign
+activity
+The complexity of this part of the calculation has been to find "proxies" as reference values that
+allow making a monetary, numeric translation of the indicators linked to each specific value
+generated. To define these calculations, we based as reference the standard market values that
+are recognized in other economic areas and activities.
+3.1.4 Emotional Value (EMVA)
+In results from the survey to Goteo users, the majority of individual and institutional respondents
+determined a series of specific non-measurable values, closely related to "emotional values" such
+as: satisfaction, motivation, belonging and solidarity. Converting this emotional value to monetary
+value is also relatively complex due to the wide diversity of factors and concepts that can be taken
+into account. For its implementation, we adopted the SERVQUAL framework from Parasuraman et
+al. (1985), which helps measure the perception and expectations of a given service. Applying an
+adaptation of SERVQUAL to our calculator, we can in the future incorporate a multiplier factor,
+which should be based on the results of a specific survey at the end of the crowdfunding campaign
+Variable Data
+Satisfaction level for participating in the campaign Score between 1 and 5
+Level of motivation that this campaign has generated for the Score between 1 and 5
+donor
+Level of community feeling around the campaign Score between 1 and 5
+Level of solidarity generated in the donor by participating in the Score between 1 and 5
+campaign
+More concretely, the multiplication factors for each variable and score would be, in our proposal:
+1. Value 1 Implies a factor of 0.5
+2. Value 2 Implies a factor of 0.75
+3. Value 3 Implies a factor of 1
+4. Value 4 Implies a factor of 1.25
+5. Value 5 Implies a factor of 1.5
+Therefore, the value obtained by this fourth set of criteria is a translation of survey results to a
+multiplier factor of the total result of ISV that goes from 0.5. That is, subtracting the impact if we
+generate a negative emotional value, or as a multiplier up to a factor of 1.5 maximum –which
+represents a maximum level of satisfaction regarding these 4 emotional variables.
+3.2 Integrated Social Value (ISV) in an example project
+The above criteria and detailed integration of variables, in the majority of cases directly related to
+the data facilitated by the promoting team when designing their crowdfunding campaign, results in
+what we have defined as Integrated Social Value (ISV). ISV presents results of all the calculations
+made by combining the data collected for each of the variables, showing on the one hand the
+overall result. In this case we provide a guiding example with data from a specific campaign for the
+project Climática (Annex 1), for supporting this pioneer independent and professional newspaper in
+In this case the campaign, which took place from November 2020 to January 2021, raised 67,281
+euros from a total of 1,403 backers (one of them as a match-funder, donating 1,000 euros) and
+received confirmation of non-monetary contributions from 8 volunteers for translation and
+dissemination related tasks.
+Climàtica campaign data, as well as other details as defined in the previous sections across the
+four sets of variables. This social impact calculation exercise, as an illustrative example, covers
+from an estimation of SSV favoring mainly contributions to develop and implement environmental
+sustainability (60%) to other related to SVEA regarding the number of people hired over a year
+(estimated with 2 people part-time) or purchases from SSE / local suppliers (defined here in ). Also,
+for illustrating the additional calculation regarding retrospective data for our proposal of EMVA, we
+have defined it as 5 in this case, as the maximum value for each of the four emotional variables
+(therefore multiplying per 1,5). Here we show the resulting value in detail concerning “Society” as a
+whole, and not about the rest of specific stakeholders in our model (introduced and reflected below
+Results by concepts (based on estimation) Value for society
+(not specific
+stakeholders)
+Direct social value of economic activity derived from the campaign 17,880 €
+Indirect social value of economic activity derived from the campaign 5,000 €
+(suppliers in general)
+Indirect social value of economic activity derived from the campaign (SSE / local 3,200 €
+suppliers)
+Indirect social value of economic activity derived from the campaign (other 1,500 €
+suppliers)
+TOTAL SOCIAL VALUE DERIVED FROM ECONOMIC ACTIVITY (SVEA) 22,880 €
+SPECIFIC SOCIAL VALUE (adding SSV) 162,205 €
+GROSS INTEGRATED SOCIAL VALUE (adding RPA) 185,085 €
+Public financing of the project object of the campaign? (If the same project has 2,000 €
+received public funding in another way: subsidy, grant, etc)
+NET INTEGRATED SOCIAL VALUE (ISV) 183.085 €
+Overall rate of social return (for every € contributed to a campaign…) 2,72 €
+INTEGRATED SOCIAL VALUE WITH EMOTIONAL VALUE (adding EMVA) 274.627 €
+Overall rate of social return (for every € contributed to a campaign…) 4,08 €
+adding emotional value: Emotional multiplier factor x 1,5
+As the calculation details, on the one hand we can obtain a series of monetary estimations as a
+quantification of social impact derived from economic activity (SVEA), while on the other one a
+wider estimation based on specific values of social activity (SSV) and in relation to public
+administrations (RPA), and finally the additional emotional criteria (EMVA) in this case with a
+multiplicator effect.
+What’s also important regarding this final calculation, covering the goal of providing information to
+users as potential donors, is that during the design of the campaign the data generated (prior to
+adding data for emotional factors) already generates an overall rate of social return for every euro
+contributed via crowdfunding or match-funding schemes (in this case social return of 2,72 € for
+every euro donated). If we add the final calculation of EMVA, favorable in this example, this
+increases the emotional value for the overall rate (now 4,08 € for every euro donated).
+Apart from the overall results as defined above for “Society” considering it a general stakeholder (a
+general one covering the results added by each concrete stakeholder), in a polyhedral model as
+suggested by Retolaza et al. (2016) the Goteo social impact calculator considers the following
+actors and types of users, for which additional estimations are made in parallel:
+● Public Administrations (as already defined)
+● Supporters (users who contribute disseminating but not donating)
+● Promoting team (behind the crowdfunding campaign)
+● Matcher (institutions or individuals multiplying donations vai match-funding campaigns)
+● Provider (from the crowdfunded project, once in development)
+● Person or entity benefited (specific receivers of a given social initiative)
+● Volunteer (users donating tasks, time-related and other non-monetary resources)
+● Community (specific communities or networks around the project)
+● Individual donor (the most usual type, 90% of users in civic crowdfunding)
+● Donor organization (in the case of civic crowdfunding, around 10%)
+● Platoniq Foundation (as intermediary, can receive “tips” as parallel donations)
+distributed and assigned depending on these types of stakeholders, which contains
+non-subtractable numeric estimations for the specific social impact “received” in each case.
+Some additional factors that influence in this polyhedric ISV result (which does not include EMVA)
+are for example number of rewards in the Climàtica campaign (with 12 in this case, the SSV
+calculation considers significant benefits for Supporters and Community in general), the
+participation of an individual Matcher (with a significant donation and derived implication) or direct
+donations as “tips” to Platoniq Foundation (300 euros in this case).
+3.3 Current technological implementation and development
+The current implementation of the described system in the Goteo digital platform, which in some
+areas is still under implementation at the moment of writing this, allows users to define the required
+additional information about estimated social impact while designing the crowdfunding campaign.
+On the other hand, it allows to integrate a series of additional information for users which are
+potential campaign donors or match-funders, in order to add wider context regarding the expected
+impact of any given project.
+Regarding the information facilitated by promoting teams, it allows to integrate such data as impact
+the three Goteo footprints (Ecological, Social, Democratic), in which SVEA estimations like job
+creation are informed in detail –in this case as derived from the Spanish Statistic National Institute
+(INE) calculation of average cost of a full-time employee in euros per year.
+The same SVEA calculation is integrated in the campaign design interface when defining specific
+costs, which can be refined indicating different typologies of contribution, like in this case job
+Regarding how this information is displayed to Goteo users, in the current implementation of the
+social impact calculator, it is on the one hand informed when accessing a specific section regarding
+creation, volunteering or people trained).
+Finally, another way to display social impact-related information for each crowdfunding donor is
+activated once they select a donation amount (here with 100 € as an example), in a pop-up window
+that displays the corresponding destination of impact by job creation and people trained, in parallel
+Regarding how the integration of our described approach to impact assessment by ISV can
+determine new possibilities for visualizing the social values and opportunities behind civic
+crowdfunding campaigns, another integration under development at the Goteo platform (which will
+be also available as open source code, once stable) has to do with new ways to present projects
+impact displays (bottom area)
+In the example above, at the inferior part of the page regarding an existing campaign, the new
+integration of social impact aspects is threefold: (1) A series of estimations regarding the Social
+footprint (left) about estimated job creation, hours of volunteering and people trained if the project
+archives the defined funding; (2) A impact calculator for user’s donations (center), which allows to
+asses in detail the derived impact of every euro donated; and (3) Most relevant SDGs related to
+the campaign aims and expected impact (right), which builds on previous work developed by the
+platform, as described above.
+4. Implications and discussion
+The conceptual and technical work we have described, in which through the specific affordances
+and characteristics of a civic crowdfunding platform a series of social impact variables are
+calculated, as well as displayed within its digital system, has several implications for both practice
+and research. On the one hand, regarding practical implications for the design and implementation
+of Goteo, our novel work offers a complete framework attentive to several dimensions of monetary
+and non-monetary impact regarding crowdfunding data, which are in our approach transformed
+into numeric estimations –in parallel to other intangible factors like emotional value or specific
+social impact, usually at local levels. Regarding this first development, and our illustrative example
+of a specific crowdfunding campaign, the development of this social impact calculator allows to
+clearly and visually determine –beyond the impact assigned for each stakeholder– an estimation of
+the overall rate of social return for every euro contributed to a campaign, which represents per se
+an additional motivational factor to display in a crowdfunding platform interface. Regarding this, the
+current implementation of the main algorithms and coding required for embedding the calculator
+within the system, as described, already allow for users to identify key impact information following
+the Goteo footprints (Ecological, Social, Democratic), and additionally the connection to SDGs in
+informative navigation terms. For us, this is a way of enriching not only the user experience of a
+civic tech affordance, but for designing platforms for public value in coherence with social impact
+via open knowledge and as democratic innovation (Gilman & Peixoto, 2019). At the technical and
+conceptual levels, several implementation limitations have been identified through the process.
+Firstly, the challenge of developing a new serie of criterias within an existing and highly
+user-populated system like the Goteo platform, after 10 years of operation, required as described
+to incorporate feedback from 130 users (via an ad hoc survey) but also to take design decisions to
+embed the calculator progressively, as a software development and refinement process still in
+progress. Secondly, the complexity of implementing EMVA related to emotional value via a post
+hoc survey to campaign donors, as well as a review of the data introduced by the promoting team
+after one year of the crowdfunding, in order to refine results, represents another challenge for
+implementation and communication, for which further work needs to be done beyond
+conceptualisation. Finally, regarding the calculation of SSV and its "proxy origin", where the origin
+sources of the proxies are defined, it's important to acknowledge that these must be updated
+regularly to reflect broader local and national economic indicators, and more so in the current
+situation of inflation –which could have influenced the values reflected in the calculations, originally
+defined between 2020 and 2021.
+Regarding implications for research, on the other hand, what we envision and aim with the
+described development is a wider standard for assessing impact in civic technology, and more
+concretely in civic crowdfunding –which due to its eminently economic dimensions, represent an
+ideal type of DSI for monetary and quantitative-related calculations. In this sense, we consider that
+future development and implementation, which constitutes in our opinion the right approach for
+action research in this field (Foth & Brynskov, 2016), requires a continuous provision from relevant
+platforms of both activity data and source code. Unfortunately, apart from Goteo and other
+exceptions like Catarse10 or Open Collective11, this is still not the case and especially problematic
+regarding big leading platforms like Kickstarter or Indiegogo, which could provide significant value
+and information about their social impact adopting open knowledge practices. In a context of
+constant advances of open science modes of empirical enquiry, with this research and
+implementation process we claim the impact of open data for addressing current societal
+challenges, where direct collaboration between citizens and public institutions –among a myriad of
+other potential stakeholders in the case of SSE– in a transparent mode of social impact
+assessment can represent another building block for deeper democratic processes in participatory
+budgeting (Escobar, 2021) and new crowdsourced modes of citizen science (Hecker et al., 2018).
+5. Conclusion
+In this work, we have presented a novel framework to measure and calculate social impact of
+crowdfunding projects in a civic tech initiative, following the characteristics of the Goteo platform.
+Through the specific affordances of digital civic crowdfunding, we have proposed a strengthened
+methodology connecting –in a quantitative mode– monetary and non-monetary variables that allow
+to determine the integrated social impact (ISV) of crowdfunding campaigns, integrating a series of
+estimation algorithms, variables and parameters. The development has been implemented as an
+in-platform calculator, progressively accessible to users through the Goteo interface. As a work in
+progress, further alternative models and development should be compared and implemented on
+this and other platforms, to conveniently ascertain the most appropriate approach for calculating
+and assessing social return of crowdfunding dynamics in more sustainable futures. At the same
+time, our work theoretically contributes to previous discussions around other impact assessment
+frameworks, and even citizen science initiatives, as well as their current implementation status.
+Moving forward, this type of research and development process requires a close collaboration
+between citizens, public institutions and other stakeholders, as well as a constant adoption of open
+data meta-standards –in order to gain more insights from the increasing emergence of DSI
+initiatives
+6. Acknowledgements
+The research and development work described in this manuscript is the result from a joint effort of
+Platoniq Foundation, Heres Social SCCL, Facto Cooperativa y Dimmons.net in the context of the
+development of the Crowdcoop Project, a Digital Platform for the creation, promotion and
+consolidation of cooperatives in Catalonia in 2020. From Platoniq Foundation, Javier Carillo has
+been responsible for extraction and analysis of the Goteo platform data for this research and
+Susana Noguero has been contributing to the design of the impact data model.
+Regarding funding, the Goteo social impact calculator received support from the the Social
+Economy “Singulars” program of the Generalitat de Catalunya, financed by Spanish Ministry of
+Education in its design and analysis phase (2019-21) and funds from the spanish Ministry of Labor
+and Social Economy (2022) in its technical development phase.
+7. References
+Aragón, P., Kaltenbrunner, A., Calleja-López, A., Pereira, A., Monterde, A., Barandiaran, X. E., &
+Gómez, V. (2017, September). Deliberative platform design: The case study of the online
+discussions in Decidim Barcelona. In International conference on social informatics (pp.
+277-287). Springer, Cham.
+Arvidson, M., Lyon, F., McKay, S. & Moro, D. (2010), The ambitions and challenges of SROI ,
+Document de travail 49, Third Sector Research Centre, University of Birmingham.
+Ba, Z., Zhao, Y. C., Song, S., & Zhu, Q. (2022). Does the involvement of charities matter?
+Exploring the impact of charities’ reputation and social capital on medical crowdfunding
+performance. Information Processing & Management, 59(3), 102942.
+Barrett, M., Oborn, E., & Orlikowski, W. (2016). Creating value in online communities: The
+sociomaterial configuring of strategy, platform, and stakeholder engagement. Information
+Systems Research, 27(4), 704-723.
+Bonina, C., López‐Berzosa, D., & Scarlata, M. (2021). Social, commercial, or both? An exploratory
+study of the identity orientation of digital social innovations. Information Systems Journal,
+31(5), 695-716.
+Brem, A., Bilgram, V., & Marchuk, A. (2019). How crowdfunding platforms change the nature of
+user innovation–from problem solving to entrepreneurship. Technological Forecasting and
+Social Change, 144, 348-360.
+Certomà, C. (2021). Representation: The Social Imaginaries of Digital Social Innovation. In Digital
+Social Innovation (pp. 65-101). Palgrave Macmillan, Cham.
+Certomà, C., & Corsini, F. (2021). Digitally-enabled social innovation. Mapping discourses on an
+emergent social technology. Innovation: The European Journal of Social Science Research,
+34(4), 560-584.
+Charbit, C., & Desmoulins, G. (2017). Civic Crowdfunding: A collective option for local public
+goods? In OECD Regional Development Working Papers.
+Davison, R. M., Majchrzak, A., Hardin, A., & Ravishankar, M. N. (2022). Special issue on
+responsible IS research for a better world. Information Systems Journal.
+De Luca, V. V., Margherita, A., & Passiante, G. (2019). Crowdfunding: a systemic framework of
+benefits. International Journal of Entrepreneurial Behavior & Research.
+Dendena, B., & Corsi, S. (2015). The Environmental and Social Impact Assessment: a further step
+towards an integrated assessment process. Journal of cleaner production, 108, 965-977.
+Deseriis, M., & Vittori, D. (2019). Platform Politics in Europe| Platform Politics in Europe: Bridging
+Gaps between Digital Activism and Digital Democracy at the Close of the Long
+2010s—Introduction. International journal of communication, 13, 11.
+Escobar, O. (2021). Transforming lives, communities and systems? Co-production through
+participatory budgeting. In The Palgrave Handbook of Co-Production of Public Services and
+Outcomes (pp. 285-309). Palgrave Macmillan, Cham.
+Foth, M., & Brynskov, M. (2016). Participatory action research for civic engagement. Civic media:
+Technology, design, practice, 563-580.
+Fuster Morell, M., Espelt, R., & Renau Cano, M. (2021a). Cooperativismo de plataforma: Análisis
+de las cualidades democráticas del cooperativismo como alternativa económica en
+entornos digitales. CIRIEC-España, revista de economía pública, social y cooperativa,
+(102).
+Fuster Morell, M., Espelt, R., & Senabre Hidalgo, E. (2021b). Data for Sustainable Platform
+Economy: Connections between Platform Models and Sustainable Development Goals.
+Data, 6(2), 7.
+Fuster Morell, M., Senabre Hidalgo, E., & Rodríguez, E. (2020). Goteo. org civic crowdfunding and
+match-funding data connecting Sustainable Development Goals. Scientific data, 7(1), 1-10.
+Gagliardia, D., Niglia, F., Misuraca, G., & Pasi, G. (2021). Civic engagement innovation: How ICTs
+shape the relationship between state and citizens. In Perspectives for Digital Social
+Innovation to Reshape the European Welfare Systems (pp. 139-158). IOS Press.
+Gilman, H. R., & Peixoto, T. C. (2019). Digital participation. In Handbook of democratic innovation
+and governance. Edward Elgar Publishing.
+González Cacheda, B. (2021). Una aproximación a las limitaciones participativas del civic
+crowdfunding. IDP Revista de Internet Derecho y Política.
+Hecker, S., Haklay, M., Bowser, A., Makuch, Z., Vogel, J., & Bonn, A. (2018). Innovation in open
+science, society and policy–setting the agenda for citizen science. In Citizen Science:
+Innovation in open science, society and policy, 1-23. UCL Press.
+Kukurba, M., Waszkiewicz, A. E., Salwin, M., & Kraslawski, A. (2021). Co-created values in
+crowdfunding for sustainable development of enterprises. Sustainability, 13(16), 8767.
+Lazcano, L., San-Jose, L., & Retolaza, J. L. (2019). Social accounting in the social economy: a
+case study of monetizing social value. In Modernization and accountability in the social
+economy sector (pp. 132-150). IGI Global.
+Meijer, A., & Boon, W. (2021). Digital platforms for the co-creation of public value. Policy & Politics,
+49(2), 231-248.
+Mollick, E. R. (2016). Containing multitudes: the many impacts of Kickstarter funding. Available at
+SSRN 2808000.
+Parasuraman, A., Zeithaml, V. A., & Berry, L. L. (1985). A conceptual model of service quality and
+its implications for future research. Journal of marketing, 49(4), 41-50.
+Passeri, F. (2020). Lessons Learned from Civic Crowdfunding and Match-Funding Schemes in
+Europe. In Crowdasset: Crowdfunding for Policymakers (pp. 211-255).
+Poblet, M., & Plaza, E. (2017). Democracy models and civic technologies: Tensions, trilemmas,
+and trade-offs. arXiv preprint arXiv:1705.09015.
+Qureshi, I., Pan, S. L., & Zheng, Y. (2021). Digital social innovation: An overview and research
+framework. Information Systems Journal, 31(5), 647-671.
+Retolaza, J. L., & San-Jose, L. (2021). Understanding social accounting based on evidence. SAGE
+Open, 11(2), 21582440211003865.
+Retolaza, J. L., San-Jose, L., & Ruíz-Roqueñi, M. (2016). Polyhedral Model: Social Value Model for
+Stakeholders. In Social Accounting for Sustainability (pp. 37-51). Springer, Cham.
+Retolaza, J. L., San-Jose, L., & Ruiz-Roqueñi, M. (2015). Monetarizing the social value: theory and
+evidence. CIRIEC-España, revista de economía pública, social y cooperativa, (83), 43-62.
+Romero Carrillo, A. (2022). The Social Balance: measurements for improvement. Doctoral
+Saldivar, J., Parra, C., Alcaraz, M., Arteta, R., & Cernuzzi, L. (2019). Civic technology for social
+innovation. Computer Supported Cooperative Work (CSCW), 28(1), 169-207.
+Senabre Hidalgo, E., & Fuster Morell, M. (2018). Match-funding as a formula for crowdfunding: a
+case study on the Goteo.org platform. In Proceedings of the 14th International Symposium
+on Open Collaboration (p. 23). ACM.
+Senabre Hidalgo, E., Fuster Morell, M., de Alborán, C. M., & Schulbaum, O. (2020).
+Match-Funding Calls for Open Crowdfunding: The Experience from Goteo. Org in New
+Policies for Crowdvocacy. In Crowdasset: Crowdfunding for Policymakers (pp. 129-152).
+Skaržauskienė, A., & Mačiulienė, M. (2020). Mapping international civic technologies platforms. In
+Informatics (Vol. 7, No. 4, p. 46). MDPI.
+Vanclay, F. (2003). International principles for social impact assessment. Impact assessment and
+project appraisal, 21(1), 5-12.
+Vanclay, F. (2020). Reflections on Social Impact Assessment in the 21st century. Impact
+Assessment and Project Appraisal, 38(2), 126-131.
+Wisebrod, J. M. (2007). Social impact ratings: How to make responsible investment appealing.
+Finance Bien Commun, 27(2), 29-40.

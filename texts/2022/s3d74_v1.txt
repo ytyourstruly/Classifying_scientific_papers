@@ -1,0 +1,848 @@
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 1
+Probabilistic Reasoning with Transformer Networks: An Application to Predicate Judgment
+Sudeep Bhatia
+University of Pennsylvania
+May 9, 2022
+Send correspondence to Sudeep Bhatia, Department of Psychology, University of Pennsylvania,
+Philadelphia, PA. Email: bhatiasu@sas.upenn.edu. Funding was received from the National
+Science Foundation grant SES-1847794
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 2
+Abstract
+Transformer networks that are trained on participant-generated feature norms have been
+shown to replicate several behavioral patterns observed in prior research on human semantic
+cognition. In this paper, I compare the predictions of these networks with participant evaluations
+of sentences sampled from a vast domain of discourse, with thousands of naturalistic predicates.
+I find that existing transformer networks make human-like predictions when given atomic
+sentences. However, they fail to capture participant evaluations of compound sentences with
+conjunctions, disjunctions, negations, and conditionals. Instead, participant responses, and
+associated behavioral patterns, are best captured by a Probabilistic Reasoner, which aggregates
+transformer judgments according to the rules of probability theory. These results suggest that
+human semantic cognition may also rely on a combination of associative pattern matching
+processes and deliberative reasoning processes when judging complex statements about the
+world. In doing so they show how probabilistic cognitive modeling and neural network modeling
+can be integrated to study naturalistic high-level cognition.
+Keywords: Neural networks; Probabilistic Cognition; Semantic Judgment; Logic; Reasoning
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 3
+Introduction
+Artificial neural networks have been shown to possess a remarkable ability for natural
+language processing. Notably, a new architecture, known as the transformer, has achieved state
+of the art performance in several tasks, including sentiment analysis, question answering, textual
+entailment, and grammaticality judgment (Devlin et al., 2018; Liu et al., 2019; Vaswani et al.,
+2017). Key to the transformer’s success is the transfer learning paradigm, according to which the
+transformer network is pre-trained on a large corpus of language data, and then further fine-tuned
+task-specific data. Pre-training gives the network the ability to process simple linguistic structure
+(Linzen & Baroni, 2020; Manning et al., 2020; McClelland et al., 2020), whereas fine-tuning
+allows the network to use its language capabilities to learn how to solve a specific prediction
+task.
+Building on this insight, we have recently shown that fine-tuning BERT (Devlin et al.,
+2018), a prominent a transformer network, on large-scale participant-generated feature norms
+data, leads to surprisingly accurate and human-like semantic judgments (Bhatia & Richie, in
+press). Importantly, BERT’s ability to process natural language sentences means that it can be
+tested on original stimuli from previously published work on semantic verification. We have
+done this with stimuli from 25 past experiments, and have found that our proposed BERT model
+generates 16 well-known behavioral patterns, including response time effects (e.g. Collins &
+Quillian, 1969), typicality effects, (e.g. Rosch, 1975), feature-covariance effects (e.g. Malt &
+Smith, 1984), and similarity effects (e.g. Richie & Bhatia, 2021).
+Although transformer networks may not be realistic models of semantic learning, the
+results in Bhatia and Richie (in press) indicate that --if appropriately trained-- they can develop
+the ability to evaluate the truth or falsehood of sentences the way people do. My goal in this
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 4
+paper is to perform a rigorous test of this claim by subjecting Bhatia and Richie’s BERT model
+to a series of challenging semantic verification tasks. In particular, I plan to compare BERT’s
+predictions to those of human participants judging the truth or falsehood of both atomic
+sentences (e.g. ‘cat has fur’) and compound sentences with conjunctions, disjunctions, and
+negations, and conditionals (e.g. ‘cat has fur and is an animal’ and ‘if something is an animal
+then it has fur’). Study 1 will involve sentences combining single entities with one or more
+predicates, whereas Study 2 will involve conditionals with two or more predicates. As in Bhatia
+and Richie, I will use the feature norms data of Devereux et al. (2014), which contains over
+twenty-six thousand single-place predicates. Tests will randomly sample these predicates to
+generate several types of compound sentences, and will thus span an extremely large domain of
+discourse.
+I expect BERT to do well at judging atomic sentences, but am less optimistic about its
+ability to reason over complex forms of logical structure and respond appropriately to compound
+sentences (Ettinger, 2020; Kassner et al., 2020; Rogers et al., 2020; Zhao et al., 2020). Thus, I
+also plan to test an alternative model, the Probabilistic Reasoner, which uses probability theory
+to aggregate BERT’s judgments of atomic sentences in compound sentences with logical
+connectives (Chater et al., 2006; Oaksford & Chater, 2007; Griffiths et al., 2010). This model
+will judge the probability of a compound sentence like ‘cat has fur and is an animal’ being true
+by multiplying BERT’s (probabilistic) predictions of the atomic sentence ‘cat has fur’ being true
+and the atomic sentence ‘cat is an animal’ being true. In the case of conditionals, like ‘if
+something is an animal then it has fur’, this model will first obtain BERT’s predictions for
+hundreds of entities (e.g. ‘cat’, ‘sparrow, ‘car’, ‘banana’, ‘jacket’…) on the predicates ‘has fur’
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 5
+and ‘is an animal’, and then use conditional probability to calculate the likelihood of ‘has fur’
+being true for entities for which ‘is an animal’ is true.
+Recently, several papers have applied cognitive models to representations obtained from
+artificial neural networks, and by doing so, have equipped these models with the ability to
+process and respond to naturalistic prompts (Battleday et al., 2021; Bhatia & Stewart, 2018;
+Sanders & Nosofsky, 2020; Trueblood et al., 2021; see Bhatia et al., 2019 and Bhatia & Aka, in
+press, for a review). Some recent papers even involve structured probabilistic reasoning
+processes applied to the unstructured outputs of neural network language models (Lew et al.,
+2020; Lu et al., 2019). My probabilistic extension of BERT adopts a similar research pipeline,
+and thus enriches existing theories of reasoning with the natural language capabilities and world
+knowledge of BERT. My approach is also motivated by psychological frameworks that describe
+human reasoning as the product of both intuitive and deliberative judgment processes (Evans,
+2008; Sloman, 1996). For the current application, BERT provides a knowledge base of intuitive
+facts based on parallel, pattern-matching processes, and probabilistic reasoning rules aggregate
+these facts using complex cognitive operations. By testing both the BERT model and its
+probabilistic extension on a large dataset of simple and complex sentences, I hope to uncover
+new insights about the capabilities and the limitations of transformer networks, as well as ways
+in which these networks can be used to model human reasoning with naturalistic predicates.
+Theoretical Background
+I wish to build models that can judge whether sentences about the world are true or false
+in a manner that mimics the responses of human participants. The sentences I will examine in
+this paper will involve natural entities such as animals, plants, vehicles, furniture, and clothing,
+as well as their associated single-place predicates obtained from a large-scale feature norming
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 6
+study (Devereux et al., 2014). I will use F to denote predicates (e.g. ‘has fur’); a to denote
+i j
+individual entities or constants (e.g. ‘cat’); and x to denote variables. Tests will include both
+atomic sentences, F (a ), made up of predicate-entity pairs (e.g. ‘cat has fur’), as well as
+i j
+compound sentences, such as F (a )∧F (a ) and F (x ) → F (x ), obtained by combining atomic
+i j i′ j i′ k i k
+sentences with logical connectives (e.g. ‘cat has fur and is an animal’ and ‘if something is an
+animal then it has fur’). I will give these sentences to human participants and evaluate models
+based on their ability to predict the truth and falsehood judgments of participants.
+Semantic judgment tasks, such as these, are central to the study of human cognition, and
+are the key to the modeling of high-level cognition, which involves sophisticated cognition
+operations on beliefs about the world. There is of course ongoing debate about the types of
+representations and cognitive operations at play in semantic judgment and reasoning. One early
+approach argued that semantic representations are organized hierarchically, and that semantic
+verification judgments involve a rule-based search through the hierarchy (Collins & Quillian,
+1969). Symbolic models of cognition expand on this idea, and propose that human reasoning
+relies on a system of logical rules that transform structured knowledge representations in
+complex judgment and reasoning tasks (Anderson, 1990; Newell et al., 1958). Probabilistic
+models of cognition (Chater et al., 2006; Oaksford & Chater, 2007; Griffiths et al., 2010) also
+emphasize structured representations, but propose that these representations are used in
+combination with probabilistic (often Bayesian) rules for reasoning and inference. In contrast to
+this, many researchers have argued that semantic cognition does not require explicitly structured
+representations (and symbolic or probabilistic computations on these representations), and that
+human behavior is best modeled using artificial neural networks with distributed representations
+(Rumelhart et al., 1986; Rogers & McClelland, 2004). This perspective is also shared by many
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 7
+researchers who have highlighted patterns in semantic judgment (Smith et al., 1974) and
+probability judgment (Tversky & Kahneman, 1983) that are not easily explained by
+hierarchically structured or probabilistic cognitive processes. Finally, many others have argued
+that a model of the full spectrum of semantic cognition and reasoning requires both structured
+(rule-based, logical or probabilistic) and unstructured (associative, distributed) processes (Evans,
+2008; Sloman, 1996).
+Despite this rich debate, researchers have, until recently, not been able to test their
+theories on human responses to unconstrained naturalistic judgment problems, such as those
+introduced at the start of this section. The issue here is that although the above theories make
+strong claims about underlying semantic representations, they are unable to model people’s
+actual representations for real world entities and predicates. This is a significant limitation, as
+implementing a theory in a predictive model capable of processing naturalistic judgment prompts
+is necessary to perform a complete test of the theory. Such an implementation can also facilitate
+practical applications, and open up new areas of theoretical work.
+Fortunately, advances in machine learning provide a solution to this problem. By training
+computer models (typically artificial neural networks) on large amounts of digital text and image
+data, researchers can proxy the types of rich mental representations at play in everyday semantic
+cognition. In Bhatia (2017), I used this insight to show that similarity measurements on high-
+dimensional vector representations of words could model a range of associative biases at play in
+high-level judgment, such as the conjunction fallacy and its moderators (Shafir et al., 1990;
+Tentori et al., 2013; Tversky & Kahneman, 1983). More recently, in Bhatia and Richie (in press),
+we have shown that transformer networks, fine-tuned on feature norms data, can predict people’s
+truth and falsehood judgments for simple entity-predicate pairs. Importantly, these networks can
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 8
+also predict response time (RT) effects previously documented by researchers, including classic
+level-of-hierarchy effects (Collins & Quillian, 1969), reversals of these effects due to semantic
+relatedness (Smith et al., 1973), RT differences between judgments involving related and
+unrelated sentences (Glass et al., 1974), RT differences between category membership and
+feature judgments (Hampton, 1984), RT differences between correlated and uncorrelated features
+(McRae et al., 1997), RT differences between distinctive and non-distinctive features (Cree et al.,
+2006), and RT patterns for judgments involving false sentences (Anderson & Reder, 1974). We
+also showed that these networks could predict entity typicality judgments (Rosch, 1975), as well
+as the relationship between typicality and inconsistency (McCloskey & Glucksberg, 1978),
+intransitivity (Hampton, 1982), and set membership violations (Roth & Mervis, 1983). These
+networks could also model feature overlap (Malt & Smith, 1984) and its relationship with
+typicality (Rosch & Mervis, 1975), as well asymmetry in similarity judgment (Whitten et al.,
+1979), differences between association and similarity (Hill et al., 2015), and similarity judgment
+within (rather than across) categories (Richie & Bhatia, 2021).
+The models in Bhatia (2017) and Bhatia and Richie (in press) can generate truth and
+falsehood judgments for nearly any natural language sentence, giving them a very wide domain
+of applicability. This is why we were able to test these models on original (natural language)
+stimuli from prominent past experiments. Both these models are also unstructured, in that they
+transform distributed, high-dimensional vector representations for words and sentences in
+multiple layers of neural networks to judge the truth or falsehood of statements about the world.
+Although this approach is suitable for modeling associative judgment biases (as in Bhatia, 2017)
+and the semantic verification of atomic sentences (as in Bhatia & Richie, in press), it is likely
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 9
+that more complex types of judgments, such as those studied in the current paper, require the
+capacity for structured thought.
+One way to perform structured cognition on distributed representations obtained from
+digital data has been put forth by Lu et al. (2019; Ichien et al., 2021) who have combined word
+vector representations with a Bayesian model for judging whether a given relation holds between
+pairs of words. Relatedly, Lew et al. (2020) have applied a probabilistic programing language to
+the outputs of neural language models to model naturalistic verbal reasoning. Outside of
+semantic cognition, researchers have begun combining high-dimensional vector representations
+of words, sentences, and images, obtained from deep neural networks, with sophisticated
+cognitive models, to predict naturalistic similarity judgment (Hebart et al., 2020; Mandera et al.,
+2017; Richie & Bhatia, 2021), categorization (Battleday et al., 2021; Peterson et al., 2018; Zou &
+Bhatia, 2021a); memory search (Hills et al., 2012; Nematzadeh et al., 2017), object recognition
+(Annis et al., 2020), judgment (Aka & Bhatia, in press; Bhatia, 2019; Bhatia et al., in press;
+Gandhi et al., in press; Zou & Bhatia, 2021b), and decision making (Bhatia & Stewart, 2018;
+Holmes et al., 2020; Trueblood et al., 2021) (see Bhatia & Aka, in press, for a review).
+The goal of this paper is to adopt a similar approach, by combining the model trained and
+tested in Bhatia and Richie (in press) with probabilistic reasoning rules for assessing the truth
+values of compound sentences. If we consider each atomic sentence to be an event, with a
+continuous probability in the range [0, 1] of being true, then probability theory offers
+straightforward rules for judging the probabilities of compound sentences made with logical
+connectives such as conjunctions, disjunctions, negations, and conditionals. Probability
+judgments are also graded and thus are better than binary logicist models at capturing the
+distribution of ratings observed in our data (see Oaksford & Chater, 2007 for details). Of course,
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 10
+I will also compare the complex probabilistic model with the simpler model of Bhatia and Richie
+to see if the inclusion of probabilistic reasoning rules improves prediction.
+Computational Models
+BERT
+At the core of all tests in this paper is the model developed by Bhatia and Richie (in
+press). This model is built on the original uncased BERT network (bidirectional encoder
+representations from transformers) (Devlin et al., 2018; Rogers et al., 2020), a particularly
+prominent transformer that is used as a baseline in many machine learning tests. BERT takes a
+sequence of words as an input and processes these words in twelve layers, with each layer being
+made up of a feedforward neural network and a self-attention mechanism. The self-attention
+mechanism is fundamental to BERT, as it enables the model to process other positions in the
+input sequence for information about how to best evaluate a target word (Vaswani et al., 2017).
+With a hidden layer size of 768, this BERT model has a total of 110M parameters.
+BERT was pre-trained using masked word prediction and next sentence prediction on a
+large text corpus by Devlin et al. (2018). In Bhatia and Richie (in press) we further fine-tuned
+BERT on a dataset of sentences and associated true-false labels obtained from feature-norming
+studies (Devereux et al., 2014; McRae et al., 2005) and category-norming studies (Van
+the studies (e.g. ‘has fur’, ‘is an animal’) with the entities from the studies (e.g. ‘cat’, ‘sparrow’)
+to generate true (e.g. ‘cat has fur’) and false (e.g. ‘sparrow has fur’) atomic sentences. Our
+resulting dataset had a total of 491,284 observations (sentences and corresponding true or false
+labels), made up of 2,066 unique entities and 29,048 unique single-place predicates. Half the
+sentences in the training data were true and half were false. Although we performed several
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 11
+cross-validation splits on this dataset to test the model’s out-of-sample predictive accuracy, in
+this paper I will use the full model that was fine-tuned on the complete dataset of 491,284
+observations.
+using large-scale feature norms data. B: Predictions for conditionals and other compound sentences
+obtained by directly querying Bhatia and Richie’s BERT model. C: Predictions for conditionals and other
+compound sentences obtained by applying the Probabilistic Reasoner to a knowledge base derived from
+BERT’s judgments of atomic sentences.
+The fine-tuned BERT model can take nearly any natural language sentence, S, as an
+input, and generate a classification probability, Pr [S], of the sentence being true (the
+BERT
+probability of the sentence being false is 1 - Pr [S]). In Bhatia and Richie (in press), we
+BERT
+showed that this classification probability accurately predicted whether a target sentence was
+labeled true or false. Additionally, this probability could also be used to capture several
+established behavioral effects in semantic verification. In what follows, I will use the log-odds
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 12
+of Pr [S], that is ln(Pr [S]/(1- Pr [S])), to predict whether participants, in a series of
+BERT BERT BERT
+new experiments, judge sentences as true or false. The main difference between this paper and
+Bhatia and Richie (in press) is that here I will investigate both atomic sentences and compound
+sentences. Thus, I will feed the model trained in Bhatia and Richie (in press) simple inputs like S
+= ‘cat has fur’ as well as more complex inputs like S = ‘cat has fur and is an animal’ or S = ‘if
+Probabilistic Reasoner
+The BERT model in Bhatia and Richie (in press) was trained on atomic sentences. Thus,
+I expect this model to accurately capture participant evaluations of these sentences. I suspect that
+BERT may not do as well for compound sentences, which require the processing of logical
+connectives (Ettinger, 2020; Kassner et al., 2020; Rogers et al., 2020; Zhao et al., 2020). Thus,
+building off research on human reasoning, I will also examine probabilistic reasoning rules that
+process logical connectives using the assumptions of probability theory (Chater et al., 2006;
+Oaksford & Chater, 2007; Griffiths et al., 2010). I will equip these probabilistic reasoning rules
+with a knowledge base of probabilistic evaluations of atomic sentences obtained from BERT
+natural entities from Devereux et al. (2014), our knowledge base has 26,075x638 = 16,635,850
+evaluations of atomic sentences, and thus takes the form of a 26,075x638 matrix, M, with m =
+ij
+Pr [F (a )] (for simplicity I assume the probabilities in M are independent of each other). I
+BERT i j
+will write the Probabilistic Reasoner’s evaluation of a sentence S as Pr [S].
+REASON
+In the simple case where S is simply an atomic sentence we have:
+Pr [F (a )] = Pr [F (a )] = m . (1)
+REASON i j BERT i j ij
+However, when S involves a negation of an atomic sentence we have:
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 13
+Pr [¬F (a )] = 1 - m . (2)
+REASON i j ij
+Conjunctions and disjunctions can likewise be calculated as:
+Pr [F (a )∧F (a )] = m x m (3)
+REASON i j i′ j′ ij i′j′
+and
+Pr [F (a )∨F (a )] = m + m - m x m . (4)
+REASON i j i′ j′ ij i′j′ i′j′ i′j′
+Conditionals offer a particularly interesting evaluation process as they can be accurately
+captured using the conditional probability formula (Evans et al., 2003; Fugard et al., 2011;
+th
+Oberauer & Wilhelm, 2003). Assuming a flat prior over entities, and writing the i row of M as
+the vector m , we get:
+Pr [F (x ) → F (x )] = dot[m , m ]/sum[m ]. (5)
+REASON i′ k i k i i′ i′
+Intuitively, the dot product, dot[m , m ], sums the probability of predicates F and F both
+i i′ i i′
+being true for each entity in the model’s knowledge base. This is divided by the total probability
+of F being true for the entities in the knowledge base, sum[m ]. Of course, more complicated
+i′ i′
+sentences are also possible, and in the sections below, I will be examining conditionals with
+negations, conjunctions, and disjunctions, for which Pr [S] will be calculated by combining
+REASON
+Equations 1-5. In what follows, I will use the log-odds predictions of Pr [S], that is
+REASON
+ln(Pr [S]/(1- Pr [S])) to model participant responses.
+REASON REASON
+Bag-of-Words Similarity
+A final model, I will also test a simple bag-of-words (BOW) similarity model. This
+model represents each entity or predicate as the average of its individual word vectors, and
+makes semantic verification judgments using the cosine similarity of the vectors of the entities
+and predicates. For example, such a model would judge ‘cat has fur’ by calculating the cosine
+similarity of the word vector representation of ‘cat’ and the average of the word vector
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 14
+representations of ‘has’ and ‘fur’. Likewise, such a model would judge ‘cat has fur and is an
+animal’ by measuring the BOW similarity of ‘cat’ and ‘has fur and is an animal’, and judge ‘if
+something is an animal then it has fur’ by judging the BOW similarity of ‘is an animal’ and ‘has
+fur’. I will use the well-known GloVe model (Pennington et al., 2014) to obtain word vector
+representations. The GloVe-based BOW similarity model has been shown to do well at
+predicting conjunction fallacies and similar associative judgment biases (Bhatia, 2017; Bhatia &
+Walasek, 2019) and was also used as a baseline model in Bhatia & Richie (in press).
+Study 1: Entities and Predicates
+Methods
+Stimuli. In Study 1, I obtained participant evaluations of 1,200 distinct sentences
+composed of a single entity and one or more predicates. In particular, there were four types of
+sentences: Base (or atomic) sentences, F (a ), combined a single entity with a single predicate
+i j
+(e.g. ‘cat has fur’). Negation sentences, ¬F (a ), negated the base sentences using the phrase ‘it is
+i j
+not the case’ (e.g. ‘it is not the case that cat has fur’). Conjunction sentences, F (a )∧F (a ),
+i j i′ j
+combined the base sentences with a second predicate applied to the same entity and connected
+the two predicates via a conjunction (e.g. ‘cat has fur and is an animal’). Finally, disjunction
+sentences, F (a )∨F (a ), replaced the ‘and’ in the conjunction sentences with an ‘or’ (e.g. ‘cat has
+i j i′ j
+fur or is an animal’).
+I constructed base sentences using entity-predicate pairs in Devereux et al. (2014). To
+ensure that I was able to obtain stimuli with a diverse set of truth values, I randomly sampled 100
+entity-predicate pairs to which BERT attaches a probability greater than 99.9%, i.e. 0.999 <
+Pr [F (a )] = Pr [F (a )]; 100 entity-predicate pairs to which BERT attaches a probability
+REASON i j BERT i j
+less than 99.9% but greater than 0.1%, i.e. 0.001 < Pr [F (a )] = Pr [F (a )] < 0.999; and
+REASON i j BERT i j
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 15
+100 entity-predicate pairs to which BERT attaches a probability less than 0.1%, i.e.
+Pr [F (a )] = Pr [F (a )] < 0.001. I obtained 300 negation sentences by negating the 300
+REASON i j BERT i j
+base sentences. I obtained 150 conjunction sentences by selecting half of the base sentences and
+pairing these with a second predicate that BERT believes applies to the entity with a probability
+greater than 99.9% (i.e. Pr [F (a )] = Pr [F (a )] > 0.999). I obtained another 150
+REASON i′ j BERT i′ j
+conjunction sentences by paring the base sentences with a second predicate that BERT believes
+applies to the entity with a probability less than 0.1% (i.e. Pr [F (a )] = Pr [F (a )] <
+REASON i′ j BERT i′ j
+0.001). These steps gave 150 yoked pairs of sentences with high and low probability
+conjunctions, resulting in 300 total conjunction sentences. Disjunction sentences used the same
+lowest average ratings in the study (all of which were base (atomic) sentences).
+sentences are labeled ‘B’, negations are labeled ‘N’, high probability conjunctions and disjunctions are
+labeled ‘CH’ and ‘DH’, and low probability conjunctions are labeled ‘CL’ and ‘DL’.
+Prob. BOW Ave.
+Sentence BERT Reas. Sim. Rating
+B: spoon is operated with the hands 0.85 0.85 0.12 99.81
+N: it is not the case that spoon is operated with the hands -1.57 -0.85 0.12 18.83
+CH: spoon is operated with the hands and used to whip cream 3.29 0.85 0.24 80.78
+CL: spoon is operated with the hands and is made of chicken 0.14 -3.59 0.16 5.04
+DH: spoon is operated with the hands or used to whip cream 3.16 4.06 0.24 95.20
+DL: spoon is operated with the hands or is made of chicken -1.11 0.85 0.16 87.26
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 16
+BERT and Probabilistic Reasoner make the same predictions as these are all atomic sentences.
+Prob. BOW Ave.
+Sentence BERT Reas. Sim. Rating
+Lowest
+plate is choked on -6.84 -6.84 0.17 0.00
+cricket produces venom -5.98 -5.98 -0.04 0.00
+fox has the potential to be a mirror -6.78 -6.78 0.27 0.00
+termite is used to wipe feet -9.82 -9.82 -0.07 0.00
+magpie is supposed to help you to see in the dark -9.22 -9.22 -0.14 0.00
+Highest
+tugboat is for pulling 8.32 8.32 -0.01 100.00
+newspaper is posted 9.04 9.04 0.35 100.00
+scalpel enables cutting 8.32 8.32 0.20 100.00
+alligator has a tail 8.28 8.28 0.14 100.00
+radio is an audio device 8.90 8.90 0.39 100.00
+Procedure. 101 participants (mean age = 26; 39% female, 57% male, 4% non-binary or
+other), recruited from Prolific Academic, completed the study for payment. Each participant was
+given 60 sentences to judge, with 15 sentences randomly sampled from each sentence type (base,
+negation, conjunction, and disjunction). Participants were asked to rate if each sentence was
+reasonably true or false, on a continuous scale from 0 (false) to 100 (true). The sentences were
+blocked by question type and blocks were presented in a random order with a break between
+blocks. Prior to starting the experiment, participants were given four practice trails with one
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 17
+sentence from each sentence type. Participants were also incentivized with a bonus payment of
+$0.50 if their ratings correlated strongly with the ratings of an expert judge. Sentence sampling
+was balanced, so that each of the 1,200 sentences were rated either 5 or 6 times by participants.
+Results
+Quantitative Predictions. I began by examining the models’ accuracies at predicting
+average participant ratings for each of the 1,200 distinct sentences in our study. Rank (Spearman)
+rank correlation in participant ratings. I obtained this by randomly dividing participants into two
+average rank correlation obtained from 10,000 such random splits.
+the full dataset, which is similar to the split half rank correlation of 0.60. By contrast the BERT
+model achieved a rank correlation of 0.44 and the BOW Similarity model achieved a rank
+correlation of only 0.12. These differences are largely due to negation sentences, for which both
+BERT and BOW Similarity have negative correlations. BERT and the Probabilistic Reasoner
+perform similarly for conjunction and disjunction sentences, where they both equal the split half
+on their rating (sentences rated 0-5 in the 1st group, sentences rated 5-10 in the 2nd group etc.),
+and calculating average model predictions for each group. Here we see that the Probabilistic
+Reasoner displays a strong positive linear trend (r = 0.98). Although BERT also shows a positive
+trend (r = 0.92), its predictions are much flatter and do not strongly distinguish high rated
+sentences from low rated sentences.
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 18
+statistically significant at p < 0.001. B: Model predictions for sentences in the full dataset as a function of
+participant ratings. Ratings are pooled based on intervals of length five. Markers indicate average model
+predictions and error bars indicate +/- 1 standard error.
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 19
+of sentence type. Note that BERT and the Probabilistic Reasoner make identical predictions for base
+(atomic) sentences which is why only one of these variables is included in that regression.
+Coef. SE t p 95CI - L 95CI - H R2
+All 0.39
+BERT 1.14 0.28 4.11 0.00 0.60 1.68
+Prob. Reason. 4.31 0.20 21.84 0.00 3.92 4.69
+BOW Sim. 8.89 5.41 1.64 0.10 -1.74 19.51
+Base 0.40
+BERT 6.13 0.47 13.08 0.00 5.21 7.06
+Prob. Reason [identical to BERT]
+BOW Sim. 9.23 11.19 0.82 0.41 -12.79 31.25
+Negation 0.31
+BERT -0.59 0.95 -0.62 0.54 -2.46 1.29
+Prob. Reason. 4.13 0.68 6.03 0.00 2.78 5.48
+BOW Sim. -17.34 10.42 -1.66 0.10 -37.83 3.16
+Conjunction 0.44
+BERT 1.48 0.84 1.77 0.08 -0.17 3.13
+Prob. Reason. 3.80 0.68 5.59 0.00 2.46 5.14
+BOW Sim. 22.11 10.10 2.19 0.03 2.22 41.99
+Disjunction 0.45
+BERT 0.74 0.63 1.17 0.24 -0.50 1.99
+Prob. Reason. 4.48 0.51 8.70 0.00 3.46 5.49
+BOW Sim. 33.09 10.35 3.20 0.00 12.72 53.46
+For a more rigorous analysis I regressed the average rating of sentences onto the
+predictions of the three models in a multiple regression analysis. The results of this analysis are
+significant and strong relationship with participant ratings. BERT, by contrast, has a smaller
+coefficient that does not always reach statistical significance, and also has a negative relationship
+with participant ratings in the case of negation. This is also the case for BOW Similarity. Note
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 20
+strongly correlated with those of the Probabilistic Reasoner for conjunctions (r = 0.87, p < 0.001)
+and disjunctions (r = 0.74, p < 0.001), leading to multicollinearity. I examine this issue in detail
+below.
+Qualitative Patterns. Why do BERT and BOW Similarity fail at negation? Put simply,
+they cannot detect that a sentence has been negated, and thus give atomic sentences roughly the
+same predictions as their negations. The rank correlation between the log-odds probabilities for
+sentences and their negations 0.83 for the BERT model. In the case of BOW similarity, this
+correlation is 1. Participants can, of course, detect negation, and thus have a rank correlation of -
+0.75 between ratings of sentences and their negations (negations for true sentences are given low
+ratings, whereas negations for false sentences are given high ratings). The Probabilistic
+Reasoner, which calculates the probability of negated atomic sentence as one minus the
+probability of the atomic sentence easily captures this pattern and generates a negative rank
+Study 1. Each point in each scatter plot corresponds to a single sentence in its base form (x-axis) and its
+negation form (y-axis).
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 21
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 22
+conjunction sentences, for participants and model predictions. B: Differences between base and
+disjunction sentences. C: Differences between conjunction and disjunction sentences. The top and bottom
+rows in each plot indicate sentences with a high and low probability second predicate respectively. The
+dashed vertical lines indicate average differences. Note that we have censored the x-axes in some graphs
+for visual clarity.
+BOW Similarity is also much better at conjunctions and disjunctions than other questions. Even
+problems in the regression. As discussed above, the predictions of BERT and the Probabilistic
+Reasoner are correlated at above 0.70 in conjunctions and disjunctions. The success of BERT in
+capturing conjunctions and disjunction has to do with how the stimuli were generated. Recall
+that I modified base sentences into conjunction and disjunction sentences by combining them
+with a second predicate for which the entity had a high probability and with a second predicate
+for which the entity had a low probability. Altogether this resulted in conjunction and disjunction
+sentences with a wide distribution in participant ratings. The Probabilistic Reasoner was able to
+capture the variance in this distribution as it composed together the individual (high or low)
+probabilities of the two entity-predicate pairs in the sentence. However, the BERT model was
+also able to capture this variance as the semantics of the words in the predicates allowed the
+model to distinguish sentences with high probability predicates from those of low probability
+predicates (without parsing the structure of the sentences). To some extent, this is also the case to
+the BOW Similarity model (as already shown in Bhatia, 2017).
+That said, even though both the BERT model and the Probabilistic Reasoner correlated
+strongly with participants, neither was able to fully describe the nuanced patterns in the
+Kahneman, 1983) by giving some base sentences in the high probability condition (e.g. ‘locust is
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 23
+useful for gymnastics’) lower ratings than their corresponding conjunctions (e.g. ‘locust is useful
+fallacies (Bar-Hillel & Neter, 1993) by giving some base sentences (e.g. ‘trumpet is loud’) in the
+low probability condition higher ratings than their corresponding disjunctions (e.g. ‘trumpet is
+the base sentences vs. the conjunction sentences was negative in the high condition,
+corresponding to a conjunction fallacy (Avg. Diff. = -5.50, t(149) = -2.51, p < 0.05). Likewise
+average difference between the ratings for the base sentences vs. the disjunction sentences was
+positive in the low condition, corresponding to a disjunction fallacy (Avg. Diff. = 7.52, t(149) =
+4.83, p < 0.001).
+The BERT model was able to capture this pattern by giving base sentences lower ratings
+than corresponding conjunction sentences in the high condition (Avg. Diff. = -3.41, t(149) = -
+8.66, p < 0.001) and by giving base sentences higher ratings than corresponding disjunction
+sentences in the low condition (Avg. Diff. = 6.52, t(149) = 11.81, p < 0.001). The BOW
+Similarity model also captured this pattern (Avg. Diff. = -0.01, t(149) = -3.41, p < 0.001 for high
+probability conjunctions and Avg. Diff. = 0.01, t(149) = 3.82, p < 0.001 for low probability
+disjunctions). However, the Probabilistic Reasoner, due to its reliance on the conjunction and
+disjunction laws of probability theory, always gave base sentences higher ratings than
+corresponding conjunction sentences (Avg. Diff. = 0.30, t(149) = 7.06, p < 0.001 in the high
+conjunction condition) and gave base sentences lower ratings than corresponding disjunction
+sentences (Avg. Diff = -0.25, t(149) = -7.15, p < 0.001 in the low disjunction condition).
+The persistence of the conjunction and disjunction fallacies in our experiments, and the
+success of BOW Similarity at capturing these fallacies, replicates Bhatia (2017). But it does not
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 24
+mean that participants were insensitive to logical connectives in these two conditions. Overall,
+participants gave conjunctions lower ratings than corresponding disjunctions (Avg. Diff = -
+Probabilistic Reasoner (Avg. Diff = -12.55, t(299) = -58.71, p < 0.001). However, it was not
+captured by BERT (Avg. Diff = -0.05, t(299) = -0.86, p > 0.05) which was largely insensitive to
+the logical connective or BOW Similarity (Avg. Diff = 0 for all sentence pairs), which was
+completely insensitive to the logical connective.
+Discussion
+Study 1 showed that the Probabilistic Reasoner outperformed BERT at predicting
+participant ratings of sentences composed of an entity and one or more predicates. This was
+largely due to the failure of BERT at processing negation. Results for the conjunction and
+disjunction sentences were mixed, with BERT and the Probabilistic Reasoning model providing
+equally high correlations, but neither model capturing all the qualitative patterns in the data. In
+Study 2, I will examine whether these results persist for conditionals with two or more
+predicates.
+Study 2: Conditionals
+Methods
+Stimuli. In Study 2, I obtained participant evaluations of 1,500 distinct sentences
+composed of conditionals between two predicates. As in Study 1, there were four types of
+sentences: Base sentences, F (x ) → F (x ), involved a simple conditional between two predicates
+i′ k i k
+(e.g. ‘if something is an animal then it has fur’). Negation sentences, ¬[F (x ) → F (x )], negated
+i′ k i k
+the base sentences using the phrase ‘it is not the case’ (e.g. ‘it is not the case that if something is
+an animal then it has fur’). Conjunction sentences, F (x ) → [F (x )∧F (x )], combined the base
+i′ k i k i^ k
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 25
+sentences with a third predicate which was connected to the predicate in the consequence via a
+conjunction (e.g. ‘if something is an animal then it has fur and drinks milk’). Finally, disjunction
+sentences, F (x ) → [F (x )∨F (x )], replaced the ‘and’ in the conjunction sentences with an ‘or’
+i′ k i k i^ k
+(e.g. ‘if something is an animal then it has fur or drinks milk’).
+I constructed the base sentences using the dataset collected by Devereux et al. (2014). I
+randomly sampled pairs of predicates from this dataset, and, for each pair of predicates, I
+calculated the Probabilistic Reasoner’s conditional probability as in Equation 5. To ensure that I
+was able to obtain stimuli with a diverse set of truth values, I randomly selected 50 predicate
+pairs with high conditional probabilities in both directions, i.e. 0.666 < Pr [F (x ) → F (x )]
+REASON i′ k i k
+and 0.666 < Pr [F (x ) → F (x )]; 50 predicate pairs with medium conditional probabilities
+REASON i k i′ k
+in both directions, i.e. 0.333 < Pr [F (x ) → F (x )] < 0.666 and 0.333 < Pr [F (x ) →
+REASON i′ k i k REASON i k
+F (x )] < 0.666; and 50 predicate pairs with low conditional probabilities in both directions, i.e.
+i′ k
+Pr [F (x ) → F (x )] < 0.333 and Pr [F (x ) → F (x )] < 0.333. These 150 pairs yield a
+REASON i′ k i k REASON i k i′ k
+total of 300 different sentences (F (x ) → F (x ) and F (x ) → F (x )) with largely symmetric
+i k i′ k i′ k i k
+conditional probabilities (Pr [F (x ) → F (x )] ≈ Pr [F (x ) → F (x )]).
+REASON i k i′ k REASON i′ k i k
+To obtain stimuli with asymmetric conditional probabilities, I further selected 50
+predicate pairs with a high conditional probability in one direction and a medium conditional
+probability in the other, i.e. 0.666 < Pr [F (x ) → F (x )] and 0.333 < Pr [F (x ) →
+REASON i′ k i k REASON i k
+F (x )] < 0.666; 50 predicate pairs with medium conditional probability in one direction and a
+i′ k
+low conditional probability in the other, i.e. 0.333 < Pr [F (x ) → F (x )] < 0.666 and
+REASON i′ k i k
+Pr [F (x ) → F (x )] < 0.333; and 50 predicate pairs with a high conditional probability in
+REASON i k i′ k
+one direction and a low conditional probability in the other, i.e. 0.666 < Pr [F (x ) →
+REASON i′ k
+F (x )] and Pr [F (x ) → F (x )] < 0.333. These 150 pairs also yield a total of 300 different
+i k REASON i k i′ k
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 26
+sentences (F (x ) → F (x ) and F (x ) → F (x )) with largely asymmetric conditional probabilities
+i k i′ k i′ k i k
+(Pr [F (x ) → F (x )] ≠ Pr [F (x ) → F (x )]).
+REASON i k i′ k REASON i′ k i k
+sentences are labeled ‘B’, their reversals are labeled ‘R’, negations are labeled ‘N’, high probability
+conjunctions and disjunctions are labeled ‘CH’ and ‘DH’, and low probability conjunctions are labeled ‘CL’
+and ‘DL’.
+Prob. BOW Ave.
+Sentence BERT Reason. Sim. Rating
+Base Asymmetric
+B: if something is worn in laboratories
+-5.66 1.09 0.51 92.7
+then it serves a practical purpose
+R: if something serves a practical purpose
+-6.98 -3.57 0.51 28.6
+then it is worn in laboratories
+Base Symmetric
+B: if something has little legs
+-7.22 1.45 0.88 63.3
+then it has little eyes
+N: it is not the case that if something has little legs
+-4.59 -1.45 0.88 54.3
+then it has little eyes
+CH: if something has little legs
+-4.21 0.96 0.80 49.0
+then it has little eyes and likes to eat
+CL: if something has little legs
+-5.87 -9.78 0.84 29.6
+then it has little eyes and has doors
+DH: if something has little legs
+-2.91 2.59 0.80 66.7
+then it has little eyes or likes to eat
+DL: if something has little legs
+then it has little eyes or has doors -5.00 1.45 0.84 34.8
+I obtained 300 negation sentences by negating the 300 symmetric sentences. I obtained
+150 conjunction sentences by selecting half of the symmetric sentences and pairing these with a
+third predicate that yielded a high conditional probability of the conjunction, i.e. Pr [F (x )
+REASON i′ k
+→ [F (x )∨F (x )]] > 0.5, and another 150 conjunction sentences by pairing the symmetric
+i k i^ k
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 27
+sentences with a third predicate that yielded a low conditional probability of the conjunction, i.e.
+Pr [F (x ) → [F (x )∨F (x )]] < 0.5. These steps gave 150 yoked pairs of sentences with
+REASON i′ k i k i^ k
+high and low probability conjunctions, resulting in 300 total conjunction sentences. Disjunction
+examples of all types of sentences, as well as associated model predictions and average
+Prob. BOW Ave.
+Sentence BERT Reason. Sim. Rating
+Lowest
+if something is air tight
+-7.28 -10.14 0.59 0.3
+then it is an item of female clothing and like a spoon
+if something is peelable
+-8.73 -7.16 0.49 0.3
+then it does half sleep
+if something is colour coded for foods
+-6.39 -6.37 0.55 0.8
+then it is found on feet
+if something has shrapnel
+-6.37 -1.74 0.40 1.4
+then it is what you wear on your feet or is stone
+if something has forward hanging ears
+then it is having 1000 legs and is used to remove hair -9.02 -10.48 0.66 1.8
+Highest
+if something is worn over other clothes
+-3.95 1.14 0.59 91.3
+then it is an overgarment
+if something is striking with drumsticks
+-3.52 0.01 0.38 91.8
+then it is used by bands and is used in percussion
+if something is used as flavouring
+4.18 1.39 0.59 92.3
+then it has a flavour
+if something is worn in laboratories
+-5.66 1.09 0.52 92.7
+then it serves a practical purpose
+if something can give knowledge
+7.87 0.74 0.80 95.8
+then it is useful for knowledge
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 28
+for each model, as well as split half participant correlations. B: Model predictions for sentences in the full
+dataset as a function of participant ratings. Ratings are pooled based on intervals of length five. Markers
+indicate average model predictions and error bars indicate +/- 1 standard error. Note that the final (95+)
+group is not shown as there was only one sentence that was given a rating higher than 95.
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 29
+Procedure. 92 participants (mean age = 27; 62% female, 33% male, 5% non-binary or
+other), recruited from Prolific Academic, and 95 participants (mean age = 21; 47% female, 53%
+male, 0% non-binary or other), recruited from the University of Pennsylvania Psychology
+participant pool completed the study. Each participant was given 50 sentences to judge, with 10
+sentences randomly sampled from each type of base sentence (symmetric and asymmetric) and
+10 sentences randomly sampled from the remaining types of sentences (negation, conjunction,
+and disjunction). Unlike Study 1, participants were not incentivized with a bonus payment. All
+other procedures from Study 2 were identical to Study 1.
+Results
+Quantitative Predictions. As in Study 1, I started by examining model accuracy at
+predicting average participant ratings for each of the 1,500 distinct sentences in the study. Rank
+rank correlation in participant ratings, calculated in the same way as in Study 1.
+the full dataset, which is similar to the split half rank correlation of 0.46 (the split half correlation
+in Study 2 is smaller than in Study 1 due to the more challenging nature of the conditional
+judgment task and due to the fact that participants were not incentivized). By contrast, the BERT
+model achieved a rank correlation of only 0.19 and the BOW Similarity model achieved a rank
+correlation of only 0.04. As in Study 1, the differences are largely due to negation sentences, for
+which both BERT and BOW Similarity have negative correlations. However, unlike Study 1,
+BERT is also worse than the Probabilistic Reasoner for base sentences and for conjunction and
+disjunction sentences. This likely reflects its inability to process complex conditional
+relationships between atomic sentences. All correlations for BERT and the Probabilistic
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 30
+Reasoner are significantly different to zero at p < 0.001. BOW Similarity fails to cross the 0.05
+significance threshold for the full dataset, but achieves significance at p < 0.05 for the remaining
+tests.
+of sentence type.
+Coef. SE t p 95CI - L 95CI - H R2
+All 0.22
+BERT 0.36 0.12 2.95 0.00 0.12 0.61
+Prob. Reason. 2.51 0.13 18.59 0.00 2.24 2.77
+BOW Sim. 8.13 2.42 3.36 0.00 3.39 12.86
+Base 0.15
+BERT 0.51 0.20 2.49 0.01 0.11 0.91
+Prob. Reason. 2.80 0.35 7.95 0.00 2.11 3.49
+BOW Sim. 12.48 4.00 3.12 0.00 4.63 20.34
+Negation 0.17
+BERT -0.43 0.28 -1.56 0.12 -0.98 0.11
+Prob. Reason. 2.29 0.38 5.95 0.00 1.53 3.05
+BOW Sim. -5.11 5.33 -0.96 0.34 -15.60 5.38
+Conjunction 0.27
+BERT 0.59 0.32 1.86 0.06 -0.04 1.22
+Prob. Reason. 1.85 0.24 7.63 0.00 1.38 2.33
+BOW Sim. 6.31 4.95 1.28 0.20 -3.43 16.04
+Disjunction 0.24
+BERT 1.00 0.30 3.30 0.00 0.40 1.60
+Prob. Reason. 4.25 0.59 7.22 0.00 3.09 5.41
+BOW Sim. 8.56 5.49 1.56 0.12 -2.25 19.37
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 31
+ratings, as in Study 1, and calculating model predictions for each group. Again, we see that the
+Probabilistic Reasoner displays a strong positive trend (r = 0.93). BERT, by contrast, makes
+much flatter predictions (r = 0.84) and does not clearly distinguish high rated sentences from low
+rated sentences.
+sentences and their negations. Each point in each scatter plot corresponds to a single sentence in its base
+form (x-axis) and its negation form (y-axis). B: Histogram of differences in participant ratings for base
+and reversal sentences. The dashed vertical lines indicate average differences. The top and bottom graphs
+present data for sentences for which the Probabilistic Reasoner predicts large and small asymmetries
+respectively. Note that we have censored the x-axes in some graphs for visual clarity.
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 32
+For a more rigorous analysis I regressed the average rating of sentences onto the
+predictions of the three models in a multiple regression analysis. The results of this analysis are
+significant and strong relationship with participant ratings. BERT, by contrast, has a smaller
+coefficient that does not always reach statistical significance, and also has a negative relationship
+with participant ratings in the case of negation. This is also the case for BOW Similarity.
+Qualitative Patterns. Unsurprisingly BERT and BOW Similarity fail at negation. Once
+again this stems from their inability to detect negations, which results in positive correlations
+between predictions for sentences and their negations (r = 0.89 for BERT and r = 1 for BOW
+Similarity, both p < 0.001). The Probabilistic Reasoner, by contrast, detects negation perfectly,
+allowing it to better approximate the judgments of human participants (for whom judgments of
+Another strength of the Probabilistic Reasoner is its ability to handle asymmetries in
+6B. Here I have plotted the differences in participant ratings between conditionals (F (x ) →
+i k
+F (x )) and their reversals (F (x ) → F (x )) when the Probabilistic Reasoner a high probability (>
+i′ k i′ k i k
+0.66) in one direction and a low probability (< 0.33) in the other (asymmetric sentences) as well
+as when the Probabilistic Reasoner gives a similar probability in both directions (symmetric
+sentences). To standardize the direction of the differences across the graphs, I have subtracted
+ratings and predictions of the sentence to which the Probabilistic Reasoner gives lower
+predictions from ratings and predictions of the sentence to which the Probabilistic Reasoner
+gives higher predictions. This is why the predicted differences for the Probabilistic Reasoner are
+all positive, even though these predicted differences are much larger for asymmetric sentences
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 33
+(Avg. Diff. = 2.92, t(49) = 21.07, p < 0.001) than symmetric sentences (Avg. Diff. = 0.93,
+t(249) = 18.48, p < 0.001). The key pattern here, however, is that differences in participant rating
+for sentences and their reversals are also much larger for asymmetric sentences (Avg. Diff. =
+14.51, t(49) = 4.8114, p < 0.001) than symmetric sentences (Avg. Diff. = 2.92, t(249) = 2.21, p <
+0.05) indicating that the Probabilistic Reasoner can appropriately predict asymmetries in
+participant conditional judgment. Note that I had initially though that the BERT and BOW
+Similarity models would fail at capturing these asymmetries. Although this is true for BOW
+Similarity (which gives the identical prediction for F (x ) → F (x ) and F (x ) → F (x )),
+i k i′ k i′ k i k
+surprisingly BERT was able to detect asymmetry and give higher predicted differences for
+asymmetric sentences (Avg. Diff. = 1.55, t(49) = 3.92, p < 0.001) than symmetric sentences
+(Avg. Diff. = 0.11, t(49) = 0.58, p > 0.05).
+My final analysis involves conjunctions and disjunctions. Here, the main patterns
+obtained for Study 1 were largely replicated. The average difference between the participant
+ratings for the base sentences vs. the conjunction sentences was not significantly positive in the
+high condition (Avg. Diff. = 2.42, t(149) = 1.46, p > 0.05) and the average difference between
+the participant ratings for the base sentences vs. the disjunction sentences was not significantly
+negative in the low condition (Avg. Diff. = 2.79, t(149) = 1.84, p > 0.05). This shows a neglect
+of conjunctions and disjunctions, corresponding to the conjunction and disjunction fallacies. The
+BERT model was able to capture this pattern by giving base sentences similar ratings to
+corresponding conjunction sentences in the high condition (Avg. Diff. = 0.57, t(149) = 2.37, p <
+0.05) and by giving base sentences higher ratings than corresponding disjunction sentences in the
+low condition (Avg. Diff. = 2.58, t(149) = 8.53, p < 0.001). However, the Probabilistic Reasoner,
+due to its reliance on the conjunction and disjunction laws of probability theory, always gave
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 34
+base sentences higher ratings than corresponding conjunction sentences (Avg. Diff. = 0.95,
+t(149) = 12.16, p < 0.001, in the high condition) and gave base sentences lower ratings than
+corresponding disjunction sentences (Avg. Diff = -0.75, t(149) = -6.00, p < 0.001, in the low
+condition). Interestingly, the BOW similarity model was also unable to capture this effect, and
+always gave conjunctions and disjunctions lower predictions than corresponding base sentences
+(Avg. Diff. = -0.07, t(149) = -9.56, p < 0.001 for high conjunctions and Avg. Diff. = -0.05,
+t(149) = -7.23, p < 0.001 for low disjunctions).
+Despite the persistence of the conjunction and disjunction fallacy in Study 2, participants
+were nonetheless sensitive to logical structure. Overall, participants gave conjunctions lower
+ratings than corresponding disjunctions (Avg. Diff = -13.53, t(299) = -13.53, p < 0.001). This
+pattern was easily captured by the Probabilistic Reasoner (Avg. Diff = -4.72, t(299) = -13.92, p <
+0.001). BERT, surprisingly, also captured this pattern, even though the effect was small (Avg.
+Diff = -0.56, t(299) = -13.36, p < 0.001). BOW Similarity, unsurprisingly, gave all sentence pairs
+the same rating.
+Discussion
+Study 2 showed that the Probabilistic Reasoner outperformed BERT at predicting
+participant ratings of sentences composed of conditionals between two or more predicates. This
+was largely due to the failure of BERT at processing negation, though BERT was also worse
+than the Probabilistic Reasoner at base sentences, conjunctions, and disjunctions. Interestingly,
+both the Probabilistic Reasoner and BERT were able to predict asymmetries in judgments for
+conditionals and their reversals. Both models were also able to give conjunctions lower ratings
+than corresponding disjunctions, showing sensitivity to logical structure (though once again
+BERT’s predictions were weaker than those of the Probabilistic Reasoner).
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 35
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 36
+conjunction sentences, for participants and model predictions. B: Differences between base and
+disjunction sentences. C: Differences between conjunction and disjunction sentences. The top and bottom
+rows in each plot indicate sentences with a high and low probability third predicate respectively. The
+dashed vertical lines indicate average differences. Note that we have censored the x-axes in some graphs
+for visual clarity.
+General Discussion
+Studies 1 and 2 obtained truth and falsehood judgments for thousands of complex natural
+language sentences. The sentences tested involved either single entities combined with one or
+more predicates (Study 1) or conditionals between two or more predicates (Study 2), and both
+studies allowed for other forms of logical structure through negations, conjunctions, and
+disjunctions of predicates. My goal was to use the BERT model proposed by Bhatia and Richie
+(in press) to predict participant judgments. As in Bhatia and Richie, I found that BERT
+performed well when given simple atomic sentences composed of single entity-predicate pairs.
+However, it was unable to process negations, and had significant difficulty with conditionals. I
+also tested an alternate model, which judged negations, conditionals, and other compound
+sentences by passing BERT’s evaluations of atomic sentences through probabilistic reasoning
+rules. The resulting Probabilistic Reasoner was able to appropriately handle negation, predict
+asymmetries in judgment as the antecedents and consequents of conditionals were reversed, and
+capture differences between conjunctions and disjunctions. For this reason, it achieved very high
+accuracy rates in predicting participant evaluations of all types of sentences across both studies.
+The sentences tested in this paper were randomly generated using more than 26,000
+predicates collected by Devereux et al. (2014). BERT’s natural language capabilities allowed me
+to combine these predicates with hundreds of natural entities and obtain accurate predictions for
+over 16 million atomic sentences. These predictions were the basis of a large knowledge base
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 37
+that was queried by the Probabilistic Reasoner to make predictions for compound sentences. In
+this way, the Probabilistic Reasoner was able to perform structured computations over a vast and
+naturalistic domain of discourse.
+In principle, such computations could be applied to arbitrarily complex sentences in
+predicate logic, with nearly any natural language entities or predicates. If such sentences can be
+parsed into simple atomic components (i.e. entity-predicate pairs), then BERT can be used to
+make predictions for the atomic components, and probabilistic reasoning rules can compose
+these predictions into evaluations of the compound sentences. Human judgment will likely
+diverge from the Probabilistic Reasoner’s predictions as the complexity and novelty of the
+sentences increases, but this model nonetheless provides a computational structure around which
+more psychologically realistic theories can be built. One approach to building such theories
+would be to implement cognitively plausible mechanisms for querying the information in the
+underlying knowledge base. Such mechanisms may rely on nuanced combinations of serial and
+parallel processes for aggregating the atomic components of compound sentences. Researchers
+have developed a suite of mathematical techniques for inferring serial and parallel processes
+from response time data and have applied them with great success to simple (often perceptual)
+tasks (e.g. Houpt et al., 2014; Townsend & Nozawa, 1995). Such techniques could be extended
+to the types of tasks considered in this paper, providing process-level accounts of naturalistic
+high-level judgment and reasoning.
+Although this paper has limited its analysis to the evaluation of individual sentences in
+predicate logic, BERT and the Probabilistic Reasoner could also be used to model more complex
+types of thinking. Theories of deductive reasoning, both probabilistic (Oaksford & Chater, 2007)
+and non-probabilistic (e.g. Braine, 1978; Johnson-Laird, 1983) could be equipped with a BERT-
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 38
+based knowledge base for evaluating arguments and drawing conclusions about the world.
+People often display content effects, such as the belief bias, in such tasks (Evans et al., 1983;
+Klauer et al., 2000). BERT’s vast knowledge base would facilitate the quantitative modeling of
+such biases and, more generally, would help extend existing theories to the types of rich stimuli
+encountered in everyday reasoning. It may also be possible to apply structured probabilistic
+models of feature induction to the knowledge base developed in this paper (Kemp &
+Tenenbaum, 2009; Tenenbaum et al., 2006). Such models may be able to extract latent
+relationships between thousands of naturalistic features, and subsequently infer novel features for
+existing entities or predict the features of new entities.
+Despite its successes, the Probabilistic Reasoner cannot provide a full account of the data
+in this paper. In particular, the Probabilistic Reasoner is unable to predict the emergence of the
+conjunction and disjunction fallacies. By contrast, the simple BERT model of Bhatia and Richie
+(in press) and the BOW Similarity model of Bhatia (2017) are both capable of accounting for
+these fallacies, as they tend to neglect logical structure and occasionally give higher ratings to
+conjunctions or lower ratings to disjunctions than the base sentences. These results indicate that a
+full account of the data likely requires a combination of the structured judgment processes of the
+Probabilistic Reasoner and the associative judgment processes of artificial neural networks
+(Evans, 2008; Sloman, 1996). Of course, it may be possible to explain the conjunction and
+disjunction fallacies by using alternative probabilistic rules, such as those relying on configural
+weighting (Gavanski & Roskos-Ewoldsen, 1991; Nilsson et al., 2009) or those admitting various
+types of noise (Costello & Watts, 2014, 2016). The stimuli in this paper were not designed to
+distinguish between different types of probabilistic models, and future work should carefully
+sample sentences from BERT’s knowledge base to attempt such tests.
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 39
+Conclusion
+The results of this paper show that standard probabilistic reasoning rules can be applied
+to BERT’s outputs in order to model complex predicate judgment. In this way they demonstrate
+the power of a relatively new type of computational approach that passes representations from
+artificial neural networks through established (often structured) cognitive models (see Aka &
+Bhatia, in press, for a review). The theories developed with this approach can be used to revisit
+traditional research problems with naturalism and quantitative precision, and to predict and
+explain human responses to everyday reasoning problems. I look forward to learning from and
+contributing to this promising research program, which I believe will grow rapidly with advances
+in representation learning and natural language processing.
+PROBABLISTIC REASONING WITH TRANSFORMER NETWORKS 40

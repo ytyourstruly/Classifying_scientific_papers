@@ -1,0 +1,759 @@
+UNCERTAINTY-DRIVEN PLANNING 1
+Uncertainty-Driven Exploration During Planning
+1 2,3 3,4,5
+Haoxue Fan , Fredrick Callaway , and Samuel J. Gershman
+Carney Institute for Brain Science, Brown University
+Department of Psychology, New York University
+Department of Psychology, Harvard University
+Center for Brain Science, Harvard University
+Center for Brains, Minds, and Machines, Massachusetts Institute of Technology
+Author Note
+Correspondence concerning this article should be addressed to Haoxue Fan, Carney
+Institute for Brain Science, Brown University, 164 Angell Street, Providence, RI, 02906.
+E-mail: haoxue_fan@brown.edu
+UNCERTAINTY-DRIVEN PLANNING 2
+Abstract
+In complex environments, the space of possible plans is vast. Generating a good plan
+therefore requires judicious selection of which parts of the plan space to mentally explore.
+Drawing on past studies of human exploration, we propose that mental exploration might
+invoke similar mechanisms. In particular, we test the hypothesis that mental exploration
+during planning is uncertainty-driven, such that people will exhibit a tendency to explore
+parts of the plan space that have high epistemic uncertainty. We developed a
+route-planning task, displayed as a binary tree, where participants were instructed to
+collect as many treats (rewards) as possible by traversing the tree. By separating the
+planning and execution phases, we encouraged participants to externalize their planning
+process. We manipulated uncertainty by varying the number of potential future states
+available from each current state. Across two studies, the data suggest that people
+preferred to explore options with more successor states after controlling for value
+differences, supporting the uncertainty-driven planning hypothesis. We also found that
+uncertainty played a larger role during the planning phase than during the execution
+phase, consistent with the hypothesis that the uncertainty effect primarily reflects a
+property of human planning algorithms rather than an intrinsic preference for uncertainty.
+Keywords: Uncertainty, Planning, Exploration
+UNCERTAINTY-DRIVEN PLANNING 3
+Uncertainty-Driven Exploration During Planning
+Finding the optimal plan in a large environment is notoriously intractable, due to
+the combinatorial explosion of possible decision sequences. Yet planning is also ubiquitous:
+from spending a day in a new city to preparing a future career, planning underlies many
+real-life sequential decision problems. For this to be possible, the brain must use algorithms
+that intelligently search the space of decision sequences without brute-force enumeration.
+For inspiration, we can look to planning algorithms that have been implemented in
+machines (LaValle, 2006). The fundamental object of study is the decision tree, where each
+node corresponds to a state and each edge corresponds to an action. The root node
+represents the agent’s current state. Choosing an action in a particular state moves the
+agent along the corresponding edge to a new state. Classical planning algorithms either
+exhaustively enumerate the possible actions at a given level of the decision tree before
+choosing one and moving to the next level (breadth-first search), or exhaustively enumerate
+the possible actions along a single branch of the decision tree before moving to the next
+branch (depth-first search). Both approaches can fail when the state space is very large or
+the optimal plans are very long. More efficient algorithms selectively search along
+particular paths based on an evaluation function that ranks the actions at each state
+(best-first search). The basic challenge for these algorithms is to define a good evaluation
+function that can be easily computed. A good choice of evaluation function may be
+problem-specific, hindering the generic application of such algorithms.
+An important insight into the design of efficient planning algorithms came from a
+connection with the exploration-exploitation dilemma in reinforcement learning (Sutton &
+Barto, 2018). An agent interacting with an environment faces the problem of
+simultaneously optimizing reward and gathering information. The agent can choose to
+exploit its current action value estimates, but this may yield suboptimal reward if the
+estimates are poor. The agent can improve the estimates by exploring the environment,
+but this runs the risk of incurring an opportunity cost if the explored states have low
+UNCERTAINTY-DRIVEN PLANNING 4
+reward. Although the optimal algorithm for balancing exploration and exploitation is
+intractable, uncertainty-directed reinforcement learning algorithms have been highly
+successful (Auer, 2002; Ciosek et al., 2019; Dayan & Sejnowski, 1996; Srinivas et al., 2010).
+In particular, these algorithms add an “uncertainty bonus” to the action values based on
+the agent’s ignorance about the true value. The Upper Confidence Bound (UCB)
+algorithm (Auer, 2002), for example, defines the uncertainty bonus based on a confidence
+interval around the value estimate. By taking actions that have high upper confidence
+bounds, the agent focuses their exploration on actions whose value could be much higher
+than currently estimated.
+It might seem that the exploration-exploitation dilemma does not apply in the case
+of planning: exploration in reinforcement learning involves taking actions in an unknown
+environment, whereas planning involves thinking about actions in a known environment.
+However, both problem settings involve reducing uncertainty about state-action values by
+traversing the state space (Hunt et al., 2021). Another difference between reinforcement
+learning and planning is that there is no opportunity for true exploitation while planning,
+since the agent does not actually receive the rewards associated with simulated actions.
+Here the analogy is less precise. However, note that the goal of planning is to find a
+high-value sequence of actions. If an action already has high estimated value, it is more
+likely to be part of such a sequence. The agent can thus “exploit” this knowledge to focus
+their search on more promising actions—indeed, this is precisely the idea behind best-first
+search.
+These arguments suggest that planning presents a form of exploration-exploitation
+dilemma, in which an agent must strike a balance between refining promising plans
+(exploitation) and seeking out new ones (exploration). This idea has been implemented in
+many different ways (e.g., Bellman, 1956; Sanner et al., 2009; Sutton, 1990). One notable
+example is UCT (Upper Confidence bounds applied to Trees; Kocsis & Szepesvári, 2006),
+the core mechanism of modern Monte Carlo tree search algorithms (Browne et al., 2012).
+UNCERTAINTY-DRIVEN PLANNING 5
+In UCT, the agent simulates several action sequences (or “rollouts”), applying a variant of
+UCB (Auer, 2002) to decide which action to simulate at each step.
+There is already considerable evidence that people use uncertainty-directed
+algorithms for reinforcement learning in bandit tasks (Fan, Burke, et al., 2023; Fan,
+Gershman, & Phelps, 2023; Frank et al., 2009; Gershman, 2018a, 2019; Schulz et al., 2020;
+Speekenbrink & Konstantinidis, 2015; Wu et al., 2018, 2021), and that these algorithms
+also appear to be used in real-world environments such as food purchasing (Schulz et al.,
+2019). In this paper, we report two experiments designed to study the hypothesis that
+people use a similar uncertainty-directed algorithm for planning. The key idea is to create
+situations where participants have varying levels of uncertainty about different branches of
+the decision tree. We accomplish this by varying the number of children nodes (branching
+factor) at different nodes in the tree. All else being equal, there will be greater uncertainty
+in the values of nodes with more children because these nodes lead to a greater number of
+possible future rewards. The uncertainty about which of those rewards will actually be
+attained as well as uncertainty in the rewards themselves will both contribute to higher
+uncertainty in the node’s value.
+One methodological challenge in studying the dynamics of planning in real-time is
+that planning is a mental process that is not directly observable. To address this, planning
+researchers often use process-tracing methods that make aspects of the planning process
+observable, for example, think aloud (De Groot, 1965; Newell & Simon, 1972), eye tracking
+(Callaway et al., 2024; Cristín et al., 2022; Kadner et al., 2023; van Opheusden et al., 2023;
+Zhu et al., 2022), and mouse tracking (Callaway, van Opheusden, et al., 2022; Eluchans,
+2024). Here, we adopt a similar approach, providing participants with an explicit interface
+to perform rollouts before they commit to a plan. Forcing participants to structure their
+planning in this way carries two benefits. First, it prevents participants from using more
+flexible strategies, like best-first search, whose cognitive cost is artificially reduced by
+presenting the full environment in a visual display. Second, it allows us to directly compare
+UNCERTAINTY-DRIVEN PLANNING 6
+participant data with rollout-based planning algorithms.
+Method
+The experiment design, sample size, exclusion criteria, and primary data analysis
+University Committee on the Use of Human Subjects (IRB19-0789). Data and code to
+regenerate results are publicly available at
+Participants
+Participants were recruited via the Prolific platform and informed consent was given
+prior to testing. Participants were excluded if they did not utilize the PLAN phase or used
+the PLAN phase for one trajectory in > 50% of all trials. We also excluded participants
+who chose the more rewarding option < 60% in the EXECUTE phase (see Experiment
+Design for more information on different phases of the experiment). The exclusion criteria
+were pre-registered. We recruited 95 participants in total (Experiment 1: N = 42;
+Experiment 2: N = 53) and the final sample size is 39 for Experiment 1 (25 male, 14
+female; age: M = 36.8, SD = 10.3, range 21-59) and 45 for Experiment 2 (20 male, 25
+female; age: M = 33.9, SD = 7.6, range 19-56).
+Experiment Design
+Trick-or-treat Game
+Our game is a modified version of the Mouselab-MDP paradigm, which has been
+widely used for studying human planning (Callaway, Jain, et al., 2022; Callaway et al.,
+2017; He & Lieder, 2023; Jain et al., 2023). On each trial, participants were presented with
+they were told that each node represents a house, and their goal was to collect as many
+treats (reward) as possible by visiting a series of interconnected houses (nodes). See
+UNCERTAINTY-DRIVEN PLANNING 7
+Appendix A for full instructions. Participants moved between nodes using the arrow keys.
+Upon arriving at a node, they received a pre-specified reward, drawn from a Normal
+distribution, N (µ = 0, σ = 2.25). Critically, the reward associated with each node was
+consistent within a trial, but was randomly sampled on each new trial. Thus, participants
+could learn about the value of a path on the current trial, but could not do any useful
+learning across trials.
+There were two phases in the game: PLAN and EXECUTE. During the PLAN
+phase—referred to as “ghost mode” in the instructions—participants could not collect
+treats, but they could simulate possible action sequences as if they were actually executing
+them (i.e., perform rollouts). Immediately before the PLAN phase, the rewards at all
+nodes were displayed for 500 ms. This provides participants with a rough idea of the
+reward function, allowing them to direct their rollouts towards higher rewards if they so
+desired. At each moment during the PLAN phase, participants could either move to an
+adjacent node and reveal its reward (arrow keys), jump back to the starting node (space),
+or end the PLAN phase (letter key t). These respectively correspond to continuing a
+rollout, cutting off a single rollout early, and terminating the planning process. Any reward
+revealed during the PLAN phase remained visible until the next phase began. After 20
+seconds, the PLAN phase was automatically terminated (if the participant had not already
+done so). During the EXECUTE phase, participants committed to one route and received
+the the total reward associated with all the nodes they visited . Participants were
+incentivized with a monetary bonus proportional to the total number of treats they have
+collected during the EXECUTE phase throughout the experiment.
+In Experiment 1, participants encountered 2 types of tree structure
+including the root node (level 0). The root node has two children (level 1), both of which
+have two children (level 2) as well. The left (right) child node of nodes at levels 2 and 3 in
+LEFT (RIGHT) tree has two children and the right (left) child node of nodes at levels 2
+UNCERTAINTY-DRIVEN PLANNING 8
+Task schematic.
+A B
+Current Round Ghost 🍬: 4
+C D
+Current Round Ghost 🍬: 0 Current Round 🍬: 0
+Note. (A) Participants started in the PLAN phase, indicated by a transparent avatar.
+The treats (rewards) were briefly flashed at the beginning of each trial (not shown here).
+(B) Participants used arrow keys to traverse the tree. Reward along the same trajectory
+remained visible during the rollout. (C) During the PLAN phase, participants can choose to
+restart from the root node for additional rollouts. The previously revealed reward remained
+visible throughout the PLAN phase. Participants had up to 20 seconds to carry out rollouts.
+They could also choose to terminate the PLAN phase earlier if they were ready for the
+EXECUTE phase. (D) When entering EXECUTE phase, indicated by a solid avatar, the
+rewards revealed during PLAN phase disappeared. Participants committed to one route and
+received the accumulated reward on the specific route.
+UNCERTAINTY-DRIVEN PLANNING 9
+and 3 in LEFT (RIGHT) tree has 0 children. Nodes at level 4 are all leaf nodes. Trials
+with LEFT and RIGHT tree structures were intermixed.
+Experiment 2 expanded the tree structure repertoire that participants could interact
+with. We generated all 68 tree structures that have 8 leaf nodes, have at least one branch
+that reaches 5 levels, and each node has either 0 or 2 child nodes. The LEFT and RIGHT
+tree structures used in Experiment 1 satisfied the above requirements and were included in
+the set of 68 unique tree structures. Participants encountered each tree structure once. An
+LEFT and RIGHT tree illustrations.
+Tree LEFT
+Tree RIGHT
+Note. For the LEFT (RIGHT) tree, nodes on the left (right) at levels 2 and 3 (surrounded
+by red and gray rectangles, respectively) have two child nodes, while their siblings have zero
+child nodes. The panels on the right show the experiment interface for LEFT/RIGHT trees.
+UNCERTAINTY-DRIVEN PLANNING 10
+Planning as Exploration Model
+We hypothesized that people would use an exploration algorithm to determine which
+node to visit next when performing rollouts in the PLAN phase. Sepecifically, our model
+uses a Bayesian variant of the UCB algorithm (Gershman, 2018a; Schulz & Gershman,
+2019; Srinivas et al., 2010), similar to that used in Monte Carlo tree search (Liu &
+Tsuruoka, 2016). This model assumes that nodes are explored according to a priority score:
+h = vˆ + w σ . (1)
+s s σ s
+That is, the priority, h, for exploring node s is a weighted sum of that node’s estimated
+value, vˆ, and the uncertainty in that value, σ (defined below). The balance between value
+and uncertainty is set by the w parameter, with larger values indicating more
+uncertainty-directed planning.
+At each step of a rollout, the model select the next node to visit by noisily
+maximizing over the priority for the two child nodes, a and b. We assume the noise is
+Gaussian with standard deviation 1/ , leading to choice probability:
+(cid:16) (cid:17)
+P (s = a) = Φ β(h − h ) , (2)
+a b
+where Φ(·) is the cumulative distribution function of the standard normal distribution. β
+can be understood as a determinacy parameter, analagous to an inverse softmax
+temperature.
+Value updates
+Having defined the rollout policy, we now turn to how rollouts update the estimated
+values. As mentioned above, the models tracks both the mean and variance (uncertainty)
+in the value each node. Given the underlying Gaussian distribution of the rewards
+Prior work has suggested that decision noise may itself be an exploration parameter (Fan, Burke, et al.,
+2023; Fan, Gershman, & Phelps, 2023; Gershman, 2018a, 2019; Lee et al., 2023; Wilson et al., 2014);
+however, our experiments were not designed to test this hypothesis.
+UNCERTAINTY-DRIVEN PLANNING 11
+delivered at each node, we assume that the posterior value estimate of node s is a Gaussian
+2 2
+distribution N (vˆ , σ ). The model updates these estimates during the rollouts, applying a
+Bayesian Bellman backup at each step. Intuitively, the value of a node is its reward plus
+the value of its best child (s ), the one with maximal estimated value. However, if the
+value of that child node is itself uncertain, this uncertainty must be “backed up” into the
+value of its parent. We further assume that this backup may be only partially applied
+(with a learning rate parameter η ∈ [0, 1]), and that participants may discount future
+rewards (with a discount parameter, γ ∈ [0, 1]). This yields the following update equations:
+∆vˆ = η(r + γvˆ − vˆ ) (3)
+s s s∗ s
+2 2 2 2
+∆σ = η(γ σ − σ ), (4)
+s s∗ s
+These updates were applied backward along the entire trajectory at the end of each rollout
+during the PLAN phase.
+Prior value sketch
+To initialize the value estimates, we assume that participants form a rough “sketch”
+(gist memory) of the value function based on the 500ms reward display at the beginning of
+each round. This sketch is formed in two steps. First, we compute Bayesian estimates of
+the individual rewards given a reward prior, N (µ , σ ), and a noisy observation of the true
+rewards, r ∼ N (r , σ ). For simplicity, we take a mean-field approximation over the
+obs true
+obs
+observation noise, resulting in a posterior reward estimate N (ˆr, σ ) with parameters
+est
+1 r / + µ /
+2 2
+true σ r σ
+σ 2 = , ˆr = obs true . (5)
+est
+1/ + 1/ σ2
+2 2
+σ σ
+obs r r
+In these equations, µ and σ are the true mean and variance of the distribution from
+which rewards are drawn (0 and 2.25, respectively). We arbitrarily set the observation
+Note that the posterior is only Gaussian if we ignore uncertainty in the policy itself. Specifically, our
+belief update assumes that the policy deterministically selects the action with maximal estimated value at
+every state. This is a simplifying assumption; see Tesauro et al. (2012) and Sezener and Dayan (2020) for
+methods that incorporate policy-related uncertainty into value estimation.
+UNCERTAINTY-DRIVEN PLANNING 12
+noise as σ = 0.25.
+obs
+Given these reward estimates, we then compute a distributional value function based
+on the successor representation (SR) for a random walk policy (Dayan, 1993; Gershman,
+2018b). Intuitively, we assume that participants know how likely they are (in general) to
+visit each node starting from any other node, but that they do not initially account for how
+that probability depends on their future actions, which may depend on the rewards.
+Formally, the random walk policy induces a transition function, T , defined as:
+1/|S | s ′ ∈ S
+ s s
+T = (6)
+s,s′
+0 otherwise,
+where S is the set of states accessible from state s (the “children” of s). The SR is defined
+as M = (I − γT) −1 . The value function can then be computed as vˆ = Mˆr (Dayan, 1993).
+However, this only provides a point estimate, whereas we are interested in identifying a
+distribution that captures uncertainty in the true value function. To do this, we begin by
+adopting a probabilistic interpretation of the SR (Carvalho et al., 2024; Eysenbach et al.,
+2021; Janner et al., 2021), treating M as the probability of reaching state s starting
+s,s′
+from s. We can then approximate the distribution over value as:
+v˜ ∼ Bernoulli(M ) · N (rˆ , σ ). (7)
+s s,s′ s′
+est
+s′
+Finally, we initialize the value estimates using its mean and variance:
+vˆ = E[v˜ ] = M rˆ (8)
+s s s,s′ s′
+s′
+h i
+2 2 2
+σ = Var[v˜ ] = M σ + M (1 − M )rˆ . (9)
+s s s,s′ est s,s′ s,s′ s′
+s′
+Note that we can directly interpret the entries of M as probabilities because the task environment is
+tree-structured, meaning each state can be visited at most once. However, M only represents the marginal
+probability of each state—it does not capture the dependencies between future states (e.g., you cannot visit
+two states at one depth). This is the sense in which 7 is approximate.
+UNCERTAINTY-DRIVEN PLANNING 13
+The variance term is of particular interest because it captures the initial uncertainty that
+we hypothesize to drive participant’s early planning. To intuitively understand this
+expression, observe that the full variance is the sum of two terms. The first term captures
+uncertainty in the rewards themselves (σ ), weighted by the probability that they will be
+est
+attained (M ). The second term captures uncertainty in which of those rewards will be
+s,s′
+attained (M (1 − M )) weighted by the estimated magnitude of those rewards (rˆ ).
+s,s′ s,s′
+s′
+Critically, note that both of these terms will be larger for nodes that have more successors.
+Thus, a preference for exploring nodes with higher uncertainty will be behaviorally
+revealed as a preference for nodes with more successors (including both children and
+indirect descendants).
+Model fitting
+We fit the model to participants’ choice data from the PLAN phase using Stan
+(Stan Development Team, 2024); see Appendix B for parameter recovery details. We fit
+participant-specific parameters for the learning rate η and the discount factor γ, and both
+group-level and participant-level parameters for coefficients β and w . For the i’th
+participant, we set the priors on participant-specific parameters as follows:
+η = ϕ(α), α ∼ N (0, 1) (10)
+γ = ϕ(θ), θ ∼ N (0, 1) (11)
+β ∼ N (µ , σ ) (12)
+i 1 1
+w ∼ N (µ , σ ) (13)
+σi 2 2
+The group level parameters were given weakly informative hyper-priors:
+µ ∼ N (0, 1), µ ∼ N (0, 1), (14)
+1 2
+σ ∼ N (0, 1), σ ∼ N (0, 1), (15)
+1 + 2 +
+where N (0, 1) denotes the half-normal distribution.
+For each model, Markov Chain Monte Carlo (MCMC) was run with 4 chains. Each
+chain was run for 2000 iterations, using the first 1000 for warmup. The Gelman-Rubin R
+UNCERTAINTY-DRIVEN PLANNING 14
+statistic was computed and ensured to be less than 1.1 for all variables. We report the
+median estimate of posterior distribution and the 95% highest posterior density intervals
+(HDIs). We treated an effect as statistically credible if the parameter’s 95% HDI did not
+contain 0.
+To supplement this model-based analysis, we also analyzed participants’ choices in a
+more model-agnostic way. Concretely, we modeled participants’ choices as a function of the
+number of child nodes (n ) and the number of indirect descendants (n ):
+child ind
+P (s = a) = Φ (w (n − n ) + w (n − n ) + w (v¯ − v¯ ))) , (16)
+child child,a child,b ind ind,a ind,b val a b
+where v¯ is computed as the average return received from node a prior to the current
+rollout, serving as an empirical proxy for the posterior mean estimate vˆ . It is also worth
+noting that since all tree structures are full binary trees (i.e., each node has 0 or 2 child
+nodes), there exist three levels of relative number of child nodes: -2, 0, and 2. Given the
+LEFT/RIGHT tree design in Experiment 1, there exist three levels of relative number of
+indirect descendants as well: -2, 0, 2. In Experiment 2, more flexible tree structures lead to
+more possible value for the relative number of indirect descendants, ranging from -10 to 10.
+Our model simulation results suggest that when the uncertainty weight w is positive,
+child ind
+For this model-agnostic regression, we fit a Bayesian generalized mixed-effects model
+with a probit link function, and included fixed and random effects for all regressors (w ,
+child
+w , and w ). Regressors were standardized before entering the regression. The random
+ind val
+effects were drawn from a multivariate Gaussian distribution with mean zero and unknown
+covariance matrix. We implemented the model with the brms R package (Bürkner, 2017),
+using the default prior for fixed effects (an improper flat prior over the reals). We used the
+same MCMC sampling hyper-parameters and convergence criteria as for the main model.
+UNCERTAINTY-DRIVEN PLANNING 15
+Simulated choice probability grouped by number of child nodes and indirect descendants
+using different parameter combinations.
+Experiment 1 Experiment 2
+0.65
+0.60
+0.55
+0.50
+0.45
+0.40
+−2.5 0.0 2.5 −2.5 0.0 2.5
+Value difference (left−right)
+)tfel
+esoohc(P
+b „ , =
+A 0 w 0
+Experiment 2
+0.60
+0.55
+0.50
+0.45
+−2.5 0.0 2.5
+Value difference (left−right)
+)tfel
+esoohc(P
+Experiment 1 Experiment 2
+0.7
+0.6
+0.5
+0.4
+0.3
+−2.5 0.0 2.5 −2.5 0.0 2.5
+Value difference (left−right)
+)tfel
+esoohc(P
+b „ , „
+C 0 w 0
+Experiment 2
+0.6
+0.5
+0.4
+−2.5 0.0 2.5
+Value difference (left−right)
+)tfel
+esoohc(P
+Number of child(left column) and grandchild(right column) nodes left<right left=right left>right
+Note. All data are simulated using Eqs. 1-9 with different parameter combinations. In (A,B)
+the determinacy parameter β is fitted and uncertainty weight w is fixed at 0. In (C,D) both
+determinacy parameter and uncertainty weight are fitted. We use fitted parameter values
+the yellow (green) line in (A,C) corresponds to the situation where the node on the left
+(right) has 0 child nodes while its sibling has 2 child nodes. The gray lines correspond to the
+situation where all nodes on the same level have either 0 or 2 child nodes. For (B,D), we only
+plot data where both nodes at the current layer has the same number of child nodes—i.e.,
+data contributing to the gray lines in (A,C). The standard deviation of reward distribution
+is 1.5. Error bars indicate standard error. Gray ribbons indicate 95% confidence interval of
+the predicted values.
+UNCERTAINTY-DRIVEN PLANNING 16
+Results
+Overall, participants performed the task well, choosing the more rewarding node
+73.3 % of the time during EXECUTE phase. Though not required, people made use of the
+PLAN phase. On average, people carried out 4.52 rollouts per graph (Experiment 1: 4.87;
+Experiment 2: 4.51) and 91.2 % of the rollouts reached a leaf node (Experiment 1: 90.5%;
+Experiment 2: 91.4 %). People also primarily visited the nodes that they inspected during
+the PLAN phase (Experiment 1: 92.0% trials; Experiment 2: 93.0 %). Finally, people who
+planned more (i.e., carried out more rollouts), earned more rewards during the EXECUTE
+These results suggest that the PLAN phase effectively probes planning.
+Relationship between average number of rollouts during the PLAN phase and performance
+during the EXECUTE phase.
+Experiment 1 Experiment 2
+0.9
+0.8
+0.7
+0.6
+0.5
+0.4
+2 4 6 8 2 4 6 8
+Average number of rollouts during PLAN
+)ETUCEXE
+gnirud
+noitpo
+retteb
+esoohC(P
+Note. Each point represents one participant. The shaded area represents the 95% confidence
+interval.
+UNCERTAINTY-DRIVEN PLANNING 17
+Empirical choice probability grouped by number of child nodes (A) and indirect descendants
+(B).
+Experiment 1 Experiment 2
+0.75
+0.50
+0.25
+−2.5 0.0 2.5 −2.5 0.0 2.5
+Value difference (left−right)
+)tfel
+esoohc(P
+Experiment 2
+0.8
+0.6
+0.4
+0.2
+−2.5 0.0 2.5
+Value difference (left−right)
+)tfel
+esoohc(P
+Number of child nodes(A) and indirect descendants(B) left<right left=right left>right
+Note. Because all tree structures are full binary trees, the yellow(green) line in (A) corre-
+sponds to the situation where the node on the left(right) has 0 child nodes while its sibling
+has 2 child nodes. The gray lines correspond to the situation where all nodes on the same
+level have either 0 or 2 child nodes. For (B), we only plot data where both nodes at the
+current layer has the same number of child nodes—i.e., data contributing to gray lines in
+(A). The standard deviation of the reward distribution is 1.5. Error bars indicate standard
+error. Gray ribbons indicate 95% confidence interval of the predicted values.
+Planning reflect both value- and uncertainty-seeking
+Our model proposes that human planners selectively explore states that have both
+high estimated value and high uncertainty in value (Eq. 2). More concretely, simulations
+from which more reward has been gained on average (v¯), as well as nodes that have more
+children (n ; our experimental manipulation). These two features act as empirical
+child
+proxies of estimated value vˆ and uncertainty σ in Eq 2, respectively.
+UNCERTAINTY-DRIVEN PLANNING 18
+Coefficient estimates for value difference, relative number of child nodes, and relative
+number of indirect descendants during the PLAN phase for Experiments 1 (A) and 2 (B)
+A B
+Relative number of Relative number of
+indirect descendants indirect descendants
+Relative number of Relative number of
+child nodes child nodes
+Value difference Value difference
+0.10 0.15 0.20 0.25 0.30 0.150 0.175 0.200 0.225
+Coefficient Estimate Coefficient Estimate
+Note. Vertical lines indicate median estimate of the posterior. Shaded areas indicate 95%
+credible interval of the posterior coefficient estimates.
+probit regression described above (Eq. 16), we found that participant choices in the PLAN
+phase were positively related to both value (w ; Experiment 1: M = 0.16, 95% HDI =
+val
+[0.11, 0.23]; Experiment 2: M = 0.19, 95% HDI = [0.16, 0.22]) and number of children
+(w ; Experiment 1: M = 0.24, 95% HDI = [0.19, 0.29]; Experiment 2: M = 0.20, 95%
+child
+We aditionally found that participants were sensitive to a more far-sighted indicator
+of uncertainty: the number of indirect descendants, that is, the number of nodes that could
+be reached in more than one step. Because the true value (cumulative future reward) of
+each child node depends on all its descendants, two nodes with the same number of child
+nodes but different numbers of indirect descendants will have different levels of uncertainty.
+This preference for nodes with more indirect descendants is also predicted by our model
+the same number of children, participants were more likely to explore the node with more
+UNCERTAINTY-DRIVEN PLANNING 19
+Model comparison results for Experiments 1 and 2 using the leave-one-out information
+criterion (LOOIC).
+Experiment 1 Experiment 2
+Model 1 12538.15 56689.44
+Model 2 12124.44 55144.66
+Model 3 12085.62 54672.62
+Note. LOOIC is computed as -2 * expected log pointwise predictive density. Smaller LOOIC
+indicates better model fit. For Model 1, the determinacy parameter β is fitted and the
+uncertainty weight w is fixed at 0. For Model 2, the uncertainty weight is fitted and the
+coefficient for value in Eq. 1 is fixed at 0. For Model 3, both the determinacy parameter
+and the uncertainty weight are fitted.
+indirect descendants (w ; Experiment 1: M = 0.13, 95% HDI = [0.08 0.17]; Experiment 2:
+ind
+Having confirmed our pre-registered behavioral predictions, we then fit our
+theoretical model (Eq. 2) directly to participants’ planning behavior. This model implicitly
+captures all the effects described above, as well as more specific belief-updating dynamics
+that could yield more precise measures of value and uncertainty. The full model
+outperformed nested models where the coefficient for value or uncertainty was fixed to be 0
+were above 0 (Experiment 1 β: M = 0.061, 95% HDI = [0.053, 0.069], w : M = 4.58, 95%
+HDI = [3.63, 5.53]; Experiment 2 β: M = 0.065, 95% HDI = [0.056, 0.075], w : M = 5.51,
+The results above suggest that our participants were sensitive to value and
+UNCERTAINTY-DRIVEN PLANNING 20
+Posterior Estimates of determinacy β (A) and uncertainty weight w (B) in Experiments 1
+and 2.
+A B
+Experiment 1 Experiment 1
+Experiment 2 Experiment 2
+0.05 0.06 0.07 0.08 3 4 5 6
+determinacy ( ) uncertainty weight (w )
+Note. Dashed lines indicate the 95% credible interval of the posterior estimates.
+uncertainty when choosing which action to simulate next during planning. However, it is
+possible that these results reflect an inherent preference for states that have more
+descendants (i.e., “keeping your options open”; Navarro et al., 2018). To address this, we
+conducted an exploratory analysis using a different measure of uncertainty: the number of
+participants were more likely to explore nodes that had been visited less often, controlling
+for both estimated value and the number of descendants (coefficient for previous visit;
+Experiment 1: M = −0.44, 95% HDI = [-0.52, -0.37]; Experiment 2: M = −0.38, 95% HDI
+= [-0.26, -0.34]).
+Uncertainty-seeking is selective to planning
+Having confirmed an influence of uncertainty on participants’ planning, we next
+considered a more subtle question. Is the exploratory behavior we observed specific to
+planning, or does it instead reflect a general preference for uncertainty that is not sensitive
+to the functional demands of planning vs. acting? Intuitively, simulated actions should be
+UNCERTAINTY-DRIVEN PLANNING 21
+Empirical choice probability grouped by number of previous visits.
+Experiment 1 Experiment 2
+0.8
+0.6
+0.4
+0.2
+−2 0 2 4 −2 0 2 4
+Value difference (left−right)
+)tfel
+esoohc(P
+Number of visits to nodes on the same layer left<right left=right left>right
+Note. Choice probability was modeled using probit regression. The yellow (green) lines
+correspond to the situation where the node on the left (right) has been visited more frequently
+than its sibling before the current choice. The gray lines correspond to the situation where
+all nodes on the same level have been visited the same number of times before the current
+choice. The standard deviation of reward distribution is 1.5. Error bars indicate standard
+error. Gray ribbons indicate 95% confidence interval of the predicted values.
+more sensitive to uncertainty (and less sensitive to value) because these simulations can
+directly inform the upcoming choice (and do not incur real consequences). In contrast, real
+actions should be more sensitive to value (and less sensitive to uncertainty) because they
+have real consequences (and have a less immediate impact on future choice—in our task,
+one cannot learn any useful information while acting).
+To test this intuitive prediction, we conducted an exploratory analysis comparing
+and number of children in both phases. However, while uncertainty dominated in the
+UNCERTAINTY-DRIVEN PLANNING 22
+PLAN phase, value dominated in the EXECUTE phase. To statistically confirm this
+pattern, we regressed choices on relative value and relative number of child nodes, using
+the phase as an interaction term. Concretely, we constructed a regression analagous Eqs 2
+and 1 to obtain parameters comparable to the determinacy β and uncertainty weight w in
+the model-based analysis:
+(cid:16) (cid:17)
+′ proxy proxy
+P (s = a) = β (v¯ − v¯ ) + w (n − n ) . (17)
+a b child,a child,b
+We then collapsed the data across the PLAN and EXECUTE phases and include
+interactions between the proxy parameters and the experiment phase. Consistent with our
+prediction, we found that people put less weight on uncertainty in the EXECUTE phase
+proxy
+(interaction between EXECUTE phase and w ; Experiment 1: M = −2.29, 95% HDI
+column). People are also more deterministic during the EXECUTE phase (interaction
+proxy
+between EXECUTE phase and β ; Experiment 1: M = 1.17, 95% HDI = [1.00, 1.36];
+Conducting a similar analysis using the cognitive model (fit to each stage
+separately), we found that participants put a higher weight on model-derived uncertainty
+in the PLAN phase (PLAN - EXECUTE ∆w ; Experiment 1: M = 3.39, 95% HDI =
+[2.21, 4.61]; Experiment 2: M = 4.35, 95% HDI = [3.48, 5.12]) and showed overall more
+deterministic behavior in the EXECUTE phase (PLAN - EXECUTE ∆β; Experiment 1:
+M = −0.49, 95% HDI = [-0.57, -0.42]; Experiment 2: M = −0.52, 95% HDI = [-0.59,
+-0.45]).
+The differential effect of uncertainty on decision during PLAN and EXECUTE is
+also reflected when we quantify uncertainty as the number of times the node had been
+previously visited during planning. By regressing choices with previous visit, estimated
+value, number of descendants and interactions between parameters and experiment phase,
+while people tend to visit nodes that they have visited less often before during PLAN
+UNCERTAINTY-DRIVEN PLANNING 23
+phase, they tend to visit the option with more accumulated visits during EXECUTE phase
+(interaction between EXECUTE phase and coefficient for previous visit; Experiment 1:
+M = 0.78, 95 %HDI = [0.67, 0.88]; Experiment 2: M = 0.82, 95 %HDI = [0.77, 0.87];).
+Relationship between number of child nodes and empirical choice probability in the PLAN
+and EXECUTE phases.
+Experiment 1 Experiment 1
+PLAN EXECUTE
+1.00
+0.75
+0.50
+0.25
+0.00
+Experiment 2 Experiment 2
+PLAN EXECUTE
+1.00
+0.75
+0.50
+0.25
+0.00
+−2.5 0.0 2.5 −2.5 0.0 2.5
+Value difference (left−right)
+)tfel
+esoohc(P
+Relative number of child node (left−right) left < right left > right
+Notes. Error bars indicate standard error of the mean. Gray ribbons indicate 95% confidence
+interval of the predicted values.
+UNCERTAINTY-DRIVEN PLANNING 24
+proxy proxy
+Posterior estimates for determinacy proxy (β ) and uncertainty weight proxy (w ) in
+the PLAN/EXECUTE phases, and their interactions with PLAN/EXECUTE phases for
+Experiments 1 (A) and 2 (B)
+determinacy uncertainty weight
+Main effect
+Interaction
+0.5 1.0 1.5 −2.5 0.0 2.5 5.0
+Coefficient Estimate
+determinacy uncertainty weight
+Main effect
+Interaction
+0.4 0.8 1.2 −1 0 1 2
+Coefficient Estimate
+Experiment Phase EXECUTE PLAN
+Notes. Interaction terms are calculated using the PLAN phase as the reference level. Vertical
+line indicate median estimate of the posterior. Shaded areas indicate 95% credible intervals
+of the posterior coefficient estimates.
+UNCERTAINTY-DRIVEN PLANNING 25
+Relationship between number of previous visits and empirical choice probability in the
+PLAN and EXECUTE phases.
+Experiment 1 Experiment 1
+PLAN EXECUTE
+1.00
+0.75
+0.50
+0.25
+0.00
+Experiment 2 Experiment 2
+PLAN EXECUTE
+1.00
+0.75
+0.50
+0.25
+0.00
+−2 0 2 4 −2 0 2 4
+Value difference (left−right)
+)tfel
+esoohc(P
+Number of visits to nodes on the same layer left<right left=right
+Notes. Error bars indicate standard error of the mean. Gray ribbons indicate 95% confidence
+interval of the predicted values.
+UNCERTAINTY-DRIVEN PLANNING 26
+Discussion
+In two experiments, we studied the guidance of planning by uncertainty. The
+central hypothesis was that mental exploration of decision trees may involve mechanisms
+similar to overt exploration of environments during reinforcement learning (Schulz &
+Gershman, 2019). In support of this hypothesis, we reported several converging measures
+showing that people tend to explore parts of the decision tree with greater uncertainty (i.e.,
+nodes with more children and indirect descendants). Quantitative comparison of
+computational models confirmed that an uncertainty bonus (in addition to value) improves
+fit to human data. We also found that this uncertainty seeking was selective to planning,
+over and above a general tendency to take actions that lead to more future choices.
+Our experimental paradigm has two important features. First, the planning phase
+has a time limit (a maximum of 20 seconds). The time limit makes it almost impossible to
+visit all nodes during planning, much like in naturalistic planning tasks. Therefore, this
+design reduces the possibility of using strategies whose objective is to visit all states (e.g.,
+breath-first or depth-first search). Second, before the start of the planning phase, all the
+rewards were flashed quickly to the participant. This differs from previous work using the
+Mouselab-MDP paradigm, where participants need to click the node to reveal the reward
+for the first time (Callaway, van Opheusden, et al., 2022). Therefore, the act of visiting a
+node in the current setup is ostensibly not for revealing reward information, but rather for
+reducing uncertainty in the value estimate. Additionally, both the rewards and the tree
+structure varies from trial to trial, especially in Experiment 2 where all tree structures are
+different. This design prevents people from memorizing fixed action sequences (Huys et al.,
+2015).
+Uncertainty-directed actions occurred more frequently during the planning phase
+Arguably, the brief exposure to the rewards means the rewards are remembered imperfectly by
+participants, and therefore visiting the nodes during planning does in fact provide information. Future
+work will be needed to investigate the extent to which this occurs.
+UNCERTAINTY-DRIVEN PLANNING 27
+compared to the execution phase, consistent with the interpretation that these actions
+primarily reflect exploration in support of planning. Intriguingly, we still found evidence
+for (weaker) uncertainty-directed exploration during execution. This raises a normative
+computational question: why does uncertainty persist in influencing actions even during
+the execution phase? Presently, we can only offer speculation. One possibility is that
+participants continued to engage in planning even after the planning phase; this would
+indicate that our externalization protocol was not entirely successful. Another possibility is
+that people have an intrinsic preference for information, separate from its instrumental role
+in planning (van Lieshout et al., 2020).
+It is important to note that the majority of previous studies, where the planning
+phase is not externalized, tend to assume that people stick to their plan after its formation.
+Our finding that people show preference for the uncertain option during EXECUTE phase
+challenges this assumption. Additionally, we have shown that, although infrequent, people
+visit nodes that they have not inspected during the PLAN phase. This is in line with
+recent work extending uncertainty-driven exploration from a 1-step multi-armed bandit
+problem to a temporally extended decision-making setting (Antonov & Dayan, 2023; Fox
+et al., 2023).
+The current study has several limitations. First, the experiment only allows
+rollout-based planning. We chose this design in part because it allowed us to directly apply
+exploration strategies from reinforcement learning to model participant’s planning.
+However, this restriction may also act as a countermeasure against an artifact of the task.
+Specifically, visually presenting the full state space makes it easy to jump between different
+parts of the tree (e.g., by making a saccade). When planning entirely in one’s head (as one
+must typically do), these jumps would likely incur substantial cognitive/computational
+cost. Indeed, artificial planning agents often use rollout-based strategies when dealing with
+extremely large state spaces (Barto et al., 1995; Silver et al., 2016). Thus, by restricting
+participants to this class of strategies in our task, we may be better equipped to
+UNCERTAINTY-DRIVEN PLANNING 28
+understand the way they would plan in a real-world problem. On the other hand, people
+and animals can employ other planning strategies, including ones that work backwards
+from desirable states (Afsardeir & Keramati, 2018; Newell & Simon, 1972; Sharp & Eldar,
+2024). Understanding the role of uncertainty in these types of algorithms is an important
+direction for future work.
+A second limitation is that, despite the fact that people can’t exhaustively traverse
+the state space in our task, there is a substantial gap between the complexity of our task
+and the complexity of real-world planning problems (van Opheusden & Ma, 2019;
+van Opheusden et al., 2023). Tasks with large state spaces impose challenges on
+appropriate uncertainty estimation, which could interact with the usage of
+uncertainty-driven exploration during planning.
+In summary, the current study examined the mental exploration process during
+planning with a task that allows us to externalize the planning process together with an
+experiment design that exogenously manipulates the value uncertainty in different states.
+Our results show that people have a preference for approaching uncertain options during
+planning (after controlling for value differences), suggesting that the mental exploration
+process, similar to exploration during reinforcement learning, is guided by uncertainty.
+UNCERTAINTY-DRIVEN PLANNING 29

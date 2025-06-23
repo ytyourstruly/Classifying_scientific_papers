@@ -1,0 +1,456 @@
+Social evaluation of co-action partners: Children’s partner recruitment in
+cooperation and competition tasks
+[Preprint – not yet peer-reviewed]
+1, 2, 3
+Rowan Titchener ORCID 0000-0001-5603-5614
+Jonas Hermes
+1, 3, 4
+Julia Fischer ORCID 0000-0002-58070074
+2,4
+Hannes Rakoczy
+1, 3, 4
+Stefanie Keupp ORCID 0000-0002-5451-4256
+Cognitive Ethology Laboratory, Deutsches Primatenzentrum GmbH, Kellnerweg 4, 37073 Göttingen,
+Germany
+Institute of Psychology, University of Göttingen, Waldweg 26, 37073 Göttingen, Germany
+Department of Primate Cognition, University of Göttingen, Germany
+Leibniz ScienceCampus Primate Cognition, Göttingen, Germany
+Corresponding author:
+Stefanie Keupp
+Cognitive Ethology Laboratory, Deutsches Primatenzentrum GmbH, Kellnerweg 4, 37073 Göttingen,
+Germany
+Email: skeupp@dpz.eu
+Statements and Declarations
+The authors have no conflict of interest to declare.
+Data, code and materials
+Supporting material (the Electronic Supplementary Material, datasets and R code) have been made
+available on OSF at the following link:
+Funding
+This work was carried out with funding from the Deutsche Forschungsgemeinschaft (project number
+254142454/GRK 2070) and a grant from the Deutsche Forschungsgemeinschaft to S.K. (project
+number 425330201).
+Authors’ contributions
+Contributions according to CRediT: R. T.: conceptualization, formal analysis, investigation,
+methodology, resources, visualization, writing original draft, and writing - review and editing; J. H.:
+resources; J. F.: conceptualization, funding acquisition, methodology, investigation, supervision and
+writing – review and editing; H. R.: conceptualization, funding acquisition, methodology, investigation,
+supervision and writing – review and editing; S. K.: conceptualization, investigation, methodology,
+supervision and writing – review and editing.
+Acknowledgements
+We thank Imke Koch, Christiane Decker, Lia Künnemann, Josephine Quirbach and Mellory Kripzak for
+help with data collection and Eva-Maria Wellmer for help with reliability coding. Our thanks to Marlen
+Kaufmann for help with participant recruitment and Roger Mundry, for statistical guidance. Thank you
+to the children, parents and students who volunteered to take part in these experiments.
+Abstract
+Social evaluations are a pervasive feature of human thinking. Studies on selective trust, selective social
+learning, and helping – that is, in cooperative contexts – have shown that children become competent
+social decision-makers in their preschool years. Choosing partners based on relevant attributes is
+equally important for success in competitive situations, however. To test predictions from a dual-
+process account of children’s development of reasoning abilities, we devised two online experiments
+for 4- to 7-year-old children. In Experiment 1, children were introduced to a weak and to a strong
+model and had the opportunity to apply this information strategically in competitive and cooperative
+domain-relevant games (requiring strength) and in a domain-irrelevant game (requiring object
+labelling knowledge). Children recruited the optimal partner in both contexts from around 5 years of
+age and generalized partner expertise to novel domains. Experiment 2 was designed to shed light on
+the reasoning process underlying partner recruitment choices. Children were introduced to a weak
+but smart and a strong but ignorant model and had the opportunity to apply this information in games
+of different domain-context combinations. Contrary to our expectations, even the oldest children
+performed poorly. Our findings are at odds with previous research showing that 4-year-olds rationally
+recruited optimal partners for cooperative tasks. Children may have struggled with the unfamiliar first-
+person perspective, and the difficulty of the task when they had to consider multiple agent
+characteristics at once.
+KEY WORDS
+Social evaluation – Partner choice – Strategy – Cooperation – Competition
+Children gain valuable knowledge from observing and communicating with the people in their
+surroundings (Csibra & Gergely, 2009; Harris, 2012; Harris et al., 2018). From around three to four
+years of age, children begin to be selective about whom they attend to, imitate, and trust when making
+use of socially-disseminated knowledge (for reviews on selective trust, see Mills, 2013). Selective trust
+has often been studied by means of the “two-informant” paradigm, developed by Koenig et al. (2004).
+From these studies, we know that preschoolers tune into epistemic cues (e.g., Birch et al., 2008; Jaswal
+& Neely, 2006; Koenig et al., 2004; Koenig & Harris, 2005; Pasquini et al., 2007) as well as social cues
+(Bascandziev & Harris, 2014; Bernard et al., 2016; Corriveau & Harris, 2009; Elashi & Mills, 2014; Jaswal
+& Kondrad, 2016; MacDonald et al., 2013). Recently, the focus has shifted from identifying cues that
+mediate selectivity, to theorizing about the inferential processes likely to underlie selectivity (Fusaro
+et al., 2011; Hermes et al., 2015; Sobel & Kushnir, 2013). Three candidate processes have been put
+forward (outlined in Fusaro et al., 2011): (1) behaviour-matching, (2) global impression formation and
+(3) trait-reasoning.
+In behaviour-matching, a child assumes that a model shows behavioural consistency over
+time. Thus, someone who has demonstrated accuracy in object-labelling in the past will provide
+accurate labels in the future. An inference based on behaviour-matching is relatively narrow. In global
+impression formation, in contrast, a child conceives a model as positive/negative in undifferentiated
+ways (also referred to as “halo/pitchfork” effects), leading to wider competence predictions than
+warranted. For example, a child might infer that someone who is strong is also an accurate object-
+labeller. Trait-reasoning, finally, requires a more complex inference process than behaviour-matching
+and global impression formation. A child who engages in trait reasoning succeeds in a two-component
+process (Liu et al., 2007). The first component involves mapping observed behaviour to a trait. The
+second component involves mapping the assigned trait to future behaviour. There is evidence to
+support the idea that children engage in global impression formation in certain situations and trait-
+reasoning in others (Bascandziev & Harris, 2014; Fusaro et al., 2011). For example, Bascandziev and
+Harris (2014) found that preschoolers preferentially learned from people who rate highly in terms of
+attractiveness, although attractiveness has no obvious relation as to whether or not a person is
+knowledgeable. There is also, however, evidence that young children understand that people differ in
+their abilities in different domains of expertise (e.g., Lane & Harris, 2015; Lutz & Keil, 2002; Sobel &
+Kushnir, 2013). For example, given the choice between adults and peers, children consult peers for
+toy-related information and adults on the topic of food (VanderBorght & Jaswal, 2009).
+Hermes and colleagues recently suggested a dual-process account (Hermes et al., 2018) to
+reconcile findings showing that children’s social selectivity sometimes relies on simple and sometimes
+on more complex inferences. They theorize that early in development, children’s trust decisions are
+based on simple decision heuristics (‘Type-I’ processes, Kahneman, 2003), such as a general trust
+heuristic and a trust-the-better heuristic. As children grow older, they acquire a sounder concept of
+knowledge, a better understanding of how different domains relate to one another, and more general
+cognitive resources, including better executive functions and Theory of Mind abilities. In cases where
+a conclusive answer is possible, such as in in degree of competence contrasts, halo-effects are
+observed. In cases where such generalizations are insufficient, such as in domain of competence
+contrasts, more sophisticated reasoning processes are required (Type-II processes). A number of
+findings are compatible with the dual process account (for a review, see Hermes et al., 2018). For
+example, Hermes et al. (2016) found that the same children who chose the more competent of two
+models for domain-unrelated tasks showed context-specific partner choice when confronted with two
+models who had different domain expertise. Furthermore, older children and children with better
+executive function abilities have been shown to be able to resist a general trust bias and disregard
+advice from formerly unreliable models (Heyman et al., 2013; Jaswal et al., 2014; Vanderbilt et al.,
+2011).
+One way to test predictions from the dual-process account is to examine whether the Type I
+and Type II strategies used in the cooperative context are also applied in other contexts that require
+similar problem-solving strategies. Choosing partners based on relevant attributes is equally
+important for success in competitive situations. If children operate with rational conceptual capacities,
+they should be able to apply these capacities in flexible, domain-general ways, allowing them to
+choose a given partner in one context but reject the same partner in another. We designed two
+experiments to investigate how 4- to 7-year-old children recruit co-action partners in competitive and
+cooperative contexts when they are provided with different sets of information about potential
+partners. Competitive tasks pose more complex perspective-taking demands compared to
+cooperative tasks (Perner et al., 2005; Priewasser et al., 2013) because, in a cooperative context, the
+perspective of the child and the recruited team member align, whereas in a competitive context the
+child has to keep in mind that their goal and the goal of the recruited character are in conflict.
+In Experiment 1, children met two models who differed in terms of physical strength. We
+predicted that that younger children would make fewer correct choices in the competitive context,
+while older children should be equally successful in both contexts. We also predicted that younger
+children would be more likely to generalize about competence and would be more likely to do so in
+the cooperative as compared to the competitive context. In Experiment 2, children met two models
+who each had a strength and a weakness: one character was strong but ignorant, the other was weak
+but knowledgeable. We monitored the partner recruitment choices of each participant in a series of
+competitive and cooperative strength and knowledge games. In this design, only those participants
+who engage in rational trait reasoning (Type-II process) should be successful: they should choose the
+strong/ignorant partner for cooperative strength and competitive knowledge games and the
+weak/knowledgeable partner for competitive strength and cooperative knowledge games. We
+predicted that younger children should do less well than older ones, and struggle particularly in the
+competitive context, while older children should be equally successful in both contexts.
+Experiment 1
+Material and methods
+Participants
+For both experiments, we carried out power analyses to establish the power we have to detect an
+effect of an interaction between context and age as a function of sample size (n = 80, 100, 120, 140,
+160, 180, 200). Due to a lack of sufficiently comparable study designs in the literature, we simulated
+different effect sizes based on studies using cooperative tasks, on theoretical considerations, and on
+small pilot studies. For Experiment 1, we estimated the following: for the 4-year-olds, the probability
+to succeed in the cooperative condition was set to 0.8 and in the competitive condition to 0.5. For
+the 7-year-olds, the probability to succeed was set to 0.9 for both contexts (for more details and
+Experiment 2, we estimated the following three sets of success probabilities: for the 4-year-olds, the
+probabilities to succeed in the cooperative condition were set to 0.9, 0.9, and 0.8 respectively, and
+the corresponding probabilities to succeed in the competitive condition were set to 0.2, 0.5, and 0.5.
+For the 7-year-olds, the probabilities to succeed were always set to 0.9 in both contexts (see
+For Experiment 1, the power of detecting the main effects of context and age was high.
+Already, with 80 participants, it was above 0.8. The power to detect an effect of the interaction
+between these two variables, however, was low to medium, ranging from 0.3 with 80 participants to
+0.7 with 200 participants. Acknowledging practical constraints of data collection and considering that
+these results are based on estimated probabilities, which are associated with quite some uncertainty,
+we settled on a sample size of n = 100 children. Ultimately, we tested a total of 123 children and
+analysed the data from 107 children (mean age = 72.64 months, 51 girls, see Electronic Supplementary
+Material [ESM] for more details on exclusion criteria). We also ran a validation study with 41 adult
+participants (mean age = 25.46 years, 21 women). All participants took part voluntarily; children
+received a personalized certificate of participation; undergraduate students could receive
+compensation in the form of university credits.
+Design and materials
+In Experiment 1, children were given information about two models who differed from one another
+in terms of physical strength: Mr. Blue was physically strong and Mr. Green was weak. Children then
+played a series of competitive and cooperative strength games in which their avatar had to play with
+or against one of the models. The optimal strategy was to choose the weak model as an opponent and
+the strong model as a teammate. In addition to these strength games, each child played a knowledge
+game. In this novel domain, they lacked information about the partners’ expertise. If the children
+engage in global impression formation, they should, for instance, recruit the physically strong model
+details regarding experimental stages and familiarization are described in subsection 1.1. of the ESM.
+All video stimuli were created using the Vyond animation software. An overview of the stimuli
+can be found in the ESM (subsection 1.2). The experiments were run in Labvanced (Finger et al., 2017).
+The child met with an experimenter via virtual conferencing software – usually BigBlueButton (BBB)
+and occasionally Zoom, when BBB failed. Three female experimenters collected the data. We used a
+repeated-measure within-subject design for the strength games (the “degree-of-competence” test
+trials) and counterbalanced the order in which we presented the context (cooperation vs
+competition). The knowledge game (“generalization” test trial) was implemented as a between-
+subject factor. Children who had received a competition strength game first, experienced a
+competition knowledge game and vice versa. The stimuli for adults were identical to those used in the
+child study, although bridging text was added so that the participants could navigate the experiment
+alone.
+Coding
+The keyboard keys the experimenter used to navigate the experiment automatically logged data. One
+person (the first author) transcribed the answers children gave to the two identification questions
+regarding the avatar (a manipulation check) and the two justification questions (see Tables S1 and S2
+for details). A person blind to the hypothesis of the study coded 20 % of the child videos. Overall inter-
+coder agreement was excellent (Cohen’s Kappa coefficient (𝜅) ranging between 0.934 and 1), except
+for the degree-of-competence justification answers of the adults, which indicated moderate
+agreement (𝜅 = 0.429) and the generalization justification answers (𝜅 = 0.797), reflecting substantial
+agreement.
+Analyses
+All statistical analyses were carried out in R (R Core Team, 2021, version 4.1.1). We fitted a total of six
+models. Three Generalized Linear Mixed Models (GLMM, Baayen, 2008) were used to analyse the
+degree-of-competence test trials. Two Generalized Linear Models (GLM, Baayen, 2008) and one
+GLMM were used to analyse the generalization test trials. Four of these analyses (Models 1 through
+preregistered analyses (Models 1B and 3B) were run to check for a potential effect of experimenter
+ID (given that three experimenters collected the child data). In the subsections that follow, we
+concisely describe the structure of each model but for detailed information concerning model
+structure, sample size, variable standardization, model diagnostics (stability, collinearity), and to view
+the output tables, see subsection 1.3 of the ESM. In the ESM, we also elaborate on comprehension
+checks, participants’ answers to follow-up questions, and exploratory analyses with these qualitative
+data.
+We constructed a GLMM, Model 1, to test whether context, age, or their interaction had an
+effect on children’s partner recruitment choices in the degree-of-competence test trials. The binary
+response variable was optimality of partner recruitment choice. Model 1 additionally comprised the
+fixed effects of gender, condition presentation order and trial number. Participant ID was included as
+a random effect and the random slopes of context and trial number were included in the model. In
+addition, we fitted Model 1B to assess and control for a potential effect of experimenter ID, which
+was fitted as a random effect. Models 1 and 1B thus differed only in terms of their random effects
+components (and therefore also with regard to their random slope structures, see ESM). To establish
+whether context had an effect on adult partner recruitment choices, we fitted Model 2. The binary
+response variable of this GLMM was optimality of partner choice. Model 2 comprised a main effect of
+context in addition to the fixed effects of gender, order and trial number. Participant ID was included
+as a random effect and the random slopes of context and trial number were included in the model.
+We constructed a GLM, Model 3, to test whether either an interaction between context and
+age, or a main effect of context or age, had an effect on children’s partner choice in the generalization
+test trial. The binary response variable was whether recruitment choice constituted a generalization;
+to generalize in the competition knowledge game was to choose the physically weak partner and to
+generalize in the cooperation knowledge game was to choose the strong partner. Model 3 comprised
+a two-way interaction between context and age, in addition to their main effects and the fixed effects
+of gender and the intercept-BLUPs (Best Linear Unbiased Predictors) generated in Model 1. These
+BLUPs were a proxy measure for how successfully each child had performed in the degree-of-
+competence test trials. To control for a potential effect of experimenter ID, we constructed another
+GLMM, Model 3B. Models 3 and 3B differed in terms of their random effects components (and
+therefore also with regard to their random slope structures, see ESM) and the BLUPs were taken from
+Model 1B rather than Model 1. We fitted a GLM, Model 4, to test whether context had an effect on
+adult generalization behaviour. Model 4 comprised the main effect of context, in addition to the fixed
+effects of gender and the BLUPs generated in Model 2.
+Results and Discussion
+The majority of the participants “identified” with the virtual character that represented them
+compared to the older participants. They recruited poorly irrespective of context, while the oldest
+children performed well in both contexts (see Figures 2 and S4).
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+Age group
+Note. Dark grey bars represent the proportion of test trials in which participants chose the relevant
+partner (i.e., the competent partner in the cooperation task [coo] and the incompetent partner for
+the competition task [com]). Light grey proportions represent the opposite choices.
+Model 1 indicated a significant effect of the predictor variables (likelihood ratio test: 𝜒 =
+37.125, p = <0.001). However, we found no evidence for the predicted interaction between context ×
+age (p = 0.376) and therefore fitted a reduced model. Children were significantly more likely to recruit
+the optimal partner in the cooperative than in the competitive context (p = 0.035). Moreover, older
+children were more likely to recruit optimally than younger children (p < 0.001), and boys recruited
+more selectively than girls (p = 0.019). Model 1B differed from Model 1 in that we controlled for the
+fact that multiple experimenters had collected the data. The Model 1B output no longer indicated a
+significant effect of context, raising questions to which degree the identity of the experimenter played
+a role in children’s response behaviour (see General Discussion). For the adult participants, context
+had no effect on recruitment behaviour: adults recruited rationally at high levels in both contexts
+(likelihood ratio test:𝜒 = 0.562, p = 0.454).
+We found that the 4 and 5-year-olds generalized only in the cooperative knowledge game,
+where they were more likely to choose the strong partner over the weak one. In the competitive
+knowledge game, their generalisation tendencies were less strong (see Figures 4 and S5). Contrary to
+our predictions, the 6- and 7-year-old children generalized at high levels in both contexts. Adults chose
+at chance level, indicating that they were not generalizing competency between domains. .
+eciohc
+rentrap
+tnaveler
+fo
+noitroporP
+com coo com coo com coo com coo com coo
+4YO 5YO 6YO 7YO Adults
+age bin
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+Age group
+Note. Dark grey bars show the proportion of test trials where the participant selected the strong
+partner for the knowledge task (cooperation: coo; competition: com). Light grey bars represent the
+opposite choice.
+In Model 3, we tested whether context, age, or their interaction, affected children’s tendency
+to generalize about competence. We found evidence for a weak effect of the predictor variables
+(likelihood ratio test: 𝜒 = −6.923, p = 0.074) but neither the interaction of context × age (p = 0.138)
+nor the main effects of context (p = 0.109) and age (p = 0.153) significantly affected children’s partner
+choice. Interestingly, the more successful a child had recruited during the strength games, the more
+likely that child was to generalize when recruiting for the knowledge game (effect of intercept-BLUPs,
+p = 0.011). Model 3B differed from Model 3 in that we controlled for the fact that multiple
+experimenters had collected the data. This model showed no evidence for an effect of the predictor
+variables (likelihood ratio test: 𝜒 = 4.415, p = 0.22). Analysis of the adult data (Model 4) revealed no
+significant effect of the predictor variables (likelihood ratio test: 𝜒 = −1.127, p = 0.289). At the
+conclusion of the experiment, we asked each participant whether they could explain their recruitment
+choices. An exploratory analysis revealed that children who provided a “rational” justification (i.e.,
+referred to strength) were more successful in the degree-of-competence test trials (for more details,
+In Experiment 1, we investigated whether children recruited co-action partners in selective
+context-specific ways both in competitive and cooperative games. From approximately five years of
+noitazilareneG
+fo
+noitroporP
+com coo com coo com coo com coo com coo
+4YO 5YO 6YO 7YO Adults
+age, children systematically selected the physically weak model for the role of opponent and the
+strong model for the role of teammate. Numerous studies have demonstrated that four-year-old
+children are selective when it comes to choosing a partner or informant in cooperative settings (e.g.,
+Hermes et al., 2016; Koenig & Harris, 2005). In comparison, the four-year-olds in our study performed
+surprisingly poorly in the cooperation strength games. One possible explanation may be the different
+presentation format. In our online experiment, the experimenter assigned the child an onscreen
+character and the child navigated the experiment in the virtual first-person. This aspect of the study
+design adds a layer of complexity and detachment because the child’s experience becomes passive –
+the consequences of the child’s recruitment choices are only indirectly experienced. Rather than the
+children themselves feeling true emotion after winning or losing a game, they watch their character
+display the appropriate response. Interestingly, a recent study (Grueneisen et al., 2023) obtained
+similar results, with 6-7-year-olds but not 4-5-year-olds choosing co-action partners in adaptive
+context-specific ways, in an online experiment.
+Experiment 2
+The degree-of-competence paradigm we used in Experiment 1 allows to identify patterns of partner
+selectivity, but it does not allow to discern the underlying inference strategy. The pattern is compatible
+with both trait reasoning (a Type-II process) as well as a generalization heuristic (a Type-I process). In
+Experiment 2, we aimed to differentiate between these possibilities by presenting “Domain-of-
+competence” contrasts. Participants were given information about the partners’ competence in two
+different domains with each partner having a strength and a weakness: one character was strong but
+Experiment 2 and the answers predicted by Type-I and Type-II reasoning. Detailed information on
+experimental phases and familiarization is provided in subsection 2.1 of the ESM.
+Material and methods
+Participants
+For Experiment 2, the power simulations revealed the following: the power to detect an effect of the
+interaction between context and age was high for power analysis 1 (power ca. 0.9 for an n of 80),
+medium for power analysis 2 (power ca. 0.65 for a n of 80) and low for power analysis 3 (power ca.
+0.3 for an n of 80). Acknowledging practical considerations and the uncertainty those results come
+with, we settled on a sample size of n = 100 children. Participants from Experiment 1 were not eligible
+to participate in Experiment 2. Due to recruitment logistics, we tested 123 children, the data of 98
+children were analysed (mean age = 5.5 months, 48 girls; see ESM for details on reasons for
+exclusions). We also ran a validation study with 48 adult participants (mean age = 23.83 years, 24
+females).
+Design and Procedure
+All participants were tested in all four domain-context combinations. We counterbalanced the trial
+type that appeared first. At the close of the experiment, we asked children several questions to probe
+the rationale behind their partner recruitment choices.
+Coding and Analysis
+The keys the experimenter used to navigate the experiment automatically logged data. The first
+author transcribed the answers children gave to the two advice questions and categorized them
+study coded 20 of the child videos. Inter-coder agreement was excellent. Coder 1 and 2 matched in
+their categorization of the answers given to the competition and the cooperation advice questions (𝜅
+= 0.933 and 1 respectively). The same person coded data from 20 adults. Inter-coder agreement was
+perfect (𝜅 = 1 for each advice question).
+We analysed the domain-of-competence data via three GLMMs. Two of these GLMMs
+Model 5B was run to check for a potential effect of experimenter ID. In the subsections that follow,
+we concisely describe the structure of each model. For more details, see subsection 2.3 in the ESM.
+The binary response variable in Model 5 was rationality of partner recruitment choice. The
+model comprised context, age, and their interaction, as well as gender, order (which trial type was
+presented first) and trial number as fixed effect predictors. Participant ID was included as a random
+effect and the random slopes of context and trial number within participant ID were included in the
+model. Model 5B additionally controlled for a potential effect of experimenter ID. We constructed a
+GLMM, Model 6, to test whether context had an effect on adults’ rational partner recruitment. Model
+6 comprised the main effect of context, in addition to the fixed effects of gender, order and trial
+number.
+Results and Discussion
+Overall, the children performed at chance level in the domain-of-competence test trials (see Figures
+7 and S12); the children recruited rationally in just 57 % of the test trials. Interestingly, the adults ’
+recruitment choices were less rational in the competitive as compared to the cooperative context.
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+Age group
+Note. Proportion of rational partner choices are depicted in dark grey. Children performed at
+chance in the domain-of-competence test trials. A context difference is apparent in the four-year-
+old children and in the adults; these participants recruited more poorly in the competitive [com] as
+opposed to the cooperative [coo] games.
+Model 5 indicated a significant effect of the predictor variables (likelihood ratio test:𝜒 =
+7.974, p = 0.047). Contrary to our predictions, the interaction of context × age was not significant (p
+= 0.261) and we therefore fitted a reduced model. Context had no effect on the rationality of partner
+recruitment (p = 0.289) but older children recruited more rationally than younger children (p = 0.019).
+Model 5B controlled for a potential effect of experimenter ID. In this case, the predictor variables had
+no effect on selective partner recruitment (likelihood ratio test: 𝜒 = 5.474, p = 0.14). Model 6
+indicated that the predictor variables had an effect on adult partner recruitment choices (likelihood
+eciohc
+lanoitar
+fo
+noitroporP
+com coo com coo com coo com coo com coo
+4YO 5YO 6YO 7YO Adults
+ratio test: 𝜒 = 16.071, p = <0.001). Adult participants recruited more rationally in the cooperative
+context (p = <0.001). At the conclusion of the experiment, we asked each participant to provide advice
+to a peer about to encounter a competition and a cooperation strength game. With increasing age,
+revealed, though, that participants who gave “rational” advice (i.e., correctly referred to the domain
+of expertise) didn’t perform differently in the domain-of-competence test trials from participants who
+didn’t give such advice (for more details, see ESM section 2.4.B).
+Experiment 2 was designed to determine if participants use sophisticated trait reasoning
+(Type-II process) or a simpler heuristic such as global impression formation (Type-I process) to choose
+between co-action partners in competitive and cooperative games. Children performed at chance
+level, indicating that their partner choice wasn’t based on rational trait reasoning. Adults overall
+recruited rationally in both contexts, with almost ceiling performance in the cooperative context and
+somewhat reduced rational choice in the competitive context. Considering that none of the adults
+expressed confusion regarding partner competence and requirements of optimal choice in the two
+co-action contexts, we think the effect of context isn’t indicative of the competitive scenario
+presenting a harder task than the cooperative scenario, for adults. More likely, a few students weren’t
+fully concentrated during some of their partner selections, which led to chance performance after just
+one wrong choice. To gain clarity, though, differences of adults’ social selectivity in cooperative and
+competitive tasks should be followed-up on in future studies.
+In light of the fact that the older children in Experiment 1 performed well, the poor
+performance of the older children who took part in Experiment 2 raises questions. Ample studies have
+demonstrated that from four-years of age, children are capable of flexibly switching between models
+that show expertise in different domains in the cooperative context (e.g., Hermes et al., 2016) and in
+a very recent study, 5-6-year-olds avoided competent players in domain-relevant competitive tasks
+(Grueneisen et al., 2023). Yet in the present experiment, not even the oldest children (seven-year-
+olds) performed well in the cooperative context. One possible explanation is that children struggled
+with the amount of information they had to consider simultaneously during the test trials. Despite
+being able to recall single pieces of information (hence their good performance during comprehension
+and advice questions, see ESM), they may have been overwhelmed by the amount of information they
+had to consider during the test trials: When recruiting their co-action partner, they had to consider
+two competence attributes per partner, one even being of a negative quality, i.e., incompetence, and
+use these bits of information appropriately in light of the current context. Previous studies that
+presented information of two characteristics per model used only one competence attribute in
+combination with one social identity characteristic (familiarity/accent) when asking children to
+endorse a model (Corriveau et al., 2013; Corriveau & Harris, 2009). An interesting line for future
+research will be to explore the developmental trajectory of integrating several model characteristics
+to make optimal decisions in selective trust scenarios.
+General Discussion
+We found that children from around five years of age succeeded in switching between choosing and
+avoiding the same partner depending on task context, thus showing a new level of flexibility in
+children’s social decision-making competence. At the same time, the majority of these children saw
+fit to recruit co-action partners in a novel task based on the partners’ competence in an unrelated
+domain – a pattern indicative of global impression formation rather than sophisticated trait reasoning.
+In the relevant contrasts to differentiate between these two possibilities, children performed at
+chance irrespective of age and context. These results stand in contrast to our predictions and are at
+odds with previous research that found that 4-year-olds rationally recruit optimal partners for
+cooperative tasks.
+The children's unexpectedly poor performance may be explained by the relatively unfamiliar
+first-person perspective, which may have masked children's abilities to strategically recruit between
+the two models, as well as by the complexity of our task (see previous discussion). In addition, we
+were operating with a minimal incentive structure – children’s only rewards were passively viewing
+their virtual character win, and an animated prize ceremony where they were awarded virtual
+trophies, at the end of the experiment. Thus, children had nothing to miss out on, and nothing really
+to gain by making their choices. During in person testing, it is common to use incentive systems such
+as collecting marbles or stickers to motivate children to choose wisely (e.g., Hermes et al., 2019). In
+the absence of such incentives, some children may simply have chosen at random, despite having
+understood all aspects of the task.
+A final and more general point worth mentioning, is that statistically controlling for the effect
+of experimenter ID affected the results of both experiments. For practical reasons, the use of multiple
+experimenters is common practice in the field of developmental psychology. But despite awareness
+that experimenters can bias results (Gallo & Dale, 1968), it is not common to see data divvied up by
+experimenter ID in publications. Yet, information about number of experimenter identities and how
+this detail has been controlled for in statistical analyses would help readers to assess the robustness
+of findings. We decided to include experimenter ID in the random effects structure of each GLMM in
+light of a recent publication that indicated it is possible to include a factor with just three levels as a
+random effect (Gomes, 2022). We were surprised to find that even in ‘remote’ research where one
+might think the experimenter could have little influence, there may still be the danger of unaccounted
+for experimenter bias. Importantly though, with the current study we can’t be sure to which degree
+and in which way experimenter ID affected results, or whether the difference in model results merely
+constitutes a chance finding. In light of improved statistical methods, this may be a question to be
+explored more systematically with appropriate a priori considerations in future studies.
+In summary, we found that from around age 5, children’s social decision-making skills are
+flexible enough to successfully navigate easy cooperative and competitive tasks. Our study also
+showed that there are limits to children's rational selective partner choice abilities; children seem to
+struggle when they have to consider multiple agent characteristics at once. We suggest future studies
+investigate the effect of remote as opposed to in person testing, the effect increasing incentives has
+on optimal decision-making, and the developmental trajectory of coping with an increasing amount
+of information when choosing partners based on social evaluation judgements.

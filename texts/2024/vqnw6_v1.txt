@@ -1,0 +1,649 @@
+A Systematic Evaluation of Dutch Large Language Models’ Surprisal
+Estimates in Sentence, Paragraph, and Book Reading
+Sam Boeve1a and Louisa Bogaerts1
+1Department of Experimental Psychology, Ghent University, Ghent, Belgium
+aCorresponding author, E-mail : Sam.Boeve@UGent.be.
+Author Notes:
+Running head: A SYSTEMATIC EVALUATION OF DUTCH LLM
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+Abstract
+Studies using computational estimates of word predictability from neural language models have
+garnered strong evidence in favour of surprisal theory. Upon encountering a word, readers
+experience a processing difficulty that is a linear function of that word’s surprisal. Evidence for
+this effect has been established in the English language or using multilingual models to estimate
+surprisal across languages. At the same time, many language-specific models of unknown
+psychometric quality are made openly available. Here, we provide a systematic evaluation of the
+surprisal estimates of a collection of large language models, specifically designed for Dutch,
+examining how well they account for reading times. We compare their performance to a
+multilingual model (mGPT) and an N-gram model. Across three eye-tracking corpora, a Dutch
+model predicted reading times better than the multilingual model. Dutch large language models
+replicate the general inverse scaling trend observed for English, with the surprisal estimates of
+smaller models showing a better fit to reading times than those of the largest models, however,
+this effect depends partly on the corpus used to evaluate the model. Surprisingly, in contrast to
+the linear effect of surprisal on reading times observed in other corpora, for the GECO corpus a
+non-linear link fitted the data best. Overall, these results offer a psychometric leaderboard of
+Dutch large language models and challenge the notion of a ubiquitous linear effect of surprisal.
+The complete set of surprisal estimates derived from all neural language models across the three
+corpora, along with the code to extract the surprisal, is made publicly available
+Keywords: reading, prediction, eye movements, large language models, Dutch
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+Readers are known to experience greater processing difficulty when the word they are
+fixating is less predictable given the preceding words. Over the years, growing evidence has
+supported this notion of probabilistic inference during language processing (Staub, 2024). This
+conception of reading as a continual process of forming and testing hypotheses on the identity
+of the next word was dubbed ‘a psycholinguistic guessing game’ (Goodman, 1967). The
+questions of how and why readers engage in some form of probabilistic inference stirred up a
+debate continuing to this date (Federmeier, 2007; Huettig, 2015; Pickering & Gambi, 2018;
+Pickering & Garrod, 2007; Ryskin & Nieuwland, 2023). The most influential theory of
+probabilistic inference is surprisal theory (Hale, 2001; Levy, 2008). It states that readers create a
+ranked set of possible sentence continuations and that the difficulty of processing a new word is
+related to the amount of reallocation necessary in the updated preference ranking (Levy, 2008).
+In other words, the more probability mass has to be shifted upon integrating a new word with
+the previous, the more difficult this word will be to process (Staub, 2024). Formally, the impact a
+word has on the probability distribution over the next words can be expressed as the negative log
+of that word’s conditional probability, its surprisal value (Levy, 2008). As such, surprisal is put
+forward as the third key predictor in addition to the well-established effects of word frequency
+(Brysbaert et al., 2018) and word length (Hauk & Pulvermüller, 2004).
+Indexing Word Predictability
+Multiple methods have been developed to estimate a word’s proposed processing
+difficulty (i.e., the surprisal value; Smith & Levy, 2013) using its conditional probability.
+Originally, word probabilities were estimated with the help of human raters, using the Cloze task
+(Taylor, 1953). This has remained common practice (Schuster et al., 2021; Tiffin-Richards &
+Schroeder, 2020). Later, computational alternatives made their appearance with N-gram models
+and neural network models (Armeni et al., 2017). While the Cloze-procedure is time-consuming
+and results in potentially inaccurate estimates, especially for highly unlikely words (Smith & Levy,
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+2011), early computational methods, like recurrent neural networks, could only incorporate the
+near sentence context for the word’s probability estimate (De Mulder et al., 2015). This changed
+in 2017, when the transformer model was introduced (Vaswani et al., 2017). The architecture of
+a transformer model departs from previous probabilistic language models in significant ways, the
+primary one being the attention mechanism. This attention mechanism allows the models to
+break completely with the recurrence of before. It functions to model precisely which of the
+previous words were most informative for next-word prediction, without diluting the influence
+of more distant words in the input sequence. As a result, the model learns to accurately represent
+between-word dependencies and contextual relationships across a wide context window. The
+base version of GPT-2, for example, has a context window of 1024 words. Additionally, by using
+positional encoding the constraint to process input sequentially is loosened, opening up the
+possibility of parallelizing model training and increasing scaling capability (Vaswani et al., 2017).
+The Explanatory Power of Predictability Estimates from Large Language Models
+Intuitively, a transformer model equipped with an attention mechanism seems at odds
+with human cognition as it models between-word relationships across a context window
+stretching far beyond any human’s working memory span. Still, a transformer model’s surprisal
+estimates have been shown to capture human judgments and reading time data of sentence
+processing better than other computational estimates. Goldstein et al. (2022), for example, found
+that GPT-2’s predictions correlated strongly with Cloze ratings by native English speakers (r =
+.79) and that in 50% of the cases both human and model assigned the same word the highest
+probability. In comparison, a 3-gram only came up with a matching prediction in approximately
+30% of the words. Similarly, the surprisal values of GPT-2 correlated more strongly with Cloze
+probability than N-grams and Long Short Term Memory networks (LSTMs) (Hao et al., 2020)
+while also matching the cloze probability distribution more closely (Eisape et al., 2020).
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+When it comes to reading time data, the evidence presents a more nuanced picture, with
+the advantage of transformer models stemming from more specific aspects of predictive
+processing. First, simulating reading times in English with the OB1-reader model, the inclusion
+of computational predictability estimates from transformer models (i.e., LLaMA and GPT-2)
+yielded a better fit compared to Cloze probabilities (Rego et al., 2024). Additionally, comparing
+transformer models to RNNs, Merkx and Frank (2021) concluded that the former’s surprisal
+estimates explained self-paced reading times and neural activation patterns better (but see;
+Michaelov et al., 2024). Interestingly, when splitting the self-paced reading data into longer and
+shorter sentences, the benefit of transformer models was shown to stem primarily from longer
+sentences (Merkx & Frank, 2021). In a similar vein, de Varda et al. (2023) emphasized the
+importance of the processing measure itself: while the variance of first fixation durations was
+best explained by Cloze surprisal, the late eye-movement measures (i.e., gaze duration, right-
+bounded time and go past time) were captured better by transformer models’ surprisal estimates
+(de Varda et al., 2023).
+These results highlight that transformer models are particularly effective at capturing the
+behavioural markers of processing difficulty associated with longer sentences and late eye-
+tracking measures. However, even within a certain eye-tracking measure (early or late), there is
+considerable variability in how well each model’s surprisal estimates account for these effects.
+Most notable is the so-called inverse scaling trend (Oh et al., 2022; Oh & Schuler, 2023). This refers
+to the observation that the surprisal estimates of larger transformer models (typically indexed by
+a model’s number of trainable parameters) fare worse at predicting reading times. This
+observation is thought to result from systematic biases in these larger models' probability
+estimates, specifically an underestimation of how surprising nouns and adjectives are coupled
+with an overestimation of the predictability of function words (Oh & Schuler, 2023). Yet also the
+inverse-scaling trend depends to some degree on the processing measure being considered.
+Within a model family (e.g., gpt-neo) the surprisal estimates of the relatively larger models can
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+show an advantage in predicting later eye-tracking measurements such as total reading time (de
+Varda & Marelli, 2023). Findings from neurolinguistic modelling suggest that the more accurate a
+language model can predict the next word (which is typically correlated to the number of model
+parameters), the better its inner activations tend to map onto those of the brain, yet the most
+accurate models again show a decline in representational fit (Caucheteux & King, 2022).
+Combined, it appears that surprisal estimates taken from transformer models are especially well
+positioned to capture the intermediate to late integrative processes related to word-predictability
+(de Varda et al., 2023) with the predictability estimates of GPT-2 (small version, 124M
+parameters) occupying the sweet spot of psychometric performance (Oh & Schuler, 2023; Shain
+et al., 2024).
+As GPT-2’s surprisal estimates show a good fit to reading times, several recent studies
+leveraged it for testing specific hypotheses on predictive language processing and refining
+surprisal theory. We discuss here a few examples, all using English models and reading data of
+native English speakers. First, using GPT-2’s predictions, Cevoli et al., (2022), found an
+interaction between surprisal and entropy (i.e., expected surprisal, uncertainty over potential
+sentence continuations) during natural reading with target words high in surprisal being skipped
+less often in high entropy contexts. This could mean that a word’s entropy is taken as a clue by
+readers to determine the amount of parafoveal processing to engage in (Cevoli et al., 2022).
+Heilbron et al. (2023) tested this proposed integration of prediction and parafoveal preview by
+constructing a Bayesian ideal observer using the predictions of GPT-2 as a prior. This integration
+increased the amount of information that was extracted from the preview. Surprisingly, such an
+enhanced preview provided a worse fit to human reading times than an independent preview and
+prediction effect (Heilbron et al., 2023). Similarly, Hahn et al. (2022) used the predictions of
+GPT-2 for the implementation of a resource-rational model of sentence processing. In this
+model a prediction is formed over an imperfect memory representation of the sentence context,
+showing that it can account for the difficulty experienced when processing nested recursive
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+structures better than classic surprisal theory (Hahn et al., 2022). Overall, neural language models
+have been evaluated thoroughly and these models’ accessibility allows them to be applied easily
+to test hypotheses on predictive language processing. Nevertheless, all evidence presented here
+stems from English models (mainly GPT-2) and a handful of corpora with reading data of native
+English speakers (i.e., Dundee, Provo, Natural Stories Corpus, etc.).
+Current Study: Moving Beyond English
+Transformer models pose a valuable resource to study the effects of predictability on
+natural language comprehension and with the help of ecosystems as Hugging Face1 they have
+become highly accessible. Despite the proliferation of language models, their development
+remains predominantly focused on the English language, while language-specific models for
+other languages are of unknown psychometric quality. This asymmetry presents a significant
+methodological constraint for conducting psycholinguistic research in low(er)-resource
+languages. Large cross-linguistic comparisons are forced to rely on multilingual models (de Varda
+& Marelli, 2022, 2023; Wilcox et al., 2023; Xu et al., 2023). Multilingual models are trained
+simultaneously on multiple languages, capturing cross-linguistic regularities. These models,
+however, risk not representing all languages equally well due to asymmetries in the training data
+and interactions between learned regularities (i.e., catastrophic forgetting). For a fixed model size,
+increasing the number of languages during training increases the cross-linguistic performance
+until a breaking point after which both monolingual and multilingual performance declines, a
+trade-off referred to as the curse of multilinguality (Conneau et al., 2020). Multilingual models such
+as BERT-multi and XLM have been shown able to predict reading times across Dutch, German,
+English and Russian (Hollenstein et al., 2021). Additional work, using a multilingual model to
+estimate surprisal, showed a consistent effect of surprisal on reading times across languages,
+although the size of the effect varied considerably (de Varda & Marelli, 2022; Wilcox et al.,
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+2023). This raises the question of whether this variability is language specific or an artefact of the
+model used to quantify surprisal. This concern is backed by evidence showing that the linearity
+of the surprisal effect is unstable and depends on the language model used to estimate the
+surprisal. For Dutch, surprisal estimates of the multilingual model mGPT showed a sublinear
+trend, while a monolingual model showed a superlinear trend (Xu et al., 2023).
+The complexity of choosing a suitable, language-specific model is exacerbated by the
+growing base of evidence that a model’s formal linguistic capability, indexed by standard NLP
+benchmarks (if these exist for the language under study) such as GLUE (General Language
+Understanding Evaluation; Wang et al., 2019), BLiMP (Bechmark of Linguistic Minimal Pairs;
+Suijkerbuijk et al., 2024; Warstadt et al., 2023) or MSGS (Mixed Signals Generalization Set;
+Warstadt et al., 2020), is not related to the degree the model can account for psycholinguistic
+occurrences such as reading times (Steuer et al., 2023).
+In this work, we aim to close this gap for Dutch. We present a comprehensive evaluation
+of 14 Dutch transformer models, a multilingual transformer model and an N-gram model—
+examining these models’ ability to explain variability in eye movements when reading individual
+sentences, paragraphs and a full novel. Our analysis draws upon three distinct eye-tracking
+corpora (respectively RaCCooNS, MECO and GECO, see Method section), each featuring
+different types of text content and varying amounts of context. Furthermore, we test whether
+established phenomena from English language modelling, specifically the inverse scaling trend
+and the linear effect of surprisal on reading times, generalize when assessed using Dutch LLMs.
+Through this systematic evaluation, we provide researchers with empirically grounded
+guidance for model selection in Dutch psycholinguistic studies. This facilitates investigations of
+word predictability and surprisal theory beyond English-centric frameworks and sheds light on
+how multilingual models compare to language-specific models for psycholinguistic purposes. In
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+this spirit, we also make the surprisal estimates for each corpus’ word-by-word reading data and
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+Method
+Language Models
+We made a selection of language models using the Dutch Large Language Modelling
+leaderboard (Vanroy, 2023)2 which ranks models using existing NLP benchmarks (e.g., MMLU;
+Hendrycks et al., 2021). The models retained for evaluation were limited to autoregressive
+models, a class of models that only makes use of the left context in predicting the next word as
+opposed to masked language models (e.g., BERT) which have access to both left and right
+sentence context, making their surprisal estimates less psychologically plausible (Wilcox et al.,
+2023). Two additional constraints were that the models had to be pre-trained on Dutch data or
+otherwise adapted for the Dutch language specifically (e.g., retrained lexical layer, see de Vries &
+Nissim, 2020) and that the model should not be composed of more than 10 billion parameters to
+keep inference using these models as accessible as possible. Beyond the leaderboard, we searched
+the Hugging Face model repository for complementary models that adhered to our criteria (e.g.,
+gpt-neo-125M-dutch). As a comparison, we included a multilingual language model that has been
+used in past studies (Wilcox et al., 2023), namely mGPT (Shliazhko et al., 2023). Finally, we
+included a 5-gram model (Frank and Aumeistere, 2023) as a comparison to a traditional language
+model based on co-occurrence counts. An overview of all models evaluated in this study can be
+but also context length, training procedure (including differences in the size of training data) and
+the tokenizer. A model’s context length denotes how many previous words (i.e., tokens) can be
+considered for the prediction of the next word. The tokenizer controls how words are converted
+to numerical data. At one extreme, a tokenizer might split text solely at word boundaries, while
+at the other extreme, the text can be split into individual characters. Most common are so-called
+2 Note that the corresponding Hugging Face space
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+subword tokenizers. The principle is that frequent words are represented as is, but infrequent
+words are split into smaller subwords (e.g., ‘tokenization’ split into ‘token’ and ‘ization’). The
+GPT2Tokenizer starts from individual characters and learns to merge those to represent all
+words in the vocabulary with the least number of tokens. GPT2Tokenizer uses byte-level Byte-
+Pair-Encoding, allowing robust handling of diverse text and special characters but sometimes
+causing misalignment between tokens and natural word boundaries. The LlamaTokenizer also
+uses Byte-Pair Encoding (BPE) but with a SentencePiece tokenizer. Unlike GPT-2’s
+deterministic BPE, it assigns probabilities to subwords and selects the most likely segmentation.
+A benefit of this approach is its flexibility, although it may result in less efficient token usage.
+Finally, CodeGenTokenizer uses an adapted BPE tokenization optimized to frequent patterns
+and structures in computer code (e.g., symbols and whitespace). More details on the
+(mis)alignment of tokens and word boundaries for each model’s tokenizer and each corpus can
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+Model name Parameter Training Tokenizer Reference/link
+Context length
+count type
+tweety-7b-dutch-v24a
+7.4B 8192 Modified GPT2Tokenizer (Remy et al., 2024)
+GEITje-7B
+7.2B 8192 Pretrained LlamaTokenizer (Rijgersberg & Lucassen, 2023)
+fietje-2 2.8B 2048 Pretrained CodeGenTokenizer (Vanroy, 2024)
+mGPT
+1.4B 2048 Multilingual GPT2Tokenizer (Shliazhko et al., 2023)
+gpt2-large-dutch
+gpt2-medium-dutch-finetune-oscar
+gpt2-medium-dutch-embeddings 344M 1024 Modified GPT2Tokenizer (de Vries & Nissim, 2020)
+gpt-neo-125M-dutch
+gpt2-small-dutch
+117M 1024 Modified GPT2Tokenizer (de Vries & Nissim, 2020)
+gpt2-small-dutch-embeddings 117M 1024 Modified GPT2Tokenizer (de Vries & Nissim, 2020)
+5-gram
+/ 4 Pretrained / (Frank & Aumeistere, 2023)
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+Note: Overview of Dutch language models meeting selection criteria, arranged in descending order by parameter count. Context length is expressed in
+number of tokens. The multilingual model was pretrained on a combination of 61 languages. Details of the model configurations can be found using the
+model cards on the Hugging Face website.
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+Reading Data
+Three eye-tracking corpora, consisting of, or containing Dutch material were used to
+evaluate the psychometric quality of the Dutch large language models. The corpora differed in
+the amount of text presented to readers, focussing respectively on sentence reading, paragraph
+reading and the reading of a full book. Three different eye-movement patterns were considered
+for each corpus: first fixation duration, gaze duration and total reading time. A description of
+RaCCooNS
+The Radboud Coregistration Corpus of Narrative Sentences (RaCCooNS) is a corpus of
+simultaneously recorded eye tracking and EEG while participants read separate narrative
+sentences (Frank & Aumeistere, 2023). The corpus presents the data of 37 participants (mean
+age: 26.2y) reading 200 sentences from the SONAR-500 corpus (Oostdijk et al., 2013). Sentences
+in this corpus were at least five words long and consisted of maximally 30 tokens. In total, the
+corpus presents word-by-word reading data for over 2783 words. For the current study, we only
+used the eye-tracking data.
+MECO
+The Multilingual Eye-Movement Corpus (MECO) offers reading data across 13
+languages, including Dutch (Siegelman et al., 2022). The participants (N = 45, mean age: 22.69y)
+read 12 Wikipedia-like expository paragraphs. The Dutch paragraphs were between 7 and 12
+sentences long and contained minimally 161 and maximally 213 words. Combined, the Dutch
+part of the corpus consists of 2231 words.
+GECO
+The Ghent Eye-Tracking Corpus (GECO) is a mono- and bilingual reading corpus
+reporting the eye-tracking data of participants reading a complete novel in Dutch and English
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+(Cop et al., 2017). Participants (N = 19, mean age: 21.2y) read the first half of the novel, The
+Mysterious Affair at Styles by Agatha Christie, in one language and the second half in the other
+language, the order of which was counterbalanced. We only use the data of participants reading
+in their L1 (Dutch). This entails that the first half of the novel was read by 10 participants and
+the second half was read by 8 different participants. In total, the corpus presents reading data for
+59.716 words with an average sentence length of 12 words.
+Measure Description
+First Fixation Duration The duration of the fixation landing on the target word during its first pass
+(FFD) (excluding words that were skipped in the first pass).
+Gaze Duration The total time spent fixating a word during first pass reading, thus before
+(GD) the gaze leaves it for the first time.
+Total Reading Time Summation of all fixation durations in the current word. This includes re-
+(TRT) fixations on the target word after regressive saccades.
+Surprisal Estimates
+Using the language models, the probability of each word conditioned on the preceding
+words was extracted with the Python package (version 4.42.4). The probability
+transformers
+estimation of each word was based on the maximal amount of context that could be accounted
+MECO data this means that the probability estimate of a word was conditioned on all the
+previous words in a sentence or paragraph, respectively, as they never exceeded the maximal
+context size of the transformer models. For the GECO corpus, we opted for a sliding context
+window approach. First, we extracted the words’ probabilities based on the preceding words for
+as long as they fitted in the context window. On the first token that exceeded maximum context
+length, the context window was shifted in steps of half the maximal context window. As a result,
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+all remaining word probabilities are conditioned on a textual input that is at least half the model’s
+total context window.
+Next, considering the strong evidence for a logarithmic linking function between
+predictability and reading times (Smith & Levy, 2013), the probability estimates were
+transformed into surprisal values by taking the negative natural logarithm. If a model’s tokenizer
+split a word into multiple sub-word tokens, the log probabilities of these tokens were summed.
+Analysis
+Psychometric Predictive Power
+First, we filtered out all words attached to a punctuation mark, including clitics and
+hyphens. Next, we also excluded sentence initial words (Frank & Aumeistere, 2023) and words
+outside the 5-gram’s vocabulary as for these words no probability estimate was obtained. Words
+with no fixations landing on it during first pass reading (i.e., skips) were excluded from the
+analyses. This left us with 95.814; 67.595; 549.220 data points for the RaCCooNS, MECO and
+GECO corpus, respectively.
+The predictive power of the models' surprisal estimates for by-word processing difficulty
+was then evaluated for every corpus and for each eye movement metric (i.e., FFD, GD and
+TRT). To this end, we fitted a linear regression model for each combination of the eye-
+movement measures as dependent variable and a computational surprisal estimate as
+independent measure. Each regression model additionally included following control measures:
+word frequency using Zipf value taken from SUBTLEX-NL (Brysbaert et al., 2018; Keuleers et
+al., 2010), word length (in characters) and the position of the word in the sentence. As eye
+movements during reading are also sensitive to the characteristics of the previous word, known
+as spillover effects (Frank et al., 2013) each model included the word length, frequency and
+surprisal of the previous word.
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+In line with previous studies, the amount of additional variance in readers’ eye movement
+patterns explained by the inclusion of the surprisal estimates of each language model was
+quantified by comparing the full regression model to a baseline model that contained all
+dependent variables except the surprisal estimates3. The predictive power of the surprisal
+estimates was tested using a 5-fold cross validation of the regression models. Regression
+coefficients of the predictors were estimated on four folds of the data, while the quality of the fit
+was measured on the left-out fold (in line with previous studies; de Varda et al., 2023). On each
+of these folds the increase in log likelihood associated with including the surprisal estimates was
+assessed. To facilitate the comparison across the three corpora, the difference in log likelihood is
+expressed relative to the amount of data points per corpus thereby denoting the increase in log
+likelihood per word by including the surprisal estimate of the current and previous word. We
+report the average difference in log likelihood per word across the five folds. P-values for each
+fold were calculated using the likelihood ratio test and aggregated over folds using Fisher’s
+combined probability test. All analyses were conducted in (version 4.4.1; R Core Team, 2024).
+In our description of the results, we will focus on GD as this is considered a cleaner
+measure of first-pass processing difficulty since it doesn’t include regressive saccades such as
+TRT. The effects on FFD, on the other hand, are generally too early to show an influence of
+context and are mainly associated with orthographic processes and early lexical access (Radach &
+Kennedy, 2013).
+Linking Function Surprisal and Reading Times
+Previous studies concluded that the linear linking function of surprisal and reading times
+generalized across languages (Wilcox et al., 2023). To test whether this linear relation holds when
+3 Baseline model: lm(ET measure ~ 1 + Freq + prev_Freq + Word_length +
+prev_Word_length + Word_Position)
+Full model: lm(ET measure ~ 1 + Freq + prev_Freq + Word_length + prev_Word_length +
+Word_Position + Surprisal + prev_Surprisal)
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+using specialized language models for Dutch, we use generalized additive models (GAMs) which
+are capable of modelling non-linear relationships. In this analysis we compare the link of
+surprisal and reading times for the surprisal of a multilingual model (mGPT) and that of the best
+performing Dutch model across all three corpora in the previous analysis. This analysis will focus
+on gaze duration as dependent measure since this metric is thought to be most strongly
+associated with first pass processing difficulty (Wilcox et al., 2020, 2023). First, all non-zero gaze
+durations on each word were averaged across participants to mitigate high by-participant
+variance potentially affecting the non-linear model fit. Next, in line with the previous analysis,
+sentence initial words and words attached to punctuation were omitted from the analysis. The
+resulting number of data-points for each corpus were: RaCCooNS: 2315; MECO: 1890; GECO:
+45.390.
+Testing the linearity of the surprisal effect entails comparing the difference in log
+likelihood of a linear and non-linear GAM to a shared baseline model. The non-linear GAM
+includes smooth terms for surprisal of the current and previous word, while also including tensor
+product terms for the interaction between frequency (in Zipf) and word length of current and
+previous word. The linear GAM includes a tensor product term for the interaction between
+frequency and word length but instead enforces a linear effect of surprisal (similar to regular
+linear regression). The linear and the non-linear models are then compared to a shared baseline
+model that only holds a tensor product term for frequency and word length4. If the effect of
+surprisal on gaze duration is indeed linear, the non-linear GAM should not yield an advantage in
+log likelihood. Using a 10-fold cross validation the log likelihood differences to the baseline
+model were computed. With a paired permutation procedure (N = 1000) we test whether the
+4 Baseline: gaze duration ~ te(frequency, word_length, bs = "cr") + te(prev_frequency,
+prev_word_length, bs = "cr")
+Linear: gaze duration ~ surprisal + prev_surprisal+ te(frequency, word_length, bs = 'cr') +
+te(prev_frequency, prev_word_length, bs = 'cr')
+Non-linear: gaze duration ~ s(surprisal, bs = "cr", k = 6) + s(prev_surprisal, bs = "cr", k = 6) +
+te(frequency, word_length, bs = "cr") + te(prev_frequency, prev_word_length, bs = "cr")
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+observed differences in log likelihood from the linear and non-linear model to the baseline are
+sampled from the same distribution. To visualize the relationship between surprisal and
+slowdown on gaze duration, we fit a linear and non-linear model on the 10 folds of the data and
+then sample the models’ predicted reading times based on surprisal values between 0-20
+(following Wilcox et al., 2023). GAMs were fitted using the package in R (version 1.9-1;
+mgcv
+Wood, 2017).
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+Results
+Psychometric Predictive Power
+model fit resulting from the inclusion of surprisal were statistically significant at the α = 0.05
+level. The exceptions being the surprisal estimates of tweety-7b-dutch-v24a in the RaCCooNS
+corpus across all three reading time measures (FFD: ΔLogLik = 4.05x10-5, SE = 4.93x10-5, p =
+.68; GD: ΔLogLik = 5.49x10-5 , SE = 2.52x10-5, p = .84; TRT: ΔLogLik = 1.37x10-4, SE =
+9.98x10-5 , p = .06) and those of fietje-2 (FFD: ΔLogLik = 2.51x10-4, SE = 5.21x10-5, p = .05) ,
+GEITje-7B (FFD: ΔLogLik = 2.09x10-4, SE = 3.64x10-5, p = .12) and Llama-3-8B-dutch (FFD:
+ΔLogLik = 2.38x10-4, SE = 7.66x10-5, p = .06) on the MECO data.
+For each corpus and for each dependent variable the best performing model was a large
+language model specifically trained for Dutch. The sole exception being the first fixation
+durations in the RaCCooNS corpus where the N-gram’s surprisal estimates predicted reading
+times best. The multilingual model never entered the top 3, highlighting the added value of using
+language specific models for psycholinguistic research.
+Focussing on the results for GD, there is no clear evidence of a strong inverse scaling
+However, for all three corpora one of the smaller models’ surprisal estimates caused the largest
+increase in model fit. For the RaCCooNS and MECO corpus gpt2-small-dutch-finetune-oscar
+(124M parameters, context length of 1024 tokens) was the best performing model. For GECO,
+gpt2-medium-dutch-embeddings (334M parameters, context length of 1024 tokens) had the
+largest psychometric predictive power. Overall, based on the sum of the model’s ranking gpt2-
+small-dutch (117M parameters, context length of 1024 tokens), the smallest transformer model
+in this evaluation (parameter-wise), is the best choice for quantifying surprisal in Dutch text
+(ranked 5th for RaCCooNS, 5th for MECO and 3rd for GECO). When considering the total
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+increase in log likelihood per token across all three corpora, gpt2-medium-dutch-embeddings is
+the best choice (Σ(ΔLogLik) = 0.0072), although this mostly stems from its performance on the
+GECO corpus (ΔLogLik = 0.0033, SE = 1.58x10-4, p < .001).
+Comparing models with the same type of architecture and a comparable training
+procedure, confirms the inverse scaling trend for Dutch models, albeit with some exceptions.
+First, in the case of gpt-neo-125M-dutch and gpt-neo-1.3B-dutch, two models only differing in
+the number of parameters, the smaller variant has greater predictive power in all three corpora.
+Next, for gpt2-medium-dutch and gpt2-large-dutch, two models that are both trained on the
+cleaned Dutch mc4 dataset (Raffel et al., 2023), the smaller model shows a benefit for MECO
+and GECO data. Only for the RaCCooNS data gpt2-large-dutch outperforms its smaller
+counterpart gpt2-medium-dutch. Two additional matched models are gpt2-small-dutch-
+embeddings and gpt2-medium-dutch-embeddings, both modified versions of a gpt2-small and
+gpt2 base model (respectively, Radford et al., 2019). The smaller model only has an advantage on
+the RaCCooNS data while the medium model’s surprisal estimates show a superior fit for the
+MECO and GECO data. A similar pattern is observed for the models gpt2-small-dutch-
+finetune-oscar and gpt2-medium-dutch-finetune-oscar, for which the small variant is superior on
+the RaCCooNS and MECO corpus but not on the GECO corpus.
+Considering the full collection of language models, it is notable that for the RaCCooNS
+and MECO data, the largest models (i.e., GEITje-7B, Boreas-7B, tweety-7b-dutch-v24a and
+Llama-3-8B-dutch) are clustered at the lower end of the ranking (i.e., 15, 13, 16 and 11 for
+RaCCooNS and 15, 14, 7, 12 for MECO, respectively) while their surprisal estimates fit the
+GECO data noticeably better (i.e., 11, 9, 10, 6, respectively). An overview of all estimates of
+predictive power for gaze duration with their respective confidence intervals can be found in the
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+Note: Increase in log likelihood per word resulting from including surprisal in a linear regression model. The reported increases in log likelihood are averages
+over the 5 folds of the cross validation. Grey lines denote the 95% confidence interval over the mean ΔLogLik of the folds. The language models are ordered
+according to number of parameters. For each corpus and each reading measure, the three best performing models are highlighted (see legend).
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+Note: The average increase in log likelihood per word across the cross-validation scheme. The models are ordered according to psychometric predictive power.
+All increases in log likelihood were significant at the α = 0.05 level. Note that the x-axis is scaled differently for the RaCCooNS data.
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+Linking Function Surprisal and Reading Times
+As gpt2-small-dutch was the best ranked model for GD over the three corpora, we
+compare the link between surprisal and GD when surprisal is estimated using gpt2-small-dutch
+the models allowing for a non-linear linking function and those enforcing a linear link. Overall,
+for each corpus and both language models, reading times increase with surprisal and as surprisal
+three corpora the inclusion of surprisal and previous surprisal (either linear or non-linear)
+significantly increased model fit to the average GD over a baseline model omitting surprisal.
+Visually, the non-linear GAM fits align reasonably well with their linear counterparts. For
+RaCCooNS and MECO, the paired permutation test indicated no evidence of an advantage for
+the non-linear model (RaCCooNS; gpt2-small-dutch: Δloglik linear = 0.0079, SE = 0.0028,
+Δloglik non-linear = 0.0070, SE = 0.0029, p = .83; mGPT: Δloglik linear = 0.0064, SE = 0.0025,
+Δloglik non-linear = 0.0077, SE = 0.0031, p = .34; MECO, gpt2-small-dutch: Δloglik linear =
+0.024, SE = 0.011, Δloglik non-linear = 0.026, SE = 0.017, p = .99, mGPT: Δloglik linear =
+0.016, SE = 0.0092, Δloglik non-linear = 0.020, SE = 0.020, p = .28). Surprisingly, on the GECO
+data and for both language models, the permutation test showed that the observed differences in
+log likelihood to the shared baseline did not come from the same distribution (GECO, gpt2-
+small-dutch: ΔLogLik linear: 0.0034, SE = 0.00082, ΔLogLik non-linear: 0.0052, SE = 0.00057, p
+= .003; mGPT: ΔLogLik linear: 0.00052, SE = 0.00017, ΔLogLik non-linear: 0.0017, SE =
+0.00032, p < .001). In both cases, the non-linear model showed a significantly better fit to the
+dutch surprisal estimates showing a superlinear relation to reading times and that of mGPT
+showing a sublinear relation at both ends of the surprisal distribution. The differences in log
+likelihood of the linear and non-linear model compared to the baseline model with only non-
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+Note: Comparison of linear and non-linear GAM fits using surprisal of the best performing Dutch model (gpt2-small-dutch) and the multilingual
+model (mGPT). Non-linear GAM fits are shown in blue, linear fits are depicted in yellow. 95% confidence intervals are shown as shaded bands.
+The grey subplots denote the distribution of the surprisal values of each model.
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+Note: The difference in log likelihood per word for the linear and non-linear GAMs compared to a shared baseline that only included the non-
+contextual control variables (word frequency, word length and position in the sentence). The lines denote the 95% confidence interval of the
+difference. Asterisks denote the significant results of the paired permutation test, ** p ≤ 0.01, *** p ≤ 0.001.
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+Discussion
+The large majority of evidence for the impact of word predictability on reading has been
+established in the English language, with recent work pointing to transformer models as a
+superior method for extracting surprisal estimates (e.g., de Varda et al., 2023; Eisape et al., 2020;
+Hao et al., 2020; Merkx & Frank, 2021). The broad class of large language models has seen a rapid
+proliferation in the amount of openly available models. For languages other than English,
+researchers have turned to multilingual models that are trained to capture the language statistics
+of multiple languages at once (Wilcox et al., 2023). Meanwhile, language-specific transformer-
+based language models beyond English have been developed yet the validity of these models’
+surprisal estimates in accounting for reading behaviour remained unevaluated.
+In the current work we provided a comprehensive evaluation of the predictive power of
+multiple Dutch transformer models, compared to a multilingual transformer model and an N-
+gram model, in explaining variability in eye movements during the reading of narrative sentences
+(RaCCooNS corpus), paragraphs from Wikipedia articles (MECO) and a full novel (GECO).
+Furthermore, we aimed to test whether established phenomena from English language
+modelling, the inverse scaling trend and the linear effect of surprisal on reading times,
+generalized to Dutch LLMs.
+The impact of word predictability or reading
+At the conceptual level, our results underline once more the effect of predictability on
+reading times. Nearly for all models and across the three corpora the index of word predictability
+given the preceding context significantly predicted reading behaviour after controlling for
+common control variables, frequency and word length. For the first time, this study
+demonstrates the effect for Dutch using various computational estimates. It is also the first
+systematic comparison of this effect across corpora of increasing context sizes, including book
+reading.
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+Which Dutch model should one choose?
+The answer here is clearly ‘it depends’, yet across the three corpora and the different
+reading measures we consistently found that language-specific models developed for Dutch
+outperformed the multilingual model. Our findings suggest that language specific models have
+an advantage over a multilingual model when it comes to psychometric predictive power. Based
+on this advantage, we recommend using the better-performing language-specific Dutch GPT-2
+models for analysing Dutch reading data. On the other hand, it can be noted that also the
+surprisal estimates of the multilingual model showed a significant effect on reading times thereby
+endorsing the conclusion by Hollenstein et al. (2021) that multilingual models are capable of
+predicting reading times and validating the results of cross-linguistic studies using this mGPT
+model (Wilcox et al., 2023).
+In addition, the largest models are not recommended, as the results of the Dutch LLMs
+presented here corroborate the ubiquitous inverse scaling trend observed in English language
+models (de Varda & Marelli, 2023; Oh et al., 2022; Oh & Schuler, 2023; Steuer et al., 2023).
+Across corpora, the models’ surprisal estimates that result in the largest increase in model fit to
+reading times are from comparatively small models. Yet, the trend we observed in the Dutch
+models is less pronounced than in some previous work on English (e.g., de Varda & Marelli,
+2023; Oh & Schuler, 2023). The substantial variability in model configuration type (i.e., gpt2, gpt-
+neo, mistral, phi and llama configuration) and additional differences in context length, tokenizer
+and training procedure of the models compared here, leaves open the possibility that the
+interplay of those factors occluded an inverse scaling trend that may well be observable within a
+single model family (e.g., GPT-2 small – XL; Oh et al., 2022).
+Model-specific Effects
+A large-scale comparison like the one we present here, further highlights the specificity
+of some models and the need to consider multiple text types and context sizes when evaluating a
+model’s psychometric predictive power. For the RaCCooNS and MECO corpus the inverse
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+scaling trend was more pronounced with the large models clustering at the low end of the
+performance spectrum. However, for the largest corpus used here, GECO, the sizeable models
+did noticeably better. Consider first the case of the 5-gram model, the predictive power of the 5-
+gram’s surprisal estimates is very high for the RaCCooNS corpus consisting of separate
+sentences yet it lags in terms of predictive power when the available context increases in MECO
+and GECO. Note that the 5-gram model is a good fit for the RaCCooNS corpus by design. The
+sentences making up this corpus were selected from the SONAR-500 corpus so that all the
+included words were part of the 20.000 most frequent words of the NLCOW14 corpus (Schäfer
+& Bildhauer, 2012), the same corpus that was used to train the 5-gram model. The largest model
+considered here (i.e., Llama-3-8B-dutch) shows the opposite trend. It shows a stark increase in
+predictive power on the GECO corpus only.
+The question remains what exactly causes these variations in predictive power. On the
+one hand, it could be that the type of content the model was trained on aligned better with the
+text it was evaluated on. It could even be the case that the exact corpus material was part of the
+model’s training data. While we cannot ascertain which model has potentially been trained on
+what corpus, we would argue that the effect is negligible at worst, considering most models were
+trained on billions of tokens. Furthermore, it is unclear whether including the corpus text in the
+model’s training would even yield an advantage at all as it was shown that the larger models’
+lower predictive power is mainly caused by an underestimation of how surprising nouns and
+adjectives are to a human reader (Oh & Schuler, 2023). Being trained on the corpus material
+itself could only exacerbate this tendency.
+On the other hand, the larger context window of these big models (i.e., 8192 tokens for
+Llama-3-8B-dutch vs. 1024 tokens for gpt2-small-dutch) can perhaps compensate for their
+declining psychometric performance as GECO is the only corpus that allows for the full use of
+the context window of the models. Future endeavours investigating why some models explain
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+reading times better need to consider the scaling of the available context when evaluating
+models’ predictive power. Hu et al. (2024) showed that increasing the context length resulted in a
+sharper probability distribution with the largest effect on content words. Investigating the impact
+of gradually increasing the context length on the fit of surprisal to reading times would be an
+interesting direction for future work. Conducting a similar evaluation as the one presented here
+but systematically varying the context window of a specific model within a corpus that is large
+enough to allow the full use of the context window could further elucidate the conditions for
+which the inverse scaling trend might not persist.
+Such an inquiry could offer a valuable complement to the analysis presented by
+Kuribayashi et al. (2022) where it was shown that the opposite operation, limiting the context
+length of a model, increased its psychometric predictive power. In this study, considering only
+the previous word for the prediction of the next yielded the best outcome. In line with these
+results, altering the self-attention mechanism of a transformer model to emphasize the local
+context caused a significant increase in the predictive power of GPT-2 (De Varda & Marelli,
+2024). Both these results stem from cases where participants had at most a paragraph worth of
+context. This stands in contrast to the GECO corpus (Cop et al., 2017), presenting a narrative
+spanning across more than 60.000 words potentially allowing for a stronger integration of
+information by a reader. The length of the narrative may be an important factor driving the
+effect of limiting the context presented to the model. Within larger narratives (like the full novel
+in GECO), the positive effect of constraining the model to consider a more local context for the
+prediction of the next word might be diminished compared to a more ‘local’ setup of reading
+sentences.
+Beyond the context window, also the model’s tokenizer could affect the predictive power
+of surprisal for a given corpus. Take for example the GECO corpus, this corpus presents reading
+data on a novel with above average reading ease, containing many short and highly frequent
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+words. For this input, the LlamaTokenizers used by the largest models (GEITje-7B, Boreas-7B
+and Llama-3-8B-dutch) split up fewer words into subword tokens compared to the MECO
+estimated suboptimally causing a decline in psychometric predictive power. Teasing apart the
+effects of tokenization and context window size on the model’s performance is an interesting
+avenue for future research. Past work demonstrated that byte pair encoding tokenization to
+estimate surprisal is equivalent to morphological or orthographic tokenization in terms of
+predictive power on reading time data (Nair & Resnik, 2023). However, it remains to be tested
+whether other BPE variations, departing more strongly from morphological subword
+tokenization, produce a comparable surprisal estimation.
+Results like the one presented here also provide a useful starting point for researchers
+aiming to build developmentally plausible language models (BabyLM Challenge, Warstadt,
+Mueller, et al., 2023). The BabyLM challenge had researchers train a language model on a fixed
+data budget of 10 or 100 million tokens. One of the motivations for this challenge was to allow
+for faster iterations in the exploration of architecture and parameter configurations. Besides the
+evaluation on formal linguistic benchmarks, it makes sense to address the predictive power on
+reading times (Steuer et al., 2023). The ranking of these Dutch language models offers a
+reference point for future models aiming to achieve maximal psychometric predictive power with
+limited training resources.
+Surprisal Linearity Depends on the Corpus
+The merit of including an outlier corpus in terms of available context in a model
+comparison was also shown in the analysis concerning the linking function of surprisal and
+reading times. For both the RaCCooNS and MECO corpus, the relationship between surprisal
+and reading times was deemed to be linear, replicating earlier findings for English (Smith &
+Levy, 2013; Wilcox et al., 2023). However, in the case of GECO, a model allowing for a non-
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+linear effect of surprisal caused a greater increase in model fit than the model forcing a linear
+link. The same conclusion held true when using surprisal estimates of a multilingual model
+(mGPT) and a Dutch model (gpt2-small-dutch). The shape of this non-linearity was visually
+different for both language models, with the Dutch models’ surprisal showing a distinct
+superlinear effect. This results echoes the conclusion by Xu et al. (2023), who also showed a
+superlinear effect for Dutch with the exact shape of the surprisal effect depending on the
+language model used to estimate surprisal.
+New Perspectives on the Surprisal Bottleneck
+Recent studies explored alternatives to surprisal when estimating the causal bottleneck
+experienced by readers. Brysbaert et al. (2024) showed that word familiarity estimates by a LLM
+accounted better for lexical decision and naming performance than traditional frequency. This
+raised the question of whether the effect of surprisal still stands when controlling for this LLM
+based frequency measure. Relatedly, Opedal et al. (2024) argued that traditional effects of
+surprisal may be an overestimation of the effect of prediction during reading. Projecting surprisal
+on the orthogonal complement of frequency, they showed that the purely contextual predictor
+explains a proportion of variance far below standard surprisal. This also relates back to the
+previous notion of locally biased transformer models (De Varda & Marelli, 2024; Kuribayashi et
+al., 2022). In its most extreme form, a locally biased transformer simply estimates unigram
+probability which is proportional to frequency. Future studies could investigate the interplay
+between these predictors, which combination yields the greatest increase in predictive power for
+reading times and what novel measures, like LLM estimated familiarity mean for processing
+difficulty experienced by readers.
+Conclusion
+To conclude, this paper presents a comprehensive evaluation of a variety of Dutch large
+language models in reference to a well-studied multilingual model. As such, it presents a valuable
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+resource for researchers looking for a psychometrically valid language model of Dutch. In
+addition, researchers are invited to make use of the surprisal estimates documented on OSF
+A SYSTEMATIC EVALUATION OF DUTCH LLM
+Declarations
+Funding
+This project was supported by a grant from the Research Foundation – Flanders (FWO)
+awarded to Sam Boeve (11P3T24N). The computational resources used in this work were
+provided by the VSC (Flemish Supercomputer Center), funded by Ghent University, FWO and
+the Flemish Government.
+Conflicts of interest
+Not applicable.
+Ethics approval
+Not applicable.
+Consent to participate
+Not applicable.
+Consent for publication
+Not applicable.
+Availability of data and materials
+were preregistered.
+Code availability
+Code to extract surprisal estimates and analysis code are available on OSF:
+A SYSTEMATIC EVALUATION OF DUTCH LLM

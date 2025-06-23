@@ -1,0 +1,477 @@
+Comparative Evaluation of Fine-Tuned and
+Standard Language Models in Emulating
+Living Historical Figures: A Detailed Study
+Proposal
+Daniel Goldman
+contact@danielgoldman.us, ORCID: 0000-0003-2835-3521
+October 4, 2023
+Abstract
+The contemporary growth spurt in artificial intelligence has en-
+gendered an opportunity to explore evermore complex applications of
+language models. This research proposal outlines an in-depth compar-
+ative study aimed at investigating the proficiency of fine-tuned lan-
+guage models against standard general-purpose transformer (GPT)
+models. Specifically, we aim to emulate dialogues characteristic of se-
+lected, living historical figures. With a primary focus on accuracy,
+authenticity, and reliability, we propose an innovative ”biographimet-
+ric” approach that correlates psychometric properties of AI-generated
+responses with biographical data. This study anticipates not only
+shedding light on the comparative potential of customized and stan-
+dard language models but also developing a comprehensive evaluation
+matrix for such models. Furthermore, we aim to touch upon the array
+of practical applications, ethical issues, and potential impacts on var-
+ious domains, including archival studies, AI ethics, and sectors such
+as education and entertainment. Ultimately, our research could con-
+tribute significantly to understanding the boundaries and possibilities
+of AI language models in capturing and replicating unique human
+thought processes.
+1 Introduction
+Artificial intelligence (AI) has been widely acknowledged as a major break-
+through in technology, with applications spanning across diverse sectors.
+With advancements in machine learning technologies, research has shifted
+towards the potential of language models. General-Purpose Transformer
+(GPT) models, in particular, have been at the forefront of this exploration,
+creating a thrilling platform to delve deeper into the nuances and capabilities
+of linguistic AI.
+Standard GPT models, despite their exceptional abilities, follow a capacity-
+based approach. They are trained on vast volumes of data, learning to predict
+the next word in a sequence but mostly lacking in contextual understanding
+and specificity of an individual’s distinctive linguistic style. Conversely, fine-
+tuned models offer an opportunity for emulating individual-specific dialogues.
+By training these models on a corpus of writings from a specific individual,
+they can reflect the unique language style and context of that person. There
+is a gap in existing research, however, concerning the comparative efficiency
+of these two types of models in capturing the diversity and individuality of
+human language use.
+This opens up certain queries about these models. Namely, can these AI
+systems, trained on publicly accessible works, give us any valuable insight
+into the inner thought processes of creators? While these neural networks
+might not be mind-readers, their propensity for unearthing latent information
+can offer more insights than is often credited to them.
+Our proposed study aims to bridge this research gap by conducting an
+in-depth comparative analysis of fine-tuned GPT models and standard GPT
+models. The main objectives of this research are threefold:
+To investigate and quantify how accurately fine-tuned models can em-
+ulate the dialogue of selected living figures when compared to standard
+GPT models.
+To identify the crucial factors that contribute to the emulation’s accu-
+racy and assess the alignment between the models’ responses and the
+actual dialogues of these figures.
+To evaluate not only the practical applications of using AI models to
+represent living figures but also the potential ethical issues.
+Based on these objectives, the research questions shaping our study in-
+clude:
+Do fine-tuned models more accurately emulate the dialogues of selected
+living historical figures compared to standard GPT models?
+What are the major influences affecting the alignment and accuracy of
+these models in emulating the dialogues of the figures?
+What are the practical and ethical repercussions of using AI algorithms
+to represent or mimic living figures?
+Through this study, we aim to go beyond the conventional understanding
+of AI and its linguistic capabilities. To this end, we seek to evaluate the
+authenticity, accuracy, and reliability of both standard and fine-tuned models
+in mimicking individual narrative styles and thought patterns. By answering
+the above research questions, we hope to provide insights that could serve
+as a robust foundation for future research in this rapidly evolving sector,
+ushering a new era in the utilization of AI in understanding and replicating
+the unique human thought processes and dialogues.
+2 Literature Review
+In their 2023 work, Li, Zhou, Huang, Cheng, and Chen presented a com-
+pelling research study on eliciting the translation abilities of Large Pretrained
+Language Models (LLMs) through multilingual finetuning with translation
+instructions[4]. Their primary investigation centered around the fascinating
+finding that LLMs can perform multilingual translations proficiently, despite
+not being explicitly trained on parallel corpora.
+Their paradigm-shifting study disputed the reliance on in-context learn-
+ing, which historically has been seen as pivotal to guide LLMs to perform
+translations. Instead, they proposed directly training the LLMs to follow
+translation instructions. Using an innovative approach called multilingual
+Finetuning with Translation Instructions (mFTI), they proved that LLMs
+could exhibit a robust translation capability. They discovered that when
+trained on a mixed dataset of 1,000 sentences per language pair, mFTI out-
+performed 8-shot in-context learning in a relative comparison of the BLEU
+score, which is a benchmark measure for comparing machine translations.
+Li et al.’s innovative usage of pivot languages for directly aligning different
+languages enhanced not only the instruction following skills of LLMs but
+allowed for performance improvements even for language pairs unseen during
+instruction training. They demonstrated the ability of the LLMs to generalize
+translation instructions across language pairs, thus exhibiting a fascinating
+capacity to find connections between information without being explicitly
+trained on them.
+They also made strides in zero-shot translations without directly parallel
+sentences between the source and the target language. Their methodology
+of introducing more language pairs and utilizing additional monolingual sen-
+tences enhanced the performance of LLMs by easing the model’s off-target
+issues. Consequently, this led to better translation performance, thus estab-
+lishing a stronger generalization ability and higher translation quality.
+Li et al.’s groundbreaking finding that LLMs, such as GPT4, can un-
+derstand translation instructions and establish alignments between different
+languages, even in the absence of specific language pairs in the training set,
+redefines our understanding of the potential of these models. This innova-
+tive perspective finds value in finetuning LLMs, incorporating more language
+pairs, and utilizing monolingual sentences, thus significantly enhancing the
+performance of machine translations. The provocative work of Li et al. es-
+tablishes a dynamic dimension in the realm of machine learning research.
+Their findings instigate further intrigue around the abilities of large-scale
+pretrained language models, stimulating prospects for their application in
+more advanced and nuanced roles in multilingual translations.
+Indeed, in their study, Li et al. demonstrate the remarkable ability of large
+language models to align, interpret, and extrapolate information in ways not
+explicitly guided by the instructions. This feat raises pertinent questions
+about the extent and potential of such unsupervised learning methods be-
+yond multilingual translations. Continuing on this trajectory of exploring
+novel applications of large language models, the intriguing field of ’digital
+necromancy’ has surfaced, fascinating us with its use of AI and LLMs to
+simulate interactions with deceased individuals—an area rich in both poten-
+tial and ethical challenges, as explored by Hutson and Ratican (2023).
+Digital necromancy represents an emerging area of research, combining
+the capabilities of AI, large language models (LLMs), and robotics to enable
+interactions with virtual versions of deceased individuals. In their seminal
+work, Hutson and Ratican (2023) examine the ethical considerations, poten-
+tial implications, and technological limitations that arise in the context of
+this practice[2].
+In order to understand why individuals may desire to engage with a vir-
+tual version or replica of a deceased person, Hutson and Ratican (2023)
+outline the various motivating factors. These include preserving memories,
+seeking emotional closure, preserving cultural heritage and history, educa-
+tion and research purposes, artistic expression, and interacting with idols or
+influential figures.
+Historical examples such as hologram concerts and CGI characters in cin-
+ema are analyzed by the authors to highlight the various ways in which this
+practice has been implemented. Ethical concerns regarding privacy, consent,
+and the potential for commercial gain are explored as part of this analysis.
+The authors stress the importance of consent, and the need to respect pri-
+vacy and address implications related to commercialization, to ensure ethical
+practices in digital necromancy.
+Hutson and Ratican (2023) note several technological limitations related
+to accurately representing individual personalities, misrepresenting cultural
+context, and the limited availability of data. These limitations are essential
+considerations as these technologies continue to advance and evolve.
+Additionally, the authors explore the influence of digital necromancy on
+the grieving process, specifically discussing the ”Pet Cemetery conundrum”.
+The authors suggest that the ability to maintain a connection with the de-
+ceased through digital replicas might hinder the natural grieving process.
+This phenomenon represents an area that requires careful ethical considera-
+tion, as well as further psychological research.
+This work effectively discusses the ethical implications, technological lim-
+itations, and the psychological and emotional impact of digital necromancy.
+The comprehensive analysis presented by Hutson and Ratican (2023) pro-
+vides a valuable resource for ongoing discussions and considerations on re-
+sponsible and ethical use of AI, LLMs, and robotics in the context of digital
+resurrection.
+Shifting the discussion from the wider implications of digital necromancy,
+a closer inspection of one of the core technologies involved, Large Language
+Models (LLMs), merits attention. Two pertinent inquiries arise when con-
+sidering these models: Can an LLM believably replicate human personality
+traits, and what would such a capability mean? These questions are central
+to the pioneering study by Serapio-Garc´ıa et al. (2023). Through a meticu-
+lous and innovative approach, they delve into the unexplored characteristics
+of LLMs, focusing particularly on their capacity to express personality traits
+in a reliable manner. The findings of their work have crucial implications
+for the advancement of digital resurrection technologies and how we perceive
+their authenticity.
+Serapio-Garc´ıa et al. (2023) in their study ”Personality Traits in Large
+Language Models”, took a comprehensive approach towards understanding
+if Large Language Models (LLMs) can reliably and validly simulate human
+personality traits[5]. They developed a systematic methodology for psycho-
+logical testing and further validation of LLM outputs. This represented the
+first structured attempt to measure, validate, and shape personality traits
+in LLMs, using established psychometric methods and principles from social
+science and psychology.
+The authors adopted an innovative approach that involved developing a
+structured method for administering psychometric tests to LLMs, generating
+test score variations, and then using this information to carry out a suite of
+statistical analyses to assess the reliability and validity of the measurements.
+They did not stop at measurement and validation; using a novel prompting
+methodology, the researchers were able to shape the personality traits of
+their LLMs at nine different levels. Their results were startling; not only did
+they find the measurements of personality traits to be reliably and validly
+expressed in LLMs outputs, but they were also able to manipulate these
+traits to mimic specific human personality profiles.
+The implications of this study are far-reaching. It suggests that LLMs
+are not only capable of displaying a persistent synthetic personality but that
+these exhibited personalities are both reliable and valid. Furthermore, these
+personality traits can be manipulated to create more specific, or perhaps
+user-friendly, conversational agents. This work also highlights potential eth-
+ical implications in relation to responsible AI and the need to have scien-
+tifically vetted methods for LLM personality measurement, analysis, and
+modification.
+This investigation, however, focused on the PaLM model and its vari-
+ants, which raises the question of generalizability of these methods to other
+models and settings. Future research would do well to extend this work
+by administering similar tests to different language models, validating these
+measurements with other external criteria, and assessing personality traits
+in non-English languages.
+Serapio-Garc´ıa and his team have taken an impactful step forward in
+understanding how LLMs exhibit complex social phenomenon through stan-
+dard psychometric methods, which signals an evolving understanding of how
+LLMs could be tailor-made to align with the specific requirements of differ-
+ent applications (Serapio-Garc´ıa et al., 2023). This work not only advances
+the science of decoding personality traits in AI but also, and perhaps more
+importantly, provides a foundation for the responsible application of these
+emerging technologies.
+Building on this conversation, Jiang et al. (2023) took a novel approach
+to studying the behavior of large language models[3]. In a pioneering study,
+they systematically explored the capability of the GPT-3.5 model to express
+distinct personality traits and gender differences. They designed and imple-
+mented an extensive experiment with GPT-3.5 under different personas, each
+representing a unique combination of Big five personality traits and gender
+identities.
+Contrary to PaLM’s focus on a single variant, Jiang and his fellow re-
+searchers innovatively leveraged the flexibility of assigning different person-
+alities to the LLM, thereby creating an ensemble of 320 unique personas.
+Their exhaustive methodology included exposing these multiple personas to
+various tasks and subsequently analyzing their performance using psycholin-
+guistic features, thereby demonstrating the personalized nature of responses
+evoked by these LLMs.
+Clear evidence indicated that the self-reported personality types of these
+LLM personas were consistent with their assigned characteristics (Jiang et
+al., 2023). Further, these distinct personas exhibited language variations
+indicative of their different personality types, reinforcing the earlier findings
+of Serapio-Garc´ıa et al. Interestingly, the authors also found no significant
+effect of introducing a gender into the persona characteristics on its language
+use in social, emotional, and cognitive domains.
+The substantial findings of Jiang et al. (2023) contribute to the rapidly
+burgeoning body of evidence suggesting the distinct ability of LLMs to demon-
+strate complex social phenomena. Their results further emphasize the im-
+plications of using LLMs to tailor communication aligned with different in-
+dividual personalities and augment the importance of an ethical and respon-
+sible approach to setting up synthetic conversational agents. However, like
+Serapio-Garc´ıa et al., they also mainly focused on English language tasks, un-
+derscoring the need for further explorations in various language and cultural
+settings.
+The collective findings of both these studies reveal promising initial steps
+towards understanding the social complexity exhibited by LLMs and serve
+as a call to action for future research to harness the potential of these so-
+phisticated models more comprehensively and responsibly.
+3 Methodology
+The proposed study will be multi-pronged, integrating several stages to fully
+examine and compare the capabilities of standard and fine-tuned GPT mod-
+els in effectively emulating the thought processes and language patterns of
+selected living figures.
+The first step in our methodology is vetting and selecting living historical
+figures who have a rich collection of publicly available textual records. It
+is crucial to select figures with extensive written records that can provide a
+diverse set of language patterns characteristic of these individuals. This step
+culminates in the creation of the corpus against which the AI models will be
+trained, tested, and compared.
+In choosing historical figures for this study, it’s essential to embrace a
+wide-ranging collection of thought and expression styles. We aim to select
+individuals who, together, represent a multifaceted mosaic of ideas, perspec-
+tives, and writing constructs. From the lyrical prose of celebrated authors to
+the precise articulations of scientists, and the passionate speeches of social
+of linguistic diversity. Each unique style and set of ideas serves as a distinct
+dataset, enabling us to rigorously assess the adaptability and versatility of
+our AI models in replicating and understanding varied patterns of human
+expression and thought.
+We aim to commence our study with a target of ten individuals, a number
+we believe would offer a comprehensive and varied dataset for our exploration
+into diverse linguistic patterns and ideologies. However, we are cognizant of
+the challenges this presents. It’s not merely about identifying figures with
+a rich array of public texts but also those who would consent to participate
+in this unprecedented study. Balancing the need for textual volume and
+diversity with the practicalities of consent and participation could potentially
+limit our selection. Nevertheless, each chosen individual will play a critical
+role in enriching our model’s learning, ensuring a meticulous examination of
+the nuanced intricacies of language and thought.
+The next phase first involves developing a large corpus of written works,
+volves developing and fine-tuning our AI models. GPT-3.5-Turbo fine-tuning
+is currently available and it is expected that GPT-4 fine-tuning will be avail-
+able in the near future[1]. The fine-tuning of these models will be achieved
+by training each on the unique corpus of textual records corresponding to
+The subsequent phase is the interactive dialogue with the AI models via
+a questionnaire, which we term the survey phase. We will develop a compre-
+hensive set of questions designed to encompass a range of topics and solicit
+varied responses. This approach will enable us to probe the depth, breadth,
+and authenticity of the AI models’ understanding and representation of the
+figures’ thought processes. The survey will be provided to an unmodified
+in question, giving it basic biographical data and nothing more. Then the
+Finally, our methodology includes an evaluative stage, where the re-
+sponses generated by the AI models will be assessed for similarity, authentic-
+ity, and depth to the true responses of the figures. An evaluation matrix will
+be constructed to quantitatively compare the responses from the fine-tuned
+responses. This evaluative phase will yield a comparative analysis of how well
+each model aligns with the actual linguistic style and thought processes of
+Additionally, we will perform statistical tests to ascertain the validity of
+our models and to judge the robustness of our hypotheses. Data will be
+processed and analyzed using statistical software that can perform a range
+of tests including item-level analysis, and multivariate regression and cor-
+relation analyses. This will enable us to draw inference about the relative
+success of the fine-tuned models and the standard GPT model in replicat-
+tests used will be specific to each hypothesis listed in the Expected Outcomes
+and Potential Impact section.
+Throughout the methodology, we recognize the ethical considerations sur-
+rounding the use of AI models to represent or mimic living figures. We are
+committed to maintaining the responsible and respectful use of AI in this
+study, ensuring that the potential benefits of this research for areas such as
+education, entertainment, and archival studies do not outweigh individuals’
+right to privacy and representation. The participants will be given clear in-
+formation about how the model will be used both now and in the future. If
+the models are released to the public, after approval by the figures, they will
+from obtaining exclusive financial benefit from the output of their model.
+4 Survey Questions
+Survey questions should consider a wide area of topics, and preferably include
+some questions for which there may not yet be writings specific to it, by the
+figures involved. The following are 60 possible survey items, broken down
+by categories of self-awareness, societal views, ethical dilemmas, speculative
+scenarios, technological impact, environmental concerns, and human nature
+and existence.
+4.1 Self-Awareness
+1. How do you define your ethical and moral values? Can you provide
+examples of these values in action?
+2. How do you believe your childhood experiences have shaped your cur-
+rent views and ideologies?
+3. How has your identity (such as your gender, race, or socioeconomic
+status) influenced your perspectives?
+4. What is your philosophy on personal development and self-improvement?
+5. How do you maintain mental and emotional wellness?
+6. What human characteristic do you believe is underappreciated or over-
+looked?
+4.2 Societal Views
+7. What are your views on the importance of education? How should it
+be structured and delivered?
+8. How do you perceive the role of family in an individual’s life?
+9. What are your thoughts on the current political climate in your coun-
+try?
+10. How do you believe society should address issues related to inequality
+and justice?
+11. How do you perceive the impact of globalization on cultural diversity?
+12. How do you envision the role of governments changing with the ad-
+vancement of technology?
+4.3 Ethical Dilemmas
+13. How should governments balance individual privacy with national se-
+curity?
+14. What are your views on the distribution of wealth within society?
+15. If you had the ability to eliminate all suffering, but it would also halt
+human development, would you do it?
+16. Do you think there’s an ethical way to explore and colonize other plan-
+ets without harming potential extraterrestrial ecosystems?
+17. What do you think the ethical implications would be of creating a
+simulated universe?
+4.4 Speculative Scenarios
+18. How do you think art and creative expression contribute to societal
+development?
+19. How would human behavior change if everyone lived to be 200 years
+old?
+20. If eternal life were achievable, do you think it should be pursued?
+21. How would the confirmation of magic’s existence change the scientific
+community?
+22. If you could possess one superhuman ability, but it diminished your
+lifespan by a decade, would you choose it?
+23. Do you think the universe has a purpose, and if so, what might it be?
+4.5 Technological Impact
+24. What are your thoughts on the role of technology in daily life?
+25. How do you think artificial intelligence will impact society in the future?
+26. If society were to undergo a complete transformation, what is one as-
+pect you’d hope remains constant and why?
+27. Imagine a world without the internet. How would that affect interper-
+sonal relationships?
+28. If you could upload your consciousness to a digital format, would you?
+Why or why not?
+29. How would society change if all jobs were automated and people didn’t
+need to work?
+4.6 Environmental Concerns
+30. What are your thoughts on climate change and environmental sustain-
+ability?
+31. How can the international community address global health crises, like
+pandemics?
+32. What role should individuals play in the conservation of natural re-
+sources?
+33. How do you think the discovery of sentient AI would impact human
+spirituality and religion?
+34. Do you believe in the concept of a collective consciousness? Why or
+why not?
+35. How would human society change if we discovered an alternate uni-
+verse?
+4.7 Human Nature and Existence
+36. How do you feel about the evolution of cultural norms and values?
+37. What’s a belief you hold that most people disagree with?
+38. What are your thoughts on the role of dreams and their connection to
+reality?
+39. If given the chance, would you choose to live in a simulated utopia?
+40. Do you believe that the course of history is predetermined, or do we
+have the power to alter our fate?
+5 Expected Outcomes and Potential Impact
+The proposed hypotheses integral to this research include:
+1. Hypothesis A: The standard GPT-4 model will demonstrate lower align-
+ment scores when compared with the fine-tuned models, suggesting the
+greater competence of the fine-tuned models in mirroring the thought
+processes of living figures.
+2. Hypothesis B: The alignment scores for fine-tuned models will meet
+models will, on average, decently emulate the linguistic style of the
+figures they are trained on.
+3. Hypothesis C: Fine-tuned models are likely to ”fool” evaluators more
+often after adjusting for evaluator familiarity with the figures. This
+suggests the scope for AI models to convincingly simulate human lan-
+guage and thought. This can be further detailed as:
+Hypothesis C1: Fine-tuned models will yield higher false-positive
+rates, leading evaluators to mistakenly attribute AI-generated re-
+sponses to the actual figures.
+Hypothesis C2: Fine-tuned models will register lower false-negative
+sponses are erroneously attributed to AI-generated responses.
+4. Hypothesis D: The confidence level of evaluators in their identifica-
+tions is likely to influence the accuracy of their assessment. Both false-
+positive and false-negative rates are expected to be lower with higher
+levels of confidence. This showcases the importance of familiarity and
+confidence when interacting with AI-generated content.
+In essence, this research exercises a two-fold focus. On one hand, it
+maintains an empirical comparison of fine-tuned and standard GPT models.
+Conversely, it also seeks to glean an understanding of the complex mesh of
+artificial intelligence, language, and human comprehension. Findings from
+this study are expected to enlighten the prospective usage of AI models
+in enhancing or replicating human intelligence. Moreover, the evaluation of
+these models based on their linguistic divergence or convergence with humans
+is expected to yield insights beneficial to various domains, including but
+not limited to AI ethics, archival studies, and education and entertainment
+sectors.
+Importantly, this research underscores a fundamental challenge: meeting
+the rapid pace of technological evolution while preserving the ethical integrity
+of AI usage. The process of developing and testing these hypotheses promises
+a significant contribution to addressing this challenge.
+6 Conclusion
+In conclusion, the study study would seek to unlock a novel frontier in AI
+research, exploring how fine-tuned and standard GPT models can success-
+fully replicate the unique communication and intellectual patterns of selected
+figures. Research already indicates that general models can simulate certain
+personality traits, and in a psychometrically robust way. Now the question
+of figures, in a biographimetrically robust way. This project’s reach, how-
+ever, extends much further than merely reproducing the articulate narrative
+of historical figures—it seeks to underscore how these models could mirror
+collective intelligence and lend a voice to unified social sentiments.
+In delving deeper into individuals’ unique communication style, we un-
+cover an exciting possibility—the potential to represent a collective. Having
+an AI model that captures the collective opinion rather than a singular view
+could revolutionize how information is gathered, understood, and articulated.
+It could mean an end to the imperfect medium of human spokespersons and
+ushers in an era where collective voices can be truly encapsulated.
+Transitioning from the representation of a discrete individual or an amal-
+gamated collective, the study then opens doors to coveted applications in the
+corporate sector. This exploration of AI’s capability to mimic an individual’s
+communication style points to a future where vital corporate roles like CEOs
+could be replaced with fine-tuned AI models. This step carries profound im-
+plications—not only does it offer a credible solution to the inherent human
+bias of CEOs who often prioritize personal vision over collective, but it also
+envisions a democratic transition of corporate leadership to AI models that
+articulate the stakeholders’ collective vision.
+Taking this transformative idea forward to lend it a new dimension is the
+concept of ’digital immortality.’ The research illustrates how fine-tuning AI
+models to our unique linguistic and conceptual preferences could immortalize
+our voice and perspective. This prospect of a continued digital presence pro-
+vides an invaluable tool to assist future interpretation of our works, minimize
+misinterpretation, and give us the unique opportunity to ’speak’ beyond our
+physical existence.
+Through these additional lenses of collective representation, a reshaped
+corporate structure, and digital immortality, it becomes clear that the sig-
+nificance of this research extends beyond technical exploration of AI. The
+wide-ranging implications demanded by today’s evolving social, communica-
+tion, and leadership structures underpin the criticality of this study.
+Essentially, the proposed research propels us beyond our present under-
+standing of AI, urging us to reframe our anticipations about the dynamic
+potential of AI language learning models. The comprehensive insights of
+this research will serve as a beacon for future developments, enabling us to
+navigate towards a future that responsibly and ethically harnesses the trans-
+formatory power of AI. Finally, a followup study should be conducted after
+the first study, in order to test whether the results vary over time, and thus
+whether the model has biographimetric reliability.
+7 Notes
+This paper was written with the assistance of GPT-4 and ChatGPT.

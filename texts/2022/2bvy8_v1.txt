@@ -1,0 +1,679 @@
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+Using A Multi-Strategy Eye-Tracking Psychometric Model to Measure Intelligence and
+Identify Cognitive Strategy in Raven’s Advanced Progressive Matrices
+Yaohui Liu (刘耀辉), Peida Zhan (詹沛达),
+Yanbin Fu (付颜斌), Qipeng Chen (陈琦鹏), Yikun Luo (罗熠坤)
+School of Psychology, Zhejiang Normal University
+Corresponding author:
+Peida Zhan, E-mail: pdzhan@gmail.com, Room 731, Building 17, School of Psychology, Zhejiang
+Normal University, Jinhua City, Zhejiang Province, China, 321004.
+Funding:
+This work was supported by the National Natural Science Foundation of China [grant numbers
+31900795].
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+Using A Multi-Strategy Eye-Tracking Psychometric Model to Measure Intelligence and
+Identify Cognitive Strategy in Raven’s Advanced Progressive Matrices
+Abstract
+Raven’s Advanced Progressive Matrices (APM) is a valid measurement instrument of general
+intelligence, and previous studies have found that participants use two cognitive strategies—
+constructive matching and response elimination—in responding to items in the APM. This study
+proposed a multi-strategy psychometric model incorporating eye-tracking measures, including but
+not limited to the proportional time on matrix area (PTM), the rate of toggling (ROT), and the rate
+of latency to first toggle (RLT). Our model has the ability to measure each participant’s intelligence
+and identify the cognitive strategy used by each participant for each item in the APM. An eye-
+tracking-based APM study using the model revealed several outcomes: (1) The effects of the three
+eye-tracking measures on the constructive matching strategy selection probability were positive
+and presented in the following order: PTM > RLT > ROT, and the effect of ROT was negligible.
+(2) The average intelligence of participants who used the constructive matching strategy was
+higher than that of participants who used the response elimination strategy, and participants with
+higher intelligence were more likely to use the constructive matching strategy. (3) High-
+intelligence participants increased their use of the constructive matching strategy as item difficulty
+increased, whereas low-intelligence participants decreased their use as item difficulty increased.
+(4) Participants took significantly less time to use the constructive matching strategy than to use
+the response elimination strategy. Overall, the proposed model follows the theory-driven modeling
+logic and provides a new way of studying cognitive strategy in the APM by presenting objective
+and quantitative results.
+Keywords: intelligence, cognitive strategy, eye movement, item response theory, Rasch model
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+1. Introduction
+General intelligence is a core component of the intelligence structure and is considered to be
+an important predictor of academic and professional success, which has been discussed for decades
+(Kane et al., 2005; Marshalek et al., 1983; Vigneau et al., 2006). Raven’s Advanced Progressive
+Matrices (APM; Raven et al., 1998) is a standardized cognitive ability test designed to measure
+general intelligence or the aptitude to learn new concepts quickly and solve new and complex
+problems without drawing on prior knowledge. As the APM is strictly visual, the issues of potential
+language barriers and cultural contexts are circumvented, making it one of the most commonly
+used measurement instruments for general intelligence (Loesche, 2020). Further, the APM has
+been widely used in research on cognitive strategies (Laurence et al., 2018) that represent sets of
+cognitive processes in the process of solving problems or achieving goals (Cameron & Jago, 2013;
+Lemaire & Reder, 1999).
+with figural elements in the matrix area and eight options in the alternative area. One of the cells
+in the matrix area is missing and needs to be selected from the alternative area using analogy and
+inductive reasoning. Two common cognitive strategies—constructive matching and response
+elimination—were revealed in previous eye-tracking-based studies for participants to solve
+diagrammatic reasoning items in the APM (Bethell-Fox et al., 1984; Snow, 1980; Vigneau et al.,
+2006). In constructive matching, participants first construct a mental representation of the answer
+and then make a choice, whereas in response elimination, participants eliminate implausible
+alternatives until they reach a correct one.
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+The application of eye-tracking technology enhances our exploration and understanding of
+cognitive processes (Wedel et al., 2022). Previous studies have found a correspondence between
+the cognitive strategies used by participants in the APM and their visual search patterns inferred
+from eye-tracking measures (e.g., Vigneau et al., 2016). Specifically, compared with participants
+who use the response elimination strategy, participants who use the constructive matching strategy
+typically spend proportionately more time in the matrix area than in the response area, display a
+smaller number of toggles between the matrix and alternative areas, and take a longer time to look
+from the matrix area to the alternative area for the first time. Further, when using the constructive
+matching strategy, participants have a lower toggling rate, which indicates the number of toggles
+between the matrix and alternative areas per second, but they toggle at a higher rate when using
+the response elimination strategy (Laurence et al., 2018). Although these studies explored the
+relationship between eye movements and cognitive strategies, they did not provide a specific
+cognitive strategy identification method.
+The identification of cognitive strategies is the basis for exploring the relationship between
+cognitive strategy and other cognitive factors (e.g., cognitive style and working memory), as well
+as for cognitive strategy training (e.g., Hessels et al., 2011; Hayes et al., 2015; Jarosz & Wiley,
+2012; Kucharský et al., 2020; Li et al., 2022;). Previous attempts to identify participants’ cognitive
+strategies used one of two self-reporting approaches. The first approach uses self-report
+questionnaires to ask participants to report the cognitive strategies they use to solve problems
+throughout the entire APM (Gonthier & Thomassin, 2015; Jastrzębski et al., 2018; Li et al., 2022;
+Michum & Kelley, 2010). The main limitation of this approach is that individuals may not be able
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+to accurately and objectively recall the strategies they use, and the approach cannot ascertain
+whether participants switch strategies throughout the test (Jarosz et al., 2019; Lemaire & Reder,
+1999). The second approach involves utilizing the think-aloud protocol to ask participants to
+continuously say their thoughts aloud at each step during problem solving (Jarosz et al., 2019).
+However, participants may not be able to decipher all of their thoughts completely and accurately
+during problem solving, and the unstructured nature of language makes it difficult to accurately
+identify the cognitive strategies they employ.
+Further, considering that different strategies may correspond to different visual search
+patterns (Thibaut & French, 2016; Vigneau et al., 2006), some researchers have also tried to use
+data-driven methods to distinguish different strategies from eye-tracking data. For example, to
+analyze eye-tracking data (e.g., saccade), Hayes et al. (2011) proposed a semi-supervised
+algorithm (i.e., successor representation scanpath analysis), which combines a higher-order
+probability transfer matrix and a Markov model to visualize participants’ visual search patterns.
+Although this algorithm can accurately predict participants’ test scores in the APM and can provide
+insight into the differences in their problem solving, it is rarely used in other studies due to its
+computational complexity, the subjective nature of the interpretation of results, and the ambiguity
+of strategy identification (Hayes et al., 2015; Laurence, 2021). Kucharský et al. (2020) proposed
+an unsupervised algorithm for mining eye-tracking data, which combines probability transfer
+matrix and K-means clustering; however, they found that the visual search patterns obtained from
+clustering by this algorithm did not match well with theoretically existing cognitive strategies,
+probably due to the limited amount of data. Overall, the currently used eye-tracking data mining
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+algorithms are mainly limited by the low interpretability of the results and high data volume
+requirements.
+In general, because eye-tracking technology can capture participants’ eye movements in a
+detailed and objective manner, eye-tracking-based cognitive strategy identification methods are
+theoretically more accurate and objective than self-reporting approaches. Given the limits of
+existing eye-tracking data mining approaches, we need a novel eye-tracking-based cognitive
+strategy identification method with high interpretability of results and appropriately small data
+volume requirements.
+This study aimed to incorporate eye-tracking measures into the cognitive strategy
+identification method in the APM from the perspective of psychometric modeling to propose a
+multi-strategy eye-tracking model (denoted as MEM). The proposed model has the ability to
+measure participants’ intelligence that is reflected by the latent ability, and to identify participants’
+cognitive strategies using a combination of problem-solving outcome data (e.g., item response
+accuracy) and eye-tracking measures. Theoretically, compared with eye-tracking data mining
+approaches, the proposed model is more interpretable and has fewer data volume requirements,
+which makes it more suitable for small-scale psychological experimental studies. Further,
+compared with the self-reporting approaches, the proposed model can more objectively identify
+participants’ cognitive strategies for each item. Another advantage of the proposed model over the
+two existing approaches is that it allows for objective measures of intelligence while identifying
+cognitive strategies.
+In the rest of the paper, we illustrate the performance of the proposed model and the
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+corresponding findings from an eye-tracking-based APM study.
+Example of the Raven item format and test sequence.
+Note. (Left) The item can be divided into three interest areas: the total item interest area, the matrix
+interest area, and the alternative interest area. The item consists of a three-by-three matrix with
+figural elements in the matrix area and eight options in the alternative area. One of the cells in the
+matrix area is missing and needs to be selected from the alternative area using analogy and
+inductive reasoning. (Right) Each test has three phases: gaze point calibration, item presentation,
+and response. Eye movements are collected during the item presentation phase. Pressing the
+spacebar on the keyboard to enter the response page, only the alternatives are presented on the
+screen, and the participant presses one of the number keys 1–8 on the keyboard to respond.
+2. Methods
+2.1. Instrument
+The APM contains 48 homogenous items, which are divided into two sets: the first set of 12
+items is intended to be used as a practice set to familiarize participants with the format, and the
+second set of 36 items is the main test that is supposed to be scored. Typically, the first set is
+omitted or reduced to one or two example items (e.g., Carpenter et al., 1990; Dehn, 2017; Hayes
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+et al., 2015; Kpolovie & Emekene, 2016). In this study, to prevent participants’ practice of the first
+set of items from affecting their responses to the second set of items used in the formal experiment,
+we used three easy items from Raven’s Standard Progressive Matrices as warm-up items to
+familiarize participants with the response process.
+2.2. Participants
+A total of 202 students participated in this study. All were randomly selected from a
+university in a coastal province in China and had not participated in the APM before. A total of 10
+students were excluded, 7 of whom had serious missing or unexplainable gaze points on many
+items (see Appendix A), and 3 had test scores that were more than three standard deviations below
+the average of all students’ scores (M = 25.12, SD = 4.92). The results from the final 192
+participants (147 females and 45 males; M = 22.06, SD = 2.54) were used for further analysis.
+age
+2.3. Procedure
+Before the test began, the participants were informed of the entire test process. Each
+participant who completed the test carefully received a cash payment. The test program was carried
+out with E-Prime software (version 2.0) to record the outcome data, including item response
+accuracy and item response times1; Eye-tracking data were collected with a non-contact device,
+1 According to the description of the study procedure below, the item response time only includes the time spent by the
+participants in the item presentation page but not the time spent by the participants in the response page. The advantage of this
+procedure is that it eliminates the time spent by the participant on the keystroke response and reduces potential error (e.g., Hayes
+et al., 2011).
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+SR Research Ltd. EyeLink Portable Duo (EyeLink Portable Duo - SR Research (sr-research.com)),
+set in monocular tracking mode with a sampling rate of 1000 HZ. Each participant was placed in
+a quiet room, sitting approximately 60 cm from the computer screen, and chin support was used
+to assist in fixing the participant’s head. A staff member operated the eye-tracking device not far
+away to ensure the smooth running of the experiment (see Appendix B for the experimental
+environment).
+(three items to be exact, each repeated three times) to familiarize them with the purpose and
+procedure of the test before the formal test began. In the calibration session, a 5-point calibration
+method was used to calibrate the participant’s gaze point before allowing the participant to enter
+the response procedure. In the response procedure inspired by Hayes et al. (2011), a cross mark
+was first presented at the center of the screen. The participant was required to look at the cross
+mark; if the gaze point deviation was larger than 2 cm, the participant returned to the calibration
+session; otherwise, they moved forward to the next item presentation page. On the item
+presentation page, there was no time limit for the participants to reason the answer. When they
+were ready to respond, the participant pressed the spacebar on the keyboard to enter the response
+page, where only the alternatives were presented on the screen; pressing one of the number keys
+1–8 on the keyboard allowed them to respond. Furthermore, considering that the participants may
+experience visual fatigue during the whole test, we allowed them to take a short break, usually less
+than one minute, when the test was halfway through.
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+2.4. Interest Areas and Eye-tracking Measures
+Eye-tracking techniques were used to analyze participants’ strategies in the APM, and specific
+eye-tracking measures depended on the division of interest areas. In this study, three interest areas
+(i.e., total item interest area, matrix interest area, and alternative interest area) were defined (see
+Following existing studies on cognitive strategies and visual search patterns, three eye-
+tracking measures were recorded and calculated in this study (Hayes et al., 2011; Laurence et al.,
+2018; Li et al., 2022; Vigneau et al., 2006): the proportional time on matrix area (PTM), the rate
+of toggling (ROT), and the rate of latency to first toggle (RLT).
+2.4.1. Item latency and proportional time on the matrix area
+!"#$
+Item latency (𝑇 ) is the time that participants spend on the total item interest area, which
+is recorded as the time that participants spend on the item presentation page (i.e., item response
+time). The proportional time on the matrix of each item was calculated from the time spent on the
+$%"&!’
+matrix interest area (𝑇 ) divided by the time spent on the item interest area; that is, 𝑃𝑇𝑀 =
+$%"&!’ !"#$
+𝑇 ⁄𝑇 ; the higher the value, the higher proportion of time a participant spent in the matrix
+interest area.
+2.4.2. Number of toggles and rate of toggling
+A shift of gaze from one area to another is considered a toggle. The rate of toggling was
+!"#$
+calculated by dividing the item latency (𝑇 ) by the number of toggles (G); that is, 𝑅𝑂𝑇 =
+!"#$
+𝑇 ⁄𝐺 (Laurence, 2021), which is more suitable for representing the strategies compared with
+the number of toggles (Laurence et al., 2018) and reflects how long it takes to transition once
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+between the matrix interest area and the response interest area; the higher the value, the lower the
+number of transitions of a participant’s gaze within the same time.
+2.4.3. The latency to first toggle and the rate of latency to first toggle
+The latency to first toggle is also an important measure, which is the time it takes the participant
+to transfer his/her gaze point from the matrix interest area to alternatives for the first time (Vigneau
+"())*#
+et al., 2006). The rate of latency to first toggle is equal to the latency to first toggle (𝑇 )
+!"#$ "())*# !"#$
+divided by the item latency (𝑇 ); that is, 𝑅𝐿𝑇 = 𝑇 ⁄ 𝑇 ; the higher the value, the
+higher proportion of time a participant spent on planning solutions to the problem. Compared with
+"())*#
+𝑇 , RLT additionally takes into account the processing speed of individuals, as reflected by
+!"#$ "())*# !"#$
+𝑇 . Suppose 𝑇 of two participants are both 5 seconds, one participant’s 𝑇 is 10
+!"#$
+seconds, and the other’s 𝑇 is 20 seconds. The latency to first toggle is 50% of the response
+time for the first participant and 25% of that for the second participant, which indicates that it
+would not be appropriate to assume that both participants use the same strategy.
+Based on the findings of previous studies (e.g., Hayes et al., 2011; Laurence et al., 2018;
+Vigneau et al., 2006), we assumed that participants who use the constructive matching strategy
+would have a higher RLT, a higher ROT, and a higher PTM than those who use the response
+elimination strategy, indicating that they spend more time analyzing the matrix before the first gaze
+at the alternatives, take longer to each toggle between the matrix and the alternatives, and spend
+more time on the matrix area throughout the entire response process.
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+2.5. Multi-strategy Psychometric Modeling Incorporating Eye-tracking Measures
+Psychometric modeling is a theory-driven approach that constructs the probabilistic
+relationship between observed data and latent variables through statistical distribution functions.
+Currently, several multi-strategy psychometric models have been proposed to identify students’
+problem-solving strategies in the field of educational achievement tests, such as mixture or
+multigroup models (e.g., Mislevy & Verhelst, 1990; von Davier, 2010) and multi-strategy cognitive
+diagnostic models (e.g., de la Torre & Douglas, 2008; Ma & Guo, 2019). One major limitation of
+mixture or multigroup models is that participants are usually assumed to use one of multiple
+strategies for all items in a test. Although multi-strategy cognitive diagnostic models eliminate this
+non-switching strategy assumption, these models are still limited to traditional item response
+accuracy data and categorial latent variables, ignoring the process of problem solving that can be
+reflected by eye movements. Perhaps due to the lack of communication between researchers in the
+field of intelligence and psychometricians, to our knowledge, no studies have attempted to use
+multi-strategy psychometric models to identify participants’ cognitive strategies in the APM, let
+alone involving eye-tracking measures.
+In recent years, a few studies have combined eye-tracking measures and psychometric models
+to assess participants’ visual engagement in educational assessments or to assess participants’
+decision-making behavior in naturalistic settings (e.g., Man & Harring, 2019; Wedel et al., 2022;
+Zhan et al., 2022). Although these studies did not involve the identification of cognitive strategy,
+their idea of incorporating eye-tracking measures into psychometric models inspired the current
+study to construct the MEM, namely, a multi-strategy psychometric model involving eye-tracking
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+measures (e.g., PTM, ROT, and RLT).
+2.5.1. Generalized modeling and assumptions
+Consider participants taking an intelligence test with J items and M predetermined cognitive
+strategies. Based on the total probability theorem, the proposed MEM can be expressed as:
+𝑃+𝑌 = 1.𝜃 0 = 1 𝑃+𝑌 = 1.𝜃 , 𝑚 0 × 𝑃+𝑚 0 , (1)
+!+ ! !+ ! !+ !+
+$-.
+where 𝑃+𝑌 = 1.𝜃 0 denotes the correct response probability of participant i (i = 1, 2, ..., I) to
+!+ !
+item j (j = 1, 2, ..., J), given his/her intelligence (or latent ability in psychometrics) θ .
+𝑃+𝑌 = 1.θ , 𝑚 0 is the strategy implementation model, which denotes the correct response
+!+ ! !+
+probability of participant i to item j, given his/her intelligence θ and the cognitive strategy m (m
+i ij ij
+= 1, 2, …, M) he/she used to item j. The proposed model allows participants to switch their
+cognitive strategies across items.
+Considering the limited number of participants in eye-tracking studies (usually just a few
+dozen), a Rasch family model is used to define the strategy implementation model:
+𝑒𝑥𝑝+𝜃 − 𝑏 + 𝑒 0
+! + $+
+𝑃+𝑌 = 1.𝜃 , 𝑚 = 𝑚0 = , (2)
+!+ ! !+
+1 + 𝑒𝑥𝑝+𝜃 − 𝑏 + 𝑒 0
+! + $+
+where b denotes the difficulty of item j, and e is the strategy sensitivity parameter, which
+j mj
+represents the variation in the correct response probability by using strategy m on item j; the larger
+the value of .𝑒 ., the more sensitive item j is to strategy m.
+$+
+𝑃+𝑚 0 is the strategy selection model, and it denotes the probability of participant i applying
+!+
+strategy m on item j, and ∑ 𝑃(𝑚 ) = 1. It is inferred using eye-tracking measures in the
+$-. !+
+present study, and its value is constrained to a number between 0 and 1, with a logistic function as
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+follows:
+𝑒𝑥𝑝+𝜔 × 𝑓 + 𝜔 × 𝑓 + ⋯ + 𝜔 × 𝑓 0
+. .!+ / /!+ 0 0!+
+𝑃+𝑚 = 𝑚0 = , (3)
+!+
+1 + 𝑒𝑥𝑝+𝜔 × 𝑓 + 𝜔 × 𝑓 + ⋯ + 𝜔 × 𝑓 0
+. .!+ / /!+ 0 0!+
+where f represents the c-th (c = 1, 2, ..., C) eye-tracking measure of participant i on item j, and
+cij
+ω is the corresponding weight parameter of it. The weight parameters reflect the magnitude of the
+effect of different eye-tracking measures on the probability of strategy selection. Note that in the
+strategy selection model, each eye-tracking measure for all participants can be standardized for
+each item to put all weight parameters on the same scale. This allows for a comparison of the
+extent of the impact of various eye-tracking measures on the probability of strategy selection.
+Based on the model setup, some assumptions of the MEM can be summarized for a better
+understanding of it. First, following the findings of existing studies on strategy choice in cognitive
+tasks (e.g., the probability-matching perspective and the over-matching perspective [e.g., Lovett
+& Anderson, 1995; Ma & Guo, 2020]), the MEM assumes that a participant will use different
+cognitive strategies in proportion to their responses simultaneously, rather than definitively using
+a specific strategy. Second, the MEM assumes that participants’ choice of cognitive strategy is not
+theoretically related to their intelligence but is reflected by behavioral indicators (i.e., eye-tracking
+measures in this study).2 Third, the MEM assumes that the impact of cognitive strategy on the
+correct response probability is reflected in the item parameter via the strategy sensitivity parameter.
+In other words, the impact on the correct response probability is the same for participants using
+2 Note that since no latent ability parameter was involved in the strategy selection model in the MEM, the intelligence reflected
+by latent ability and the choice of strategy are theoretically independent, but this does not mean that they are statistically
+independent.
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+the same cognitive strategy on a given item; of course, this assumption could be released as
+𝑒 ⟹ 𝑒 , but this would undoubtedly increase the complexity of the model and increase the
+$+ $!+
+demand on the amount of data volume.
+2.5.2. Specific setting
+Some specific settings can be made to the generalized function of the MEM to apply to the
+analysis of APM data. In this study, M = 2 cognitive strategies were predetermined, namely, the
+constructive matching strategy and the response elimination strategy. Specifically, m = 1 indicates
+ij
+that participant i applied the constructive matching strategy to item j, and m = 2 indicates that
+ij
+participant i applied the response elimination strategy to item j.
+Prior studies generally accept that the constructive matching strategy is a more effective
+strategy with higher accuracy or test scores relative to the response elimination strategy (Arendasy
+& Sommer, 2013; Gonthier & Roulin, 2020; Gonthier & Thomassin, 2015; Mitchum & Kelley,
+2010). Therefore, we assumed that the correct response probability for participants who use the
+constructive matching strategy would be higher than that for those who use the response
+elimination strategy, namely:
+P+𝑌 = 1.θ , 𝑚 = 10 > P+𝑌 = 1.θ , 𝑚 = 20. (4)
+!+ ! !+ !+ ! !+
+More specifically,
+𝑒𝑥𝑝+𝜃 − 𝑏 + 𝑒 0 𝑒𝑥𝑝+𝜃 − 𝑏 + 𝑒 0
+! + .+ ! + +
+P+𝑌 = 1.𝜃 , 𝑚 = 10 = = , (5)
+!+ ! !+
+1 + 𝑒𝑥𝑝+𝜃 − 𝑏 + 𝑒 0 1 + 𝑒𝑥𝑝+𝜃 − 𝑏 + 𝑒 0
+! + .+ ! + +
+𝑒𝑥𝑝+𝜃 − 𝑏 + 𝑒 0 𝑒𝑥𝑝+θ − 𝑏 0
+! + /+ ! +
+𝑃+𝑌 = 1.𝜃 , 𝑚 = 20 = = , (6)
+!+ ! !+
+1 + 𝑒𝑥𝑝+𝜃 − 𝑏 + 𝑒 0 1 + 𝑒𝑥𝑝+θ − 𝑏 0
+! + /+ ! +
+where 𝑒 = 𝑒 and is constrained to be positive (i.e., 𝑒 > 0), and 𝑒 = 0; in such cases, the
+.+ + + /+
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+larger 𝑒 is, the greater the gain in the correct response probability of item j for participants who
+use the constructive matching strategy compared to those who use the response elimination
+strategy.
+Three eye-tracking measures (i.e., PTM, ROT, and RLT) were used in the strategy selection
+model, as follows:
+𝑒𝑥𝑝+ω × 𝑓 + ω × 𝑓 + ω × 𝑓 0
+. .!+ / /!+ 1 1!+
+𝑃+𝑚 = 10 = , (7)
+!+
+1 + 𝑒𝑥𝑝+ω × 𝑓 + ω × 𝑓 + ω × 𝑓 0
+. .!+ / /!+ 1 1!+
+and
+𝑃+𝑚 = 20 = 1 − 𝑃+𝑚 = 10, (8)
+!+ !+
+where f , f , and f represent participant i’s PTM, ROT, and RLT on item j, respectively. Given
+1ij 2ij 3ij
+the positive weight parameters, the higher the value of the three eye-tracking measures, the
+participants are more likely to adopt the constructive matching strategy (Laurence, 2021; Li et al.,
+2022).
+In summary, Equations 1 and 4–8 together constitute the MEM used in this study.
+2.6. Analysis
+SR Research Ltd. EyeLink Data Viewer (Data Viewer for EyeLink Eye-Tracker Gaze Data –
+SR Research [sr-research.com]) was used to analyze and export the recorded eye-tracking data.
+Eye-tracking measures were calculated for 192 participants, and the mean-fill method was used to
+handle the missing values (less than 1%) that occurred on a few items. We calculated the eye-
+tracking measures for each participant on each item; further, the three eye-tracking measures for
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+all participants were standardized for each item to put the weight parameters on the same scale.
+The parameters of the MEM and its sub-models can be estimated using the Bayesian Markov
+Chain Monte Carlo (MCMC) algorithm via Just Another Gibbs Sampler (JAGS) software (Version
+4.3.0; Plummer, 2015). The process of parameter estimation was performed based on Python
+software (Version 3.10.6). The prior distributions of all model parameters is provided in Appendix
+C. To increase the repeatability of the current study, all relevant data and the JAGS code used in
+More details about how JAGS is used for Bayesian estimation can be found in Zhan et al. (2019).
+To present the advantages of considering the cognitive strategy, we compared the fit of the
+MEM and the Rasch model (Rasch, 1960), which does not consider the cognitive strategy to the
+APM data. 3 The widely available information criterion (WAIC) and leave-one-out cross-
+validation (LOO) (Gelman et al., 2014; Vehtari et al., 2016) were used as the relative model-data
+fit indices; smaller values indicate a better model–data fit. Further, posterior predictive model
+checking (PPMC) (Gelman et al., 2014) was used to evaluate the absolute model–data fit; a
+posterior predictive probability (ppp) value near 0.5 indicates that there are no systematic
+differences between the predictive and observed data and thus an adequate fit of the model; by
+contrast, when the ppp value smaller than 0.025 or larger than 0.975 indicates the model does not
+fit the data. In this study, the differences between the observed data, 𝒀, and posterior predicted
+The Rasch model has been used in some previous studies to analysis the APM data (e.g., Waschl et al., 2016)
+#$%&’ () *
+! "
+and can be expressed as 𝑃"𝑌 = 1&𝜃 ( = , where 𝜃 is intelligence of participant i, and 𝑏 is the
+!" ! ! "
++,#$%&’ () *
+! "
+difficulty of item j.
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+2(3"2&#4
+data, 𝒀 , were compared in computing the PPMC; that is, 𝑝𝑝𝑝 =
+7 2(3"2&#4(#)
+∑ (𝑠𝑢𝑚(𝒀 ) ≥ 𝑠𝑢𝑚(𝒀))⁄𝐸 , where E is the total number of iterations in MCMC
+#-.
+2(3"2&#4(#)
+sampling; 𝒀 indicates the predictive data in the e-th iteration, which were generated
+from the item response function (e.g., Equation 1 of the MEM) based on the samplings of the
+model parameters from the posterior distributions.
+The validity of the identification results of the model was verified by manual judgment. First,
+two staff members who had not participated in the study were trained and informed of the
+definition of the two cognitive strategies and the corresponding typical eye movements. Second,
+the eye-tracking diagrams (heat map and gaze plot) of five participants were randomly selected
+from the eye-tracking diagrams of 192 participants for each item, and the corresponding model
+identification results were extracted.4 Then, two staff members were independently asked to make
+their judgment of whether to endorse the model identification results based on the eye-tracking
+diagrams (see Appendix D). Lastly, we assessed the consistency of the two staff members’
+judgment results.
+3. Results
+model. Both models fit the APM data well in terms of the ppp value, indicating that their analysis
+results can be used to reflect the characteristics implied by the data. However, the MEM fit the
+In this study, to identify the strategy used by participants, the strategy selection probabilities for all
+participants to all items were dichotomized according to a cut-point of 0.5. Specifically, the participants were
+identified as using the constructive matching strategy on item j by 𝑃"𝑚 = 1( > 0.5 and the response
+!"
+elimination strategy on item j by 𝑃"𝑚 = 1( ≤ 0.5.
+!"
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+data better than the Rasch model according to the WAIC and LOO, indicating that additional
+the scatterplot of intelligence (i.e., latent ability) estimates for the two models (𝜌 = 0.986, p <
+0.001); such a high correlation indicated that the two models measured the same latent ability,
+namely, the additional consideration of cognitive strategy did not change the latent ability
+measured by the model. The following sections will focus on the analysis results of the MEM.
+Summaries of absolutely and relatively model–data fit indices.
+Analysis model ppp WAIC LOO
+Rasch model 0.44 6485.43 6486.57
+MEM 0.44 6395.67 6397.08
+Note. MEM: multi-strategy eye-tracking model; ppp: posterior predictive probability; WAIC:
+widely available information criterion; LOO: leave-one-out cross-validation.
+Scatterplot of intelligence estimates for the Rasch model and multi-strategy eye-tracking model.
+Note. Pearson correlation coefficient is 0.986 (p < 0.001).
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+Figures E1–E3 in Appendix E successively present the distribution of the three eye-tracking
+measures—PTM, ROT, and RLT—on 36 items. The estimated weight coefficients of the three eye-
+tracking measures were 𝜔 = 2.01 (95% highest posterior density [HPD] = [0.79, 3,42]) for
+PTM, 𝜔 = 0.08 (95% HPD = [−0.77, 0.94]) for ROT, and 𝜔 = 1.32 (95% HPD =
+/ 1
+[0.64, 2.12]) for RLT, respectively, indicating that the predictions of constructive matching
+strategy selection probability of the three eye-tracking measures were positive. Further, PTM, RLT,
+and ROT were in descending order of importance for the constructive matching strategy selection
+probability, with ROT having no significant effect.5
+two strategy groups. It is clear that for most items, the mean of the intelligence estimates for
+participants who used the constructive matching strategy was higher than that for those who used
+the response elimination strategy. Further, the result of the paired samples t-test showed that the
+mean of the intelligence estimates on the 36 items for the participants in the constructive matching
+group was also significantly greater than that for the participants in the response elimination group
+(t = 7.35, p < .001). In addition, the mean response time of participants using the constructive
+matching strategy was significantly less than that of participants using the response elimination
+strategy (t = -2.76, p = 0.005).
+The function of the 95% highest posterior density in Bayesian statistics is similar to that of the 95%
+confidence interval in frequentist statistics when its range contains zero, indicating that the estimate (i.e., the
+posterior mean) is not significantly different from zero.
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+Descriptive statistics (mean and standard deviation) of intelligence estimates for participants in
+the two strategy groups.
+Note. The number of participants on each item was 192. There was no grouping of participants in
+the proposed model. The two groups indicated here were categorized after the estimation, and they
+came from the same population with the same prior distribution as when the intelligence
+parameters were estimated. Given that the mean of the prior distribution of the intelligence
+parameter was fixed to zero, it led to symmetry of the mean of the intelligence estimates of the
+two groups of participants around zero.
+in the APM. First, there was a tendency for the items to increase in difficulty as the test progressed,
+which is in line with the setting of the APM. Second, the strategy sensitivity parameter varied by
+item, indicating that participants had a greater relative advantage in responding to some items (e.g.,
+items 9, 12, 16, 21, 22, and 36) using the constructive matching strategy than using the response
+elimination strategy, whereas the impact of strategy use was small in responding to some other
+items (e.g., items 1, 5, 8, 10, and 13).
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+Posterior mean and posterior standard deviation of item difficulty and strategy sensitivity
+parameters of 36 Items.
+Note. b = item difficulty; e = item strategy sensitivity.
+(a) the mean constructive matching strategy selection probability per item ( 𝐶𝑀𝑆𝑆𝑃 =
+8 8 !"#$
+∑ 𝑃(𝑚 )⁄𝐼) , (b) the mean response time across participants per item (𝑀𝑅𝑇 = ∑ 𝑇 ⁄𝐼),
+!-. !+ + !-. !+
+(c) the difference between the mean abilities of two strategy groups per item
+9!)9
+8 *(:
+(𝐷𝑀𝐴 = ∑ (𝜃 − 𝜃 )⁄𝐼), (d) item difficulty b , and (e) strategy sensitivity e .6 First, there
+j j
++ !-. ! !
+was a significantly high positive correlation between b and MRT , indicating that the higher the
+j j
+item difficulty, the longer the time participants took to respond. Second, there was a significantly
+moderate positive correlation between e and DAM , indicating that the greater the relative
+j j
+advantage of using the constructive matching strategy over the response elimination strategy in
+6 Some indicators do not meet the assumption of normal distribution required for Pearson correlation.
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+responding, the greater the difference between the mean abilities of the two strategy groups. Third,
+there was a marginal significance moderate positive correlation between b and DAM , which
+j j
+seemed to indicate that the higher the item difficulty, the greater the difference between the mean
+abilities of the two strategy groups. Lastly, there was no significant correlation between CMSSP
+and any of the other four indicators, indicating that for all participants, the use of the constructive
+matching strategy was not significantly influenced by item difficulty, strategy sensitivity, average
+time spent, or the difference in ability between the two strategy groups of participants.
+Spearman rank correlation among different indicators on the item level.
+Note. CMSSP: the mean probability of participants using the constructive matching strategy per
+item; MRT: the mean response time across participants per item; DMA: the difference between the
+mean abilities of two strategy groups per item; e: strategy sensitivity parameter; b: item difficulty.
+The number of elements in each indicator was 36. **: p < 0.01; *: p < 0.05; #: p = 0.055 (marginal
+significant).
+mean constructive matching strategy selection probability across all items
+! !+
++-.
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+Pearson correlation between all participants’ intelligence estimates and their mean constructive
+matching strategy selection probability across all items (ρ = .22, p < .001), indicating that
+participants with higher intelligence were more likely to use the constructive matching strategy.
+To further explore the relationship between intelligence and cognitive strategy use, we divided
+the participants into high- and low-intelligence groups according to whether they fell into the top
+and bottom 30% of the intelligence estimates. The mean constructive matching strategy selection
+probability for all items was 55.7% for the high-intelligence group and 44.5% for the low-
+intelligence group. As shown in Figures 5(b) to 5(e), we also calculated the Pearson correlation
+coefficient between the constructive matching strategy selection probability and item difficulty
+and the Pearson correlation coefficient between the constructive matching strategy selection
+probability and strategy sensitivity parameter in the high-intelligence group and the low-
+intelligence group, respectively. For the high-intelligence group, both of the correlation
+coefficients showed a significant moderate positive correlation, 𝜌+∑ 𝑃(𝑚 )⁄𝐼 , 𝑏 0 = 0.493
+!-. !+ +
+(p = 0.002) and 𝜌+∑ 𝑃(𝑚 )⁄𝐼 , 𝑒 0 = 0.402 (p = 0.015). By contrast, for the low-intelligence
+!-. !+ +
+group, there was a marginally significant low negative correlation between item difficulty and
+constructive matching strategy selection probability, 𝜌+∑ 𝑃(𝑚 )⁄𝐼 , 𝑏 0 = −0.298 (p =
+!-. !+ +
+0.078), and a non-significant low negative correlation between strategy sensitivity and constructive
+matching strategy selection probability, 𝜌+∑ 𝑃(𝑚 )⁄𝐼 , 𝑒 0 = −0.207 (p = 0.226).
+!-. !+ +
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+Relationship between participants’ intelligence estimates and probabilities of constructive
+matching strategy use.
+Note. CMSSP: constructive matching strategy selection probability.
+on three APM items. The areas covered from green to red represent the distribution of fixation
+time from short to long. The small bule circles are gaze points, and the yellow lines between the
+gaze points represent saccades. This visual information offers a rough estimate of the participant’s
+visual searching patterns, such as the time allocation and the number of toggles between the matrix
+and alternative areas. The constructive matching strategy selection probability of three participants
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+on the three items is also presented above the diagrams. Taking Participant 1 as an example, the
+eye-tracking diagrams revealed that for items 1 and 36, he/she spent much more time in the matrix
+area than in the alternative areas, and we can roughly infer that he/she used the constructive
+matching strategy on these two items. Such an inference matched the high selection probability of
+the constructive matching strategy estimated by the MEM. By contrast, the small difference in
+time spent by Participant 1 in the matrix and alternative areas of item 34 and the high number of
+toggles between the two areas seemed to indicate that he/she used the response elimination strategy
+on this item, which also matched the low selection probability of the constructive matching
+strategy estimated by the MEM.
+Of course, not all participants’ strategy selections were as clear as those of Participant 1. For
+example, the estimated probability of Participant 3 choosing the constructive matching strategy on
+item 1 was 0.45; his/her eye-tracking diagram also showed that he/she spent some time both in the
+matrix and alternative areas and had a certain number of toggles between the two areas, which led
+us to draw no easy conclusions about which one of the two strategies he/she actually used. One
+possible reason for this is that this participant tried to use two strategies to respond to this item.
+Finally, the two staff members endorsed 88% and 86% of the strategy identification results
+from the MEM, respectively, and both endorsed 81% of the strategy identification results (see
+results of the proposed model.
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+Eye-tracking diagrams (heat maps and gaze plots) of three participants on three items and
+corresponding constructive matching strategy selection probabilities.
+Note. P(m = 1): constructive matching strategy selection probability. The area covered from green
+to red represents the distribution of fixation time, the small blue circles are gaze points, and the
+line between the gaze points represents the saccade. The diagram (heat map and gaze plot) was
+automatically generated using EyeLink Data Viewer software based on the recorded eye-tracking
+data.
+5. Summary and Discussion
+5.1. Summary
+The APM is a valid measurement instrument of intelligence, and previous studies have
+investigated the role of cognitive strategies in responding to these items. This study proposes a
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+multi-strategy psychometric model incorporating eye-tracking measures (i.e., PTM, ROT, and
+RLT). The model has the ability to measure each participant’s intelligence (or latent ability) and to
+identify the cognitive strategy used by each participant on each item in the APM. The proposed
+model follows the theory-driven modeling logic and provides a new way to study cognitive
+strategy in the APM by presenting objective and quantitative results based on existing findings on
+the correspondence between cognitive strategies and eye-tracking measures. Theoretically,
+compared with eye-tracking data mining approaches, the proposed model is more interpretable and
+has fewer data volume requirements, which makes it more suitable for small-scale psychological
+experimental studies. Moreover, compared with self-reporting approaches, the proposed model
+can more objectively identify participants’ cognitive strategies for each item. Another advantage
+of the proposed model comes from the theoretical advantages of item response theory over
+classical test theory; that is, the proposed model can make full use of the information on
+participants’ responses to 36 items to infer the intelligence level of participants from the latent
+ability estimates rather than the raw scores.
+The findings of this study can be summarized as follows. First, the MEM fitted the data better
+than the Rasch model while ensuring that the same latent ability (i.e., intelligence) was measured,
+indicating that the participants do use different cognitive strategies in responding to items in the
+APM. Second, the effects of the three eye-tracking measures on the constructive matching strategy
+selection probability were positive and presented in the following order: PTM > RLT > ROT, and
+the effect of ROT was negligible. Third, the average intelligence of participants using the
+constructive matching strategy was higher than that of participants using the response elimination
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+strategy. Fourth, participants with higher intelligence were more likely to use the constructive
+matching strategy. Fifth, the choice of strategy has different magnitudes of effect on different items
+in the APM; namely, choosing to respond to items with the constructive matching strategy did not
+result in significant gains on every item in the APM. Sixth, for all participants, there was no
+significant correlation between item difficulty or strategy sensitivity and the probability of
+participants choosing the constructive matching strategy. However, high-intelligence participants
+increased their use of the constructive matching strategy as item difficulty increased and strategy
+sensitivity increased, whereas low-intelligence participants decreased their use of the constructive
+matching strategy as item difficulty increased. Seventh, participants took significantly less time to
+use the constructive matching strategy than to use the response elimination strategy. Eighth, the
+use of the two cognitive strategies coexisted in responding to the items in the APM. Some
+participants were more likely to use one of them, while some participants might try both strategies.
+In addition, the validity evidence based on manual judgment also indicated that the proposed
+model was, to some extent, effective for identifying cognitive strategies in the APM.
+5.2. Discussion
+The findings of this study show consistency as well as disagreement with previous studies.
+For example, consistent with the findings of Bethell-Fox et al. (1984) and Vigneau et al. (2006),
+the use of the constructive matching strategy has a significant positive correlation with participants’
+intelligences. Consistent with the findings of Vigneau et al. (2006), for all participants, the usage
+of strategy was independent from item difficulty; however, for low-intelligence participants, our
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+findings support the findings of Jarosz et al. (2019) and Gonthier and Roulin (2020) that
+participants decrease their use of the constructive matching strategy as item difficulty increases.
+In this regard, Fox et al. (1984) explained that when responding to difficulty items, low-
+intelligence participants tend to shift from using the constructive matching strategy to using the
+response elimination strategy. Further, contrary to the findings of Gonthier and Roulin (2020) and
+Gonthier and Thomassin (2015), we found that participants took significantly less time to use the
+constructive matching strategy than to use the response elimination strategy; this may be because
+the high-intelligence participants with faster processing speed were more likely to use the
+constructive matching strategy in this study.
+In contrast to Laurence et al. (2018), who argued that ROT is the best predictor of participants’
+use of the constructive matching strategy, we found that there was no significant effect of ROT on
+the selection probability of the constructive matching strategy. To further investigate the effect of
+different eye-tracking measures on strategy choice, six sub-models of the MEM were additionally
+used to analyze the APM data, including three sub-models containing any two of the three eye-
+tracking measures in Equation 7 (denoted as MEM2) and three sub-models containing any one of
+presents the estimated weight parameters and two relative model–data fit indices for the seven
+models. The results showed that the weight parameter of ROT was not equal to zero only for the
+worst-fitting MEM1 that contained ROT alone; the weight parameter of ROT in the other models
+was not significantly different from zero. The MEM2 with ROT removed on the basis of MEM fit
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+E, the MEM and the MEM2 without ROT had the highest consistency in the identification of
+cognitive strategies among the seven models. Overall, these results further confirm our finding
+that ROT has no significant effect on the selection probability of the constructive matching strategy.
+In addition to the two constructive strategies investigated in this study, Jarosz et al. (2019)
+pointed out that participants may also use another cognitive strategy in the APM—the isolate-and-
+eliminate strategy. The isolate-and-eliminate strategy can be treated as a combination of the
+constructive matching strategy and the response elimination strategy, in which “participants would
+establish the rules governing one feature of items in the problem matrix, use that rule to eliminate
+potential responses from the response bank, and then proceed with another feature, until only one
+item was left” (Jarosz et al., 2019, p. 5). In this study, we found that the estimates of the probability
+of strategy selection of some participants (i.e., 𝑃(𝑚 )) were within the ambiguous region of about
+!+
+0.5. This outcome is plausible, as participants might use a combination of the constructive
+matching strategy and the response elimination strategy. Such an interpretation may provide a new
+perspective for understanding isolate-and-eliminate strategies.
+Despite the promising results of this study, further research is needed. First, consistent with
+most studies on cognitive strategy in the APM, this study focused on only two cognitive
+strategies—the constructive matching and response elimination strategies. However, in practice,
+more types of cognitive strategies may exist when responding to items on the APM (e.g., isolate-
+and-eliminate strategy). The MEM proposed in this study is not limited to two strategies; thus, the
+performance of the MEM with more than two strategies is worthy of further exploration. Second,
+inspired by previous studies, only three eye-tracking measures were considered in the study—
+Preprint Version: A MULTI-STRATEGY EYE-TRACKING MODEL
+PTM, ROT, and RLT. However, there are many other eye-tracking measures that can be used to
+infer the choice of cognitive strategy in the APM. The effect of other eye-tracking measures can
+also be explored progressively in the future, based on the MEM. Third, participants were randomly
+selected from the same university, and although the sample size in this study was larger than in
+other related studies, the results may not be universal due to homogeneity among participants.

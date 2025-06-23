@@ -1,0 +1,296 @@
+Smart Distance Lab:
+A new methodology for assessing social distancing interventions
+1,* 1 1
+Tessa F. Blanken , Charlotte C. Tanis , Floor H. Nauta ,
+1 2 3 3 4
+Fabian Dablander , Bonne Zijlstra , Rick R.M. Bouten , Quinten H. Oostvogel , Meier J. Boersma , Maya
+4 1,5 1 1
+V. van der Steenhoven , Frenk van Harreveld , Sanne de Wit , Denny Borsboom
+University of Amsterdam, Department of Psychology, 1018 WT Amsterdam, The Netherlands
+University of Amsterdam, Research Institute of Child Development and Education, 1012 WX
+Amsterdam, The Netherlands
+Focus Technologies B.V., 5657 EW Eindhoven, The Neterlands
+Smart Distance Lab, 2353 NM Leiderdorp, The Netherlands
+National Institute for Public Health and the Environment (RIVM), , 3721 MA Bilthoven, The
+Netherlands
+Corresponding author: Tessa F. Blanken (t.f.blanken@uva.nl)
+Abstract
+In the wake of the COVID-19 pandemic, the central importance of human behaviour in mitigating the
+spread of the virus has become universally recognized. We present a methodology to systematically assess
+the effectiveness of behavioural interventions to stimulate social distancing. In addition, we demonstrate
+the feasibility of this framework in a large-scale natural experiment. In an experimental design, we varied
+behavioural interventions to evaluate the effect of face masks, walking directions, and immediate feedback
+on visitors’ contacts. We represent visitors as nodes, and their contacts as links in a contact network.
+Subsequently, we used network modelling to test for differences in these contact networks. We find no
+evidence that face masks influence social distancing, while unidirectional walking directions and buzzer
+feedback do positively impact social distancing. The presented methodology represents a practically
+feasible way to optimize social distancing interventions through scientific research and may directly inform
+policy.
+Introduction
+Covid-19 holds the world in its grip. Mid-December 2020, almost a year after the first statement about a
+st
+new virus reached the WHO on December 31 2019, over 70 million confirmed Covid-19 cases and 1.6
+million deaths in 220 countries have been reported (WHO, 2020). The virus continues to spread, and many
+countries suffer from a second wave of infections. As the world awaits the development, production, and
+distribution of effective vaccines, we only have one weapon at our disposal in our battle against the
+Coronavirus: our behaviour.
+The World Health Organization (WHO) increasingly and repeatedly stresses the importance of engaging in
+‘safety behaviours’, which include washing hands, wearing face masks, and social distancing. Ultimately,
+social distancing is the most important of the recommended safety behaviours because, as complex as the
+virus may be, transmission of the virus requires an infectious person to be in physical proximity to other
+people. Therefore, in absence of a vaccine, it is pivotal to reduce the number of contacts between people
+that are in such physical proximity (Haug et al., 2020).
+Despite its universally acclaimed importance, it is unclear how we can optimally stimulate social distancing
+through behavioural interventions. Whereas the effectiveness of policy measures to reduce mobility has
+been investigated (e.g., Flaxman et al., 2020), the effects of more subtle behavioural interventions largely
+remains a matter of speculation and debate. One of the most striking examples of this debate concerns the
+behavioural effects of wearing face masks. Policy makers have expressed concern that face masks could
+give people a false sense of security, thereby promoting risk taking behaviour leading them to keep less
+distance (e.g., Lazzarino et al., 2020). In contrast, others argued that face masks remind people to implement
+safety behaviours resulting in increased compliance with Covid-19 policies (e.g., Betsch et al., 2020).
+Notably, even after evidence on the medical effects of face masks had accumulated, the debate around
+policy and implementation persisted due to the uncertainty of the behavioural effects of face mask policies
+(e.g., Martin et al., 2020).
+This debate exemplifies how existing scientific work in psychology and behavioural science can provide
+support for opposing accounts, confusing and occasionally paralyzing policy. To complicate matters
+further, Covid-19 challenges our behaviour in ways that have not been anticipated or assessed in previous
+research. Hence, the relevance of the existing psychological and behavioural science literature to this novel
+crisis is questionable and cannot readily be translated into policy decisions (Van Bavel et al., 2020; IJzerman
+et al., 2020). These opposing accounts and the novelty of the Covid-19 pandemic thus warrant only one
+way forward: to assess the effect of behavioural interventions on social distancing experimentally.
+Investigation of the effect of behavioural interventions on social distancing is hampered however, by the
+lack of suitable methodologies that connect behaviour to relevant epidemiological properties. In the current
+paper we describe, implement, and evaluate a novel methodological framework suited to directly test the
+1 and involves (i) an experimental design; (ii) objective measures of social distancing; and (iii) the
+representation of people (nodes) and their contacts (links) in a contact network. The proposed
+methodological framework enables us to evaluate the effectiveness of behavioural interventions on social
+distancing through network representations (Borsboom et al., 2020).
+We implemented this novel framework in a first experimental study during a three-day art fair in
+interventions (bidirectional; unidirectional; no direction) and supplementary interventions (face masks;
+buzzer feedback when within 1.5 meters of another visitor; no supplementary intervention) in two-hour
+time slots. See Methods section for details. We objectively measured physical proximity between visitors
+using a Social Distancing Sensor (SDS) based on ultra-wideband technology. Whenever two visitors came
+within 1.5 meters from each other, the contact was logged. Subsequently, we used the logged contacts to
+construct the contact networks of visitors for each experimental condition.
+In constructing the networks, we collapsed the contacts over time without losing important information,
+because only primary infections can be transmitted within a two-hour time frame, and therefore only direct
+contacts are virologically relevant. In other words, if a visitor is infected during the event, this visitor cannot
+subsequently infect others due to the incubation period, and as a result the order in which people make
+contacts can be disregarded. In accordance, here we only focus on the direct paths between nodes in the
+network, which specify the number of unique contacts between visitors and are encoded in the degree
+distribution. Finally, we use innovative statistical network methodology, based on an adaptation of Van
+Duijn (1995) to undirected networks, which allows us to statistically test differences in the degree
+distribution (i.e., the distribution of the number of contacts) across experimental conditions.
+In short, the proposed methodology enables us to assess the effects of interventions directly at the level of
+behaviour. The methodology is straightforward to implement and provides society with the means to
+directly evaluate interventions, so that policy can be based on evidence rather than conjecture.
+Results
+Descriptives.
+Visitors. Over the course of three days, 787 people visited the art fair, of whom 639 (81.2%) wore a Social
+information was available as they completed a questionnaire upon purchasing their ticket. These visitors
+were, on average±SD, 42±16 years old (14-89 years); 225 (57.3%) were female; and 335 (85.5%) of them
+completed a higher education.
+On Saturday and Sunday, the art fair opened at 11:00 before the experiment started at 13:30. 74 and 132 visitors,
+respectively, had entered the art fair between 11:00-13:30, of whom some had already left before the experimental
+condition started. Therefore, some of the 787 visitors did not participate in our studies, and thus the actual
+percentage of visitors that wore the SDS is higher than the reported 81%.
+Experimental Design Objective Measure Contact Network
+face masks
+bidirectional
+none
+buzzer feedback
+unidirectional
+none
+buzzer feedback
+no direction
+buzzer feedback
+experimental design; (ii) objective physical distance measures; (iii) a contact network representation. Here, we show
+the framework applied at the art fair, where we (i) varied walking directions and supplementary interventions; (ii)
+measured physical distance using a Social Distancing Sensor with ultra-wideband technology; (iii) constructed
+networks for each condition.
+Interventions.
+intervention in isolation, (face masks, walking directions, buzzer) we select two conditions that differ only
+in whether the behavioural intervention of interest is implemented, allowing us to estimate the effect of that
+intervention.
+Face masks. To examine the effect of wearing face masks on social distancing, we compared the contact
+networks for the face mask condition with the no supplementary intervention condition on the first day
+(IQR = 3-14, range = 0-44) in the face mask condition, whereas visitors in the no supplementary
+intervention condition had a median of 7 unique contacts (IQR = 3-15, range = 0-42). Detailed analysis of
+the probability of visitors forming contacts in these two conditions – taking the network structure of the
+data into account (see Methods) – did not provide evidence for an effect of wearing face masks on distancing
+(OR = 1.05, 95% Credible Interval = [0.81, 1.33]). These results indicate that, if there are differences in the
+number of contacts when wearing face masks compared to when not wearing them, these differences are
+likely to be small. In other words, face masks do not appear to facilitate or inhibit social distancing.
+Walking direction conditions. We performed two comparisons. First, we evaluated the effect of
+unidirectional walking directions versus no walking directions by comparing the buzzer conditions on day
+two and three (condition 5 vs. 6). On day 2 with unidirectional walking directions, visitors had a median of
+4 unique contacts (IQR = 1-11; range = 0-31), whereas on day 3 without walking directions, visitors had a
+median of 8 unique contacts (IQR = 5-15; range = 0-38). The probability of visitors forming contacts was
+substantially higher in the condition with no walking directions compared to the condition with
+unidirectional walking directions (OR = 1.66, 95% CI = [1.25, 2.17]).
+Second, we evaluated the effect of bidirectional versus unidirectional walking directions, by comparing the
+no supplementary intervention conditions on days 1 and 2 (condition 2 vs. 4). During bidirectional walking
+directions, visitors had a median of 7 unique contacts (IQR = 3-15; range = 0-42), whereas during
+unidirectional walking directions, visitors had a median of 8 unique contacts (IQR = 4-14; range = 0-48).
+The probability of visitors forming contacts was about the same in these two conditions (OR = 0.99, 95%
+CI = [0.75, 1.26]). This indicates that, if there are differences in the number of unique contacts visitors had
+when given bidirectional versus unidirectional walking directions, these are likely to be small. Thus, the
+implementation of walking directions appears to improve social distancing, but the differential effects of
+unidirectional and bidirectional implementations were not statistically significant.
+Buzzer. We investigated whether notifying visitors of violations of the 1.5m rule through a buzzer reduces
+the number of contacts by comparing the buzzer condition to the no supplementary intervention condition
+(condition 2 vs. 3). The median number of unique contacts was 10 (IQR = 3-15; range = 0-42) for visitors
+in the buzzer condition and 7 (IQR = 4-17; range = 0-49) for visitors in the no supplementary intervention
+condition. The probability of visitors forming contacts was slightly higher in the buzzer condition than in
+the no supplementary intervention condition (OR = 1.24, 95% CI = [0.95, 1.55]). The credible interval
+around this estimate suggests that buzzers likely do not promote social distancing, and may actually make
+it worse. In interpreting this effect, it is however important to note that on this day visitors did not receive
+an instruction on how the buzzer worked, and feedback occurred only two seconds after the contact was
+made.
+After improvements were made to the buzzer intervention (i.e., by implementing a short demonstration and
+removing the delay between registration of distance violation and feedback) the buzzer did promote
+distancing (conditions 5 vs. 4). With adequate instructions and immediate feedback, the median number of
+unique contacts of visitors in the buzzer condition was 4 (IQR = 1-11; range = 0-31) compared with a
+median of 8 (IQR = 4-14; range = 0-48) unique contacts in the no supplementary condition. The probability
+of visitors forming contacts was markedly higher in the no supplementary intervention condition, as
+compared to the buzzer conditions (OR = 1.43, 95% CI = [1.06, 1.91]). This suggests that buzzer feedback
+can promote social distancing, but that its effect is dependent on the instructions and immediate feedback.
+Discussion
+In this paper we introduced and demonstrated a practical methodology to assess the effect of behavioural
+interventions on social distancing. The methodology combines systematic variation of interventions in an
+experimental design with contact network assessment through wearable sensors. Analysing experimentally
+induced changes in the contact network allows researchers to systematically track the effect of behavioural
+interventions and as such brings epidemiologically relevant human behaviour within reach of the scientific
+method. Because it uses assessment of intervention effects at the level of behaviours that are known to
+affect virus transmission, the introduced methodology can be implemented to bridge the gap between
+behavioural science and epidemiology. Therefore, this type of research can directly inform policy
+concerning the mitigation of virus spread.
+The implementation of the proposed methodology in the current experimental design may have several
+policy implications. First, consistent with recent findings from observational research (Rosenkrantz-
+Lindegaard et al., 2020), we observed no significant effects of wearing face masks on social distancing.
+This suggests that risk compensation, also known as the Peltzman effect (Prasad & Jena, 2014), is not
+operative in the case of face masks. Therefore, even though it is important to replicate the current findings
+in independent research, the currently available evidence does not support the prominent role that risk
+compensation has played in deliberations on whether or not to mandate wearing face masks. The finding
+also underscores the need to execute dedicated empirical research to evaluate behavioural hypotheses, as it
+illustrates how prima facie plausible claims about human behaviour, backed up by seemingly relevant
+literature, may miss the mark (IJzerman et al., 2020).
+Second, our analysis clearly shows that implementing walking directions lowers the probability of contacts
+between visitors in the relevant conditions. We hypothesize that this benefit is counteracted by the fact that
+the movement patterns of other visitors are relatively unpredictable in a free movement scheme, so that
+distancing requires more effort and attention and accidental collisions occur more frequently. The latter
+hypothesis could be investigated by subjecting movement patterns isolated from camera data (Tanis et al.,
+2020) to quantitative pedestrian modelling (Duives, Daamen & Hoogendoorn, 2013). In comparing
+different walking directions, we did not observe differential effects of uni- versus bidirectional schemes.
+Given the dynamics of viral transmission, unidirectional walking directions should be preferred because
+they mitigate the probability of people facing each other directly; however, in situations where a
+unidirectional scheme is not available, a bidirectional scheme appears to be a good alternative. The
+implementation of walking directions is practically feasible in almost all public spaces and the current study
+directly supports this policy.
+Third, our study opens the possibility of utilizing schemes that use sensor data information to provide
+people with feedback on their behaviour. The current study used a style of feedback most closely related
+to an alarm: a pattern of light and a buzzer emitted when potential danger is encountered. While this style
+of feedback does seem to have a positive effect on adherence to distancing guidelines in the current study,
+we note several challenges with its implementation. First, effective use of sensors seems to depend on
+adequate instruction and immediate feedback. In the absence of this guidance, on the first day of our
+study, visitors tended to try out the sensors and as such inadvertently came within 1.5 meters of another
+visitor. This may have obscured the positive effects of feedback on subsequent distancing. After the first
+day, we countered this effect through a quite elaborate instruction where visitors were invited to try out
+the sensor on a trial sensor that was not included in the data analysis. However, in many cases such an
+instruction would be impractical, as it would take time and may lead to queue formation. Second,
+implementing wearable sensors requires people to pick them up and bring them back, which may generate
+risky, crowded environments if many people do this at the same time. Currently, the alarm scheme setup
+warns, but does not reward individuals for keeping distance. Other more rewarding ways to organize
+feedback may be more engaging (e.g., using gamification by letting people win various awards if they
+keep their distance) and informative for the user (e.g., many people asked for feedback on how many
+contacts they made). Clearly, there is a great potential for learning theory (e.g., reinforcement learning) to
+inform this process (Richter et al., 2015); next to encouraging distancing upon receiving feedback, a
+feedback system could promote learning to distance effectively and automatically/efficiently.
+The present study has yielded experimental support for policy advise concerning physical distancing.
+However, some limitations warrant attention. First, as we conducted the experiment in a naturalistic setting,
+we were not in a position to randomize the visitors to time slots. Second, as we were unable to
+counterbalance all conditions, the design may yield some confounds; for example based on the time of day
+a condition was measured. Third, as visitors could stay as long as they liked, some visitors were part of
+multiple conditions creating some dependency in the data. Fourth, as the experiment was conducted at an
+art fair, the visitors are not a random sample from the population and the results may not generalize to the
+general population or other settings. At the same time, a naturalistic design has the advantage of high
+ecological validity. Ultimately, as different contexts draw different crowds and behaviour is affected by
+one’s environment, we should replicate the interventions across various contexts (e.g., in a supermarket, or
+at a football stadium) to determine which interventions work best in which contexts.
+In conclusion, the presented research methodology has a broad range of applications and can be used to
+assess behavioural interventions quickly and effectively. The current study provides a template for how
+such research can be organized. Our analysis code (see Appendix) and data (reported separately in Tanis et
+al., 2020) are available for use in future studies. We hope that this framework will stimulate the behavioural
+science community to engage with the problem of mitigating virus spread through behavioural
+interventions.
+Methods
+Design.
+Across experimental conditions, we varied two sets of interventions: walking directions and supplementary
+interventions. Walking directions varied across the three days: bidirectional, unidirectional, and no walking
+a buzzer that indicated if one came within 1.5m of another visitor, no supplementary intervention. While
+we planned to cross all levels, we deviated from this plan, see “Practical and technological problems”.
+Materials.
+Questionnaires. We administered a pre- and post- questionnaire. The pre-questionnaire included items on
+demographics, potential coronavirus infection, worries about consequences of the virus, social distancing
+and face masks. The post-questionnaire focussed on social distancing behaviour during the art fair, and the
+experience of the event. In this paper, we only use visitors’ demographics such as age and gender, see (Tanis
+et al., 2020) for an elaborate description of both questionnaires.
+Social Distancing Sensor. In response to the COVID-19 pandemic Focus Technologies B.V.
+Sensor. This sensor is able to determine the distance between itself and other Social Distancing Sensors
+using ultra-wideband technology with an accuracy of up to ten centimetres. Every sensor has a unique ID
+and registers how often a violation has occurred with every other sensor. An access point and a computer
+application are used to manage the system and set settings. Every time a sensor is within reach of the access
+point, it communicates all distance violations to the access point after which it is written to a central
+database. A distance violation between two sensors is logged on both sensors and is therefore written to the
+database twice. The sensor is able to provide direct feedback to the user using a flashing light, a buzzing
+sensation or a beeping sound. In this research only the light and buzzer are used. To accommodate visitors
+from the same household, multiple sensors can be paired after which violations of the 1.5 meter distance
+between these specific sensors are not logged to the database and no feedback is given.
+Procedure.
+Via social media, participants were recruited for the event Smart Distance Lab: The Art Fair. Upon
+purchasing a ticket, visitors were asked to participate in our study by filling out an informed consent form
+and a questionnaire on demographics and attitudes towards Covid-19. At the end of the questionnaire a
+code was provided that allowed participants to select a 30 minute time slot to enter the event. If someone
+declined to participate in our study, they immediately received this code, and participation in our study was
+thus not required to visit the art fair. There was a separate code that allowed people to receive a free ticket,
+but the rest of the procedure was the same.
+Visitors were allowed to enter the art fair during their selected time slot. Upon entering, it was explained
+that research was being carried out in the hall and a health check was conducted. At the Social Distance
+Sensor (SDS) handout station, visitors were asked whether they had signed the informed consent and
+completed the corresponding questionnaire. Visitors for whom this was not the case were asked whether
+they wanted to participate in the study and, if so, to sign the informed consent form. When visitors belonged
+to the same household, this was registered and the sensors were activated at the same time so that they
+would not report any incidents with each other. In the face mask condition, after handing out the sensors,
+face masks were handed out with the request to wear them until they were told that they could be removed.
+Visitors could then enter the art fair and stay inside for as long as they wanted, possibly taking part in
+multiple experimental conditions. On the way out, visitors handed in their sensors. In addition, they were
+asked to fill out a post questionnaire about their experience at the art fair.
+Practical and technological problems.
+First, the face mask intervention was only executed on day 1, which allows us to only compare the face
+mask condition to the no supplementary intervention condition on day 1. Second, on day 3, two conditions
+the buzzer notified visitors when they were within 1.5m from another visitor, but the settings differed across
+days. Specifically, on the first day the buzzer only notified people after 2 seconds, which led to a lot of
+confusion. In addition, we did not actively demonstrate the buzzing feature to the visitors, which resulted
+in people trying out the feature inside the art fair. On day two and three, visitors were able to test out the
+buzzer before entering the art fair. In addition, on day two and three the buzzer notified the visitor
+immediately when they were within 1.5m of another visitor, without the two second delay.
+Statistical analyses.
+Preprocessing and quality control of sensor data. The SDS output contained the reporting and opposing ID
+for each contact, the number of times they were within 1.5m, and the time this contact was registered by
+the access point. Note that a single contact between two visitors is in this database twice, each visitor once
+as the ‘reporting ID’ and once as the ‘opposing ID’. First, we separated the output into the different
+experimental conditions and kept records that were between the start and end of each experimental
+whether the sensor was handed out during that condition as registered at the handout station. In case we
+could not link a sensor to a visitor, we removed this contact from the output. These records could occur
+when an SDS was activated but not handed out, e.g., when the SDS automatically activated when removed
+from the charger. Third, as the SDS output only contains records of contacts and the reporting and opposing
+IDs, we had to add visitors to the output who made zero contacts. More details on the processing of the data
+can be found in the Open Data paper by Tanis et al. (2020).
+Models. The contact networks of visitors were analysed with a logistic regression model including cross-
+nested random effects for the number of contacts of participants. This is a reduced version of the multilevel
+p model (Zijlstra et al., 2006) for non-directed networks, omitting reciprocity parameters and with identical
+sender and receiver effects. Estimation was performed with Markov Chain Monte Carlo simulations, similar
+to the estimation of the j model (Zijlstra, 2017), with similar prior distributions. In the current application,
+dummy variables were applied to model differences in the number of contacts between the two networks
+observed in different conditions. To distinguish this model from others, it was called b (b for bidirectional).
+Code for this model is available in the R-package dyads (Zijlstra, 2020).

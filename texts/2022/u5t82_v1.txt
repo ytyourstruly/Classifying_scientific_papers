@@ -1,0 +1,1435 @@
+A novel approach for modelling
+subsequent memory reports by separating
+decidedness, recognition and confidence
+1,2, 3
+Joram Soch , Anni Richter ,
+1,3,4,5 1,6
+Björn H. Schott , Jasmin M. Kizilirmak
+German Center for Neurodegenerative Diseases, Göttingen, Germany
+Bernstein Center for Computational Neuroscience, Berlin, Germany
+Leibniz Institute for Neurobiology, Magdeburg, Germany
+Center for Behavioral Brain Sciences, Magdeburg, Germany
+Department of Psychiatry and Psychotherapy,
+University Medical Center, Göttingen, Germany
+Institute for Psychology, University of Hildesheim, Germany
+DZNE Göttingen, Von-Siebold-Straße 3A, 37075 Göttingen;
+e-mail address: Joram.Soch@DZNE.de
+Abstract
+In episodic memory studies, memory performance is often assessed by presenting
+participants with previously seen old items and previously unseen new items in
+order to assess both, subjects’ hit rates and false alarms. Sometimes, subsequent
+memory responses are collected as recognition-confidence ratings, e.g. on a scale
+ranging from “definitely new” over “undecided” to “definitely old”. Despite higher
+informational value, this is problematic, as it conflates recognition (i.e. one rather
+than the other end of the scale) with confidence (i.e. outer rather than inner area
+of the scale). Here, we describe a computational model which separates three
+cognitive processes of episodic memory retrieval from reported
+recognition-confidence ratings, namely (i) decidedness, i.e. the tendency to give a
+neutral or non-neutral response; (ii) recognition, i.e. the ability to label previously
+seen items as “old”; and (iii) confidence, i.e. the act of labeling an item as
+“definitely” rather than “probably” old or new. We empirically validate our model
+by recovering memory-related differences between young and older adults
+(N = 106 + 153 = 259), especially the over-confidence phenomenon in older adults
+as well as superior memory performance and meta-cognitive accuracy for young
+adults. Interestingly, we find that decidedness does not vary between old vs. new
+items and young vs. older subjects, thus constituting a third process distinct from
+recognition and confidence.
+Keywords
+episodic memory, recognition-confidence ratings, computational model, memory
+performance, meta-cognitive accuracy
+Contents
+1 Introduction 1
+2 Methods 3
+2.1 Participants . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+2.2 Memory encoding . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+2.3 Memory retrieval . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+2.4 Further data acquisition . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+3 Modelling 6
+3.1 Behavioral data . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+3.2 Conditional response probabilities . . . . . . . . . . . . . . . . . . . . . . 6
+3.3 Joint response probabilities . . . . . . . . . . . . . . . . . . . . . . . . . 7
+3.4 Probabilistic model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+3.5 Classical model estimation . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+3.6 Bayesian model estimation . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+3.7 Probabilistic model space . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+3.8 Bayesian model selection . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+3.9 Maximum-a-posteriori estimates . . . . . . . . . . . . . . . . . . . . . . . 13
+3.10 Behavioral performance measures . . . . . . . . . . . . . . . . . . . . . . 13
+3.11 Availability of methods and data . . . . . . . . . . . . . . . . . . . . . . 16
+4 Results 17
+4.1 Bayesian model selection . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+4.2 Model parameter estimates . . . . . . . . . . . . . . . . . . . . . . . . . 18
+4.3 Behavioral performance measures . . . . . . . . . . . . . . . . . . . . . . 20
+5 Discussion 22
+5.1 Probabilistic modelling of subsequent memory reports . . . . . . . . . . . 22
+5.2 Comparison to previous recognition models . . . . . . . . . . . . . . . . . 23
+5.3 Decidedness and confidence as separate processes . . . . . . . . . . . . . 23
+5.4 Recognition, confidence and meta-cognitive accuracy . . . . . . . . . . . 24
+5.5 Limitations and directions for future research . . . . . . . . . . . . . . . 25
+5.6 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
+6 Acknowledgements 26
+7 Author Note 26
+8 References 27
+9 Appendix 32
+A Derivation of maximum likelihood estimates . . . . . . . . . . . . . . . . 32
+B Derivation of Bayesian posterior distributions . . . . . . . . . . . . . . . 33
+C Derivation of the log model evidence . . . . . . . . . . . . . . . . . . . . 34
+D Derivation of the MAP estimates . . . . . . . . . . . . . . . . . . . . . . 35
+E Extension to different response scales . . . . . . . . . . . . . . . . . . . . 36
+ii
+1 Introduction
+Episodic memory, the ability to form memory traces from single events in their spatial
+and temporal context, is crucial for human decision-making and appropriate behavior
+(Tulving, 1985). Episodic memory performance peaks in young adulthood and declines
+with increasing age, with older adults showing considerably lower memory performance
+(Craik and Simon, 1980; Rönnlund et al., 2005; Clark et al., 2018; Cabeza et al., 2018).
+Memory performance is frequently investigated with recognition memory tests in which
+participants are required to make an old/new decision on a set of stimuli consisting of
+some that were presented during an encoding phase (“old”) and others that were not
+(“new”) (Richardson-Klavehn and Bjork, 1988; Richardson-Klavehn, 2010).
+Sometimes, this approach is combined with confidence ratings, for example, an old/new
+decision followed by a confidence assessment on a bipolar rating scale (Tekin and Roediger,
+2017). A special form of this combination is represented by recognition-confidence scales
+on which participants rate stimulus oldness and response confidence at the same time
+(e.g. Yonelinas, 2005; Düzel et al., 2010). Within the signal detection theory framework,
+confidence judgments for recognition ratings are thought to be reached in the same way
+as the old/new decision (Hautus et al., 2021), such that a single underlying process is
+assumed (Stretch and Wixted, 1998). A combined recognition confidence rating is then
+interpreted as one measure of memory strength indicating, for example, the degree of
+familiarity (Yonelinas et al., 2010; Diana et al., 2010).
+The assumption that confidence and accuracy in recognition memory are based on a
+single process is highly problematic, because there is convincing evidence from
+psychology and cognitive neuroscience studies against this view. Although confidence
+and accuracy are typically correlated, certain effects of encoding instructions or memory
+test manipulations can only be explained by assuming two distinct processes or sources
+of information (Busey et al., 2000; Van Zandt, 2000). Moreover, although studies
+employing functional magnetic resonance imaging (fMRI) have shown partially
+overlapping neural networks for accuracy and confidence, there are differences between
+high- vs. low-confidence-related brain activity, independent of true or false recognition
+(Kim and Cabeza, 2007). Finally, confidence is typically regarded as a meta-cognitive
+process whereas recognition is not (Luttrell et al., 2013).
+We therefore advocate that combined recognition-confidence ratings in episodic memory
+retrieval convey two distinct pieces of information, namely whether the subject
+recognizes the item (responses at the “old” rather than “new” end of the scale) and
+whether the subject is confident in their response (extreme rather than moderate
+responses on either end of the scale). Together, recognition and confidence judgments
+also inform about meta-cognitive accuracy. Meta-cognition refers to conscious internal
+monitoring processes, i.e. thinking about thinking (Flavell, 1979), and meta-cognitive
+accuracy describes the correctness of the meta-cognitive judgement, which here would
+be reflected by an agreement of the confidence with the recognition judgement.
+When considering differences in episodic memory performance across the lifespan, there
+is evidence showing that older adults are less accurate than younger adults in
+recognition-confidence judgements (Jacoby and Rhodes, 2006; Wong et al., 2012). In
+their study, Wong and colleagues investigated whether this age effect reflects
+age-related reductions in recollection ability (in line with the single-process theory of
+recognition-confidence ratings) or whether it instead reflects impaired meta-cognitive
+abilities (supporting a two-process model of subsequent memory responses). The
+authors found high positive correlations between confidence judgements and recognition
+accuracy. However, they also observed age-related impairment in meta-memory
+accuracy when controlling for recognition accuracy differences (Wong et al., 2012). This
+suggests that there are not only overlaps, but also distinctions in the neural processes
+underlying confidence and recognition judgements.
+Interestingly, not only does episodic memory performance decline with increasing age,
+but older adults commit memory errors with higher confidence than young adults or also
+children (Shing et al., 2009). This suggests age-dependent differences not only in the
+cognitive processes and neural substrates of episodic memory, but also in the processes
+underlying decision confidence. Age differences in meta-cognitive performance are further
+supported by evidence showing that older adults exhibit lower accuracy due to a more
+liberal report criterion in combination with less eﬀicient memory monitoring (Pansky
+et al., 2009). Jacoby and Rhodes proposed a framework for explaining this high proneness
+of older adults for false memories with high confidence, suggesting that this phenomenon
+is due to a decreased ability in the conscious control of memory retrieval which declines
+with increasing age (Jacoby and Rhodes, 2006).
+To summarize, evidence suggests that older adults not only show a decline in memory
+performance, but also an increased tendency to commit high-confidence false alarms.
+This and the dissociative behavioral and neural correlates of confidence and recognition
+suggest that recognition-confidence rating scales do not reflect one, but at least two
+separate cognitive processes.
+In this work, we describe a new computational model for recognition-confidence ratings
+which not only separates recognition and confidence, but also introduces a third process
+in episodic memory retrieval, the tendency of a subject to give a non-neutral response at
+all. This process, here termed “decidedness”, or rather its inverse “undecidedness”, has
+been previously known as “neutral response bias” (Budson et al., 2006; Beth et al., 2009)
+or “midpoint response style” (Worthy, 1969; Hernández et al., 2004) and is sometimes
+argued to simply reflect the lowest degree of confidence.
+To identify the computational model best explaining measured recognition-confidence
+ratings, we employ probabilistic modelling and Bayesian model selection across a large
+set of candidate models. Given that an optimal model has been identified and its model
+parameters have been estimated, this allows to calculate four measures describing different
+aspects of memory behavior: the level of decidedness (LD); memory performance (MP);
+level of confidence (LC); and meta-cognitive accuracy (MCA).
+Applying our model to a large cohort of young and older adults (N = 106 + 153 =
+259) who performed a visual incidental episodic memory encoding task, we establish
+decidedness and confidence as in fact separate cognitive processes, in the sense that LD
+and LC are distinct in terms of (i) differences between young and older adults and (ii) the
+necessity to distinguish associated model parameters between old and new items. We find
+that except for LD, all behavioral measures differ between age groups, with higher LC for
+older adults, and young adults scoring higher on MP and MCA. Finally, LC is correlated
+with all other measures in both age groups, indicating a central role of confidence for
+episodic memory as well as meta-cognitive ability.
+2 Methods
+2.1 Participants
+The present study was approved by the Ethics Committee of the Otto von Guericke
+University (OvGU) Magdeburg, Faculty of Medicine (protocol number: 33/15), and
+written informed consent was obtained from all participants in accordance with the
+Declaration of Helsinki (World Medical Association, 2013).
+In total, the study cohort consisted of 259 neurologically and psychiatrically healthy
+adults, including 106 young (47 male, 59 female, age range 18-35, mean age 24.12 ± 4.00
+years) and 153 older (59 male, 94 female, age range 51-80, mean age 64.04 ± 6.74 years)
+participants. For detailed description of the study cohort, see Soch et al., 2021b; Soch
+et al., 2021a; and Richter et al., 2022.
+2.2 Memory encoding
+Participants performed a visual memory encoding paradigm with an indoor/outdoor
+judgment as the incidental encoding task (Düzel et al., 2010; Assmann et al., 2021; Soch
+et al., 2021b; Soch et al., 2021a). Subjects viewed photographs showing indoor and
+indoor and 44 outdoor scenes) or repetitions of two highly familiar “master” images (22
+indoor and 22 outdoor trials), i.e. one indoor and one outdoor scene pre-familiarized
+before the actual experiment. Thus, every subject was presented with 88 unique images
+and 2 master images that were presented 22 times each. Participants were instructed to
+categorize images as “indoor” or “outdoor” via button press. Each picture was presented
+2.3 Memory retrieval
+Approximately 70 minutes (70.23 ± 3.77 min) after the start of the encoding session,
+participants performed a computer-based recognition memory test outside the scanner
+during the encoding phase (“old items”) and 44 images they had not seen before (“new
+items”). Participants rated each image on a five-point Likert scale (Likert, 1932) from 1
+procedure, see Assmann et al., 2021; and Soch et al., 2021b.
+2.4 Further data acquisition
+These experiments were part of a larger study investigating the neural processes
+underlying memory formation in the juvenile and in the aging brain (hence the
+recruitment of young and older adults). During the memory encoding session, functional
+magnetic resonance imaging (fMRI) signals were measured, with the goal of identifying
+neural correlates of novelty processing and subsequent memory. The present paper
+exclusively focuses on the behavioral data, using the model developed in Section 3. The
+fMRI data have been and will be reported elsewhere (Soch et al., 2021b; Soch et al.,
+2021a; Richter et al., 2022; Soch et al., 2022; Kizilirmak et al., 2022).
+novel image
+indoor outdoor
+(indoor)
+novel 44 44
+fixation delay
++ master 22 22
+master image
+(indoor)
+fixation delay
+2.5 s
+novel image
+(outdoor)
+0.7 – 2.65 s
+fixation delay
+master image
+(outdoor)
+old image
+indoor outdoor
+(indoor)
+old 44 44
+response
++ new 22 22
+new image
+(indoor)
+response
+2.5 s
+old image
+(outdoor)
+until button press
+response
+1 “sure new”
+new image
+2 “maybe new”
+(outdoor)
+3 “don’t know”
+4 “maybe old” +
+5 “sure old”
+memory encoding session. Shown is an exemplary sequence of trials, each trial consisting
+of either a previously unseen novel image or a pre-familiarized master image showing
+was shown for 2.5 s and followed by a variable inter-stimulus-interval (ISI) between 0.7
+memory retrieval session. Shown is an exemplary sequence of trials, each trial consisting
+of either a previously seen old image or a previously unseen new image showing either
+shown for 2.5 s and followed by a variable delay which ended when the subject made
+their decision (see inset list for response options).
+3 Modelling
+3.1 Behavioral data
+Assume that a subject has seen O items, e.g. words, pictures or other stimuli, in a memory
+encoding phase. In a subsequent memory test, the subject is then presented with these O
+“old” items as well as N “new” items they have not previously seen. Thus, in the retrieval
+phase, the total number of trials is n = O + N . In our case, these numbers are O = 88,
+N = 44 and n = 132.
+∈ { }
+Let x 1, 2 be a variable indicating that the i-th stimulus in retrieval was an old (1)
+∈ { }
+or a new (2) item and let y 1, . . . , L be a variable representing the subject’s memory
+report in the i-th trial ranging from “sure new” (1) to “sure old” (L) where L is number
+of levels on the Likert scale used for memory confidence ratings. In our case, L = 5 such
+∈ { }
+that y 1, 2, 3, 4, 5 .
+3.2 Conditional response probabilities
+In what follows, we will simply write “old” for x = 1 and “new” for x = 2 for clarity.
+i i
+Given that the scale we use for memory responses has five response options, let us consider
+the following probabilities:
+• p – the probability of a non-neutral response, given an individual old or new item (i.e.
+choosing 1/2/4/5 rather than 3);
+• q – the probability of an aﬀirmative (“old”) response, given a non-neutral response
+(i.e. choosing 4/5 rather than 1/2);
+• r – the probability of a confident response, given an aﬀirmative (“old”) or
+non-aﬀirmative (“new”) response (i.e. choosing 5 rather than 4 or 1 rather than 2).
+Then, we can describe the decision process underlying a subject’s memory report in the
+• Let us consider a single subject being presented with a single item in retrieval. Then,
+the probability that the subject gives a neutral response is (1 p) – in this case, the
+response is “3”. The probability that the subject gives a non-neutral response is p.
+• Imagine that the subject gives a non-neutral response. Then, the probability that the
+subject chooses to label the stimulus as “old” is q – in this case, the response is “4”
+or “5”. The probability that the subject chooses “new” is (1 q).
+• Imagine that the subject gives an aﬀirmative (“old”) response. Then, the probability
+that the subject is certain in their response is r – in this case, the response is “5”. The
+probability that the answer is uncertain is (1 r) and the response will be “4”.
+Based on this, we can also simulate memory responses for a single subject. For example,
+assume that p = 0.90 (corresponding to a low rate of neutral responses), q = 2/3
+(corresponding to twice as many stimuli labeled “old”, compared to “new”) and r = 2/3
+(corresponding to twice as many certain responses, compared to uncertain). Then, we
+can go through a number of trials (say, n = 100), draw random events according to p, q
+number of subjects (say, N = 15).
+1 ×
+In addition to conditions x and responses y , there may also be reaction times z stored in an n 1
+i i i
+vector z, but they are not of interest for the present purpose.
+A B
+item Model: “pqr” p = 0.9, q = 2/3, r = 2/3
+Pr(“1”) = p · (1–q) · r
+Pr(“2”) = p · (1–q) · (1–r)
+Pr(“3”) = (1–p)
+Pr(“4”) = p · q · (1–r)
+probability of
+p 1–p Pr(“5”) = p · q · r
+non-neutral
+response
+“3”
+probability of
+1–q q
+affirmative response
+probability of
+confident response
+r 1–r 1–r r
+“1” “2” “4” “5”
+leading to subsequent memory responses on a five-level scale, assuming a probability
+of non-neutral responses (red), a probability of aﬀirmative, given non-neutral responses
+(green) and a probability of confident, given (non-)aﬀirmative responses (blue). (B)
+Subsequent memory responses of 15 hypothetical subjects across 100 trials per subject,
+simulated using the assumptions described in the text (see probabilities on top).
+3.3 Joint response probabilities
+Formally, the conditional response probabilities are equivalent to the following events
+p = Pr(non-neutral)
+q = Pr(aﬀirmative non-neutral) (1)
+| |
+r = Pr(certain aﬀirmative) = Pr(certain non-aﬀirmative)
+Thus, we can calculate joint response probabilities of single-trial response events, for
+example that a subject labels a stimulus as “probably old”
+Pr(”maybe old”)
+= Pr(non-neutral, aﬀirmative, uncertain)
+(2)
+· | · |
+= Pr(non-neutral) Pr(aﬀirmative non-neutral) Pr(uncertain aﬀirmative)
+· · −
+= p q (1 r)
+Note that, in order to avoid confusions with the frequency of non-neutral responses p, we do not use
+• •
+p( ), but Pr( ) to denote probabilities and probability density functions in this paper.
+or that a subject labels a stimulus as “definitely new”
+Pr(”sure new”)
+= Pr(non-neutral, non-aﬀirmative, certain)
+(3)
+· | · |
+= Pr(non-neutral) Pr(non-aﬀirmative non-neutral) Pr(certain non-aﬀirmative)
+· − ·
+= p (1 q) r
+3.4 Probabilistic model
+Because we can describe the probability of any possible response event (see eqs. 2 and 3),
+we can also describe the probability of the memory response in a particular trial, given
+the underlying response frequencies:
+> · − ·
+> p (1 q) r , if y = 1
+> i
+> · − · −
+> p (1 q) (1 r) , if y = 2
+< i
+Pr(y p, q, r) = − (4)
+(1 p) , if y = 3
+i > i
+> · · −
+> p q (1 r) , if y = 4
+· ·
+p q r , if y = 5
+This is the likelihood function for a single trial, i.e. the probability of observing the
+measured data y , given model parameters p, q and r. If trials are assumed to be
+independent and identically distributed (i.i.d.), the total likelihood function is simply
+the product of single-trial likelihood functions:
+| |
+Pr(y p, q, r) = Pr(y p, q, r)
+i=1
+o +n · − o +n · o +n · − o +n · o +n · − o +n
+= p 1245 1245 (1 p) 3 3 q 45 45 (1 q) 12 12 r 15 15 (1 r) 24 24 .
+(5)
+In this equation, o is the number of old items replied to with “3”, n is the number of
+3 45
+new items replied to with “4” or “5”, o is the number of old items replied to with “1”,
+“2”, “4” or “5” etc. Note that this model does not yet distinguish between responses to
+old items and new items.
+3.5 Classical model estimation
+Classical model estimation proceeds by maximum likelihood estimation (MLE), i.e. by
+finding those values of p, q and r which maximize the log-likelihood function:
+(pˆ, qˆ, rˆ) = arg max log Pr(y p, q, r) (6)
+p,q,r
+This is leads to the following parameter estimates (see Appendix A):
+o + n
+1245 1245
+pˆ =
+o + o + n + n
+1245 3 1245 3
+o + n
+45 45
+qˆ = (7)
+o + o + n + n
+12 45 12 45
+o + n
+15 15
+rˆ = .
+o + o + n + n
+15 24 15 24
+In other words, (i) the estimate for p is equal to the proportion of trials with non-neutral
+responses, (ii) the estimate for q is equal to the proportion of aﬀirmative responses, within
+non-neutral responses and (iii) the estimate for r is equal to the proportion of certain
+responses, within aﬀirmative and non-aﬀirmative responses, consistent with our earlier
+defintions (see Section 3.2).
+3.6 Bayesian model estimation
+Bayesian model estimation proceeds by specifying prior distributions on the model
+parameters p, q and r, unconditional on the data y, and then calculating posterior
+distributions of those model parameters, conditional on the data.
+We use beta distributions as priors on p, q and r, a common choice for proportion-like
+quantities bounded in the interval [0, 1] (Gelman et al., 2013, pp. 30/34):
+· α − 1 · − β − 1
+Pr(p) = Bet(p; α , β ) = p 0p (1 p) 0p
+0p 0p
+B(α , β )
+0p 0p
+· α − 1 · − β − 1
+Pr(q) = Bet(q; α , β ) = q 0q (1 q) 0q (8)
+0q 0q
+B(α , β )
+0q 0q
+· α − 1 · − β − 1
+Pr(r) = Bet(r; α , β ) = p 0r (1 p) 0r
+0r 0r
+B(α , β )
+0r 0r
+This leads to posterior distributions which are also beta distributions (see Appendix B):
+Pr(p y) = Bet(p; α , β ), α = α + o + n , β = β + o + n
+np np np 0p 1245 1245 np 0p 3 3
+Pr(q y) = Bet(q; α , β ), α = α + o + n , β = β + o + n (9)
+nq nq nq 0q 45 45 nq 0q 12 12
+Pr(r y) = Bet(r; α , β ), α = α + o + n , β = β + o + n
+nr nr nr 0r 15 15 nr 0r 24 24
+In a beta distribution, the parameters α > 0 and β > 0 describe how much the unknown
+quantity is leaning towards 0 or 1. With α much larger than β, the quantity is more likely
+closer to 1 and with β much larger than α, the quantity is more likely closer to 0 and the
+expected value is given by α/(α + β) (Bishop, 2007, p. 686).
+Note that the posterior concentration parameters (e.g. α and β ) are a function of
+np np
+the prior concentration parameters (e.g. α and β ) and the observed counts (e.g. o
+0p 0p 1245
+and n ). In the present context, we will set all prior concentration parameters to 1
+which corresponds to uniform distribution with constant density in the interval [0, 1], i.e.
+complete absence of knowledge about parameter values.
+3.7 Probabilistic model space
+So far, the model that we have specified (see Section 3.4) does not distinguish between
+old and new items. This is very unrealistic, given that we expect a different probability
+of e.g. aﬀirmative responses for old vs. new items, i.e. recognizing more old stimuli, but
+rejecting more new stimuli. Therefore, we will now allow the parameters p, q and r to
+vary between old and new items. Additionally, we introduce the new model parameter s
+to vary the probability of confident responses between accepted and rejected stimuli (i.e.
+believed to be old vs. new).
+This leads to the revised likelihood function
+8 9
+> >
+> · − · >
+> p (1 q ) s , if y = 1 >
+> o o o i >
+> >
+> >
+> >
+> · − · − >
+> p (1 q ) (1 s ) , if y = 2 >
+> o o o i =
+> − and x = 1 (“old”)
+> (1 p ) , if y = 3
+> o i > i
+> >
+> >
+> >
+> · · − >
+> p q (1 r ) , if y = 4 >
+> o o o i >
+> >
+> >
+> ;
+> · ·
+> p q r , if y = 5
+< o o o i
+Pr(y x , p, q, r) = (10)
+i i > 9
+> >
+> · − · >
+> p (1 q ) s , if y = 1 >
+> n n n i >
+> >
+> >
+> >
+> · − · − >
+> p (1 q ) (1 s ) , if y = 2 >
+> n n n i =
+− and x = 2 (“new”)
+> (1 p ) , if y = 3
+> n i > i
+> >
+> >
+> >
+> · · − >
+> p q (1 r ) , if y = 4 >
+> >
+n n n i
+> >
+> >
+: ;
+· ·
+p q r , if y = 5
+n n n i
+with model parameters representing:
+• p /p – the probability of a non-neutral response to an old/new item;
+o n
+• q /q – the probability of an aﬀirmative (“old”) response, given a non-neutral response
+o n
+to an old/new item;
+• r /r – the probability of a confident (“sure”) response, given an aﬀirmative response
+o n
+to an old item (“hit”) or new item (“false alarm”);
+• s /s – the probability of a confident (“sure”) response, given a non-aﬀirmative
+o n
+response to an old item (“miss”) or a new item (“correct rejection”).
+The likelihood function in equation (10) corresponds to the most complex model (see
+status (old vs. new). If we decide not to vary some of the parameters, this leads to smaller
+models with fewer parameters. The model varying none of the parameters is equivalent
+to the likelihood function given by equation (4) which corresponds to the simplest model
+Here, we choose to denote those models by names such as “pqqrs” in which a double
+letter signifies that a parameter varies and a single letter signifies that a parameter does
+not vary between old and new items. Because there are 4 model parameters that can be
+A B
+old item Model: “ppqqrrss” new item
+Pr(“1”|old) = p · (1–q ) · s
+o o o
+Pr(“2”|old) = p · (1–q ) · (1–s )
+o o o
+Pr(“3”|old) = (1–p )
+Pr(“4”|old) = p · q · (1–r )
+o o o
+p 1–p p 1–p
+Pr(“5”|old) = p · q · r
+o o o o o n n
+Pr(“1”|new) = p · (1–q ) · s
+n n n
+Pr(“2”|new) = p · (1–q ) · (1–s )
+n n n
+Pr(“3”|new) = (1–p )
+“3” “3”
+Pr(“4”|new) = p · q · (1–r )
+n n n
+Pr(“5”|new) = p · q · r
+n n n
+1–q q 1–q q
+o o n n
+s 1–s 1–r r s 1–s 1–r r
+o o o o n n n n
+“1” “2” “4” “5” “1” “2” “4” “5”
+subsequent memory responses to (A) old items and (B) new items, assuming probabilities
+p, q, r and s differ between old items (purple) vs. new items (light blue) as well as between
+aﬀirmative responses (“4”, “5”) vs. non-aﬀirmative responses (“1”, “2”). The probabilities
+at the edges of each tree imply the probability of each possible event at the bottom, given
+r rr
+r rs r rs
+q pqr pqrs pqrr pqrrss
+qq pqqr pqqrs pqqrr pqqrrss
+q ppqr ppqrs ppqrr ppqrrss
+pp
+qq ppqqr ppqqrs ppqqrr ppqqrrss
+corresponds to one model. Models differ by whether they are varying (double letters) or
+not varying (single letters) parameters between old and new items. In the leading columns,
+“pp” implies different probabilities of non-neutral responses for old vs. new items and
+“qq” implies different probabilities of aﬀirmative responses for old vs. new items. In the
+leading rows, “rr” implies different probabilities of confident responses for old vs. new
+items and “rs” implies different probabilities of confident responses for aﬀirmative vs.
+equal to its number of free parameters.
+3.8 Bayesian model selection
+Bayesian model estimation proceeds by calculating the log model evidence (LME), or
+logarithmized marginal likelihood, i.e. the probability of observing the data y, given
+only the model m, regardless of particular parameter values θ. This can be obtained by
+integrating over the likelihood function using a prior density (Soch et al., 2016, eq. 8):
+| | |
+LME(m) = log Pr(y m) = log Pr(y θ, m) Pr(θ m) dθ . (11)
+For our response frequency models with likelihood function Pr(y θ, m) of the form (10)
+and prior distributions Pr(θ m) given by beta distributions (8), the LME is a sum of
+logarithmized beta functions with prior and posterior concentration parameters as
+arguments (see Appendix C), e.g. for the simplest model “pqr”, we have (cf. eqs. 8 and
+9):
+LME(m) = log B(α , β ) log B(α , β )
+np np 0p 0p
++ log B(α , β ) log B(α , β ) (12)
+nq nq 0q 0q
++ log B(α , β ) log B(α , β )
+nr nr 0r 0r
+From LMEs, one can calculate posterior model probabilities Pr(m y), i.e. the probability
+that a particular model m generated the observed data y. This requires prior model
+probabilities Pr(m) which are usually taken from a uniform distribution (i.e. Pr(m) =
+1/M with total number of models M ). Then, Bayes’ theorem implies (Soch et al., 2017,
+eq. 7):
+Pr(y m ) Pr(m ) exp[LME(m )] Pr(m )
+| i i P i i
+Pr(m y) = = . (13)
+Pr(y) exp[LME(m)] Pr(m)
+Again, given that model families can be formed by grouping models according to
+exhibiting or not exhibiting a certain model feature, model family inference can be
+formed. More precisely, the log family evidence (LFE) of a model family f is calculated
+by marginalizing over log model evidences (Soch and Allefeld, 2018, eq. 16)
+| | |
+LFE(f ) = log Pr(y f ) = log Pr(y m) Pr(m f ) (14)
+m f
+| |
+where Pr(m f ) is a within-family prior distribution (e.g. Pr(m f ) = 1/M with M as the
+f f
+number of models in family f ). Finally, posterior family probabilities can be calculated
+by again using Bayes’ theorem:
+Pr(y f ) Pr(f ) exp[LFE(f )] Pr(f )
+| j j P j j
+Pr(f y) = = (15)
+Pr(y) exp[LFE(f )] Pr(f )
+where Pr(f ) is an across-family prior distribution (e.g. Pr(f ) = 1/F with number of
+model families F ). This allows for Bayesian comparison of model families.
+3.9 Maximum-a-posteriori estimates
+Given that an optimal model has been identified, maximum-a-posteriori (MAP) estimates
+of the model parameters are defined as the modes of the posterior distributions and
+thus can be obtained as those values maximizing the posterior density. For the simplest
+model “pqr” and with the prior distributions described above, they are equivalent to the
+maximum likelihood estimates from eq. 6 (see Appendix D):
+o + n
+1245 1245
+pˆ =
+MAP
+o + o + n + n
+1245 3 1245 3
+o + n
+45 45
+qˆ = (16)
+MAP
+o + o + n + n
+12 45 12 45
+o + n
+15 15
+rˆ = .
+MAP
+o + o + n + n
+15 24 15 24
+In what follows, we will always refer to MAP estimates when denoting estimated
+parameters as pˆ, pˆ or pˆ etc.
+o n
+3.10 Behavioral performance measures
+Based on MAP estimates for a single subject, we can calculate a number of measures
+Level of decidedness
+As noted earlier (see Section 3.2), the parameter p represents the probability of non-
+neutral responses, i.e. how often a subject is decided rather than undecided in their
+memory response. Thus, the level of decidedness (LD) is defined as the probability of a
+non-neutral response and calculated as the estimated proportion of decided responses:
+LD = pˆ (17)
+If a model belongs to the family “pp”, i.e. varying p as a function of item status, the
+Memory performance
+Consider that we are working with a model belonging to the family “qq”, i.e.
+distinguishing the probability of aﬀirmative responses between old and new items, or
+that such a model has been identified as optimal via model selection.
+In that case, we define memory performance (MP) as the probability of correct responses.
+Consequently, MP is calculated as the probability of aﬀirmative responses to old items
+(“hits”) or non-aﬀirmative responses to new items (“correct rejections”), either separately
+for old and new items or averaged over both conditions:
+MP = qˆ
+o o
+MP = 1 qˆ
+n n (18)
+1 qˆ qˆ + 1
+o n
+MP = (MP + MP ) =
+o n
+2 2
+Level of confidence
+Assume that we are working with a model belonging to the family “rrss”, i.e.
+distinguishing the probability of confident responses between old and new items as well
+as between aﬀirmative and non-aﬀirmative responses, or that such a model has been
+identified as optimal via model selection.
+Under this condition, we define the level of confidence (LC) as the probability of
+confident responses. That is, LC is calculated as the average proportion of certain
+responses (“definitely old/new”) rather than uncertain responses, again either separated
+between old and new items or averaged over both:
+LC = (rˆ + sˆ )
+o o o
+LC = (rˆ + sˆ ) (19)
+n n n
+1 rˆ + sˆ + rˆ + sˆ
+o o n n
+LC = (LC + LC ) =
+o n
+2 4
+Meta-cognitive accuracy
+Observe that r is the probability of a confident response, given an aﬀirmative response
+to an old item (“hit”, correct); s is the probability of a confident response, given a non-
+aﬀirmative response to a new item (“correct rejection”, correct); r is the probability of a
+confident response, given an aﬀirmative response to a new item (“false alarm”, incorrect);
+s is the probability of a confident response, given a non-aﬀirmative response to an old
+item (“miss”, incorrect).
+Therefore, we define meta-cognitive accuracy (MCA) as the probability of agreement
+between correctness and confidence. Thus, MCA is calculated as the average proportion
+of correct responses being confident and incorrect responses being inconfident, either for
+old items, for new items or for both:
+MCA = (rˆ + (1 sˆ ))
+o o o
+MCA = ((1 rˆ ) + sˆ ) (20)
+n n n
+− −
+1 rˆ sˆ + sˆ rˆ + 2
+o o n n
+MCA = (MCA + MCA ) = .
+o n
+2 4
+In other words, the more confident correct responses (rˆ , sˆ ) and the fewer confident
+o n
+incorrect responses (rˆ , sˆ ) a subject will give, the more do their responses already reflect
+n o
+knowledge of whether their stimulus assessments are correct, the higher is their meta-
+cognitive accuracy.
+level of decidedness
+LD = Pr(“decided”)
+subsequent memory response
+“s1ure ne2w” 3 “s4ure o5ld”
+memory performance
+old
+item
+new
+item
+MP = Pr(“correct” | “decided”)
+level of confidence
++1 positive event
+–1 negative event
+LC = Pr(“confident” | “decided”)
+0 neutral event
+meta-cognitive accuracy
+MCA = Pr(“corr = conf” | “decided”)
+how specific behavioral responses contribute to behavioral performance measures.
+Subsequent memory responses can be on a scale from 1 to 5 and are separated for old
+and new items (see legend on the right). Then, (A) the level of decidedness (LD) is
+defined as the probability of decided responses, i.e. as a contrast of non-neutral against
+neutral responses; (B) memory performance (MP) can be quantified as the probability
+of correct-given-decided responses, i.e. as a contrast of correct against incorrect non-
+neutral responses; (C) a level of confidence (LC) can be calculated as the probability
+of confident-given-decided responses, i.e. as a contrast of certain against uncertain non-
+neutral responses; and (D) meta-cognitive accuracy (MCA) is defined as the probability
+of agreement between correctness and confidence, i.e. as a contrast of confident-and-
+correct and inconfident-and-incorrect responses against other responses.
+estimates will always fall between 0 (e.g. zero confidence in the case of LC) and 1 (e.g.
+perfect memory in the case of MP).
+If the measures defined here are understood as “contrasts” of specific events against
+others, then it is most natural to describe LD as the global effect of non-neutral responses
+recognition and confidence, as the contrast matrix for MCA is equal to the product of
+Abbr. Concept Explanation Equation
+pˆ +pˆ
+LD level of decidedness probability of non-neutral response pˆ or o n
+qˆ qˆ +1
+MP memory performance probability of correct response, o n
+given non-neutral response
+rˆ +sˆ +rˆ +sˆ
+LC level of confidence probability of confident response,
+o o n n
+given non-neutral response
+− −
+rˆ sˆ +sˆ rˆ +2
+MCA meta-cognitive accuracy probability of agreement between
+o o n n
+correctness and confidence, given
+non-neutral responses
+quantifying different aspects of memory behavior, along with their probabilistic
+interpretation and mathematical equation.
+3.11 Availability of methods and data
+This study was not preregistered. Study materials, i.e. visual stimulus material and
+stimulus presentation code used for the experiments, are not publicly available, but can
+be shared upon request.
+MATLAB code implementing data simulation (function ME_pqrs_Sim), maximum
+likelihood estimation (function ME_pqrs_MLE) and Bayesian model comparison (function
+ME_pqrs_Bayes) for the pqrs model is available from a dedicated GitHub repository
+Behavioral data underlying the results reported in this paper as well as analysis scripts
+used to produce them will be made available in a GitHub repository accompanying this
+4 Results
+4.1 Bayesian model selection
+First, we applied Bayesian model selection (see Section 3.8) to identify the optimal model
+of the observed behavioral responses, separately for young and older adults. To this end,
+the model space of 16 models (see Section 3.7) was sub-divided into model families along
+(PP) were calculated for all model families. Results are reported as density plots of PPs
+for the family of more complex models (e.g. “pp” vs. “p”) and an exceedance probability
+(EP) is calculated for each comparison as the proportion of participants favoring the more
+We find that both age groups favor models which do not differentiate between the
+probability of decided responses (p) by old vs. new items (model family “p”; see
+separating the probability of confident responses (r) by old vs. new items (model family
+dimensions in older adults.
+A B
+C D
+models (e.g. models assuming “pp” vs. models assuming “p”) are shown as kernel density
+estimates across young adults (red) and older adults (blue). Exceedance probabilities (EP)
+above the plots give the fraction of participants in which the more complex family has
+a higher posterior probability than the simpler model family. Due to the overwhelming
+evidence for model family “qq” in the second analysis, posterior probabilities lower than
+one are plotted as outliers (red and blue crosses in B).
+4.2 Model parameter estimates
+Second, we extracted maximum-a-posteriori (MAP) estimates of the model parameters
+of interest (see Section 3.9) from the model identified as optimal. Following the results
+of the previous section, we take the model “pqqrrss” as the basis for all of the following
+analyses. Results are reported as density plots of MAP estimates, again separately for
+We find that for both age groups, the probability of decided responses is consistently very
+≈ ≈ ≈
+differs between old and new items (both: q 0.75; young: q 0.1; older: q 0.2; see
+o n n
+of confident responses, we observe an apparent interaction of item status (old vs. new)
+with item response (aﬀirmative vs. non-aﬀirmative), supported by higher confidence for
+o n n o
+presence of meta-cognitive knowledge. Again, older adults show greater variability of
+response frequencies, possibly diluting the group-level interaction effect.
+A C
+the proportion of non-neutral responses, (B) the proportions of aﬀirmative responses and
+(C) the proportions of confident responses are shown as kernel density estimates across
+young adults (red) and older adults (blue).
+When statistically testing the two age groups against each other with respect to the
+| | ≥
+MAP estimates, we find significant differences for all model parameters (all z 4.59,
+all p < 0.001; Mann-Whitney U-test with Holm-Bonferroni correction) except for the
+recognition probability for old items (i.e. the “hit rate”; z = 1.66, p = 0.194) and the
+probability of non-neutral responses (i.e. the “level of decidedness”; z = 0.14, p = 0.890)
+interval of young adults (red) and older adults (blue) for estimated model parameters from
+test was performed, resulting in a z-statistic and a p-value; p-values are Holm-Bonferroni-
+corrected for multiple comparisons at the α = 0.05 level.
+4.3 Behavioral performance measures
+Finally, we calculated behavioral performance measures (see Section 3.10) from the
+extracted model parameters to more directly quantify cognitive processes and compare
+We find that (i) the level of decidedness does not differ between age groups (z = 0.14,
+p = 0.890; Mann-Whitney U-test with Holm-Bonferroni correction) and (ii) young adults
+have a significantly higher memory performance than older adults (z = 4.25, p < 0.001),
+supported by more correct rejections for new items (p < 0.001), but not more hits for old
+items (p = 0.194). Moreover, (iii) older adults show significantly higher levels of confidence
+than young adults (z = 6.49, p < 0.001), supported by more confident responses for
+both (p < 0.001), old and new items, and (iv) meta-cognitive ability differs between age
+groups (z = 7.29, p < 0.001), with young adults performing better with respect to both
+A B
+confidence interval of young adults (red) and older adults (blue) for (A) behavioral
+performance measures calculated using the model “pqqrrss” (see Section 3.10), (B) also
+computed separately for old vs. new items. For each measure, a Mann-Whitney U-test was
+performed, resulting in a z-statistic and a p-value; p-values are Holm-Bonferroni-corrected
+for multiple comparisons at the α = 0.05 level. Abbreviations: LD = level of decidedness;
+MP = memory performance; LC = level of confidence; MCA = meta-cognitive accuracy;
+□ □
+Pr = probability; dec = decided; corr = correct; conf = confident; : for old items; :
+o n
+for new items.
+Lastly, when correlating behavioral performance measures with each other in both age
+• LD is positively correlated with LC in both age groups (young: ρ = 0.42, p < 0.001;
+older: ρ = 0.23, p = 0.005; Spearman’s rank correlation), consistent with the fact that
+both, LC and LD, represent measures of response confidence; LD is neither correlated
+to MP nor MCA in young or older adults (all p 0.154);
+• MP is significantly correlated with LC in both age groups (young: ρ = 0.20, p = 0.042;
+older: ρ = 0.25, p = 0.002), indicating that those better performing on the subsequent
+memory test also have larger confidence in their responses; MP is not correlated with
+MCA in any of the age groups (both p 0.136);
+• LC is negatively correlated with MCA in both age groups (young: ρ = 0.54, p <
+0.001; older: ρ = 0.71, p < 0.001), indicating that higher response confidence comes
+with lower meta-cognitive ability;
+• MCA is neither correlated to MP nor to LD (see above), indicating that task
+performance is unrelated to meta-cognitive performance and that meta-cognitive
+accuracy also does not depend on the general decidedness.
+performance measures against each other, along with regression lines, separately for
+young adults (red) and older adults (blue). For each combination, Spearman’s rank
+correlation coeﬀicient ρ and the associated p-value were calculated. Significant correlation
+coeﬀicients are highlighted. Diagonal panels additionally show kernel density estimates for
+Abbreviations: LD = level of decidedness; MP = memory performance; LC = level of
+confidence; MCA = meta-cognitive accuracy; p( ): probability density.
+5 Discussion
+In this paper, we have introduced a subject-level computational model for behavioral
+data acquired during episodic memory retrieval. Our model assumes continuous
+subsequent memory reports to be governed by the three latent components
+Applying Bayesian model selection, we found that decidedness does not vary between old
+and new items whereas recognition and confidence have to be distinguished for previously
+seen vs. unseen items. Comparing behavioral performance measures between age groups,
+we found they do not differ with respect to level of decidedness, but replicating previous
+findings, older adults have higher levels of confidence while younger adults show higher
+5.1 Probabilistic modelling of subsequent memory reports
+Previously, different aspects of retrieval behavior for episodic memory were either
+investigated using ad-hoc measures, e.g. by calculating the “corrected hit rate” (= hit
+rate minus false alarm rate) to quantify memory performance (Schümann et al., 2018)
+and the proportion of certain responses to quantify the level of confidence (Buratti and
+Allwood, 2012); or they had to be inferred on using separate models, e.g. by evaluating
+the area under the curve (AUC) in receiver-operating characteristic (ROC) analyses to
+calculate memory performance, refered to as “A-prime” (Soch et al., 2021a), or
+meta-cognitive accuracy, refered to as “type-II ROC” or “meta-d-prime” (Maniscalco
+and Lau, 2012; Fleming and Lau, 2014).
+More advanced approaches include the joint estimation of recollection and familiarity
+from recognition memory ROCs assuming a dual-process theory of recognition (Yonelinas,
+1997; Düzel et al., 2010), Bayesian hierarchical models assuming a signal detecting theory
+(SDT) framework and accounting for multiple sources of variance (Rouder and Lu, 2005)
+and Bayesian race approaches to jointly model reaction time and recognition accuracy in
+memory tests (Kim et al., 2017).
+Here, we unify the different measures of interest in a single probabilistic model of episodic
+memory retrieval. This model assumes subject-level probabilities (see Figures 2 and 3)
+describing an individual’s tendency to give a decided response (p), to recognize an item
+(q) and to give confident responses (r), possibly separated between recognized and non-
+recognized items (s). The model also allows to quantify behavioral performance measures:
+the level of decidedness (LD); the level of confidence (LC); memory performance (MP),
+i.e. recognition accuracy; and meta-cognitive accuracy (MCA), the agreement between
+response correctness and response confidence.
+The probabilistic modelling approach has two crucial advantages over other approaches:
+First, Bayesian model selection allows to formally test whether model parameters
+That is, probabilities can be allowed to vary (double letter) or not vary (single letter)
+knowledge. Second, task-related effects can be quantified based on parameter estimates
+to give performance measures which are interpretable on the same probability scale as
+the model parameters (see Figures 4 and 8).
+5.2 Comparison to previous recognition models
+Statistical models for episodic recognition memory are a wide and active area of
+research. On the one hand, there are single-process models assuming a unitary latent
+process determining both performance and awareness of cognition (Berry et al., 2012;
+Shanks et al., 2021) which, in episodic memory, could be termed “memory strength”.
+On the other hand, there are dual-process models assuming two latent processes behind
+memory retrieval, e.g. recollection and familiarity (Yonelinas, 2002; Yonelinas et al.,
+2010; Gardiner et al., 1996, 2002). Finally, there are models that extend the signal
+detection theory framework from first-level memory cognition to second-level
+meta-cognition to derive higher-level performance measures, e.g. “meta-d-prime”
+(Maniscalco and Lau, 2012; Fleming and Lau, 2014).
+Our model can be seen as a triple-process model, assuming a sequential
+decided-then-recognized-then-confident judgement by each participant during each trial
+confidence. Clearly, this model does not allow to test recollection vs. familiarity, so that
+we can only speak of “high-confidence” or “low-confidence” ratings. Morover,
+decidedness cannot really be investigated and the LD cannot be estimated when the
+number of response options on the rating scale is even (Ratcliff and Starns, 2009, 2013),
+as there is no opportunity for neutral responses and the subject is forced to a decided
+response in this case. It should also be noted that the model so far is only supported by
+analyzing discrete response distributions and has not been backed with evidence from
+continuous reaction time distributions in this study.
+5.3 Decidedness and confidence as separate processes
+Recognition-confidence ratings are usually thought to emerge from two distinct
+cognitive processes, namely recognition accuracy and response confidence, where the
+former is regarded the main task-related process and the latter is typically regarded a
+meta-cognitive process (Maniscalco and Lau, 2012; Luttrell et al., 2013). Several works
+have taken on this assumptions and tested a two-versus-one process model (Busey et al.,
+2000; Van Zandt, 2000). Here, we assume a third cognitive process, namely general
+decidedness, i.e. a subject’s tendency to give non-neutral responses at all.
+Earlier, this has been considered a form of response bias (Busey et al., 2000; Beth et al.,
+2009) and studies have found that the frequency of such “middle category responses”
+is affected by personality features (Hernández et al., 2004) or argued that “midpoint
+responses” should even be considered extreme repsonses (Worthy, 1969).
+Because non-neutral responses can be regarded as being more confident than neutral
+responses, one could also argue that decidedness and confidence are simply different
+degrees of the same cognitive process, termed “decidedness-confidence”. However, the
+present study justifies regarding decidedness and confidence as separate processes and this
+justification is three-fold: First, the decidedness-related p does not vary between old and
+Second, LD does not significantly differ between young and older adults whereas LC is
+correlation patterns: Whereas LC is correlated to MP and MCA, LD is correlated to
+confidence task
+signals performance
+δ = 0.02 δ = 0.04***
+based on level of memory
+p and q decidedness performance
+ρ = 0.42***
+ρ = 0.23***
+ρ = 0.20***
+ρ = 0.25***
+based on level of meta-cognitive
+r and s confidence accuracy
+ρ = −0.54***
+ρ = −0.71***
+δ = −0.28*** δ = 0.11***
+computational modelling approach. Behavioral performance measures (in bold font) are
+either higher for young adults (red), higher for older adults (blue) or not significantly
+different (gray), with the median difference δ given for each measure. Additionally, the
+measures are either correlated positively (triangle arrow) or correlated negatively (circle
+arrow) nor not significantly correlated (no arrow), with Spearman’s rank correlation
+coeﬀicient ρ given separately for young adults (red) and older adults (blue). Significance
+levels: * p < 0.05, ** p < 0.01, *** p < 0.001, otherwise not significant.
+5.4 Recognition, confidence and meta-cognitive accuracy
+As we have seen, LC is correlated to all other behavioral performance measures, i.e. LD,
+example, with higher level of confidence, participants show better memory performance,
+indicating that those who give more confident responses also perform better on the
+task, replicating a previously known positive relationship between confidence levels and
+recognition performance (see Clark, 1997 for an overview).
+At the same time, however, errors can also be committed with high confidence. In our
+data set, we observed that the effect of LC on MCA is negative, suggesting that higher
+confidence in subsequent memory reponses comes at the cost of lower meta-cognitive
+accuracy. This is consistent with older adults being more susceptible to semantic priming
+which makes stimuli “feel old” even though they are not (Fandakova et al., 2018; Jacoby
+and Rhodes, 2006; Koutstaal and Schacter, 1997). It is also in line with the vast literature
+on semantic priming and false memory effects in old age which are usually investigated
+using the Deese-Roediger-McDermott paradigm (Akhtar et al., 2020; Evrard et al., 2016;
+Brod et al., 2013; Sweeney-Reed et al., 2012). Hypothetically, the negative effect of LC
+on MCA could be a hubris effect, explainable by semantic priming being able to elicit
+high-confidence false alarms (Grimmer et al., 2022; Laukkonen et al., 2020).
+Looking more closely at this relationship, it appears there is a quadratic effect between
+LC and MCA, with higher MCA values for more medium LC values. The reason for this
+is that with both, zero overall confidence (i.e. all non-neutral responses uncertain) as
+well as total overall confidence (i.e. all non-neutral responses certain), it is impossible
+to quantify meta-cognitive ability, because there cannot be any confidence differences
+between correct and incorrect responses – which is exactly what MCA is based on.
+Indeed, individual differences have been reported to exist in the accuracy of confidence
+judgements, i.e. meta-cognitive knowledge (Pallier et al., 2002). This confidence in one’s
+own cognitive ability, seen as a personality trait, appears to be relatively stable across a
+wide range of diﬀiculty levels (Pallier et al., 2002). Moreover, older adults have been found
+to show reduced accuracy in confidence judgements for episodic memory, and this age-
+related impairment in meta-cognitive accuracy was independent of memory performance
+(Wong et al., 2012). This is replicated by the age-group differences for MCA and the
+5.5 Limitations and directions for future research
+One limitation of this study is that it uses cross-sectional rather than longitudinal data,
+so that it is not clear whether the observed age-related differences are truly due to
+progression of age in healthy adults or a mere generational effect.
+Moreover, the present study did not in any way utilize response times of subsequent
+memory reports or neuroimaging data associated with them. In the future, we therefore
+want to extend the pqrs model to continuous quantities measured during memory
+encoding or retrieval, such as reaction times (RTs) or neurophysiological signals (fMRI,
+EEG), by conceptualizing decidedness, recognition and confidence as parametric
+variables modulating those measurements. In theory, this would allow to establish
+evidence from RT distributions in favor of the three-component model.
+Finally, future research may investigate how estimates of behavioral performance
+measures obtained from the pqrs model change as a function of sensory modality (e.g.
+visual vs. auditory), stimulus material (e.g. pictures vs. words), encoding type (i.e.
+incidental vs. intentional), encoding-retrieval delay (e.g. 1 hour vs. 1 day) and the
+resolution of the memory response scale (e.g. 5 vs. 9 levels).
+5.6 Conclusion
+The current paper addressed the question what kind of information can be distinguished
+from behavioral responses obtained with bipolar recognition-confidence rating scales
+(often used in episodic memory tests) and which model is most adequate for two
+independent age groups (healthy young and older adults). The presented probabilistic
+model proved fruitful for the investigation of episodic memory processes and revealed
+that these processes are distinct in terms of their item- and age-related differences.
+In the present experimental design, subjects’ subsequent memory reports were recorded by the
+experimenter, such that reaction times were unrealiable and not used for statistical analysis.
+6 Acknowledgements
+The authors would like to thank Emrah Düzel, Hartmut Schütze, Claus Tempelmann,
+Ilona Wiedenhöft, Kerstin Möhring, Katja Neumann, Adriana Barman and Marieke Klein
+for help with the experimental setup; as well as Hannah Feldhoff, Larissa Fischer, Lea
+Knopf, Matthias Raschick, Annika Schult for assistance with data collection.
+This work was supported by the State of Saxony-Anhalt and the European Union
+(Research Alliance “Autonomy in Old Age”; to B.H.S.) and by German Research
+Foundation Grants SFB 1436, TP A05 (to B.H.S.) and DFG RI 2964-1 (to A.R.).
+The authors have no conflict of interest, financial or otherwise, to declare.
+7 Author Note
+The present study was not preregistered. There are no study materials available for this
+paper. Empirical data and analysis code for this study can be downloaded from GitHub
+8 References
+Akhtar, S., Howe, M. L., and Hoepstine, K. (2020). Can false memories prime problem
+solutions for healthy older adults and those with alzheimer’s disease? Journals of
+Gerontology - Series B Psychological Sciences and Social Sciences, 75(4):743–752.
+Assmann, A., Richter, A., Schütze, H., Soch, J., Barman, A., Behnisch, G., Knopf, L.,
+Raschick, M., Schult, A., Wüstenberg, T., Behr, J., Düzel, E., Seidenbecher, C. I., and
+Schott, B. H. (2021). Neurocan genome‐wide psychiatric risk variant affects explicit
+memory performance and hippocampal function in healthy humans. European Journal
+of Neuroscience, 53(12):3942–3959.
+Association, W. M. (2013). World Medical Association Declaration of Helsinki: Ethical
+Principles for Medical Research Involving Human Subjects. JAMA, 310(20):2191.
+Berry, C. J., Shanks, D. R., Speekenbrink, M., and Henson, R. N. A. (2012). Models of
+recognition, repetition priming, and fluency: Exploring a new framework. Psychological
+Review, 119(1):40–79.
+Beth, E. H., Budson, A. E., Waring, J. D., and Ally, B. A. (2009). Response Bias for
+Picture Recognition in Patients With Alzheimer Disease. Cognitive and Behavioral
+Neurology, 22(4):229–235.
+Bishop, C. M. (2007). Pattern Recognition and Machine Learning. Springer, New York,
+1st ed. 2006. corr. 2nd printing 2011 edition.
+Brod, G., Werkle-Bergner, M., and Shing, Y. L. (2013). The influence of prior knowledge
+on memory: a developmental cognitive neuroscience perspective. Frontiers in behavioral
+neuroscience, 7(October):139.
+Budson, A. E., Wolk, D. A., Chong, H., and Waring, J. D. (2006). Episodic memory in
+Alzheimer’s disease: Separating response bias from discrimination. Neuropsychologia,
+44(12):2222–2232.
+Buratti, S. and Allwood, C. M. (2012). Improved realism of confidence for an episodic
+memory event. Judgment and Decision Making, 7(5):590–601.
+Busey, T. A., Tunnicliff, J., Loftus, G. R., and Loftus, E. F. (2000). Accounts of the
+confidence-accuracy relation in recognition memory. Psychonomic Bulletin and Review,
+7(1):26–48.
+Cabeza, R., Albert, M., Belleville, S., Craik, F. I. M., Duarte, A., Grady, C. L.,
+Lindenberger, U., Nyberg, L., Park, D. C., Reuter-Lorenz, P. A., Rugg, M. D., Steffener,
+J., and Rajah, M. N. (2018). Maintenance, reserve and compensation: the cognitive
+neuroscience of healthy ageing. Nature Reviews Neuroscience, 19(11):701–710.
+Clark, R., Hazeltine, E., Freedberg, M., and Voss, M. W. (2018). Age differences in
+episodic associative learning. Psychology and Aging, 33(1):144–157.
+Clark, S. E. (1997). A familiarity-based account of confidence-accuracy inversions in
+recognition memory. Journal of Experimental Psychology: Learning Memory and
+Cognition, 23(1):232–238.
+Craik, F. I. M. and Simon, E. (1980). Age-differences in memory: The roles of attention
+and depth of processing. In New directions in memory and aging, pages 95–112.
+Diana, R. A., Yonelinas, A. P., and Ranganath, C. (2010). Medial Temporal Lobe Activity
+during Source Retrieval Reflects Information Type, not Memory Strength. Journal of
+Cognitive Neuroscience, 22(8):1808–1818.
+Düzel, E., Schütze, H., Yonelinas, A. P., and Heinze, H.-J. (2010). Functional phenotyping
+of successful aging in long-term memory: Preserved performance in the absence of
+neural compensation. Hippocampus, pages n/a–n/a.
+Evrard, C., Colombel, F., Gilet, A. L., and Corson, Y. (2016). Intact semantic priming
+of critical lures in Alzheimer’s disease: Implications for false memory. Journals of
+Gerontology - Series B Psychological Sciences and Social Sciences, 71(4):671–674.
+Fandakova, Y., Sander, M. C., Grandy, T. H., Cabeza, R., Werkle-Bergner, M., and Shing,
+Y. L. (2018). Age differences in false memory: The importance of retrieval monitoring
+processes and their modulation by memory quality. Psychology and Aging, 33(1):119–
+133.
+Flavell, J. H. (1979). Metacognition and cognitive monitoring: A new area of cognitive-
+developmental inquiry. American Psychologist, 34(10):906–911.
+Fleming, S. M. and Lau, H. C. (2014). How to measure metacognition. Frontiers in
+Human Neuroscience, 8.
+Gardiner, J. M., Java, R. I., and Richardson-Klavehn, A. (1996). How level of processing
+really influences awareness in recognition memory. Canadian Journal of Experimental
+Psychology / Revue canadienne de psychologie expérimentale, 50(1):114–122.
+Gardiner, J. M., Ramponi, C., and Richardson-Klavehn, A. (2002). Recognition memory
+and decision processes: A meta-analysis of remember, know, and guess responses.
+Memory, 10(2):83–98.
+Gelman, A., Carlin, J. B., Stern, H. S., Dunson, D. B., Vehtari, A., and Rubin, D. B.
+(2013). Bayesian Data Analysis. Chapman and Hall/CRC, Boca Raton, 3rd edition
+edition.
+Grimmer, H., Laukkonen, R., Tangen, J., and von Hippel, W. (2022). Eliciting false
+insights with semantic priming. Psychonomic Bulletin & Review, 29(3):954–970.
+Hautus, M. J., Macmillan, N. A., and Creelman, C. D. (2021). Detection Theory.
+Routledge, New York.
+Hernández, A., Drasgow, F., and González-Romá, V. (2004). Investigating the
+Functioning of a Middle Category by Means of a Mixed-Measurement Model. Journal
+of Applied Psychology, 89(4):687–699.
+Jacoby, L. L. and Rhodes, M. G. (2006). False remembering in the aged. Current
+Directions in Psychological Science, 15(2):49–53.
+Kim, H. and Cabeza, R. (2007). Trusting our memories: dissociating the neural
+correlates of confidence in veridical versus illusory memories. Journal of Neuroscience,
+27(45):12190–7. ISBN: 0270-6474.
+Kim, S., Potter, K., Craigmile, P. F., Peruggia, M., and Van Zandt, T. (2017). A Bayesian
+Race Model for Recognition Memory. Journal of the American Statistical Association,
+112(517):77–91.
+Kizilirmak, J. M., Soch, J., Schütze, H., Duzel, E., Feldhoff, H., Fischer, L., Knopf,
+L., Maass, A., Raschick, M., Schult, A., Yakupov, R., Richter, A., and Schott, B. H.
+(2022). The relationship between resting-state amplitude fluctuations and memory-
+related deactivations of the Default Mode Network in young and older adults. preprint,
+PsyArXiv.
+Koutstaal, W. and Schacter, D. L. (1997). Gist-based false recognition of pictures in older
+and younger adults. Journal of Memory and Language, 37(4):555–583.
+Laukkonen, R. E., Kaveladze, B. T., Tangen, J. M., and Schooler, J. W. (2020). The
+dark side of Eureka: Artificially induced Aha moments make facts feel true. Cognition,
+196:104122.
+Likert, R. (1932). A technique for the measurement of attitudes. Archives of Psychology,
+22 140:55–55.
+Luttrell, A., Briñol, P., Petty, R. E., Cunningham, W., and Díaz, D. (2013). Metacognitive
+confidence: A neuroscience approach. Revista de Psicología Social, 28(3):317–332.
+Maniscalco, B. and Lau, H. (2012). A signal detection theoretic approach for estimating
+metacognitive sensitivity from confidence ratings. Consciousness and Cognition,
+21(1):422–430.
+Pallier, G., Wilkinson, R., Danthiir, V., Kleitman, S., Knezevic, G., Stankov, L., and
+Roberts, R. D. (2002). The Role of Individual Differences in the Accuracy of Confidence
+Judgments. The Journal of General Psychology, 129(3):257–299.
+Pansky, A., Goldsmith, M., Koriat, A., and Pearlman-Avnion, S. (2009). Memory
+accuracy in old age: Cognitive, metacognitive, and neurocognitive determinants.
+European Journal of Cognitive Psychology, 21(2-3):303–329.
+Ratcliff, R. and Starns, J. J. (2009). Modeling confidence and response time in recognition
+memory. Psychological Review, 116(1):59–83.
+Ratcliff, R. and Starns, J. J. (2013). Modeling confidence judgments, response times, and
+multiple choices in decision making: Recognition memory and motion discrimination.
+Psychological Review, 120(3):697–719.
+Richardson-Klavehn, A. (2010). Priming, automatic recollection, and control of retrieval:
+Toward an integrative retrieval architecture. In Mace, J. H., editor, The act of
+remembering: Toward an understanding of how we recall the past, pages 111–179.
+Wiley-Blackwell, Oxford, UK. Section: 7.
+Richardson-Klavehn, A. and Bjork, R. A. (1988). Measures of memory. Annual Review
+of Psychology, 39(1):475–543.
+Richter, A., Soch, J., Kizilirmak, J. M., Fischer, L., Schütze, H., Assmann, A., Behnisch,
+G., Feldhoff, H., Knopf, L., Raschick, M., Schult, A., Seidenbecher, C. I., Yakupov, R.,
+Düzel, E., and Schott, B. H. (2022). Single-value scores of memory-related fMRI activity
+reflect dissociable neuropsychological and anatomical signatures of neurocognitive
+aging. preprint, Neuroscience.
+Rouder, J. N. and Lu, J. (2005). An introduction to Bayesian hierarchical models with
+an application in the theory of signal detection. Psychonomic Bulletin & Review,
+12(4):573–604.
+Rönnlund, M., Nyberg, L., Bäckman, L., and Nilsson, L. G. (2005). Stability, growth,
+and decline in adult life span development of declarative memory: Cross-sectional and
+longitudinal data from a population-based study. Psychology and Aging, 20(1):3–18.
+Schümann, D., Bayer, J., Talmi, D., and Sommer, T. (2018). Dissociation of immediate
+and delayed effects of emotional arousal on episodic memory. Neurobiology of Learning
+and Memory, 148:11–19.
+Shanks, D. R., Malejka, S., and Vadillo, M. A. (2021). The Challenge of Inferring
+Unconscious Mental Processes. Experimental Psychology, 68(3):113–129.
+Shing, Y. L., Werkle-Bergner, M., Li, S. C., and Lindenberger, U. (2009). Committing
+memory errors with high confidence: Older adults do but children don’t. Memory,
+17(2):169–179. ISBN: 0965821080.
+Soch, J. and Allefeld, C. (2018). MACS – a new SPM toolbox for model assessment,
+comparison and selection. Journal of Neuroscience Methods, 306:19–31.
+Soch, J., Haynes, J.-D., and Allefeld, C. (2016). How to avoid mismodelling in GLM-based
+fMRI data analysis: cross-validated Bayesian model selection. NeuroImage.
+Soch, J., Meyer, A. P., Haynes, J.-D., and Allefeld, C. (2017). How to improve parameter
+estimates in GLM-based fMRI data analysis: cross-validated Bayesian model averaging.
+NeuroImage, 158:186–195.
+Soch, J., Richter, A., Kizilirmak, J. M., Schütze, H., Feldhoff, H., Fischer, L., Knopf, L.,
+Raschick, M., Schult, A., Düzel, E., and Schott, B. H. (2022). Structural and functional
+MRI data differentially predict chronological age and behavioral memory performance.
+preprint, Neuroscience.
+Soch, J., Richter, A., Schütze, H., Kizilirmak, J. M., Assmann, A., Behnisch, G., Feldhoff,
+H., Fischer, L., Heil, J., Knopf, L., Merkel, C., Raschick, M., Schietke, C., Schult, A.,
+Seidenbecher, C. I., Yakupov, R., Ziegler, G., Wiltfang, J., Düzel, E., and Schott,
+B. H. (2021a). A comprehensive score reflecting memory‐related fmri activations and
+deactivations as potential biomarker for neurocognitive aging. Human Brain Mapping,
+42(14):4478–4496.
+Soch, J., Richter, A., Schütze, H., Kizilirmak, J. M., Assmann, A., Knopf, L., Raschick,
+M., Schult, A., Maass, A., Ziegler, G., Richardson-Klavehn, A., Düzel, E., and Schott,
+B. H. (2021b). Bayesian model selection favors parametric over categorical fMRI
+subsequent memory models in young and older adults. NeuroImage, 230:117820.
+Stretch, V. and Wixted, J. T. (1998). Decision rules for recognition memory confidence
+judgments. Journal of Experimental Psychology: Learning Memory and Cognition,
+24(6):1397–1410.
+Sweeney-Reed, C. M., Riddell, P. M., Ellis, J. A., Freeman, J. E., and Nasuto, S. J.
+(2012). Neural correlates of true and false memory in mild cognitive impairment. PloS
+one, 7(10):e48357.
+Tekin, E. and Roediger, H. L. (2017). The range of confidence scales does not affect
+the relationship between confidence and accuracy in recognition memory. Cognitive
+Research: Principles and Implications, 2(1):1–13. Publisher: Cognitive Research:
+Principles and Implications.
+Tulving, E. (1985). Memory and consciousness. Canadian Psychology / Psychologie
+canadienne, 26(1):1–12.
+Van Zandt, T. (2000). ROC Curves and Confidence Judgments in Recognition Memory.
+Journal of Experimental Psychology: Learning Memory and Cognition, 26(3):582–600.
+Wong, J. T., Cramer, S. J., and Gallo, D. A. (2012). Age-related reduction of the
+confidence–accuracy relationship in episodic memory: Effects of recollection quality
+and retrieval monitoring. Psychology and Aging, 27(4):1053–1065. ISBN: 6176321972
+_eprint: NIHMS150003.
+Worthy, M. (1969). Note on Scoring Midpoint Responses in Extreme Response-Style
+Scores. Psychological Reports, 24(1):189–190.
+Yonelinas, A. P. (1997). Recognition memory ROCs for item and associative information:
+The contribution of recollection and familiarity. Memory & Cognition, 25(6):747–763.
+Yonelinas, A. P. (2002). The Nature of Recollection and Familiarity: A Review of 30
+Years of Research. Journal of Memory and Language, 46(3):441–517.
+Yonelinas, A. P. (2005). Separating the Brain Regions Involved in Recollection and
+Familiarity in Recognition Memory. Journal of Neuroscience, 25(11):3002–3008.
+Yonelinas, A. P., Aly, M., Wang, W.-C., and Koen, J. D. (2010). Recollection and
+familiarity: Examining controversial assumptions and new directions. Hippocampus,
+20(11):1178–1194.
+9 Appendix
+A Derivation of maximum likelihood estimates
+Log-likelihood function for all responses:
+| |
+LL(p, q, r) = log Pr(y p, q, r) = log Pr(y p, q, r)
+i=1
+· · − (A.1)
+= (o + n ) log p + (o + n ) log(1 p)
+1245 1245 3 3
+· · −
++ (o + n ) log q + (o + n ) log(1 q)
+45 45 12 12
+· · −
++ (o + n ) log r + (o + n ) log(1 r)
+15 15 24 24
+Maximum likelihood estimation (here, for p):
+d 1 1
+· − ·
+LL(p, q, r) = (o + n ) (o + n )
+1245 1245 3 3 −
+dp p 1 p
+0 = LL(pˆ, q, r) (A.2)
+dp
+o + n
+⇒ 1245 1245
+pˆ =
+o + o + n + n
+1245 3 1245 3
+Maximum likelihood estimates :
+(pˆ, qˆ, rˆ) = arg max LL(p, q, r)
+p,q,r
+o + n
+1245 1245
+pˆ =
+o + o + n + n
+1245 3 1245 3
+(A.3)
+o + n
+45 45
+qˆ =
+o + o + n + n
+12 45 12 45
+o + n
+15 15
+rˆ =
+o + o + n + n
+15 24 15 24
+B Derivation of Bayesian posterior distributions
+Likelihood function:
+| o +n · − o +n ·
+Pr(y p, q, r) = p 1245 1245 (1 p) 3 3
+o +n · − o +n ·
+q 45 45 (1 q) 12 12 (B.1)
+o +n · − o +n
+r 15 15 (1 r) 24 24
+Prior distributions:
+· α − 1 · − β − 1
+Pr(p) = Bet(p; α , β ) = p 0p (1 p) 0p
+0p 0p
+B(α , β )
+0p 0p
+· α − 1 · − β − 1
+Pr(q) = Bet(q; α , β ) = q 0q (1 q) 0q (B.2)
+0q 0q
+B(α , β )
+0q 0q
+· α − 1 · − β − 1
+Pr(r) = Bet(r; α , β ) = p 0r (1 p) 0r
+0r 0r
+B(α , β )
+0r 0r
+Joint likelihood function:
+| · · ·
+Pr(y, p, q, r) = Pr(y p, q, r) Pr(p) Pr(q) Pr(r)
+· ·
+B(α , β ) B(α , β ) B(α , β )
+0p 0p 0q 0q 0r 0r
+(B.3)
+α +o +n − 1 · − β +o +n − 1·
+p 0p 1245 1245 (1 p) 0p 3 3
+α +o +n − 1 · − β +o +n − 1·
+q 0q 45 45 (1 q) 0q 12 12
+α +o +n − 1 · − β +o +n − 1
+r 0r 15 15 (1 r) 0r 24 24
+Posterior distributions :
+| ∝
+Pr(p, q, r y) Pr(y, p, q, r)
+Pr(p y) = Bet(p; α , β ), α = α + o + n , β = β + o + n
+np np np 0p 1245 1245 np 0p 3 3
+(B.4)
+Pr(q y) = Bet(q; α , β ), α = α + o + n , β = β + o + n
+nq nq nq 0q 45 45 nq 0q 12 12
+Pr(r y) = Bet(r; α , β ), α = α + o + n , β = β + o + n
+nr nr nr 0r 15 15 nr 0r 24 24
+C Derivation of the log model evidence
+Marginal likelihood:
+Z Z Z
+Pr(y m) = Pr(y, p, q, r) dp dq dr
+(C.1)
+· ·
+B(α , β ) B(α , β ) B(α , β )
+np np nq nq nr nr
+· ·
+B(α , β ) B(α , β ) B(α , β )
+0p 0p 0q 0q 0r 0r
+Log model evidence :
+LME(m) = log Pr(y m)
+= log B(α , β ) log B(α , β )
+np np 0p 0p
+(C.2)
++ log B(α , β ) log B(α , β )
+nq nq 0q 0q
++ log B(α , β ) log B(α , β )
+nr nr 0r 0r
+D Derivation of the MAP estimates
+Posterior distributions:
+Pr(p y) = Bet(p; α , β )
+np np
+Pr(q y) = Bet(q; α , β ) (D.1)
+nq nq
+Pr(r y) = Bet(r; α , β )
+nr nr
+Maximum-a-posteriori estimation (here, for p):
+pˆ = arg max p(p y)
+MAP
+α 1
+np
+(D.2)
+α + β 2
+np np
+α + o + n 1
+0p 1245 1245
+α + o + o + β + n + n 2
+0p 1245 3 0p 1245 3
+Maximum-a-posteriori estimates:
+α + o + n 1
+0p 1245 1245
+pˆ =
+MAP −
+α + o + o + β + n + n 2
+0p 1245 3 0p 1245 3
+α + o + n 1
+0q 1245 1245
+qˆ = (D.3)
+MAP −
+α + o + o + β + n + n 2
+0q 1245 3 0q 1245 3
+α + o + n 1
+0r 1245 1245
+rˆ =
+MAP −
+α + o + o + β + n + n 2
+0r 1245 3 0r 1245 3
+With α = β = 1 etc., we have:
+0p 0p
+o + n
+1245 1245
+pˆ =
+MAP
+o + o + n + n
+1245 3 1245 3
+o + n
+45 45
+qˆ = (D.4)
+MAP
+o + o + n + n
+12 45 12 45
+o + n
+15 15
+rˆ = .
+MAP
+o + o + n + n
+15 24 15 24
+E Extension to different response scales
+The model presented in this paper was developed for subsequent memory responses on
+a Likert scale comprising L = 5 levels. Here, we describe how the model can be easily
+adapted to an arbitrary number of levels L:
+• If L is an even number (e.g. L = 4), there is no neutral level and the parameter p
+is forced to 1, i.e. all responses are decided. In this case, the number of parameters
+reduces by 1 (or by 2, if p differed between old and new items).
+• If the number of non-neutral levels in one direction is smaller than 2 (e.g. L = 3),
+there is no differentiation of responses by confidence and the parameters r is forced
+to 1, i.e. all non-neutral responses are equally confident. In this case, the number of
+parameters reduces by 1 (or by 2, if r differed between old and new items [or by 4, if
+r also differed between aﬀirmative and non-aﬀirmative responses]).
+• If the number of non-neutral levels in one direction is larger than 2 (i.e. L > 5), there
+are more than two different levels of confidence. In this case, we suggest to model each
+step beyond the neutral level (i.e. each step in direction of maximum confidence) as
+a Bernoulli trial, such that the absolute difference between the actual rating and the
+neutral level follows a binomial distribution. More precisely, if the number of steps
+beyond the neutral level is
+(cid:12) (cid:12)
+(cid:12) (cid:12)
+− L+1
+y , if L is odd
+z = (cid:12) (cid:12) (E.1)
+i :
+(cid:12) (cid:12)
+− L+1 1
+y + , if L is even ,
+2 2
+then
+− ∼ −
+(z 1) Bin(z 1, r) (E.2)
+i max
+or
+L + 1
+− ∼ −
+(z 1) Bin(z 1, r), if y >
+i max i
+(E.3)
+L + 1
+− ∼ −
+(z 1) Bin(z 1, s), if y < ,
+i max i
+where
+L+1 −
+1 , if L is odd
+z = (E.4)
+max :
+L+1 − 1
+, if L is even .
+2 2

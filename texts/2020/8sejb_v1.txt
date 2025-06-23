@@ -1,0 +1,896 @@
+Precolonial States and Development: Evidence from Agriculture in Africa1
+Aditya Dasgupta2 Ada Johnson-Kanu3
+Word Count:
+ABSTRACT:
+Low agricultural productivity is a major source of poverty in Africa, where much of the
+population works in agriculture, yet subsistence production and food insecurity are widespread.
+However, some pockets of agriculture in Africa are highly productive. In this paper, we assemble
+a geospatial dataset of all pre-colonial African states in existence between 1500 and 1850, and
+utilize remote-sensing data based on satellite imagery to show that areas (pixels) in proximity to
+the location of pre-colonial state capitals display higher levels of contemporary agricultural
+output. This relationship exists across and within countries, agro-ecological zones, and river
+basins. We rule out spurious correlation with spatial randomization tests. We argue that via path-
+dependence and spatial agglomeration effects, pre-colonial states transmitted the territorial reach
+that was critical for state-led agricultural modernization in the twentieth century. The findings
+support a growing literature linking contemporary economic development to state capacity
+transmitted from pre-colonial political institutions.
+For valuable feedback, we thank Courtenay Conrad, Elaine Denny, Andrew Shaver, Tesalia
+Rizzo, Jessica Trounstine and seminar participants at UC-Merced.
+Assistant Professor of Political Science, University of California, Merced:
+adasgupta3@ucmerced.edu.
+PhD Candidate in Political Science, University of California, Merced: ajohnson-
+kanu@ucmerced.edu
+1. Introduction
+A major source of poverty in Africa is low levels of agricultural productivity. Over 60 percent of
+the African population lives in and works in rural areas. Yet subsistence production on
+smallholder farms and reliance on traditional technologies like shifting cultivation or low-input
+cultivation of unimproved crop varieties are widespread, with adverse consequences for
+agricultural productivity, rural incomes, and overall food security.
+What explains persistently low levels of agricultural productivity in Africa? The failure of a
+“green revolution” – the technological revolution in agricultural productivity that took place
+across Asian nations between the 1960s and 1980s – to materialize in postcolonial Africa is a
+major puzzle in the study of comparative development. While no consensus exists, existing
+explanations often emphasize cultural resistance to adoption of modern agricultural practices or
+tropical soils unfavorable to agricultural productivity and the adoption of new technologies (see
+e.g. Goody 1980a; Kijima, Otsuka, and Sserunkuuma 2011).
+Yet these cultural and ecological arguments are contradicted by the fact that pockets of
+agriculture in Africa are highly productive, when governments provide farmers with adequate
+access to infrastructure critical for commercial farming like irrigation, marketing and
+transportation infrastructure, and a functional agricultural extension bureaucracy (Juma 2015).
+The problem we argue, is that governments often lack the “territorial reach” to effectively
+provide these services to farmers in rural areas which are far from bureaucratic centers and
+which are disconnected from transportation and marketing networks.
+The concept of territorial reach was developed to describe differences in the capacity of
+bureaucracies to enforce law and order, provide critical services, and more broadly project
+official power across territory (see e.g. Giraudy and Luna 2017). Scholarship in the African
+context has documented “unevenness” or variation in the territorial reach of African states (e.g.
+Boone 2003; Herbst 2014; Roessler 2016). In this paper, we argue that this variation originates
+in pre-colonial political institutions and differences across territory in historical exposure to pre-
+colonial states. Pre-colonial states generated population centers and administrative structures
+which, through agglomeration effects and path dependence, colonial and post-colonial state-
+builders tended to expand upon. As a result, the territorial reach of African states in the twentieth
+century tended to mirror the spatial extent of pre-colonial states, with important consequences for
+long-term agricultural development.
+To test the argument, we assemble a geospatial dataset of all pre-colonial African states in
+existence between 1500 and 1850, and utilize remote-sensing data based on satellite imagery to
+show that areas (pixels) in proximity to the location of pre-colonial states display higher levels of
+contemporary agricultural productivity. We define proximity in terms of 25km, 50km, 100km,
+and 200km geodesic buffer zones around the historical location of pre-colonial capital cities. We
+find that contemporary agricultural productivity displays large improvements with proximity to a
+pre-colonial capital city. This relationship exists across and within countries, agro-ecological
+zones, and river basins, suggesting that it is not driven by ecological factors. We rule out a
+potentially spurious finding of persistence due to spatial auto-correlation by conducting spatial
+randomization tests with randomly-generated placebo capital cities.
+Looking at mechanisms, drawing on data from Murdock’s (1967) Ethnographic Atlas, we
+provide evidence that despite the corrosive effects of centuries of exposure to the trans-Atlantic
+slave trade, ethnic groups in proximity to pre-colonial state capitals were more likely to be
+organized politically into states at the time of their colonization by European powers at the end
+of the nineteenth century. Drawing on remote-sensing data on the density of roads, the spatial
+distribution of built-up infrastructure, on distance to markets, and on population density, we
+provide evidence that the reach of contemporary states tends to be concentrated around the
+locations of pre-colonial capital cities and to decay with distance.
+The findings support a growing literature linking contemporary economic development to state
+capacity transmitted from pre-colonial political institutions (Herbst 2014; Boone 2003;
+Acemoglu and Robinson 2010; Gennaioli and Rainer 2007; Michalopoulos and Papaioannou
+2013; Wilfahrt 2018; Lowes et al. 2017). We find that, despite destructive influence of centuries
+of the transatlantic slave trade and European imperialism, Africa’s remarkably rich tradition of
+pre-colonial states, empires, and kingdoms exerted an important impact on long-term political
+and economic development. We provide evidence that the territorial reach of states and
+contemporary agricultural productivity mirrors the spatial extent of pre-colonial states, as a result
+of the transmission of administrative structures and population centers upon which colonial and
+post-colonial regimes built as a result of path dependence and spatial agglomeration effects. In
+highlighting these channels, we help to shed light on the mechanisms through which historical
+institutions exert long-lasting impacts on economic development (Dell, Lane, and Querubin
+2018; Bockstette, Chanda, and Putterman 2002).
+The findings also contribute to the literature on the political economy of agriculture and rural
+development in Africa. An important literature attributes rural poverty and under-development to
+exploitation and excessive taxation by urban-biased elites (see e.g. Bates 2014; Kasara 2007).
+These arguments can be seen as theories emphasizing rent-seeking as a primary cause of rural
+under-development. By contrast, the findings in this paper highlight a different force: the sheer
+absence of meaningful state capacity in many peripheral and remote rural areas. Even rent-
+seeking elites have an interest in improving agricultural productivity, if only to improve the
+taxable base of economic activity. For example, urban-biased elites successfully implemented
+the green revolution in much of Asia. Our findings suggest that an important constraint on
+agricultural development in Africa has been the limited territorial reach of states; conversely, in
+areas where for historical reasons the state has had the capacity to project authority into rural
+areas and provide farmers with critical infrastructure and connectivity to markets, highly
+productive agriculture is possible.
+The remainder of the paper is structured as follows. First, we develop the argument about the
+impact that pre-colonial states exerted on contemporary agricultural development. Second, we
+present spatial analyses based on remote sensing data from satellite imagery. Finally, we
+conclude by drawing lessons about the role of pre-colonial political institutions in long-term
+political and economic development.
+2. Pre-colonial States and Development in Africa
+At the time of the so-called “scramble for Africa” in the late nineteenth century, anthropologists
+and scholar-bureaucrats developed a narrative about African societies as politically de-
+centralized and organized into ethnic tribes ruled by chiefs since time immemorial. A narrative
+that provided the basis for the arbitrary partitioning of the continent by colonial powers, and
+widespread indirect rule via the institutionalization of local chiefs (Mamdani 2018). In fact,
+recent historical, archeological, and anthropological research reveals that Africa had a rich
+tradition of centralized pre-colonial states, which spanned the continents many agro-ecological
+zones (see e.g. Vansina 1990; Monroe 2013).
+Unlike Eurasian states, pre-colonial African states were organized typically not around feudal
+control of land, which was abundant in Africa, but around control of people and trade (Goody
+1980b; Herbst 2014). However, pre-colonial states in Africa also depended upon intensive
+agriculture to feed large population centers. This is evident from the spatial distribution of pre-
+colonial states in Africa, which tended to form in areas suitable for agriculture like the savannah
+or coastal and riverine areas, and to avoid inhospitable zones like the desert or the interior of the
+rainforest. In this paper, we identify a list of over 80 pre-colonial states, defined as centralized
+polities with rulers and taxation, in existence between 1500 and 1850, based on a compilation of
+location of the capital cities of pre-colonial states on a map of African agro-ecological zones
+from the FAO Global Agro-ecological Zones (GAEZ) database.
+In a context of land abundance, just like the “mandala” model of state-building found in
+Southeast Asia, pre-colonial states in Africa tended to project their power outward from core
+areas and capital cities to surrounding territories rather than defend precise territorial boundaries
+(Herbst 2014). Therefore, in this paper, we define exposure to pre-colonial states in terms of
+proximity to the coordinate of pre-colonial capitals, using geodesic buffer zones with 25km,
+50km, 100km, and 200km radiuses. Based on digitization of scholarly maps representing
+historical estimates of the approximate territorial boundaries of pre-colonial states and kingdoms,
+the “core lands” of pre-colonial states rarely exceeded a 100km radius. To give an example of
+approximate core lands and territorial boundaries of the Tio, Kongo, and Loango kingdoms in
+the “core lands” of these three kingdoms.
+Many pre-colonial states went into decline with exposure to European commercial influence,
+missionary activity, and the Atlantic slave trade from the sixteenth century onwards. By the time
+of the “scramble for Africa” over thirty of the polities in our database, like the Songhai empire,
+had fragmented. Others, like the Kingdom of Kongo, which survived were greatly weakened by
+the time of their absorption into European colonial holdings. Despite the decline of pre-colonial
+states, and their disappearance as autonomous political entities with European colonialism, did
+the historical residue of these pre-colonial states exert an impact on long-term state capacity and
+rural development? We argue that they plausibly did so. In a pattern of path-dependence
+commonly found in processes of state-building (see e.g. Gerring et al. 2011), colonial powers
+often built upon the structures – both institutions and population centers – of pre-colonial states
+since this was a more efficient and cost-effective way of administering a territory than building a
+bureaucracy from scratch. For similar reasons, post-colonial governments often built upon
+colonial institutions and infrastructure.
+One mechanism of persistence is institutional. Considerable scholarship documents how
+European colonial powers tended to govern Africa “on the cheap”– failing to invest in building
+bureaucracy in sparsely settled rural areas because the costs of administration exceeded the
+potential revenues (Mamdani 2018; Kohli 2004; Herbst 2014). In this context, pre-colonial states
+provided the readymade local administrative architecture through which taxes could be
+efficiently collected and paid to colonial governments. Though these pre-colonial polities were
+stripped of autonomy with colonization they were often preserved and absorbed into governing
+institutions of indirect rule. As these areas became vital zones of tax collection, they also became
+relatively more attractive hubs for colonial and post-colonial regimes seeking to maximize tax
+revenue to target with public investments, for instance through investments in road-building and
+marketing networks.
+A second potential mechanism of persistence is demographic. The historical literature
+consistently notes a relationship between pre-colonial state formation, agricultural
+intensification, and population density (see e.g. Vansina 1990). Pre-colonial states provided the
+centralized coordination of earth works, irrigation works, forest clearing, and other ecological
+“legibilization” operations required to establish intensive agriculture and food surpluses capable
+of supporting large population centers. Pre-colonial states also offered protection to their subjects
+against capture by slave traders, mitigating depopulation related to the slave trade. This plausibly
+resulted in a lasting legacy of more densely settled and populated zones corresponding to the
+territories of pre-colonial states. Greater population density plausibly made it more attractive for
+colonial and post-colonial regimes to invest in projecting official power and building tax
+collection capacity in a given territorial unit, since a greater number of people also implies a
+greater number of potential taxpayers. In a context of agglomeration effects, greater population
+density plausibly contributed to economies of scale in economic activity and the provision of
+public goods like irrigation, roads, and schools which require a certain level of population
+density to be economical. Indeed, the explicit aim of many post-colonial agricultural
+modernization campaigns in Africa was to forcibly move farmers from sparsely settled areas to
+concentrated villages where modern methods could be disseminated more efficiently (Scott
+1998).
+To the extent that the power of pre-colonial states radiated outward from capital cities and tended
+to decay with the distance, then so too plausibly did the institutional capacity and the population
+density that they transmitted to colonial and post-colonial regimes. The implication is that as a
+result of these historical influences the territorial reach of contemporary African states exhibited
+a pattern of decay with distance from the location of pre-colonial capitals, with important
+consequences for long-term agricultural development and contemporary patterns of agricultural
+productivity.
+3. Spatial Analysis
+To test the argument, we link our geospatial database of pre-colonial capital cities to remote-
+sensing measures of contemporary agricultural productivity at the pixel level based on satellite
+imagery. We estimate spatial regressions of the form:
+log(𝑂𝑢𝑡𝑝𝑢𝑡 ) = 𝛽 25𝑘𝑚 + 𝛽 50𝑘𝑚 + 𝛽 100𝑘𝑚 + 𝛽 200𝑘𝑚 +
+𝑖𝑐𝑏𝑧 1 2 3 4
+𝑐 𝑏 𝑧
+∑ 𝛾 𝐼 + ∑ 𝛿 𝐼 + ∑ 𝜁 𝐼 + 𝜀 .
+𝑐 𝑐 𝑖𝑐𝑏𝑧 𝑏 𝑏 𝑖𝑐𝑏𝑧 𝑧 𝑧 𝑖𝑐𝑏𝑧 𝑖𝑐𝑏𝑧
+In this equation the outcome variable log(𝑂𝑢𝑡𝑝𝑢𝑡 ) represents the natural log of total
+𝑖𝑐𝑏𝑧
+agricultural output in pixel i, country c, river basin b, and agro-ecological zone z on the continent
+of Africa. Our measure of agricultural output comes from the widely used IFPRI Spatial
+Allocation Model (SPAM 2010 v1.0) dataset, which uses a combination of satellite imagery and
+official statistics on country-level and province-level administrative data on total crop production
+to assign estimates of agricultural output measured in international dollars to pixels at a 5 arc-
+minute resolution (where each pixel represents approximately 56km for the year 2010. A
+documentation can be found in (Yu et al. 2020). In brief, the SPAM database obtains satellite
+imagery-based estimates of land cover across pixels, exploiting the fact that different types of
+land cover (e.g. water bodies, forest, cropland, irrigated land, etc.) reflect solar radiation
+differently. It then utilizes a statistical model to assign national or provincial crop production
+totals across pixels. While these pixel-level estimates are characterized by measurement error,
+our assumption is that this error is independent of proximity to a pre-colonial capital. We take
+the natural log of the outcome variable so that the coefficients on all explanatory variables have a
+productivity in Africa.
+The explanatory variables of interest are indicator variables which take a value of one if a pixel
+falls within a 25km, 50km, 100km, and 200km radius buffer zone, respectively, around the
+location of any pre-colonial city in the dataset, and a zero otherwise. These dummy variables are
+non-exclusive so that they must be summed to compute the marginal effect of different levels of
+proximity to a pre-colonial capital. For example, represents the impact of going from a pixel
+beyond 200km distance from any pre-colonial capital to a pixel between 100km and 200km
+distance from a pre-colonial capital. The sum represents the impact of going from a pixel
+𝛽 + 𝛽
+4 3
+beyond 200km distance from any pre-colonial capital to a pixel between 50-100km distance
+from a pre-colonial capital. The sum represents the impact of going from a pixel
+𝛽 + 𝛽 + 𝛽
+4 3 2
+beyond 200km distance from any pre-colonial capital to a pixel between 25-50km distance from
+a pre-colonial capital. The sum represents the impact of going from a pixel
+𝛽 + 𝛽 + 𝛽 + 𝛽
+4 3 2 1
+beyond 200km distance from any pre-colonial capital to a pixel between 0-25km distance from a
+pre-colonial capital.
+In all specifications, we control for pixel-level variables representing average annual rainfall in
+millimeters, a terrain slope index (measuring hilliness), and the length in days of the annual
+growing season. Each of these variables comes from raster files in the FAO GAEZ (v 3.0)
+database. Depending on the specification, we also control for country fixed effects,
+𝑐 𝑏 𝑧
+∑ 𝛾 𝐼 , river basin fixed effects, ∑ 𝛿 𝐼 , agro-ecological zone fixed effects, ∑ 𝜁 𝐼 , or
+𝑐 𝑐 𝑖𝑐𝑏𝑧 𝑏 𝑏 𝑖𝑐𝑏𝑧 𝑧 𝑧 𝑖𝑐𝑏𝑧
+all three fixed effects simultaneously. There are fifty major countries in the dataset, as well as 25
+major river basins and 16 agro-ecological zones. Controlling for river basin (or country or
+agroecological zone) fixed effects ensures that only comparisons between pixels with more, or
+less proximity to a pre-colonial capital within the same river basin (or country or agroecological
+zone) drive the estimates. Controlling for these variables helps to ensure that potential
+confounding variables related to ecology do not drive estimates. We also estimate standard errors
+adjusted for three-way clustering within countries, river basins, and agro-ecological zones in all
+specifications to address potential spatial auto-correlation.
+contemporary agricultural productivity for all crops. The positive coefficients in the baseline
+specification without any fixed effects suggests that contemporary agricultural productivity
+improves with proximity to a pre-colonial capital city. While the coefficients from all of the
+specifications tell a similar story, we focus on our preferred specification in column (5) which
+includes all three of the agro-ecological zone, river basin, and country fixed effects. These help
+to ensure that unobserved ecological differences, for instance, between the desert and the
+savannah, or between the Congo river basin and the Nile river basin, or between Kenya and
+Nigeria, do not confound the estimates.
+The coefficients in column (5) imply that going from pixels more than 200km away from any
+pre-colonial capital to pixels located within a 100-200km buffer zone around a pre-colonial
+capital is associated with a 180 percent improvement in the value of total agricultural output in a
+pixel. Going from pixels more than 200km away from any pre-colonial capital to pixels located
+within a 50-100km buffer zone is associated with a 247 percent improvement in total agricultural
+output. Going from pixels more than 200km away from any pre-colonial capital to pixels located
+within a 25-50km buffer zone is associated with a 287 percent improvement in agricultural
+output. Going from pixels more than 200km away from any pre-colonial capital to pixels located
+within a 0-25km buffer zone is associated with an over 300 percent improvement in agricultural
+output. Panel B focuses on estimated measures of output for food crops alone while panel C
+focuses on measures of output for non-food crops. We depict the marginal effect of different
+levels of proximity to a pre-colonial capital city on total agricultural output as well as for food
+By controlling for a range of confounding variables related to ecological suitability for
+agriculture, we have helped to rule out the concern that ecological differences drive the result.
+But could the finding of persistent effects of proximity to a pre-colonial kingdom on
+contemporary agricultural output also be a spurious correlation arising from regressing two
+spatially correlated variables against one another? This is an important concern in historical
+research. In our context, both the spatial distribution of pre-colonial states as well as agricultural
+productivity display spatial auto-correlation, which we have sought to address statistically with
+standard errors clustered at the level of countries, river basins, and agro-ecological zones.
+However, these parametric approaches can fail for a number of reasons, including clustering
+standard errors at the incorrect level of aggregation (Barrios et al. 2012).
+To address this, we conduct non-parametric tests of statistical significance using spatial
+randomization tests. To perform these tests, we generate samples of placebo capital cities by
+randomly generating coordinates (equal in number to the number of true pre-colonial capitals)
+and re-estimate our regression models with these placebo datasets many times to generate a
+distribution of placebo estimates against which estimates based on the location of true pre-
+colonial capitals can be compared. We can compute p-values from these distributions by
+computing the share of placebo estimates larger than the estimates based on the location of true
+pre-colonial capitals.
+In one version of the procedure, we randomly generate capitals from across the African
+continent. In another version of this analysis, designed to mimic the spatial distribution of true
+pre-colonial capitals, we conduct a stratified random selection of placebo coordinates within
+river basins, so that the distribution of placebo capitals across river basins is the same as that of
+true capital cities in panel A and an example of randomly generated placebo capitals in panel B.
+random generation of placebo capitals, we find that it is extremely unlikely that we arrive at our
+estimates by chance due to the spatial structure of the data, with non-parametric p-values that
+tend to be smaller than those obtained parametrically.
+How does contemporary agricultural productivity display large improvements with proximity to
+a pre-colonial capital city? There are two mechanisms. Proximity could improve agricultural
+output on the extensive margin by leading to improvements in the share of land within a pixel
+allocated to cropland. Proximity could also improve agricultural output on the intensive margin
+by improving the productivity of land with improved usage of inputs and modern techniques and
+possibilities. Panel A reveals that pixels in greater proximity to pre-colonial capitals are
+characterized by large improvements in the share of allocated cropland (based on remote-sensing
+data). In Panels B and C, we explore whether this is driven by an expansion of rainfed or
+irrigated cropland; there is evidence for both, with no aggregate change in the share of cropland
+that is irrigated.
+Together the results indicate that proximity to a pre-colonial capital primarily improves
+agricultural output on the extensive margin, improving the share of land that is dedicated to
+agriculture and only modestly improving the technologies that are applied to the land. This is
+reflected in the estimates in Panel D, where we compute a measure of per hectare productivity,
+which can be thought of as a measure of how intensively a fixed plot of land is cultivated. These
+depict the marginal effect of proximity to a pre-colonial capital on the intensive and extensive
+margins of agricultural output. These results indicating that proximity is associated with
+improvements in agricultural output on the extensive margin are potentially consistent with
+improved state territorial reach in areas in proximity to a pre-colonial state, since enforcement of
+property rights, investment in roads, storage and transportation infrastructure, and access to
+markets are all factors which contribute to the expansion of cropland beyond smallholder
+subsistence plots.
+How did pre-colonial states transmit territorial reach to colonial and post-colonial regimes?
+Evidence of institutional persistence must be provided to understand this. As a first step, we
+provide evidence that ethnic groups in proximity to any pre-colonial state in existence between
+1500 and 1850 were still more likely to be organized politically into states at the time of their
+colonization by European power at the end of the nineteenth century. To measure political
+organization at the time of colonization we rely on the Ethnographic Atlas published by
+Murdock (1967), which divides the African continent into spatially contiguous “ethnic
+homelands” and classifies each ethnic group’s form of political organization at the time of
+colonization as a “large state”, “small state”, “large chiefdom”, “petty chiefdom” or “acephalous
+society” (for an analysis of this data see e.g. Michalopoulos and Papaioannou 2013).
+organization at the time of colonization, where we assign to each pixel the form of political
+organization of the ethnic group whose boundaries within the pixel falls. To address the
+multiplication of multiple pixels which take the same value within ethnic homelands, we
+additionally adjust standard errors for clustering within ethnic homelands in this analysis. Panel
+A looks at the impact on state-based political organization. Our preferred specification in column
+(5) suggests that going from pixels more than 200km away from any pre-colonial capital to
+pixels located within a 100-200km buffer zone is associated with a 12.7 percentage point
+improvement in the probability of state-based political organization at the time of colonization.
+Going from pixels more than 200km away from any pre-colonial capital to pixels located within
+a 50-100km buffer zone is associated with a 24.5 percentage point improvement in the
+probability of state-based political organization at the time of colonization. Going from pixels
+more than 200km away from any pre-colonial capital to pixels located within a 25-50km buffer
+zone is associated with a 30-percentage point improvement in the probability of state-based
+political organization at the time of colonization. Going from pixels more than 200km away from
+any pre-colonial capital to pixels located within a 25-50km buffer zone is associated with a 33.5
+percentage point improvement in the probability of state-based political organization at the time
+of colonization.
+By contrast, we find no evidence that proximity to any pre-colonial state increased the
+probability of chiefdom-based political organization at the time of colonization, challenging the
+idea that chiefdoms can be thought of as an intermediate form of political centralization on the
+path to state-based organization. There appears to be a modest, positive association between
+proximity to any pre-colonial state and acephalous societies at the time of colonization, likely in
+some areas where pre-colonial states experienced severe fragmentation and decline. We display
+administrative structures generated by pre-colonial states in our database persisted at least
+through the time of colonization by European powers, plausibly transmitting administrative and
+taxation structure upon which colonial regimes built, and shaping the territorial reach of colonial
+regimes.
+Did these patterns of state territorial reach that improved with proximity to pre-colonial capitals
+and decayed with distance persist to the twentieth century? To empirically measure the territorial
+reach of contemporary African states, we rely on remote-sensing measures of physical
+infrastructure, including pixel-level estimates of the density of roads (length of road in
+kilometers/square kilometer of land), which comes from the GRIP global roads database (Meijer
+et al. 2018), as well as pixel level estimates of the percentage of built-up land (buildings, paved
+roads, and other cement structures), which comes from the FAO GAEZ database for the year
+2000. To study connectivity to marketing networks, we also look at a pixel-level estimate of the
+approximate travel time in hours to the nearest market, which also comes from the FAO GAEZ
+database. To study the persistence of pre-colonial population centers through spatial
+agglomeration effects, we utilize the Gridded Population of the World (GPW) dataset, which
+provides estimates of people per square kilometer for the year 2010. We regress each of these
+variables on the indicator of proximity to any pre-colonial state capital in existence between
+Across outcome variables, we find evidence that the reach of the state plausibly improves with
+proximity to a pre-colonial capital. Panel A examines the impact of proximity to a pre-colonial
+state capital on road density. The estimates in the preferred specification in column (5) reveal a
+pattern of modest improvements in road density up to a buffer zone of 50 kilometers, followed
+by a massive increase within a 25 kilometer buffer zone, plausibly corresponding the presence of
+contemporary states which formed in the vicinity of pre-colonial states due to agglomeration
+effects. Panel B examines the impact on built-up area, which also displays a pattern of improved
+infrastructure coverage with proximity to a pre-colonial capital, and which shows a particularly
+large increase within a buffer zone of 25 kilometers. Panel C explores the impact on connectivity
+to marketing networks as measured by an estimate of travel time to the nearest market in hours.
+Here too, farmers benefit from improving connectivity (travel time to market falls) the closer
+they are in proximity to a pre-colonial capital. Panel D explores the impact on population
+density. The results suggest that, plausibly as a result of agglomeration effects that concentrated
+public investment and population growth around population centers established by pre-colonial
+states, pixels in proximity to pre-colonial capitals display higher levels of population density,
+displays computes marginal effects.
+4. Conclusion
+In this paper, we sought to understand the problem of low levels of agricultural productivity – a
+major source of poverty and food insecurity. We assembled a geospatial dataset of all pre-
+colonial African states in existence between 1500 and 1850, and utilized remote-sensing data
+based on satellite imagery to show that areas (pixels) in proximity to the location of pre-colonial
+capitals display higher levels of contemporary agricultural output. We argued that pre-colonial
+states transmitted administrative structures and population centers upon which colonial and post-
+colonial regimes built, as reflected in the concentration of contemporary territorial reach and
+agricultural productivity around pre-colonial capitals.
+The findings highlight how pre-colonial political institutions, by shaping the colonial and post-
+colonial projects of state-building, shape long-term political and economic development. In this
+paper, we have highlighted as particularly important how the territorial reach of contemporary
+states or their ability to enforce law and order, provide critical services, and project official
+authority across territory tends to mirror the spatial extent of pre-colonial states. Pre-colonial
+institutions and historical states could also plausibly shape other aspects of contemporary states
+and societies and further empirical work on different potential channels would be a valuable
+avenue for further inquiry.
+The findings also speak to a puzzle in the study of comparative development: the failure of a
+“green revolution” to materialize in postcolonial Africa. In Asia, colonial power preserved and
+built upon the administrative structure of highly centralized “hydraulic empires”, a source of
+institutional continuity which provided the administrative infrastructure and territorial reach that
+colonial and post-colonial regimes needed to successfully broadcast power throughout the
+countryside and modernize agriculture. In contrast, centuries of the transatlantic slave trade and
+European commercial imperialism destroyed Africa’s rich tradition of pre-colonial states and the
+degree of institutional continuity between pre-colonial political traditions, and colonial and post-
+colonial states was far weaker (Engelbart 2002), leaving contemporary states in a far weaker
+position in terms of their ability to penetrate the countryside and successfully conduct
+agricultural modernization.
+Even in this institutionally destructive context, the administrative structures and population
+centers that pre-colonial states in Africa left behind continue to exert a positive influence on
+contemporary state capacity and agricultural development. This is evidence in contemporary
+patterns of agricultural output. An interesting avenue for future research would be to explore
+whether other indicators of rural development, perhaps measured through satellite imagery,
+display a similar pattern.
+5. Bibliography
+Acemoglu, Daron, and James A. Robinson. 2010. “Why Is Africa Poor?” Economic History of
+Developing Regions 25 (1): 21–50.
+Barrios, Thomas, Rebecca Diamond, Guido W. Imbens, and Michal Kolesár. 2012. “Clustering,
+Spatial Correlations, and Randomization Inference.” Journal of the American Statistical
+Association 107 (498): 578–91.
+Bates, Robert H. 2014. Markets and States in Tropical Africa: The Political Basis of Agricultural
+Policies. University of California Press.
+Bockstette, Valerie, Areendam Chanda, and Louis Putterman. 2002. “States and Markets: The
+Advantage of an Early Start.” Journal of Economic Growth 7 (4): 347–69.
+Boone, Catherine. 2003. Political Topographies of the African State: Territorial Authority and
+Institutional Choice. Cambridge University Press.
+Dell, Melissa, Nathan Lane, and Pablo Querubin. 2018. “The Historical State, Local Collective
+Action, and Economic Development in Vietnam.” Econometrica 86 (6): 2083–2121.
+Englebert, Pierre. 2002. State Legitimacy and Development in Africa. Lynne Rienner Publishers.
+Gennaioli, Nicola, and Ilia Rainer. 2007. “The Modern Impact of Precolonial Centralization in
+Africa.” Journal of Economic Growth 12 (3): 185–234.
+Gerring, John, Daniel Ziblatt, Johan Van Gorp, and Julian Arevalo. 2011. “An Institutional
+Theory of Direct and Indirect Rule.” World Politics, 377–433.
+Giraudy, Agustina, and Juan Pablo Luna. 2017. “Unpacking the State’s Uneven Territorial
+Reach: Evidence from Latin America.” States in the Developing World, 93–120.
+Goody, Jack. 1980a. “Rice‐burning and the Green Revolution in Northern Ghana.” The Journal
+of Development Studies 16 (2): 136–55.
+———. 1980b. Technology, Tradition and the State in Africa. CUP Archive.
+Herbst, Jeffrey. 2014. States and Power in Africa: Comparative Lessons in Authority and
+Control. Vol. 149. Princeton University Press.
+Juma, Calestous. 2015. The New Harvest: Agricultural Innovation in Africa. Oxford University
+Press.
+Kasara, Kimuli. 2007. “Tax Me If You Can: Ethnic Geography, Democracy, and the Taxation of
+Agriculture in Africa.” American Political Science Review, 159–72.
+Kijima, Yoko, Keijiro Otsuka, and Dick Sserunkuuma. 2011. “An Inquiry into Constraints on a
+Green Revolution in Sub-Saharan Africa: The Case of NERICA Rice in Uganda.” World
+Development 39 (1): 77–86.
+Kohli, Atul. 2004. State-Directed Development: Political Power and Industrialization in the
+Global Periphery. Cambridge university press.
+Lowes, Sara, Nathan Nunn, James A. Robinson, and Jonathan L. Weigel. 2017. “The Evolution
+of Culture and Institutions: Evidence from the Kuba Kingdom.” Econometrica 85 (4):
+1065–91.
+Mamdani, Mahmood. 2018. Citizen and Subject: Contemporary Africa and the Legacy of Late
+Colonialism. Princeton University Press.
+Meijer, Johan R., Mark AJ Huijbregts, Kees CGJ Schotten, and Aafke M. Schipper. 2018.
+“Global Patterns of Current and Future Road Infrastructure.” Environmental Research
+Letters 13 (6): 064006.
+Michalopoulos, Stelios, and Elias Papaioannou. 2013. “Pre‐colonial Ethnic Institutions and
+Contemporary African Development.” Econometrica 81 (1): 113–52.
+Monroe, J. Cameron. 2013. “Power and Agency in Precolonial African States.” Annual Review
+of Anthropology 42.
+Murdock, George Peter. 1967. “Ethnographic Atlas: A Summary.” Ethnology 6 (2): 109–236.
+Roessler, Philip. 2016. Ethnic Politics and State Power in Africa: The Logic of the Coup-Civil
+War Trap. Cambridge University Press.
+Scott, James C. 1998. Seeing like a State: How Certain Schemes to Improve the Human
+Condition Have Failed. Yale University Press.
+Vansina, Jan M. 1990. Paths in the Rainforests: Toward a History of Political Tradition in
+Equatorial Africa. University of Wisconsin Pres.
+Wilfahrt, Martha. 2018. “Precolonial Legacies and Institutional Congruence in Public Goods
+Delivery: Evidence from Decentralized West Africa.” World Politics 70 (2): 239–74.
+Yu, Qiangyi, Liangzhi You, Ulrike Wood-Sichra, Yating Ru, Alison KB Joglekar, Steffen Fritz,
+Wei Xiong, Miao Lu, Wenbin Wu, and Peng Yang. 2020. “A Cultivated Planet in 2010:
+2. the Global Gridded Agricultural Production Maps.” Earth System Science Data.
+Tables and Figures
+Notes: Plot depicts agro-ecological zones in Africa with 25km, 50km, 100km, and 200km radius geodesic buffer
+zones around the locations of the capital cities of pre-colonial states. Boundaries of contemporary African
+states are in light blue.
+Notes: Plot depicts geo-referenced map of estimated historical boundaries of the Kongo, Tio, and Loango king-
+doms from Vansina ("Paths in the Rainforest" 1990, p. 157) compared against 25km, 50km, 100km, and 200km
+radius geodesic buffer zones around the locations of the capital cities of these pre-colonial states. Boundaries
+of contemporary African states are in light blue. The authors are in the process of collected geo-referenced his-
+torical maps for each of pre-colonial states in the dataset, which will be converted into shapefiles for additional
+analyses.
+0 20 40 60
+02−
+04−
+Notes: Plot depicts a raster file of pixel level estimates of the log of the value of total agricultural output in
+international dollars (plus 1 to account for pixels with no agricultural output). Plot also depicts 25km, 50km,
+100km, and 200km radius geodesic buffer zones around the locations of the capital cities of pre-colonial states
+No FE Agrozone FE Basin FE Country FE Combined FEs
+(1) (2) (3) (4) (5)
+Panel A: All Crops
+∗∗∗ ∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer25 0.610 0.425 0.564 0.562 0.461
+(0.165) (0.201) (0.214) (0.152) (0.171)
+∗∗ ∗∗
+buffer50 0.666 0.615 0.431 0.466 0.399
+(0.285) (0.287) (0.301) (0.328) (0.298)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer100 1.262 1.280 0.859 0.543 0.668
+(0.280) (0.192) (0.252) (0.200) (0.185)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer200 3.244 2.570 2.522 2.464 1.801
+(0.564) (0.397) (0.554) (0.621) (0.529)
+Panel B: Food Crops
+∗∗∗ ∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer25 0.606 0.421 0.565 0.563 0.467
+(0.161) (0.191) (0.211) (0.154) (0.167)
+∗∗ ∗∗
+buffer50 0.665 0.614 0.439 0.469 0.407
+(0.283) (0.285) (0.298) (0.325) (0.294)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer100 1.272 1.290 0.878 0.577 0.693
+(0.276) (0.188) (0.246) (0.204) (0.174)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer200 3.204 2.543 2.488 2.460 1.804
+(0.568) (0.408) (0.561) (0.614) (0.520)
+Panel C: Non-food Crops
+∗∗ ∗ ∗∗
+buffer25 0.512 0.374 0.472 0.459 0.369
+(0.233) (0.291) (0.248) (0.193) (0.237)
+buffer50 0.435 0.400 0.238 0.299 0.238
+(0.257) (0.268) (0.272) (0.306) (0.287)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer100 1.001 1.001 0.678 0.422 0.500
+(0.173) (0.158) (0.181) (0.065) (0.157)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer200 2.189 1.740 1.593 1.479 1.043
+(0.325) (0.220) (0.316) (0.459) (0.388)
+Observations 341,830 341,830 341,830 341,830 341,830
+× 2
+Notes: Unit of analysis is pixels (5 5 arc-minute resolution or approximately 56 km ) on African continent,
+masking inland water bodies. Outcome is the natural log of total agricultural output (for all crops, food crops,
+and non-food crops, respectively) within each pixel based on estimates from remote-sensing data. Explanatory
+variables are dummy variables for whether a pixel is located within a 25km, 50km, 100km or 200km) radius
+around the location of any pre-colonial capital city in the database. The dummy variables are non-exclusive so
+that dummy variables must be added to compute marginal impacts (for example the marginal impact of falling
+within a 25km radius around a pre-colonial capital city is computed by taking the sum of the coefficients on
+the within- 25km, 50km, 100km, and 200km radius dummies). Specifications include, respectively, either no
+fixed effects, agro-ecological zone fixed effects, river basin fixed effects, country fixed effects, or all three. All
+specifications control for a terrain slope index, average annual precipitation, and the length of the annual
+growing period. Standard errors adjusted for three-way clustering within agro-ecological zones, river basins,
+∗ ∗∗ ∗∗∗
+< < <
+and countries. p 0.1; p 0.05; p 0.01
+All Crops
+Proximity to Pre−colonial Capital
+tuptuO
+goL
+no
+tcapmI
+0−25km 25−50km 50−100km 100−200km
+Food Crops
+Proximity to Pre−colonial Capital
+tuptuO
+goL
+no
+tcapmI
+0−25km 25−50km 50−100km 100−200km
+Non−food Crops
+Proximity to Pre−colonial Capital
+tuptuO
+goL
+no
+tcapmI
+0−25km 25−50km 50−100km 100−200km
+Notes: Plot depicts marginal impact of different levels of proximity to pre-colonial capital on the log of agricul-
+tural output, in specification including all three of agro-ecological zone, river basin, and country fixed effects
+plus controls for terrain slope index, average annual precipitation, and the length of the annual growing period.
+Standard errors adjusted for three-way clustering within agro-ecological zones, river basins, and countries.
+Vertical bars represent 95 percent confidence intervals.
+A. True Location of Capitals
+B. Example of Placebo Capitals
+Notes: Panel A depicts river basins along with the true coordinates of pre-colonial capitals. Panel B depicts river
+basins along with one sample of placebo pre-colonial capitals generated through stratified (within river-basin)
+random selection of coordinates designed to mimic the spatial distribution of true pre-colonial capitals across
+river basins.
+All-Africa River basin Stratification
+All Crops Food Crops Non-food All Crops Food Crops Non-food
+(1) (2) (3) (4) (5) (6)
+Within-25km radius 0.461 0.467 0.369 0.461 0.467 0.369
+[p<0.003] [p<0.005] [p<0.000] [p<0.007] [p<0.004] [p<0.015]
+Within-50km radius 0.399 0.407 0.238 0.399 0.407 0.238
+[p<0.005] [p<0.003] [p<0.044] [p<0.011] [p<0.011] [p<0.078]
+Within-100km radius 0.668 0.693 0.500 0.668 0.693 0.500
+[p<0.000] ([p<0.000] [p<0.001] [p<0.004] ([p<0.000] [p<0.004]
+Within-200km radius 1.801 1.804 1.043 1.801 1.804 1.043
+[p<0.000] p<[0.000] [p<0.000] [p<0.000] p<[0.000] [p<0.000]
+Observations 341,830 341,830 341,830 341,830 341,830 341,830
+pre-colonial capitals (equal to the number of true capitals in the dataset) with randomly selected spatial co-
+ordinates, across Africa in columns (1)-(3) and stratified random generation of coordinates within river basins
+(mirroring the distribution of true pre-colonial capitals across river basins) in columns (4)-(6). A regression of
+agricultural output on proximity to these placebo capitals is performed, controlling for agroecological zone,
+river basin, and country fixed effects. The spatial randomization procedure is repeated 1000 times to generate
+a distribution of placebo coefficients, from which non-parametric p-values can be computed (the percentage
+of placebo estimates larger than the estimates based on the true location of pre-colonial capitals). p 0.1;
+∗∗ ∗∗∗
+< <
+p 0.05; p 0.01
+No FE Agrozone FE Basin FE Country FE Combined FEs
+(1) (2) (3) (4) (5)
+Panel A: log(Total Area Harvested)
+∗∗∗ ∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer25 0.374 0.277 0.360 0.353 0.308
+(0.104) (0.132) (0.122) (0.093) (0.096)
+∗∗ ∗∗
+buffer50 0.381 0.355 0.254 0.275 0.243
+(0.167) (0.174) (0.170) (0.177) (0.158)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer100 0.774 0.780 0.523 0.319 0.376
+(0.189) (0.133) (0.156) (0.119) (0.111)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer200 1.855 1.492 1.394 1.287 0.944
+(0.283) (0.193) (0.263) (0.295) (0.250)
+Panel B: log(Irrigated Area)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer25 0.492 0.395 0.480 0.483 0.396
+(0.142) (0.101) (0.129) (0.130) (0.094)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer50 0.238 0.233 0.212 0.231 0.219
+(0.079) (0.081) (0.082) (0.079) (0.083)
+∗∗ ∗∗ ∗∗ ∗∗ ∗∗
+buffer100 0.267 0.202 0.257 0.220 0.179
+(0.115) (0.080) (0.122) (0.107) (0.080)
+∗ ∗ ∗ ∗
+buffer200 0.229 0.106 0.215 0.221 0.081
+(0.124) (0.058) (0.110) (0.119) (0.049)
+Panel C: log(Rainfed Area)
+∗∗∗ ∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer25 0.311 0.246 0.302 0.292 0.279
+(0.084) (0.118) (0.102) (0.067) (0.070)
+∗∗ ∗∗ ∗ ∗
+buffer50 0.374 0.349 0.252 0.267 0.239
+(0.157) (0.165) (0.157) (0.161) (0.144)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗ ∗∗∗
+buffer100 0.752 0.781 0.498 0.296 0.376
+(0.190) (0.138) (0.158) (0.118) (0.116)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer200 1.823 1.498 1.354 1.243 0.945
+(0.280) (0.193) (0.259) (0.291) (0.247)
+Panel D: log(Output/Hectare)
+∗ ∗
+buffer25 0.066 0.035 0.068 0.068 0.046
+(0.042) (0.039) (0.038) (0.035) (0.029)
+buffer50 0.051 0.047 0.038 0.021 0.021
+(0.038) (0.035) (0.038) (0.026) (0.028)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗
+buffer100 0.120 0.105 0.119 0.082 0.061
+(0.035) (0.029) (0.037) (0.031) (0.033)
+− − − −
+buffer200 0.062 0.104 0.038 0.022 0.011
+(0.126) (0.117) (0.094) (0.056) (0.047)
+× 2
+Notes: Unit of analysis is pixels (5 5 arc-minute resolution or approximately 56 km ) on African continent,
+masking inland water bodies. Explanatory variables are dummy variables for whether a pixel is located within
+a 25km, 50km, 100km or 200km) radius around the location of any pre-colonial capital city in the database.
+Specifications include, respectively, either no fixed effects, agro-ecological zone fixed effects, river basin fixed
+effects, country fixed effects, or all three. All specifications control for a terrain slope index, average annual
+precipitation, and the length of the annual growing period. Standard errors adjusted for three-way clustering
+∗ ∗∗ ∗∗∗
+< < <
+within agro-ecological zones, river basins, and countries. p 0.1; p 0.05; p 0.01
+Harvested Area
+Proximity to Pre−colonial Capital
+aerA
+goL
+no
+tcapmI
+0−25km 25−50km 50−100km 100−200km
+Irrigated Area
+Proximity to Pre−colonial Capital
+aerA
+goL
+no
+tcapmI
+0−25km 25−50km 50−100km 100−200km
+Rainfed Area
+Proximity to Pre−colonial Capital
+aerA
+goL
+no
+tcapmI
+l l
+0−25km 25−50km 50−100km 100−200km
+Productivity (Output/Area)
+Proximity to Pre−colonial Capital
+eratceH/tuptuO
+goL
+no
+tcapmI
+0−25km 25−50km 50−100km 100−200km
+Notes: Plot depicts marginal impact of different levels of proximity to a pre-colonial capital on the extensive
+and intesive margins of contemporary agricultural productivity, in specification including all three of agro-
+ecological zone, river basin, and country fixed effects plus controls for terrain slope index, average annual
+precipitation, and the length of the annual growing period. Standard errors adjusted for three-way cluster-
+ing within agro-ecological zones, river basins, and countries. Vertical bars represent 95 percent confidence
+intervals.
+No FE Agrozone FE Basin FE Country FE Combined FEs
+(1) (2) (3) (4) (5)
+Panel A: State
+∗∗ ∗∗ ∗ ∗
+buffer25 0.037 0.031 0.038 0.037 0.035
+(0.018) (0.016) (0.021) (0.021) (0.022)
+∗∗∗ ∗∗ ∗∗ ∗∗∗ ∗∗
+buffer50 0.066 0.066 0.060 0.059 0.055
+(0.024) (0.026) (0.026) (0.022) (0.027)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer100 0.136 0.131 0.126 0.125 0.118
+(0.029) (0.026) (0.025) (0.030) (0.024)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer200 0.130 0.121 0.148 0.136 0.127
+(0.028) (0.026) (0.029) (0.031) (0.024)
+Panel B: Chiefdom
+− − − − −
+buffer25 0.015 0.013 0.006 0.012 0.002
+(0.015) (0.015) (0.015) (0.014) (0.014)
+− ∗∗∗ − ∗∗∗ − ∗∗∗ − ∗∗∗ − ∗∗∗
+buffer50 0.048 0.041 0.040 0.043 0.032
+(0.009) (0.009) (0.006) (0.009) (0.006)
+− − − − −
+buffer100 0.029 0.020 0.036 0.038 0.034
+(0.044) (0.045) (0.044) (0.046) (0.038)
+− − − ∗
+buffer200 0.013 0.028 0.036 0.019 0.037
+(0.044) (0.035) (0.033) (0.040) (0.022)
+Panel C: Acephalous
+buffer25 0.015 0.013 0.006 0.012 0.002
+(0.015) (0.015) (0.015) (0.014) (0.014)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer50 0.048 0.041 0.040 0.043 0.032
+(0.009) (0.009) (0.006) (0.009) (0.006)
+buffer100 0.029 0.020 0.036 0.038 0.034
+(0.044) (0.045) (0.044) (0.046) (0.038)
+− − ∗
+buffer200 0.013 0.028 0.036 0.019 0.037
+(0.044) (0.035) (0.033) (0.040) (0.022)
+Observations 340,694 340,694 340,694 340,694 340,694
+× 2
+Notes: Unit of analysis is pixels (5 5 arc-minute resolution or approximately 56 km ) on African continent,
+masking inland water bodies. Explanatory variables are dummy variables for whether a pixel is located within
+a 25km, 50km, 100km or 200km) radius around the location of any pre-colonial capital city in the database.
+Specifications include, respectively, either no fixed effects, agro-ecological zone fixed effects, river basin fixed
+effects, country fixed effects, or all three. All specifications control for a terrain slope index, average annual
+precipitation, and the length of the annual growing period. Standard errors adjusted for four-way clustering
+∗ ∗∗ ∗∗∗
+< < <
+within ethnic homelands, agro-ecological zones, river basins, and countries. p 0.1; p 0.05; p 0.01
+0.1
+5.0
+0.0
+5.0−
+States
+Proximity to Pre−colonial Capital
+yteicoS
+desab−etatS
+fo
+ytilibaborP
+no
+tcapmI
+l l
+0−25km 25−50km 50−100km 100−200km
+0.1
+5.0
+0.0
+5.0−
+Chiefdoms
+Proximity to Pre−colonial Capital
+yteicos
+desab−modfeihC
+fo
+ytilibaborP
+0−25km 25−50km 50−100km 100−200km
+l l
+0.1
+5.0
+0.0
+5.0−
+Acephalous
+Proximity to Pre−colonial Capital
+tuptuO
+goL
+no
+tcapmI
+0−25km 25−50km 50−100km 100−200km
+Notes: Plot depicts marginal impact of different levels of proximity to a pre-colonial capital on nature of polit-
+ical organization across ethnic homelands at time of colonization based on Murdock (1967), in specification
+including all three of agro-ecological zone, river basin, and country fixed effects plus controls for terrain slope
+index, average annual precipitation, and the length of the annual growing period. Standard errors adjusted for
+four-way clustering within ethnic homelands, agro-ecological zones, river basins, and countries. Vertical bars
+represent 95 percent confidence intervals.
+No FE Agrozone FE Basin FE Country FE Combined FEs
+(1) (2) (3) (4) (5)
+Panel A: Road Density (length/km )
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer25 277.284 274.457 274.320 276.211 271.782
+(68.983) (68.178) (69.440) (68.156) (69.043)
+∗∗ ∗∗ ∗∗ ∗ ∗
+buffer50 37.326 35.410 23.795 32.007 21.921
+(16.720) (17.805) (10.860) (18.628) (11.594)
+∗∗∗ ∗∗ ∗ ∗
+buffer100 38.291 34.833 11.729 27.565 9.112
+(12.763) (13.758) (6.745) (15.491) (5.809)
+∗ ∗∗∗ ∗
+buffer200 40.041 19.815 28.312 22.568 13.050
+(20.703) (14.430) (10.918) (13.505) (10.140)
+Panel B: Built-up area (%)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer25 3.328 3.247 3.328 3.311 3.260
+(0.937) (0.893) (0.952) (0.940) (0.920)
+∗∗ ∗∗ ∗∗ ∗ ∗∗
+buffer50 0.302 0.294 0.229 0.231 0.193
+(0.118) (0.126) (0.095) (0.119) (0.088)
+∗∗∗ ∗∗∗ ∗∗ ∗∗∗ ∗∗
+buffer100 0.629 0.554 0.355 0.523 0.255
+(0.169) (0.153) (0.143) (0.189) (0.108)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer200 0.794 0.611 0.549 0.618 0.333
+(0.172) (0.140) (0.131) (0.150) (0.095)
+Panel C: Remoteness (hours to market)
+− ∗∗∗ − ∗∗∗ − ∗∗∗ − ∗∗∗ − ∗∗∗
+buffer25 0.234 0.189 0.227 0.225 0.217
+(0.031) (0.033) (0.030) (0.042) (0.036)
+− ∗∗∗ − ∗∗∗ − ∗∗∗ − ∗∗ − ∗∗
+buffer50 0.157 0.139 0.129 0.109 0.105
+(0.045) (0.046) (0.046) (0.051) (0.043)
+− ∗∗∗ − ∗∗∗ − ∗∗ − ∗∗∗ −
+buffer100 0.202 0.166 0.079 0.129 0.050
+(0.031) (0.041) (0.035) (0.049) (0.040)
+− ∗∗∗ − ∗∗∗ − ∗∗∗ − ∗∗∗ − ∗∗∗
+buffer200 0.753 0.481 0.604 0.526 0.371
+(0.205) (0.099) (0.178) (0.142) (0.120)
+Panel D: Population density (people/km sq)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+buffer25 393.607 386.766 394.029 392.862 388.587
+(135.350) (129.549) (135.149) (135.564) (130.389)
+∗ ∗
+buffer50 18.705 18.809 14.985 14.785 13.565
+(9.977) (9.913) (9.121) (9.524) (8.691)
+∗∗∗ ∗∗∗ ∗ ∗∗ ∗
+buffer100 38.101 31.301 23.491 31.572 13.301
+(12.902) (9.780) (12.137) (13.303) (7.319)
+∗∗∗ ∗∗∗ ∗∗ ∗∗∗ ∗∗∗
+buffer200 48.643 32.551 36.759 36.534 18.667
+(14.774) (10.474) (15.487) (12.616) (6.857)
+Observations 340,045 340,045 340,045 340,045 340,045
+× 2
+Notes: Unit of analysis is pixels (5 5 arc-minute resolution or approximately 56 km ) on African continent,
+masking inland water bodies. Explanatory variables are dummy variables for whether a pixel is located within
+a 25km, 50km, 100km or 200km) radius around the location of any pre-colonial capital city in the database.
+Specifications include, respectively, either no fixed effects, agro-ecological zone fixed effects, river basin fixed
+effects, country fixed effects, or all three. All specifications control for a terrain slope index, average annual
+precipitation, and the length of the annual growing period. Standard errors adjusted for three-way clustering
+∗ ∗∗ ∗∗∗
+< < <
+within agro-ecological zones, river basins, and countries. p 0.1; p 0.05; p 0.01
+l l
+002−
+Road Density
+Proximity to Pre−colonial Capital
+qs
+mk/htgnel
+no
+tcapmI
+0−25km 25−50km 50−100km 100−200km
+2−
+Built−up Area
+Proximity to Pre−colonial Capital
+)%(
+aera
+tliub
+no
+tcapmI
+0−25km 25−50km 50−100km 100−200km
+0.2
+5.1
+0.1
+5.0
+0.0
+0.1−
+Distance to Market
+Proximity to Pre−colonial Capital
+sruoh
+ni
+emit
+levarT
+no
+tcapmI
+l l
+0−25km 25−50km 50−100km 100−200km
+002−
+Population density
+Proximity to Pre−colonial Capital
+mk
+qs/elpoep
+no
+tcapmI
+0−25km 25−50km 50−100km 100−200km
+Notes: Plot depicts marginal impact of different levels of proximity to a pre-colonial capital on the extensive
+and intesive margins of contemporary agricultural productivity, in specification including all three of agro-
+ecological zone, river basin, and country fixed effects plus controls for terrain slope index, average annual
+precipitation, and the length of the annual growing period. Standard errors adjusted for three-way cluster-
+ing within agro-ecological zones, river basins, and countries. Vertical bars represent 95 percent confidence
+intervals.

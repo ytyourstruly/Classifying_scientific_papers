@@ -1,0 +1,308 @@
+Visuo-Locomotive Complexity as a Component of
+Parametric Systems for Architecture Design
+Vasiliki Kondyli, Mehul Bhatt (Örebro University, Sweden)
+Evgenia Spyridonos (University of Stuttgart, Germany)
+Abstract A people-centred approach for designing large-scale built-up spaces necessitates systematic anticipation of
+user’s embodied visuo-locomotive experience from the viewpoint of human-environment interaction factors pertaining
+to aspects such as navigation, wayfinding, usability. In this context, we develop a behaviour-based visuo-locomotive
+complexity model that functions as a key correlate of cognitive performance vis-a-vis internal navigation in built-up
+spaces. We also demonstrate the model’s implementation and application as a parametric tool for the identification and
+manipulation of the architectural morphology along a navigation path as per the parameters of the proposed visuospa-
+tial complexity model. We present examples based on an empirical study in two healthcare buildings, and showcase
+the manner in which a dynamic and interactive parametric (complexity) model can promote behaviour-based decision-
+making throughout the design process to maintain desired levels of visuospatial complexity as part of a navigation or
+wayfinding experience.
+Keywords: Visual Perception – Environmental Psychology – Architecture Design – Parametric Design – Cognitive
+Computational Modelling – Spatial Cognition – AI and Design
+Publication Note
+This is a preprint of the contribution published as part of the proceedings of ICoRD 2021: 8th International Conference
+on Research into Design, IDC School of Design (IIT Mumbai, India).
+ICoRD 2021, .
+The overall scientific agenda driving this research may be consulted here:
+The DesignSpace Group /
+Select publications related to this research are available at:
+(under DesignSpace)
+size
+clutter
+regularity
+order
+symmetry
+motion
+low high
+DP3
+End
+DP2
+DP1
+Start
+DP2 DP3 End
+low high
+ytixelpmoc
+laitapsousiv
++ visibility
+(-)
+symmetry (-)
+clutter
+rotation metric
+average
+order
+size
+symmetry openness visibility size clutter motion
+low high
+67%
+people lost
+Start DP1
+VC
+people lost people lost
+32% 41%
+openness size visibility clutter motion symmetry interconnection density openness size visibility motion clutter rotation metric
+low high low high
+Fig. 1:
+Large-Scale Evidence Based Analysis of Visuo-Locomotive Experience. Analysis of visuospatial complexity as it evolves
+along the navigation path at the Old Parkland Hospital. Analysis of decision points (DP) where participants get lost reveal the combination
+(green), Structural (orange), Dynamic (yellow)).
+1 Introduction
+The design of navigation and wayfinding systems within large-scale built-up spaces is a particularly challenging task:
+research in behavioural, computational, and mixed-methods interdisciplinary approaches in spatial cognition, archi-
+tecture design cognition, and artificial intelligence for design have shown that diverse morphological and ecological
+aspects pertaining to space, perception, and human factors constitute a correlate of visuo-locomotive cognitive experi-
+ence in built-up space from the viewpoint of tasks as navigation and wayfinding [Bhatt and Schultz, 2017, Bhatt, 2018,
+Bhatt et al., 2014, Kondyli and Bhatt, 2018, Devlin, 2014, O’Neill, 1991, Weisman, 1981].
+Visuo-Locomotive Experience During Navigation Visuo-locomotive experience most broadly refers to the em-
+bodied cognitive experience of environmental space through a multimodal perceptual integration, e.g., encompassing
+visual, locomotive and auditory exploration [Bhatt and Schultz, 2017, Bhatt et al., 2014]. From the viewpoint of this
+paper, examining the embodied experience of users through interaction with the architectural space during active
+locomotion includes quantitative measurements and qualitative analysis of a range of aspects including visual attention
+(e.g. fixation, saccades), fine-grained behaviour (e.g., stopping, looking around, interacting with other people), orien-
+tation tasks, spatial memory (e.g. sketch maps, questionnaires) etc (details in papers Bhatt et al. [2016b], Kondyli and
+Bhatt [2018]). The focus of this paper is on visuo-locomotive experience as it pertains to aspects of visuospatial and
+locomotive complexity as articulated in this research.
+Visuospatial and Locomotive Complexity To measure the effect of the architectural space on the visuo-locomotive
+experience we take into consideration behavioural data of perceived visuospatial stimuli with respect to the attributes
+involved in the dynamic scene (e.g. form, colours, layout) (Fig. 1). Even though a combination of these attributes can
+result to complex scenes, people are able to form a coherent percept amid numerous regions and identify properties
+and semantics of a scene at a glance [Potter, 1976]. Visual complexity has been broadly defined as the level of detail
+and intricacy contained within the image or a scene [Snodgrass and Vanderwart, 1980]. Its effect on visual attention
+and spatial cognition, and corresponding measurement methodologies have been investigated in disciplines such as
+Visuo-Locomotive Complexity as a Component of Parametric Systems for Architecture Design 3
+cognitive science, psychology, computer science, or marketing [Cavalcante et al., 2014, Moacdieh and Sarter, 2015,
+Rosenholtz et al., 2007, Madan et al., 2018]. With the term visuospatial and locomotive complexity we consider the
+combination of visual and spatial characteristics that both coexist in dynamic naturalistic scenes where a person navi-
+gates [Kondyli and Bhatt, 2018, Kondyli et al., 2020] . Although complexity can provide an interesting and cognitively
+stimulating environment [Cassarino and Setti, 2016], excessive visual or spatial complexity can impact cognitive pro-
+cesses involved in visuo-locomotive experience of people in everyday tasks such as navigation or wayfinding [Boeing,
+2018, Fortenbaugh et al., 2008, Feldman, 2004].
+In this paper we study the visuospatial complexity of the architectural space from the human-centred perspective of
+embodied visuo-locomotive experiences. We present a cognitive model of visuospatial and locomotive complexity
+that embeds empirical knowledge on the effect of environmental and dynamic attributes on human behaviour and we
+define a scale of complexity. We introduce the model to a parametric design system and demonstrate how a designer
+can identify Classets of complexity for a particular path or a segment of it, as well as modify the morphology of
+space along a path in order to maintain complexity to a preferable level. As currently there is no universally accepted
+or empirically defined scale for visuospatial complexity our method aims to organise and link the different attributes
+involved and their contribution to a visuospatial complexity scale, however, more empirical studies are needed to
+support our classification.
+2 A Model of Visuo-Locomotive Complexity for Spatial Design
+To model visuospatial complexity based on its effect on humans during active locomotion, we examine the attributes
+involved in the naturalistic dynamic scene and how they evolve along a navigation path. We combine empirical results
+from previous studies on visual and spatial complexity metrics together with the result of a behavioural study in two
+healthcare facilities in the Parkland Hospital [Kondyli et al., 2018]. We consider visuospatial and locomotive complexity
+as an implicit measure of cognitive load [Harper et al., 2009] and inefficient navigation, and we use the behavioural
+analysis along the path (through a combination of behavioural metrics such as delays, visual search performance, ask for
+help, loss of orientation, etc.) to identify locations with high complexity and further examine the present environmental
+and dynamic attributes.
+attributes from the scene analysis that affects visuospatial perception and cognitive functions (e.g. driving, walking)
+[Kondyli et al., 2020]. However, embodied cognitive experience whilst in motion along a path cannot be investigated
+based on a discrete analysis of a series of singular scenes. Therefore, the model is enriched with attributes pertaining
+to visuo-locomotive complexity such as rotation metric, visibility, interconnection density [Kondyli and Bhatt, 2018].
+The attributes are categorised into:
+A1. Quantitative Attributes. Referring to objective environmental attributes such as low-level (edge, colors) and
+middle-level (corners, orientation) features of the scene. Studies on visual attention mostly on real-world static scenes,
+have shown how these environmental attributes can lead to a overabundance of information (known as clutter), work
+as distractors, and impact the visual search performance [Henderson et al., 2009, Rosenholtz et al., 2007, Park et al.,
+2014]. Clutter in architectural space may also involve the fractal dimension, referring to the number of polygon vertices
+of a perimeter of a space. Manifest cues, such as signage and landmarks, are part of clutter however because of their
+semantic significance as navigation aid objects they constitute major visual attention targets.
+A2. Structural Attributes. Refer to the relation that the elements form due to positioning in space, or the overall
+distribution on the viewing scene. The presence of regularities, symmetry, repetition, or order simplifies the scene
+[Feldman, 2004, Van der Helm, 2000] while randomised arrangements contribute to higher complexity classes.
+Homogeneity/Heterogeneity, regularity of shapes and objects, grouping of elements in space, openness of space and
+Henceforth, we use the terms visuospatial and visuo-locomotive complexity interchangeably. Other factors influencing embodied visuo-
+locomotive experience in space are familiarity, nature of the task (e.g. exploration, wayfinding), individual differences (e.g. age, spatial
+skills) etc. However these aspects are beyond the scope of this paper.
+VISUOSPATIAL COMPLEXITY Proportional relationship to complexity and Description
+A1. Quantitative Attributes
+SIZE (+/-) The dimensions of the physical space, the area coved by the visual stimulus.
+CLUTTER (+)
+Quantity (+) No. components (objects, people, shapes etc.)
+Variety of Colours (+) No. colours
+Variety of Shapes/Objects (+) No. shapes / objects
+Objects Density (+) No. objects in a defined area
+Edges Density (+) No. edges of objects, No. of polygon vertices of a perimeter (fractal dimension)
+Luminance (-) Amount of light emitted / reflected from the scene
+Saliency (-) Prominent elements based on characteristics of colour, luminance and contrast
+Target-background similarity (+) Compare similarity in luminance, contrast, structure, orientation, etc.
+A2. Structural Attributes
+Repetition (-) Recurrence of (groups) elements or characteristics on a line/a grid/ a pattern
+Symmetry (-) Resilience to transformation (reflectional/rotational/translational/helical/fractal)
+Order (-) Organised elements based on a recognised structure, fractal dimension, axial lines
+Homogeneity/Heterogeneity (-) Being all the same kind or diverse (single shape repeated - multiple distinct shapes)
+Regularity (-) Variations in a placement rule across a surface/line (polygons - abstract shapes)
+Openness (-) The ratio between empty and full space
+Grouping (-) No. elements that are part of a group
+Rotation Metric (+) Accumulated degrees of rotation angle during locomotion, No. of turns
+Visibility (-) Visual range from a vantage point, visual connectivity between points
+Interconnection Density (+) No. of directional choices in each node (e.g. decision point, junction)
+A3. Dynamic Attributes
+Motion (+) No. people or objects moving in the scene
+Flicker (+) Abrupt changes over-time (in luminance, colours, etc.)
+Speed | Direction (+) The rate of change of position with respect to time | Move or facing towards
+Taxonomy of Attributes for Visuospatial Complexity. The relationship between the individual attributes and the visuospatial
+complexity is defined as proportional (+) or inversely proportional (-) according to the impact they have on the visuospatial complexity
+scale. The ( ) indicates locomotive complexity attributes.
+their relationship to complexity have been previously introduced in the fields of urban design and architecture [Boeing,
+2018, Salingaros, 2014]. These attributes formulate the environmental structure along the navigation path, and impact
+the holistic legibility of the environment, including aspects of interconnection density [Weisman, 1981, O’Neill, 1991],
+visibility (e.g. visual range, line of sight) [Benedikt, 1979], rotational locomotion [Kondyli and Bhatt, 2018]. On the
+contrary, wayfinding studies show the value of architectural differentiations and breaks in the structural order as a
+design tool for distinguished areas that facilitate navigation [Baskaya et al., 2004].
+A3. Dynamic Attributes. Studying active embodied locomotion, such as navigation, involves studying dynamic parts
+of the scene, as for example people or moving objects or the ratio of changes per meter. Dynamic attributes have a
+major impact on visual attention patterns, as clusters of attention often coincide with semantically rich objects such
+as eyes, hands [Mital et al., 2011]. Moreover, cortical analysis shows a selective response to moving elements on the
+scene, meaning that people are able to notice moving objects even if they are not looking for them [Rosenholtz et al.,
+2007].
+3 An Empirical Basis for a Visuospatial Complexity Scale
+Case study in Parkland Hospital In a behavioural case study conducted in two large-scale healthcare facilities (Old
+and New) in Parkland Hospital in Texas (USA), 25 participants performed a navigation task from the Emergency room
+to the Pharmacy. We employed a range of sensors for measuring embodied visuo-locomotive experience and navigation
+performance (e.g. eye-tracking, egocentric video, external camera based video, questionnaires, orientation task) and
+detect locations in the path where a number of participants were disoriented or confused (details in [Bhatt et al., 2016b,
+Kondyli et al., 2018]).
+Visuo-Locomotive Complexity as a Component of Parametric Systems for Architecture Design 5
+Fig. 2:
+Definition of Visuospatial Complexity Classes. Simplified version of Visuospatial Complexity Classes developed on selected
+attributes for the purpose of parametric modelling (Section 4). The curve represents an interpretation of the overall positively perceived
+visuospatial complexity as a function of variety and structure that picks on a moderate Class 3 (adapted from Shiner et. al. [Shiner et al.,
+1999]).
+Behavioural and Environmental Analysis The correlations between the environmental and the behavioural analysis
+suggest that peculiar geometries (non symmetrical, not regular), narrow, long and high cluttered corridors are places
+where people tend to be frequently confused. Additionally, the presence of a combination of these attributes leads to
+low visibility and a great angle of rotation by the participant along the path that aggravate the navigation performance.
+For instance, in Decision Point 2 in the Old Parkland Hospital, we record 41% of participants having a disorientation
+or confusion event (e.g. stop, hesitation, look around, intensive visual search to both directions, etc. [Kondyli and
+Bhatt, 2018], Fig. 1). The place is characterised by narrow non-symmetrical and non-regular long cluttered corridors,
+that leads to reduced visibility. The place is also regularly occupied by dynamic attributes such as moving obstacles,
+pedestrian, people on wheelchairs moving in various directions. However, the questionnaires show that the landmark
+in the corridor (apple posters in bottom row of Fig. 1) was visually accessible and well recorded in spatial memory.
+The effect of combined attributes These observations suggest that the combination of attributes present in the scene
+can have a counterbalancing effect on the overall visuospatial complexity level, however further empirical work is
+needed to define the combinations of attributes that can lead to this outcome. For instance, high clutter increases the
+visuospatial complexity level but it can be mitigated with a well organised structural scene. Another consideration about
+finding balance in the visuospatial complexity scale is inspired by convex function of disorder [Shiner et al., 1999]
+and complex adaptive systems [Gershenson and Fernández, 2012], suggesting that a positive effect from the perceived
+visuospatial complexity is expected to reach an optimum between variety and structure (Fig. 2). For example, highly
+symmetrical spaces with repetitive features are related to low visuospatial complexity, but they have a negative effect
+on navigation performance as there is no architectural differentiation or distinctive object to assist cognitive mapping
+[Baskaya et al., 2004]. Consequently, in the process of developing a scale for visuospatial complexity, we consider that
+humans prefer to experience information at a comfortable rate (too little deprives the senses and too much overloads
+them [Boeing, 2018]), and so we suggest a moderate visuospatial complexity class as a design aim (Fig. 2). This design
+aim should be adjusted based on the specific design groups (e.g. children, older adults, people with cognitive decline)
+in order to provide a suitable motivating environment.
+Empirically model complexity Classes As an example of the modelling process we focus on selected attributes for
+demonstration reasons, and we define in approximation the Classes based on the behavioural analysis of the navigation
+study [Kondyli and Bhatt, 2018, Kondyli et al., 2018]. The Classes are defined based on the empirical results and the
+for the verification of the numeric and percentage classification (Fig. 2). Specifically, Rotation metric is defined by the
+number of turns along the path (or along a segment of the path) as well as by the accumulating degrees of the angle the
+person performs while navigating. For the definition of Size, we combine the three dimensions of space and calculate
+the average along the path or the segment. Visibility is defined based on the percentage of the visual range a navigator
+has while walking from the different segments towards the end of the path. Symmetry is calculated in respect to the
+layout geometry, as well as by analysing the symmetry in the 3D scene the navigator encounters along the path. Clutter
+Fig. 3:
+Visuospatial Complexity Scale. Manipulation of the path in Old Parkland Hospital based on the scale of visuospatial complexity
+(Fig. 2) and the selected attributes that change the morphology respectively. The purple dashed rectangular is the starting point of the
+identification function of the given path geometry.
+is defined by the percentage of space covered by 3D elements in the total path (or each segment), and Order refers
+to the related organisation of these elements in space, calculated by the percentage of the area that reflects a known
+structure (e.g. grid, circle, rectangular, spiral, square). To calculate the visuospatial complexity class in an aggregative
+level for the overall path, we combine the corresponding values of each attribute and provide an average result with a
+numerical indication between 1 and 5 (Fig. 2).
+4 Parametric Modelling of Visuospatial Complexity
+By parametrising selective attributes in respect to the scale of visuospatial complexity, and monitoring the relations
+between them, we develop a parametric model that runs two main operations: identification of the visuospatial
+complexity class of a given morphology, and manipulation of the morphology to correspond to a preferred class
+(e.g. moderate Class 3, Fig. 2). We approach the parametric model from the perspective of the human-navigator,
+Visuo-Locomotive Complexity as a Component of Parametric Systems for Architecture Design 7
+ROTATION METRIC
+SIZE
+VISIBILITY
+SYMMETRY
+CLUTTER
+ORDER
+Fig. 4:
+Parametric Process for Manipulation of Visuospatial Complexity Class. An example of the manipulation function for the
+path at the Old Parkland Hospital (Fig. 1), implemented in Rhino CAD-Grasshopper3D. On the left the result of the identification function
+reporting the visuospatial complexity (VC) class per attribute, and on the right the result of the manipulation function in steps, monitoring
+the morphological changes and aiming at an average moderate complexity class for the overall path.
+using the navigation path as the first component and the main geometrical input to the model. The parametric tool
+for: comparing different versions of a design in terms of the visuospatial complexity Classes, identifying the class and
+manipulating the morphology in relation to a selected attribute or in aggregative level for all attributes, comparing
+buildings in relation to their visuospatial complexity Class, manipulating morphologies to eliminate or increase the
+visuospatial complexity Class.
+d d
+n n
+E E
+viewpoint viewpoint
+a r t a r t
+S t S t
+Clutter Class: 2 Clutter Class: 4
+Fig. 5:
+Manipulation of the Morphology of the LLobby at the New Parkland Hospital. We modify the visuospatial complexity for
+the specific segment of the path for the attribute of Clutter, while we make sure that the rate visuospatial complexity for the overall path
+remains at Class 3.
+Class Identification and Morphology Manipulation The identification function receives as an input a polyline
+representing the navigation path, it analyses the characteristics of the path and categorises them into Classes based on
+the visuospatial complexity model (e.g. purple dashed rectagular in Fig. 3). By manipulating the morphology of space
+along the navigation path, we can expand or eliminate the visuospatial complexity by “controlling” the parametric
+“sliders” between the defined Classes of each attribute (Fig. 3). In the Old Parkland Hospital example (Fig. 4), we
+aim at maintaining a moderate Class 3 of visuospatial complexity along the path. The identification function gave
+the result of an overall visuospatial complexity Class 4. The manipulation function (based on the selected group of
+attributes) can be used to introduce changes in the morphology (e.g. geometry, arrangement of elements), to reduce the
+overall visuospatial complexity. Specifically, Rotation metric simplifies the geometry of the path based on the angles
+of turns between the segments. The Size function modifies the three dimensions of the segments of the path to fit the
+requirements of the Class. The Visibility reports the percentage of visible space from each segment towards the end
+point of the path and suggests alternative combination between visual range and Classes using an evolutionary solver
+(Galapagos for Grasshopper3D). The Symmetry function introduces new symmetry axes to manipulate the geometry
+in order to fit the requirements of the respective Class, while the Clutter and Order functions, add or remove objects
+and organise them in groups.
+The manipulation function can be used in the overall or in particular segments of the path to moderate, or eliminate
+the visuospatial complexity level. However, it can also contribute to indicating areas where visuospatial complexity
+can be increased to fulfil design requirements while the designer can closely monitor how these changes affect the
+visuospatial complexity level. For instance, the analysis of the path at the New Parkland Hospital suggests low overall
+visuospatial complexity (Class 2). We use the manipulation functionality for the segment of the path that involves the
+entrance lobby and we extent the level of visuospatial complexity from Class 2 to Class 4 without interrupting the
+average complexity level for the overall path. Thus, we can reassure an acceptable navigability experience for the users
+while experimenting with objects at the entrance lobby (Fig. 5).
+Visuo-Locomotive Complexity as a Component of Parametric Systems for Architecture Design 9
+5 Summary
+Architects are confronted with anticipating the effect of their design decisions on users’ cognitive experience —termed
+visuo-locomotive experience— as they move along a navigation path. Towards this end, cognitive assistive technologies
+for design can be useful during the different steps of the design process if they incorporate empirical knowledge
+from behavioural studies in real-world built environments [Bhatt and Schultz, 2017, Bhatt et al., 2014, Kondyli et al.,
+2018, Kondyli and Bhatt, 2018]. Parametric design systems provide the flexibility and adaptability needed, however
+currently their established functions are numerically and geometrically oriented. By introducing the dimension of
+human behaviour in parametric design systems, such as high-level cognitive design requirements, and parameters of
+morphological formulation emanating therefrom, we can promote people-centred architecture design from the first
+steps of the design process [Bhatt and Schultz, 2017, Kondyli et al., 2018].
+The ability to analyse and manipulate the morphology of an environment (and resulting navigation paths) based on
+people-centred aspects, such as the scale of visuospatial and locomotive complexity and its effects on visuo-locomotive
+experience, is useful for the evaluation of design decisions and prediction of design performance especially for the
+initial stages of the design process. We have demonstrated how a parametric design system that incorporates behavioural
+knowledge can facilitate early design decisions especially for large-scale built environments such as hospitals, airports
+and museums where it is crucial to predict navigation performance of users at varying levels of visuo-locomotive
+complexity.
+Identification of suitable attributes to quantify an optimal level of visuospatial complexity for better cognitive per-
+formance (e.g., during navigation) needs to be investigated by empirical work. Towards this direction, our next steps
+include the use of the parametric functions developed to generate a series of immersive virtual environments that sys-
+tematically differ in the class of visuospatial complexity the proposed model. In a series of case studies in VR we employ
+behavioural metrics (e.g. behavioural mapping, eye-tracking, orientation task, etc.) to measure the effect of the defined
+attributes and their combinations on the navigation performance and better inform our model of visuo-locomotive
+complexity.

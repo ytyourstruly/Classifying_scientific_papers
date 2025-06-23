@@ -1,0 +1,927 @@
+This paper has not yet undergone peer review and may be subject to changes.
+From Clicks to Curiosity: Exploring Self-Directed Information Seeking as a Behavioral
+Manifestation of Curiosity
+1,2* 3 2,4 5
+Aki Schumacher , Markus W. H. Spitzer , Hayley Jach , Yvonne Kammerer , Christian
+6,7 1
+Scharinger , Lisa Bardach
+* Correspondence concerning this article should be addressed to Aki Schumacher, University of
+Giessen, Department of Psychology, Otto-Behaghel-Strasse 10F, 35394 Giessen, Germany; Phone: +49 (0)641 /
+99 - 26251; E-mail: aki.schumacher@psychol.uni-giessen.de
+University of Giessen
+University of Tübingen
+Martin Luther University Halle-Wittenberg
+The University of Melbourne
+Stuttgart Media University
+University of Freiburg
+Leibniz-Institut für Wissensmedien, Tübingen
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 2
+Author Note: We acknowledge that financial support was received from the intramural
+funding program of the LEAD Graduate School & Research Network (awarded to Aki Schumacher).
+Aki Schumacher is a doctoral student at the LEAD Graduate School & Research Network, which is
+funded by the Ministry of Science, Research and the Arts of the state of Baden-Württemberg within
+the framework of sustainability funding for the projects of the Excellence Initiative II. Lisa Bardach is
+supported by a Jacobs Foundation Research Fellowship and an Elite Program for Postdocs Fellowship
+from the Baden-Württemberg Foundation. We want to thank André Klemke for his support with data
+collection. A preprint of this manuscript is available on the Open Science Framework. Preliminary
+results were presented at the Tübingen Week on Education, Motivation,
+th
+Meta-Cognition, Personality, and Self-Regulation (TEMMPS) in July 2024 and at the 18
+International Conference on Motivation (ICM) in Bern, Switzerland in August 2024. There is another
+manuscript that uses the same data set but addresses different research questions (link to preprint:
+Author Contribution Statement:
+AS: Conceptualization, Data curation, Formal analysis, Funding acquisition, Investigation,
+Methodology, Project administration, Visualization, Writing – original draft, Writing - review
+and editing
+MS: Formal analysis, Methodology, Visualization, Writing - review and editing
+HJ: Conceptualization, Writing - review and editing
+YK: Resources, Writing - review and editing
+CS: Resources, Writing - review and editing
+LB: Conceptualization, Project administration, Supervision, Writing – original draft, Writing -
+review and editing
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 3
+Abstract
+To expand their knowledge and satisfy their intellectual curiosity, people need to engage in self-
+directed information seeking. However, curiosity research often relies on experimental tasks that
+explicitly prompt information seeking instead of capturing participants’ self-initiated exploratory
+behaviors. The present study aimed to combine aspects of experimental curiosity research with more
+naturalistic exploration methods by introducing a novel experimental set-up that captured self-directed
+information seeking as a more naturalistic behavioral measure of curiosity. In a preregistered online
+study (N = 799), participants freely explored a hypertext on a historical topic while their self-directed
+information seeking (i.e., clicks on hyperlinks and reading time) was captured with log files.
+Participants then completed a knowledge test in which they also reported their confidence in their
+answers and their curiosity about learning the correct answers, similar to commonly used curiosity
+tasks. Additionally, participants’ trait curiosity was measured with a questionnaire before they read the
+hypertext. Using mixed-effects regression models, we found that simply choosing to seek additional
+information (click on a hyperlink) did not predict subsequent curiosity ratings, whereas the extent of
+engagement in information seeking (reading time) did. Moreover, trait curiosity moderated the
+relationship between confidence and state curiosity, with highly trait curious individuals maintaining
+higher state curiosity under low confidence, unlike those with low trait curiosity. This study presents a
+promising way to assess self-directed information-seeking behavior as a manifestation of curiosity and
+provides a comprehensive perspective on the dynamic ways in which curiosity is sparked and
+satisfied.
+Keywords: information seeking, trait curiosity, state curiosity, confidence, behavioral trace data
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 4
+From Clicks to Curiosity: Exploring Self-Directed Information Seeking as a Behavioral
+Manifestation of Curiosity
+Intellectual or epistemic curiosity can be defined as a “desire to know,” which drives people to
+engage in information-seeking behaviors (Litman, 2005; Loewenstein, 1994). It can be captured as a
+general dispositional tendency to desire new knowledge (i.e., trait curiosity) or as a momentary
+experience that motivates people to acquire a specific piece of information (i.e., state curiosity).
+To study state curiosity, researchers often use the trivia question task (Baranes et al., 2015;
+Brooks et al., 2023; Dubey & Griffiths, 2020; Fastrich et al., 2018; Gruber et al., 2014; Jach et al.,
+2022; Kang et al., 2009; Ligneul et al., 2018; Marvin & Shohamy, 2016; Spitzer et al., 2024). In this
+task, participants are first presented with a set of trivia questions (e.g., “What is the only country with
+a national dog?”) and are asked how curious they are to learn the answer to each question (self-
+reported state curiosity). Several studies then include a second phase in which participants can decide
+to either skip the answer or reveal it by investing time (e.g., 10 s) or tokens (e.g., Jach et al., 2022;
+Marvin & Shohamy, 2016; Spitzer et al., 2024). This willingness to wait or pay to see the answer is
+considered a behavioral manifestation of their (state) curiosity, in line with the idea that curiosity
+should prompt information-seeking behavior. The two measures of state curiosity—self-reported and
+behavioral—usually map onto each other, as participants are more likely to wait or pay to reveal the
+answers to the questions they reported they were more curious about (e.g., Baranes et al., 2015; Dubey
+& Griffiths, 2020; Marvin & Shohamy, 2016).
+Whereas the trivia question task offers a straightforward and efficient way to study state
+curiosity, its ecological validity may be somewhat limited. Participants are explicitly made aware of a
+knowledge gap (by being asked a trivia question they likely do not know the answer to) and are then
+given a convenient way to close it (by deciding to reveal the answer). By contrast, curiosity in
+everyday life tends to arise more spontaneously, and people usually need to invest effort to retrieve the
+information that will satisfy their curiosity (von Stumm & Ackerman, 2013). Therefore, the
+information-seeking behavior in the trivia question task (i.e., the decision to reveal the answer) may
+reflect a reaction to an explicit prompt rather than participants’ self-initiated exploratory behavior.
+Furthermore, the answers to these trivia questions are typically one-word answers, and it is assumed
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 5
+that curiosity is satisfied and vanishes once the answer has been revealed (Loewenstein, 1994).
+However, most real-world learning experiences are not as clearly defined or closed-ended, and
+satisfying initial curiosity could also spark curiosity to learn more about the topic (Hidi & Renninger,
+2019; Murayama, 2022). In the trivia question task, the potential development of a more sustained
+interest cannot be captured, as curiosity is typically assessed only once, limiting this paradigm to less
+complex tasks.
+Another line of research that taps into more naturalistic exploratory information-seeking
+behaviors aimed at knowledge acquisition are studies that analyze individuals’ reading behavior on
+Wikipedia (Lydon-Staley et al., 2021; Zhou et al., 2024). People vary in how they browse Wikipedia,
+with some visiting articles that are conceptually closely related, whereas others hop between articles
+that are only loosely connected. Such behavioral differences have been found to be related to trait-
+level measures of curiosity (Lydon-Staley et al., 2021). These studies are highly naturalistic and
+exhibit high ecological validity, as they depict how many people nowadays access information
+predominantly by looking online (Gross et al., 2020). Furthermore, relying on automatically captured
+log data for an unobtrusive assessment of information-seeking behavior circumvents the biases that
+come with self-reports and avoids disrupting the information-seeking process (Neuberger, 2016).
+Whereas the highly naturalistic nature of studies that use Wikipedia to explore real-world
+information seeking is a strength, it also poses the challenge of having less experimental control.
+Systematic theory testing can be difficult, and linking these findings to results from experimental
+curiosity research in the lab may be challenging. Furthermore, studies have yet to test how log-file
+data from information-seeking tasks can be used to study state rather than trait curiosity and how trait-
+and state-level curiosity interact (Gross et al., 2020).
+Another relevant aspect that has not been considered in existing naturalistic studies on online
+reading behavior on Wikipedia (Lydon-Staley et al., 2021; Zhou et al., 2024) or in studies using the
+trivia question paradigm (Fastrich et al., 2018; Kang et al., 2009) is reading time. Reading time could
+serve as an indicator of behavioral engagement (e.g., Bråten et al., 2018; Latini et al., 2019), which is a
+valuable aspect to consider for curiosity research. For instance, some people’s curiosity may be short-
+lived—they may click on a link out of a momentary experience of curiosity, but once the page opens,
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 6
+their curiosity might not be strong enough for them to actually invest effort in reading and engaging
+with the text. In studies using the trivia question task, engagement in terms of reading time is difficult
+to assess, as the answers to the trivia questions can be processed in an instant. In general, greater
+engagement is likely to be associated with a higher probability of effectively integrating the
+information into one's knowledge base, which is particularly important when considering curiosity as a
+catalyst of long-term knowledge acquisition (Ackerman, 1996; von Stumm & Ackerman, 2013;
+Ziegler et al., 2012, 2018).
+In conclusion, each of the two lines of research on curiosity discussed here has distinct
+strengths and limitations, prompting the question of how to best combine them. One potential way to
+integrate the strengths of controlled experimental tasks (e.g., the trivia question task) with more
+naturalistic exploration methods (e.g., Wikipedia reading behavior) is by using short digital texts in
+experimental studies. For instance, in a study by von Stumm (2018), participants were taking part in a
+lab study where they had to complete cognitive tests on a computer. During an alleged study break, a
+webpage about lakes in Croatia appeared on their computer screens. The website included a few
+hyperlinks with additional information on certain aspects, for example, climate or local customs. For
+the participants, it was not evident that this was part of the study, so any exploration of the website
+was intrinsically driven. This type of experimental set-up (i.e., including a text with hyperlinks), which
+we also employed in the present study, allows researchers to maintain experimental control because
+the potential knowledge space for information seeking is well-defined while still allowing a
+spontaneous emergence of curiosity to guide self-directed information seeking.
+Experimental set-ups involving texts with hyperlinks that spark self-directed information
+seeking also lend themselves to the study of other important features in curiosity research. Because
+curiosity is characterized by a desire to explore the unfamiliar or unknown, the appraisal of one’s
+existing knowledge plays a role in triggering curiosity. Hence, in most studies using the trivia question
+task, participants are asked to first guess the answer and rate their confidence in its correctness as a
+metacognitive judgment of their knowledge level (e.g., Dubey & Griffiths, 2020; Jach et al., 2022;
+Wade & Kidd, 2019). A very common finding is that the relationship between curiosity and
+confidence follows an inverted U-shaped function: Curiosity is low when participants have either no
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 7
+idea what the answer could be or are certain that they know the answer, and curiosity is highest when
+participants are moderately confident (Baranes et al., 2015; Kang et al., 2009; Sakaki et al., 2024;
+Spitzer et al., 2024). Revisiting whether the inverted U-shape can also be found in experimental
+research that combines trivia question tasks with naturalistic information seeking, as in the present
+study, could yield important insights into the generalizability of the curiosity-confidence link (Sakaki
+et al., 2024). Furthermore, most previous studies have focused solely on the state-level relationship
+between confidence and curiosity without including a trait measure of curiosity. However, it is
+plausible that this relationship could depend on an individual’s trait-level curiosity. According to
+appraisal theories of curiosity, people with higher trait curiosity experience state curiosity more
+intensely or more frequently because they appraise novel and complex situations differently than
+people with lower levels of trait curiosity (Fayn et al., 2019; Silvia, 2008). This difference in appraisal
+may also influence how people perceive situations where they feel less confident in their knowledge,
+which could manifest in varying relationships between confidence and state curiosity depending on a
+person’s trait-level curiosity. For example, the tendency to perceive inconclusive situations as a chance
+for intellectual growth instead of as an aversive challenge should encourage approach behaviors rather
+than avoidance (Litman, 2005; Rauthmann et al., 2014).
+The Present Study
+The aim of this study was to integrate the trivia question paradigm (Fastrich et al., 2018; Kang
+et al., 2009) with research on more naturalistic exploration methods (e.g., studies on Wikipedia
+reading behavior; Lydon-Staley et al., 2021; Zhou et al., 2024) to investigate self-directed information
+seeking (i.e., information seeking that participants could engage in at their own pace and according to
+their preferences) as a more naturalistic and intrinsically motivated behavioral manifestation of
+participants’ curiosity. To gain a comprehensive understanding of how curiosity emerges and is
+satisfied, we examined the relationship between self-directed information seeking, trait curiosity,
+confidence, and self-reported state curiosity. By introducing an innovative experimental set-up to
+study the dynamic interplay of trait curiosity, information seeking, confidence, and self-reported state
+curiosity, the present study represents a key step toward a more integrated and nuanced perspective on
+curiosity.
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 8
+Specifically, we adopted an experimental set-up in which participants were presented with a
+hypertext on the history of the Panama Canal, a topic many people are not too familiar with (see
+information on relevant geographical locations or historical figures). Participants were instructed to
+read the text but were explicitly informed that they could freely navigate it for as long or as briefly as
+they wished (free exploration phase). Participants were also unaware that a knowledge test would
+follow. During the free exploration phase, participants’ log-file data were tracked to capture their
+information-seeking behavior. After reading, participants were given a surprise knowledge test on the
+content of the text with one question for each of the hyperlinks. They rated their confidence in their
+answers and their curiosity to learn the correct answer to each question, paralleling the trivia question
+paradigm. The correct answer was shown after each question. Furthermore, to investigate how trait-
+level curiosity is related to both behavioral and self-reported state curiosity, we assessed participants’
+trait intellectual curiosity by administering a questionnaire before the hypertext task. We addressed the
+following research questions and hypotheses, which were preregistered on the Open Science
+Framework (OSF; anonymized link for peer review:
+Research Question 1: Are participants with higher levels of trait curiosity more likely to
+experience state curiosity, captured by both self-directed information seeking (i.e., behavioral
+curiosity) during the free exploration phase and state curiosity self-reports on the knowledge test? It
+has been suggested that people with high levels of trait curiosity should be more likely to experience
+state curiosity (Fleeson & Jayawickreme, 2015; Litman et al., 2005). Thus, we expected trait curiosity
+to positively predict self-directed information seeking, manifesting as both a higher probability of
+clicking on hyperlinks (Hypothesis 1) and a longer time spent reading the text provided in the
+hyperlink (Hypothesis 2). The prediction regarding the effect of trait curiosity on state curiosity ratings
+was less straightforward in this experimental setting. Whereas, theoretically, we could have expected
+that participants with higher trait curiosity would report higher state curiosity during the knowledge
+test phase, it was also possible that these participants might have already satisfied their curiosity
+during the free exploration phase. This situation could potentially lead to lower curiosity ratings on the
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 9
+knowledge test. Thus, we did not specify a hypothesis on the effect of trait curiosity on self-reported
+state curiosity ratings.
+Research Question 2: Do behavioral measures of self-directed information seeking (whether a
+link was clicked and time spent reading it) predict later state curiosity ratings? As these measures have
+not been tested in this context before, our suggestions for their relationships were only tentative (Hidi
+& Renninger, 2006; Loewenstein, 1994). Whereas we predicted that behavioral curiosity would
+significantly predict later state curiosity ratings (Hypothesis 3), we did not specify the direction of the
+effect. Clicking on and reading the hyperlinks could lead to reduced curiosity ratings for the respective
+questions, as participants may have already satisfied their curiosity during the free exploration phase.
+Alternatively, participants might also remain curious and may want to confirm their responses to the
+topics they had just learned about. We further tested whether trait curiosity predicts state curiosity
+ratings above and beyond the effects of self-directed information seeking.
+Research Question 3: Does confidence predict state curiosity on the knowledge test? On the
+basis of previous research (Baranes et al., 2015; Dubey & Griffiths, 2020; Kang et al., 2009; Spitzer et
+al., 2024), we expected an inverted U-shaped relationship such that curiosity ratings would be highest
+when participants were moderately confident in their answers (Hypothesis 4). We further investigated
+whether trait curiosity predicts state curiosity ratings above and beyond the effects of confidence.
+Exploratory (Preregistered) Analyses: In exploratory analyses, we investigated all predictors
+collectively, first assessing their main effects and then exploring potential interaction effects between
+the variables.
+Additional (Preregistered) Analyses: Do confidence and behavioral curiosity predict
+performance (whether an item was answered correctly) on the knowledge test? These analyses served
+as validity checks to determine whether participants could accurately assess their knowledge levels
+1 In our preregistration, we indicated that we would further explore the addition of random slopes to each
+preregistered model. While incorporating random slopes improved the fit for some models, many failed to
+converge. To streamline the manuscript and maintain clarity, we report these exploratory analyses in Online
+Supplement S5 and not in the main text.
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 10
+and to verify whether information-seeking behavior during the free exploration phase contributed to
+knowledge acquisition.
+Study Procedure
+Method
+Participants
+Data were taken from a project that investigated information-seeking behavior and knowledge
+attainment in a hypertext learning task (for more details, see Online Supplement S1). Participants were
+recruited through the online research participation platform Prolific. Participants were eligible to
+participate if they were between 18 and 30 years old, native English speakers, had acquired a high-
+school diploma/completed A-levels, had not been medically diagnosed with dyslexia, and were not
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 11
+from the US, Colombia, or Central America (as they may have higher prior knowledge on the topic of
+the hypertext). Each participant was paid £5.40 for a study lasting approximately 35 minutes. The
+study was conducted using the German survey platform SoSci Survey (Leiner, 2023). Data were
+collected from N = 1,102 participants. First, we excluded participants who exhibited behavioral data
+indicative of noncompliance with the task instructions, exhibited off-task behavior, or experienced
+technical issues during data collection (n = 142; for more details, see Online Supplement S1). Next,
+and as preregistered for this study and similar to previous studies, we excluded additional participants
+who did not show any variance in their curiosity ratings across the 18 knowledge-test items (n = 160)
+(Dubey & Griffiths, 2020; Spitzer et al., 2024). To ensure that the same sample was used in all
+statistical analyses and that all models were comparable, we excluded one more participant who had
+missing data in their confidence ratings, resulting in a final sample of N = 799 (M = 25.5, SD =
+age age
+3.2). We simulated post hoc power analyses for each significant effect in the models addressing the
+research questions, based on 50 simulations and an alpha level of .05. Power ranged from 86% to
+100%, with 95% confidence intervals ranging from 70.89% to 100%.
+Of the participants, 49.4% identified as female, 48.8% as male, and 1.8% as gender
+variant/nonconforming. On average, participants spent 6 min on the hypertext and clicked on 8.14
+hyperlinks. One hundred sixty-four participants (20.65% of the final sample) did not click on any
+hyperlinks, indicating that participants were aware that clicking on hyperlinks was not required in the
+study.
+Measures
+For each question on the knowledge test, there was a corresponding hyperlink within the
+hypertext that contained the information required to answer the question. The texts were derived from
+the respective Wikipedia articles and modified so that they were similar in length and readability
+(ranging from 139 to 190 words). For each of the 18 items on the knowledge test, we considered the
+following variables: whether the corresponding hyperlink was clicked (click), time spent reading the
+hyperlink (reading time), participants’ confidence in their answer (confidence), their curiosity to learn
+the correct answer (state curiosity), and whether the question was answered correctly (performance).
+Click was a binary variable, with 1 indicating that the respective hyperlink was clicked and -1
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 12
+indicating that it was not. Reading time was recorded through the log-file data and was measured in
+seconds. We considered total time spent on a hyperlink, meaning that if a participant visited a specific
+hyperlink multiple times, the times from each visit were added together. Confidence was assessed for
+each question on the knowledge test with the item, “How sure are you about your answer?” Responses
+were rated on a scale ranging from 1 (very unsure) to 5 (very sure). State curiosity was assessed for
+each question with the item, “How curious are you to know the answer?” with a response scale
+ranging from 1 (not curious at all) to 5 (very curious). The questions on the knowledge test were
+sample item and Online Supplement S2 for the complete knowledge test). Performance was evaluated
+on the basis of whether the correct answer was selected, coded as 1 for correct answers and 0 for
+incorrect answers. Trait curiosity was measured with the Ideas facet of the Openness to Experience
+scale from the NEO-PI-R questionnaire (Costa & McCrae, 1992; Cronbach’s alpha: α = .80). This
+scale included eight items (sample item: “I like to solve complex problems”), and its response scale
+ranged from 1 (strongly disagree) to 5 (strongly agree).
+Analyses
+To account for differences in reading speed, we centered reading time within participants
+using only the trials where a link was clicked and reading time was therefore > 0. Confidence was also
+centered within participants. In additional analyses (not preregistered), we re-ran all analyses using
+confidence values that were centered between participants and raw confidence values when interaction
+terms were not included (see the Results section for details).
+To address our research questions, we specified mixed-effects (logistic) regression models
+model that contained only random intercepts for participants ( ) and items ( as a baseline model
+1𝑖𝑖 2𝑗𝑗
+𝑢𝑢 𝑢𝑢 )
+for comparison (McGillivray et al., 2015; Murayama et al., 2014). To compare nested models, we
+relied on likelihood ratio tests (LRTs). For further model comparisons, we considered the Bayesian
+Information Criterion (BIC) and Akaike Information Criterion (AIC), with smaller values indicating
+better model fit (Burnham & Anderson, 2002).
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 13
+For Research Question 1, we specified (logistic) regression models with click (Model 1a,
+M1a), reading time (M2a), and state curiosity ratings (M3a) as the outcome variables, and random
+intercepts for participants and items. For each model, we added trait curiosity as a Level 2 predictor
+(there was no within-participant variance because each participant had only one trait value; M1b-M3b)
+and tested whether model fit improved in comparison with their respective baseline models.
+To address Research Question 2, we sequentially tested how our indicators of self-directed
+information seeking (click, reading time) predicted state curiosity. We ran the analyses for the
+variables click and reading time separately. When testing the effects of click, all trials were included
+in the analyses (N = 14,382 trials), whereas only the trials in which a link was clicked were considered
+when testing the effects of reading time (N = 6,381 trials; 44.37% of overall trials). First, we specified
+a model that included click as a predictor (M4a) and compared it with its baseline model (M3a). Next,
+we set up a model with reading time as a predictor (M5b) and compared it with its baseline model
+(M5a). To account for the possibility that the relationship between reading time and state curiosity
+ratings might not be linear, we added a quadratic term in the next step (M5c). Lastly, we added trait
+curiosity as a Level 2 predictor to both M4a and M5c and tested for improvement in model fit (M4b
+and M5d).
+To address Research Question 3, we specified a model with state curiosity ratings as the
+outcome variable and confidence as both a linear and quadratic predictor (M6a) and compared it with
+the baseline model M3a. In a second step, we added trait curiosity as a Level 2 predictor and tested for
+improvement in model fit (M6b).
+As exploratory analyses, we considered all predictors (behavioral curiosity, confidence, and
+trait curiosity) jointly in a stepwise approach. We first specified a model predicting state curiosity
+ratings with click and confidence (both linear and quadratic terms) as predictors. Then, for all trials in
+which a link was clicked, we included reading time and confidence in one model. We added trait
+2 In the preregistration, we had planned to include both the click and reading time variables in a single model to
+assess the predictive power of reading time beyond the click variable. However, when reading time is used as a
+within-person-centered variable, 0 has a different meaning for each variable (average reading time vs. a link not
+being clicked; see Online Supplement S3 for more details), so they could not be included in the same model.
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 14
+curiosity to both models to test for improvement in model fit. Lastly, for both sets of models (click vs.
+reading time), we specified full models that included all main effects and interaction terms. We then
+employed backward regression analysis, with the BIC as the deciding criterion, to systematically
+reduce model complexity and determine the final model.
+Lastly, as additional analyses, we tested for predictors of performance (i.e., whether an item
+was answered correctly) on the knowledge test. First, we tested for accuracy in participants’
+assessments of their knowledge levels by setting up a mixed-effects logistic regression with
+performance as the outcome and confidence as the predictor. Next, we tested whether self-directed
+information seeking predicted test performance by specifying two models with click and reading time
+as predictors, respectively. All models were compared with a baseline model that included only
+participant and item as random intercepts.
+Transparency and Openness
+Our study’s design, research questions, hypotheses, and analyses were preregistered on the
+Open Science Framework (OSF; anonymized link for peer review:
+preregistration in small ways to enhance our data analyses. All changes from the original
+preregistration are detailed in Online Supplement S3. All data, analysis code, and research materials
+link for peer review). Data were analyzed with R (version 4.4.1; R Core Team, 2024) and the packages
+lme4 (v.1.1-35.5; Bates et al., 2015), MuMIn (v.1.48.4; Bartoń, 2024), and lmtest (v.0.9-40; Zeileis &
+Hothorn, 2002). Post hoc power analyses were conducted with the simr package (v.1.0.7; Green &
+MacLeod, 2016). For data visualization, we relied on the R packages ggplot2 (v.3.5.1; Wickham,
+2016), sjPlot (v.2.8.16; Lüdecke, 2024), and patchwork (v.1.3.0; Pedersen, 2024).
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 15
+Overview of the Specified Models and Their Respective Model Fit Scores (AIC and BIC) to Address the Research Questions
+No. of trials AIC BIC
+Research Question 1
+M1a click = β + u + u +ε 14,382 9436.24 9458.96
+ij 0 1i 2 j ij
+M1b = β + β + + +ε 14,382 9429.78 9460.08
+click trait_cur u u
+ij 0 1 i 1i 2 j ij
+M2a time = β + u + u +ε 14,382 115413.8 115444.1
+ij 0 1i 2 j ij
+M2b = β + β + + +ε 14,382 115396.2 115434.0
+time trait_cur u u
+ij 0 1 i 1i 2 j ij
+M3a cur = β + u + u +ε 14,382 39734.42 39764.72
+ij 0 1i 2 j ij
+M3b = β + β + + +ε 14,382 39709.77 39747.64
+cur trait_cur u u
+ij 0 1 i 1i 2 j ij
+Research Question 2
+M4a cur = β + β click + u + u +ε 14,382 39743.39 39781.26
+ij 0 1 ij 1i 2 j ij
+M4b = β + β + β + + +ε 14,382 39718.67 39764.11
+cur click trait_cur u u
+ij 0 1 ij 1 i 1i 2 j ij
+M5a = β + + +ε 6,381 17692.97 17720.02
+cur u u
+ij 0 1i 2 j ij
+M5b = β + β + + +ε 6,381 17697.97 17731.78
+cur time u u
+ij 0 1 ij 1i 2 j ij
+M5c = β + β + β 2 + + +ε 6,381 17675.56 17716.12
+cur time time u u
+ij 0 1 ij 2 ij 1i 2 j ij
+M5d = β + β + β 2 + β + + +ε 6,381 17657.14 17704.46
+cur time time trait_cur u u
+ij 0 1 ij 2 ij 3 i 1i 2 j ij
+Research Question 3
+M6a = β + β + β 2 + + +ε 14,382 39680.13 39725.57
+cur conf conf u u
+ij 0 1 ij 2 ij 1i 2 j ij
+M6b* = β + β + β 2 + β + + +ε 14,382 - -
+cur conf conf trait_cur u u
+ij 0 1 ij 2 ij 3 i 1i 2 j ij
+Note. click = Effect-coded variable representing whether a link was clicked; trait_cur = Trait curiosity (centered across participants); time = Reading time
+(centered within participants); cur = State curiosity; conf = Confidence (centered within participants); = Random participant effect; = Random item effect;
+= Error term.
+1𝑖𝑖 2𝑗𝑗
+𝑢𝑢 𝑢𝑢
+* This model failed to converge when using confidence values centered within persons, as preregistered.
+𝑖𝑖𝑗𝑗
+𝜀𝜀
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 16
+Results
+provides an overview of all findings.
+Behavioral Curiosity as a Function of Trait Curiosity
+trait curiosity. M1b showed that trait curiosity was a significant positive predictor of click (b = 0.84, z
+had a significantly better fit than the baseline model, which contained only random intercepts for
+participants and items, χ²(1) = 8.45, p = .004. However, whereas the AIC also favored this model, the
+which a link was clicked. M2b indicated that trait curiosity was a significant positive predictor of
+Again, the LRT favored the model that included trait curiosity over the baseline model, χ²(1) = 19.60,
+p < .001.
+Self-Reported State Curiosity as a Function of Trait Curiosity
+Trait curiosity was a significant positive predictor of state curiosity ratings (b = 0.28),
+t(797.00) = 5.60, p < .001 (M3b). The LRT, AIC, and BIC favored the more complex model that
+included trait curiosity over the simpler model that included only random effects, χ²(1) = 26.66, p
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 17
+Predicted Values of the Probability of Clicking (A), Reading Time (B), and State Curiosity Ratings (C)
+as a Function of Trait Curiosity
+Note. The line represents the model’s predicted values, and the shaded area around the line indicates
+the 95% confidence band.
+Self-Reported State Curiosity as a Function of Behavioral Curiosity
+We first investigated whether clicking on a hyperlink predicted later curiosity ratings for the
+respective item (M4a). Results showed that click was not a significant predictor of curiosity ratings (b
+= -0.002), t(13981.06) = -0.16, p = .871. Although the LRT was significant, χ²(1) = 6.97, p = .008, the
+AIC and BIC did not support the model over the random intercept baseline model (M3a). Adding trait
+curiosity (M4b) improved the model fit as indicated by the LRT, χ²(1) = 26.72, p < .001, and trait
+curiosity was a significant positive predictor of self-reported state curiosity (b = 0.28), t(798.09) =
+5.61, p < .001.
+Next, only considering read trials, we investigated the effect of reading time on curiosity
+ratings. In the first model (M5b), we specified a linear term for reading time, which showed a
+significant and negative effect (b = -0.003), t(5589.87) = -3.06, p = .002. However, none of the
+measures—LRT, χ²(1) = 3.00, p = .083; AIC; or BIC—favored this model over the baseline model
+(M5a), which included only random intercepts for participant and item. Adding a quadratic term for
+reading time (M5c) showed both a significant negative linear effect (b = -2.90), t(5577.40) = -3.18, p
+= .002, and a significant positive quadratic effect (b = 2.86), t(6048.21) = 2.93, p = .003. The LRT,
+AIC, and BIC all favored this model over both the model that included only a linear term and the
+baseline model. Adding trait curiosity as a predictor (M5d) further improved the model fit, indicated
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 18
+by the LRT, χ²(1) = 20.42, p < .001, and trait curiosity was a significant positive predictor (b = 0.29),
+ratings (and click was not), Hypothesis 3 was only partially supported.
+Predicted Values of State Curiosity as a Function of Reading Time and Centered Trait Curiosity
+Note. The line represents the model’s predicted values, and the shaded area around the line indicates
+the 95% confidence band.
+Self-Reported State Curiosity as a Function of Confidence
+The results from the mixed-effects model (M6a) that included both linear and quadratic terms
+of confidence in predicting state curiosity revealed a significant negative effect for only the linear term
+highest for trials with low confidence in the answer and lowest for trials with high confidence, failing
+to provide support for Hypothesis 4. When trait curiosity was added as an additional predictor (M6b),
+the model failed to converge.
+The nonsignificant quadratic term of confidence (i.e., no support for an inverted U-shaped
+relationship) was surprising and contradictory to prior research. We found that previous research that
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 19
+fit regression models to analyze the relationship between confidence and curiosity within the trivia
+question paradigm varied in how confidence was scaled. On the one hand, as discussed in Sakaki et al.
+(2024), centering or standardizing within participants allows within-person effects to be disentangled
+from between-person effects. On the other hand, raw confidence values retain the original scale,
+allowing low values to reflect “objectively” low knowledge and high values to reflect high knowledge,
+independent of an individual's general knowledge level (e.g., Dubey & Griffiths, 2020; Kang et al.,
+2009; Metcalfe et al., 2023; Spitzer et al., 2024; Stare et al., 2018). To test for whether the results on
+the quadratic effect of confidence on curiosity depended on the scaling method, we reran all the
+analyses using an alternative approach. Because we planned to conduct interaction analyses (see the
+Exploratory Analyses section), we used between-person-centered confidence values instead of raw
+values to ensure the interpretability of the interaction terms. As an additional check, we used raw
+values in all models that did not have interaction terms; the results were identical to the analyses run
+with between-person-centered values (see Online Supplement S4). When we refit M6a using between-
+person-centered confidence values, we found the expected negative quadratic effect in line with
+previous research (b = -11.41), t(14015.85) = -11.14, p < .001, and a negative linear effect (b = -
+2 1
+revealed lower values for the model using between-person-centered values (AIC = 39577.53; BIC =
+39622.97) in comparison with the preregistered model using within-person-centered confidence values
+(AIC = 39680.13; BIC = 39725.57), indicating that the models using between-person-centered values
+fit the data better. When we added trait curiosity to this model, it did not fail to converge but revealed
+a positive effect of trait curiosity on state curiosity ratings (b = 0.29), t(792.76) = 5.75, p < .001. The
+model with trait curiosity showed a better model fit than the simpler model without trait curiosity,
+χ²(1) = 28.33, p < .001.
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 20
+Predicted Values of State Curiosity Ratings as a Function of Confidence (A and B), and as a Function
+of the Interaction Between Confidence and Trait Curiosity (C and D), Using Within-Person-Centered
+Confidence (A and C) or Between-Person-Centered Confidence (B and D)
+Note. The line represents the model’s predicted values, and the shaded area around the line indicates
+the 95% confidence band.
+Exploratory Analyses
+As exploratory analyses, we set up models that included all predictors (behavioral curiosity,
+confidence, and trait curiosity) step-by-step to predict state curiosity ratings. Again, we considered two
+sets of models: one using click as the behavioral curiosity indicator with all trials included and another
+using reading time as the behavioral curiosity indicator, based on the trials in which a link was clicked.
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 21
+We first fit all models using within-person-centered confidence values and then using between-person-
+centered confidence values.
+Self-Reported State Curiosity as a Function of Click, Confidence, and Trait Curiosity
+The first model included click and confidence (both linear and quadratic terms) and showed a
+significant negative linear effect for confidence (b = -6.99), t(13620.79) = -7.48, p < .001. Adding
+trait curiosity showed a significant positive effect of trait curiosity (b = 0.28), t(798.19) = 5.58, p
+< .001, and a significantly better model fit, as indicated by the LRT, χ²(1) = 26.40, p < .001. When we
+reran the analyses using between-person-centered confidence values, we found a significant quadratic
+effect of confidence (b = -11.43), t(14014.81) = -11.15, p < .001, in addition to a negative linear effect
+(b = -6.16), t(14082.72) = -5.67, p < .001. Adding trait curiosity again showed a significant positive
+effect (b = 0.29), t(793.44) = 5.73, p < .001, and a significantly better model fit, χ²(1) = 28.06, p
+< .001.
+Next, we specified a full model including all possible interaction terms. To reduce model
+complexity, we conducted a backward regression analysis (see Tables S1 and S2 for information on
+the fitted models). The selection of the optimal model was based on the BIC, resulting in the exclusion
+of click as a predictor while retaining the interaction between trait curiosity and confidence. Using
+within-person-centered confidence, there were significant main effects of trait curiosity (b = 0.28),
+t(797.87) = 5.61, p < .001, and the linear term of confidence (b = -6.68), t(13555.62) = -7.22, p
+< .001, as well as a significant interaction between the two (b = -9.22), t(13565.64) = -6.81, p < .001.
+did not differ much between participants with high or low trait curiosity. However, in trials with low
+confidence, participants with high trait curiosity reported higher curiosity ratings than participants
+with low trait curiosity. For the models using between-person-centered confidence, the main effect of
+the quadratic confidence term (b = -11.03), t(14023.24) = -10.77, p < .001, and the interaction
+between the quadratic confidence and trait curiosity term were additionally significant (b = -3.21),
+t(14005.67) = -2.01, p = .045. Again, visual inspection suggested that trait curiosity influenced
+differences in curiosity ratings for trials with low confidence. Participants with higher trait curiosity
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 22
+reported greater curiosity than those with lower trait curiosity in trials with low confidence (see Panel
+Self-Reported State Curiosity as a Function of Reading Time, Confidence, and Trait Curiosity
+We set up a model that included reading time (with both linear and quadratic terms, as the
+quadratic term turned out to be informative in M5c) and confidence (with both linear and quadratic
+terms). First, we entered within-person-centered confidence into the model. Again, only the linear term
+was significant and negative (b = -6.37), t(5744.90) = -6.67, p < .001. For reading time, both the
+linear (b = -1.96), t(5522.12) = -2.13, p = .033, and quadratic term (b = 2.26), t(6052.11) = 2.31, p
+3 4
+= .021, were significant predictors, although the effects were smaller in comparison with M5c, which
+did not include confidence. Adding trait curiosity revealed that trait curiosity was a significant
+predictor (b = 0.29), t(616.57) = 4.96, p < .001, and it significantly improved the model fit according
+to the LRT, χ²(1) = 20.35, p < .001. We reran all models again, using between-person-centered
+confidence values instead of within-person-centered confidence. For all models, in addition to a
+significant linear term (b = -5.69), t(5923.42) = -5.41, p < .001, the quadratic term of confidence was
+significant and negative (b = -8.72), t(6083.08) = -8.79, p < .001. Again, trait curiosity was found to
+be a significant positive predictor when added to the model (b = 0.30), t(613.17) = 5.18, p < .001. The
+other effects remained virtually the same as in the model using within-person-centered confidence.
+Next, we ran a full model with all possible interaction terms. The backward regression
+analysis indicated that the full model had the best fit (see Tables S3 and S4 for information on all
+models). Using within-person-centered confidence values, there were significant main effects of trait
+curiosity (b = 0.30), t(623.77) = 5.11, p < .001, and the linear confidence term (b = -5.63), t(5736.02)
+1 2
+= -5.81, p < .001. There was also a significant interaction between the two (b = -8.87), t(5942.62) = -
+6.62, p < .001, as well as between trait curiosity and the quadratic confidence term (b = 3.80),
+t(6119.82) = 2.48, p = .013. Again, the differences between participants with high and low trait
+curiosity were most pronounced in trials with low confidence ratings. Lastly, the interaction between
+the quadratic confidence term and the linear reading time term was significant (b = -169.64),
+t(5901.53) = -1.98, p = .048. Using between-person-centered confidence values, we found significant
+main effects of trait curiosity (b = 0.31), t(616.31) = 5.39, p < .001, the linear confidence term (b = -
+1 2
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 23
+4.82), t(5932.80) = -4.55, p < .001, the quadratic confidence term (b = -8.80), t(6082.31) = -8.78, p
+< .001, and the quadratic reading time term (b = 2.23), t(6031.83) = 2.19, p = .028. Furthermore, the
+interaction between trait curiosity and the linear confidence term was significant (b = -10.23),
+t(6045.43) = -6.47, p < .001. Again, participants with low versus high trait curiosity differed most in
+their curiosity ratings in trials where they had low confidence. Lastly, the interaction between the
+quadratic confidence term and the linear reading time term (b = -222.79), t(5812.17) = -2.82, p
+= .005, and the interaction between the quadratic confidence term and the quadratic reading time term
+be an effect of reading time on state curiosity ratings for trials of average confidence. However, for
+items that participants were either highly unsure or highly confident about, particularly short and
+particularly long reading times seem to increase state curiosity ratings.
+Predicted Values of State Curiosity Ratings as a Function of the Interaction Between Reading Time
+(Centered Within Participants) and Confidence (Centered Between Participants)
+Note. The line represents the model’s predicted values, and the shaded area around the line indicates
+the 95% confidence band.
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 24
+Predicting Performance
+We ran additional analyses to investigate predictors of the probability of answering an item
+correctly. First, we tested whether confidence predicted performance. The logistic mixed-effects
+regression model revealed a significant positive effect of (within-person-centered) confidence (b =
+centered values, with similar results (b = 0.49, z = 29.56, p < .001). Next, we tested for whether
+clicking on a link increased the probability of answering the item correctly. We found a significant
+we tested whether reading time predicted performance, and it did (b = 0.02, z = 8.52, p < .001; see
+Predicted Values of Performance as a function of Confidence (A), Click (B), and Reading Time (C)
+Note. The line represents the model’s predicted values, and the shaded area around the line indicates
+the 95% confidence band.
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 25
+Overview of the Main Results
+Predictor Outcome Centering approach Effects
+for confidence
+Research Question 1
+M1b Trait curiosity Click - Positive effect of trait curiosity
+M2b Trait curiosity Reading time - Positive effect of trait curiosity
+M3b Trait curiosity State curiosity - Positive effect of trait curiosity
+Research Question 2
+M4a Click State curiosity - No significant effect of click
+Click, No significant effect of click
+M4b State curiosity -
+trait curiosity Positive effect of trait curiosity
+M5b Reading time State curiosity - Negative linear effect of reading time
+Negative linear effect and positive quadratic effect of
+M5c Reading time, reading time² State curiosity -
+reading time
+Negative linear effect and positive quadratic effect of
+Reading time, reading time²,
+M5d State curiosity - reading time
+trait curiosity
+Positive effect of trait curiosity
+Research Question 3
+M6a Confidence, confidence² State curiosity Within Negative linear effect of confidence
+Between Negative linear and quadratic effects of confidence
+Confidence, confidence²,
+M6b State curiosity Within Model failed to converge
+trait curiosity
+Negative linear and quadratic effects of confidence
+Between
+Positive effect of trait curiosity
+Exploratory analyses
+Click,
+State curiosity Within Negative linear effect of confidence
+confidence, confidence²
+Between Negative linear and quadratic effects of confidence
+Click,
+Negative linear effect of confidence
+confidence, confidence², State curiosity Within
+Positive effect of trait curiosity
+trait curiosity
+Negative linear and quadratic effects of confidence
+Between
+Positive effect of trait curiosity
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 26
+Interaction model: Click was excluded as a predictor
+click, Negative linear effect of confidence
+State curiosity Within
+confidence, confidence², Positive effect of trait curiosity
+trait curiosity Negative effect of Trait Curiosity × Confidence
+Click was excluded as a predictor
+Negative linear and quadratic effect of confidence
+Between Positive effect of trait curiosity
+Negative effect of Trait Curiosity × Confidence and
+Trait Curiosity × Confidence²
+Negative linear effect and positive quadratic effect of
+Reading time, reading time²,
+State curiosity Within reading time
+confidence, confidence²
+Negative linear effect of confidence
+Negative linear effect and positive quadratic effect of
+Between reading time
+Negative linear and quadratic effects of confidence
+Reading time, reading time², Negative linear effect and positive quadratic effect of
+confidence, confidence², State curiosity Within reading time
+trait curiosity Positive effect of trait curiosity
+Negative linear effect and positive quadratic effect of
+reading time
+Between
+Negative linear and quadratic effects of confidence
+Positive effect of trait curiosity
+Full interaction model had the best fit
+Interaction model:
+Sign. negative linear effect of confidence
+Reading time, reading time²,
+State curiosity Within Sign. positive effect of trait curiosity
+confidence, confidence²,
+Sign. negative effect of Trait Curiosity × Confidence
+trait curiosity
+Sign. negative effect of Trait Curiosity × Confidence²
+Full interaction model had the best fit
+Negative linear and quadratic effect of confidence
+Positive quadratic effect of reading time
+Positive effect of trait curiosity
+Between
+Negative effect of Trait Curiosity × Confidence
+Negative effect of Reading Time × Confidence² and
+positive effect of Reading Time² × Confidence²
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 27
+Additional analyses
+Confidence Performance Within Positive effect of confidence
+Between Positive effect of confidence
+Click Performance - Positive effect of click
+Reading time Performance - Positive effect of reading time
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 28
+Discussion
+The present study aimed to contribute to a more comprehensive body of knowledge on
+curiosity by focusing on the dynamic interplay of behavioral curiosity in terms of self-directed
+information seeking, self-reported curiosity, confidence, and trait curiosity. To do so, we introduced an
+innovative experimental set-up, combining aspects of curiosity research employing the trivia question
+paradigm (Fastrich et al., 2018; Kang et al., 2009) and research on more naturalistic information
+search (Lydon-Staley et al., 2021; Zhou et al., 2024). Thus, in our study, participants could first freely
+read a hypertext to learn about a historical topic before taking a knowledge test on the content in
+which they reported both their curiosity and confidence in their answers. We captured self-directed
+information seeking, offering a more naturalistic assessment of information seeking as a behavioral
+manifestation of curiosity compared with traditional experimental paradigms that assess information
+seeking in a more structured and prompted way. Also, the study design allowed us to study more
+dynamic processes of curiosity: By allowing participants to engage in self-directed information
+seeking before assessing their curiosity about specific pieces of information, we could investigate how
+self-directed information seeking affected subsequent curiosity ratings. In addition, we simultaneously
+considered several well-established constructs that are central to curiosity research (information
+seeking, trait curiosity, confidence, self-reported state curiosity) in a large sample, allowing us to
+explore their interactions and to gain a more fine-grained understanding of their interplay. Lastly, our
+study makes a methodological contribution by bringing attention to methodological considerations
+about how confidence is scaled, which has been implemented in different ways across previous studies
+on curiosity. Specifically, we showed that some of the findings differ depending on whether
+confidence was treated as a within-person variable (i.e., a person’s confidence in an answer compared
+with their other answers) or a between-person variable (i.e., a person’s confidence in their answer
+compared with all participants' answers). We next discuss the major findings of our study.
+First, our study sheds light on whether higher trait curiosity manifested in greater levels of
+state curiosity in line with personality theories that conceptualize personality traits as density
+distributions of their respective states (Fleeson, 2001). As an important extension of prior research, we
+tested how trait curiosity was related to both behavioral state curiosity (in the form of self-directed
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 29
+information seeking) and self-reported state curiosity (on the knowledge test). While exploring the
+hypertext, participants with higher trait curiosity were more likely to click on hyperlinks to seek out
+additional information and also exhibited longer reading times after clicking on a link. Participants
+with higher trait curiosity also tended to report higher state curiosity ratings on the knowledge test.
+Moreover, across all models, trait curiosity was a significant positive predictor of self-reported state
+curiosity, beyond other (state-level) variables, and consistently improved model fit. In general, these
+findings were in line with our hypotheses, underline the importance of trait curiosity for predicting
+different types of state curiosity, and support the idea that people with higher trait-level curiosity
+should experience state curiosity more often (Kashdan & Steger, 2007; Litman, 2005).
+Next, our study uncovered whether self-directed information seeking in the free exploration
+phase predicted state curiosity ratings on the knowledge test. As the behavioral measures had not been
+tested before, we did not specify concrete hypotheses on their relationships with self-reported
+curiosity. On the one hand, if participants had satisfied their curiosity about a topic during the free
+exploration phase, they might no longer feel curious about it during the knowledge test (Loewenstein,
+1994). On the other hand, the short hyperlink text could also serve as an introduction to a topic,
+sparking further curiosity afterwards (Hidi & Renninger, 2019; Murayama, 2022). Importantly, we
+were able to capture varying degrees of engagement within the information-seeking behavior by
+measuring reading time rather than relying on only a binary variable representing whether or not
+participants clicked on a hyperlink. For instance, two participants may both click on a hyperlink, but
+one might read the information very thoroughly whereas the other might only skim the text, which
+should affect whether they were actually able to satisfy their curiosity about this topic. Our results
+showed that whether a participant had clicked on a hyperlink did not predict their curiosity rating on
+the respective topic. However, once a link was clicked, reading time was a significant predictor of
+state curiosity ratings. Interestingly, we found both a negative linear relationship and a positive
+quadratic relationship, meaning that links with (individually) short reading times resulted in higher
+curiosity ratings, but links with particularly long reading times (in comparison with that participant’s
+average reading time) did too. Trials with short reading times leading to elevated curiosity ratings
+could be due to a lack of understanding—the topic piqued their curiosity enough to click on the link,
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 30
+but the reading time was not sufficient to fully process the information and thus satisfy their curiosity.
+Long reading times could be a sign of a very initial development of a more sustained interest in the
+topic. Whereas the momentary experience of curiosity might drive someone to click on a hyperlink,
+they may discover as they start reading that a situational interest has been triggered and they want to
+learn more about this topic (Hidi & Renninger, 2019). This situational interest could lead them not
+only to read the text more thoroughly but also to report higher curiosity when asked about the topic
+again on the knowledge test. As interest is associated with perceiving greater value in the information,
+participants might also feel more invested in getting the correct answer and thus indicate greater
+curiosity about learning the answer (Hidi & Renninger, 2006). An alternative explanation for long
+reading times could be that long reading times indicate confusion, which could also lead to increased
+curiosity later. If the participant struggled to make sense of the hyperlink text, this difficulty could
+result in longer reading times (Gwizdka & Spence, 2007). Consequently, they may be more curious
+about learning the correct answer because they want to resolve their confusion. When we included the
+interaction between confidence and reading time in our models, we found that the quadratic
+relationship between reading time and state curiosity could be observed in trials with particularly high
+and particularly low confidence but not for trials with moderate confidence. Thus, both explanations
+(long reading times as a sign of sustained interest vs. confusion) may hold some truth. Further research
+is needed to clarify why curiosity ratings were higher in these cases. For instance, the behavioral trace
+data captured during the free exploration phase could be enriched by eye-tracking data, which could
+help differentiate between different cognitive states, such as confusion or interest while reading
+(Bardach et al., 2024; Hosp et al., 2021; Julku et al., 2023). Alternatively, adding open-ended
+questions such as “Why are you particularly curious about this question?” in trials with high curiosity
+ratings could shed light on the reasons for participants’ elevated curiosity.
+Third, we explored the relationship between confidence and state curiosity. When following
+our preregistered analysis plan of using within-person-centered confidence, we found only a negative
+linear effect, meaning that with higher confidence in their answer, participants became less curious
+about learning the answer. Theoretically, this finding is aligned with novelty-based theories of
+curiosity that argue that we should be most curious about novel information, as it is the most
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 31
+intrinsically rewarding for us (Berlyne, 1950; Dubey & Griffiths, 2020). However, empirical findings
+have consistently demonstrated an inverted U-shaped relationship between confidence and curiosity
+(Baranes et al., 2015; Dubey & Griffiths, 2020; Kang et al., 2009; Spitzer et al., 2024). Different
+curiosity theories offer various explanations for this relationship, with recent integrative approaches
+suggesting that seeking information of moderate complexity maximizes knowledge gain because
+limited gains in knowledge can be expected from information that a person is either already certain of
+or cannot relate to any existing knowledge (Dubey & Griffiths, 2020; Ten et al., 2024). Dubey and
+Griffiths (2020) attempted to integrate novelty-based and complexity-based theories, suggesting that
+people should seek different information depending on the environmental structure. They argued that
+people should be novelty-driven rather than complexity-driven in environments in which the prior
+knowledge is independent of its probability of being needed in the future. This situation may apply in
+our experimental set-up, as participants likely did not expect to be tested on the content of the
+hypertext after the experiment ended.
+However, we did observe the expected quadratic relationship when we used between-person-
+centered confidence (and also raw confidence values) instead of within-person-centered confidence.
+Most studies that identified the quadratic relationship used raw or linearly transformed values (Dubey
+& Griffiths, 2020; Kang et al., 2009; Metcalfe et al., 2023; Stare et al., 2018) or values that were
+scaled within persons (Lyew et al., 2023), but many studies did not report detailed information on their
+scaling approach. As discussed by Sakaki et al. (2024), raw values provide a closer approximation of
+absolute levels of knowledge, meaning that higher values indicate greater (absolute) knowledge, and
+lower values indicate less knowledge. By contrast, within-person-centered values in this study reflect a
+participant’s confidence in an item compared with their confidence in all other items on the knowledge
+test, thereby removing information on the absolute response scale. In contrast to our findings, Sakaki
+et al. (2024) found no significant differences between within-person-centered and raw confidence
+values when reanalyzing data from multiple studies that used the trivia question paradigm. One
+potential reason for this lack of difference could be that the trivia questions were developed and
+sampled so that most people would not know the answers, resulting in generally low confidence
+ratings. In our study, however, the distribution of confidence ratings was spread more evenly, with a
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 32
+skew toward higher ratings. Thus, the centering approach may have had a stronger effect due to the
+difference in the distributions of confidence ratings. Another possible explanation is the point of
+reference participants used when they indicated their confidence in an answer. In the trivia question
+task, each question is independent. Participants thus likely evaluate their confidence in absolute terms
+and assess their confidence relative to their general knowledge for each question. In our study,
+however, all questions were related to the Panama Canal. The fact that we observed different results
+for the different scaling approaches may suggest that participants used the other items on the
+knowledge test as reference points for their assessment of confidence in a specific item. This tendency
+may be particularly interesting for practical applications of curiosity research. In educational contexts,
+we rarely learn many stand-alone facts, and the internal comparisons learners make between their
+knowledge levels on different topics may come into play. In future research, the choice of scaling
+approach should be carefully considered, as it may alter the interpretation of results and reflect
+different meta-cognitive processes. Therefore, researchers should align their scaling methods with
+their research objectives and report their methods transparently.
+We tested how self-directed information seeking, confidence, and trait curiosity jointly
+predicted curiosity ratings, and, taking advantage of the large sample size, we tested all interaction
+effects. Overall, click was not a relevant predictor of state curiosity ratings. Reading time remained a
+significant predictor, though its effect diminished once confidence was added to the model. This
+decrease may suggest a potential mediation effect, where longer reading times may lead to greater
+confidence in one’s answer. Trait curiosity and confidence consistently predicted curiosity ratings
+across all models, as did their interaction. Although the nature of this relationship varied depending on
+how confidence was scaled, the general pattern showed that state curiosity ratings differed the most
+between participants with different levels of trait curiosity in trials where they had low confidence.
+Participants with high trait curiosity were more curious about trials they had less certainty about
+compared with the ones in which they had high confidence. They also displayed the strongest negative
+linear relationship (for within-person-centered confidence) or inverted U-shaped relationship (for
+between-person-centered confidence). By contrast, participants with low trait curiosity were least
+curious in trials with low confidence but became more curious with increasing confidence. For them,
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 33
+the relationship between confidence and curiosity ratings took the form of a positive linear relationship
+instead. Thus, it appears that the finding that curiosity is highest for information with moderate
+complexity might not be true for everyone.
+Why do participants with different levels of trait curiosity react differently to experiencing low
+confidence? Higher levels of trait curiosity are associated with a greater appreciation for cognitive
+effort (Cacioppo & Petty, 1982; Mussel, 2013). As a result, situations perceived as complex or
+ambiguous may be approached rather than avoided (Kashdan & Steger, 2007), leading more curious
+participants to report a desire to see the answers they are uncertain about. Across two studies where
+participants had to rate their curiosity about poems or pictures, Silvia (2008) found that the effect of
+trait curiosity on momentary curiosity was fully mediated by participants’ appraisals of whether they
+were able to comprehend the object. Similar to the present findings in which the effect of trait
+curiosity could be observed only in ambiguous situations in which participants had low confidence in
+the answer, the mediation effect of participants’ appraisal of coping potential in the study by Silvia
+(2008) was seen only with complex stimuli but not for simple stimuli. This finding has important
+implications for educational practice, where teachers may try to trigger students’ curiosity by
+highlighting knowledge gaps or presenting surprising facts or open-ended questions (Grossnickle
+Peterson, 2020; Lamnina & Chase, 2019). Whereas this strategy may successfully spark state curiosity
+in highly curious students, it could overwhelm students with lower trait curiosity (Kashdan et al.,
+2018; Lavrijsen et al., in press). Thus, interventions aimed at triggering curiosity might not have the
+same effect on all students and may require personalized instructional practices to be effective across
+different levels of trait curiosity.
+With respect to the interaction between confidence and reading time, interestingly, trials with
+very high and very low confidence ratings showed similar patterns, distinct from trials with moderate
+confidence. In trials with very high or low confidence, there was a positive quadratic relationship
+between reading time and curiosity ratings. This finding means that, in those trials, both very short and
+very long reading times were associated with higher curiosity ratings, whereas average reading times
+were linked to lower curiosity ratings. By contrast, for trials with moderate confidence, reading time
+appeared to have a minimal impact on curiosity ratings. We can only speculate about the reasons for
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 34
+this pattern. As previously mentioned when discussing the quadratic relationship between reading time
+and state curiosity ratings, particularly long reading times could reflect either sustained interest or
+confusion (Gwizdka & Spence, 2007; Hidi & Renninger, 2019). Trials in which participants reported
+low confidence despite a long reading time may indicate confusion, whereas high confidence paired
+with long reading times could signal greater interest. For trials with particularly short reading times,
+participants likely clicked on the hyperlink but quickly returned to the main text without processing
+any information. This fleeting exposure may then have sparked a desire to revisit the information
+when given the opportunity on the knowledge test. By contrast, for trials with low reading time and
+high confidence, participants may have already known the answer before reading the text, and their
+curiosity to learn the answer might have stemmed from a desire to confirm their prior knowledge.
+However, strong claims about these effects would be premature, as this type of experimental set-up
+has not been tested before. Still, our findings highlight the promise of further exploring the interplay
+between engagement, confidence, and curiosity in future research. It is possible that degree of success
+from acquiring knowledge via information seeking (as reflected by the confidence in one’s answers)
+influences subsequent curiosity. For example, a learner may demonstrate high engagement with
+information, such as spending a long time reading, yet they may still struggle to successfully acquire
+knowledge. This scenario could lead to increased curiosity about the topic later on or, conversely,
+result in frustration and diminished curiosity (Di Leo et al., 2019).
+Lastly, we tested factors affecting participants’ likelihood of answering a question correctly
+(Stankov & Lee, 2008). We found that in trials in which participants reported greater confidence, they
+were more likely to answer correctly. This finding indicates that participants’ metacognitive awareness
+of their knowledge levels was fairly accurate. Notably, when predicting performance, the scaling
+approach for confidence did not affect the results. Furthermore, we tested for whether self-directed
+information-seeking behavior during the free exploration phase affected performance. Both click and
+reading time positively predicted performance, validating these two variables as meaningful indicators
+of information seeking aimed at knowledge acquisition.
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 35
+Limitations
+Several limitations should be acknowledged. The knowledge test we administered mirrored
+the trivia question task in that, for each question, participants were asked to indicate both their
+confidence in their answer and their curiosity to learn the correct answer. However, there were also
+several differences. First, we used multiple-choice rather than open-ended questions. The answer
+format may have influenced participants’ behaviors (e.g., how much they deliberated on their answers)
+and potentially their curiosity to learn the correct answer. Furthermore, whereas the knowledge test
+questions covered various aspects of the topic, and some were only loosely connected (e.g.,
+information on the Pacific Ocean vs. Dwight D. Eisenhower), they were all related to the overall topic
+of the Panama Canal. This approach is in contrast to the trivia questions, which are often drawn from
+standardized pools and are not related to each other (Fastrich et al., 2018). We assume that the direct
+effect of this interrelatedness on the curiosity and confidence ratings during the knowledge test was
+likely to be minimal. However, we cannot rule out the possibility that reading one hyperlink during the
+free exploration phase may affect the selection of the next, something that cannot be fully controlled
+for experimentally. As a result, some links may have been read together more frequently, indirectly
+affecting the confidence and curiosity ratings. Nonetheless, learning about a coherent topic better
+reflects real-world learning situations, highlighting the trade-off between using clearly separated items
+and more naturalistic materials.
+Whereas we included many well-established constructs from curiosity research, there are
+several additional variables that have been considered in previous studies using the trivia question
+task. Some of these constructs are assessed before the answer is revealed, for example, a feeling-of-
+knowing (Litman et al., 2005) and tip-of-the tongue states (Metcalfe et al., 2017), or the perceived
+importance of knowing the answer (Spitzer et al., 2024). Others pertain to how a person evaluates the
+answer once it has been revealed, with previous research assessing reactions such as surprise (Baranes
+et al., 2015; Ligneul et al., 2018), interest in the answer (Fastrich et al., 2018; McGillivray et al.,
+2015), relief and pleasure (Jach et al., 2022), or confusion (Vogl et al., 2020). Future research could be
+enriched by additionally considering these variables and investigating how they interact with one
+another and with the variables included in our study.
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 36
+Lastly, we measured only short-term knowledge acquisition, as the knowledge test was
+administered immediately after participants finished reading the hypertext. However, many studies
+have demonstrated that curiosity enhances memory retention, even after time delays (Fastrich et al.,
+2018; Kang et al., 2009; Lyew et al., 2023; Marvin & Shohamy, 2016; McGillivray et al., 2015;
+Murayama & Kuhbandner, 2011; Stare et al., 2018; Swirsky et al., 2021). Thus, incorporating a
+follow-up knowledge test in this experimental set-up could be valuable, especially for examining how
+reading time, as a proxy for engagement, affects both short-term and long-term knowledge acquisition.
+Furthermore, reassessing participants’ curiosity to learn the answers during the follow-up could
+provide additional insights into how curiosity evolves over time and how it is related to knowledge
+retention. For example, one might intuitively expect a participant to be particularly curious about a
+question that they used to know the answer to in the first knowledge test but they cannot remember in
+the follow-up.
+Conclusion
+How did the Pacific Ocean get its name? What was the Panama conflict? Who was Ferdinand
+de Lesseps? To learn something new, people must often be intrinsically motivated and must engage in
+self-directed information seeking to satisfy their curiosity. In an online study, we investigated the self-
+directed information seeking of participants who read a hypertext and the interplay of information
+seeking with trait curiosity and subsequent self-reported confidence and curiosity. We found that the
+degree of engagement in information seeking—measured by reading time—was a significant predictor
+of later curiosity ratings, whereas the mere decision to seek additional information (i.e., click on a
+hyperlink) was not. Furthermore, the relationship between confidence and curiosity about a specific
+piece of information was influenced by a person’s trait curiosity, especially in instances of low
+confidence. This study introduced a promising experimental set-up for studying intrinsically motivated
+information seeking as a more naturalistic behavioral measure of curiosity while maintaining
+experimental control and provides new insights into the dynamic processes of how curiosity emerges,
+evolves, and is satisfied.
+SELF-DIRECTED INFORMATION SEEKING AND CURIOSITY 37

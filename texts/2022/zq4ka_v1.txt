@@ -1,0 +1,198 @@
+Social media reveals population dynamics of dysphoric dreaming
+Remington Mallett Laura Sowin
+Department of Psychology Media Laboratory
+Northwestern University Massachusetts Institute of Technology
+mallett.remy@gmail.com
+Michelle Carr
+Center for Advanced Research in Sleep Medicine
+University of Montreal
+Abstract Introduction
+Nightmares disrupt sleep health and predict future Nightmares and other bad dreams incur major sleep
+psychiatric diagnosis, yet reliable population estimates health costs. Nightmare recallers suffer reduced sleep
+1 2 3
+and their fluctuations over time are difficult to obtain. efficiency , depressed mood , increased suicide risk ,
+Here, we observe an increase in dysphoric dreaming and are more likely to receive further psychiatric diag-
+shared on Reddit immediately following the World noses than their counterparts . Even a single night of
+Health Organization’s declaration of COVID-19 as a bad dreams is associated with reduced well-being the
+5 6
+global pandemic. This “digital dream surveillance” following day . Despite viable treatment options and
+approach might offer the field of sleep medicine a low- the modern emphasis on promoting sleep health, night-
+cost and real-time system for monitoring population mares are rarely reported in clinical contexts and often
+sleep health. go untreated . Furthermore, reliable and ecological
+estimates of dysphoric dreaming in the population are
+Keywords: nightmares, sleep, natural language pro- 8
+difficult to obtain due to variable definitions . Thus,
+cessing, digital health surveillance, Reddit
+there is high demand in sleep medicine for a naturalis-
+tic approach to measuring population-level dysphoric
+Resource availability. All data used in the current
+dreaming over time and with multiple definitions.
+study is from public sources. All code used to extract
+Here, we tested the ability to detect dynamic changes
+and analyze data is available in a public repository
+in multiple classes of dysphoric dreaming – nightmares
+and anxious dreaming – on social media using natural
+language processing . Prior survey studies suggest
+Author contributions. RM designed the study and
+that dysphoric dreaming increased during the first
+analyzed the data. RM and LS collected and inspected
+wave of the COVID-19 pandemic , but such studies
+the data. RM and MC wrote the manuscript.
+have limited temporal precision and low ecological
+validity. Utilizing natural and unprompted human
+Acknowledgements. RM would like to thank Ashwini
+discourse from social media offers many advantages
+Ashokkumar for invaluable conversation and feedback
+over retrospective survey studies , including reduced
+related to the current project. RM was supported by
+reporting bias and real-time monitoring that allows for
+the National Institutes of Health under award number
+preventative rather than reactive medicine. This digital
+T32NS047987.
+health surveillance approach has been used frequently
+to track population health in psychiatry and other
+fields , but is only beginning to gain traction in sleep
+15,16
+health .
+Results
+We tracked various forms of dysphoric dream con-
+tent posted on r/Dreams – a subreddit dedicated to
+dream sharing – in relation to major events of the
+(A) Dream reports were extracted from Reddit by scraping r/Dreams and filtering out posts that did not indicate a dream
+with post “flair,” leaving only dream posts. Anxious dreaming was quantified as the percentage of anxious words from
+the body text of dream posts (i.e., dream reports), and nightmares were identified as dream posts whose titles included a
+nonzero percentage of nightmare words. (B) Only dream-flaired posts surrounding the WHO’s declaration of COVID-19 as
+a global pandemic were included in analysis. (C) Anxious dreaming – the percentage of LIWC anxiety words – increased
+following the WHO’s declaration of COVID-19 as a global pandemic. Data line is smoothed over a 7-day moving average
+for visualization purposes only. Shaded error represents SEM. (D) After the WHO’s declaration of COVID-19 as a global
+pandemic, the frequency of COVID-related news posted on Reddit was predictive of anxious dreaming the following week.
+(E) More nightmares were posted to r/Dreams in the month following the WHO’s declaration of COVID-19 as a global
+𝑁 ,
+pandemic than the month preceding. Error bars represent bootstrapped ( = 2 000) 95% confidence intervals.
+𝑁 ,
+in anxious dreaming after the World Health Organiza- impact on dysphoric dreaming and suggests that media
+tion (WHO) declared COVID-19 a global pandemic on exposure might have driven dysphoric dreaming .
+th 18
+March 11 , 2022 (interrupted time series analysis ;
+𝐵 . 𝐶 𝐼 . . 𝑝 .
+Discussion
+This effect was not present in additional control anal-
+Dysphoric dreaming is only a small part of multidi-
+of nightmares in the month following the WHO’s an-
+mensional sleep health, but the approach applied in
+nouncement than the preceding month (chi-squared test;
+this study might also be effective at tracking other
+𝜒2 𝑁 , . 𝑝 .
+sleep concerns. Dreams are commonly reported
+with language and thus readily observable on social
+strong ecological evidence that the initial COVID-19
+media , though recent work suggests that Twitter ac-
+global pandemic declaration had a significant impact on
+16,21
+tivity can be indicative of sleep loss and more
+dysphoric dreaming and that social media is sensitive
+general sleep problems . Our findings complement
+to event-driven fluctuations of population dreaming.
+these approaches, and further developments will likely
+To better understand the temporal dynamics, we reveal that other aspects of sleep health are detectable
+examined the relationship between anxious dreaming in social media.
+and COVID-19-related news exposure. Weekly change Currently, tracking sleep health at the population
+in COVID-19-related r/news posts was predictive of the level is a large investment. Traditional survey meth-
+19 𝑟
+following week’s change in anxious dreaming ( = ods require significant cost and labor to distribute,
+. 𝐶 𝐼 . . 𝑝 .
+th
+dream reports surrounding March 11 , 2022. To control for potential effects of seasonality, we ran the same analyses using
+th
+only r/Dreams posts that were flaired as dream reports surrounding March 11 , 2019. To control for potential changes in
+common language, we ran the same analyses using only r/Dreams posts that were not flaired as dream reports surrounding
+th 𝐵 𝐵 𝐵 𝑝 < .
+March 11 , 2020. See Methods for descriptions of , , and . Bolded values are statistically significant at 05.
+1 2 3
+⊘ r/news data from 2019 is currently unavailable.
+Anxiety regression Anxiety corr. Nightmares chi-sq.
+𝐵 𝑝 𝐵 𝑝 𝐵 𝑝 𝑟 𝑝 𝜒2 𝑝
+Text source
+1 2 3
+Dreams, 2020 0.00 .492 0.13 .038 0.00 .634 .46 .024 4.48 .034
+Dreams, 2019 0.00 .944 0.05 .538 0.00 .941 ⊘ ⊘ 0.17 .679
+Non-dreams, 2020 0.00 .681 -0.08 .296 0.00 .390 .02 .920 0.00 .969
+annually). To overcome these limitations, we showed being reported the day after they occur. A segmented
+that the language of social media is sensitive to de- linear regression model was constructed with anx-
+tecting dynamic changes and can be used to estimate ious dreaming as the dependent variable as follows:
+𝑌 𝐵 𝐵 𝑇 𝐵 𝑋 𝐵 𝑇 𝑋 𝑇
+population-level dysphoric dream content over time. = + + + , where is the time
+𝑡 𝑡 𝑡
+0 1 2 3
+This low-cost method of digital sleep-health surveil- elapsed since the first included day and is a dummy
+lance might offer sleep medicine the opportunity to variable indicating whether the time was before (coded
+th 𝐵
+gain better insights into population sleep patterns and as 0) or after (coded as 1) March 11 . Thus, repre-
+ultimately provide a regional monitoring system for sents the baseline level of anxious dreaming at = 0,
+targeted preemptive care. represents the change in anxious dreaming per-day
+across the entire time period, represents the level
+th 𝐵
+change in anxious dreaming after March 11 , and
+Methods
+represents the slope change after March 11th. The same
+March 11 th ± 30-day time window used here was used
+Data source. Data was extracted from Reddit using the
+to compare nightmare frequency before and after March
+PSAW Python package to interface with Pushshift .
+th
+11 . However, because nightmares were represented as
+Posts from the r/Dreams subreddit with “Short Dream,”
+binary values, post frequencies before and after March
+“Medium Dream,” or “Long Dream” flair were used for
+th
+11 were submitted to a 2x2 chi-squared independence
+dysphoric dreaming measures. Posts from the r/news
+test to test change in nightmare frequency. To test the
+subreddit were used for the COVID-19-related news
+relationship between COVID-19-related news and anx-
+measure. This research was exempt from IRB review.
+th
+ious dreaming, a large post-March 11 window (March
+th st
+12 – September 1 , 2022) was selected to avoid out-
+Language measures. Anxious dreaming of each
+liers in COVID-19-related news changes driven by large
+r/Dreams post was calculated as the percentage of
+𝑁 ,
+spikes in the early warning stages ( = 5 067,
+words belonging to the LIWC-22 anxiety dictionary r/Dreams
+𝑁 ,
+= 288 027). The rate of COVID-19-related
+(e.g., worry, fear, afraid, nervous). Each r/Dreams post r/news
+news posts and average anxious dreaming were aver-
+was identified as a nightmare if its title contained a
+aged within each week, and weekly anxious dreaming
+non-zero percentage of words belonging to a custom
+rates were shifted forward 1 week to account for ex-
+dictionary that included all words beginning with the
+pected delays in dream incorporation . Raw values
+stem “nightmar” (e.g., nightmare, nightmarish). Each
+were converted to percent change between consecu-
+r/news post was identified as COVID-19-related if its
+tive weeks to account for time series autocorrelation
+title contained a non-zero percentage of words belong-
+(i.e., stationarity) and submitted to a Spearman corre-
+ing to a custom COVID-19 dictionary (e.g., covid,
+lation ( = 24) because of its lack of normality
+virus, mask). All percentages were calculated using weeks
+assumptions. To control for potential seasonality ef-
+the LIWC-22 app .
+fects, all analyses were repeated using the same dates
+of 2019. To control for known impacts of the COVID-
+Statistical analyses. We used an interrupted time
+18 19 pandemic on daily language , all analyses were
+series analysis to test the impact of COVID-19 on
+repeated using only r/Dreams posts that did not have
+anxious dreaming. Anxious dreaming was averaged
+dream flair. All tests were two-sided. Analyses were
+across all posts for each day surrounding the WHO’s
+implemented in the statsmodels (interrupted time se-
+declaration of COVID-19 as a global pandemic (March
+11 th , 2020 ± 30 days). One day was subtracted from ries) and Pingouin (chi-squared test and correlation)
+Python packages.
+each date of anxious dreaming to account for dreams

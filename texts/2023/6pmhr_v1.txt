@@ -1,0 +1,2094 @@
+MATH ANXIETY AND MATH ACHIEVEMENT 1
+The Relationship Between Math Anxiety and Math Achievement: Novel and Robust
+Evidence From A Meta-Analysis of Individual Participant Data From International
+Large-Scale Assessments
+Draft version (November 20, 2024). This paper has not been peer reviewed
+1 2 3 4,5 1
+Martin Brunner , Franzis Preckel , Thomas Götz , Oliver Lüdtke , and Lena Keller
+Department of Educational Sciences, University of Potsdam, Germany
+Department of Psychology, University of Trier, Germany
+Faculty of Psychology, University of Vienna, Austria
+Leibniz Institute for Science and Mathematics Education, Germany
+Centre for International Student Assessment, Germany
+MATH ANXIETY AND MATH ACHIEVEMENT 2
+Author Note
+We thank James E. Pustejowsky and Wolfgang Viechtbauer for their support in using
+the clubSandwich and metafor R packages to carry out the meta-analyses on the international
+large-scale assessment data. However, our acknowledgment does not imply that these
+colleagues endorse our views, and we remain solely responsible for the views expressed in the
+present article. We would also like to acknowledge editorial support from Jane Zagorski. The
+R code for reproducing all results as well as the data with effect sizes used in the present
+paper can be accessed via the Open Science Framework (OSF) at [link]. We made a preprint
+preregister the analyses presented in this paper.
+We have no conflicts of interest to disclose. This work was supported by the Deutsche
+Forschungsgemeinschaft (DFG; German Research Foundation) under Grant 442358899.
+Correspondence concerning this article should be addressed to Martin Brunner,
+Department of Educational Sciences, Faculty of Human Sciences, University of Potsdam,
+Karl-Liebknecht-Str. 24-25, 14476, Potsdam, Germany. E-mail: martin.brunner@uni-
+potsdam.de
+MATH ANXIETY AND MATH ACHIEVEMENT 3
+Abstract
+Math anxiety and math achievement are reciprocally related, which likely impacts
+individuals’ agency; their educational and career trajectories in science, technology,
+engineering, and mathematics (STEM) fields; and countries’ economic growth in these areas.
+Previous meta-analyses on this relationship faced limitations from studies using small,
+convenience samples and suffered from methodological issues, such as variance restriction,
+low statistical power, and ecological bias. To address these challenges, the present research
+synthesis is the first to use a comprehensive collection of representative individual participant
+data (IPD) from International Large-Scale Assessments (ILSAs). This analysis incorporated
+cumulative evidence from 1980 to 2022, including 452 probability samples from 90 countries,
+and covered student and adult populations. The meta-analytic average correlation between
+math anxiety and math achievement was r = .26. Moderator analyses revealed novel
+evidence that this relationship is sensitive to construct characteristics as well as individual and
+contextual factors. Specifically, the negative relationship was weaker for the worry facet of
+math anxiety compared with its affective facet and its cognitive interference facet, and it was
+weaker following the onset of the COVID-19 pandemic in 2020. Additionally, the negative
+relationship was stronger for individuals with average and high levels of math achievement
+and in countries with higher Gross Domestic Product per capita. Gender differences in the
+relationship were largely negligible after 2010, although female individuals exhibited a
+stronger negative relationship in the 1980s and 1990s than male individuals. In summary,
+synthesizing IPD from ILSAs provided novel, nuanced, and robust evidence for research,
+practice, and policy.
+Keywords: individual participant data meta-analysis, international large-scale
+assessments, math anxiety, math achievement
+MATH ANXIETY AND MATH ACHIEVEMENT 4
+Public Significance Statement
+This meta-analysis provides novel and robust evidence that higher levels of math anxiety are
+associated with lower math achievement in both student and adult populations worldwide.
+The negative relationship between math anxiety and math achievement was stronger for
+individuals with average and high levels of math achievement as well as in countries with
+higher Gross Domestic Product per capita. Consequently, this relationship may have more
+pronounced detrimental effects on individuals’ career trajectories in science, technology,
+engineering, and mathematics (STEM) fields as well as on economic growth in STEM sectors
+in socioeconomically thriving countries.
+MATH ANXIETY AND MATH ACHIEVEMENT 5
+The Relationship Between Math Anxiety and Math Achievement: Novel and Robust
+Evidence From A Meta-Analysis of Individual Participant Data From International
+Large-Scale Assessments
+2 1
+“What is the area enclosed by the graphs of functions y = x and y = 5x – 4?” How do
+you feel when you see this math problem? If you are experiencing math anxiety, which is
+characterized by feelings of nervousness, dread, or confusion, and if you are worried that you
+might fail to solve this problem (Ashcraft, 2002; Namkung et al., 2019), you are not alone.
+Many people of all ages (Barroso et al., 2021; Caviola et al., 2022) and from around the world
+(Foley et al., 2017) feel math anxiety. For example, projecting from recent International
+and 540,000 students in Grade 8 in the US have been estimated to experience high levels of
+math anxiety.
+Importantly, math anxiety and math achievement are reciprocally related. Math
+anxiety impairs math achievement (Barroso et al., 2021; Caviola et al., 2022; Chang &
+Beilock, 2016; Namkung et al., 2019), and lower levels of math achievement result in higher
+levels of math anxiety (Aldrup et al., 2020; Gunderson et al., 2018; Pekrun et al., 2017; Ma &
+Xu, 2004). The motivational and cognitive profiles of math-anxious individuals predict that
+they tend to avoid learning opportunities that have a strong mathematics focus in school,
+college, university, and vocational training (Daker et al., 2021; Eccles & Wigfield, 2020; Lau
+et al., 2024; Meece et al., 1990). Thus, an understanding of the relationship between math
+anxiety and math achievement is key to (a) counteracting workforce shortages in Science,
+Technology, Engineering, and Mathematics (STEM) fields and (b) fostering individuals’
+mathematical literacy, which is essential for individuals’ agency (e.g., understanding interest
+This math problem was taken from the year 2015 cycle of the Trends in International Mathematics and Science
+Study in Grade 12 (see Exhibit M2.6.3 in Mullis et al., 2016). The area is 4.5.
+MATH ANXIETY AND MATH ACHIEVEMENT 6
+rates on home loans or keeping track of family income and expenses) and their ability to
+participate in a democratic society (e.g., understanding statistics in media reports).
+The extensive research that has been conducted on the relationship between math
+an overview) that drew on aggregated data (AD), which are the results reported in primary
+studies (i.e., correlations). These meta-analyses, also referred to as AD meta-analyses (Cooper
+& Patall, 2009; Pigott et al., 2012), have consistently shown that higher levels of math anxiety
+are associated with lower levels of math achievement (average correlations have centered on a
+value of r = .30). However, results from moderator analyses (e.g., involving grade levels or
+the facets of math anxiety) for explaining the heterogeneity of correlations around the meta-
+analytic average have been inconsistent across meta-analyses (Barroso et al., 2021; Caviola et
+al., 2022; Namkung et al., 2019). Furthermore, previous meta-analyses have suffered from
+major limitations, involving (a) the generalizability of findings because most primary studies
+were based on small convenience samples of college students or samples from Western
+countries and (b) the extent to which they could be used to study moderating effects of
+individual characteristics (e.g., gender).
+The primary goal of this evidence synthesis is to accumulate novel insights and
+significantly advance the understanding of the relationship between math anxiety and math
+achievement. To this end, we conducted a meta-analysis using a unique combination of
+archival data: a systematic collection of individual participant data (IPD) from representative
+International Large-Scale Assessments (ILSAs). This approach enabled us to compute a
+substantial number of high-quality effect sizes across a wide range of countries, many of
+which were not included in previous meta-analyses. Access to this extensive data set provided
+greater statistical precision and power, enabling us to thoroughly examine potential
+Individuals from countries or economic regions can participate in ILSAs. For ease of presentation, we refer to
+both “countries” and “economic regions” as “countries” in this article.
+MATH ANXIETY AND MATH ACHIEVEMENT 7
+moderators of the relationship between math anxiety and math achievement and address the
+conflicting findings from previous meta-analyses that explored moderating effects.
+Additionally, utilizing IPD from ILSAs allowed us to uncover the moderating effects of not
+only individual factors (e.g., gender, individuals’ math achievement levels), which previous
+meta-analyses could not conclusively address, but also contextual educational or
+socioeconomic characteristics (e.g., country-level math achievement, national socioeconomic
+prosperity), which were previously unexplored. In summary, the synthesis of IPD from ILSAs
+enables the generation of reliable, generalizable, and novel findings on the relationship
+between math anxiety and math achievement. These findings offer substantial contributions to
+theory and research and highlight potential intervention targets for educational practice and
+policy.
+The Multidimensional Nature of Math Anxiety and Math Achievement
+Math Anxiety
+Math anxiety is an expression of academic anxiety that is specific to the domain of
+mathematics (Ashcraft, 2002; Chang & Beilock, 2016). It can be conceptually and empirically
+distinguished from related constructs, such as general test anxiety, academic anxiety in other
+subject domains (e.g., German, physics), general anxiety, and general academic anxiety
+(Chang & Beilock, 2016; Goetz et al., 2007; Gogol et al., 2017; Hembree, 1990). These
+constructs are either more specific or general in nature or pertain to different domains and
+thus differ in the extents to which they are similar to math anxiety.
+Early work on math anxiety (Richardson & Suinn, 1972) treated it as a unitary
+construct (Barroso et al., 2021; Namkung et al., 2019). However, research on test anxiety
+(e.g., Liebert & Morris, 1967; Putwain et al., 2021) has shown that a more nuanced
+understanding can be achieved by conceptualizing test anxiety as a multidimensional
+construct that encompasses more specific, interrelated facets. Work by Liebert and Morris
+(Liebert & Morris, 1967; Morris et al., 1981) has been particularly influential. They identified
+MATH ANXIETY AND MATH ACHIEVEMENT 8
+worry as a major cognitive facet of test anxiety, comprising negative thoughts and self-
+perceptions of failure (e.g., worrying about failing a math test). Additionally, they identified a
+broad affective-physiological facet, termed emotionality, which encompasses both autonomic
+arousal and negative emotions (e.g., nervousness or tension). Subsequent empirical analyses
+(Pekrun et al., 2004; Putwain et al., 2021; Sarason, 1984), along with systematic reviews and
+expert panels (Putwain et al., 2021), have corroborated and advanced the multidimensional
+view of test anxiety. In particular, the work by Putwain et al. (2021) demonstrated that the
+conceptual framework that Liebert and Morris proposed can be refined even further.
+Specifically, they differentiated the affective-physiological facet into an affective facet and a
+physiological facet. The affective facet encompasses individuals’ negative emotional
+reactions (e.g., nervousness, dread, anxiety, tension), whereas the physiological facet is
+related to specific physiological reactions (e.g., stomach discomfort, increased heart rate).
+Additionally, Putwain et al. (2021) distinguished two cognitive facets: the worry facet (as
+originally proposed by Liebert and Morris) and the cognitive interference facet, which refers
+to test-irrelevant thoughts and distractions (e.g., confusion while taking math tests).
+Furthermore, given the positive correlations among these four facets, Putwain et al. (2021)
+proposed considering test anxiety as a broad general construct composed of these facets.
+Conceptualizations of test anxiety have often been applied to research on math anxiety
+(see Namkung et al., 2019). This meta-analysis is the first to adopt the current
+conceptualization of test anxiety, providing two perspectives on math anxiety. First, math
+anxiety can be understood as a broad construct comprising both cognitive and affective-
+physiological facets. This perspective is particularly useful for investigating how individuals’
+overall levels of math anxiety are related to math achievement. Additionally, math anxiety can
+be understood as a multidimensional construct with four interrelated facets: the worry,
+cognitive interference, affective, and physiological facets. This perspective provides nuanced
+MATH ANXIETY AND MATH ACHIEVEMENT 9
+insights into the differential relationships between these facets of math anxiety and math
+achievement.
+Notably, general math anxiety and its specific facets may manifest in various math-
+related contexts, such as in everyday situations (e.g., calculating the amount of a discount),
+evaluative settings (e.g., tests), and learning environments, whether in class or independently
+(e.g., Bieleke et al., 2023; Hopko et al., 2003; Richardson & Suinn, 1972). Thus, measures of
+math anxiety can refer to specific contexts (e.g., “I feel nervous about taking math tests”) or
+remain general in nature without specifying a particular context (e.g., “I feel nervous about
+mathematics”).
+Math Achievement
+Math achievement can be defined as the math-related knowledge and skills that are
+acquired through long-term, cumulative, and domain-specific learning processes (Baumert et
+al., 2009). In academia and specifically in school, college, and university settings, math
+achievement is often represented by performance outcomes that indicate the extent to which
+an individual has achieved specific goals that have been the focus of activities in math
+instructional environments (Steinmayr et al., 2014). Measures of math achievement comprise
+very general indicators (e.g., tests of procedural and declarative knowledge) as well as more
+curriculum-based indicators (e.g., performance on math achievement tests). From these
+perspectives, the present meta-analysis conceptualizes math achievement as a broad,
+multidimensional construct that encompasses various subdomains that differ in content,
+difficulty, and complexity. This concept is well reflected in modern assessment frameworks
+that guide the development of math achievement tests in ILSAs (e.g., Mullis et al., 2016,
+2020; OECD, 2023a). Specifically, these tests include items that span a wide range of
+difficulty, complexity, and curricular demands to assess general math achievement.
+Additionally, ILSAs provide subtests to measure both the content-related subdomains (e.g.,
+MATH ANXIETY AND MATH ACHIEVEMENT 10
+quantity and numbers, calculus, geometry, algebra) and the process-related subdomains (e.g.,
+Why Are Math Anxiety and Math Achievement Interrelated?
+The empirical relationship between math anxiety and math achievement has been
+accounted for by several mechanisms, which we briefly summarize below (detailed
+discussions can be found in Carey et al., 2016; Chang & Beilock, 2016; Suárez-Pellicioni et
+al., 2016).
+Cognitive Interference Theory
+The cognitive-interference theory proposes that high levels of math anxiety lead to
+poor math achievement because math anxiety may exert negative effects while individuals do
+mathematics (Carey et al., 2016; Eysenck et al., 2007; Namkung et al., 2019). Several
+mechanisms have been proposed to explain how math anxiety impairs the processing of math-
+related information. These mechanisms primarily involve working memory, a central
+cognitive system responsible for the simultaneous processing and storage of information
+(Baddeley & Hitch, 1994; Oberauer, 2019), as well as the retrieval of mathematical
+knowledge and methods from long-term memory (Carey et al., 2016; Unsworth & Engle,
+2007). One widely discussed mechanism is math anxiety’s associations with worry and self-
+deprecating thoughts, which tax some of the limited resources of an individual’s working
+memory (Carey et al., 2016; Namkung et al., 2019; Suárez-Pellicioni et al., 2016). This taxing
+of resources subsequently leads to reduced math performance. Moreover, math anxiety may
+also impair individuals’ attention (i.e., a key function of working memory; Engle, 2002;
+Oberauer, 2019). Because math-anxious individuals pay less attention to the current math
+problem and more attention to threat-related stimuli (e.g., worrisome thoughts; Eysenck et al.,
+2007), they experience cognitive interference (e.g., confusion) and disruptions in goal-
+directed attention (e.g., difficulty concentrating), and in turn, their math performance is
+impaired (Li et al., 2023; Putwain et al., 2021). Finally, another proposed mechanism involves
+MATH ANXIETY AND MATH ACHIEVEMENT 11
+the impact of math anxiety on brain activity. When individuals experience negative emotions
+(e.g., fear, dread) due to math anxiety, there is an increase in activity in the amygdala—a
+brain region that is involved in processing emotions. At the same time, this increase is
+associated with decreased activity in brain regions such as the dorsolateral prefrontal cortex,
+which is critical for working memory and successful math performance (Foley et al., 2017).
+Deficit Theory
+The deficit theory proposes that low levels of math performance (e.g., on a math
+achievement test) and related memories lead to high levels of math anxiety (see Tobias, 1986,
+for a first review). In particular, two lines of research have provided (some) support for this
+idea (Barroso et al., 2021; Carey et al., 2016; Namkung et al., 2019). First, students with
+(very) low levels of performance on math achievement tests have been found to report
+disproportionally high levels of math anxiety relative to students with average performance
+(Lai et al., 2015; Passolunghi, 2011; Wu et al., 2014). This finding suggests that students with
+low math achievement may be particularly susceptible to the negative effects of math anxiety
+(Barroso et al., 2021). Hence, low levels of math achievement could lead to math anxiety,
+particularly when children demonstrate very poor math achievement in early development
+(e.g., children with mathematical learning disabilities; see Carey et al., 2016). However,
+research has yet to determine whether this developmental process can be generalized to
+children in the average range of math achievement (Carey et al., 2016). Second, Ma and Xu
+(2004) conducted a study that tracked students in the US from Grades 7 to 12 and found that
+higher levels of prior math achievement predicted lower levels of math anxiety in subsequent
+grades. Later math achievement could not be predicted by math anxiety in most cases, thus
+suggesting that math achievement has an effect on math anxiety, but not vice versa (Ma &
+Xu, 2004).
+Reciprocal Theory
+MATH ANXIETY AND MATH ACHIEVEMENT 12
+Reciprocal theory proposes that math anxiety and math achievement are mutually
+related (Barroso et al., 2021; Carey et al., 2016; Namkung et al., 2019). At first glance,
+cognitive-interference theory and deficit theory may appear to be in conflict. However,
+findings supporting these theoretical models have been provided by different research
+paradigms that use different time scales (Carey et al., 2016). The most support for cognitive-
+interference theory has come from experimental studies that focused on the immediate effect
+of math anxiety on math performance. For example, the study by Daker et al. (2023) showed
+that higher levels of math anxiety (conceptualized as a temporally stable trait) were associated
+with higher levels of in-the-moment (i.e., state-level) math anxiety that individuals
+experienced while engaged in mathematical processing. Furthermore, higher state-level math
+anxiety was associated with lower math performance. This pattern of results provides strong
+support for the assumption that math anxiety interferes with (in-the-moment) math
+performance. The strongest support for deficit theory comes from longitudinal studies that
+focused on the effects of math achievement on math anxiety in the long term (e.g., across
+months or years). Importantly, several of these studies have shown that math anxiety and
+math achievement are indeed reciprocally related, with higher levels of math anxiety
+predicting lower levels of math achievement, and vice versa (Aldrup et al., 2020; Gunderson
+et al., 2018; Pekrun et al., 2017; and even the study by Ma & Xu, 2004 in Grades 7 to 9).
+An important factor that may drive the reciprocal relationship between math anxiety
+and math achievement is how individuals appraise math-related situations and activities
+(Pekrun, 2006; Ramirez et al., 2018). Specifically, state-level math anxiety is likely to be
+triggered and sustained in math-related situations when individuals: (a) negatively appraise
+their ability to succeed (e.g., as reflected by a low math self-concept); (b) focus on the
+possibility of failure (e.g., the likelihood of receiving a poor grade on a test); (c) perceive
+limited control over the possibility of avoiding failure (e.g., having low math self-efficacy and
+viewing the demands of current or upcoming math tasks as exceeding their capabilities); and
+MATH ANXIETY AND MATH ACHIEVEMENT 13
+(d) perceive failure in mathematics as highly threatening and personally significant. These
+appraisals are shaped by past math experiences and are continually updated by current
+experiences (Eccles & Wigfield, 2020; Pekrun, 2006; Ramirez et al., 2018). Additionally,
+these appraisal processes are also linked to individuals’ broader motivational profile in
+mathematics (Pekrun, 2006). Math-anxious individuals tend to have lower motivation,
+interest, enjoyment, and self-confidence in math-related activities (Gogol et al., 2017;
+Hembree, 1990; Meece et al., 1990). Importantly, appraisal processes along with a broader
+cognitive and motivational profile drive math-anxious individuals to avoid situations where
+they might experience failure in math (Lau et al., 2024; Pekrun, 2006). As a result, math-
+anxious individuals are less likely to seek out opportunities to learn math, such as choosing
+math-intensive courses in school, college, or university (Daker et al., 2021; Eccles &
+Wigfield, 2020; Lau et al., 2024; Meece et al., 1990).
+To conclude, the dynamic interplay between math anxiety and math achievement, both
+in the short term and over time, predicts that individuals with math anxiety are at a high risk
+of entering a negative, self-reinforcing cycle—a vicious circle (Namkung et al., 2019). Their
+anxiety often leads to decreased motivation in math, prompting them to avoid math-related
+activities. This avoidance reduces their exposure to math learning opportunities, subsequently
+impairing their math achievement even more and exacerbating their anxiety. Moreover, math
+anxiety can negatively impact their immediate performance in learning and evaluation
+situations, ultimately reducing math learning outcomes in the long term.
+How Are Math Anxiety and Math Achievement Empirically Related?
+Math anxiety and its relationship to math achievement have been examined in literally
+hundreds of studies since Dreger and Aiken (1957) introduced the term number anxiety more
+than 60 years ago (Ashcraft & Moore, 2009; Dowker et al., 2016). The results of these studies
+have been synthesized in several meta-analyses, including the now classic meta-analyses by
+Hembree (1990) and Ma (1999) as well as several more recent meta-analyses (Barroso et al.,
+MATH ANXIETY AND MATH ACHIEVEMENT 14
+both the strengths of these meta-analyses and limitations that point to important gaps in
+knowledge on the relationship between math anxiety and math achievement.
+Average Relationship
+Although the time range and inclusion criteria for primary studies have varied across
+previous meta-analyses, the findings on the average correlation between math anxiety and
+math achievement have been remarkably consistent, centering on a value of r = –.30.
+Importantly, whereas previous meta-analyses have significantly advanced the understanding
+of the relationship between math anxiety and math achievement, Barroso et al. (2021)—the
+authors of the most comprehensive evidence synthesis available to date—self-critically
+acknowledged that many effect sizes in their meta-analysis were derived from convenience
+sampling procedures involving small samples, college students, or samples from Western
+countries. This critique extends to all prior meta-analyses. Crucially, the limitations of the
+primary studies entail a risk of (a) imprecise or (b) potentially distorted estimates of the
+relationship between math anxiety and math achievement due to small sample sizes, variance
+restriction, and sample selectivity. Furthermore, there is a risk of (c) biased results, limited
+precision, and reduced representativeness and generalizability in meta-analytic integrations of
+these relationships (Brunner, Keller, et al., 2023; Campos et al., 2023).
+In addition, the standard search strategies that have been applied in previous meta-
+analyses have typically missed reports on ILSAs and corresponding IPD that were based on
+large, representative samples, most likely because these reports and data are often not indexed
+in central databases (e.g., PsycInfo or Web of Science). Notably, existing meta-analyses have
+included a few primary studies (e.g., J. Lee, 2009a, 2009b; Stoet et al., 2016) that used some
+ILSA data in secondary analyses to examine the relationship between math anxiety and math
+use complex survey procedures to compute correlations and their corresponding standard
+MATH ANXIETY AND MATH ACHIEVEMENT 15
+errors. Thus, the effect sizes that have been included in previous meta-analyses to represent
+the relationship between math anxiety and math achievement are at risk of being biased
+(Brunner, Keller, et al., 2023; Campos et al., 2023). Furthermore, Stoet et al.’s (2016) results
+were included in some previous meta-analyses (Caviola et al., 2022; Namkung et al., 2019).
+However, this study reported country-average correlations, which do not provide information
+on how math anxiety and math achievement are related at the individual level (ecological
+bias; Thompson & Higgins, 2002). In summary, much of the arguably best empirical evidence
+on the relationship between math anxiety and math achievement is missing from extant meta-
+analyses or has been meta-analytically integrated by using error-prone procedures or drawing
+on effect sizes that were not relevant.
+Moderating Effects
+Previous meta-analyses have found heterogeneity in effect sizes, suggesting
+moderating effects. Thus, these meta-analyses examined several potential moderators of the
+relationship between math anxiety and math achievement.
+Analytic Strategies. Various strategies can be applied to study moderating effects in
+meta-analyses (Konstantopoulos & Hedges, 2019; Tipton et al., 2019a). According to Tipton
+et al.’s (2019b) best practice recommendations, all relevant moderator variables should be
+included in a single meta-regression model to study a certain target moderator. In doing so, it
+is possible to obtain an estimate of the effect of the target moderator by statistically adjusting
+for the effects of the remaining moderator variables (which controls for their potential
+math anxiety and math achievement, only Namkung et al. (2019) used a meta-regression
+3 Lee (2009a, 2009b) did not use sampling weights to compute correlations. Thus, the correlations reported in
+these papers do not provide unbiased estimates of the relationship between math anxiety and math achievement
+for the target population. Furthermore, the AD meta-analyses that used the correlations from the papers by Lee
+used standard formulas to compute the sampling variances (i.e., the squared standard errors) for the correlations.
+However, in doing so, they neglected the clustered nature of ILSA data (e.g., students nested in schools). Thus,
+they underestimated the corresponding sampling variances and thereby overemphasized the correlations obtained
+from the ILSAs when calculating meta-analytic averages or performing moderator analyses on the basis of
+inverse-variance weighting procedures.
+MATH ANXIETY AND MATH ACHIEVEMENT 16
+model that included all target moderator variables. By contrast, the other meta-analyses
+studied moderating effects either by subgrouping or entering each moderator variable
+separately into meta-regression models. The results from these moderator analyses are
+therefore more difficult to interpret because of the greater risk of potential confounding. To
+conclude, the differences in the applied analytic strategies should be born in mind, as they
+may partly explain some of the inconsistencies in moderating effects across previous meta-
+analyses that we summarize below.
+Between-Country Differences and Socioeconomic Prosperity. It is plausible that
+socioeconomic and sociocultural differences as well as differences in educational systems
+between countries moderate the relationship between math anxiety and math achievement (see
+Eccles & Wigfield, 2020; Pekrun, 2024). Some support for this idea was provided by Barroso
+et al.’s (2021) meta-analysis, which found substantial differences between countries, ranging
+− −
+from r = .54 (Turkey and India) to r = .12 (Indonesia). However, Barroso et al. (2021) and
+Zhang et al. (2019) did not conduct moderator analyses to test for between-country
+differences but instead examined mean-level differences between continents or geographical
+regions within continents. Whereas Zhang et al. (2019) found significant differences in the
+correlations between math anxiety and math achievement across continents, Barroso et al.
+(2021) did not. Nevertheless, Barroso et al.’s additional analyses indicated significant
+differences in the correlations across geographical regions within continents in Asia, Europe,
+North America, Oceania, and South America.
+Because previous meta-analyses did not explore differences in the relationship
+between math anxiety and math achievement at the country level, little is known about the
+factors that may moderate this relationship, even though between-country differences in
+socioeconomic prosperity could serve as a moderating variable. Empirical support for this
+idea was provided in two large-scale studies (Tucker-Drob et al., 2014; Zheng et al., 2019). In
+particular, the authors proposed that students in wealthy countries have more opportunities to
+MATH ANXIETY AND MATH ACHIEVEMENT 17
+engage in science-related learning than those in poorer countries do. To test this hypothesis,
+they examined how the national Gross Domestic Product (GDP) per capita moderates the
+relationship between students’ science interest and science achievement. Consistent with their
+expectations, they found stronger positive correlations between science interest and science
+achievement in countries with high levels of GDP relative to countries with low levels of
+GDP.
+When applied to the relationship between math anxiety and math achievement,
+stronger negative relationships can be expected for countries with higher levels of GDP
+compared with countries with lower levels of GDP. Specifically, wealthier countries provide
+more math-related learning opportunities. Individuals with high levels of math anxiety and
+low levels of math achievement make less use of such learning opportunities, as such people
+tend to avoid these opportunities. Thus, individual differences in math anxiety unfold into
+individual differences in math achievement (and vice versa), resulting in a negative
+relationship between these constructs. On the other hand, in poorer countries, there are fewer
+math-related learning opportunities, and thus, fewer opportunities for individual differences in
+math anxiety and math achievement to unfold, resulting in weaker negative relationships
+between math anxiety and math achievement. This meta-analysis is the first to test this
+hypothesis.
+Trends Over Time and Changes Following the COVID-19 Pandemic. Research on
+the relationship between math anxiety and math achievement has a long tradition spanning
+more than 60 years. Over this time period, research instruments for assessing math anxiety
+and math achievement have been refined, new instruments have been developed, and the age
+range of the samples has been expanded, particularly into younger ages (Barroso et al., 2021;
+Namkung et al., 2019). Alongside these methodological innovations, many changes in
+educational, sociocultural, and economic factors have occurred across many countries,
+including an increase in the curricular emphasis on students’ socioemotional learning and
+MATH ANXIETY AND MATH ACHIEVEMENT 18
+development (Durlak et al., 2022; OECD, 2024) as well as an increase in national GDPs,
+which may reflect increases in math-related learning opportunities (Tucker-Drob et al., 2014;
+Zheng et al., 2019).
+These methodological and substantive developments may have jointly affected the
+relationship between math anxiety and math achievement, which may account for differences
+in the correlations between these constructs across historic time. The meta-analyses by Ma
+(1999) and Zhang et al. (2019) tested this hypothesis and found that the correlation between
+math anxiety and math achievement was not associated with the year of publication for
+studies published between 1978 and 1992 or between 2000 and 2018. However, there is
+limited knowledge about long-term trends in the relationship between math anxiety and math
+achievement because recent meta-analyses have either covered limited time periods or failed
+to perform moderator analyses to examine how this correlation has changed over time.
+Importantly, previous meta-analyses did not cover any primary studies published after
+2018. Thus, there is a dearth of meta-analytic knowledge about potential changes in the
+relationship between math anxiety and math achievement following the onset of the COVID-
+19 pandemic in 2020. It is now well-documented that the major learning disruptions (starting
+in 2020 and ending in most countries in 2022; Hale et al., 2021; OECD, 2021; UNESCO,
+2022) that resulted from lockdowns, complete school closures, and distance learning were
+negatively related to students’ levels of math achievement (Betthäuser et al., 2023), well-
+being, mental health (Viner et al., 2022), and motivation (Benner et al., 2024). It is also well-
+documented that cognitive and socioemotional support from teachers and parents can mitigate
+some of the negative effects of low levels of math achievement on math anxiety and high
+levels of math anxiety on math achievement (Chang & Beilock, 2016). However, during the
+pandemic, math teachers had difficulties adapting their teaching to online learning conditions,
+and parents were less effective in supporting their children in mathematics than in other
+subjects (see Di Pietro, 2023, for a summary). Consequently, students received less cognitive
+MATH ANXIETY AND MATH ACHIEVEMENT 19
+and socioemotional support in mathematics during the COVID-19 pandemic, which
+potentially contributed to strengthening the negative relationship between math anxiety and
+math achievement.
+By contrast, the negative relationship between these constructs could also have
+weakened. Some empirical support for this hypothesis was provided by Sydänmaanlakka et
+al. (2024), who showed that the relationship between math anxiety and math achievement
+became weaker during distance learning compared with learning in regular classes. This
+finding may be explained by two interrelated mechanisms. First, the learning disruptions due
+to the COVID-19 pandemic substantively decreased the number and quality of learning
+opportunities in which individual differences in math anxiety and math achievement could
+unfold. Furthermore, the learning disruptions also had a strong social component, as the
+achievement of other students was less salient, and opportunities for social comparison
+processes were reduced (Sydänmaanlakka et al., 2024). Yet, social comparisons with other
+students are considered to be a major driver of math anxiety. All else being equal, the
+likelihood of perceiving oneself as failing in math in comparison with other students in the
+classroom is much higher in a class with a high average level of math achievement, resulting
+in less favorable self-perceptions of mathematical achievement, lower levels of math self-
+confidence, and thus, higher levels of math anxiety (Pekrun et al., 2019). Conversely, the
+negative relationship between math anxiety and math achievement may have become weaker
+during the pandemic because opportunities for unfavorable social comparison processes were
+reduced.
+Developmental Trends Across Grade Levels and Age Groups. Drawing on deficit
+theory, early work on the relationship between math anxiety and math achievement
+hypothesized that a noticeable association between these constructs should not exist before
+Grade 4. Because early math curricula are usually not too taxing, students have likely not had
+many negative experiences while engaging with math problems before Grade 4 (Maloney &
+MATH ANXIETY AND MATH ACHIEVEMENT 20
+Beilock, 2012; Namkung et al., 2019). However, recent meta-analyses (Barroso et al., 2021;
+Caviola et al., 2022; Namkung et al., 2019; J. Zhang et al., 2019) have consistently shown that
+math anxiety is negatively related to math achievement across all grade levels/age groups
+under investigation, and even at the beginning of primary education in Grades 1 and 2.
+Nevertheless, findings on whether this relationship is moderated by grade or age have been
+inconsistent. Whereas some meta-analyses found no significant moderating effect of grade
+(Namkung et al., 2019), others found larger negative correlations in children than in adults
+(Caviola et al., 2022) or correlations that varied across age groups (Barroso et al., 2021). In
+particular, Barroso et al. (2021) distinguished six grade levels/age groups and identified
+nonlinear patterns of significant differences: Whereas students in Grades 1 and 2 displayed an
+− − −
+average correlation of r = .26, the relationship shifted to r = .20 for Grades 3 to 5, r = .30
+for Grades 6 to 8, and r = .34 for Grades 9 to 12. Interestingly, the strength of the correlation
+for students in Grades 9 to 12 was about the same as for the nonstudent adult population (r =
+− −
+.32), but it was weaker for postsecondary students (r = .24). It is important to note that
+previous meta-analyses did not provide results on developmental trends in the adult
+population (e.g., young vs. middle adulthood).
+Math Anxiety and Its Facets. Math anxiety has been conceptualized as a
+multidimensional construct (Barroso et al., 2021; Namkung et al., 2019). However, the
+nuanced perspective that is now prevalent in research on test anxiety has not yet been fully
+adopted in the measures used in primary studies or meta-analyses on math anxiety. For
+example, some widely used math anxiety instruments (e.g., the Mathematics Anxiety Rating
+Scale and its derivates; Plake & Parker, 1982; Richardson & Suinn, 1972; Suinn & Edwards,
+1982) focus only on the affective facet, as it manifests itself in different contexts, such as in
+evaluative and learning situations. Other instruments cover both the worry and affective facets
+(e.g., the Math Anxiety Questionnaire; Wigfield & Meece, 1988). Finally, the instrument with
+the greatest construct breadth is the Achievement Emotions Questionnaire-Mathematics
+MATH ANXIETY AND MATH ACHIEVEMENT 21
+(Bieleke et al., 2023; Frenzel et al., 2007), which measures all facets (but with different
+numbers of items) in three contexts (learning in class, learning by oneself, evaluative/testing).
+However, the authors of this instrument have proposed that a score that represents
+individuals’ general math anxiety should be generated, an idea that implies that the
+psychometric properties of scores for assessing the specific facets of math anxiety have yet to
+be evaluated.
+Previous meta-analyses were constrained by the measures applied in the existing
+primary studies, preventing these studies from taking full advantage of the nuanced
+conceptualization of math anxiety that includes four distinct facets. Instead, the moderator
+analyses by Namkung et al. (2019) distinguished between measures of the worry facet
+(referred to as the cognitive dimension) and the affective facet (referred to as the affective
+dimension) or both of these facets. Furthermore, Barroso et al. (2021) differentiated between
+measures that capture the worry facet, those that capture the broad affective-physiological
+facet (referred to as emotionality) as defined in work by Liebert and Morris (Liebert &
+Morris, 1967; Morris et al., 1981), and those that capture both of these facets. In doing so,
+these meta-analyses found significant moderating effects of different facets of math anxiety,
+yet with somewhat inconsistent results. Specifically, no significant differences in the
+correlations between math anxiety and math achievement were found between measures that
+assessed the worry or affective facets of math anxiety. However, Namkung et al. (2019) found
+a stronger negative relationship for measures that assessed both the worry and affective facets
+in one measure compared with measures that assessed only the affective facet. By contrast,
+Barroso et al. (2021) found no significant differences in the correlations when measures
+assessed the worry facet, the broad affective-physiological facet, or both of these facets.
+Importantly, the constraints imposed by the results available in primary studies imply that
+there is a lack of meta-analytic knowledge about the cognitive interference facet and the
+physiological facet.
+MATH ANXIETY AND MATH ACHIEVEMENT 22
+Math Achievement and Its Subdomains. Given the multidimensional nature of math
+achievement, measures of math achievement have assessed different mathematics subdomains
+that vary in content, difficulty, and complexity. Importantly, the negative relationship between
+math anxiety on math achievement has been predicted to become stronger as math problems
+become more difficult and complex and consequently more demanding of working memory
+resources (Ashcraft & Kirk, 2001; Namkung et al., 2019). However, previous meta-analyses
+have provided mixed results on this prediction. Barroso et al. (2021) found no significant
+differences in the correlations between math anxiety and math achievement across different
+subdomains of math achievement. By contrast, Zhang et al. (2019), Caviola et al. (2022), and
+Namkung et al. (2019) found significant moderating effects of math subdomains that
+supported the prediction. For example, in the meta-analysis by Namkung et al. (2019), the
+negative correlations were found to be stronger for math measures that tapped advanced skills
+than for those measuring basic skills.
+Importantly, modern assessment frameworks of math achievement distinguish
+between several content- and process-related subdomains, providing a nuanced understanding
+of the math-related knowledge, procedures, and thinking processes necessary for successfully
+completing math tasks and problems in a wide range of contexts (e.g., Mullis et al., 2016,
+2020; OECD, 2023a). However, because previous meta-analyses failed to consider much of
+the evidence provided by ILSAs, little is known about whether the strength of the relationship
+between math anxiety and math achievement varies across these content-related or process-
+related subdomains. For example, the content-based subdomain of calculus covers advanced
+mathematical methods and concepts. Hence, the negative relationship between this subdomain
+and math anxiety might be stronger than the relationships obtained for subdomains that are
+introduced earlier in the mathematics curriculum (e.g., geometry or quantity and numbers).
+Moreover, the process-related subdomain of reasoning requires complex mathematical and
+cognitive processes to identify patterns and regularities in novel, unfamiliar situations. Thus, a
+MATH ANXIETY AND MATH ACHIEVEMENT 23
+stronger negative relationship might be expected for this subdomain compared with
+subdomains that require mathematical processes to solve familiar problems (the subdomain of
+applying) or the retrieval of mathematical knowledge and procedures (the subdomain of
+knowledge).
+Gender Differences. On the basis of his review of empirical studies, Aiken (1970)
+predicted that the correlation between math anxiety and math achievement would be stronger
+for females than for males. By contrast, on the basis of the widely cited control-value theory
+of academic emotions by Pekrun (2006), the relationship between math anxiety and math
+achievement would be expected to be universal, and, thus, not moderated by gender (Frenzel
+et al., 2007). Previous meta-analyses (Barroso et al., 2021; Caviola et al., 2022; Ma, 1999)
+found some gender differences in this relationship that were not statistically significant.
+However, these findings should be interpreted with caution. For one, the numbers of
+studies and effect sizes included in previous meta-analyses have been relatively small (see
+rather low (Craig Aulisi et al., 2023; Hedges & Pigott, 2004; Pigott, 2012). Furthermore,
+when correlations are compared between males and females, such comparisons can be
+distorted by differences in variances (Smithson & Shou, 2017). Specifically, gender
+differences in the correlations between math anxiety and math achievement may reflect not
+only differences in the relationships between these constructs but also gender differences in
+the variance of math achievement, as such gender differences are well-documented in the
+literature (Brunner et al., 2013). Finally, Barroso et al. (2021) compared the average
+correlations in all-female and all-male samples to examine the moderating effects of gender.
+However, this approach cannot conclusively determine how gender at the individual level
+affects the relationship between math anxiety and math achievement. This intuition is well-
+documented in the multilevel and meta-analytic literature and has been referred to by various
+terms, such as ecological fallacy or ecological bias (Thompson & Higgins, 2002; see Online
+MATH ANXIETY AND MATH ACHIEVEMENT 24
+Supplementary Material [OSM] 1 for further details). More specifically, the magnitude and
+direction of the moderating effects may vary between the individual and sample levels. For
+example, the negative relationship between math anxiety and math achievement can be
+stronger for male than for female participants within each sample when weaker relationships
+are observed in samples with larger proportions of male students.
+Levels of Math Achievement. There is strong interest in the question of the extent to
+which individuals’ math achievement moderates the relationship between math anxiety and
+math achievement. First, previous research on the deficit theory has shown disproportionally
+high levels of math anxiety in students with lower math achievement (Lai et al., 2015;
+Passolunghi, 2011; Wu et al., 2014), suggesting that this group of students may be more
+vulnerable to the negative effects of math anxiety (Barroso et al., 2021). To study the
+moderating effect of low math achievement, Barroso et al. (2021) compared the correlations
+obtained for samples of individuals with low and average math achievement. Contrary to the
+initial expectation, the average negative correlation obtained for individuals with low math
+achievement was found to be weaker than the correlation obtained for individuals with
+average math achievement. However, this result should be interpreted with caution for several
+reasons. For one, when studying the moderating effects of math achievement, a key question
+is how to define such groups of individuals with low or high math achievement. However,
+there is no consensus on the answer. Barroso et al. (2021) did not have access to the IPD of
+the primary studies and thereby relied on the criteria used in the original studies. For example,
+in one of the included studies, the individuals with low math achievement were defined as 13
+fourth graders who scored below the average test score on a general achievement test (Ribeiro
+et al., 2017). By contrast, another primary study defined individuals with low math
+achievement as 120 university students who failed the university entrance exam and who had
+to take remedial math courses (Aoude, 2013). In other words: The criteria for low math
+achievement were not standardized across primary studies, thereby limiting the interpretation
+MATH ANXIETY AND MATH ACHIEVEMENT 25
+of the results reported by Barroso et al. (2021). Moreover, Barroso et al. (2021) compared the
+correlations obtained for samples of individuals with low and average math achievement. As
+discussed above, such comparisons are at risk of ecological bias. Finally, as noted by Barroso
+et al., the correlations in the samples with low math achievement could have been distorted by
+the restricted range of math achievement, an issue that constitutes another limitation of their
+results.
+Second, some studies found that students with high levels of working memory
+capacity were more susceptible to the negative effects of math anxiety on math performance.
+These students tend to apply strategies that place high demands on working memory and that
+are likely to fail when math anxiety interferes with the resources available for working
+memory (Beilock, 2008; Beilock & Carr, 2005; Ramirez et al., 2013). Because individuals
+with high levels of math achievement are likely to have high levels of working memory
+capacity, Foley et al. (2017) expected a stronger negative relationship between math anxiety
+and math achievement for this group. This hypothesis has not yet been tested meta-
+analytically.
+Third, the susceptibility to the negative effects of math anxiety may also depend on the
+average level of math achievement in a sample. In particular, if individuals with lower levels
+of math achievement are more susceptible (as proposed by the deficit theory), we would
+expect that the negative within-sample relationship between math anxiety and math
+achievement would be stronger in samples with lower average levels of math achievement.
+On the other hand, if individuals with higher levels of math achievement are more susceptible
+(as described above), we would expect that the negative within-sample relationship between
+math anxiety and math achievement would be stronger in samples with higher average levels
+of math achievement. This set of hypotheses has not yet been tested because meta-analyses
+have not had access to reliable data on the sample-average level of math achievement.
+The Present Study
+MATH ANXIETY AND MATH ACHIEVEMENT 26
+The overarching goal of the present evidence synthesis was to gather new insights and
+significantly advance the understanding of the relationship between math anxiety and math
+that have been published in the last 60+ years, previous meta-analyses have provided
+important insights into the relationship between math anxiety and math achievement.
+However, these meta-analyses have also been restricted in the extents to which they could
+address several key research questions because they (a) suffered from various methodological
+issues (e.g., reliance on small, convenience samples; risk of distorted results from variance
+restriction; low statistical power; ecological bias) and (b) were missing a significant portion of
+the robust scientific evidence that ILSAs can provide on this relationship (see Tables 1 and 3).
+To address these major limitations, we capitalized on a systematic collection of representative
+ILSAs to conduct an IPD meta-analysis (Brunner, Keller, et al., 2023; Campos et al., 2023).
+Specifically, we (a) carried out a systematic search for archival data from representative
+ILSAs, (b) took advantage of these IPD to apply a standardized protocol for computing effect
+sizes, and (c) integrated these effect sizes using meta-analytic methods. Our research strategy
+was based on the approach originally developed by Hedges and Nowell (1995), who
+advocated for the meta-analyzing of results and data from representative probability samples
+because the random sampling process underlying these samples (a) effectively responds to the
+threat of sample selection bias, (b) depicts the full heterogeneity of target characteristics
+without variance restriction, and (c) ensures that results can be generalized to well-defined
+target populations (Findley et al., 2021; Shadish et al., 2002). Furthermore, the large sample
+sizes in ILSA data sets enable precise estimates of the relationship between math anxiety and
+math achievement. Moreover, access to IPD means that the errors in effect sizes reported in
+previous meta-analyses can be corrected, thereby reducing biases and unwanted heterogeneity
+and enhancing the overall reliability of the meta-analytic results. Finally, using IPD,
+ecological fallacies can be avoided by meta-analytically integrating within-sample differences
+MATH ANXIETY AND MATH ACHIEVEMENT 27
+in the relationship between math anxiety and math achievement across subgroups (e.g., male
+or female participants) obtained for each sample (as recommended by Riley et al., 2020).
+previous meta-analyses was their ability to identify and examine several substantive
+moderator variables. However, due to inherent methodological constraints, these analyses
+often provided inconclusive or limited insights into the factors that might moderate the
+relationship between math anxiety and math achievement. By leveraging its methodological
+strengths, the present meta-analysis was aimed at providing novel insights and robust
+empirical results on the moderating effects of (a) long-term historical trends, (b) the COVID-
+19 pandemic, (c) between-country differences in economic prosperity, (d) grade levels and
+age in school-aged and adult populations, (e) construct characteristics of math anxiety, (f)
+construct characteristics of math achievement, (g) gender differences, (h) individual levels of
+math achievement, and (i) sample-average levels of math achievement.
+Finally, by conducting an IPD meta-analysis with ILSAs, we were able to conduct the
+first exploration of how sample characteristics and contextual factors might moderate within-
+sample moderating effects. For example, we were able to investigate how the moderating
+effects of gender or individuals’ math achievement levels may further depend on factors such
+as grade level, age, average math achievement level, or differences in socioeconomic
+prosperity between countries.
+Method
+Systematic Search Strategy
+To identify relevant ILSAs for the present meta-analysis, we first defined ILSAs as
+surveys that (a) assessed knowledge, skills, or behaviors in a particular domain and (b) had
+the goal of describing a target population or populations of interest (Kirsch et al., 2013). We
+then formulated the following criteria to assess the eligibility of ILSAs: (a) The data
+documentation was available in English so that we could (i) reduce potential errors in
+MATH ANXIETY AND MATH ACHIEVEMENT 28
+translation or interpretation and (ii) ensure reproducibility for other researchers; (b) the data
+were fully documented (i.e., at least a conceptual/assessment framework and a technical
+report were available); (c) the data were available as of June 28, 2024; (d) math achievement
+was assessed with a math-related assessment (not self-reported beliefs about math
+achievement); (e) math anxiety was assessed, with at least one measure evaluating cognitive
+(e.g., worry, cognitive interference), affective (e.g., nervousness, tension, fear, dread), or
+physiological facets, or a combination of these; and (f) math achievement and math anxiety
+were measured and matched by participant.
+We searched for ILSAs conducted between 1959, which was the year of the first ILSA
+(Kirsch et al., 2013), and 2024. To this end, we examined four major repositories of ILSA
+data from June 14 to June 28, 2023, with an updated search conducted on July 11, 2024.
+comparative-analysis-of-educational-achievement-compeat). Our search yielded 98 records of
+19 duplicate records, we used the inclusion criteria to assess the eligibility of the remaining 79
+ILSAs in the first round of screening. Screening of the ILSAs was performed independently
+by two authors (i.e., MB and LK). In following Polanin et al.’s (2019) recommendations, we
+evaluated eligibility hierarchically, meaning that if one rater decided that an exclusion
+criterion was met, the ILSA record was ineligible, and screening was stopped. Because raters
+reconciled disagreements throughout the evaluation process (as recommended by Polanin et
+al., 2019), traditional reliability statistics were not calculated, as they would have required
+[link]
+MATH ANXIETY AND MATH ACHIEVEMENT 29
+independent ratings throughout the eligibility evaluation process. We searched the conceptual
+or assessment frameworks, technical reports, or assessment questionnaires to check the
+eligibility of the identified ILSAs. If these could not be found (in English), we used the fact
+sheets provided by the repositories or the homepages of the specific ILSAs (see our
+documentation on the OSF for more details). After applying the above inclusion criteria, we
+removed 67 of the 79 ILSAs and identified 12 ILSAs (i.e., the assessment cycle[s] of ALL,
+Having access to the IPD from ILSAs, we applied several decision rules to build up the
+final data base for the present meta-analytic integrations in a second round of screenings. To
+this end, we applied Brunner, Keller, et al.’s (2023) decision rules to select ILSA samples: (a)
+If only one or more economic regions (but never the entire country) participated in a specific
+ILSA cycle, the economic regions were included and analyzed (separately). (b) If one or more
+economic regions and the corresponding country participated at the same time, only the
+country was included and analyzed. (c) If one or more economic regions and the country
+participated, but at different times, both were included and analyzed. (d) If two or more ILSA
+samples that fulfilled Criteria a to c were available for a specific country in a specific ILSA
+cycle, we selected the samples that were included in the international reports because those
+samples provided the most accurate estimates of effect sizes. In particular, we excluded
+TIMSS samples that applied special forms of computer-based assessments of mathematics or
+that were used to establish a common metric for computer-based and paper-pencil tests of
+mathematics. In addition, (e) we excluded samples that did not meet the data quality standards
+set for a specific ILSA, and (f) we excluded samples when our data quality checks revealed
+ALL is an acronym for the Adult Literacy and Life Skills Survey that was carried out by the Organisation for
+Economic Co-operation and Development (OECD). PISA is an acronym for the Programme for International
+Student Assessment that is carried out by the OECD. SIMS is an acronym for the Second International
+Mathematics Study that was carried out by International Association for the Evaluation of Educational
+Achievement (IEA). TIMSS is an acronym for the Trends in International Mathematics and Science Study that is
+carried out by the IEA.
+MATH ANXIETY AND MATH ACHIEVEMENT 30
+problems (see OSM 2). More specifically, the consortia responsible for conducting the ILSAs
+that we used performed extensive data cleaning and adjudication procedures to detect
+irregularities or inconsistencies. Furthermore, we checked the distribution of math anxiety
+items for values outside of the theoretically possible range and checked the plausibility of the
+correlations between math anxiety and math achievement. On the basis of these data quality
+checks, the only data we excluded were from Japan (Grade 7) in SIMS 1980, Albania in PISA
+2012, and Indonesia and the Philippines in PISA 2022.
+ILSA Samples
+Specifically, the present meta-analysis is based on 12 ILSAs conducted between 1980 and
+2022, providing IPD for a total of 2,583,628 participants from 452 probability samples across
+Moderator Variables
+moderator subcategories) that we used in the present meta-analysis.
+Countries and National Gross Domestic Product per Capita
+We used the country codes provided in the IPD from ILSAs to define the country and
+geographical regions from which a sample originated. Furthermore, in accordance with the
+work by Tucker-Drob and colleagues (Tucker-Drob et al., 2014; Zheng et al., 2019), we used
+the time series data for the national GDP per capita (given in current U.S. dollars) provided by
+The World Bank (2024) as a measure of a country’s socioeconomic prosperity. In our
+analyses, we matched effect sizes to the national GDP values by the year in which the ILSA
+data were collected. Furthermore, in our analyses, we applied a log10 transformation to the
+GDP measure (log GDP), and we used the international mean and standard deviation
+(computed across all countries listed in the data set) for log GDP in the year 2022 (i.e., the
+most recent ILSA data) to compute the z-standardized log GDP. Notably, the World Bank
+MATH ANXIETY AND MATH ACHIEVEMENT 31
+does not provide data for Taiwan. To impute data for this country, we applied the same
+statistical procedures to compute the GDP per capita index using the most recent version of
+2023).
+Trends Over Time and the COVID-19 Pandemic
+To study overall changes in the relationship between math anxiety and math
+achievement, we used the year in which the ILSA data were collected as an indicator of time
+and included a linear trend for time in the meta-regression models that we applied to study
+moderating effects. Moreover, the latest PISA cycle in the year 2022 was carried out shortly
+after the major learning disruptions (e.g., school closures, distance learning) during the
+COVID-19 pandemic came to an end in most of the participating countries (Hale et al., 2021;
+OECD, 2023c; UNESCO, 2022). To examine the moderating effects of the COVID-19
+pandemic, we included a dummy variable in the meta-regression models where all ILSAs that
+were carried out before 2020 were coded as 0 (before onset of the COVID-19 pandemic), and
+all others (i.e., PISA 2022) were coded as 1 (after the COVID-19 pandemic).
+Grade Levels and Adult Age Groups
+To examine the moderating effects of grade levels and age groups, we distinguished
+between students in elementary education (Grade 4), students in lower secondary education
+(Grades 7, 8, 9, and 10), and students in upper secondary education (Grade 12) using indicator
+variables for each grade level. Furthermore, drawing on the standard categorization of ILSAs
+with adult populations (OECD, 2011), we created several age groups (i.e., below 25 years, 25
+to 34 years, 35 to 44 years, 45 to 54 years, 55 to 65 years).
+Math Anxiety and Its Facets
+We investigated how vital characteristics of the math anxiety construct moderate its
+relationship with math achievement. To this end, we used IPD from ILSAs to obtain theory-
+driven scores for assessing general math anxiety and the facets of math anxiety. First, we built
+MATH ANXIETY AND MATH ACHIEVEMENT 32
+on our conceptual framework of math anxiety to carefully examine the content of all math-
+related items in the context questionnaires used in the ILSAs and identified the ones that
+assessed math anxiety. Each math anxiety item was assigned to a specific facet of math
+anxiety or categorized as a measure of general anxiety when its wording addressed both
+cognitive and affective-physiological facets. Notably, all items were assigned to these
+moderator categories by consensus following thorough discussion between two of the authors
+(MB and LK). Second, when only a single item was available per facet, we used the score for
+that item as the measure of the facet. For facets with multiple items, we computed sum scores
+based on participants’ responses to those items. This procedure yielded scores for the worry,
+cognitive interference, and affective facets. Of note, scores for the physiological facet could
+not be derived due to the unavailability of relevant IPD. Third, we created a score for general
+math anxiety. To do so, we either created a composite scale score from items assessing the
+worry and affective facets (PISA 2003/2012/2022) and the cognitive interference and
+affective facets (TIMSS 2015/2019) or used the available single-item measure of general
+math anxiety (TIMSS 2011). The remaining ILSAs did not provide data for assessing
+anxiety that we used in the present IPD meta-analysis along with their reliabilities (see OSM 3
+for details).
+Math Achievement and Its Subdomains
+Drawing on modern assessment frameworks of ILSAs, we investigated how the
+characteristics of math achievement may moderate its relationship with math anxiety. To this
+end, we assigned the available math achievement test scores to content- and process-related
+Notably, the item “I feel helpless when doing a mathematics problem” was originally included in the PISA
+math anxiety scale. We excluded this item from further analyses because feelings of helplessness are associated
+with perceptions of a lack of internal control and a high expectation of failing. By contrast, math anxiety is
+linked to a partial lack of control and high uncertainty about the outcome (Pekrun, 2006). Thus, helplessness has
+considerably stronger conceptual ties to the emotion of hopelessness (a deactivating emotion that reduces
+motivation) rather than being a clear indicator of anxiety (an activating emotion that increases motivation;
+Pekrun et al., 2011).
+MATH ANXIETY AND MATH ACHIEVEMENT 33
+subdomains of math achievement (see also OSM 4). Additionally, we created a moderator
+category for general math achievement when test scores reflected individuals’ performance
+across multiple content- and process-related subdomains. These moderator categories were
+assigned by consensus after thorough discussion between two of the authors (MB and LK).
+OSM 3 and 4 for details).
+Gender
+IPD from all ILSAs included variables indicating participants’ gender in a binary
+format (i.e., female vs. male).
+Individuals With Low, Average, and High Math Achievement
+There is no consensus on how to define low (Fuchs et al., 2004; Wästerlid, 2022) or
+high math achievement (Neuendorf et al., 2023). Thus, we defined two groups of low-
+achieving individuals, namely, with respect to a certain ILSA sample: individuals who scored
+th th th
+(a) at or below the 5 percentile and (b) above the 5 percentile and at or below the 25
+percentile. Likewise, we defined two groups of high-achieving individuals, namely, with
+th
+respect to a certain ILSA sample: individuals who scored (a) above the 75 percentile and at
+th th
+or below the 95 percentile and (b) above the 95 percentile. Individuals with average
+th th
+achievement were defined as those scoring above the 25 percentile and at or below the 75
+percentile.
+Sample-Average Level of Math Achievement
+The sample-average level of general math achievement was calculated by averaging
+the math scores of individuals within each country-specific sample. Consequently, these
+averages represent the math achievement levels specific to each country. To allow for
+meaningful comparisons across samples from different ILSAs, we z-standardized these
+sample averages using samples from Sweden as the reference group. Specifically, we used the
+mean and individual-level standard deviation as obtained for the total target population in
+MATH ANXIETY AND MATH ACHIEVEMENT 34
+Sweden in a specific ILSA cycle when z-standardizing the sample averages. For example, a
+value of 0 indicates that a certain country-specific sample had the same average level of math
+achievement as participants in Sweden, whereas a value of 1/+1 indicates that the sample
+average of math achievement lies 1 SD below/above the average achievement level observed
+for participants in Sweden. We used data from Sweden because it was the only country that
+participated in all but one (i.e., ALL) of the ILSAs from which we used IPD for the present
+meta-analyses. For ALL, we used the mean and standard deviation as obtained for Sweden in
+the 2011/2012 cycle of the Programme for the International Assessment of Adult
+Competencies (PIAAC) that used a math test with a commensurable metric.
+Data Analysis
+Two-Stage Meta-Analytic Approach
+The ILSAs identified in our systematic search varied in several key characteristics
+(e.g., different measures of math anxiety and math achievement, different numbers of
+plausible values for math achievement, and varying approaches for computing standard
+errors). Furthermore, the sheer amount of IPD would likely prevent the use of advanced
+statistical methods (e.g., multiple imputation to handle missing data; see below) due to the
+insufficient random-access memory of regular computers, a well-documented issue in Big
+Data analyses. To effectively address these challenges, we conducted a two-stage meta-
+analysis. This approach yields the same results as a one-stage meta-analysis that pools all IPD
+into a single analysis, except in cases of sparse data, which we did not encounter here
+(Brunner, Keller, et al., 2023; Campos et al., 2023). Specifically, we used the IPD to estimate
+the target effect sizes separately for each sample in Stage 1. These effect sizes were then
+meta-analytically integrated in Stage 2. To this end, we used the R statistical software (R Core
+Team, 2024) and the R packages BIFIEsurvey version 3.4-15 (BIFIE et al., 2022), survey
+version 4.2 (Lumley, 2004), clubSandwich version 0.5.8 (Pustejovsky, 2021), and metafor
+version 4.0-0 (Viechtbauer, 2010).
+MATH ANXIETY AND MATH ACHIEVEMENT 35
+Stage 1: Computation of Effect Sizes
+Selection of Effect Sizes. Having access to the IPD from ILSAs requires a thoughtful
+selection of the variables for computing effect sizes. Previous meta-analyses included a
+heterogeneous collection of correlations that were based on measures that assessed different
+facets of math anxiety and different subdomains of math achievement. In line with this
+inclusion strategy, we computed correlations between all possible combinations of the math
+anxiety (and its facets) and math achievement (and its subdomains) measures that were
+included in the public use files of the ILSAs. Furthermore, to study the moderating effects of
+individual levels of math achievement and gender, we followed Lopez-Lopez et al.’s (2018)
+recommendations and computed effect sizes for general math achievement and the most
+general measure of math anxiety available. These measures were available for all samples and
+provided the best content coverage and the most reliable assessment of the target constructs.
+Handling of Missing Data. In the first step of our effect-size calculations, we applied
+multiply nested imputations to impute the missing data in our target variables (Weirich et al.,
+2014) while taking into account the nested structure of the data (Grund et al., 2023). The
+details of the imputation process can be found in OSM 5.
+Estimation of Correlations as Effect Sizes for Total Samples. For all analyses that
+involved effect sizes for the total sample, we computed correlations between math anxiety
+(and its facets) and math achievement (and its subdomains). Following Borenstein and
+Hedges’ (2019) recommendation, we used the Fisher z-transformed correlations (r ) as effect
+sizes in the meta-analytic integrations. We then back-transformed the meta-analytic results
+into the correlation metric.
+Estimation of Regression Coefficients as Effect Sizes for Subgroup Comparisons.
+To allow meaningful comparisons of effect sizes within and across samples, we first drew on
+the IPD from each sample and z-standardized the most general anxiety and math achievement
+measures for each ILSA cycle by using the population estimates of means and standard
+MATH ANXIETY AND MATH ACHIEVEMENT 36
+deviations as estimates in each sample. The applied measures (indicated by an asterisk in
+reliable assessment of the target constructs. Using the data for these measures, we then ran
+separate regression models for each subgroup (within each sample) with math anxiety as the
+outcome variable and math achievement as the predictor variable. Notably, using our
+approach to standardize the measures of math anxiety and math achievement ensured that the
+regression coefficients that depicted the subgroup-specific relationships between math anxiety
+and math achievement would be fairly robust against differences in variance between
+subgroups or variance restriction within subgroups (Cohen et al., 2003). Furthermore, the
+standardization ensured that the results would be comparable (a) to the correlations obtained
+for the corresponding total population and (b) across samples within and across ILSAs.
+Specifically, to compare the relationship between math anxiety and math achievement
+between male and female participants, we first computed separate regression coefficients for
+Female Male
+regression coefficient of b = –0.30 is equivalent to a correlation of r = –0.30 as obtained
+Female
+for the corresponding total sample (composed of all male and female participants). Then, we
+computed the difference in regression weights as b = b – b , with positive values
+Gender Female Male
+of b indicating that, if both weights were negative, the regression weight for female
+Gender
+participants was weaker than the weight for male participants.
+To test the moderating effects of low math achievement, we ran separate regression
+th
+Low5
+th th
+participants scoring above the 5 percentile but at or below the 25 percentile (b ), and
+Low25
+th th
+average achievers scoring above the 25 percentile but at or below the 75 percentile (b ).
+Ave
+∆ ∆
+Differences in regression weights were calculated as b = b – b and b =
+Low5 Low5 Ave Low25
+b – b , with positive values indicating smaller negative regression weights for low
+Low25 Ave
+achievers compared with average-achieving participants.
+MATH ANXIETY AND MATH ACHIEVEMENT 37
+Similarly, for high-achieving participants, separate regression models were run (see
+th th
+th
+percentile (b ), participants scoring above the 95 percentile (b ), and those with
+High75 High95
+average achievement as defined above. We then computed two differences in regression
+∆ ∆ ∆
+weights for each sample as b = b – b and b = b – b , with
+High75 High75 Ave High95 High95 Ave
+positive values indicating smaller negative regression weights for high-achieving than for
+average-achieving participants in math.
+Sampling Weights and Estimation of Standard Errors. In Stage 1, we took the
+complex sampling design of ILSAs into account (Brunner, Keller, et al., 2023) when
+estimating the effect sizes (i.e., Fisher z-transformed correlations, regression coefficients, and
+group differences in regression coefficients), their standard errors, and their sampling
+covariances. To this end, we implemented standard survey procedures (e.g., sampling weights
+and replication techniques; Rust, 2014).
+Stage 2: Meta-Analytic Integration
+one or multiple target effect sizes were derived from the same samples depending on the
+analytic goal, with samples nested within both countries and ILSAs (i.e., SIMS, PISA,
+TIMSS, ALL). To account for these dependencies in our meta-analytic integrations, we used
+random-effects models as working models, with model parameters estimated using the
+specification details for these models (abbreviated as M1a to M8).
+Meta-Analytic Averages and Heterogeneity of Effect Sizes. We fit intercept-only
+cross-classified random-effects models (CCREM) to estimate the meta-analytic average effect
+size and assess effect size heterogeneity. The model specification was adjusted by the number
+of target effect sizes per sample. Specifically, when multiple target effect sizes were available
+MATH ANXIETY AND MATH ACHIEVEMENT 38
+hierarchical structure (effect sizes nested within samples and samples nested within countries)
+with a crossed random effect for the ILSA factor. Given that multiple target effect sizes were
+derived from the same sample, we extended the model into a correlated effects (CE) model,
+using the empirical sampling covariances between the effect sizes estimated in Stage 1
+(Pustejovsky & Tipton, 2021). We refer to this model as CE-CCREM. The random effects
+specified for target effect sizes, samples, and countries accounted for systematic variation in
+effect sizes at these levels (e.g., variance in the correlation between math anxiety and math
+achievement within the same sample, across different samples within the same country, or
+between countries). The random effect for ILSAs accounted for dependencies among
+correlations that may result from using the same or highly similar standardized procedures,
+instruments, and scaling methods across assessment cycles, grade levels, or age groups within
+the same ILSA. This model specification was used to compute meta-analytic averages for
+Fisher z-transformed correlations r (M1a) and differences in regression coefficients between
+participants with low/high and average levels of math achievement (M5f: b and b ;
+Low5 Low25
+∆ ∆
+M7f: b and b ). When only a single target effect was available per sample (see
+High75 High95
+countries and a crossed-random effect for ILSAs. This model specification was applied in the
+sensitivity analyses (M1b: r ; M1c : r ; M1c : r ); in the analyses of relationships
+z Corrected z Uncorrected z
+for individuals with low, average, or high levels of math achievement (M5a: b ; M5b:
+Low5
+b ; M5c: b ; M7a: b , M7b: b ; M7c: b ); when examining a single difference
+Low25 Ave High75 High95 Ave
+∆ ∆ ∆ ∆
+between these groups (M5d: b ; M5e: b ; M7d: b ; M7e: b ); and in the
+Low5 Low25 High75 High95
+analyses of gender differences (M3a: b ; M3b: b ; M3c: b ).
+Female Male Gender
+The intercept-only models provided multiple measures for assessing the heterogeneity
+of effect sizes (Borenstein et al., 2017). The standard deviations obtained for the random
+effects depict the average deviation of the (true) effect sizes within ( ) and between samples
+ES
+σ σ σ
+( ) as well as across countries ( ) and ILSAs ( ). The statistical significance of
+Sample Country ILSA
+MATH ANXIETY AND MATH ACHIEVEMENT 39
+the variance (i.e., the squared standard deviations) of specific random effects was tested using
+The Q test statistic compares the target meta-analytic model against a more restrictive model
+that represents the total variance attributable to random effects as zero (Sera et al., 2019;
+Viechtbauer, 2010). A statistically significant value of Q is typically taken to indicate effect
+size heterogeneity (Borenstein et al., 2017). The I statistic depicts the proportion of observed
+heterogeneity in effect sizes that is real and not due to random noise. The intervals 30% ≤ I ≤
+2 2
+60%, 50% ≤ I ≤ 90%, and 75% ≤ I ≤ 100% can be used as rough guidelines for interpreting
+the I values that indicate moderate, substantial, and considerable heterogeneity, respectively
+(Higgins et al., 2021). Finally, the 95% prediction interval (PI) provides a plausible range of
+values in which the true effect sizes of about 95% of all relevant populations will fall.
+Meta-Regression Models for Studying Moderating Effects. To explain
+heterogeneity among effect sizes, we expanded the intercept-only models into mixed-effects
+hierarchical meta-regression models (with correlated effects when necessary) by excluding
+the intercept terms. These meta-regression models retained the same correlated effects and
+hierarchical random effects (HRE) structure as the corresponding intercept-only models but
+did not include random effects for ILSAs. Instead, we accounted for this potential source of
+dependencies by incorporating fixed effects (FE) for ILSAs in the meta-regression model (Y.
+R. Lee & Pustejovsky, 2023). We refer to these models as CE-HREM-FE (M2a: r ; M6:
+∆ ∆ ∆ ∆
+b and b ; M8: b and b ) or HREM-FE models (M2b: r M2c : r ;
+Low5 Low25 High75 High95 z; Corrected z
+∆ 7
+M2c : r ; M4: b ). Following Tipton et al.’s (2019b) best practice
+Uncorrected z Gender
+The tables for models M2a, M2b, M2c , M2c , M4, M6, and M8 in the OSF provide detailed
+Corrected Uncorrected
+results on the moderator analyses, along with additional results on the statistical significance of pairwise
+contrasts between categories of the target moderator variable. Specifically, we used robust t tests to test for
+statistical significance between all possible pairwise contrasts between the categories of a given target moderator
+(Pustejovsky, 2021), and we used the Benjamini-Hochberg correction to adjust the p values for multiple
+comparisons (Benjamini & Hochberg, 1995).
+MATH ANXIETY AND MATH ACHIEVEMENT 40
+regression models, a practice that allowed us to estimate the means for each target level of a
+given moderator while adjusting for the effects of the remaining moderator variables and
+controlling for potential confounding. We used robust variance estimation (RVE) to adjust the
+sampling variances and the 95% confidence intervals for the meta-regression coefficients in
+the moderator analyses to guard against the misspecification of the random effect structure
+(Pustejovsky & Tipton, 2021). Specifically, we evaluated the moderating effects with a robust
+Wald F test (using the approximate Hotelling’s T squared; Tipton & Pustejovsky, 2015). This
+omnibus test evaluated whether there were any mean differences between the categories of a
+target moderator variable (e.g., grade level) while controlling for all other moderator
+variables. Furthermore, we used robust t tests to assess the statistical significance of each
+level of each moderator. To this end, we implemented Bediou et al.’s (2023) approach, which
+estimated adjusted target effect sizes (e.g., r ) for each target category (e.g., Grade Level 4)
+adj
+of a certain moderator variable while accounting for the remaining moderator variables that
+served as control moderators. The adjusted effect sizes were computed by focusing on a
+certain target moderator category when (a) the remaining categories of the target moderator
+variable were all set to zero, (b) all categorical control moderator variables took on their
+respective average values, (c) the sample-average levels of math achievement and GDP were
+set to their median values, and (d) the linear trend across time was estimated for the year 2022
+(i.e., the year of the most recent ILSA cycle). Furthermore, to illustrate how the average level
+of math achievement in a sample/GDP per capita might affect the magnitude of the effect
+sizes, we adapted Johnson and Huedo-Medina’s (2011) moving-constant technique and
+estimated effect sizes for different positions in the distribution of sample-average levels of
+Of note, the indicator variables for ILSAs (except for SIMS) contained information that was redundant with the
+other moderator variables. Thus, these indicator variables for ILSAs were dropped when they were used as
+control moderator variables. Furthermore, we do not provide details on the moderating effects of ILSAs in our
+results presentation, as this moderator variable was used only to control for potential dependencies among effect
+sizes
+MATH ANXIETY AND MATH ACHIEVEMENT 41
+th th th th th
+math achievement and (z-standardized log) GDP (i.e., the 5 , 25 , 50 , 75 , and 95
+percentiles). We also used this approach to estimate effect sizes across time from 1980 to
+2022 where the estimates were based on the linear trend of time in combination with the
+variable that indicated whether ILSA data were collected before (i.e., 1980 to 2019) or after
+the COVID-19 pandemic (i.e., 2022). Finally, to study the moderating effects of between-
+country differences in M2a (target effect size: r ), M2b (r ), M2c (r ), M2c (r )
+z z Corrected z Uncorrected z ,
+∆ ∆ ∆ ∆ ∆
+M4 ( b ), M6 ( b and b ), and M8 ( b and b ), we estimated (a) the
+Gender Low5 Low25 High75 High95
+variances of the corresponding random effects and (b) the country-specific random effects and
+their 95% PI using the ranef() function of the metafor package in R (Stijnen et al., 2021). A
+statistically significant difference between a country-specific estimate and the meta-analytic
+average (controlling for all included moderator variables) was identified when the 95% PI did
+not include zero.
+Sensitivity Analyses
+We conducted several sensitivity analyses to test the robustness of results and probe
+for alternative explanations.
+Accounting for Differences in the Number of Effect Sizes per ILSA. There were
+substantial differences in the number of correlations available per sample across ILSAs. PISA
+and TIMSS provided multiple effect sizes per sample by combining different facets of math
+anxiety with various subdomains of math achievement, whereas both ALL and SIMS offered
+procedures, PISA and TIMSS received more weight in the meta-analytic integrations of r in
+M1a and M2a, and this weighting may have influenced substantive conclusions about the
+average correlations and potential moderator effects. To test the robustness of the results, we
+used a single Fisher z-transformed correlation per sample, derived from the most general
+These measures were available for all 452 samples, providing the best content coverage and
+MATH ANXIETY AND MATH ACHIEVEMENT 42
+the most reliable assessment of the target constructs. In these sensitivity analyses, we
+employed an intercept-only CCREM model with random effects for samples and countries
+and a crossed-random effect for ILSAs (M1b), along with an HREM-FE meta-regression
+model (M2b). This approach ensured that ALL and SIMS received more weight compared
+with the meta-analytic integrations with M1a and M2a.
+Accounting for Measurement Error. All effect sizes were based on observed
+measures that assessed math anxiety and math achievement. Overall, the reliabilities for these
+in comparison with typical standards (e.g., with values of .70 or greater representing desirable
+levels; see Schmitt, 1996). Furthermore, the median reliabilities of the single-item measures
+of math anxiety were comparable to those observed for single-item measures of personality
+(with average reliabilities ranging from .45 to .70; Spörrle & Bekk, 2014). Nevertheless, the
+reliabilities of the applied math anxiety measures may have slightly attenuated the
+correlations between math anxiety and math achievement, assuming that the true
+measurement model for both constructs is a common factor model (Rhemtulla et al., 2020).
+To get an impression of how the effect of attenuation may have affected our substantive
+conclusions, we followed Zhang’s (2024) recommendation and specified confirmatory factor
+analytic (CFA) models that included latent variables representing general math anxiety and
+general math achievement to estimate the correlations (and corresponding Fisher’s z values)
+OSM 3). Notably, two or more indicators of each latent variable (i.e., math anxiety and math
+achievement) per sample are required to identify latent variables in CFA. Thus, from the IPD
+used in this evidence synthesis, we selected the subset that met this requirement (i.e., all PISA
+cycles and the TIMSS 2015 and 2019 cycles in Grades 4 and 8). Drawing on this subset of
+MATH ANXIETY AND MATH ACHIEVEMENT 43
+data from 328 samples , we tested the robustness of results by comparing the meta-analytic
+results for Fisher z-transformed correlations that were corrected for measurement error versus
+those that were not. To this end, for each set of correlations, we used the specification of
+random effects as applied in M1b and M2b to specify intercept-only models
+(M1c /M1c ) and meta-regression models (M2c /M2c ).
+Corrected Uncorrected Corrected Uncorrected
+Analysis for Possible Bias
+We used Ahmed et al.’s (2012) procedure and evaluated several sources of potential
+bias in the effect sizes that were computed using the IPD from ILSAs, including reviewer
+selection bias, publication-related bias, and data availability bias. Furthermore, we assessed
+the asymmetry in the distribution of effect sizes and their standard errors by (a) generating
+funnel plots and (b) carrying out Egger and Egger sandwich tests (Rodgers & Pustejovsky,
+2021; see Atit et al., 2022, for an application), where we added the standard errors of the
+target effect sizes as moderator variables to the intercept-only models (i.e., M1a, M3c, M5f,
+M7f) and mixed-effect models (i.e., M2a, M4, M6, and M8).
+Research Transparency and Open Science
+Because we used public use files from ILSAs, institutional review board approval was
+not required. Ethical considerations related to ILSA data, such as parental consent and
+authorization by ministries of education, were handled by the scientific consortia responsible
+for collecting the data. Participants in all ILSAs were informed about the nature of the test and
+the test date, and parental consent was obtained where necessary (Martin et al., 2016; OECD,
+2005). We did not preregister our review or analyses. The effect sizes and the R code are
+available through the OSF, and the ILSA raw data can be accessed from the websites run by
+the OECD, IEA, COMPEAT, and Statistics Canada. For more information on the R
+Notably, for the Grade 8 samples from South Korea in TIMSS 2015 and 2019, the CFA models yielded
+improper solutions, as the reliability estimates for math anxiety exceeded 1. These samples were excluded from
+the meta-analytic model estimations for M1c , M1c M2c and M2c
+Corrected Uncorrected, Corrected Uncorrected.
+compeat/studies-before-1995/second-international-mathematics-study-1980), PISA 2003
+MATH ANXIETY AND MATH ACHIEVEMENT 44
+packages we used (e.g., to manage the data and create graphs), see OSM 6. We initially used
+GPT-4o mini (OpenAI, 2024) for language editing while writing drafts. Subsequently, the
+paper was reviewed and edited by an experienced native-speaking manuscript editor. Finally,
+we conducted a thorough review and verification of the content in the final manuscript.
+Results
+Novel and Robust Evidence on the Relationship Between Math Anxiety and Math
+Achievement
+The present meta-analysis was based on up to 7,867 high-quality effect sizes from 452
+the current evidence base with the effect size data from previous meta-analyses revealed little
+and robust evidence that has not been previously meta-analyzed.
+The Correlation Between Math Anxiety and Math Achievement
+Meta-Analytic Average and Heterogeneity of Effect Sizes
+Overall, the meta-analytic average correlation across k = 7,867 effect sizes (M1a) was
+− − −
+r = .26 with 95% CI [ .30, .23], demonstrating that higher levels of math anxiety were
+The Q statistic and the percentage of true variance (I = 96) indicated heterogeneity in effect
+sizes. Specifically, heterogeneity was present within samples ( = 0.04, p < .001), between
+ES
+repository/TIMSS/TIMSS2015/TIMSS2015_IDB_SPSS_G4.zip), TIMSS 2015 Grade 8
+repository/TIMSSAdvanced/TA2015/TA2015_IDB_SPSS_Mathematics.zip), TIMSS 2019 Grade 4
+repository/TIMSS/TIMSS2019/TIMSS2019_IDB_SPSS_G8.zip). Of note, the PISA 2003 and 2012 files are in
+an ASCII format for which SAS or SPSS control files are available at the cycle-specific data repositories. The
+public use file for ALL can be requested from Statistics Canada
+MATH ANXIETY AND MATH ACHIEVEMENT 45
+σ σ
+samples ( = 0.06, p < .001), between countries ( = 0.06, p < .001), and between
+Sample Country
+ILSAs ( = 0.04, p < .001). The 95% PI that accounted for these sources of heterogeneity
+ILSA
+ranged from r = –.44 to r = –.07.
+The sensitivity analyses revealed that similar results were obtained when synthesizing
+only the correlations between the most general measures of math anxiety and math
+Corrected
+M1c showed that the subset of negative correlations corrected for measurement error
+Uncorrected
+was, on average, somewhat stronger and more heterogeneous, as indicated by the 95% PI.
+Moderating Effects
+Between-Country Differences and GDP per Capita. Math anxiety was negatively
+associated with math achievement across all countries. However, the strength of this
+association varied, as indicated by the observed heterogeneity ( ) at the country level for
+Country
+M1c , and M1c demonstrated that this finding was robust to different ways of
+Corrected Uncorrected
+handling the data (considering all correlations vs. only those for the most general measures) as
+well as to corrections for measurement error.
+Some of the variation between countries could be explained by the national GDP per
+capita. Specifically, a higher GDP per capita was significantly associated with stronger
+7). For example, in countries with (z-standardized log) national GDP per capita at the 5th and
+95th percentiles, the (adjusted) correlations were r = –.22 and r = –.28, respectively. The
+corresponding meta-regression coefficient indicates that an increase of 1 SD in (z-
+standardized log) GDP per capita was associated with a decrease of of r = –.03 in the (within-
+sample) correlation. The sensitivity analyses using M2b yielded similar results. Furthermore,
+comparing the results for M2c with M2c showed a similar descriptive pattern
+Corrected Uncorrected
+for the moderating effect of GDP per capita. Of note, the meta-regression coefficient was no
+MATH ANXIETY AND MATH ACHIEVEMENT 46
+longer statistically significant (p = 0.19) when the correlations were corrected for
+measurement error.
+Finally, after controlling for the moderator variables in M2a, significant between-
+Country
+meta-analytic average, the adjusted average correlation between math anxiety and math
+achievement was significantly stronger in New Zealand, Canada, Norway, Estonia, Denmark,
+Poland, and the Czech Republic, whereas it was a weaker in Italy, Belgium, South Korea,
+Japan, Indonesia, Israel, and Bahrain.
+Trends Over Time and the COVID-19 Pandemic. We observed a robust negative
+correlation between math anxiety and math achievement from 1980 to 2019, with the linear
+time trend that was close to zero during this period (p = .15; M2a). However, as shown in
+(adjusted) correlations were r = –.27 before the COVID-19 pandemic and r = –.20 after the
+COVID-19 pandemic. The sensitivity analyses confirmed this pattern of results for M2b,
+M2c and M2c .
+Corrected Uncorrected
+Grade Levels and Adult Age Groups. Across all grade levels and age groups, math
+ages of 35 and 44 years (r = .32); the weakest relationship was found for Grade 7 students
+adj
+(r = .21). Notably, the robust Wald F test for M2a was not statistically significant,
+adj
+suggesting that the observed differences across grade levels and age groups might be due to
+chance. Additionally, a similar pattern of results was observed in the sensitivity analyses for
+M2b, M2c and M2c . In summary, these findings indicate that the correlations
+Uncorrected Corrected
+between math anxiety and math achievement were largely consistent across all grade levels
+and adult age groups.
+MATH ANXIETY AND MATH ACHIEVEMENT 47
+Sample-Average Level of Math Achievement. Descriptively, higher country-
+specific sample-average levels of math achievement were associated with slightly stronger
+negative relationships between math anxiety and math achievement within each sample
+average level of math achievement was at the 5th and 95th percentiles, the adjusted
+correlations were r = –.24 and r = –.27, respectively. However, the corresponding meta-
+regression coefficient was not statistically significant (p = .06; model M2a), suggesting that
+the observed differences across sample-average levels of math achievement may be due to
+chance. A similar pattern emerged in the sensitivity analyses for model M2b. Comparing
+results for models M2c with M2c showed that correcting for measurement
+Corrected Uncorrected
+error only marginally affected the size of the meta-regression coefficient. Overall, these
+findings indicate that the relationship between math anxiety and math achievement was of
+similar magnitude regardless of a country’s average level of math achievement.
+Math Anxiety and Its Facets. General math anxiety and all its facets were negatively
+for M2a indicated statistically significant differences across the facets of math anxiety. The
+strongest negative (adjusted) relationship was observed for the cognitive interference facet
+− −
+(r = .29); the weakest relationship was found for the worry facet (r = .20).
+adj adj
+Math Achievement and Its Subdomains. The results for M2a showed that math
+anxiety was negatively correlated with general math achievement and all its subdomains
+differences in these correlations across subdomains. However, the differences were modest:
+Adjusted average correlations ranged from r = .27 (e.g., general math achievement,
+adj
+knowing) to r = .23 (calculus).
+adj
+Gender Differences in the Relationship Between Math Anxiety and Math Achievement
+MATH ANXIETY AND MATH ACHIEVEMENT 48
+Meta-Analytic Averages and Heterogeneity of Effect Sizes. The meta-analytic
+average relationship between math anxiety and math achievement was negative, with similar
+− −
+magnitudes for female (b = 0.27; M3a) and male participants (b = 0.28; M3b;
+Female Male
+Gender
+heterogeneity in effect sizes which was present within samples ( = 0.01, p = .04) and
+Sample
+σ σ
+between countries ( = 0.02, p < .001), but not between ILSAs ( = 0.00, p = .29).
+Country ILSA
+The 95% PI that accounted for these sources of heterogeneity ranged from b = –0.04 to
+Gender
+b = 0.04.
+Gender
+Moderating Effects. Gender differences in the relationship between math anxiety and
+math achievement were minimal (M4): (a) across all grade levels and age groups and (b)
+robust Wald F tests indicated no significant effects of these moderator variables. Furthermore,
+the size of the gender differences did not depend on the sample-average level of math
+achievement or GDP per capita. However, we observed a statistically significant trend, with
+b becoming a stronger positive value over time. For example, whereas the negative
+Gender
+relationship between math anxiety and math achievement was stronger for female than male
+∆ ∆
+participants in 1980 (adjusted b = –0.08), it was zero in 2010 (adjusted b = 0.00),
+Gender Gender
+and weaker for female than male participants in 2022 (adjusted b = 0.02). Finally, after
+Gender
+controlling for the moderator variables, we observed between-country differences in M4
+( = 0.02, p < .001). The adjusted average relationship between math anxiety and math
+Country
+achievement was a significantly stronger negative relationship for female participants in
+Canada, Iceland, and Turkey, whereas it was a significantly stronger negative relationship for
+MATH ANXIETY AND MATH ACHIEVEMENT 49
+Differential Relationships Between Math Anxiety and Math Achievement for
+Participants With Low Versus Average Math Achievement
+Meta-Analytic Average and Heterogeneity of Effect Sizes. The meta-analytic
+average within-sample relationship between math anxiety and math achievement was negative
+− −
+for groups of individuals with low math achievement (b = 0.14, M5a; b = 0.24;
+Low5 Low25
+Ave
+with average achievement, the negative (within-sample) relationship was significantly weaker
+for individuals with low math achievement ( b = 0.15 with 95% CI [0.07, 0.23], M5d;
+Low5
+∆ ∆
+Low25 Low5
+and b may vary widely. However, these differences could also be due to chance, given
+Low25
+the nonsignificant Q statistics.
+Moderating Effects. Nonsignificant robust Wald F tests and robust t tests for meta-
+regression coefficients in M6 indicated that b was not significantly moderated by (a)
+Low
+grade levels and age groups, (b) time, (c) whether the study took place before or after the
+Low
+significantly related to the criterion used to define low math achievement and the sample-
+individuals with low and average math achievement in the relationship between math anxiety
+and math achievement were less pronounced when comparing average-achieving individuals
+th th
+with individuals who scored above the 5 percentile but at or below the 25 percentile
+(adjusted b = 0.10) than when comparing average individuals with individuals who
+Low
+th ∆
+scored below the 5 percentile (adjusted b = 0.17). Furthermore, the difference in the
+Low
+relationship between individuals with low and average math achievement became larger as
+the sample-average level of math achievement increased. For example, the average within-
+sample difference in this relationship was adjusted Δb = 0.08 for samples with average
+Low
+MATH ANXIETY AND MATH ACHIEVEMENT 50
+levels of math achievement at the 5th percentile and adjusted Δb = 0.19 for samples at the
+Low
+95th percentile. Finally, we observed some between-country differences after controlling for
+the moderator variables ( = 0.04, p = .01). Specifically, the difference in the
+Country
+relationship between math anxiety and math achievement between individuals with low and
+To sum up, the present findings indicate that the negative relationship between math
+anxiety and math achievement was stronger for individuals with average math achievement
+compared with those with low levels of math achievement. The magnitude of the difference in
+this relationship remained fairly consistent across grade levels, age groups, time, and GDP per
+capita but increased with a more stringent selection criterion for defining low math
+achievement and with rising sample-average levels of math achievement.
+Differential Relationships Between Math Anxiety and Math Achievement for
+Individuals With High Versus Average Math Achievement
+Meta-Analytic Average and Heterogeneity of Effect Sizes. The meta-analytic
+average within-sample relationship between math anxiety and math achievement was negative
+− −
+for groups with high math achievement (b = 0.33, M7a; b = 0.26; M7b) and
+High75 High95
+Ave
+differences between individuals with average and high levels of math achievement in the
+∆ −
+relationship between math anxiety and math achievement were close to zero ( b = 0.03
+High75
+− ∆ −
+High95
+∆ ∆
+The 95% PIs suggest that b and b may vary widely. However, the differences for
+High75 High95
+∆ ∆
+b and b were likely due to chance, given the nonsignificant Q statistic.
+High75 High95
+Moderating Effects. The robust Wald F tests and robust t tests for meta-regression
+coefficients in M8 indicated statistically significant moderating effects for b with regard
+High
+to (a) grade levels and age groups, (b) whether the study took place before or after the
+MATH ANXIETY AND MATH ACHIEVEMENT 51
+achievement, and the GDP per capita were not statistically significant.
+Specifically, the negative average (within-sample) relationship between math anxiety
+and math achievement was weaker for individuals with high rather than average math
+∆ ∆
+achievement in Grades 4 (adjusted b = 0.14) and 12 (adjusted b = 0.12), as well as
+High High
+for those between 35 and 44 (adjusted b = 0.13) or 45 and 54 years of age (adjusted
+High
+b = 0.09). Conversely, it was stronger for individuals with high rather than average math
+High
+achievement in Grades 9–10 (adjusted b = –0.07). In other grade levels and age groups,
+High
+the relationship was not statistically significantly different between individuals with high and
+average math achievement. Moreover, before the COVID-19 pandemic, the negative
+relationship between math anxiety and math achievement was weaker for those with high
+math achievement than those with average math achievement (adjusted b = 0.04),
+High
+whereas it was stronger afterward (adjusted b = –0.07). Furthermore, differences in the
+High
+relationship between math anxiety and math achievement depended on the selection criterion.
+Differences between individuals with high and average math achievement were close to zero
+th th
+when comparing average-achieving individuals with those scoring between the 75 and 95
+percentiles (adjusted b = 0.00). By contrast, the negative relationship was significantly
+High
+th
+weaker for individuals scoring above the 95 percentile compared with those with average
+math achievement (adjusted b = 0.05). Finally, after controlling for the moderator
+High
+variables, we observed between-country differences ( = 0.05, p < .001). The difference
+Country
+in the relationship between math anxiety and math achievement for individuals with high
+versus average math achievement was significantly larger in Canada and smaller in Malaysia
+MATH ANXIETY AND MATH ACHIEVEMENT 52
+In summary, math anxiety was negatively related to math achievement in individuals
+with both high and average levels of math achievement. This pattern remained fairly
+consistent across time, sample-average levels of math achievement, and GDP per capita
+levels. However, a complex pattern of moderating effects emerged, indicating that the
+differences in the math anxiety-achievement relationship between individuals with high and
+average levels of math achievement were moderated by (a) grade levels and age groups, (b)
+whether the study took place before or after the COVID-19 pandemic, and (c) the selection
+criterion used to define individuals with high levels of math achievement.
+Analysis for Possible Bias
+In accordance with Ahmed et al. (2012), we assessed three potential sources of bias
+that can affect the size and heterogeneity of effect sizes. First, the reviewer selection bias
+reflects the bias that would be present if the pool of IPD did not reflect the entire evidence
+base (Ahmed et al., 2012). This bias is especially likely to occur when IPD are not identified
+by a systematic review and when the selection of the data takes place with knowledge of
+results for specific countries (see Ahmed et al., 2012). However, this kind of bias was
+minimized because our IPD meta-analysis was based on a systematic search in which we
+identified the data sets comprising the highest quality IPD that met the inclusion criteria.
+Second, when applied to our meta-analysis, publication-related bias would refer to bias that
+could occur if data from countries with significantly larger or smaller relationships between
+math anxiety and math achievement had not been published in the public use files (see Ahmed
+et al., 2012). In all the ILSAs included in this meta-analysis, the countries that participated in
+a certain ILSA cycle were registered, and their participation was fully documented in
+corresponding reports (e.g., OECD, 2023b). If data for a certain country in a certain ILSA
+cycle met predefined quality standards, these data were included in the corresponding public
+use files that we used to estimate the effect sizes with IPD from ILSAs. Consequently,
+publication-related biases were not likely to affect the present results. Third, when applied to
+MATH ANXIETY AND MATH ACHIEVEMENT 53
+our meta-analysis, data availability bias would be present if IPD were unavailable for some
+countries or participants within countries (Ahmed et al., 2012). ILSAs set high-quality
+standards for collecting representative probability samples that are applied in all participating
+countries. Furthermore, because we excluded IPD when these quality standards were not met,
+the data sets included in the present meta-analysis were representative of the target population
+in each country. Thus, any bias in sampling leading to distorted relationships between math
+anxiety and math achievement was minimized. However, in the context of ILSAs, data
+availability bias was reflected in the fact that not all countries around the world participated in
+these assessments. To address this sort of data availability bias, we compared key
+characteristics of countries that participated in the ILSAs that we selected for the present
+meta-analyses and countries that provided data on these indicators but did not participate in
+of the Human Development Index (d = 1.35) and a considerably higher average gross national
+income per capita of about $25,000 USD. In addition, people in these countries had, on
+average, a much higher life expectancy (about 10 more years) and a higher level of education
+(they completed about 4 more years of schooling).
+Asymmetry in the Joint Distribution of Effect Sizes and Their Standard Errors
+Visual inspection of the funnel plots for the IPD meta-analyses with ILSAs did not
+indicate a strong degree of asymmetry in the distribution of effect sizes and their standard
+controlling for moderator variables, supporting the conclusion that “small-sample” bias was
+not an issue in the present IPD meta-analyses, which drew on large, representative samples
+Discussion
+Synthesizing Novel and Robust Scientific Evidence on the Relationship Between Math
+Anxiety and Math Achievement
+MATH ANXIETY AND MATH ACHIEVEMENT 54
+Previous meta-analyses have significantly enhanced the understanding of the
+relationship between math anxiety and math achievement. However, as Tables 1 and 3 show,
+these analyses were limited in scope and reliability due to factors such as reliance on small,
+convenience samples (e.g., college students or participants from Western countries), and
+various methodological constraints, including the risk of distorted estimates due to variance
+restriction, low statistical power, and ecological bias. To tackle these challenges, we
+systematically used, for the first time, a comprehensive collection of IPD from representative
+ILSAs to synthesize robust scientific evidence on the relationship between math anxiety and
+math achievement from 1980 to 2022. In doing so, this IPD meta-analysis incorporated a
+significantly larger number of effect sizes, samples, and countries, and the majority of these
+Consequently, this evidence synthesis offers both novel insights and the most reliable,
+generalizable findings to date on the relationship between math anxiety and math achievement
+The Average Relationship Between Math Anxiety and Math Achievement
+The present meta-analysis identified an average correlation of r = −.26, which
+indicated that higher levels of math anxiety were associated with lower levels of math
+achievement (and vice versa). This meta-analytic average remained largely consistent
+regardless of which data treatment had been used, whether all correlations had been used or
+only those from the most general measures of math anxiety and math achievement, and
+whether measurement error had been corrected or not. By using representative samples from
+ILSAs, this IPD meta-analysis supports the existing body of knowledge by corroborating the
+averages obtained in previous meta-analyses on this topic.
+The meta-analytic average correlation between math anxiety and math achievement
+may seem to be only moderate by conventional standards in psychology (e.g., Cohen, 1992),
+but, on the basis of established benchmarks in the field of educational research (Brunner,
+MATH ANXIETY AND MATH ACHIEVEMENT 55
+Stallasch, et al., 2023; Hill et al., 2008), it is very meaningful. This becomes evident when
+comparing the meta-analytic average correlation from the present study with correlations
+between socioeconomic status and educational outcomes, which are highly relevant to policy.
+Specifically, correlations between students’ socioeconomic status and their achievement
+center on a value of r = .30 (Brunner, Stallasch, et al., 2023; Sirin, 2005)––a value that is
+similar in strength to the meta-analytic average correlation found between math anxiety and
+math achievement. Furthermore, individuals with low/high levels of math anxiety are often
+defined as scoring /+ 1 standard deviation below/above the mean of the applied anxiety
+measure (Ashcraft & Moore, 2009). In adopting a regression perspective, the meta-analytic
+− −
+average correlation translates into an (expected) average performance gap of 0.26 ( 0.26) =
+0.52 standard deviations between low and high math-anxious individuals on standardized
+measures of math achievement. To assess the magnitude of this difference, it can be compared
+with average yearly learning gains in mathematics, which, for example, in K-12 education in
+the United States (Hill et al., 2008), range from 0.01 standard deviations (Grades 11 to 12) to
+1.14 standard deviations (Kindergarten to Grade 1). Thus, the performance gap between high
+and low math-anxious students is quite substantive because it represents at least 46% (i.e.,
+0.52 SD/1.14 SD) of such learning gains in mathematics.
+Moderating Effects on the Relationship Between Math Anxiety and Math Achievement
+Our meta-analytic analyses revealed heterogeneity in effect sizes. To clarify and better
+understand the sources of this heterogeneity, we built on and extended previous meta-analyses
+in order to conduct a series of moderator analyses. Importantly, the present pattern of
+moderating effects reveals several similarities with, but also notable differences from, the
+results of these previous studies. When interpreting these differences, it is essential to
+The expected z-standardized value of math achievement can be computed as where β
+represents the standardized regression coefficient that is equal to the correlation coefficient r, and is the z-
+𝑀𝑀𝑀𝑀𝑀𝑀𝑀𝑀 𝑀𝑀𝑀𝑀𝑀𝑀𝑀𝑀 𝑀𝑀𝑀𝑀𝑀𝑀
+𝑧𝑧̂ 𝑧𝑧̂ = 𝛽𝛽 ∙ 𝑧𝑧
+standardized value of math anxiety. Hence, using the meta-analytic average r = −.26, the expected value for
+𝑀𝑀𝑀𝑀𝑀𝑀
+𝑧𝑧
+individuals with low levels of math anxiety, where z = −1, is . The expected
+MAX
+value for individuals with high levels of math anxiety, where z = +1, is .
+MAX
+𝑀𝑀𝑀𝑀𝑀𝑀𝑀𝑀
+𝑧𝑧̂ = −.26 ∙ (−1) = .26
+𝑀𝑀𝑀𝑀𝑀𝑀𝑀𝑀
+𝑧𝑧̂ = −.26 ∙ (+1) = −.26
+MATH ANXIETY AND MATH ACHIEVEMENT 56
+consider that variations in results are likely due to the combined effects of several substantive
+and methodological factors, such as the application of somewhat different coding schemes for
+moderator variables, the inclusion of different data sets in the meta-analytic integration, or
+Countries and Their Socioeconomic Prosperity
+The present meta-analysis found that math anxiety was negatively related to math
+achievement across all countries, although the strength of this association varied by country,
+consistent with the results reported in the meta-analysis by Barroso et al. (2021). It is
+plausible that socioeconomic differences and variations in educational systems moderate the
+relationship between math anxiety and math achievement (see Eccles & Wigfield, 2020;
+Pekrun, 2024). Drawing on the work by Tucker-Drob and colleagues (Tucker-Drob et al.,
+2014; Zheng et al., 2019) we expected and observed a stronger negative relationship between
+math anxiety and math achievement in countries with higher levels of GDP per capita
+compared with those with lower levels of GDP per capita. Specifically, we hypothesized that,
+compared with poorer countries, wealthier countries provide more math-related learning
+opportunities. Because individuals with high levels of math anxiety and low levels of math
+achievement are more likely to avoid math-related learning opportunities, the availability of
+more such opportunities allows individual differences in math anxiety to have a greater
+impact on differences in math achievement (and vice versa). This situation consequently leads
+to a stronger negative relationship between these constructs. However, given that GDP per
+capita is only a distal measure of math-related learning opportunities, future research should
+employ more direct measures to gather further support for this hypothesis.
+Importantly, the moderating effect of GDP per capita suggests that the relationship
+between math anxiety and math achievement may have a potentially stronger negative impact
+in wealthier countries, affecting individuals’ educational and occupational career trajectories
+MATH ANXIETY AND MATH ACHIEVEMENT 57
+(due to avoidance behavior) as well as economic growth in STEM fields (due to workforce
+shortages).
+Furthermore, even after adjusting for all moderator variables under investigation,
+between-country differences remained, with stronger negative relationships in Canada, New
+Zealand, and several Scandinavian and Eastern European countries. There were weaker
+negative relationships in several countries in East, Southeast, and Western Asia. On the basis
+of the available data, we can only speculate about potential explanations. For example,
+cognitive interference and reciprocal theory predict that math anxiety impairs the learning of
+mathematics in the classroom (Carey et al., 2016; Namkung et al., 2019). Thus, these effects
+may be moderated by students’ experiences in the classroom (Pekrun, 2024; Ramirez et al.,
+2018). For example, higher levels of confidence in mathematics teachers—such as their
+ability to inspire students, demonstrate various problem-solving strategies, and support
+struggling learners—have been linked to weaker negative relationships between math anxiety
+and math achievement (Lau et al., 2022). Furthermore, instructional research by Helmke
+(1988) suggested that the relationship between math anxiety and math achievement is weaker
+when teachers focus on reviewing previously learned material, provide previews of upcoming
+lessons, and avoid creating a “test-like” classroom environment with a strong emphasis on
+success and failure (e.g., by minimizing evaluations by teachers or classmates). In summary,
+future research could explore whether educational systems that prioritize these instructional
+strategies help students manage both the cognitive and affective demands of math learning
+more effectively, potentially leading to a weaker negative correlation between math anxiety
+and math achievement. Additionally, integrating the archival data from this evidence
+synthesis with key indicators of education systems (e.g., OECD, 2022) may provide further
+insights into how institutional characteristics moderate the between-country variation in the
+relationship between math anxiety and math achievement. For example, variations in
+educational systems regarding how and when students are placed into different academic
+MATH ANXIETY AND MATH ACHIEVEMENT 58
+tracks on the basis of their achievement may moderate social frames of reference and related
+social comparison processes (Salchegger, 2016), which are expected to influence the
+relationship between math anxiety and math achievement (Pekrun et al., 2019).
+Trends Over Time and the COVID-19 Pandemic. The relationship between math
+anxiety and math achievement has been studied for over 60 years. During this time, both
+methodological innovations (e.g., refined assessments of math anxiety and math achievement)
+and substantive developments (e.g., increasing curricular emphasis on socioemotional
+learning and greater math-related learning opportunities associated with rising GDP per
+capita) may have led to variations in the strength of the correlations between these constructs
+(Barroso et al., 2021; Durlak et al., 2022; Namkung et al., 2019; Zheng et al., 2019).
+The present meta-analysis revealed a complex pattern in how this relationship has
+evolved over time. Specifically, in line with previous meta-analyses (Ma, 1999; J. Zhang et
+al., 2019), a consistent negative relationship between math anxiety and math achievement was
+observed from 1980 to 2019, but this relationship was significantly weaker following the
+COVID-19 outbreak in 2020. Thus, there was no support for the hypothesis that major
+learning disruptions would lead to a stronger negative association between math anxiety and
+math achievement when coupled with significantly reduced support from teachers and parents
+(Di Pietro, 2023). Instead, this finding may be explained by at least two interrelated
+mechanisms. First, the learning disruptions caused by the COVID-19 pandemic significantly
+reduced both the number and quality of learning opportunities (Di Pietro, 2023; OECD, 2021;
+UNESCO, 2022). When these opportunities are diminished, individual differences in math
+anxiety and math achievement are less likely to unfold, resulting in a weaker negative
+relationship between them. Second, these disruptions also had a strong social component: The
+achievement of other students became less visible, and opportunities for social comparison
+were reduced (Sydänmaanlakka et al., 2024). Because social comparisons with other students
+are a major driver of math anxiety (Pekrun et al., 2019), the decrease in the opportunities for
+MATH ANXIETY AND MATH ACHIEVEMENT 59
+such comparisons during the pandemic may have contributed to reducing the magnitude of the
+negative relationship between math anxiety and math achievement.
+Notably, the results observed after the COVID-19 outbreak were based on data from
+students in Grades 9–10 from PISA 2022. Therefore, future research should investigate the
+replicability of the reduced negative relationship observed after the pandemic across other
+grade levels and age groups. Additionally, it is important to examine whether the strength of
+this association will remain at its current level or will return to pre-COVID levels. Analyzing
+future ILSAs will be a valuable approach to addressing these questions. Moreover, although
+the proposed mechanisms are plausible, they remain tentative. To further explore these
+mechanisms and other potential factors that may explain changes in the association due to the
+COVID-19 pandemic, significant progress can be made by employing statistical models
+(Gangl, 2010; Imbens, 2024) and the quasi-experimental toolbox for causal reasoning
+(Shadish et al., 2002; West, 2009). It will be crucial to use data that include variations in the
+onset, duration, and extent of learning disruptions. These data can be longitudinal, with
+multiple measurement points for each participant (e.g., before, during, and after the
+pandemic), or cross-sectional, provided that the timing of measurement (reflecting different
+durations of learning disruptions) is not related to participant characteristics.
+Developmental Trends Across Grade Levels and Age Groups
+Taking a developmental perspective, the present meta-analysis found that math
+anxiety was significantly, negatively associated with math achievement across primary, lower,
+and upper secondary education, as well as in adult age groups up to 65 years. Furthermore,
+although some variations in this relationship were found across grade levels and age groups,
+the moderating effect was not statistically significant. Thus, these differences were likely due
+to chance. This pattern of results is in line with the meta-analysis by Namkung et al. (2019)
+for school-aged populations but is not consistent with other meta-analyses that demonstrated
+MATH ANXIETY AND MATH ACHIEVEMENT 60
+moderating effects within the student population (Barroso et al., 2021) or between school-
+aged students and adults (Barroso et al., 2021; Caviola et al., 2022).
+Using representative ILSAs, this meta-analysis is limited to the populations covered in
+these assessments and therefore does not apply to populations of preschool children, students
+below Grade 4 in primary education, or adults over the age of 65. However, previous research
+has shown that math anxiety and math achievement are negatively related in children before
+Grade 4. Specifically, Barroso et al.’s (2021) meta-analysis indicated a significant negative
+correlation for students in Grades 1 and 2. This correlation was similar in size to the
+correlation observed for students in Grade 4 in the present meta-analysis. Furthermore, recent
+primary studies have extended this knowledge, revealing negative relationships for children in
+U.S. kindergarten (Lu et al., 2021) and UK preschool (Petronzi et al., 2019).
+In summary, the present results highlight the importance of considering the
+relationship between math anxiety and math achievement as a lifespan phenomenon.
+However, significant knowledge gaps remain. First, more empirical evidence is needed to
+corroborate the predictions and replicate initial findings on how individual and contextual
+factors, as well as their interplay, make children vulnerable to developing math anxiety. For
+example, it is well-documented that preschool children demonstrate considerable individual
+differences in early math abilities (OECD, 2020) that are predictive of their later math
+achievement in school (La Paro & Pianta, 2000). Thus, according to deficit and reciprocal
+theory, children with low levels of early math abilities are at great risk of developing math
+anxiety. Moreover, some key socioemotional and cognitive child characteristics, such as high
+levels of general trait anxiety (Svraka et al., 2024) or low working memory capacity (Moran,
+2016), are predicted to represent general risk factors for developing math anxiety. Finally,
+parents and teachers play an important role, as they can offer math-related learning
+experiences to foster and respond to children’s math-related interests and behaviors (e.g.,
+counting, playing with geometric shapes or quantities). In this respect, parents’ and preschool
+MATH ANXIETY AND MATH ACHIEVEMENT 61
+teachers’ math-related beliefs and their own math anxiety may lead to differential learning
+experiences, which are predicted to initiate, maintain, and increase children’s math anxiety
+(Becker et al., 2022; Boehme et al., 2017; Carkoglu et al., 2023; Chang & Beilock, 2016;
+Galeano et al., 2024). Second, despite the demographic trend in Western societies with an
+increasing number of people over the age of 65, research on the relationship between math
+anxiety and math achievement in older adults is lacking. An important task for future research
+is to study this relationship in the older population, specifically how it interacts with cognitive
+aging (Tucker-Drob, 2019) and the associated limitations in working memory (Bopp &
+Verhaeghen, 2005, 2020) and math knowledge (Kavé et al., 2022).
+Math Anxiety and Its Facets
+Building on recent work in the field of text anxiety (Putwain et al., 2021), the present
+meta-analysis approached math anxiety from two perspectives. First, it was conceived as a
+broad, general construct that encompasses both cognitive and affective-physiological facets.
+Second, it was considered a multidimensional construct that includes worry, cognitive
+interference, affective, and physiological facets. General math anxiety, along with the worry,
+cognitive interference, and affective facets, was significantly and negatively associated with
+math achievement. Additionally, we found that the weakest relationship was with the worry
+facet, whereas stronger, similar negative relationships were observed for the cognitive
+interference and affective facets as well as general measures of math anxiety. An important
+direction for future research is to explore the physiological facet of math anxiety, which could
+not be examined in this meta-analysis due to limitations in the available IPD.
+Our results have several important implications. First, further research is needed to
+improve the understanding of the mechanisms through which math anxiety impairs math
+performance. The differential relationships observed between the worry facet (with weaker
+negative correlations) and the cognitive interference and affective facets (both with stronger
+negative correlations) suggest that the widely discussed mechanism wherein worry and self-
+MATH ANXIETY AND MATH ACHIEVEMENT 62
+deprecating thoughts deplete the limited resources in working memory (Carey et al., 2016;
+Eysenck et al., 2007; Namkung et al., 2019; Suárez-Pellicioni et al., 2016) cannot fully
+explain the debilitating effect of math anxiety on math performance. Instead, the present
+results suggest that stronger or additional debilitating effects are likely associated with
+mechanisms related to the cognitive interference facet, the affective facet, or both.
+Specifically, the robust negative relationship observed for the cognitive interference facet
+highlights how math anxiety disrupts a key function of working memory (Chang & Beilock,
+2016; Eysenck et al., 2007), namely, individuals’ goal-directed attention (Engle, 2002;
+Oberauer, 2019), as evidenced by difficulties concentrating or confusion (Li et al., 2023;
+Putwain et al., 2021). Furthermore, the robust negative relationship observed for the affective
+facet suggests that negative emotional reactions have detrimental effects on brain activity
+(e.g., in the amygdala), which in turn impairs functioning in brain regions (e.g., the
+dorsolateral prefrontal cortex) involved in efficient working memory and cognitive processing
+(Foley et al., 2017; Ramirez et al., 2018).
+Second, this pattern of moderating effects is novel and has not been observed in
+previous meta-analyses on the relationship between math anxiety and math achievement,
+likely due to the unavailability of relevant data in primary studies. Furthermore, the present
+meta-analytic results diverge from meta-analytic findings in the realm of general test anxiety,
+as these previous findings revealed stronger negative relationships with test performance for
+the worry facet than for the broad affective-physiological facet of test anxiety (Von Der
+Embse et al., 2018). In summary, these empirical inconsistencies highlight the need to
+consider math anxiety and general test anxiety as distinct constructs. They also point to the
+need for further research to identify the factors that may explain these differences.
+In summary, the present findings underscore the importance of considering math
+anxiety as a multidimensional construct and highlight the necessity for measures of math
+anxiety to include all its facets. This approach is crucial for fully capturing its conceptual
+MATH ANXIETY AND MATH ACHIEVEMENT 63
+breadth and understanding how each facet is differentially related to math achievement.
+Consequently, future research should focus on developing, refining, and utilizing measures
+that reliably assess these specific facets of math anxiety. Ideally, these measures should assess
+the facets of math anxiety not only in relation to mathematics in general (e.g., “I feel nervous
+about mathematics”) but also across various contexts (Bieleke et al., 2023; Hopko et al.,
+2003) that differ in their evaluative nature (Helmke, 1988) and their potential to stimulate
+social comparisons with others (Pekrun et al., 2019). These contexts include evaluative tests
+(e.g., “I feel nervous about taking math tests”), classroom learning (“I feel nervous in my
+math class”), and self-directed study (“I feel nervous when learning math on my own”) for
+student populations. For adult populations, the contexts extend to work-related and public
+settings (e.g., “I feel nervous when using math at work”; “I feel nervous when using math in
+front of others”) as well as to private settings (e.g., “I feel nervous when facing math
+problems on my own at home”).
+To build cumulative knowledge, authors of primary studies should ideally share their
+ 
+raw data in public repositories or report for each context correlations with math
+achievement for each facet, in addition to general math anxiety. Specifically, including the
+physiological facet in primary studies and subsequent meta-analyses could address a
+limitation of both the current meta-analysis and all previous meta-analyses, as none of them
+examined the relationship between the physiological facet of math anxiety and math
+achievement. Notably, incorporating the physiological facet offers promising research
+opportunities by enabling multimethod approaches that combine self-reports with objective
+measures (Daker et al., 2023; Roos et al., 2021). For example, metrics such as heart rate, heart
+rate variability, and blood pressure measured with smartwatches (Masoumian Hosseini et al.,
+2023) offer a noninvasive and continuous way to assess individuals’ arousal in relation to
+math anxiety in real-life situations (e.g., in the classroom, during tests, or at work).
+MATH ANXIETY AND MATH ACHIEVEMENT 64
+Finally, future research should carefully consider how the interrelations between the
+facets of math anxiety, both within and across contexts, can be represented in measurement
+models that capture the target construct(s) and account for measurement error. Measurement
+models that capture general math anxiety (e.g., single-factor or composite models) may be
+particularly useful for deriving test scores that represent individuals’ overall level of math
+anxiety in counseling and intervention contexts. Furthermore, a key substantive point is that
+the measurement model should reflect the distinctive nature of the facets and their
+interrelations (Rhemtulla et al., 2020). Measurement models that capture the distinctiveness of
+the facets include multidimensional factor models and bifactor/nested-factor models (Brunner
+et al., 2012; Gogol et al., 2017), as well as composite models and psychometric network
+models (Borsboom et al., 2021; Rhemtulla et al., 2020). Employing these models, particularly
+in experimental and longitudinal research, will provide deeper insights into the interplay
+among the facets of math anxiety and their relationships to math achievement.
+Math Achievement and Its Subdomains
+Drawing on contemporary assessment frameworks of math achievement (e.g., Mullis
+et al., 2016, 2020; OECD, 2023a), we examined various conceptualizations of math
+achievement, including general math achievement as well as content- and process-related
+subdomains. Our meta-analytic integration revealed that math anxiety was negatively related
+to all subdomains of math achievement as well as to general math achievement, with similar
+strength. Interestingly, there were only minor differences across the content- and process-
+related subdomains, despite expectations that stronger negative relationships might be
+observed in more complex and demanding content-related subdomains introduced later in the
+curriculum (e.g., calculus) or in process-related subdomains requiring more cognitively
+demanding math-related processes in novel situations (e.g., reasoning). Overall, the present
+pattern of findings highlights that math anxiety impairs not only problem-solving in novel
+MATH ANXIETY AND MATH ACHIEVEMENT 65
+situations but also the acquisition, retrieval, and application of mathematical facts and
+procedures in familiar contexts and curricular domains introduced early in math education.
+Each measure of math achievement used in ILSAs covered a broad spectrum of
+difficulties and complexity. However, these measures were associated with two limitations
+that restricted the ability of the present meta-analysis to address the inconsistencies found
+across previous studies. First, math achievement was assessed with standardized tests in a
+low-stakes research setting, where individuals’ test results held no significant personal
+consequences. One might expect the correlation between math anxiety and math achievement
+to be stronger in the kinds of assessment situations that tend to induce high levels of anxiety
+(Barroso et al., 2021; Namkung et al., 2019). For example, it would be logical to expect
+higher levels of anxiety when failure on a math assessment has far-reaching personal
+consequences, such as course or final exam grades in math or for high-stakes math
+assessments (e.g., when test scores on the math portion of the SAT or ACT are used for
+college admission) than for low-stakes math assessments (e.g., homework assignments or test
+scores in research settings). However, previous meta-analyses have provided only partial
+support for this prediction. Namkung et al. (2019) found that the average correlation between
+math anxiety and math achievement was significantly stronger when the math measure was
+used for grading than when it was not used for grading. However, Barroso et al. (2021) found
+no significant differences in the magnitude of the correlation between high-stakes tests and
+standardized tests that were used for research purposes. In addition, and contrary to
+expectations, they found that the negative correlation was significantly stronger when the
+math measure was a standardized test that had no direct consequences compared with exam
+grades that carried a lot of weight. To address these inconsistencies, future meta-analyses
+would likely benefit from combining IPD from ILSAs and AD from primary studies, while
+utilizing the present analytic strategy to investigate moderating effects (see also the
+“Strengths, Limitations, and Future Directions for Advancing Theory and Research” section).
+MATH ANXIETY AND MATH ACHIEVEMENT 66
+By doing so, these meta-analyses can compare the relationships between math anxiety and
+math achievement when achievement is measured by grades versus when it is measured by
+low- and high-stakes standardized tests.
+Second, the measures of math achievement applied in ILSAs did not provide test
+scores for foundational mathematical subdomains (e.g., number sense or single-digit
+computations below 10). Some meta-analyses have suggested that the negative association
+between math anxiety and math achievement becomes less pronounced as the difficulty,
+complexity, and working memory demands of math problems decrease (Caviola et al., 2022;
+Namkung et al., 2019; J. Zhang et al., 2019). By contrast, other studies have found no
+significant moderating effects (Barroso et al., 2021). In this regard, an important task for
+future research is to better understand the task characteristics that may exacerbate or mitigate
+the relationship between math anxiety and math achievement. To this end, future studies
+could draw inspiration from research examining how the working memory demands of
+intelligence tasks influence the relationship between item performance and working memory,
+for example, by leveraging methods such as cognitive demand analysis, verbal protocols, eye-
+fixation patterns, error analysis, and neuroimaging (Carpenter et al., 1990; Conway et al.,
+2003), as well as psychometric findings (Frischkorn & Oberauer, 2021). Additionally, teacher
+complexity ratings (Pettersen & Braeken, 2019) could be used to investigate how various
+characteristics of math problems (e.g., demands for mathematical modeling or reasoning)
+influence the relationship between math anxiety and math achievement. Gaining such
+knowledge could be particularly valuable for educators and could help them anticipate and
+address challenges in learning and evaluation situations for students with high levels of math
+anxiety.
+Gender Differences
+On the basis of the results of a series of studies, Aiken (1970) expected a stronger
+negative relationship between math anxiety and math achievement for women and girls than
+MATH ANXIETY AND MATH ACHIEVEMENT 67
+for men and boys. By contrast, Pekrun’s (2006) control-value theory of academic emotions
+predicted that the relationship between math anxiety and math achievement would be
+universal and would therefore not be moderated by gender. Overall, the present meta-analysis
+found that math anxiety was negatively associated with math achievement to similar degrees
+for males and females. This finding is consistent with previous meta-analytic results and
+remained stable across different grade levels and age groups, variations in the average math
+achievement levels of samples, and differences in national GDP per capita. However, gender
+differences in the relationship between math anxiety and math achievement have evolved over
+time. Prior to 2000, there was a stronger negative relationship for females than for males.
+After 2010, the trend reversed, showing a somewhat stronger negative relationship for males
+than for females. By 2022, the gender difference in this relationship appeared to have
+approached zero. Interestingly, the present findings reveal that scientific results and
+hypotheses are embedded in their respective historical contexts, which need to be considered
+when evaluating their contributions. Specifically, the observed trend suggests that there was a
+stronger negative relationship between math anxiety and math achievement for girls and
+women than for boys and men around 1970 when Aiken formulated his expectation. By the
+time Pekrun made his prediction, however, gender differences in this relationship had
+diminished to nearly zero.
+We can only speculate about potential factors that might explain this observed trend as
+well as the between-country variation in gender differences in this relationship that remained
+after the moderator variables had been accounted for. One possible explanation could be the
+significant increase in the numbers of female students participating in advanced math courses
+(e.g., calculus) in high school as well as in mathematics programs at the university level,
+compared with 1970 (National Center for Education Statistics, 2022). Today, young women
+represent over 40% of the total number of students enrolled in mathematics and statistics
+programs in tertiary education in many countries (Eurostat, 2024; U.S. Department of
+MATH ANXIETY AND MATH ACHIEVEMENT 68
+Education, National Center for Education Statistics, 2022b). This development has likely been
+associated with changes in the cultural milieu, including changes in gender roles and
+stereotypes in mathematics, as well as shifts in the beliefs of socializers, such as parents and
+teachers, about gender differences in mathematics. These changes may have differentially
+influenced the relationship between math anxiety and math achievement for females and
+males (see Eccles & Wigfield, 2020; Ramirez et al., 2018). Moreover, despite an overall trend
+of decreases in gender differences in enrollment rates, substantial differences remain across
+countries. Further research is needed to examine the proposed mechanisms, such as by using
+archival data on gender-related stereotypes in science and mathematics (Nosek et al., 2009) or
+national indicators of gender equity (Else-Quest & Grabe, 2012). These approaches could
+help in the investigation of how temporal trends in stereotypes or differences in gender equity
+between countries are linked to the observed patterns in gender differences in the relationship
+between math anxiety and math achievement.
+Levels of Math Achievement at the Individual and Sample Levels
+There has been increasing interest in understanding how math achievement levels
+moderate the relationship between math anxiety and math achievement. In this paper, we
+tested three hypotheses in this context and explored how moderating effects at the individual
+level are associated with sample characteristics and contextual factors.
+Individuals With Low Levels of Math Achievement. Previous research on deficit
+theory has demonstrated disproportionately high levels of math anxiety in students with lower
+math achievement (Lai et al., 2015; Passolunghi, 2011; Wu et al., 2014), suggesting that this
+group may be more vulnerable to the negative effects of math anxiety (Barroso et al., 2021).
+Contrary to this prediction, but consistent with Barroso et al.’s (2021) results, the present
+meta-analysis revealed that there was a stronger negative relationship between math anxiety
+and math achievement for individuals with average math achievement than for those with low
+math achievement. Interestingly, this pattern parallels findings on the relationship between
+MATH ANXIETY AND MATH ACHIEVEMENT 69
+math self-concept and math achievement, as these findings for math self-concept indicate that
+its relationship with math achievement was weaker for students with low levels of math
+achievement (Keller et al., 2021). This weaker relationship was explained by low-achieving
+math students applying self-protective strategies to maintain a favorable math self-concept
+(Alicke & Sedikides, 2009; Keller et al., 2021). As individuals draw on their math self-
+concepts to evaluate math-related situations and activities (Pekrun, 2006; Ramirez et al.,
+2018), the favorable math self-concepts of individuals with low math achievement may
+mitigate the relationship between math anxiety and math achievement. This mitigation may
+lead to a reduction in the strength of the negative relationship for this group of individuals
+relative to individuals with average math achievement.
+Individuals With High Math Achievement. Foley et al. (2017) expected that
+individuals with high math achievement may be more susceptible to the negative effects of
+math anxiety because they often rely on strategies that place high demands on working
+memory, as such strategies are likely to fail when math anxiety interferes with the resources
+available for working memory. Consequently, a stronger negative relationship between math
+anxiety and math achievement was anticipated for this group. However, the results of this
+meta-analysis provided little empirical support for this hypothesis in high achievers. By
+contrast, the observed patterns for individuals with low and average levels of math
+achievement supported the prediction that the negative relationship between math anxiety and
+math achievement becomes stronger as math achievement levels increase. Notably, this
+increase was not linear across the full range of math achievement; the average strength of the
+relationship for high achievers was largely comparable to that of individuals with average
+math achievement. These findings suggest that the detrimental effect of math anxiety may
+initially intensify as math achievement increases but tends to plateau in individuals with
+average and high math achievement.
+MATH ANXIETY AND MATH ACHIEVEMENT 70
+A potential explanation for this pattern may lie in the influence of social comparison
+processes, math self-concept, and appraisal mechanisms on math anxiety. Individuals with
+very high levels of math achievement who compare their performances with those of lower
+achieving peers may develop lower levels of math anxiety and higher math self-concepts.
+Hence, social comparison processes and associated appraisal mechanisms may mitigate the
+negative relationship between math anxiety and math achievement in this group. These
+mechanisms could explain why (a) the relationship between math anxiety and math
+achievement plateaus in high achievers and (b) individuals scoring above the 95th percentile
+demonstrated even a somewhat weaker negative relationship compared with those scoring
+above the 75th percentile but at or below the 95th.
+Sample-Average Level of Math Achievement. If susceptibility to the negative
+effects of math anxiety varies with math achievement levels, the sample-average level of math
+achievement could moderate the relationship between math anxiety and math achievement
+within each sample. However, our moderator analysis indicated that this relationship was
+generally consistent across varying sample-average levels. Although we observed a slightly
+stronger negative relationship with increasing sample-average levels, inferential testing
+suggested this moderating effect may be due to chance. Notably, our analyses provide no
+evidence that higher sample-average levels of math achievement are associated with weaker
+negative relationships between math anxiety and math achievement.
+One possible explanation for this pattern of results is that several mechanisms might
+exert opposing effects on the relationship between math anxiety and math achievement. In
+particular, academically thriving countries with higher average math achievement tend to
+offer more opportunities to learn advanced mathematics, supported by curricula and
+instruction that emphasize complex problem-solving (OECD, 2014). Consequently, a larger
+proportion of individuals in these countries may adopt math problem-solving strategies that
+place greater demands on working memory. Such strategies may become less effective when
+MATH ANXIETY AND MATH ACHIEVEMENT 71
+math anxiety impairs working memory, potentially leading to stronger negative relationships
+between math anxiety and math achievement in these countries. However, this effect may be
+counterbalanced if educational systems in these countries emphasize instructional strategies
+(e.g., supporting struggling learners; Helmke, 1988; Lau et al., 2022) that mitigate the
+relationship between these constructs. Together, these opposing effects could result in similar
+relationships between math anxiety and math achievement across varying sample-average
+levels of math achievement. However, additional research is necessary to further elucidate
+these mechanisms.
+Exploratory Moderator Analyses. Exploratory moderator analyses indicated that the
+moderating effects of individuals’ math achievement levels may be contingent on sample
+characteristics and contextual factors. Given the novel nature of these findings, we present
+conjectures and preliminary explanations with the aim of facilitating a deeper understanding
+of these potential influences.
+Sample-Average Level of Math Achievement. Our results indicated that, in countries
+with higher sample-average math achievement levels, the relationship between math anxiety
+and math achievement was more pronounced for individuals with average versus low math
+achievement. One explanation is that academically thriving countries (with higher average
+levels of math achievement), opportunities for math-related learning expand (OECD, 2014).
+Consequently, there are more situations in which math achievement becomes relevant, leading
+to experiences of success and failure, along with associated social comparison and appraisal
+processes. This, in turn, may strengthen the negative relationship between math anxiety and
+math achievement in individuals with average math achievement, while students with low
+math achievement may employ self-protective strategies to preserve a positive math self-
+concept (Alicke & Sedikides, 2009; Keller et al., 2021). Taken together, these mechanisms
+could explain the increased disparity in the relationship between math anxiety and math
+MATH ANXIETY AND MATH ACHIEVEMENT 72
+achievement between low and average achievers in countries with higher average math
+achievement levels.
+Grade Level. The moderating effects of grade levels identified for the comparison of
+individuals with high and average math achievement may be attributable to the differences in
+the demands that math problems place on working memory resources, as such demands have
+been found to affect the impact of math anxiety on math performance (Ashcraft & Kirk, 2001;
+Namkung et al., 2019). For example, math assessments in earlier grade levels are less
+complex than math assessments in higher grade levels. Thus, earlier math assessments might
+be less demanding of working memory resources. Likewise, the working memory demands of
+math problems in the TIMSS assessments (administered in Grades 4, 8, and 12) might be
+lower than those in the PISA assessments (administered in Grades 9 and 10). This difference
+arises because the PISA math tests are generally considered more challenging than the
+curriculum-based TIMSS tests (Else-Quest et al., 2010).
+COVID-19 Outbreak. After the COVID-19 outbreak, the negative relationship
+between math anxiety and achievement increased in strength for high achievers. This shift
+likely occurred as lockdowns and learning disruptions reduced opportunities for social
+comparisons, which may have otherwise mitigated anxiety for individuals with high levels of
+math achievement.
+Directions For Future Research. Overall, this meta-analysis provides strong
+evidence that individual levels of math achievement may moderate the within-sample
+relationship between math anxiety and math achievement. However, the observed patterns
+underscore the need for further research to better explain the underlying mechanisms and the
+moderating effects that have been identified as well as to empirically substantiate our
+proposed conjectures and preliminary explanations of these effects. To this end, future studies
+could benefit from: (a) examining diverse samples that include a broad range of math
+achievement levels; (b) incorporating math problems of varying difficulty and complexity,
+MATH ANXIETY AND MATH ACHIEVEMENT 73
+such as those used in the PISA assessments; and (c) collecting data on moment-to-moment
+math anxiety alongside measures of social comparison and appraisal processes, emotion
+regulation, and applied math problem-solving strategies. Such research designs could offer
+deeper insights into how math anxiety differentially affects math performance across
+individuals with varying levels of math achievement.
+Strengths, Limitations, and Future Directions for Advancing Theory and Research
+The present evidence synthesis embodies several key strengths. It provides novel,
+reliable, and generalizable findings on the average relationship between math anxiety and
+math achievement and key moderating factors. In discussing these moderating effects, we
+have highlighted how the robust empirical findings from this meta-analysis not only establish
+important insights but also identify constraints and boundary conditions. These insights serve
+as a valuable foundation for guiding future theoretical developments aimed at better
+understanding the dynamics between these constructs (see Eronen & Bringmann, 2021).
+Nevertheless, as is the case for any study, this meta-analysis has several limitations.
+Some limitations specific to the moderating effects have already been discussed. This section
+addresses more general issues that provide nuances for interpreting the current results and
+propose broader directions for future research.
+Using IPD From Future ILSAs to Enhance the Generalizability of Results
+Compared with previous meta-analyses, the results of the present meta-analysis offer a
+considerably wider reach due to the much larger number of countries we included. However,
+the sample of countries was still skewed toward those with higher educational and
+socioeconomic resources, thus limiting the generalizability of the results. Additionally, except
+for ALL, the IPD were predominantly obtained from student populations in elementary, lower
+secondary, and upper secondary education. As a result, the available data restricted the scope
+have been conducted regularly to assess adult populations, such as the Programme for the
+MATH ANXIETY AND MATH ACHIEVEMENT 74
+International Assessment of Adult Competencies (PIAAC), and student populations in
+specific regions, such as the Latin American Laboratory for Assessment of the Quality of
+Education (LLECE) in Latin America and the Southern and Eastern Africa Consortium for
+Monitoring Educational Quality (SACMEQ) in Africa. If these ILSAs were to expand their
+background questionnaires to include measures of math anxiety, future IPD meta-analyses of
+the relationship between math anxiety and math achievement would greatly benefit from
+synthesizing these additional data.
+Synthesizing Results From More Complex Models to Capture Nonlinear Relationships
+To study how gender or individuals’ math achievement levels may moderate the
+relationship between math anxiety and math achievement, we compared regression
+coefficients (i.e., slope parameters) as obtained from separate linear regression models that we
+specified for each gender as well as for individuals with low, average, and high levels of math
+achievement. Given its parsimony, we used the linear regression model as a starting point
+from which to explore the potential moderating effects of these individual characteristics.
+However, the application of more complex regression models (e.g., restricted cubic spline
+functions; Harrell, 2015) that allow for potential nonlinear relationships between these
+constructs may offer an even better way to approximate their empirical relationships. Thus,
+future research may be able to provide a more nuanced understanding of the moderating
+effects of individual characteristics on the relationship between math anxiety and math
+achievement by using such models to compute the target effect size(s) for each sample in
+Stage 1 of a two-stage meta-analysis. In Stage 2, within-sample differences in slope
+parameters as obtained between multiple target points (e.g., the difference in slope parameters
+th th
+obtained at the 5 and 50 percentiles of math achievement) can be synthesized by using
+pointwise meta-analytic integrations. Alternatively, multivariate meta-analytic models that
+synthesize the model-implied regression relationships across the full range of math
+achievement can be used (Marlin et al., 2023).
+MATH ANXIETY AND MATH ACHIEVEMENT 75
+Synthesizing IPD from ILSAs With AD From Primary Studies and Previous Meta-Analyses
+This meta-analysis of IPD from representative ILSAs yielded novel and robust
+evidence on the relationship between math anxiety and math achievement. This evidence
+highlighted the sensitivity of this relationship to construct characteristics, as well as to
+individual and contextual factors. Additional insights into this relationship may be gained by
+combining meta-analytic AD with IPD from ILSAs. For example, AD meta-analyses often
+incorporate effect sizes from postsecondary populations (e.g., college students). Furthermore,
+statistical models for integrating AD and IPD within a single meta-analysis are well-
+established (Campos et al., 2023; Pigott et al., 2012). However, an effective implementation
+of these models requires a robust foundation of information and considerable additional effort.
+First, authors of primary studies should provide easy access to the relevant raw data, ideally
+by storing it in public repositories. Doing so facilitates the validation of results presented in
+these studies, allows potential errors to be corrected, and enables the computation of effect
+sizes that are often not reported (e.g., facets of math anxiety, subdomains of math
+achievement, demographic subgroups). Additionally, authors should report information on the
+sample’s country of origin, the time of data collection, the quality of the samples (e.g.,
+selection mechanisms, range restrictions), and the reliability of the applied measures. Second,
+for meta-analyses that rely on AD, it is essential to incorporate this information from primary
+studies, to consistently define sample or study features that could introduce dependencies in
+effect sizes (e.g., countries), and to develop comprehensive archives that compile effect sizes
+and moderator variables across meta-analyses while identifying any duplicate data (Burgard et
+al., 2022). Third, these archives should also facilitate access to the full texts of primary studies
+and relevant codebooks, which are crucial for coding new moderator variables, verifying
+previous codings, and harmonizing moderator variables across meta-analyses. Currently,
+these conditions are rarely fully met (e.g., Green et al., 2011; Polanin, 2018; Wicherts et al.,
+MATH ANXIETY AND MATH ACHIEVEMENT 76
+2006). Thus, we strongly encourage researchers to provide access to their data and
+supplementary information.
+Implications for Policy and Practice
+Mathematical literacy is essential for everyone; however, the relationship between
+math anxiety and math achievement can impair individuals’ full participation in a democratic
+society, hinder their educational and career development, and limit their agency in daily life.
+High levels of math anxiety are found across the entire distribution of math achievement at all
+ages. Thus, even top-performing math students who experience anxiety may avoid future
+learning opportunities that focus on math, consequently avoiding STEM fields that are
+considered highly relevant to individual well-being (e.g., as they provide better earning
+opportunities) and societal well-being (e.g., as people working in STEM develop science and
+technology to solve pressing societal problems). Furthermore, employers should recognize
+that math anxiety is not confined to school-aged students but is also prevalent in the adult
+workforce. This anxiety can negatively impact a company’s success by impairing employees’
+performance on math-related tasks or causing them to avoid training and promotional
+opportunities that involve mathematics, thereby limiting their contributions and growth in the
+organization.
+Policies and practices are needed to help individuals manage their math anxiety
+throughout their lives. For instance, to reduce students’ math anxiety and enable them to reach
+their full potential in mathematics, educators need reliable and valid assessment tools to
+evaluate both math anxiety and math achievement (Urhahne & Wijnia, 2021). To assist
+individuals suffering from math anxiety, effective intervention approaches should be
+implemented—both at school and beyond—customized for each person, and ideally
+introduced at a very young age to disrupt the cycle of math anxiety and poor math
+performance. These interventions can be individualized (e.g., by supporting individuals’
+emotions and cognition; Sammallahti et al., 2023) and curriculum-based (e.g., by supporting
+MATH ANXIETY AND MATH ACHIEVEMENT 77
+students’ socioemotional learning at school; Durlak et al., 2022). They can even be
+implemented at low cost and with a light touch (e.g., expressive writing about one’s math
+anxiety before a test; Park et al., 2014; Rozek et al., 2019).
+Finally, educational policymakers should recognize the global prevalence of math
+anxiety across all age groups, the strong negative association between math anxiety and math
+achievement, and the evidence that this association becomes more pronounced in
+economically thriving countries. Consequently, large-scale assessments (e.g., TIMSS, PISA,
+LLECE, SACMEQ, PIAAC) should routinely collect data on both math achievement and
+math anxiety. Such reliable information is essential for policymakers to develop and refine
+evidence-based policies and programs aimed at reducing math anxiety, improving
+mathematical literacy, and addressing workforce shortages in STEM fields.
+Conclusion
+One of the founding fathers of the meta-analytic enterprise, Gene Glass, envisioned
+that “[m]eta-analysis needs to be replaced by archives of raw data that allow the construction
+of complex data landscapes that depict the relationships among independent, dependent, and
+mediating variables” (Glass, 2015, p. 230). This paper responds directly to Glass’s vision by
+leveraging and synthesizing a systematic collection of representative IPD from ILSAs to
+examine the relationship between math anxiety and math achievement. By combining the
+strong evidence provided by ILSAs with advanced evidence synthesis methods, we have
+begun to construct such a “landscape” to better understand how these constructs are
+interrelated. Our analysis revealed negative relationships between math anxiety and math
+achievement, observed to varying degrees across countries, grade levels, age groups, and
+genders; among individuals with low, average, and high math achievement; and across facets
+of math anxiety and math subdomains. By sharing our effect size data and our R code, we
+would like to support other researchers in using IPD (e.g., from ILSAs) to extend our
+“landscape” or to create new ones that illuminate other important psychological phenomena.
+MATH ANXIETY AND MATH ACHIEVEMENT 78

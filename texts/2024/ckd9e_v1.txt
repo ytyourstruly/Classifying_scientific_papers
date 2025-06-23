@@ -1,0 +1,424 @@
+AUTHORING TOOL FOR AI-BASED AVATARS
+An Authoring Tool for Individual and Collaborative
+Learning Scenarios with AI-Based Avatars [avatar-research.com]
+Explore our innovative authoring tool and research platform. It enables seamless creation
+of AI-based avatars integrated with research log data. Discover more at avatar-research.com
+Maximilian C. Fink, Universität der Bundeswehr München, Maximilian.Fink@unibw.de
+Lars Walter, Ludwig-Maximilians-Universität München, Lars.Walter@campus.lmu.de
+Bettina Eska, Ludwig-Maximilians-Universität München,
+bettina.eska@um.ifi.lmu.de
+Bernhard Ertl, Universität der Bundeswehr München, Bernhard.Ertl@unibw.de
+AUTHORING TOOL FOR AI-BASED AVATARS
+Abstract
+AI-based avatars embody human beings digitally and can interact with learners in real-time.
+Thanks to new LLM capabilities, they can perform numerous cognitive tasks and have advanced
+language capabilities. Available software solutions for the creation of AI-based avatars are
+frequently not grounded in educational theory and have yet to reach classrooms. In this
+technological contribution, we describe an authoring tool for creating AI-based avatars that
+builds on theories of situated learning. It allows users to conveniently create AI-based avatars
+with a web interface and distribute them via the web browser. Moreover, we report on the
+development of a collaborative learning application for language learning with an AI-based
+avatar as a teacher. A user study on this collaborative learning application demonstrated that
+learners view our avatars as authentic and are satisfied learning with them. We conclude with
+reflections on effective prompt engineering and insights into the characteristics of future AI-
+based avatars.
+AUTHORING TOOL FOR AI-BASED AVATARS
+An Authoring Tool for Individual and Collaborative
+Learning Scenarios with AI-Based Avatars [avatar-research.com]
+More than forty years ago, the German computer scientist Joseph Weizenbaum (1983)
+programmed the chatbot ELIZA. This chatbot analyzed text input using keyword analysis and
+decision rules and carried out such natural conversations that some of Weizenbaum's employees
+had the impression they were talking to a real person. Since then, many new technologies,
+including more powerful, cheaper, and mobile hardware, the internet and cloud-based
+computing, and artificial intelligence, have emerged. Simultaneously, new paradigms of situated
+learning have evolved in educational research, which have also enjoyed great popularity.
+Simulation-based learning, exploratory learning, and inquiry-based learning are no longer just
+research topics; they have arrived in many classrooms around the world and are used in various
+domains. In many of these learning settings, there is a need to incorporate realistic interaction
+partners that effectively simulate human behavior digitally. With the advent of large language
+models (LLMs) as computer technology, intelligent interaction partners can be created that can
+replicate the social and professional collaboration and learning processes elaborated in the CSCL
+literature. These theories include collaborative knowledge construction (Fischer et al., 2002),
+support strategies such as scaffolding (Reiser, 2004), and collaborative problem-solving (Hesse
+et al., 2015). Combining new computational technologies, such as LLMs, with situated learning
+approaches and theory on computers-supported collaborative learning can thus help to
+authentically simulate collaboration and effectively support collaborative learning. Next, we
+describe AI-based avatars as a computer technology that builds on LLMs and unlocks new
+possibilities for research and learning.
+AUTHORING TOOL FOR AI-BASED AVATARS
+AI-based avatars are powered and controlled by artificial intelligence, embody humans
+with an authentic visualization through a 3D model with realistic lip and body movements, and
+interact with learners in real-time, mainly by speaking (Fink, Robinson, & Ertl, 2024). On the
+one hand, this technology offers the advantages of chatbots that respond quickly, are aware of
+their context, give students guidance, and can be integrated into existing learning environments
+(Winkler & Soellner, 2018). On the other hand, they open up the advantages of pedagogical
+agents that embody authentic characters, model behaviors and cognitive processes in situated
+learning environments through their 3D representation, and operate based on an analysis of
+learning processes (Graesser et al., 2005; Rickel & Johnson, 1999). Consequently, AI-based
+avatars can take on roles such as expert, motivator, teammate, and interaction partner in complex
+learning scenarios (Baylor & Kim, 2005) and promote individual competencies (e.g., conceptual
+knowledge) and collaborative competencies (e.g., sharing and eliciting information). We believe
+they can be particularly effective in areas where application-based learning methods like actors,
+role plays and text vignettes are already being used successfully. For instance, such methods are
+used in medical education, social work education, and teacher training to promote
+communicative, problem-solving, and diagnostic competencies (Chernikova et al., 2020). In
+addition, such methods have been used in areas like foreign language training to efficiently
+practice listening and speaking and the application of new vocabulary and grammatical structures
+(Liu & Ding, 2009). Next, we describe research relevant to the use of AI-based avatars for
+individual and collaborative learning.
+Dai et al. (2024) showed in a meta-analysis of 22 empirical studies that AI-powered
+virtual agents have a medium positive effect on learning (g = .43), compared to non-AI-powered
+virtual agents. The studies included in this meta-analysis comprised virtual agents with varying
+AUTHORING TOOL FOR AI-BASED AVATARS
+degrees of authenticity and human likeness. Nevertheless, the results already point to the great
+learning opportunities that AI-based avatars can offer. Another meta-analysis by Wang et al.
+(2023) examined how affective pedagogical agents influence emotions, interest, and learning
+performance. The sample of 36 articles included mainly studies using conventional pedagogical
+agents, not powered by AI. Results showed medium positive effects on emotions, interest, and
+learning performance, including transfer tasks. A more human-like appearance and body
+movements of the agents increased the positive effects. To date, there are only a few studies in
+which AI-based avatars have been researched using the modern definition provided in this text.
+Chheang et al. (2024) evaluated an AI-based assistant in a pilot study in anatomy education. In
+one group, the AI-based assistant was shown on a screen, while in another group it was displayed
+using VR headsets. The usability of the AI-based avatar was reported as above-average in both
+groups, with around 75 out of 100 points on the System Usability Scale (Brooke, 1996). The
+experienced realism was similar in the screen and the VR condition. In a recent qualitative study,
+pre-service teachers interacted in VR with a virtual student powered by an LLM (Dai, Ke,
+Zhang, et al., 2024). The majority of participants enjoyed the interaction with the virtual student
+and were satisfied with the learning scenario. Research shows that collaborative learning can
+lead to higher learning gains than individual learning, as highlighted in a meta-analysis by Chen
+et al. (2018). Computer support through effective tools can also further improve these positive
+effects (Chen et al., 2018). Due to the novelty of the technology, there is little empirical evidence
+from studies on collaborative learning with modern AI-based avatars in education. Zhang et al.
+(2024) examined in a mixed-methods study the use of AI-based students in a VR classroom to
+foster the teaching skills of pre-service teachers. The pre-service teachers displayed responsive
+teaching skills in the conversations with the virtual AI-based students and perceived them as
+AUTHORING TOOL FOR AI-BASED AVATARS
+authentic. More technical studies in computer science show that two distinct types of
+collaborative learning need to be explored in educational CSCL research: Multiple human
+learners can learn with one AI-based avatar (e.g., Khosrawi-Rad et al., 2024), and multiple AI-
+based avatars can interact with each other and learners in an orchestrated way (e.g., Li et al.,
+2023).
+The following major tools are available to create and learn with AI-based avatars. The
+company Convai (Mukherjee, 2023) sells a library and subscription that allows IT professionals
+to create AI-based avatars. The avatars are powered by OpenAI technology and integrated into
+game engines. The smartphone and tablet application praktikai.ai (Praktika.Ai, 2024)enables
+users to learn foreign languages with interactive AI-based avatars. Users can choose in this
+application from various language learning scenarios and multiple predetermined interaction
+partners. The AI companion replika.ai (Replika.Ai, 2024) chats casually and listens to users like
+an empathic friend with a personality and a backstory. Users can select their companion avatar
+and determine its personality. The desktop software GPTAvatar (Robinson, 2023) features
+avatars that use powerful OpenAI technology to recognize speech and generate responses. The
+response is delivered with realistic synthetic speech generated by Google and ElevenLabs.
+GPTAvatar contains two realistic avatar models and allows users to configure the avatar
+configurations (i.e., the prompt including the personality and learning scenario) via a text file.
+Another innovative software abbreviated as MAGI provides AI-powered digital teachers that are
+represented by 3D animation videos integrated into web pages (Zhao et al., 2024). This software
+achieves fast response times based on a locally deployed LLM model from Meta and can retrieve
+information from custom documents, including course materials. There seems to be even less
+software available for collaborative learning with AI-based avatars. In our search, we found one
+AUTHORING TOOL FOR AI-BASED AVATARS
+software that contains a scene with several AI-based avatars talking to each other (Bahremand,
+2023). However, we did not encounter any software that provides a customizable application
+specifically for collaborative learning with AI-based avatars and multiple learners. This review
+of the literature also shows that there are still no satisfactory authoring tools available for
+creating AI-based avatars, especially for educational research.
+Objectives
+The overall aim of this paper is to advance both learning with and research on AI-based
+avatars in the field of individual and collaborative learning. To achieve this, three sub-goals were
+pursued. The first sub-goal focused on developing a theory-based authoring system for AI-based
+avatars that incorporates insights from situated learning approaches. This system enables the
+convenient creation of avatar configurations through web forms and simplifies the conduct of
+research studies with avatars directly in a web browser. The second sub-goal was the
+development of a collaborative learning application featuring AI-based avatars. This application
+was designed to prepare learners for oral exams in a foreign language. Within the application,
+multiple learners can interact in real-time through a network with an AI-based teacher avatar that
+offers constructive feedback. The third sub-goal involved conducting a mixed-methods study -
+combining quantitative and qualitative approaches - to evaluate the usability of the software, user
+satisfaction, and the perceived authenticity of the avatars. This user study aimed to provide both
+initial scientific insights and feedback for refining the educational technologies developed.
+AUTHORING TOOL FOR AI-BASED AVATARS
+Design and Implementation
+Software Architecture
+Taking the application GPTAvatar (Robinson, 2023), a Unity-based open-source
+software project, as a starting point for development, we also adopted much of its software
+architecture. This software visualizes AI-based avatars with authentic 3D models that possess
+lip-sync and animations, transcribes users’ utterances with the automatic speech recognition
+module Whisper from OpenAI, queries LLMs from OpenAI like GPT4-o and then responds with
+synthetic speech from GoogleVoice or ElevenLabs. We opted to develop the available desktop
+application further into a browser-based application and a collaborative learning application
+using a networked multiplayer approach. Furthermore, we built a server-side authoring tool, with
+which avatar configurations can be conveniently created, edited, and shared. This authoring tool
+was developed using the Blazor Server framework and writes the configurations to an SQL
+database, storing them also as text files that can be downloaded by client applications. Below, we
+outline the development of the web version, the authoring tool and the collaborative learning
+application.
+Design and Implementation of the Web Version
+In developing the web version (Fink, 2024), we changed the program’s microphone
+library, to enable recording of users' speech data through the browser. Then, we extended the
+program’s lip synchronization feature so that the lip movements of the avatars displayed in the
+browser also match the synthetic voices heard by the users. In addition, we optimized the
+software with compression algorithms to run effectively despite its relatively large size.
+Moreover, we added the ability to dynamically load the avatar configuration text files from the
+internet into the application. Thanks to these changes, the application now runs smoothly in web
+AUTHORING TOOL FOR AI-BASED AVATARS
+browsers like Chrome or Safari with convincing lip-sync performance and can load avatar
+configurations from the web.
+Based on case-based learning theory (Kolodner, 1992), we extended the software
+with several avatars so users can learn with various interaction partners and acquire different
+case representations. To this end, the software has been expanded to include six additional
+avatars, including teenagers and adults with different skin colors and ages. For instance, the
+middle-aged female character Susan can be a language tutor, while the teenager Marco can play
+a 15-year-old student. As there are now avatars that can be used as teachers and teenagers, many
+educational situations can be simulated. To enable use in medical education, two doctor avatars
+have been added. In the future, avatars of other ages and professions will be added to cover
+further uses. Based on principles of situated learning (Brown et al., 1989), we decided to add
+interchangeable backgrounds to the software that allow users to place avatars in specific learning
+and collaboration contexts. For instance, foreign language learning with avatars can take place in
+a market where the different goods can be referred to. Besides the market, five other essential
+contexts that can be used for education and research are available: a classroom, an office, a
+doctor’s office, a park, and a coffee house. With these changes, the software offers a range of
+avatars that can be placed in diverse contexts and used for and support simulated collaborative
+AUTHORING TOOL FOR AI-BASED AVATARS
+The Web Version Features Several Avatars (a), and Multiple Learning and Collaboration
+Contexts (b)
+(a) (b)
+Design and Implementation of the Authoring tool
+We developed an authoring tool (Fink, 2024), that enables the convenient creation of AI-
+based avatars without technical knowledge. This authoring tool was implemented as a server
+this login, the tool can manage the creation and editing of avatars with user rights. Next, we
+available avatars with arrow keys and name it using a text field. Then they choose the language
+and gender of the avatar from a drop-down. Our software automatically decides on the
+corresponding language code that is sent to the services delivering synthetic speech, but we also
+offer a text field for entering language codes manually. This way, users can set particular
+languages and accents, and newly emerging speech models can be used without changes in the
+software. Afterward, users enter a short English summary of the avatar. This summary is only
+used for the avatar library so that users from different countries can understand the publicly
+available avatar configurations. Subsequently, participants write a prompt in the text field that
+AUTHORING TOOL FOR AI-BASED AVATARS
+determines the avatar's response. We added a description that users should specify here “key
+details about the avatar such as name, age, profession, knowledge, personality. Include
+instructions for user interaction, such as greetings or preferred didactic approaches. Use the
+language in which the avatar will speak to the users.” This instruction should scaffold users in
+creating their own avatar configurations and we plan to offer more guidance on prompting in the
+future. Lastly, participants tag their avatar with a domain (e.g., language learning, STEM,
+medicine), expertise level (e.g., novice, intermediate, advanced), and educational level (e.g., high
+school, higher education) using a drop-down. Through these design decisions, the simple
+creation of AI-based avatars is possible via a menu, and users are supported in prompting.
+researchers and practitioners.
+Design and Implementation of the Collaborative Learning Application
+To enable collaborative learning, a version of the software with a scenario for multiple
+learners was developed (Walter, 2024). This collaborative learning application prepares students
+for oral exams in foreign languages in higher education. It features a teacher avatar who
+moderates the learners' discussion during an exam with the topic “benefits and drawbacks of
+social media”. After the discussion, the teacher avatar provides feedback and allocates a grade.
+Two or more learning partners can join the exam collaboratively and discuss via voice chat with
+each other and the teacher avatar. Based on LLMs like GPT4-o, the teacher avatar provides
+support and implements scaffolds following a script. The collaborative learning application is a
+desktop software with a slightly different user interface than the web version, allowing learners
+to navigate through a 3D classroom environment and interact with the other learners. Its avatar
+configuration can be adjusted through a text file and adjusted to scenarios where a teacher avatar
+AUTHORING TOOL FOR AI-BASED AVATARS
+interacts with multiple student avatars, providing feedback. Moreover, the collaborative learning
+application allows users upon start to load their own avatar models from the website
+ReadyPlayerMe (ReadyPlayerMe, 2024), so that users can customize their own appearance.
+Besides the described changes, the core functionalities of the collaborative learning application
+and the web versions are similar.
+The Developed Authoring Tool (a), Web Version (b), and Collaborative Learning Application (c)
+(a) (b) (c)
+AUTHORING TOOL FOR AI-BASED AVATARS
+User Study
+Procedure and Participants
+We conducted a quantitative and qualitative user study on the collaborative learning
+application. N = 16 participants, mostly students between 18 and 29, completed the study in
+dyads. To prepare for the simulated oral exam, each dyad spent up to 10 minutes taking notes.
+Afterward, each dyad participated in the oral exam simulation with the virtual language teacher
+for 10 minutes. Each participant presented two benefits and two drawbacks to the topic. Then,
+the language teacher avatar gave feedback to each learning partner and allocated a grade.
+Subsequently, the participants filled out different questionnaires and answered questions for the
+qualitative study.
+Instruments
+Usability was surveyed with the System Usability Scale (Brooke, 1996). This scale
+measures usability with 10 questions and provides a score from 0 (very low usability) to 100
+(perfect usability). Software reaching scores above the cut-off of 80 is considered user-friendly.
+We also evaluated the learning partners with the behavioral engagement scale by de Kort et al.
+(2007). This scale measured how participants interacted with their partner and the teacher avatar,
+including the aspects of dependency on actions, attention from the partner, attention to the
+partner, and clarity of the partner’s intentions. Participants responded to the items using a five-
+point reponse format, ranging from 1 (low agreement) to 5 (high agreement). A composite mean
+score using the same response format was calculated.
+Also, we assessed several concepts with open questions, including the satisfaction
+of learners with the software application (e.g., “How satisfied were you with the multiplayer all
+in all?”), and the authenticity of the avatars (e.g., “How authentic were the three avatars (your
+AUTHORING TOOL FOR AI-BASED AVATARS
+own avatar, the learning partner’s avatar, and the teacher's avatar?)”). In addition, we asked
+users about the extent to which the software prepared them for exams (e.g., “To what extent do
+you think this learning environment prepares you for an oral exam in a foreign language?”).
+Avatar Prompt
+The avatar of the teacher interacting with the learners in the collaborative learning
+application was realized by creating a prompt that included a collaboration script and scaffolding
+foreign language teacher Susie. Today, you are hosting an oral exam in a classroom. The topic
+is ‘benefits and drawbacks of using social media.’ Each student should start the conversation
+with their opening statement, without giving their opinion, just presenting their prepared
+statement.” Then, our prompt scripted the opening statement phase closer. In this part of the
+conversation, each student presents a first argument detailed in their notes. Afterward, we
+supplied a prompt about the discussion phase, in which students talked about the benefits and
+drawbacks of social media more interactively. Finally, the script outlined the last phase of the
+conversation, in which the teacher avatar provided feedback and assigned a grade.
+Detailed Instructions for the Avatar in Different Conversational Phases
+Opening Statement Discussion Feedback
+a) Greet the students and a) Initiate the discussion by a) When they are done […] say:
+introduce the topic. asking both students to talk "Now is the time for the
+b) Instruct the first student to about the benefits […] evaluation. Just ask me if you
+present their opening b) Motivate the students to want your feedback."
+statement. interact with each other […] b) […] provide feedback on their
+c) Acknowledge the first c) […] ensure each student performance, considering […]
+student’s statement and ask responds to the other’s points c) Provide a performance rating
+the second student to present d) Next, shift the focus to the on a scale from 1 (best) to 6
+their opening statement. drawbacks of using social (worst) every time.
+d) After both students have media. d) Keep the feedback concise and
+AUTHORING TOOL FOR AI-BASED AVATARS
+given their opening e) Motivate the students to to the point.
+statements, proceed to the interact with each other […] e) Keep the feedback short,
+discussion phase. f) Moderate the discussion to around 250 characters.
+ensure each student responds
+to the other […]
+The script above was developed through numerous tests and continuous improvement. It
+became evident that a high level of detail is necessary for the LLM to understand the
+requirements of the exam situation. The teacher avatar also had to be described extensively,
+including their personality, language style, and teaching approach.
+Results and Interpretation
+The application achieved a composite usability score of M = 81.35 of 100 (SD = 7.47).
+This high level of usability shows that learners found it easy to interact with the software and
+that it would, therefore, be possible to adopt the tool without much training. The following
+picture emerged with the evaluation of the collaborative learning partners and the teacher, which
+included aspects such as attentiveness and clarity of intent. The total score for evaluating the
+learning partner was M = 3.25 of 5 (SD = 0.60). The teacher avatar was evaluated with a mean
+value of M = 3.95 of 5 (SD = 0.40). These values demonstrate that participants regarded the
+interaction with the learning partner as acceptable but improvable. Interaction with the teacher
+avatar was rated as reasonably good.
+Our qualitative analyses showed that around 70% of the participants were satisfied with
+the collaborative learning application. Specifically, the participants stressed that the structure of
+the exam situation seemed realistic and that their engagement was high as a result. For instance,
+one participant told us “I was happy with the multiplayer. Walking around and interacting with
+the teacher and the interlocutor worked very well […] I quickly understood the functions […]”
+(P 3). However, around 30% of participants criticized aspects of the learning environment. This
+critical feedback was mainly related to the fact that the user interface was perceived as too
+AUTHORING TOOL FOR AI-BASED AVATARS
+complex. Regarding authenticity, most participants praised the general appearance of the avatars
+and the lip-sync. However, some participants commented that the animations were too stiff or the
+movements were too expansive.
+All in all, our findings on the high perceived authenticity of the AI-based teacher are
+consistent with the result that AI-based avatars can portray students authentically (Zhang et al.,
+2024). With respect to exam preparation, around 75% of participants commented that the
+collaborative learning application was beneficial for exam preparation. These participants
+highlighted that the structured oral exam simulation resembled the conditions of an actual exam.
+Also, the participants emphasized that they thought the learning environment was a good way to
+practice speaking skills and reduce nervousness before oral exams. In contrast, 25% of
+participants reported they felt practicing with real interaction partners offered important benefits
+missing from our collaborative learning application. Among these benefits of real interaction
+partners were social cues and more detailed, personalized feedback that is closely aligned with
+the syllabus.
+Implications
+The user study demonstrated that the collaborative learning application has high usability,
+good authenticity, and works reliably for research purposes. Given that the web version is based
+on the same software architecture and contains many similar functions as the collaborative
+learning application, we are convinced it can be used to conduct web-based studies from now on.
+The authoring tool we provide makes research on AI-based avatars so convenient that a
+colleague we showed the software commented, “Creating an AI-based avatar just takes five
+minutes”. However, when creating the prompt for our avatar, we realized that effectively
+supporting learning takes more time and remains a challenge. In addition, we released a
+AUTHORING TOOL FOR AI-BASED AVATARS
+collaborative learning application in which participants can learn together with a teacher avatar
+and multiple learning partners. This collaborative learning application is open-source and can be
+customized. In sum, these developments close an important gap that existing software solutions
+for individual and collaborative learning with AI-based avatars have.
+As mentioned, creating cases for AI-based avatars is quite complex. Before working on
+this project, we had extensive experience working with actors in educational role-playing games
+and in creating cases for digital simulations. For this reason, we knew how to approach prompt
+engineering for education has already appeared (e.g., Park & Choo, 2024). These
+recommendations are very valuable but mainly relate to the creation of text-based cases for web
+interfaces such as ChatGPT. Lieder and Schäffer (in press), provide insights into prompting in
+educational research projects. Prompts can include in this context details about the research
+project, the underlying theories and objects, research methods and interpretation patterns for the
+AI, and instructions for feedback. We believe that additional considerations are necessary for
+prompting AI-based avatars.. We believe that additional considerations are needed for prompting
+AI-based avatars. AI-based avatars have a characteristic appearance, a unique voice with a
+specific accent, and can be embedded in a specific situation. These properties should be
+considered when creating prompts for AI-based avatars to create a good fit between the content,
+the appearance, and the overall tone and style of the conversation. Likewise, we need in
+collaborative settings theory-based prompts that script and support the right collaborative
+processes. The avatar library, which we release alongside our authoring tool, can also be
+beneficial in this regard. It contains various sample learning scenarios, including different avatar
+configurations in which support strategies, didactic approaches, and collaborative processes are
+AUTHORING TOOL FOR AI-BASED AVATARS
+scripted. It allows teachers and researchers to be inspired by other avatar configurations and
+easily share cases with each other.
+Further Development of our Software
+Regarding the web version and the collaborative learning application, the following
+changes would be useful. The animations and gestures of the avatars could be improved, which
+were criticized by some participants in the user study. The feature of being able to load your own
+avatars from the website ReadyPlayerMe (ReadyPlayerMe, 2024), which was only available in
+the collaborative learning application, should be integrated into the web version in the long term.
+This would allow participants to integrate self-created avatars into all kinds of learning scenarios
+they develop online. The web version should also record detailed log data for research purposes.
+All avatar and user utterances should be saved with timestamps and then made available via the
+authoring tool. This feature would allow researchers to conduct studies outside of controlled
+laboratory environments and analyze individual learning and simulated collaborative learning
+processes. Lastly, we think that building a platform for research on AI-based avatars is highly
+desirable. We will use the authoring tool's website to display links to surveys and available
+software for individual and collaborative learning with AI-based avatars and connect researchers
+with each other to collaborate.
+Future Avatars in Education
+Although AI-based avatars have made great progress in recent years, we believe that we
+are still at the beginning of their development. In the following, we outline what future AI-based
+avatars could look like and what characteristics they will have. This description covers aspects
+that apply to AI-based avatars and the platforms used to create them. Some of the aspects
+described have already been implemented in certain applications, while others are still largely
+AUTHORING TOOL FOR AI-BASED AVATARS
+unimplemented. Drawing on well-known psychological and pedagogical concepts and a concept
+from the company Convai (Mukherjee, 2023), we distinguish between the categories of
+appearance and voice, mind, perception and behavior, and technical aspects and prompts (see
+avatars universally in several domains and industries (e.g., marketing and service avatars).
+Moreover, there are education-specific characteristics that are particularly relevant to individual
+and collaborative learning in formal and informal contexts.
+Characteristics and Features of Future Avatars in Education Including Appearance and Voice
+(a), Mind, Perception and Behavior (b), and Technical Aspects and Prompts (c)
+(a) (b) (c)
+We will now provide an example for general and education-specific characteristics in
+each of the three mentioned categories. In the future, it will be possible to precisely customize
+the appearance and voice of avatars. Support for voices in multiple languages that are not
+AUTHORING TOOL FOR AI-BASED AVATARS
+currently available will be available. Today, languages spoken predominantly in developing
+countries are lacking. It is crucial to integrate these languages promptly to ensure equitable
+access to AI-based avatars for learners in these regions. Future authoring tools also need to
+incorporate more avatar models for educational purposes. Different teacher and student models
+with varying ages are needed to cover major educational scenarios and avatars of different
+professions should be included.
+Regarding the mind, perception and behavior of future avatars, it will soon be possible to
+clearly set the personality of the avatars (e.g., Big-Five personality traits like extraversion). In the
+education sector, interaction styles, values, and didactic approaches also need to be specified.
+Authoring tools should provide creators with ready-made options for setting such personality
+variables and interaction styles, values, and didactic approaches.
+Concerning technical aspects and prompts, authoring tools will probably soon offer users
+to choose from a range of LLMs powering their avatars. These different LLMs will have varying
+capabilities and come with unique benefits and drawbacks. In the educational sector, AI-based
+avatars should then also be able to access custom LLMs that are curated for different subjects or
+trained with their own documents for specific use cases. Presumably, the choice of LLMs and
+custom LLMs in authoring tools will improve content quality in educational scenarios and
+provide better standardization for research.
+Conclusion
+This article revealed that powerful applications for research and education with AI-based
+avatars are becoming available. We presented a web-based authoring tool for creating AI-based
+avatars and a collaborative learning application for multiple users. Our user study demonstrated
+that the developed software achieved good usability and the avatars were perceived as authentic.
+AUTHORING TOOL FOR AI-BASED AVATARS
+A look into the future of AI-based avatars indicates that there is still a considerable need for
+technical development and great research opportunities. Researchers can investigate
+systematically the three major topics of appearance and voice, mind, perception and behavior,
+and technical aspects and prompts which are included in our model of characteristics and
+will often have many of these characteristics at the same time, which cannot always be changed
+by researchers. Therefore, it will be a longer process that needs to be well planned to determine
+the influences of each feature (e.g., effects of appearance on authenticity, effects of LLM models
+on learning).
+AUTHORING TOOL FOR AI-BASED AVATARS

@@ -1,0 +1,397 @@
+EEGManyPipelines:
+A large-scale, grass-root multi-analyst study of EEG analysis
+practices in the wild
+1 2 3
+Darinka Trübutschek *, Yu-Fang Yang *, Claudia Gianelli *, Elena
+4 5 6,7 8
+Cesnaite , Nastassja L. Fischer , Mikkel C. Vinding , Tom R. Marshall ,
+9,10 11 12
+Johannes Algermissen , Annalisa Pascarella , Tuomas Puoliväli ,
+13 4✝ 14,15✝
+Andrea Vitale , Niko A. Busch , Gustav Nilsonne
+1 Research Group Neural Circuits, Consciousness and Cognition, Max Planck Institute for Empirical
+Aesthetics, Frankfurt/Main, Germany
+2 Division of Experimental Psychology and Neuropsychology, Department of Education and Psychology,
+Freie Universität Berlin
+3 Department of Clinical and Experimental Medicine, University of Messina, Italy
+4 University of Münster, Institute for Psychology, Münster, Germany
+5 Centre for Research and Development in Learning (CRADLE), Nanyang Technological University,
+Singapore, Singapore
+6 Danish Research Centre for Magnetic Resonance, Centre for Functional and Diagnostic Imaging and
+Research, Copenhagen University Hospital - Amager and Hvidovre, Copenhagen, Denmark
+7 NatMEG, Department of Clinical Neuroscience, Karolinska Institutet, Stockholm, Sweden
+8 Centre for Human Brain Health, School of Psychology, University of Birmingham, Birmingham, UK
+9 Donders Institute for Brain, Cognition, and Behaviour, Radboud University, Nijmegen, the Netherlands
+10 Welcome Centre for Integrative Neuroimaging (WIN), Department of Psychiatry, Warneford Hospital,
+University of Oxford, Oxford, UK
+11 Institute for Applied Mathematics M. Picone, National Council of Research, Rome, Italy
+12 Faculty of Information Technology, University of Jyväskylä, Jyväskylä, Finland
+13 Laboratory for Autism and Neurodevelopmental Disorders, Center for Neuroscience and Cognitive
+Systems @Unitn, Istituto Italiano di Tecnologia, Rovereto, Italy
+14 Department of Clinical Neuroscience, Karolinska Institutet, Stockholm, Sweden
+15 Department of Psychology, Stockholm University, Stockholm, Sweden & Berlin Institute of Health (BIH)
+at Charité, BIH QUEST Center for Responsible Research, Berlin, Germany
+*These authors contributed equally.
+✝Senior authors.
+Corresponding authors: darinka.truebutschek@ae.mpg.de, yu-fang.yang@fu-berlin.de,
+claudia.gianelli@unime.it, gustav.nilsonne@ki.se, niko.busch@wwu.de
+Abstract
+The ongoing reproducibility crisis in psychology and cognitive neuroscience has sparked
+increasing calls to re-evaluate and reshape scientific culture and practices. Heeding those calls,
+we have recently launched the EEGManyPipelines project as a means to assess the robustness
+of electroencephalography (EEG) research in naturalistic conditions and experiment with an
+alternative model of conducting scientific research. 168 analyst teams, encompassing 396
+individual researchers from 37 countries, independently analyzed the same unpublished,
+representative EEG dataset to test the same set of pre-defined hypotheses, and then provided
+their analysis pipelines and reported outcomes. Here, we lay out how large-scale scientific
+projects can be set up in a grass-roots, community-driven manner without a central organizing
+laboratory. We explain our recruitment strategy, our guidance for analysts, the eventual outputs
+of this project and how it might have a lasting impact on the field.
+Keywords:
+Multi-analyst study, open science, bottom-up team science, replicability crisis, analysis pipeline,
+electroencephalography (EEG)
+The scientific community in psychology and neuroscience faces increasing pressure to rethink
+and improve its current culture and practices. Low replicability and reproducibility of research
+findings have eroded trust in even some of the most established results (e.g., Open Science
+Collaboration, 2015; Szucs & Ioannidis, 2017). At the same time, these issues have made clear
+that a traditional research structure based on individual laboratories with a solo lead will likely be
+insufficient to overcome the many obstacles inherent to studying the human brain and mind.
+Restoring trust and advancing knowledge requires not only evaluating the robustness of a specific
+field’s research outcomes to lay the groundwork for evidence-based, reproducible, and robust
+scientific standards, but also to develop and implement alternative models of research culture.
+Here, we introduce the EEGManyPipelines project to (1) map the real-life analytical flexibility in
+electroencephalography (EEG) research and its effects on robustness of reported results, and (2)
+serve as a blueprint for setting up and conducting research in a grass-roots, community-driven
+manner without a central organizing laboratory.
+Evaluating the robustness of EEG research “in the wild”
+While credibility issues in psychology and cognitive neuroscience concern a wide range of topics
+and methodologies, EEG research represents an ideal candidate to investigate current scientific
+practices. Not only is EEG one of the most widely used tools to study human cognition, its large
+analytical flexibility may render it particularly susceptible to low replicability and robustness
+One possible source of such a lack of replicability and robustness of research findings could be
+that reported results are affected by differences in analysis pipelines (Wagenmakers et al., 2022).
+Systematically and meaningfully mapping the variability of reported results to the variability in
+analysis pipelines can only be achieved by applying multiple genuine and plausible analysis
+pipelines to the very same dataset. Recent reviews highlighted considerable variability in analysis
+pipelines, even when researchers pursued similar research questions (Šoškić et al., 2021).
+Likewise, permuting analysis parameters in multiverse approaches (Steegen et al., 2016) has
+shown strong effects on EEG results (Clayson et al., 2021).
+However, neither of these approaches can fully relate meaningful variability in analytic choices to
+meaningful variability in results. Evaluating robustness of research outcomes in the context of
+published literature relies on comparing analysis pipelines applied to different datasets, thereby
+introducing uncontrolled variability. By contrast, systematically permuting analysis parameters
+does not necessarily produce analysis pipelines the community of researchers would actually use
+or deem plausible.
+To address this important blind spot and reveal the true extent of diversity in existing analytical
+practices and the ensuing variability of findings, we launched the EEGManyPipelines project in
+2020. Complementing the EEGManyLabs project (Pavlov et al., 2021), a large-scale effort to
+replicate experimental findings in EEG research by pooling data collection efforts across multiple
+laboratories, here, we rely on a multi-analyst approach to investigate EEG analysis practices:
+Many independent analysis teams test the same set of hypotheses on the same data and report
+their analyses in detail, providing a record of their results and analysis code. In that sense, our
+project targets EEG analyses as conducted "in the wild": (1) It goes beyond summarizing analysis
+practices reported in published EEG studies by observing in detail how such analyses are
+conducted and implemented in actual research environments; (2) the analyses are executed by
+a large, representative sample of analysts rather than a single team, and (3) the analysts are
+granted the autonomy to make their own analytic choices, mirroring their own "natural" research
+work.
+Multi-analyst studies of a similar kind have already been successfully conducted or are currently
+under-way in other domains and fields. For instance, the Neuroimaging Analysis Replication and
+Prediction Study (NARPS; Botvinik-Nezer et al., 2020) analyzed functional magnetic resonance
+imaging (fMRI) pipelines and demonstrated large methodological flexibility, affecting the reported
+results for a subset of the tested hypotheses. Similarly, the recently announced Co-science EEG
+personality project (Paul et al., 2022) as well as the Team 4 TMS-EEG (T4TE) project (Bortoletto
+et al., 2023) complement our project with more targeted approaches, aiming at leveraging multi-
+analyst or multi-lab components to investigate personality and individual differences with EEG
+recordings or the robustness of TMS-EEG data to heterogeneous data collection situations and
+analytic strategies, respectively.
+So far, however, this type of multi-analyst approach has never been taken to evaluate the
+robustness of EEG research as a whole and, as such, contributes to the expansion of comparative
+research on analytical variability across research fields and designs. What is more, while previous
+multi-analyst studies (e.g., NARPS) have already started alerting the community about variability
+and its consequences in domain-specific analysis practices, there is much more to be learned
+about more general research culture and scientific decision-making. In contrast to NARPS, in the
+EEGManyPipelines project, analysts did not only report the outcomes of their analysis in the form
+of a detailed questionnaire and yes/no answers to whether hypotheses were confirmed by the
+data, but also wrote a free-text “results section” interpreting their findings and submitted their
+actual analysis code. We expect that the free-text results section might shed light on how people
+draw conclusions from their statistical findings, while keeping data and hypotheses constant.
+Moreover, comparing these reports to the analysts’ actual code promises to reveal novel patterns
+about, for instance, where and how scientists are most error-prone in reporting and interpreting
+their results. Findings such as these should not only be relevant to the EEG-community, but to
+cognitive neuroscientists at large. In the context of multi-analyst studies from different fields, the
+EEGManyPipelines project is one of the largest ever conducted and yields an unprecedented rich
+dataset of choices, outcomes, and analyst-level variables, enhancing meta-scientific opportunities
+to investigate determinants of variability.
+Recruiting a large and representative sample of analysts and analyses
+to build a rich, open-access data repository and derive practical
+recommendations
+Multi-analyst approaches can reveal how real-world variability in research outcomes relates to
+variability in analysis pipelines. At the same time, they provide the necessary empirical data to
+derive evidence-based, reproducible, and robust standards for data analysis and reporting (Aczel
+et al., 2021). This full potential, however, can only be unlocked if the analysts contributing the
+pipelines as well as the contributed pipelines are themselves representative of researchers and
+actual analyses in the field.
+In order to achieve this objective, we selected a dataset as representative as possible. Consisting
+of an EEG experiment on visual long-term memory for scene photographs - a cognitive process
+that we expected most analysts to be familiar with -, a group of 33 participants saw a stream of
+scene images from different categories and decided on each trial whether the image was new or
+had been presented before. Thus, this paradigm featured a conventional factorial design and
+typical indicators of behavioral performance, allowing us to formulate several “research
+questions.” The dataset itself was recorded with standard parameters and comprises a typical
+range of noise and signal artifacts (see Algermissen et al., 2022 for details). Importantly, previous
+studies using similar paradigms have reported significant but modest overall effect sizes for
+memory-related effects (e.g., Friedman, 1990; Burgess & Gruzelier, 2000; van Strien et al., 2005),
+rendering the results potentially more susceptible to variations induced by different analysis
+pipelines and avoiding strong expectations about the presence or absence of an effect. We
+provided the data in an almost completely unprocessed form, except for downsampling to facilitate
+data sharing, referencing, and export to a variety of formats, such as the EEG-BIDS standard
+(Pernet et al. 2019). No analyses or results associated with this dataset were published at the
+time of sharing to avoid any potential bias in analytical decisions due to prior knowledge of the
+data or results. Instructions to analysts were carefully worded to encourage an analysis approach
+typical of analysts’ standard analysis pipeline and real-life approach to hypothesis testing.
+Recruiting as large and representative a sample of analysts as possible was a guiding principle
+for our decisions at all stages of the EEGManyPipelines project, from its very conceptualization
+to analyst recruitment and guidance. We defined — and later verified — inclusion criteria, such
+that each team of analysts (composed of up to three individual researchers) had to include at
+least one member with expertise in electrophysiological data analysis (i.e., >= one publication in
+a peer-reviewed journal). This recruitment strategy combined with outreach efforts (on social
+media, major software mailing lists, and through direct contact with research institutions and
+colleagues outside of Europe and the United States) allowed us to recruit the, to the best of our
+knowledge, largest multi-analyst sample to date: a total of 396 researchers across 168 analysis
+teams. Importantly, this sample also seems to capture some of the main features of the research
+expertise with EEG and cognitive neuroscience as measured by subjective ratings, number of
+1D) mirrors the geographical distribution of the authors of EEG papers published in the last five
+With such a large and fairly representative sample of analysts, any variability in analytical choices
+and/or reported outcomes we may discover will likely capture analytical decisions and flexibility
+as encountered in the wild, i.e. in the community's everyday research work that forms the basis
+of the scientific literature. Thus, we will not only be in a position to infer the robustness of published
+findings, but also to identify those parameters and analytic choices that shape observed results
+the most. We hope that this knowledge will help sensitize researchers to the impact of their
+analytical decisions, and lay the ground for the development of evidence-based, robust, and
+standardized analysis pipelines and reporting guidelines.
+We will also release all project materials (i.e., raw EEG data, data/code provided by analysts,
+data/code derived as part of the EEGManyPipelines project) in an open-access database. This
+database will represent a rich repository of easily accessible, searchable, and (re-)usable data
+that we hope will inspire further inquiries into cognitive, methodological, and meta-scientific
+questions for years to come. Ultimately, we aim to deliver insights that matter — not only for the
+EEG community, but also those relying on related tools, such as magnetoencephalography,
+intracranial EEG, or electrocorticography.
+(A) Significance of variability in analysis pipelines. Raw EEG data are both high-dimensional (i.e., there is
+a large number of channels and time points) and noisy. Common analysis techniques (e.g., time-frequency
+transforms) increase dimensionality further. As a result, EEG analysis pipelines involve substantial signal
+processing, with many degrees of freedom at all analysis stages from pre-processing to statistical testing
+and inference. Variability in analysis pipelines might thus be a driving factor for variability in reported results.
+(B) Gender distribution of the EEGManyPipelines analysts as a function of team size. Analysts reported
+their gender in a forced-choice questionnaire. Each pie chart depicts the relative percentage of analysts
+self-identifying as diverse (green), female (yellow), and male (blue).The relative percentage of analysts who
+preferred not to disclose their gender is shown in gray. Sample sizes for different team categories are
+shown above the pie charts. (C) Indicators of analysts’ expertise based on self-reports at sign-up split by
+team size. Each matrix depicts the relative percentage of analysts possessing a given level of expertise
+(with EEG). (Left) Analysts’ subjective EEG expertise. Analysts rated their expertise in the following ten
+categories: EEG pre-processing, EEG ERP analysis, EEG time-frequency analysis, statistical analysis of
+EEG data, memory research, visual long-term memory research, cognitive neuroscience, the N1
+component, fronto-central theta power, and posterior alpha power. Answers were recorded on a 100-point
+scale, ranging from 0 (no expertise) over 50 (average expertise) to 100 (expert). Here, we present the
+single-analyst average level of expertise across all ten categories, divided into 8 equally spaced bins
+between 0 and 100. Y-axis labels denote the upper limit of each bin. (Middle) Analysts’ self-reported number
+of published peer-reviewed papers involving EEG or related methodologies (i.e., MEG, ECoG). (Right)
+Analysts’ job positions grouped according to the categories on the y-axis. Note that, for visualization
+purposes, junior research positions outside academia were considered as part of the ‘Postdoc’ category,
+while senior research positions outside academia were grouped together with the ‘Group leader’ category.
+In all three matrices, exact relative percentages per bin are shown in white numbers and darker hues signal
+higher relative percentage. The total number of analysts per team are indicated above each matrix column.
+(D) Geographical distribution of the analysts. Total number of analysts reporting a given country as their
+current place of residence is shown. Darker hues signal increasing numbers. (E) Representative
+comparison between place of residence of EEGManyPipelines analysts (in green) and geographical origins
+of the larger EEG community (in gray), extracted from author affiliations of EEG papers indexed on PubMed
+and published between 2017 and September 2022 (N=31440; search term ‘EEG’).
+Shaping the future of (neuro-)science by providing a blueprint for
+conducting large-scale, grass-roots, community-driven science
+The EEGManyPipelines project is a child of the COVID-19 pandemic: sparked by a single Tweet1,
+it was envisioned entirely online by a group of researchers from around the world as well as at all
+committee). Unlike traditional laboratory-style science or previous big team science collaborations
+(e.g., adversarial collaborations, ManyLabs, and NARPS), from the get-go, the
+EEGManyPipelines project has been a bottom-up, community-driven effort without a rigidly
+defined hierarchy or a central lead laboratory or researcher. In particular, while there is a clear
+hierarchy between the steering committee and further contributors to the project (e.g., analysts,
+advisory board), the internal structure within the steering committee is flat. Moreover, apart from
+invaluable financial support for one full-time research position and in-person meetings acquired
+1.5 years into the EEGmanyPipelines’ lifetime (i.e., during the data collection phase in March
+2022), the bulk of the efforts of the vast majority of steering committee members - both in terms
+of overall duration and man-hours - has not been supported by a dedicated source of funding and
+instead relies entirely on voluntary contributions.
+Running a large-scale science collaboration without a clearly identifiable (quasi-)solo lead in the
+current scientific “incentive” structure poses challenges at all stages: For instance, different ideas,
+perspectives, and priorities have to be translated into a coherent, feasible, and testable research
+agenda, and results have to be shared respecting individual contributions, while, at the same
+time, project roles might be fluid. Some of these obstacles (e.g., data sharing) may also be faced
+in the context of traditional laboratory or collaborative science. However, in a grass-roots,
+community-driven setting without a central lead, these can be amplified. We highlight some of the
+most pertinent challenges encountered and lessons learned in setting up and running this kind of
+decentralized, big team science effort in Box 1.
+Box 1: Early challenges encountered and lessons learned to run a decentralized, large-scale
+science collaboration
+The steering committee of the EEGManyPipelines project has a flat hierarchy - with “decision
+power” being equal among its members, irrespective of career stage (i.e., doctoral/postdoctoral vs.
+independent researcher) or resources (i.e., funding, time) to contribute. Setting up and running a large-
+scale scientific project in such a community-driven, decentralized fashion poses particular challenges at
+all stages of the scientific process - from initial conceptualization, over implementation, all the way to
+interpretation, sharing, and dissemination of results. We hope that the EEGManyPipelines project may
+serve as a blueprint for further collaborative and community-driven projects, as well as a flatter science
+culture in the future. It is in this spirit that we want to highlight some of the initial challenges we
+encountered and the ways in which we solved them.
+● Challenge 1: How to make decisions in the absence of a clearly identifiable lead?
+Unlike in a typical laboratory setup with a single PI or other large-scale collaborations
+with a clearly identifiable lead, the EEGManyPipelines project is led by a large (i.e., currently 13
+members) steering committee that not only has a flat hierarchy, but also changes over time.
+There is thus no single individual in charge to make decisions.
+To overcome this issue, in the EEGManyPipelines project, we adopted a democratic
+decision-making process: All members can contribute to the meeting agenda and raise points to
+discuss or decide. Different perspectives on each point under consideration are first collected
+and discussed amongst all members of the steering committee, and then decided on by
+unanimous agreement or ultimately by democratic majority vote. The decision is recorded in our
+“Meeting minutes” stored online and accessible by all members of the steering committee.
+Meetings are moderated by a designated committee member, who leads the discussion and can
+suggest to resolve points by voting or by postponing them, but has no executive power and
+whose role can be taken up by any alternative committee member. Some of the most important
+decisions solved in the past include, for instance, the questions of which dataset to use, when
+(and how) to announce the EEGManyPipelines project to the public, or which type of
+infrastructure to use for internal documentation, data sharing and data collection, or
+internal/external communication.
+● Challenge 2: How to attribute project roles and avoid diffusion of responsibility?
+In a grassroots, decentralized collaboration such as the EEGManyPipelines project, with
+most of its steering committee members neither directly employed by nor funded specifically for
+this project, it is a challenge to decide on and divide different roles, and also avoid diffusion of
+responsibility.
+We approach this issue by relying on internal delegation of task ownership: An important
+lesson we learned early on is that, although there is no overall project lead, most tasks require
+a clearly identifiable leader in charge of overseeing the task’s progress and assigning specific
+actions to specific people in order to progress and avoid diffusion of responsibility. For instance,
+regular communication with analysts necessitates drafting and sending out hundreds of emails
+and data analysis requires pre-processing of the data, converting them into an easily shareable
+format; and planning and conducting the analyses. We tend to handle such different tasks in
+dedicated “sub-groups,” composed of ~1-4 individuals, who assume leadership and, as such,
+take on responsibility in exchange for additional “decision power” for a given task as well as
+appropriate credit in future publications. While we now have one dedicated postdoctoral
+researcher, who by virtue of her position is our “lead analyst,” in most other cases, formation of
+those subgroups has been on a volunteer basis.
+● Challenge 3: How to resolve conflict and fairly credit people’s individual contributions?
+As a result of the flat hierarchy of our steering committee and the fluidity of project roles,
+it can be particularly challenging to fairly credit people’s contributions. For instance, how should
+authorship for the project’s main paper be determined, when individuals’ commitment and
+contributions will naturally have fluctuated over the course of the project? Similarly, how does
+one resolve conflict about authorship for a specific paper if there is no general consensus on
+individual contributions to start with?
+In the EEGManyPipelines project, we keep an updated, written record of every
+member’s contributions to the overall project and initiate discussions about co-authorship for
+each planned paper early on - ideally prior to the writing process. While these conversations may
+feel awkward at first and one may consider postponing them to a later date, in our experience,
+this only prolongs an inevitable process and substantially builds-up discomfort.
+A successful part of this strategy involves partitioning authorship questions into smaller,
+more manageable decisions. For instance, when writing this position paper, we identified three
+broad categories of authors: shared first authors (responsible for taking on the lead and writing
+the initial draft of the manuscript), shared last authors (having contributed significant resources
+and/or conceptualization), and shared middle authors (i.e., all remaining active members of the
+steering committee who contributed to the paper). As a group, the steering committee decided
+on listing middle authors in alphabetical order, while first and last authors determined the author
+order internally in their groups.
+● Challenge 4: How to administer and manage a large-scale collaboration with limited (or
+no) financial resources?
+One of the biggest challenges we continue to encounter is how best to administer and
+manage such a large-scale collaboration, based to a large extent on volunteer efforts and limited
+(or no) financial resources. While we were able to secure some funding, these resources only
+materialized well into the project’s lifetime and, as such, primarily accelerated its execution.
+Our philosophy and reliance on open-source, no- (or low-) cost infrastructure as well as
+project and time management resources remain unchanged. An important aspect of our strategy
+therefore relies on making the most use of the resources and/or skills already available to us,
+without necessarily striving to select the “best tools.” For instance, we use the Brainhack
+analyst survey were built by a steering committee member with expertise in web design and
+another set of members have voluntarily taken up the roles of “project coordinators” to guide and
+structure our regular meetings and keep us on time and focused.
+Recognizing the potential vulnerabilities associated with relying heavily on individual
+members or specific tools, we have proactively implemented measures to safeguard the project's
+continuity: We have identified potential risks, such as the dependence on a single individual's
+institutional affiliations or tool access, and have taken steps to diversify our resources and ensure
+redundancy. This foresight ensures that our project remains adaptable, irrespective of individual
+member’s transitions or tool availability, thereby maintaining the integrity and momentum of the
+EEGManyPipelines project.
+In the EEGManyPipelines project, we signal that a meaningful, interesting, and solid scientific
+question can be successfully addressed with this kind of bottom-up, community-driven
+collaboration. While this particular model of scientific inquiry might be indispensable for research
+agendas such as ours, we believe that it is not limited to multi-analyst studies or comparable
+scientific questions. Indeed, decentralized, democratic “big team science”, in which researchers
+pool both their physical and intellectual resources, might confer several critical advantages over
+a traditional, centralized research approach (Baumgartner et al., 2023; Coles et al., 2022):
+Perhaps among the most important, this kind of decentralized collaboration allows for a larger
+and, critically, more freely moving pool of ideas. Thereby, it might foster creativity, become larger
+than the sum of its parts, and open up the door towards potentially unexpected scientific
+discovery.
+projects
+Project Governance Decision- Membership Infra- Scientific
+making structure focus
+EMP Steering committee Democratic Individual No Data analysis
+with flat hierarchy vote in researchers
+steering
+committee
+IBL General assembly Consent- Franchise of Yes Data collection
+(i.e., all IBL PIs) based within labs
+the IBL
+PSA Hierarchical Democratic Individual Yes Data collection
+leadership team with vote of all researchers
+committees members
+We highlight some similarities and differences between the EEGManyPipelines project (EMP) and other
+big team science initiatives: the International Brain Lab (IBL) and the Psychological Science Accelerator
+(PSA). Projects are compared across a non-exhaustive list of five different criteria: (1) Governance, i.e.,
+decision-making body for setting shared scientific goals and policies; (2) decision-making process; (3)
+membership, being based either on the decision of entire labs under a PI or individual researchers; (4)
+development of dedicated infrastructure; and (5) main scientific focus.
+Alongside other current big team science projects in neuroscience and beyond (e.g.,
+#EEGManyLabs, Co-Science EEG personality project, T4TE), we believe the EEGManyPipelines
+project to be unique in opening up the discussion about and giving visibility to other models of
+science. There will not be a “one size fits all” solution. Further inspiration might be drawn from
+similar projects, such as the Psychological Science Accelerator (PSA; Moshontz et al., 2018) or
+the International Brain Lab (IBL, 2017), which, in addition to being large-scale collaborations,
+focus on setting up collaborative infrastructures (e.g., committees to decide which study proposals
+to put forward, how to allocate funding to collaborators, etc.) for running experiments across
+scientific practices, providing guidance on how to set up and run a grass-roots, community-driven
+project and successfully finishing this venture, the EEGManyPipelines project may serve as one
+potential blueprint for a more collaborative, community-driven, flat, and open scientific culture.
+Conclusion
+The fields of experimental psychology and cognitive neuroscience currently find themselves at a
+critical crossroads: Faced with uncertainties about replicability, reproducibility, and robustness,
+the community increasingly recognizes the need for a shift towards better scientific practices as
+well as improving the scientific culture. With the EEGManyPipelines project, we tackle analytical
+flexibility “in the wild” and explicitly address the impact of methodological choices on research
+outcomes. Our results will provide a roadmap towards more reproducible, robust, and transparent
+standards for conducting and reporting EEG studies, and ultimately contribute to shaping a more
+credible, inclusive and collaborative science.
+Conflicts of interest
+The authors declare no competing financial or other interests.
+Acknowledgements
+Darinka Trübutschek is supported by the European Union’s Horizon 2020 research and innovation
+programme under the Marie Sklodowska-Curie grant agreement No. 101023805. Nastassja L.
+Fischer is supported by the Cambridge-NTU Centre for Lifelong Learning and Individualised
+Cognition (CLIC), a project by the National Research Foundation (NRF), Prime Minister’s Office,
+Singapore, under its Campus for Research Excellence and Technological Enterprise (CREATE)
+Programme. Niko Busch is supported by the German Research Foundation (DFG; BU 2400/11-
+1) and by the DFG priority program "META-REP: A Meta-scientific Programme to Analyse and
+Optimise Replicability in the Behavioural, Social, and Cognitive Sciences". Gustav Nilsonne and
+Mikkel C. Vinding are supported by Riksbankens Jubileumsfond (grant no. P21-0384). Mikkel C.
+Vinding is supported by a Collaborative grant from the Lundbeck Foundation (R336-2020-1035).
+We thank all analysts for their efforts and making this project possible. We thank Balazs Aczel,
+Mike X. Cohen, Arnaud Delorme, Anna Dreber, Alexandre Gramfort, Jörg Hipp, Felix Holzmeister,
+Magnus Johannesson, Steven J. Luck, Vanja Ković, Robert Oostenveld, Yuri Pavlov, Cyril Pernet,
+Russell Poldrack, Aina Puce, Anđela Šoškić, Tom Schonberg, Martin Schweinsberg, Barnabas
+Szaszi, and Erik L. Uhlmann for serving on the project’s advisory board (names are listed in
+alphabetical order). We thank Josh Koen, Navid Muhammad Samran, Mehdi Senoussi, Britta
+Westner, and Jeremy Yeaton for participating in the initial stages of this project as steering
+committee members. We also thank the MPI-EA graphics’ team for their help in designing the
+Data availability
+The scripts used to create figures and summaries in this paper are available at
+Author contributions
+Conceptualization: D. T., Y.-F. Y., N. A. B., and G. N.; Formal analysis: D. T.,Y.-F. Y., E. C., M.
+C. V.; Investigation: all; Resources: N. A. B., and G. N.; Writing - Original Draft: D. T., Y.-F. Y.,
+C. G., E. C., N. L. F., M. C. V., T. R. M., N. A. B., and G. N.; Writing - Final Manuscript: D. T., Y.-
+F. Y., and C. G.; Writing - Review & Editing: all; Visualization: D. T., Y.-F., Y., E. C., A. V., and M.
+C. V.; Project Administration: all; Funding acquisition: N. A. B. and G. N.

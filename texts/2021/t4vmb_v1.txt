@@ -1,0 +1,526 @@
+Satisficing and Sample Size in Instance-Based Learning Theory 1
+Sequential Decisions from Sampling: Inductive Generation of Stopping Decisions Using
+Instance-Based Learning Theory
+Cleotilde Gonzalez and Palvi Aggarwal
+Dynamic Decision Making Laboratory
+Department of Social and Decision Sciences
+Carnegie Mellon University, Pittsburgh, PA
+Keywords: decisions from experience, sampling, instance based learning theory, satisficing.
+Prediction error.
+Words for subject index: sampling paradigm, decisions from experience, instance based
+learning theory, IBL model, Prediction error.
+Satisficing and Sample Size in Instance-Based Learning Theory 2
+Abstract
+Sequential decisions from sampling are common in daily life: we often explore
+alternatives sequentially, decide when to stop such exploration process, and use the experience
+acquired during sampling to make a choice for what is expected to be the best option. In
+decisions from experience, theories of sampling and experiential choice are unable to explain the
+decision of when to stop the sequential exploration of alternatives. In this chapter, we propose a
+mechanism to inductively generate stopping decisions, and we demonstrate its plausibility in a
+large and diverse human data set of the binary choice sampling paradigm. Our proposed
+stopping mechanism relies on the choice process of a theory of experiential choice, Instance-
+Based Learning Theory (IBLT). The new stopping mechanism tracks the relative prediction
+errors of the two options during sampling, and stops when such difference is close to zero. Our
+results from simulation are able to accurately predict human stopping decisions distributions in
+the dataset. This model provides an integrated theoretical account of decisions from experience,
+where the stopping decisions are generated inductively from the sampling process.
+Introduction
+Decisions that we make in many naturalistic situations involve a sequential process of
+sampling the available options before making a real choice (Hertwig et al., 2004; Gonzalez &
+Dutt, 2016). For example, in selecting candidates for a job, we might evaluate the applicants
+sequentially, keeping in mind those most promising candidates, and deciding to stop the
+evaluation of candidates once we have enough evidence that our top candidate should be hired.
+Another example may involve the selection of a house for rent. The options available in the
+market may be visited sequentially, and we decide when to stop considering new options when
+we have a house that is good enough. Another example may be that of selecting a suit to
+Satisficing and Sample Size in Instance-Based Learning Theory 3
+purchase for a special event; multiple suits may be tried on in the fitting room, and we decide
+when to stop trying out suits when we have at least one that is appropriate for the event. In all
+these situations we evaluate each of the alternatives sequentially, decide when to stop the
+sampling process based on the information accumulated, and use the experience acquired during
+sampling to make a definite choice for what we think is the current best option.
+The type of situation in which we explore potential alternatives before we make a choice
+has been studied in an abstract paradigm of experience-based choice between risky monetary
+gambles, referred to as the “Sampling Paradigm” in Decisions from Experience (DfE) research
+(Hertwig & Erev, 2009; Hertwig et al., 2004). In the sampling paradigm, individuals decide how
+many outcomes to observe from a set of options of uncertain value before making a choice.
+Participants make one selection among the options available each time, and they observe the
+outcome which is drawn from an underlying payoff distribution in the option selected. When the
+person decides to stop the sampling process, a decision is made for one of the options, based on
+their experienced values during sampling.
+A robust phenomenon that emerged from DfE research, with important theoretical
+implications, is the Description-Experience Gap (DE Gap). The DE Gap suggests that decisions
+made on the basis of experience contrast directly with decisions made based on pure description
+of the alternatives (Hertwig et al., 2004; Gonzalez & Dutt, 2011; Wulff, et al., 2018). A common
+explanation of the DE Gap is a “sampling error”: when people rely on experience they tend to
+rely on a small number of samples (i.e., sample size), which will result in observed distributions
+of outcomes that are distorted and not reflective of the true distributions (Hertwig & Pleskac,
+2010; Hertwig et al., 2004; Hau, Pleskac, Kiefer & Hertwig, 2008). A major question in DfE
+Satisficing and Sample Size in Instance-Based Learning Theory 4
+research is therefore, how do people decide the number of samples to observe (i.e., when to stop
+sampling?).
+A large amount of research has investigated choice in the sampling paradigm. For
+example, to address the question of how do people decide their sampling size, researchers have
+looked at moderators of the sampling size including: the structure of the problems and the
+variability of the options (e.g., a choice between two risky alternatives or between a risky and a
+safe option) (Wulff, et al., 2018; Gonzalez & Mehlhorn, 2016), the time available and
+motivations to sample more or less (Hau et al. 2008), and the domain of the problem (e.g.,
+whether gains, losses or a mix of outcomes are involved) (Lejarraga, Hertwig & Gonzalez, 2012;
+Gonzalez & Mehlhorn, 2016). However, as concluded in a recent meta-analysis by Wulff et al.,
+(2018), theories of sampling and experiential choice are not capable of explaining the sequential
+sampling process and the final choice, while at the same time also explaining the decision of
+when to stop sampling. Our goal in this chapter is to offer a theoretical foundation to integrate
+the decision of the sampling size into a well-known general theory of the cognitive processes in
+experiential choice, Instance-Based Learning Theory (IBLT, Gonzalez, Lerch, & Lebiere, 2003;
+Gonzalez & Dutt, 2011).
+Models of DfE in the Sampling Paradigm
+In early DfE research of the sampling paradigm (Hertwig et al., 2004), researchers aimed
+at discovering the effect of experience acquired during sampling on the subsequent consequential
+choice. Thus, most models of DfE in the sampling paradigm focused on capturing the decision
+after sampling but not the choices during the sampling process itself. Furthermore, existent
+models of sampling vary greatly in the assumptions they make about the sampling process. A
+modeling competition held in 2009 by Erev and colleagues (Erev et al., 2010) illustrates these
+Satisficing and Sample Size in Instance-Based Learning Theory 5
+issues. The competition was designed to compare and select the best models of DfE (sampling
+paradigm and other paradigms as well). Contestant teams submitted computational models after
+fitting them to an “estimation” data set provided by the organizers. The models were compared
+based on how well they predicted a “competition” data set to which modelers did not have access
+to. The models submitted to the sampling paradigm illustrate the kind of broad and disparate
+assumptions these models make about the sampling process, including some models that assume
+a random selection of options during sampling (Erev et al., 2010). For example, the baseline
+model provided by the organizers, assumes a random sample of k draws (a parameter fit to data)
+from each of the available options and the accumulation of outcomes based on the random
+sample of each option (Erev et al., 2010). None of the models submitted to the modeling
+competition present an integrated view of how the selection process is done during sampling and
+final choice, or the prediction of the sampling size distribution.
+After the competition, Gonzalez and Dutt (2011) analyzed the models and presented an
+alternative model comparison, providing a summary of the highest ranking models that address
+the sampling paradigm in the Erev et al. (2010) competition. None of those models is able to
+predict the sampling process and sampling size decisions together. Gonzalez and Dutt (2011)
+provide a general model of DfE based on IBLT; a model that is be able to capture the process of
+human experiential choice, not only in the sampling paradigm but in other paradigms as well
+(Hertwig & Erev, 2009). Using a quantitative model comparison, Gonzalez and Dutt (2011)
+demonstrated that the IBL model generalized well across experimental paradigms. Importantly,
+the IBL model was the only model able to predict the sequence of sampling selections that
+humans make during sampling as well as the final consequential choice after sampling. This was
+achieved using the same common cognitive mechanisms of IBLT, an achievement unique to this
+Satisficing and Sample Size in Instance-Based Learning Theory 6
+model. The generality of the IBL model of choice was further demonstrated in static and
+dynamic tasks (Lejarraga, Dutt & Gonzalez, 2012), in tasks involving experience and
+descriptions (Lejarraga & Gonzalez, 2011), in tasks involving teams (Lejarraga et al., 2014), and
+in two-choice social dilemmas (Gonzalez et al., 2015). This model is now considered as the most
+versatile and comprehensive model of DfE (Hertwig, 2015).
+Despite the successful demonstrations of the generality of the IBL model, there is one
+question left unanswered in Gonzalez and Dutt (2011): how is the stopping decision made?.
+Gonzalez and Dutt (2011) used a binomial distribution of sample sizes to determine the sample
+size in each simulation ran with the IBL model. This distribution has shown to accurately
+represent the sample size distribution in humans (e.g., Wulff et al., 2018). In other words, the
+IBL model itself did not make a stopping decision, but it made the choices of which option
+during the sequential sampling process and the final choice based on the IBL mechanisms.
+The particular question of how the decision of the sample size is made during the
+sampling process is largely unanswered. In well-known accumulation models, the sampling
+length depends on the relative evidence strength of the choice options (e.g., Busemeyer and
+Townsend, 1993). These models however, often rely on perceptual decision tasks and duration is
+measured in continuous time. In the sampling paradigm of DfE, the sampling size is discrete and
+it is unclear how the continuous duration would translate to the discrete number of samples. In
+the literature, there are a couple of papers that have aimed at proposing mechanisms for making
+stopping decisions in the sampling paradigm of DfE. First, Markant, et al., (2015) present a
+sequential sampling model that tries to explain the individual variations in the sample size. The
+model relies on Cumulative Prospect Theory (Tversky & Khaneman, 1992) to determine the
+value of options. But it also adds a number of assumptions regarding transition probabilities
+Satisficing and Sample Size in Instance-Based Learning Theory 7
+during sampling, and the trajectory that a preference or relative value of the two options in a
+binary choice task (i.e., drift rate) (Markant et al., 2015). The number of samples drawn depend
+on the drift rate and on a threshold level of preference. Sampling stops when the threshold is
+reached. The model reported high accuracy in the choice proportions, and the distributions of
+sample size appear to be similar to those of human data. However, there was no quantification of
+the accuracy of the model in accounting for the sample size, together with the choices during and
+after sampling. Generally, the model is quite complicated and likely not cognitively plausible.
+Second, Srivastava, Muller-Trede, Schrater, and Vul (2016) followed on the work of
+Markant et al. (2015) with a simpler model that relies on the difference of the expected values of
+the two options and on “volatility,” representing the trend of the prediction error. An interesting
+insight from this paper is that the prediction error should decrease over samples and help
+determine when to stop sampling. Volatility is a cognitively plausible concept suggesting that as
+long as this prediction error increases and changes, humans might infer that more samples are
+required, and that stopping makes sense once the volatility converges to a low value. Srivastava
+et al. (2016) tested individual volatility in a simple additive model explaining about 20-30% of
+the variance in human sampling sizes. The best fit correlation of sampling durations predicted by
+this model and human data is R=0.03. They improved this model but unfortunately introduced
+some unrealistic assumptions regarding what the observer in the task knows (e.g., average
+difference of the options’ expected values and cumulative volatility across the sequence).
+Inspired by these efforts, we propose a mechanism to inductively generate the stopping
+decision using the IBL model of choice. We test such mechanism by comparing data generated
+through IBL simulations to human data in the largest and most diverse data set of the sampling
+paradigm known today (Wulff et al., 2018).
+Satisficing and Sample Size in Instance-Based Learning Theory 8
+IBLT and the IBL Model of Choice.
+In making decisions from experience, we evaluate available alternatives sequentially, by
+comparing each alternative to choices we have made in the past, and act according to the best
+outcomes we have experienced. This idea was proposed and formalized in IBLT, a theory of how
+humans make decisions from experience in dynamic environments (Gonzalez, Lerch, & Lebiere,
+2003).
+In IBLT’s process, alternatives are evaluated sequentially by sampling the environment,
+comparing each available alternative to past choices from experience. Based on the similarity of
+the alternative’s attributes, alternatives are evaluated by aggregating experienced outcomes, to
+determine their expected value. Ultimately, an option with the best expected value is selected and
+executed. After each sampling selection is made, a stopping decision is considered regarding
+whether to continue to sample information or to stop and make a choice for the current best
+option. Such process in IBLT is similar to the “satisficing” strategy that has been contrasted to
+“optimizing” strategies in decision making research (Simon, 1957; March & Simon, 1958). In
+IBLT, stopping decisions are often determined by the time remaining to make a choice, which is
+dictated by the dynamics of the environment (Gonzalez, et al., 2003). Here we propose a way to
+formalize such satisficing mechanism in an IBL model of choice in which the sampling process
+happens over discrete samples rather than continuous time.
+The mathematical formalizations used in the IBL model of choice have been published in
+multiple places (e.g., Lejarraga et al., 2012, Gonzalez & Dutt, 2011, Gonzalez, 2013). However,
+for completeness, we present these general mechanisms here before introducing the satisficing
+mechanism, which is the novel contribution in this chapter.
+Satisficing and Sample Size in Instance-Based Learning Theory 9
+IBL model of Choice
+An “instance” in IBLT is a memory unit that represents the potential alternatives
+evaluated. Instances are memory representations consisting of three elements: a situation (a set of
+attributes that give a context to the decision, or state S); a decision (the action taken
+corresponding to an alternative in state S, or action A); and a utility (expected utility or
+experienced outcome x of the action taken in a state). An option k=(S,A) is defined by taking
+action A in state S. In the binary choice task, there are two options (i.e., k=2), the instances do not
+have a context (attributes) (S); thus they only consist of the action (A) and the outcome (x). For
+example, in the binary choice between: Option A: a .8 chance to get $4 and .2 chance to get $0,
+and Option B: get $3 for sure; the instances are: (A, 4), (A, 0), and (B, 3).
+At time t, assume that there are n different generated instances k,x for i = 1,...,n ,
+k,t i,k,t k,t
+corresponding to selecting k and achieving outcome x . Each instance i in memory has an
+i,k,t
+“activation” value, defined in the ACT-R cognitive architecture, and which represents how
+readily available that information is in memory (Anderson et al., 2004). The activation of an
+instance is determined by similarity to past situations, recency, frequency, and noise. In the IBL
+model of choice, we consider a simplified version of the activation equation which only captures
+how recently and frequently instances are activated:
+where d and  are the decay and noise parameters, respectively, and T {0,...,t-1} is
+i,k,t
+the set of the previous timestamps in which the instance i was observed. The rightmost term
+represents the Gaussian noise for capturing individual variation in activation, and  is a
+i,k,t
+Satisficing and Sample Size in Instance-Based Learning Theory 10
+random number drawn from a uniform distribution U(0, 1) at each time step and for each
+instance and option.
+Activation of an instance i is used to determine the probability of retrieval of an instance
+from memory. The probability of an instance i is a function of its activation Act relative to the
+i,k,t
+activation of all instances:
+where  is the Boltzmann constant (i.e., the “temperature”) in the Boltzmann distribution.
+For simplicity,  is often defined as a function of the same  used in the activation equation
+The expected utility of option k is calculated based on a mechanism called Blending,
+using the past experienced outcomes stored in each instance. In the IBL model of choice employs
+the Blending calculation as defined for choice tasks (Lejarraga et al., 2012; Gonzalez & Dutt,
+2011) :
+Essentially, the Blending operation is the sum of all past experienced outcomes weighted
+by their probability of retrieval. Where x is the outcome stored in an instance i associated with
+ikt
+choosing k; at time t. p is the probability of retrieving the instance i from memory (Eq. 2). n is
+ikt k,t
+1 A more generalized formulation of the Blending equation can be found in Lebiere (1999).
+Satisficing and Sample Size in Instance-Based Learning Theory 11
+the number of instances stored in memory for option k up to the last trial. The choice rule is to
+select the option that corresponds to the maximum blended value.
+To begin the task, instances are initialized with an outcome value that is higher than those
+experienced in the task, which represents expectations and helps in initiating exploration of the
+options (Lejarraga et al., 2012). In the simulations presented in this chapter we do not fit the
+model’s parameters in any way. We use parameters that are considered “default” in the ACT-R
+community: where d= 0.5 and = 0.25. Thus, the model data reported here, is generated from the
+IBL model simulations, which are pure predictions from the IBL model.
+A Satisficing Mechanism in the IBL Model of Choice.
+Similar to the idea of Srivastava et al., (2016), we propose that humans are able to
+determine the error in their predictions by observing the outcome from the option selected
+through immediate feedback. This error is then used to track the relative prediction errors of the
+two options during sampling. Intuitively, it is expected that the relative value of the prediction
+errors will decrease with learning, as the estimations through Blending converge. But clearly, the
+way such decline occurs will depend largely on the structure and variability of the environment.
+This proposed process in the IBL model is formalized as follows:
+First, for each option k, we calculate the prediction error: the difference between the
+expected value (Blended value) of the option, V , and the actual outcome obtained x at time t,
+kt kt
+we call this value the “Gap” :
+𝐺𝑎𝑝 = |𝑉 − 𝑥 | (4)
+(cid:3038)(cid:3047) (cid:3038)(cid:3047) (cid:3038)(cid:3047)
+2 A similar “Gap” concept was used in Gonzalez, et al., 2015 for IBL models of the Prisoner’s Dilemma,
+where the actions of each player were determined by a dynamic expectation of the actions of the other player.
+Satisficing and Sample Size in Instance-Based Learning Theory 12
+Second, we calculate the relative prediction errors for the two options, k=1 and k=2, form
+time t-1 to time t, we call this value the Gap and is defined as follows:
+Gap = ||Gap – Gap | - |Gap –Gap || (5)
+t 1t 1(t-1) 2t 2(t-1)
+The Gap is expected to decrease over time, and the prediction is that sampling will stop
+at trial t, when the marginal value Gap is close to zero. But, as it will become clear later, the
+Wulff al (2018) data set contains a very diverse set of problems with very different values and
+the decline of the Gap can vary largely from problem to problem. To account for the large
+variability of problems in the data set with a single model, we made the stopping point during
+sampling a probabilistic process. We defined an increasing concave probability function (from
+0.5 to 1) that will determine whether to actually stop every time the Gap reaches a threshold
+value close to zero (we defined such a threshold value of 0.10). This probability (starting at 0.5)
+increases by a negative logarithm function (-log p, where p is previous probability) each time t in
+Gap reaches the threshold, such that the sampling stops (with probability 1) after the threshold
+th
+has been reached for the 7 time.
+Data Set and Simulation Methods
+Wulff et al. (2018) obtained data sets from original authors of papers containing one or
+more experiments with the sampling paradigm. The data set details are reported in Wulff et al.,
+(2018, Appendix A) and it was used to conduct a meta-analysis. The dataset is composed of 80
+different papers with a total of 4,400 participants and 45,239 decisions from experience (we did
+not use the data of decision from description). Out of the 80 papers, 55 of them had experiments
+with autonomous sampling, where a stopping decision was made (participants decided how long
+to sample the two options). These data sets are the only ones relevant for testing the proposed
+satisficing mechanism in the IBL model.
+Satisficing and Sample Size in Instance-Based Learning Theory 13
+Thus, the full dataset used in the current study consisted of 40,246 participants; 1,219
+unique different problems; 1,906 paper-problem pairs; and a total of 1,065,918 decisions from
+experience including the sampling decisions and the final choice. The number of outcomes in
+each of the two options vary across problems between 1 and 5; the features of the problems also
+vary, such as whether the two options are risky, or one option is risky and the other one is safe;
+or whether the problems involve gains, losses and mixed types of outcomes.
+We observed that some experiments had less than 10 participants, giving very little and
+noisy data for analyses. Thus, we removed 865 such paper-problem pairs. The resulting data set
+consists of 39,111 participants, 610 unique different problems, 1,041 paper-problem pairs, and a
+total of 842,242 decisions from experience including sampling and final choice. When analyzing
+the number of samples in this dataset we found that the number of samples vary from 1 to 750.
+We visualized the data using boxplots and observed outliers. Using the Inter Quartile Range
+(IQR) rule, we detected those observations above Q +−1.5 * IQR or below Q -−1.5 * IQR and
+1 1
+removed those outliers from the data.
+After the outlier removal, the final dataset used for analyses consists of 37,106
+participants, 610 unique different problems, 1,041 paper-problem pairs, and a total of 842,242
+decisions from experience including sampling and final choice. In this data set the sample sizes
+range from 1 and 71 samples.
+IBL model’s simulation methods.
+We ran equal number of simulated IBL agents i.e., 39,111 on the 610 problems observed
+in the human data before removing the outliers. It is important to remember that we used the
+default decay (d= 0.5) and noise (= 0.25) parameters in the model, that is, we did not use the
+Satisficing and Sample Size in Instance-Based Learning Theory 14
+human data to inform the model and did not fit the parameters of the model to the human data. In
+other words, the simulation results are pure predictions from the IBL theory.
+The IBL model makes a decision of which of the two options to sample in each trial,
+according to the Blended value (Equation 3). After each sample, the model makes the decision of
+whether to stop sampling based on the calculation of the marginal value of the two options
+(Gap ) and threshold (Equation 5). When the model reaches the threshold for the first time, it
+has a 0.5 probability of stopping, and this probability increases every time the threshold is
+reached. If the model decides to stop sampling, it then makes the final choice after sampling,
+according to the Blended value of the two options accumulated during sampling (Equation 3).
+The Gap (Equation 5) lets the IBL agents to keep sampling after the threshold has
+reached up to 7 times (i.e., until the probability of stopping is 1), or when the maximum number
+of samples are reached. We used 750 as the maximum number of samples allowed in the model
+and a threshold of 0.10, an arbitrary value close to zero. After running the simulations, we
+performed an outlier analysis on the simulation data, using the similar criteria as that used in
+human data. We used 71 samples as cutoff in IBL model, i.e., we removed those agent data
+whose sample size was greater than 71. The IBL dataset resulting from this process has 33,509
+agents, 610 unique different problems, 1,041 paper-problem pairs, and a total of 715,732
+decisions from experience including sampling and final choice.
+Results
+We concentrate our analyses on the stopping decisions reflected in the sample size, for
+the 1,041 paper-problem pairs in the empirical data set and in the model dataset. The sample size
+is the total number of selections made by participants (or by agents in the model) during
+sampling and up to the stopping point, before making a choice.
+Satisficing and Sample Size in Instance-Based Learning Theory 15
+Stopping Decisions: Sample size distributions.
+model. Panel A presents these sample size distributions across all the data. A geometric
+distribution represents the human sample-size distribution (Geometric (p = .042) with χ (7) =
+2877, p < .001). This geometric distribution is heavily right-tailed, the mean sample size is 22.7
+(SD = 16.01), and the median sample size is 20 samples. Similarly, a geometric distribution also
+represents the IBL model’s sample-size distribution accurately (Geometric (p = .045) with χ (7)
+= 9626, p < .001). The model’s distribution’s mean sample size is 21.36 (SD = 13.62), and the
+median is 19 samples. The chi-square test signifies that human distribution and model sample
+distribution is strongly associated (χ (7) = 3765, p < .001).
+the options. These are Risky-Risky and Risky-Safe type problems. Human participants sample
+more in Risky-Risky problems (median = 21, mean = 24.87, SD = 16.03) compared to Risky-
+Safe problems (median = 13, mean = 17.11, SD = 14.38). The IBL agents also sampled more in
+Risky-Risky problems (median = 21, mean = 23.57, SD = 15.21) compared to Risky-Safe
+problems (median = 17, mean = 16.71, SD = 8.91). The median sample size in the model is
+slightly higher than the human data in the Risky-Safe problems, but generally, the predictions of
+the model are very accurate. The chi-square tests signify that human sample distribution and
+model sample distribution are strongly associated in Risky-Safe problems (χ (7) = 8352, p <
+.001) as well as the Risky-Risky problems (χ (7) = 733.2, p < .001).
+involved in the problem: gains, losses, and mixed (gains and losses). Again humans and model
+agents are very similar in gain problems (Human: median = 20, mean = 23.51, SD = 16.45; IBL
+Satisficing and Sample Size in Instance-Based Learning Theory 16
+model: median = 19, mean = 21.35, SD = 14.11); in loss problems (Human: median = 18, mean
+= 21.25, SD = 15.34; IBL model: median = 20, mean = 21.81, SD = 13.55); and in the mixed
+problems (Human: median = 19, mean = 22.28, SD = 15.14; IBL model: median = 18, mean =
+20.44, SD = 13.58). The chi-square test signifies that human sample distribution and model
+sample distribution is strongly associated in all the domains (Gain: χ (7) = 2311.1, df = 7, p <
+2 2
+0.001, Loss: χ (7) = 1611.8, df = 7, p < 0.001, and Mixed: χ (7) = 478, df = 7, p < 0.001).
+Satisficing and Sample Size in Instance-Based Learning Theory 17
+Panel A
+Panel B
+Panel C
+all problems, b) Risky-Risky and Risky-Safe problems, and c) Gains, Losses and Mixed domain
+problems.
+Satisficing and Sample Size in Instance-Based Learning Theory 18
+Analysis of Sample Size per Paper-Problem Pair.
+To investigate the model predictions and the human data in more detail, we analyzed the
+relationships between the sample size in human data and in the IBL agents for each of the 1,041
+paper-problem pairs.
+Safe problems (Panel B), and for Gains, Losses, and Mixed problems (Panel C). The overall
+sample size per paper-problem pair predicted by the IBL model is positively correlated to the
+sample size observed in the human data (R = 0.26). This is a very high correlation considering
+that the IBL model was not fit in any way to the human data and considering the large variety of
+problems in the human data. As shown by the diagonal red line, the IBL model under-samples
+compared to humans (i.e., the majority of the observations are below the red line). The IBL
+model is positively correlated to the sample size observed in the human data for Risky-Risky
+problems (R = 0.023) and negatively correlated for Risky-Safe problems (R = -0.21); and
+positively correlated to all three domains including gains, losses and mixed. In general, humans
+sampled significantly more in the Risky-Safe type of problems than what the IBL model
+predicts.
+Satisficing and Sample Size in Instance-Based Learning Theory 19
+Panel A
+Panel B
+Panel C
+and the observed sample size in the human data. Panel A shows all the problems; Panel B shows
+the risky and safe problems, and Panel C shows the Gains, Loss and Mixed problems.
+Satisficing and Sample Size in Instance-Based Learning Theory 20
+Delta Gap Over Sample Count.
+Here we illustrate the Gap over the sampling process. Again, the expectation is that the
+Gap will decrease over samples. The intuition is that as more samples are accumulated, the
+predicted outcomes of each of the two options (by Blended values in Equation 3) will be close to
+the actual outcome observed in each option. That is, the predicted error, Gap , will decrease
+over time. However, the Gap might not always decrease monotonically, as it would depend on
+the statistical structure of the gambles.
+To have a frame of gross reference for the Gap in the human data, we calculated an
+experienced value of each of the two options ExV using the frequencies of each outcome the
+humans observed. In past research, this has been shown to be an approximation to the Blended
+value of the IBL model in choice tasks (Gonzalez & Mehlhorn, 2016). ExV for each option k is
+defined as follows:
+(cid:3047)(cid:3042)(cid:3047) (cid:3042)(cid:3030)(cid:3030)(cid:3048)(cid:3045)(cid:3028)(cid:3041)(cid:3030)(cid:3032) (cid:3042)(cid:3033) (cid:3042)(cid:3048)(cid:3047)(cid:3030)(cid:3042)(cid:3040)(cid:3032) (cid:3036) (cid:3036)(cid:3041) (cid:3042)(cid:3043)(cid:3047)(cid:3036)(cid:3042)(cid:3041) (cid:3038)
+(cid:3041)
+𝐸𝑥𝑉 = ∑ ∗ 𝑂𝑢𝑡𝑐𝑜𝑚𝑒 (6)
+(cid:3038) (cid:3036)(cid:2880)(cid:2869) (cid:3036)(cid:3038)
+(cid:3047)(cid:3042)(cid:3047)(cid:3028)(cid:3039) (cid:3042)(cid:3030)(cid:3030)(cid:3048)(cid:3045)(cid:3028)(cid:3041)(cid:3030)(cid:3032) (cid:3042)(cid:3033) (cid:3042)(cid:3043)(cid:3047)(cid:3036)(cid:3042)(cid:3041) (cid:3038)
+Using the ExV, we calculate the Gap (Equation 4) and marginal value Gap (Equation 5)
+using human data.
+Given the large differences across problems in terms of the outcome values, to average
+the Gap over the sample count, we normalized the values by the following function:
+(cid:3008)(cid:3028)(cid:3043) (cid:2879)(cid:2923)(cid:2919)(cid:2924)((cid:3008)(cid:3028)(cid:3043))
+Norm(Gap ) (7)
+t =
+(cid:2923)(cid:2911)(cid:2934)((cid:3008)(cid:3028)(cid:3043)) (cid:2879) (cid:3040)(cid:3036)(cid:3041)((cid:3008)(cid:3028)(cid:3043))
+overall sample size median of 21 (data becomes noisier with more samples, as the number of
+observations decrease). The Gap clearly decreases over samples, and the human data’s proxy
+Satisficing and Sample Size in Instance-Based Learning Theory 21
+for the Gap shows that decrease too. For the model data, the Gap starts very large and
+t t
+decreases rapidly in the first samples. The initial large values of Gap in the model are due to
+our assumptions of pre-populated values in the instances: Basically, for the IBL model, every
+experienced outcome will be maximally different from expectations in the initial trials, given
+general assumptions made in the model about initial expectation values (Lejarraga et al., 2012).
+Satisficing and Sample Size in Instance-Based Learning Theory 22
+Panel A
+Panel B
+Panel C
+Satisficing and Sample Size in Instance-Based Learning Theory 23
+Proportion of Maximization During Sampling and Choice.
+To illustrate that in addition to capture the sample size, the IBL model is capable of
+capturing the decisions during sampling and the consequential choice, we calculated the
+proportion of maximization (PMax) during sampling and final choice. The PMax represents the
+presents the PMax during sampling and during the final choice in the human dataset and the IBL
+model data set for all the problems, and using the same groupings as in the sections above. The
+RMSE are all very low (ranging from 0.02 to 0.06), suggesting that the model is generally able to
+capture the PMax during sampling and choice. This result replicates the well-known capability of
+IBL models to capture choices during sampling and after sampling (e.g., Gonzalez & Dutt, 2011;
+Lejarraga et al., 2012).
+PMax during Sampling PMax Final Choice
+Mean (SD) Mean (SD)
+Human IBL RMSE Human IBL RMSE
+Overall 0.51 0.53 0.02 0.58 0.55 0.05
+(0.05) (0.11) (0.03) (0.23) (0.21) (0.07)
+Option Risky-Risky 0.50 0.54 0.02 0.61 0.57 0.06
+Type (0.05) (0.11) (0.04) (0.23) (0.21) (0.07)
+Risky-Safe 0.50 0.50 0.01 0.51 0.50 0.03
+(0.06) (0.09) (0.01) (0.22) (0.22) (0.06)
+Domain Gain 0.51 0.53 0.02 0.59 0.54 0.05
+(0.05) (0.11) (0.04) (0.24) (0.21) (0.07)
+Loss 0.50 0.54 0.01 0.56 0.55 0.04
+(0.04) (0.10) (0.02) (0.19) (0.21) (0.06)
+Mixed 0.49 0.54 0.02 0.55 0.55 0.06
+(0.06) (0.11) (0.03) (0.23) (0.21) (0.08)
+Satisficing and Sample Size in Instance-Based Learning Theory 24
+Discussion
+Understanding how people decide the length of their exploration process (i.e., how to
+make a stopping decision) before making a choice, is critical for theories of decisions from
+experience. The sampling paradigm in DfE is a simple but useful way to study this important
+question. Research on the sampling paradigm has addressed related questions, for example: how
+the choice is influenced by the information collected during sampling, and what are the
+moderators for the sampling phase that influence the decision of the number of samples to take.
+These moderators include: the variability of the problems (e.g., whether the choice is being made
+between two risky alternatives or a risky and a safe alternative) (Wulff et al., 2018; Gonzalez &
+Mehlhorn, 2016); the motivations and costs during sampling (Hau et al 2008); the loss or gain
+domain of the problems (Lejarraga et al., 2012; Gonzalez & Mehlhorn, 2016); and others.
+But the question of how people decide when to stop sampling, and what are the cognitive
+mechanisms involved in such decision, has received very little attention. Theories that are able to
+integrate the whole process of decisions from experience, from the sequential decisions from
+sampling, the decision of when stop sampling, and the subsequent choice into an integrated
+model do not exist. The IBL model of binary choice is the only current available option able to
+achieve such integrated theoretical account of DfE. IBL has already been considered an
+important integrated cognitive account of DfE (Hertwig, 2015; Wulff et al., 2018), as it has
+demonstrated generalized predictions on various DfE paradigms, accounting for individual
+choices during sampling and final choice (Gonzalez & Dutt, 2011; Lejarraga et al., 2012;
+Gonzalez & Mehlhorn, 2016; Dutt & Gonzalez, 2015). The current paper advances this model by
+Satisficing and Sample Size in Instance-Based Learning Theory 25
+proposing a satisficing mechanism to account for the decision of when to stop sampling, while
+using the same IBL choice mechanisms.
+The satisficing process proposed here differs from other attempts to model stopping
+decisions in the sampling paradigm (Markant et al., 2015; Srivastava et al., 2016). Mainly, our
+proposed prediction error mechanism for stopping decisions, Gap , relies directly on Blending,
+the belief value of each of the options that is already part of IBLT (Gonzalez et al., 2003). This
+occurs by tracking the differences of the prediction error between options over the samples. This
+concept is similar to that of “volatility” discussed in Srivastava et al., (2016), but instead of using
+completely new formulations of the concept of prediction error, we use the same Blending
+mechanism in IBLT that is used to make a choice.
+Importantly, our model is able to capture stopping decisions of individuals in the largest
+data set known of the sampling paradigm (Wulff et al 2018). In contrast to past research
+(Markant et al., 2015; and Srivastava et al., 2016), we did not fit the model to human data. We
+also did not make any unreasonable assumptions regarding information that participants did not
+have in the studies. That is, our model’s results are pure predictions from the theoretical
+assumptions of IBL, a cognitive plausible model of DfE. Considering this, our results are an
+excellent account of the human decisions. The IBL model is able to capture the sample size
+distributions from humans and to predict the sampling sequence lengths for individuals with
+significantly more accuracy than past models. Our model’s prediction of individual sampling
+size is R = 0.26 (compared to R = 0.03 in Srivastava et al., 2016). In addition, our model is able
+to capture individual choice per sample, and choice from experience, after sampling. Thus, our
+model provides an integrated theoretical account of DfE in the sampling process. The general
+integration of sampling processes with stopping decisions and choice has already been discussed
+Satisficing and Sample Size in Instance-Based Learning Theory 26
+as part of IBLT (Gonzalez et al., 2003). However, in this general theory, stopping decisions are
+determined by externally set deadlines and time constraints. In the sampling paradigm people are
+not provided with deadlines, sequence length information, or time constraints to make a stopping
+decision. Thus, we propose an endogenously-generated stopping mechanism that applies in each
+sample taken in the task; the mechanism is based on the relative prediction error of the
+alternatives using the IBLT’s choice rule, Blending.
+The work presented in this chapter is only the beginning of what we expect to be an
+interesting integration with other models of sequential learning and decisions from sampling.
+First, some of our current assumptions will need to be investigated further. For example, in this
+work we assumed a “close to zero” threshold to compare to the Gap . But, it is very possible
+that this threshold is problem-dependent and individual-dependent. We also assumed a
+probabilistic non-linear increasing function for stopping every time the threshold is reached.
+These two assumptions will require more investigation to determine an individualized generation
+of such thresholds according to the individual experiences. Generally, the results presented here
+did not rely on human data; and in particular the specific sequences observed by the human
+participants. We suspect that feeding the IBL model with the same sequence of experiences from
+each individual would make our model significantly more accurate in the prediction of the
+sampling size. These and other questions are left for future research.
+Second, in many models of sequential decision making, the concept of a “Threshold” is
+used to determine the decision of when to stop sequential choice (Baunmann et al., 2020; Guan
+et al., 2020). Often, in this research the question is about the deviations of human thresholds and
+optimal thresholds. These models often rely on pre-determined sequences from defined
+distributions and specific lengths. In these experiments, participants commonly know the length
+Satisficing and Sample Size in Instance-Based Learning Theory 27
+of the sequence (Baunmann et al., 2021; Guan et al., 2020). This information significantly
+changes the nature of the problem compared to the sampling paradigm, where participants are
+free to sample for as long as they want without any total sample limit or information. Thus, the
+generality of our proposed mechanism to such sequential choice tasks will need to be
+investigated.
+Authors’ Note:
+This research was supported by the Air Force Research Laboratories Award FA8650-20-
+F-6212 sub-award number 1990692 and by the Army Research Office, Network Science
+Program, Award Number: W911NF1710431. We thank Jeffrey Flagg for editorial review.
+Correspondence concerning this article should be addressed to Cleotilde Gonzalez, Dynamic
+Decision Making Laboratory, Carnegie Mellon University, Pittsburgh, PA 15213. E-mail:
+coty@cmu.edu.
+Data, scripts for analyses, and the IBL model’s code are available in Open Science

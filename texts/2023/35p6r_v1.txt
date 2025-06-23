@@ -1,0 +1,733 @@
+Understanding Dyad, Person, and Contextual Effects in Dyadic Analysis
+Robert E. Wickham
+Department of Psychological Sciences, Northern Arizona University
+Pre-print of article in press at Structural Equation Modeling: A Multidisciplinary Journal.
+Authors’ Note: Correspondence regarding this article should be addressed to Robert E. Wickham
+(robert.wickham@nau.edu), 1100 S. Beaver St., SAS Bldg. 60, Flagstaff, AZ 86011
+KEYWORDS: Dyadic Analysis, Common-Fate Model, Contextual Effect, Multilevel SEM
+Abstract
+Several interesting variations on the Common Fate Model (CFM) for dyadic analysis have
+emerged over the past decade. For instance, the multilevel-CFM is characterized by directional
+paths between Person level observed X and Y variables in addition to the Dyad level direct path
+between the corresponding latent variables. Although this model appears to provide a
+decomposition of the Y on X regression into Dyad and Person level components, close
+examination reveals that this specification yields a Dyad level coefficient that captures the
+contextual effect, or the discrepancy in the between- and within-cluster coefficients. The present
+work elucidates key features of the multilevel-CFM that produce the contextual effect
+parametrization, and introduces an alternative specification, the between-within-CFM that yields
+a decomposition of the Y on X regression consistent with the general multilevel SEM literature.
+These variations on the CFM are illustrated using empirical examples, supported by syntax for
+commonly used SEM software.
+Understanding Dyad, Person, and Contextual Effects in Dyadic Analysis
+The number of studies sampling dyads has increased dramatically since the 1980s and
+several analytic approaches have emerged to accommodate dyadic designs (Kenny, Kashy, &
+Cook, 2006). At present, the actor-partner interdependence model (APIM) is the most widely
+applied procedure, which provides researchers insight into Person level processes through
+parameters that reflect the degree to which partners may influence one another, as well as the
+extent to which specific combinations of partner attributes shape individual outcomes (Campbell
+& Kashy, 2002; Kenny, 1996; Wickham & Knee, 2012). At its core, the APIM is a multivariate
+regression model in which the outcome response for partner a ( Y) is regressed on their own
+predictor ( X; an actor effect) and their partner’s predictor ( X; a partner effect), and the outcome
+a b
+for partner b ( Y) is regressed on their own ( X) and their partner’s predictor ( X). Although
+b b a
+methodologists continue to introduce new applications and variations on the APIM (Ledermann
+& Kenny, 2012; Wickham & Macia, 2019), there has been growing interest in another approach
+to dyadic analysis known as the common-fate model (CFM; Kenny, 1996). In contrast to the
+APIM, the CFM primarily focuses on Dyad level (i.e., between dyads) processes captured by the
+regressions among latent variables that reflect dyad members’ similarity on individual level
+attributes (Wickham & Macia, 2019).
+Ledermann and Kenny (2012) describe several variations on the standard CFM aimed at
+incorporating Person level (i.e., within dyad) coefficients into the model. Although these
+extensions to the CFM provide some insight into how the model specification affects the
+magnitude of coefficient linking the Dyad level latent variables, important issues surrounding
+these alternative CFMs remain unresolved. For instance, the multilevel-CFM described by
+Ledermann and Kenny’s (2012) appears to provide a decomposition of the Y on X regression
+into Dyad and Person level components. However, closer examination of the model suggests that
+the Dyad level coefficient describes the contextual effect, or the discrepancy in the Dyad and
+Person level effects. The present work seeks to clarify the key features of the multilevel-CFM
+that produce the contextual effect parametrization. It introduces an alternative specification, the
+pure Between-Within-CFM (BW-CFM) that yields a decomposition of the Y on X regression
+consistent with the broader multilevel SEM literature.
+The present work begins by reviewing the notion of contextual effects in nested designs
+characterized by many units per cluster, as well as the techniques that researchers have used to
+isolate contextual, pure between, and pure within cluster effects. Next, the essential elements of
+the standard CFM, as well as extensions to the basic model are discussed. A generalization of
+contextual effects to dyadic designs is provided, along with a re-interpretation of a known CFM
+specification and an introduction of a between-within common fate model (BW-CFM), which
+produces the pure between and pure within dyad coefficients. Example analyses are provided for
+each model and the implications for theories of dyadic interaction and close relationship
+processes are discussed, along with future extensions and applications.
+Nested Designs and Contextual Effects
+Research designs featuring hierarchically nested units (e.g., students in schools, romantic
+partners in couples) are ubiquitous in the behavioral sciences (Raudenbush & Bryk, 2002;
+Snijders & Bosker, 2012). These designs are characterized by a statistical dependency among
+observed responses at the lower levels such that responses obtained from members of the same
+cluster (e.g., school, couple) tend to be more similar than those produced by members of
+different clusters (Kenny & Judd, 1986). For example, standardized test scores for students
+attending the same school are often more similar than scores produced by students selected from
+different schools. In the context of research using dyadic designs, romantic partners tend to
+report more similar levels of relationship satisfaction than individuals selected from different
+couples. Although this data structure violates the independence of residuals assumption imposed
+by the general linear model (Kenny, 1996), other modeling approaches allow researchers to
+explicitly account for the dependency among outcome responses produced by nested designs.
+For instance, a multilevel model can be used to partition variability in observed variables
+measured at the lowest level (e.g., math score on a standardized test for children in the same
+school, relationship satisfaction for partners in the same relationship) into unique components
+corresponding to each level of the design.
+Multilevel modeling also allows researchers to examine how the relationship between a
+predictor and outcome at the lowest level may differ at the upper level(s) of the design
+(Raudenbush & Bryk, 2002). For example, the association between student socio-economic
+status (SES) and standardized test scores may be positive and relatively weak at level 1
+(students), but positive and very strong at level 2 (schools). Prior work illustrates that the choice
+of centering scheme for the level 1 predictor, and the incorporation of a level 2 aggregate version
+of the level 1 predictor determines the interpretation of the corresponding coefficients at each
+level (Kreft, De Leeuw, & Aiken, 1995). Specifically, applying a cluster-mean centering (CMC;
+each level 1 SES score minus the average SES score from corresponding classroom) scheme to
+the level 1 predictor, and including an upper-level aggregate version of the predictor (average
+student SES in each school) produces coefficients representing the pure within effect for the
+level 1 predictor, and pure between clusters effect for the level 2 predictor (Hox, 2010; Kreft et
+al., 1995). In contrast, applying a grand-mean centering (GMC; each level 1 SES score minus
+grand mean of SES) scheme to a level 1 predictor still produces a level 1 coefficient
+corresponding to the pure within effect, however, under this centering scheme the coefficient for
+the level 2 predictor describes the contextual effect, or the discrepancy in the pure within and
+between coefficients (see also Lüdtke, Marsh, Robitzsch, Tratwein, Asparouhov, & Muthén,
+2008). Conceptually, the presence of a contextual effect is theoretically compelling because it
+signals that the functional significance of a predictor variable depends on the level of analysis.
+The conceptual framework described by Kreft and colleagues (1995) generalizes well to
+dyadic data, but the procedures for implementation are less straightforward. For instance, adding
+an observed Dyad level variable formed from the mean of each partner’s observed predictor to
+an APIM will likely lead to excessive collinearity and interpretative difficulties. These
+challenges arise in part from the fact that the APIM is essentially a single-level multivariate
+model characterized by the simultaneous regression of each dyad member’s outcome on their
+own and their partner’s predictor (i.e., X + X → Y; X + X → Y), which differs considerably
+a b a b a b
+from the traditional multilevel regression model in which the outcome for each level 1 unit is
+regressed only on their own predictor. Therefore, the coefficient for a Dyad level predictor
+created from both partners’ predictors (i.e., M[ X, X]) in an APIM cannot be interpreted in the
+a b
+same way as the coefficient for a level 2 aggregate predictor in a traditional multilevel model
+(pure between-effect or contextual effect). In contrast, drawing on an analytic framework that
+more explicitly represents dyadic responses as a multilevel data structure may provide more
+concrete platform to examine contextual effects.
+The Common Fate Model
+Traditionally, procedures for analyzing dyadic data parameterize Person or Dyad level
+coefficients as part of distinct statistical models. For example, the actor-partner interdependence
+model (APIM; Kenny, 1996) produces Person level effects describing the association between a
+dyad member’s own predictor and their outcome (actor-effect), the association between their
+dyadic partner’s predictor and their own outcome (partner-effect). In contrast, the common fate
+model (CFM; Kenny, 1996; Griffin & Gonzalez, 1995) more closely resembles a traditional
+multilevel model by isolating the Dyad level effect describing the association between latent
+predictor and outcome variables that are measured by observed variables provided by each dyad
+member. Although it is possible, and at times theoretically or empirically necessary, to
+incorporate Person level parameters in a standard CFM, they often play to an auxiliary role and
+may be challenging to interpret in a theoretically relevant manner. To better understand the more
+recent extensions to the CFM that allow for directly interpretable Dyad and Person level
+coefficients, it is important to first establish how the CFM partitions variance in the observed
+responses provided by each dyad member.
+Separating Person and Dyad Level Variance
+Research designs featuring dyads (e.g., romantically involved couples, sibling pairs,
+practitioners and patients) are distinct from other nested designs because the number of lower-
+level units per cluster is fixed at two. The relative simplicity of the design provides researchers
+with greater flexibility in modeling the statistical dependency between dyad member responses.
+aY bY
+statistical dependence) between residuals (ε , ε ) for outcome variable Y obtained from dyad
+aYbY
+members a and b is captured by covariance parameter θ . Although the covariance method
+provides a straightforward approach for modeling non-independence, it does not explicitly
+partition the total variance in observed responses ( Y, Y) into Person (level 1) and Dyad (level
+a b
+2) components in a manner that allows Dyad level variance to be used as a predictor or outcome
+variable (Wickham & Macia, 2019). In contrast, the random intercept approach illustrated in the
+a b
+Y Y
+and Dyad level variance components using a latent variable (η ). More specifically, η captures
+the Dyad level mean for each cluster by extracting cross-dyad variability in observed Y scores
+(i.e., degree to which members of same dyad are similar) . Moreover, the residuals for each
+aY bY
+member of the dyad (ε , ε ) reflect variability that is unique to each person, independent of
+their Dyad level score. As a result, the variance of the latent variable (ψ ) describes the degree of
+aY bY
+variability between-dyads, and the variance of the Person level residuals (θ , θ ) reflects
+variability within dyads (Wickham & Macia, 2019). Mixed effects modeling, traditional
+structural equation modeling (SEM), and Multilevel-SEM (ML-SEM) may each be used to apply
+the covariance or random intercept approach to dependent variables. However, only SEM or
+ML-SEM may be used to specify a random intercept for predictor variables (Wickham & Macia,
+2019). As a result, the present work draws on SEM notation, equations, and path diagrams when
+describing these models, and applies the traditional SEM heuristics for model identification
+(Bollen, 1989).
+parameters associated with each dyad member’s observed response variable, indicating that
+members are distinguishable, or uniquely identifiable based on an attribute that only varies
+within the dyad (e.g., gender for heterosexual couples, birth order for non-twin siblings).
+However, researchers often investigate questions involving dyads composed of members that are
+indistinguishable, that is, they cannot be uniquely identified (e.g., same-gender couples,
+monozygotic siblings). Under most conditions, conformable models for distinguishable and
+indistinguishable dyads can be obtained by imposing the appropriate equality constraints across
+role-specific parameters (e.g., Person level residual variances, intercepts) to account for the
+arbitrary assignment of members to subscripts (Griffin & Gonzalez, 1995; Olsen & Kenny,
+2006). In the present work, models are presented using distinguishable subscripts, and when
+applicable, the constraints that allow the model to be adapted for indistinguishable dyads are
+described.
+It is important to note that the path diagrams presented here represent residuals explicitly
+aY bY
+as latent variables (ε , ε ) linked to an observed variable ( Y, Y) via an identity relationship
+a b
+aY bY
+(coefficient fixed at 1) with a variance parameter (θ , θ ) attached to the explicit residual
+variable. It is also common to omit this explicit residual variable from path diagrams and express
+the residual implicitly by attaching the variance parameter directly to the observed variable.
+Some SEM software packages (i.e., SAS PROC CALIS, EQS, AMOS) require the user to adopt
+the explicit specification, whereas others (i.e., Mplus, R/lavaan) incorporate an implicit
+representation into their model specification, but also allow the user to override the default and
+implement an explicit residual variable. In most standard applications, the specification of the
+residual as implicit or explicit is inconsequential, as both approaches render models with
+identical parameter estimates. However, the present work illustrates that the estimation of
+regression paths among observed Person level indicators, or among their explicit residuals
+variables, in a common-fate model plays a critical role in determining the interpretation of the
+Dyad level relationship among the predictor and outcome construct. As a result, the path
+diagrams provided in the present work feature the explicit residual variable representation for all
+models.
+Standard CFM Specification, Assumptions, and Interpretation
+The Standard CFM is composed of two Dyad level latent factors linked by a structural
+CFM is expressed by the following equations:
+aX X aX
+(1) X = ν + 1*η + 1*δ
+bX X bX
+(2) X = ν + 1*η + 1*δ
+aY Y aY
+(3) Y = ν + 1*η + 1*ε
+bY Y bY
+(4) Y = ν + 1*η + 1*ε
+The ν terms represent the measurement intercepts (means) for each observed indicator and the
+X Y
+coefficients linking the Dyad level latent variables, η and η , to their respective indicators are
+fixed at 1 to identify the latent factors. Conceptually, this feature of the model equally weights
+the contribution of each dyad member’s observed response when estimating the Dyad level latent
+variable. The δ and ε terms represent (explicit) person-specific residuals for the X and Y
+variables (respectively), which describe the deviation of the observed scores from their Dyad
+level average score. Individuals with positive deviations for δ or ε have observed scores on X or
+Y that are higher than the other dyad member, and those with negative deviations are lower, after
+aX bX aY bY
+accounting for any mean differences (i.e., ν , ν , ν , ν ). Collectively, these residuals are
+assumed to follow a multivariate normal distribution with a mean of 0 and their dispersion is
+aX bX aY bY
+described by residual variance parameters, θ , θ , θ , θ .
+The structural components of the Standard CFM can be expressed using a single
+equation:
+Y X Y
+(5) η = β *η + 1*ζ
+Dyad
+Y X Y
+where β is the regression coefficient linking Dyad level latent variables η and η , and the ζ
+Dyad
+term describes the latent residuals for η . The mean structure is fully described by the
+aX bX aY bY
+measurement intercepts (ν , ν , ν , ν ), and therefore the latent factor means are fixed at 0.
+X X Y
+The variance of factor scores for η are described by ψ , and the ψ parameter describes the
+residual variance of factors scores for η . In the case of indistinguishable dyads (e.g., same-
+gender couples, monozygotic twins), the role-specific subscripts (a, b) are omitted from all
+X Y X Y
+Person level parameters, thereby reducing the number of estimated values (i.e., ν , ν , θ , θ ).
+Standard CFM specification. Complete input statements for Mplus, as well as the lavaan
+(Rosseel, 2012) R library (R Core Team, 2022) are provided in Appendix A and on the Open
+linking the Dyad level latent variables to the observed response variables with factor loadings
+fixed at 1. The second block of commands create the explicit residual variables at the Person
+level, which are identified by fixing the factor loading at 1 to link each latent to the
+corresponding observed variable and fixing the residual variance of the observed indicator at 0.
+The next two command blocks fix the covariances among all latent variables (Dyad and Person
+level) at 0, and the final block corresponds to Eq. 5 by describing the structural regression
+between the Dyad level latent variables. It was not necessary to overtly specify the intercept
+parameters in the MODEL statement because they are freely estimated for all observed
+indicators.
+The diagram suggests that the directional path linking the Dyad level latent variables
+serves as the focal parameter for this model, and an initial interpretation of this coefficient may
+suggest that it reflects the component of the Y on X regression that is purely between-dyads.
+However, this coefficient is only interpretable when the specified model accurately replicates the
+observed sample data. More specifically, the use of a single coefficient to account for the
+association among four observed variables assumes that the direction and magnitude of these
+relationships are uniform (Kenny, 1996; Wickham & Macia, 2019). Indeed, when the four cross-
+construct covariances (i.e., cov( X, Y), cov( X, Y), cov( X, Y), cov( X, Y)) describing the
+a a b b a b b a
+relationships among the X and Y constructs across dyad members differ substantially from one
+another, the standard CFM provides a poor fit to the observed data and β will be biased
+Dyad
+(Wickham & Macia, 2019). Fortunately, this limitation of the standard CFM has been understood
+since the model’s initial introduction (Kenny, 1996), and modifications to the standard
+specification have been proposed.
+Modified CFM Specification and Interpretation
+aXaY bXbY
+covariance parameters linking the residuals of X and Y for partner a (θ ) and partner b (θ )
+at the Person level. These residual covariance parameters accommodate a pattern of
+relationships in which the association between X and Y for the same person (i.e., cov( X, Y),
+a a
+cov( X, Y)) differs from the association between X and Y for different dyad members (i.e.,
+b b
+cov( X, Y), cov( X, Y)). In this scenario, the β coefficient describes the relationship
+a b b a Dyad
+between the Dyad level variance components for X and Y, or the extent to which dyad clusters
+with higher (average) scores on X tend have higher Dyad level scores on Y. The covariance
+aXaY bXbY
+parameters (θ , θ ) describe the same-person different-variable associations between
+Person level residuals, or the degree to which people with larger deviations from their Dyad level
+score on X (and by extension their dyadic partners) exhibit higher or lower deviations from the
+Dyad level score on Y. For example, if type a partners (e.g., male members of heterosexual
+romantic couples) who were higher on X than would be expected based on their estimated η
+aX aY
+(i.e., δ > 0), also reported higher than expected scores for Y (i.e., ε > 0), the corresponding
+aXaY
+residual covariance parameter (θ ) would need to be included to model this Person level
+dependency.
+If the pattern of same-person different-variable covariances in the sample data have the
+aXaY bXbY
+same sign and are similar in their magnitude, θ and θ will be estimated near 0 and
+therefore unnecessary. In contrast, when there is substantial heterogeneity in these covariances,
+aXaY bXbY
+estimates for θ and θ will depart from 0 to account for Person level associations between
+aXaY
+X and Y that are not accounted for by the β coefficient. In addition, these non-zero θ and
+Dyad
+bXbY
+Dyad
+describes a scenario where the same-person differen-variable (i.e., cov( X, Y), cov( X, Y))
+a b b a
+covariances are larger than the different-person different-variable covariances (i.e., cov( X, Y),
+a b
+cov( X, Y)), however, it is also possible (and quite common) to observe a pattern of Person level
+b a
+associations characterized by stronger cross-dyad member covariances relative to same-dyad
+member covariances.
+For indistinguishable dyads, the observed covariances describing the associations within
+the same person should be identical (i.e., cov( X, Y) = cov( X, Y)), as should the covariances
+a a b b
+describing associations across different persons (i.e., cov( X, Y) = cov( X, Y)). As a result, any
+a b b a
+residual covariance parameters introduced to account for discrepancies in the same person and
+across person relationships will also need to be constrained to equality by omitting the role
+aXaY bXbY XY
+specific subscripts (i.e., θ = θ → θ ).
+Modified CFM specification. The first three command blocks within the Measurement Model
+section, as well as the command specifying the Structural Model are identical to the Standard
+fourth command block describing the covariance parameters among Person level explicit
+residuals. Specifically, the * located in the WITH statements defining covariances between
+Delta_a_X and Epsilon_a_Y, and Delta_b_X and Epsilon_b_Y indicate that these parameters are
+now freely estimated. The residual covariances specified in this example connect different
+variables for the same person, however, alternative patterns of residual covariances connecting
+different variables across different people (e.g., Delta_a_X and Epsilon_b_Y, Delta_b_X and
+Epsilon_a_Y) may be necessary.
+Worked Example
+The relationship between the pattern of observed covariances and the specification of
+Standard or Modified CFM is best illustrated using a worked example. The example draws on
+responses to the Partner Understanding (PU; “My partner and I understand each other perfectly”)
+and Successful Relationship (SR; “Our relationship is a perfect success”) survey questions
+administered to N = 340 heterosexual cohabitating and married couples from the 500 Families
+Project (Schneider & Waite, 2000). Participants responded to these questions using a 5-point
+provides the corresponding sample correlations, covariances, and means. A Standard CFM was
+specified using PU as the predictor and SR as the outcome, and parameters were estimated using
+Mplus 8.8 (Muthén & Muthén, 2022) using maximum likelihood estimation with robust standard
+errors (MLR).
+The raw data, input, and output files for all worked examples using Mplus and lavaan are
+the Standard CFM, the Dyad level regression coefficient emerged as positive and significant
+(β = 1.267 [1.040, 1.493], Z = 10.96, p < .01) suggesting that couples reporting higher levels
+Dyad
+of PU also exhibited higher scores on the SR latent variable. However, this initial specification
+did a poor job of replicating the observed sample data (χ (3) = 65.456, p < .01, RMSEA = .247
+[.197, .301], CFI = .832, TLI = .665), and yielded an out-of-bounds estimate was for the residual
+variance of the latent outcome representing successful relationship appraisals at the Dyad level
+SR
+1 suggests that the same person covariances (cov( PU, SR) = .760, cov( PU, SR) = .824)
+m m f f
+appear to be substantially stronger than the covariances describing across person relationships
+(i.e., cov( PU, SR) = .504, cov( PU, SR) = .513), which violates the over-identifying restriction
+m f f m
+stipulating that these same and across persons covariances are equal.
+A Modified CFM including covariance parameters linking the Person level residuals for
+PU and SR was also estimated. As expected, the new parameters emerged as positive and
+mPUmSR
+statistically significant, suggesting that both male (θ = .251 [.134, .368]) and female
+fPUfSR
+(θ = .315 [.188, .442]) partners with higher than expected levels partner understanding
+(based on their Dyad level scores) also reported higher than expected levels of successful
+relationship. The β coefficient was significantly different from zero (β = 0.994 [0.833,
+Dyad Dyad
+1.155], Z = 12.08, p < .01), again suggesting that couples reporting higher levels of PU at the
+Dyad level also reported higher levels of SR appraisals. In contrast to the Standard CFM, a
+SR
+positive estimate was observed for the residual variance of SR (Ψ = 0.148 [0.050, 0.247]), and
+overall, the model provided a near perfect fit to the sample data (χ (1) = 0.016, p = .90, RMSEA
+= .000 [.000, .064], CFI = 1.000, TLI = 1.000).
+mPUmSR fPUfSR
+The residual covariance parameters (θ , θ ) estimated in the Modified CFM
+account for heterogeneity in the same-person different-variable covariances, resulting in a β
+Dyad
+coefficient that captures the relationship between Dyad level variance components of PU and SR.
+Although the β corresponds to the level 2 or between-clusters coefficient from a multilevel
+Dyad
+modeling perspective, this specification does not provide comparably scaled level 1 coefficients
+for each dyadic partner. Fortunately, the flexibility of the SEM framework allows us to estimate
+these within-dyad parameters in a way that allows for direct comparison with β .
+Dyad
+Summary
+The Standard CFM provides a valid estimate of the Dyad level regression coefficient
+when heterogeneity in the same-person different variable and different-person different-variable
+covariances have the same sign and are approximately equal in magnitude. In practice, these
+covariances often differ in size, which can lead to estimation problems and introduce bias into
+the estimate of the Dyad level coefficient. The Modified CFM incorporates covariance
+parameters among the residuals of the observed indicator variables to account for heterogeneity
+in these covariances. When properly specified, the Modified CFM produces a valid estimate for
+the Dyad level regression coefficient, even when the observed covariances differ in magnitude.
+mPUmSR fPUfSR
+In addition, the presence of non-zero residual covariance parameters (θ , θ ) also
+suggests the presence of Person level associations that differ from the Dyad level relationship
+between X and Y.
+Contextual and Between-Within CFM
+The following section describes the specification of interpretation of two recent
+extensions to the Standard and Modified CFM. Ledermann and Kenny (2012) introduced a novel
+variation on the CFM that also accommodates heterogeneity in the same-person different-
+variable associations by incorporating directional paths (regression coefficients) linking observed
+examination of the underlying model specification reveals that the simultaneous regression of
+observed Y on X, conditional on the Dyad level latent variables, results in a parameterization
+that resembles the contextual effects interpretation discussed in the multilevel modeling
+5), which incorporates structural regressions among the Person level explicit residuals, yielding a
+parameterization comparable to the between-within effects interpretation from multilevel
+modeling. A careful dissection of the underlying equations is essential to understanding the
+diverging interpretation of these models.
+Contextual CFM Specification and Interpretation
+The Contextual CFM retains the same measurement model equations for the X variables,
+however, equations for the Y variables must be updated:
+aY Y aY
+(6) Y = ν + 1*η + κ * X + 1*ε
+a aWithin a
+bY Y bY
+(7) Y = ν + 1*η + κ * X + 1*ε
+b bWithin b
+Equations describing observed outcomes Y and Y are now comprised of the direct effect of
+a b
+their respective X and X, as well as Dyad level influence via the latent variable η . As a result,
+a b
+the κ coefficient represents the pure within-dyad coefficient for partner a, describing the
+aWithin
+extent to which those with higher X scores report higher or lower Y scores, after accounting for
+a a
+their Dyad level standing on η . Similarly, κ represents the within-dyad coefficient for
+bWithin
+partner b, also conditional on their score for η . This parameterization arises because the random
+X Y
+intercepts η and η measure Dyad level variance in X and Y without removing these
+components of variability from the indicators. As a result, the observed X and X still contain a
+a b
+X Y
+mixture of Dyad and Person level variance, whereas the η and η latent variables contain only
+Dyad level variance. The resulting specification is comparable to applying a grand mean
+centering approach to level 1 predictors in a traditional multilevel model. More specifically, the
+κ coefficients are conditional on the measurement relationships involving η , which
+Within
+accounts for the Dyad level variance in Y and Y, yielding coefficients that represent a pure
+a b
+within effect.
+Y X
+Although the components of the Dyad level structural equation linking η and η do not
+appear to differ from the Standard CFM, the “centering scheme” introduced by the regression of
+observed Y on X leads to a notable shift in the interpretation of the Dyad level coefficient:
+Y X Y
+(8) η = β *η + 1*ζ .
+Contextual Dyad
+Because this Dyad level regression is conditional on the directional relationships at the Person
+level, β represents the dyadic contextual effect, or the difference in the pure within-
+Contextual Dyad
+and between-dyad relationships between X and Y. The primary advantage of this specification
+mirrors that of the contextual effects specification in traditional multilevel modeling, namely
+providing the researcher with the ability to obtain an inferential test of the potential discrepancy
+in within- and between-cluster (dyad) coefficients. Although it is also possible to recover the
+pure between-dyad coefficient through simple addition (i.e., β = β + κ ),
+Dyad Between Dyad Contextual Within
+a minor re-specification of the Modified CFM, illustrated in the following section, allows one to
+directly estimate the pure between-dyad coefficient. In addition to the constraints applied to the
+Standard CFM, when analyzing indistinguishable dyads, the role-specific subscripts must also be
+omitted from the κ coefficients in order to obtain a single pooled estimate of the within-dyad
+Within
+effect.
+CFM, and the first four syntax blocks describing the measurement model specification are
+Level regression, the final syntax segment now contains regressions of each observed outcome
+indicator on the observed predictor indicator (a_Y ON a_X; b_Y ON b_X), which correspond to
+the newly updated elements of Eq. 6 and Eq. 7 (κ * X κ * X). It is also important to
+aWithin a , bWithin b
+note that the explicit residual variables specified in the measurement model (i.e., Delta_a_X,
+Epsilon_a_Y, Delta_b_X, Epsilon_b_Y) are not involved in any structural regressions.
+Between-Within CFM Specification and Interpretation
+aX bX
+structural coefficients linking the explicit residual variables for X and X (δ , δ ) to the
+a b
+aY bY
+explicit residual variables for Y and Y (ε , ε ), respectively. We can better understand the
+a b
+nuanced association between these latent residuals by constructing another set of equations
+describing these regressions:
+aY aX εaY
+(9) ε = κ *δ + 1*e
+aWithin
+bY bX εbY
+(10) ε = κ *δ + 1*e
+bWithin
+aY bY
+Under this specification, the explicit residual variables for Y (ε , ε ) are linked to the explicit
+aX bX
+residual variables for X (δ , δ ) by within-dyad regression coefficients κ and κ . The
+aWithin bWithin
+εaY εbY
+error terms for these regressions (e , e ) are explicit in equations 9 and 10, but are represented
+implicitly in the path diagram. In addition, the labels corresponding to the variances of these
+eεaY eεbY
+“residuals of residuals” (θ , θ ) illustrated in the path diagram have been updated to
+differentiate them from the unconditional versions illustrated in Figures 2-4. Recall that the
+explicit residuals are comprised only of Person level deviations from each individual’s Dyad
+level score, therefore the regression coefficients, κ and κ , which link the explicit
+aWithin bWithin
+aX bX aY bY
+residual predictors (δ , δ ) to their corresponding explicit residual outcomes (ε , ε ),
+represent pure within-dyad effects. As with the Contextual CFM, pure within-dyad coefficients
+must be pooled (i.e., κ = κ κ ) whenever dyad members are indistinguishable.
+aWithin bWithin = Within
+Although the components of the structural regression equation linking Dyad level
+predictor and outcome variables remain unchanged, the coefficient now represents the “pure”
+between-dyads effect:
+Y X Y
+(11) η = β *η + 1*ζ
+Between Dyad
+This shift in interpretation arises because the Dyad level variance components, and the
+corresponding between-dyads regression, have been disconnected from the Person level variance
+components and corresponding within-dyads regressions. More specifically, the BW-CFM
+explicitly sequesters the variance components across Dyad (level 2) and Person (level 1),
+mirroring the process of cluster mean centering from traditional multilevel modeling. This yields
+orthogonal regressions at each level of the model, expressed on the same underlying scale, which
+also allows their magnitudes to be directly compared.
+Within CFM, and as before, the measurement model specification is identical to the Standard
+former is that the Between-Within CFM illustrated here is characterized by structural regressions
+linking the explicit residual variables for the predictors (Delta_a_X, Delta_b_X) to the explicit
+residuals for the outcomes (Epsilon_a_Y, Epsilon_b_Y), which correspond to the coefficients
+aX bX
+described in Eq. 9 (κ *δ ) and Eq. 10 (κ *δ ). It is important to note that the observed
+aWithin bWithin
+indicator variables ( X, X, Y, Y) are not directly involved in any structural regression
+a b a b
+relationships.
+In addition, the analyst can create auxiliary parameters to directly evaluate the
+significance of contextual effects, along with potential differences in the magnitude of the Person
+level coefficients when partners are distinguishable. For example, the researcher can evaluate
+whether the within-dyad effects for partners a and b differ from one another by specifying a new
+parameter representing the difference between these two coefficients: WithinDiff = κ –
+aWithin
+κ . If the WithinDiff is not statistically different from zero, then the Person level coefficients
+bWithin
+for partners a and b can be pooled (as with indistinguishable dyads) and subtracted from the
+Dyad level coefficient to obtain an estimate and statistical test for the contextual effect using an
+auxiliary parameter, PooledContextual = β – ([κ – κ ] / 2), which will be
+Dyad Between aWithin bWithin
+equal to β .
+Dyad Contextual
+Worked Example
+A Contextual CFM was specified for the Partner Understanding (PU) and Successful
+Person level coefficients emerged for both male (κ = .453 [.337, .568], Z = 7.70, p < .01)
+mWithin
+and female (κ = .467 [.348, .587], Z = 7.66, p < .01) partners, suggesting that individuals
+fWithin
+reporting PU scores above their dyad mean tended to report SR scores above their dyad mean. In
+addition, the contextual effect coefficient emerged as significant (β = .534 [.308,
+Contextual Dyad
+.760], Z = 4.63, p < .01), suggesting that relationship between PU and SR is approximately than
+two times stronger (more positive) at the Dyad level, relative to the Person level. Examination of
+model fit statistics revealed that the parameters of the Contextual CFM did a good job of
+replicating the observed sample covariance matrix (χ (1) = 0.052, p = .82, RMSEA = .000 [.000,
+.088], CFI = 1.000, TLI = 1.000).
+2. Person level coefficients for male (κ = .440 [.287, .594], Z = 5.62, p < .01) and female
+mWithin
+(κ = .479 [.318, .640], Z = 5.82, p < .01) partners were nearly identical to their
+fWithin
+corresponding estimates from the Contextual CFM (–2.9% and +2.6%, respectively), and retain
+the same interpretation. The pure between-dyads coefficient also emerged as significant (β
+Between
+= .994 [.832, 1.155], Z = 12.07, p < .01), indicating that couples reporting higher (average)
+Dyad
+levels of partner understanding were more likely to have higher scores on successful relationship
+at the Dyad level. As expected, the evaluation of fit indices suggested that the BW-CFM
+provided an excellent fit to the sample data (χ (1) = 0.016, p = .90, RMSEA = .000 [.000, .064],
+CFI = 1.000, TLI = 1.000).
+We can evaluate the veracity of our claims regarding the interpretation of the Dyad level
+coefficients by using the terms from the Contextual CFM to manually recover the corresponding
+parameters from the BW-CFM. The auxiliary parameter describing the difference between the
+within-dyads coefficients for male and female partners (WithinDiff = κ – κ ) suggests
+mWithin fWithin
+that the Person level effect does not differ for male and female partners, WithinDiff = –.038 [–
+.274, .197], Z = –0.32, p = .749. A closer look reveals that the pure between coefficient from the
+BW-CFM (β = .994), minus the pooled Person level coefficient from the BW-CFM
+Between Dyad
+([κ + κ ] / 2 = [.440 + .479] / 2 = .460), is equal to the contextual effect coefficient
+mWithin fWithin
+(.994 – .460 = .534 = β ). Examination of the auxiliary parameter estimating the
+Contextual Dyad
+contextual effect from the BW-CFM parameters confirms this prediction, PooledContextual =
+.534 [.309, .759], Z = 4.65, p < .001. In addition to recovering the same point estimate for the
+contextual effect, the standard error estimate, associated confidence intervals and Z-test for the
+PooledContextual auxiliary parameter were identical (within rounding error) to the
+corresponding estimates for the β coefficient estimated directly from the Contextual
+Contextual Dyad
+CFM.
+Summary
+The Contextual CFM allows the researcher to directly assess the degree to which Dyad
+and Person level associations differ from one another by evaluating the magnitude of the Dyad
+level coefficient (i.e., β ), which represents the discrepancy in the pure Dyad and
+Contextual Dyad
+Person level relationships between X and Y. Relatedly, the Between-within CFM produces a
+Dyad level coefficient that describes the association between X and Y that is purely between-
+dyads (i.e., β ), and both specifications produce Person level coefficients representing
+Between Dyad
+the Y on X regression that is purely within-dyad. In this way, these complementary
+specifications of the CFM mirror the two principal centering strategies, grand-mean and cluster-
+mean centering (respectively), which produce a comparable interpretation of level 2 coefficients
+in the traditional multilevel modeling paradigm.
+It is important to note that the Contextual and Between-within CFMs are only estimable
+when at least one of the observed same-person different-variable (i.e., cov( X, Y), cov( X, Y))
+a a b b
+or different-person different variable (i.e., cov( X, Y), cov( X, Y)) covariances differs from the
+a b b a
+others, because when these covariances are uniform there is no additional Person level process to
+be modeled. In addition, the example illustrated here featured a scenario in which both same-
+person different-variable covariances were larger than the different-person different-variable
+covariances, resulting in a Contextual and Between-within CFMs featuring directional paths
+linking X and Y for the same individual. However, any combination of deviant covariances is
+possible, and researchers should investigate the most appropriate combination of Person level
+associations to fit their data.
+Discussion
+The present work sought to integrate fundamental ideas from the multilevel modeling
+literature with a novel adaptation of an established dyadic analysis approach using structural
+equations modeling. After reviewing core concepts from the multilevel modeling and dyadic
+analysis literatures, the well-established Standard and Modified Common-Fate Models (CFM)
+were described using SEM equations and path diagrams. Next, we demonstrated that the
+“multilevel-SEM” version of the CFM presented in prior work (Ledermann & Kenny, 2012,
+model 2b) produces a Dyad level coefficient that represents the contextual effect, or the
+discrepancy in the pure between- and within-dyads relationships. Next, a variation on this earlier
+model was developed, which provides a Dyad level coefficient reflecting the pure between-dyads
+relationship between the predictor and outcome variable. The consequences of these different
+model configurations and the interpretation of the corresponding model parameters were
+illustrated using a large sample of romantic couples drawn from the 500 Families Project
+(Schneider & Waite, 2000).
+Connections to the Multilevel SEM Specification
+The Between-Within CFM (BW-CFM) described in the present work can also be
+conceptualized as a less restrictive form of the multilevel latent covariate model for contextual
+studies discussed by earlier methodological work using Multilevel SEM (MLSEM; Lüdtke et al.,
+2008; Muthén & Asparouhov, 2009). Under the MLSEM specification dyad members (i) are
+assumed to be indistinguishable, and the Person level variables describing the same attribute for
+each dyad member (e.g., X, X, Y, Y) are treated exchangeable indicators (e.g., X, Y) of their
+a b a b i i
+X Y
+respective Dyad level latent variables (e.g., η , η ). In addition, the Person level explicit
+aX bX aY bY
+residuals from our BW-CFM model (δ , δ , ε , ε ) are comparable to the “observed” level 1
+variables under the MLSEM specification (i.e., the %WITHIN% level in Mplus) that have been
+subjected to latent mean centering via the level 2 Dyad variables (i.e., the %BETWEEN% level
+in Mplus).
+To verify the conformability of these specifications, the BW-CFM from the worked
+example using partner understanding (PU) and successful relationship (SR) appraisals was re-
+mPU
+specified with parameter constraints that treat dyad members as indistinguishable (i.e., θ =
+fPU εmSR εfSR aPU bPU aSR bSR
+θ , θ = θ , κ = κ , ν = ν , ν = ν ). The resulting model had six degrees
+mWithin fWithin
+of freedom but provided a good fit to the data (χ (6) = 4.810, p = .57, RMSEA = .000 [.000,
+.062], CFI = 1.000, TLI = 1.000), suggesting that male and female partners may not be
+empirically distinguishable on these variables. As expected, the coefficients produced by this
+constrained version of the BW-CFM differed from to the pooled auxiliary parameters described
+PU SR
+in the earlier worked example by no more than .002 (β = .995, κ = .462, Ψ = .511, Ψ
+Dyad Within
+PU εSR
+= .148, θ = .618, θ = .555).
+The multivariate dataset used in the previous example was transposed into long format
+(i.e., partners nested within dyads) and an ML-SEM version of the BW-CFM was estimated
+using TYPE = TWOLEVEL in Mplus. Because lower level (Person) units are regarded as
+inherently indistinguishable, the MLSEM approach applies different rules for calculating degrees
+PU
+of freedom and model fit (i.e., df = 0). However, the parameter estimates for β , κ , Ψ ,
+Dyad Within
+SR PU εSR
+Ψ , θ , and θ were identical to the values produced by the constrained BW-CFM, as were
+the estimated standard errors. It is important to note that the ML-SEM procedure was valid in the
+present example because dyad members were empirically indistinguishable, however, a
+researcher would only know this to be a reasonable assumption by first evaluating the
+distinguishability constraints using the multivariate specification. As a result, we recommend
+that researchers applying this approach to theoretically distinguishable dyads adopt the
+multivariate specification for their initial analysis.
+Implications for Dyadic Researchers
+The insights provided here provide dyadic researchers with new opportunities to model
+intra- and inter-dyadic phenomena in compelling ways. Although the CFM has grown in
+popularity among researchers in recent years, the perception that it primarily provides insight
+into Dyad level processes may have led researchers to discount its utility. The present work
+demonstrates the flexibility of the CFM by illustrating the potential for simultaneously modeling
+and comparing the magnitude of relationships both between dyads (i.e., Do couples reporting
+more constructive communication also report more successful relationships?) and within dyads
+(i.e., Do male partners reporting more constructive communication also report more successful
+relationships, relative to their female counterpart?). Implementing a CFM that casts dyadic data
+structures in this light may be useful from a theory building and testing perspective because it
+encourages researchers to think of dyadic interdependence from a multilevel perspective.
+Whereas the predominant analytic approach to dyadic data, the actor-partner interdependence
+model (APIM; Kenny, 1996; Wickham & Knee, 2012), parameterizes interdependence in the
+form of direct paths leading from partner a’s X variable to partner b’s Y variable (and vice
+versa), as well as the interaction between both partners X variables, the BW-CFM captures
+interdependence through both Dyad and Person level coefficients. More specifically, the Dyad
+level coefficient describes the extent to which each Person level outcomes can be explained by a
+higher-level process transmitted through the dyadic latent variables.
+The present work also clarifies critical differences between an earlier extension of the
+CFM (i.e., Ledermann & Kenny, 2012, model 2b) that focused on the contextual effect, and the
+Between-Within-CFM introduced here, which provides the pure between-clusters effect. The
+present work further clarifies these distinctions by providing a detailed account of the model
+specification and interpretation of both models, which should allow researchers to apply both
+models across a wide range of SEM software platforms.
+Limitations and Future Directions
+The present work treated CFM indicators as continuously scaled response variables.
+Although the majority of CFM applications feature multiple-item composite variables as
+indicators, situations often arise when the attribute of interested is measured using an ordinal or
+binary indicator. Unfortunately, the parameterization of explicit residual latent variables that play
+a critical role in the BW-CFM become more complicated for ordinal response models. Future
+work should focus on generalizing these concepts to Probit and Logit models to handle ordinal
+data, as well as Poisson and Negative Binomial link models to accommodate count indicators.
+As with any regression model, measurement error in both the predictor and criterion
+variables inhibit our ability to accurately estimate Person level effects (and by extension
+contextual effects). In addition, complications regarding comparability of κ coefficients for
+Within
+distinguishable dyads arise when reliability of response variable differs across dyad members
+X X
+(e.g., ρ ≠ ρ ). Although, SEM allows for the specification of measurement models to derive
+M F
+CFM indicators that are error-free. This solution introduces the need to ensure factor loading
+invariance when dyad members are distinguishable, though this would not be a concern for
+indistinguishable dyads. Although researchers adopting this approach could borrow from the
+existing literature describing sample size requirements for estimating hierarchical CFAs, more
+focused simulation studies should be conducted to understand study design characteristics that
+will optimize power to detect the structural relationships in the BW-CFM.
+Conclusion
+Thoughtful specification of the Common-fate Model (Kenny, 1996; Ledermann &
+Kenny, 2012) allows researchers to estimate models comprised of Person level coefficients that
+represent pure within-dyad effects, and a Dyad level coefficient representing either the
+contextual effect (Contextual CFM) or a pure between-dyads (BW-CFM) effect. The present
+work described the rationale linking these CFM specifications to well-established techniques for
+investigating contextual effects from the multilevel modeling literature. The application of these
+models to evaluate dyadic processes has the potential drive theoretical innovation and spawn
+novel research questions.
+Footnotes
+The random intercept approach can also be re-parameterized to capture dissimilarity when dyad
+members are less similar to one another than randomly selected pairs (Wickham & Macia, 2019).
+The application of these models to indistinguishable dyad members also requires modifications
+to the model fit indices (see Olsen and Kenny, 2006).
+The Figures and Appendix provide syntax for the explicit residual variable representation,
+however, syntax corresponding to the implicit residual specification is provided on the OSF page
+for models in which the explicit and implicit specifications produce the same parameter
+estimates.
+The intercept parameters are included in all models but have been omitted from Figures 3-5 to
+reduce clutter.
+Mplus and lavaan syntax for the auxiliary parameters is provided in Appendix A.
+Moreover, the average of the Person level coefficients from the Contextual CFM ([κ +
+mWithin
+κ ] / 2 = [.453 + .467] / 2 = .460), plus the Dyad level contextual effect (β = .534),
+fWithin Contextual Dyad
+is equal to the pure between coefficient from the BW-CFM (.460 + .534 = .994 = β ).
+Between Dyad

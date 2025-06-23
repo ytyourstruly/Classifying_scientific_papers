@@ -1,0 +1,487 @@
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+5 Title: Brief category learning distorts perceptual space for complex scenes
+7 Authors: Gaeun Son1, Dirk B. Walther1, Michael L. Mack1
+9 Affiliation: Department of Psychology, University of Toronto
+13 Author Note
+14 This research was supported by Natural Sciences and Engineering Research Council (NSERC)
+15 Discovery Grants (RGPIN-2017-06753 to MLM and RGPIN-2020-04097 to DBW) and Canada
+16 Foundation for Innovation and Ontario Research Fund (36601 to MLM) and Brain Canada
+17 Future Leaders in Canadian Brain Research to MLM.
+19 The datasets generated during and/or analyzed during the current study are available in the Open
+21 The authors declare no conflict of interest.
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 Abstract
+2 The formation of categories is known to distort perceptual space: representations are
+3 pushed away from category boundaries and pulled toward categorical prototypes. This
+4 phenomenon has been studied with artificially constructed objects, whose feature dimensions are
+5 easily defined and manipulated. How such category-induced perceptual distortions arise for
+6 complex, real-world scenes, however, remains largely unknown due to the technical challenge of
+7 measuring and controlling scene features. We address this question by generating realistic scene
+8 images from a high-dimensional continuous space using generative adversarial networks and
+9 using the images as stimuli in a novel learning task. Participants learned to categorize the scene
+10 images along arbitrary category boundaries and later reconstructed the same scenes from
+11 memory. Systematic biases in reconstruction errors closely tracked each participants’ subjective
+12 category boundaries. These findings suggest that the perception of global scene properties is
+13 warped to align with a newly learned category structure after only a brief learning experience.
+15 Keywords: real-world scenes, category learning, category bias, selective attention, top-down
+16 process
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 Statement of Relevance
+2 Humans are perceptual, not sensory, creatures. We perceive identical sensory information
+3 in different ways, influenced by factors such as prior knowledge and context. Imagine blue-green
+4 wavelengths of light captured by the retina. Such sensory information could be perceived bluer
+5 when walking on the beach; but those same wavelengths may be perceived greener while hiking
+6 through a forest. Our study asked if the same sort of perceptual biases that act on simple features
+7 like colour also flexibly alter the perception of complex real-world scenes. Notably, we tested
+8 this question by leveraging a neural network to create a continuum of synthetic yet highly
+9 realistic scene images that smoothy transition between indoor spaces. We find that after
+10 participants learned to categorize these scenes, their scene perception was systematically biased
+11 to reflect category differences. Our findings suggest that even after brief learning experiences,
+12 perceptual biases emerge and act on complex global scene features.
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 Introduction
+2 Perception often distorts the objective reality of visual environments. A representative
+3 example is color. Color arises from a continuous spectrum of light wavelengths, yet we typically
+4 perceive this spectrum as a set of discrete categories, such as R-O-Y-G-B-I-V in a rainbow.
+5 Ambiguous hues between categories are perceived with systematic biases toward focal colors,
+6 generating uneven clusters of perceptual experiences against a roughly uniform spectrum of light
+7 wavelengths (Bae et al., 2015) that reflect personal, cultural, and linguistic knowledge (Regier et
+8 al., 2007). Color is, of course, only one of many features contributing to daily visual experiences.
+9 In most real-world environments, features relevant to the perceptual experience are not as clear-
+10 cut as “color”. Rather, relevant properties of scenes tend to pervade the entire scene in a holistic
+11 fashion (Greene & Oliva, 2009; Oliva & Torralba, 2001). Such global features, however, are
+12 notoriously difficult to define, measure or even manipulate. Here we overcome these difficulties
+13 and address the open question of whether the perception of highly complex real-world
+14 environments composed of tightly woven global features is flexibly biased by category learning.
+15 Prominent theories (Kruschke, 1992, 2020; Nosofsky, 1984; 1986) highlight the role of
+16 selective attention to visual features in biasing perceptual representations. In particular, those
+17 features diagnostic to a stimulus category are processed with relatively more attentional
+18 resources than other features. For example, if a set of oriented lines defined by their length and
+19 angle are organized into categories based only on their length, attentional resources are allocated
+20 to the length dimension that mainly determines the correct categorical membership of the lines.
+21 In this case, feature information from the angle dimension tends to be neglected as a tradeoff of
+22 the limits on attentional resources, guiding the cognitive system to effectively compress the
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 dimensional complexity of the feature space and to minimize the categorization errors under the
+2 limited resources (Mack et al., 2020).
+3 A critical consequence of the attentional selection mechanism is the warping of the
+4 feature space. The main role of selective attention during various perceptual processes is to
+5 rescale the psychological distances between features proportionate to the amounts of attentional
+6 resources allocated to a given feature dimension (Shepard, 1964). When more resources are
+7 allocated to a dimension, the distances between the features increase, expanding the overall scale
+8 of the attended dimension. When less attention is allocated, on the other hand, the distances
+9 between features decrease, compressing the dimension. Importantly, attention-based rescaling
+10 can operate on a finer scale in such a way that warps subregions within a dimension similarly
+11 based on the amount of allocated attention (Beale & Keil, 1995; de Leeuw et al., 2016; Folstein
+12 et al., 2012; Goldstone, 1994; Gureckis & Goldstone, 2008). If some boundaries divide feature
+13 values within a dimension into different categories, the region surrounding this boundary may be
+14 processed more precisely thus reducing categorization errors. In this case, selective attention acts
+15 by transforming the representational space of the incoming features to represent both visual
+16 information and task goals, which ultimately induces systematic biases during perception (Bae et
+17 al., 2015; Bates & Jacobs, 2020; Dubova & Goldstone, 2021; Ester et al., 2020). In particular, the
+18 disproportionate psychological distances among features across and within dimensions produce
+19 two typical biases similar to those observed in color perception: repulsion from the category
+20 boundary and attraction toward the category center.
+21 Although learning-induced impacts on perception have been reported before (Dubova &
+22 Goldstone, 2021; Bayes & Jacobs, 2020; Beale & Keil, 1995; de Leeuw et al., 2016; Folstein et
+23 al., 2012; Goldstone, 1994; Gureckis & Goldstone, 2008; Hammer et al., 2008; Hammer &
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 Diesendruck, 2005; Plebanek & Sloutsky, 2018; Sloutsky, 2003), these findings are limited to
+2 simple objects defined by basic physical feature dimensions (e.g., object width and length,
+3 colour, orientation). However, the feature space of everyday visual experience is a mix of
+4 intertwined dimensions more complex than simple physical properties like color and orientation.
+5 For example, Oliva & Torralba (2001) proposed a set of global properties that particularly
+6 describe the spatial structure of a scene (e.g., openness, expansion, etc.) which can be modelled
+7 by the distribution of spectral energy across a scene. Greene & Oliva (2009) further identified
+8 other high-level properties that critically guide rapid basic-level scene categorization, such as
+9 transience or navigability. In addition to those global properties, Patterson & Hays (2014) listed a
+10 variety of scene attributes from surface to functional property levels that are commonly used by
+11 human participants in a crowd-sourced scene perception experiment. Lastly, Hebart et al. (2020)
+12 showed that human participants use a wide range of meaningful dimensions when categorizing
+13 objects, from basic perceptual dimensions (e.g., shape, color, and texture) to more complex and
+14 abstract dimensions (e.g., taxonomic membership, and function). Characterizing category biases
+15 in real-world perception, therefore, requires investigating how the high-dimensional feature
+16 spaces of naturalistic visual experience are leveraged in novel category learning and how this
+17 learning biases perception.
+18 The present study addresses this question using scene wheels (Son et al., 2022), a
+19 continuous circular scene space sampled from a high-dimensional latent scene space simulated
+20 by generative adversarial networks (GANs). Participants learned to categorize scenes from the
+21 scene wheel based on an arbitrary linear boundary. They then performed a visual working
+22 memory estimation task in which scenes were briefly presented and after a delay reconstructed
+23 from the continuous scene space. We hypothesized that reconstruction errors would reflect
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 systematic biases in perceptual representations due to learning. Specifically, we expected that
+2 errors would be selectively biased near the category boundary acquired by each participant. Our
+3 results support these predictions and demonstrate how the visual learning system extracts goal-
+4 specific information from complex naturalistic scene spaces and actively leverages this
+5 information in subsequent perception and memory.
+6 Experiment 1
+7 In Experiment 1, we tested whether novel category learning of realistic scene spaces
+8 induces perceptual biases in a subsequent visual working memory (VWM) task. We
+9 hypothesized that 1) participants would learn arbitrary categorical concepts defined by a linear
+10 boundary on a continuous high-dimensional scene space, and 2) once they successfully learned
+11 the categorical concepts, later perceptual representations in the same scene space would exhibit
+12 systematic biases relative to the category boundary.
+13 Methods
+14 Participants
+15 36 participants were recruited from the undergraduate student participant pool at
+16 University of Toronto (16 males, 18 females, 2 missing, mean age = 20.42). 14 of them were
+17 excluded from the final analysis due to their low performance in the learning session (see
+18 Analysis section for criteria). All participants reported normal or corrected-to-normal vision and
+19 received course credit for their participation. The study protocol was approved by the University
+20 of Toronto Research Ethics Board.
+21 Stimuli
+22 To prepare an ecologically valid high-dimensional stimulus space, we utilized a scene
+23 wheel, a circular scene space that consists of continuously changing indoor scene images where
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 numerous scene properties (e.g., layout, color scheme, room category, etc.) vary dynamically. In
+2 a previous study (Son et al., 2022), we carefully validated the continuous nature of the various
+3 scene wheels by confirming that the gradual transition of image similarity around the wheel
+4 reflects perceptual and mnemonic similarity in human behavior. In the current experiment, we
+5 selected a scene wheel with no apparent categorical structure (i.e., no transitions between
+7 randomly selected a start angle between 0-359 degrees, then sampled 36 scene images from the
+8 scene wheel in 10-degree intervals. We arbitrarily set a linear category boundary that connected
+9 the 1st and 19th images from the sampled set thereby dividing the scene wheel into equal halves.
+10 The remaining 34 images (17 from each side of the wheel) were utilized for both the learning
+11 and VWM tasks. For the category learning task, we assigned 17 images from one side of the
+12 boundary into category 1 and the remaining 17 images from the other side into category 2
+14 reconstructed. The size of images was fixed to 256 x 256 pixels. Since this experiment was run
+15 online, the physical size of the images likely varied across participants’ different computer and
+16 monitor setups.
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+3 ‘dining room’ category and continuously varied with no pre-existing categorical structure. B. Example
+4 category structure for the category learning task. A random linear boundary was set (black line crossing
+5 the wheel), and 17 images separated by a 10-degree interval from either side of the boundary were
+6 assigned to category A or B. For analyses, images were binned into 4 wedges depending on their distance
+7 from the boundary, which is depicted by color blocks (wedge 1-4: green, yellow, orange, and red,
+8 correspondingly).
+10 Procedure
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 Learning session. In the learning session, participants were instructed to learn the
+2 assignment of the scene images into two categories. On each trial, they were presented with a
+3 scene image and asked to categorize the scene with a keyboard response (“e” for category 1 and
+4 “i” for category 2). They were instructed to respond as quickly and accurately as possible. Once
+5 they responded, feedback on their response was presented (“correct” vs. “wrong”) for 1000 ms
+7 learning, participants learned only from the feedback provided. Each trial was followed by a
+8 1000 ms ISI. All 34 images were presented in random order for one learning round and
+9 participants completed five learning rounds for a total of 170 trials. To acclimate participants to
+10 the learning task, they completed 12 practice trials with another set of scene stimuli from a
+11 different scene wheel before starting the learning task.
+12 Test session. The test session followed the conventional delayed estimation paradigm in
+13 VWM studies (Wilken & Ma, 2004). For each trial, one of the 34 scene images was randomly
+14 presented for 200 ms, followed by a 1000 ms retention interval. Then participants were asked to
+15 reconstruct the image from the scene wheel. The initial reconstruction display showed a grey box
+16 surrounded by a black ring. Once participants moved the computer mouse along the ring, the
+17 grey box switched to a random starting scene image and changed into different images
+19 searched for the closest matched image to the image in their memory and clicked on it to finalize
+20 their decision. Each of the 34 images was tested 2 times across four blocks in a random order.
+21 Before the main test trials, participants completed four practice trials. The following URL
+22 contains a demo experiment:
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+A B
+Memory display
+Response display (200 ms)
+(until response)
+Press e for category 1 and i for category 2
+Retention interval
+(1000 ms)
+Feedback display
+Correct!
+(1000 ms) + +
+Initial response display After moving mouse
+(until response)
+4 given target image into two categories. B. Test session. Participants reconstructed a target image among
+5 a continuous image set of the scene wheel by adjusting the computer mouse position along with the
+6 wheel.
+8 Analysis
+9 Learning session. Participants were excluded based on the following three criteria: 1)
+10 15% or more of trials with response times (RT) outside the typical range (<150 ms or >5000 ms),
+11 2) categorization accuracy in the final learning round below 67% (i.e., statistical threshold for
+12 above chance performance), 3) a learned category boundary that did not follow a linear trend.
+13 The linearity of the learned boundary was assessed by the following steps. First, we fitted the
+14 individual participants’ categorization data of the last two learning rounds to a logistic regression
+15 model that has the learning round as a single predictor. Next, we calculated McFadden’s pseudo
+16 R2 of the fitted logistic model and the associated p-value. If the obtained p-value was not
+17 significant, we excluded the entire data of the participant from the final analysis. Based on these
+18 three criteria, we excluded 9 participants among 36 (3, 6, and 0 participants from each criterion,
+19 respectively). After exclusion, we applied two types of mixed effects logistic regression models
+20 to the final data using lme4 package (Bates et al., 2015) in R 4.1.2 (R Core Team, 2021). The
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 first model predicted participants’ learning accuracies across learning rounds to examine if
+2 performance improved as the learning session progressed. The second model predicted the
+3 learning accuracy using the distances of the learning stimuli from the category boundary; we
+4 expected that learning performance would be highest for stimuli farther from the category
+5 boundary. We also calculated separately for each participant the average accuracy for each image
+6 in the last two learning rounds to identify images that were correctly categorized. Images with
+7 this final learning accuracy below 50% were not included in the analysis of the test session data.
+8 Test session. We first calculated reconstruction errors in each trial by subtracting the
+9 correct angular value of the target from the responded angle. Here, we additionally excluded
+10 trials if they showed extreme RTs (< 150ms or > 20000ms) or had an extremely large response
+11 error (>90°) which we assumed were indicative of guessing. As mentioned in the previous
+12 section, trials with target scene images that were not successfully learned in the last two learning
+13 rounds were excluded from the final analysis. With these exclusion criteria, an average of 31%
+14 (SD = 11.42) of the trials were excluded per participant from the test session.
+15 We first grouped the image distances into 4 wedges by binning pairs of adjacent distances
+16 into a single wedge. Specifically, we combined distances 10° and 20° (wedge 1), 30° and 40°
+17 (wedge 2), 50° and 60° (wedge 3), and 70° and 80° (wedge 4) collapsing across distances that
+19 position, which corresponded with the center of the categories furthest from the boundary, were
+20 excluded from analysis. We conducted a mixed-effects logistic regression analysis predicting
+21 reconstruction errors as a function of wedge (i.e., wedges 1-4). Here, we anticipated that if the
+22 perceptual representations were biased away from the category boundary but toward the center,
+23 reconstruction errors would linearly decrease across increasing wedges.
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 Permutation analysis. To assess the reliability of the expected bias effect, we conducted
+2 an additional permutation analysis of the wedge variable. In each permutation, we randomly
+3 shuffled the wedge values across trials within participant and fitted the same mixed-effects
+4 logistic regression model as in the main analysis. We repeated this procedure for 1000
+5 permutations each time saving the effect for the randomized wedge factor to build a data-driven
+6 null distribution. The likelihood of the observed wedge effect was evaluated relative to the null
+7 distribution.
+9 Results
+10 Accuracy during the learning session exhibited typical learning curves supporting
+11 successful novel category learning. First, participants indeed learned the arbitrarily defined scene
+12 categories across the learning rounds (Log Odds = 0.2, CI : [0.15, 0.25], z = 8.09, p < 0.001;
+15 this learning pattern, we tested whether this novel category learning induces perceptual biases in
+16 the test session. Indeed, we observed that response errors linearly decreased with target scene
+17 distance from the category boundary (β = -2.18, CI : [-4.03, -0.34], t(1166) = -2.33, p = 0.02;
+19 than scenes near the category center, and these errors systematically increased with increasing
+20 distance from the boundary. The reliability of this effect was confirmed with a permutation test
+22 distribution (p = 0.005).
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+3 illustrate individual participants, and the red line surrounded by a shaded area indicates a group-level
+4 prediction line with CI 95%. The grey horizontal grey line and shaded area illustrate a chance level ± CI
+5 95% (.43 ~ .67). B. Category learning accuracy across individual images, sorted by their distances from
+6 the category boundary. The red line and surrounding shade depict the group-level prediction with CI 95%,
+7 and the jittered dots illustrate individual images. C. Reconstruction errors are depicted separately for
+8 wedges (binned distances between scene images and category boundary). Smaller wedges indicate
+9 images closer to the boundary. Jittered dots connected by dotted lines indicate individual participants. D.
+10 Null distribution calculated from the permutation test of the wedge variable. The observed effect (red
+11 line) was located significantly outside of the null distribution.
+12 Replication
+13 The findings of our initial experiment suggest novel category learning of realistic scenes
+14 drawn from a continuous perceptual feature space impacts subsequent perceptual representation
+15 of those scenes. Scenes close to an arbitrarily defined category boundary are perceived and
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 remembered with systematic distortions away from the boundary. To confirm and evaluate the
+2 strength of this effect, we conducted a replication experiment. We predetermined the sample size
+3 based on the observed effect size from the first experiment (wedge effect: -2.18) using the SiMR
+4 package (Green & MacLeod, 2015) in R 4.1.2 (R Core Team, 2021). To achieve 80% power,
+5 these simulations suggested a sample size of 34 participants. To obtain this sample size, we
+6 recruited 56 participants on Prolific (11 males, 45 females, mean age = 26.23) of which 19 were
+7 excluded from the final analysis based on the same criteria applied to the initial experiment (3,
+8 14, and 2 participants from the three criteria, respectively). All participants reported normal or
+9 corrected-to-normal vision. With this new sample, we re-ran the initial experiment following all
+10 the same methods.
+12 in the learning session, participants gradually learned the arbitrarily defined scene categories
+14 and stimuli near the category center were learned better than stimuli near the category boundary
+16 again observed systematic biases that response errors linearly decreased with increasing wedge
+19 showed clear evidence for category-induced biases with scene representations being perceived as
+20 repulsed away from the newly learned category boundary and attracted toward the category
+21 center.
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+3 Dotted lines illustrate individual participants, and the red line surrounded by a shaded area indicates a
+4 group-level prediction line with CI 95%. The grey horizontal grey line and shaded area illustrate a chance
+5 level ± CI 95% (.43 ~ .67). B. Category learning accuracy across individual images, sorted by their
+6 distances from the category boundary. The red line and surrounding shade depict the group-level
+7 prediction with CI 95%, and the jittered dots illustrate individual images. C. Reconstruction errors are
+8 depicted separately for wedges (binned distances between scene images and category boundary).
+9 Smaller wedges indicate images closer to the boundary. Jittered dots connected by dotted lines indicate
+10 individual participants. D. Null distribution calculated from the permutation test of the wedge variable.
+11 The observed effect (red line) was located significantly outside of the null distribution.
+12 No category bias from non-learners
+13 A substantial number of participants were excluded from analysis in the replication
+14 experiment due to evidence of unsuccessful category learning. We hypothesized that if the bias
+15 effect we observed during the reconstruction test session were due to learning the scene
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 categories, then non-learners should show no such learning-induced bias effects. To that end, we
+2 analyzed the data of 19 participants initially excluded from the replication experiment analysis.
+3 For the learning session data, we applied the same mixed-effects regression analysis predicting
+4 categorization accuracy with learning rounds. As expected, these participants did not show
+5 increasing performance across learning rounds (Log Odds = 0.003, CI : [-0.05, 0.05], z = 0.15, p
+8 When considered alongside the clear evidence of perceptual biases from participants who
+9 learned, these null findings from the non-learners are consistent with the notion that perceptual
+10 biases were indeed induced by novel category learning.
+14 rounds. The accuracy was not improved at all as the learning progressed. B. Representation errors across
+15 wedges. Since these participants did not learn categorical concepts successfully, there was no linearly
+16 decreasing error pattern observed across the wedges.
+18 Experiment 2
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 In Experiment 1, we observed that participants learned novel categorical concepts
+2 arbitrarily defined by a random linear boundary, and the learned categories systematically biased
+3 their later perceptual experiences. This result demonstrates the close interplay between
+4 categorical knowledge and the current perceptual signals. In Experiment 2, we further clarified
+5 this relationship by examining an experimental scenario where the perceptual signal was
+6 strengthened. Specifically, we increased the target display duration in the test session from 200
+7 to 1000ms. If the category bias emerged based on the interaction between categorical knowledge
+8 and perceptual signal, we should expect some reduction in category biases when participants can
+9 gain more perceptual signals from the prolonged encoding, because participants would less rely
+10 on the categorical knowledge while reconstructing the representations.
+11 Methods
+12 Participants
+13 54 participants were recruited from Prolific (44 females, 10 males, mean age = 27.38).
+14 Among these 54, 2 were excluded due to prior history of neurological issues, and 13 were
+15 excluded based on the same criteria used in Experiment 1. All participants reported normal or
+16 corrected-to-normal vision and got paid 3.5 CAD for their participation. The study protocol was
+17 approved by the University of Toronto Research Ethics Board.
+18 Stimuli, procedure, & analysis
+19 Stimuli and task procedure were the same as in Experiment 1 except for the target display
+20 duration in the test session which was lengthened to 1000ms. All protocols for analysis including
+21 exclusion criteria and statistical models were the same as in Experiment 1.
+22 Results
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 In the learning session, we again observed typical learning curves supporting successful
+2 category learning. Specifically, overall accuracy gradually increased across the learning rounds
+4 of individual scenes increased as their distances from the category boundary increased (Log
+6 learning, however, we did not observe the specific bias pattern across wedges (β = 1.01, CI95: [-
+8 permutation test (p = 0.94). Thus, with more opportunity to encode perceptual information,
+9 reconstruction errors show no bias for category information.
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+3 learning accuracy across individual images, sorted by their distances from the category boundary. C. No
+4 linearly decreasing representational errors across wedges. D. Null effect distribution simulated by the
+5 randomized wedge variable. The observed effect (red line) was located inside CI 95%, supporting the null
+6 result.
+8 General Discussion
+9 The current study tested if novel category learning induces systematic biases in the later
+10 perceptual representations of real-world scenes. Participants learned new scene categories
+11 defined by a linear boundary arbitrarily positioned in a continuous scene space through a brief
+12 learning session. After learning, participants were briefly shown the same scene images and after
+13 a short delay tasked with reconstructing the scenes. We found that the reconstructed
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 representations of those scenes exhibited a distinct pattern of bias consistent with the scenes’
+2 distances from the category boundary: Scenes near the category boundary showed systematic
+3 errors away from the category boundary and toward the scenes’ category center. Importantly,
+4 this bias pattern was replicated in an independent group of participants. A control analysis of
+5 non-learners (i.e., participants who were not successful in learning the scene categories) showed
+6 no bias effects in scene reconstruction. Finally, no bias effects were observed when participants
+7 were given the same learning experience but had more time to perceptually encode scenes before
+8 reconstruction. In total, these findings suggest that after novel category learning of realistic
+9 scenes, perceptual representations of these scenes are distorted to reflect category information
+10 especially when perceptual information is limited.
+11 Our findings significantly expand our understanding of how perception is flexibly
+12 influenced by conceptual knowledge. Although similar bias patterns – repulsion away from the
+13 boundary and attraction toward the category center – are consistently observed in simple feature
+14 domains (Bae et al., 2015; Ester et al., 2020; Goldstone, 1994), this effect had never been tested
+15 in the real-world scene domain where feature spaces are high-dimensional and complex. Some
+16 studies have investigated category biases in the perception of real-world object spaces with
+17 multiple complex features, including spaces composed of cars (Folstein et al., 2012; Jiang et al.,
+18 2008), animals (de Leeuw et al., 2016; Dubova & Goldstone, 2021; Hammer et al., 2008;
+19 Sloutsky, 2001) or human faces (Gureckis & Goldstone, 2008). The common approach of these
+20 studies is to create the complex feature space using morphing techniques in which a feature
+21 dimension is generated by morphing between two random seed images and adjusting the ratio
+22 between the seeds. These studies demonstrate that feature dimensions arbitrarily defined by
+23 morph spaces can be learned and this learning impacts later perception. However, a key issue
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 with the morphing technique is that the resulting feature space does not necessarily reflect the
+2 nature of real-world feature spaces. Specifically, even though multiple features dynamically
+3 change across scenes interpolated between the seeds, this variation is still highly restricted to
+4 only a few seeds that are selected at random, which in turn restricts the available features to a
+5 small set determined by the original seeds. In some studies (Folstein et al., 2012; de Beeck et al.,
+6 2003; Jiang et al., 2007), the observation of the category bias effect even depended on the
+7 specific morphing procedure. To improve these issues, our study prepared complex scene spaces
+8 using a deep learning technique, specifically GANs, that learns the underlying probabilistic
+9 distributions of a large scene image set. The learned probabilistic distribution contains various
+10 provisional scene features that exist in and can be extracted from the image set. Therefore, the
+11 scene wheels generated from this distribution can more realistically reflect the intrinsic
+12 properties embedded in the scene images without restricting them to the arbitrary seeds in the
+13 morphing technique. With this tool set, our study more effectively reflects the pivotal nature of
+14 human perceptual space and how this space is warped to produce category bias in the real-world
+15 physical space.
+16 Why does our cognitive system utilize the feature space warped by category learning for later
+17 perceptual representation? One potential answer to this question can be found from the Bayesian
+18 observer framework (Bates & Jacobs, 2020; Huttenlocher, 2000). This framework views the
+19 perceptual process as the combination of the current sensory input and prior perceptual
+20 experiences that helps the cognitive system to minimize the uncertainty from sensory noises.
+21 More specifically, under the Bayesian observer framework, our cognitive system generates a
+22 statistical distribution of the stimuli that have been experienced under a given task context and
+23 leverages this distribution to compensate for the uncertainty of the current perceptual input.
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 Thus, in the context of the category learning task, the prior distribution contains the learned
+2 categorical information such as the mean or standard deviation of the individual categories’
+3 distributions that encompasses the statistical regularity of the same category stimuli. Here, if the
+4 current perceptual signal is noisy and thus expected to be uncertain, our cognitive system can
+5 rely on the prior distribution that has the most optimal context of the stimuli experienced during
+6 the current task. Thus, the prior distribution can be combined with noisy sensory input for
+7 plausible inferences for the current percept, making the reconstructed input biased toward the
+8 mean of distribution. One important aspect of this framework is that the prior distribution
+9 contributes more to the reconstruction of the current input as the input gets noisier and more
+10 uncertain. In experiments, we even confirmed this aspect empirically by manipulating the time
+11 for sensory encoding in the VWM task. Specifically, we observed a stronger category bias effect
+12 in Experiment 1 with a target encoding time of 200 ms than in Experiment 2 with a target
+13 encoding time of 1000 ms. That is, our cognitive system used the prior distribution from the
+14 learned category more actively when the perceptual encoding time was shorter.
+15 In conclusion, our study shows that novel category learning biases perceptual representations
+16 of real-world scenes within minutes by warping the representational feature space into a new
+17 shape that optimizes categorization during the learning phase. Based on these results, we suggest
+18 that the representational space of real-world scenes is flexibly modified based on global scene
+19 features that are cognitively relevant, supporting the adaptive nature of visual perception for
+20 complex features of real-world scenes.
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 References
+2 Bae, G. Y., Olkkonen, M., Allred, S. R., & Flombaum, J. I. (2015). Why some colors appear
+3 more memorable than others: A model combining categories and particulars in color
+4 working memory. Journal of Experimental Psychology: General, 144(4), 744.
+5 Beale, J. M., & Keil, F. C. (1995). Categorical effects in the perception of
+6 faces. Cognition, 57(3), 217-239.
+7 Bates, C. J., & Jacobs, R. A. (2020). Efficient data compression in perception and perceptual
+8 memory. Psychological review, 127(5), 891.
+9 Bates D, Mächler M, Bolker B, Walker S (2015). “Fitting Linear Mixed-Effects Models Using
+10 lme4.” Journal of Statistical Software, 67(1), 1–48. doi:10.18637/jss.v067.i01.
+11 de Beeck, H. O., Wagemans, J., & Vogels, R. (2003). The effect of category learning on the
+12 representation of shape: dimensions can be biased but not differentiated. Journal of
+13 Experimental Psychology: General, 132(4), 491.
+14 de Leeuw, J. R., Andrews, J. K., Livingston, K. R., & Chin, B. M. (2016). The effects of
+15 categorization on perceptual judgment are robust across different assessment
+16 tasks. Collabra, 2(1).
+17 Dubova, M., & Goldstone, R. L. (2021). The influences of category learning on perceptual
+18 reconstructions. Cognitive Science, 45(5), e12981.
+19 Ester, E. F., Sprague, T. C., & Serences, J. T. (2020). Categorical biases in human
+20 occipitoparietal cortex. Journal of Neuroscience, 40(4), 917-931.
+21 Folstein, J. R., Gauthier, I., & Palmeri, T. J. (2012). How category learning affects object
+22 representations: not all morphspaces stretch alike. Journal of Experimental Psychology:
+23 Learning, Memory, and Cognition, 38(4), 807.
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 Goldstone, R. L. (1994). Influences of categorization on perceptual discrimination. Journal of
+2 Experimental Psychology: General, 123(2), 178.
+3 Goldstone, R. L., & Steyvers, M. (2001). The sensitization and differentiation of dimensions
+4 during category learning. Journal of experimental psychology: General, 130(1), 116.
+5 Gureckis, T. M., & Goldstone, R. L. (2008, July). The effect of the internal structure of
+6 categories on perception. In Proceedings of the 30th annual conference of the cognitive
+7 science society (Vol. 10).
+8 Greene, M. R., & Oliva, A. (2009). Recognition of natural scenes from global properties: Seeing
+9 the forest without representing the trees. Cognitive psychology, 58(2), 137-176.
+10 Hammer, R., Bar-Hillel, A., Hertz, T., Weinshall, D., & Hochstein, S. (2008). Comparison
+11 processes in category learning: from theory to behavior. Brain Research, 1225, 102-118.
+12 Hammer, R., & Diesendruck, G. (2005). The role of dimensional distinctiveness in children's and
+13 adults' artifact categorization. Psychological Science, 16(2), 137-144.
+14 Huttenlocher, J., Hedges, L. V., & Vevea, J. L. (2000). Why do categories affect stimulus
+15 judgment?. Journal of experimental psychology: General, 129(2), 220.
+16 Jiang, X., Bradley, E., Rini, R. A., Zeffiro, T., VanMeter, J., & Riesenhuber, M. (2007).
+17 Categorization training results in shape-and category-selective human neural
+18 plasticity. Neuron, 53(6), 891-903.
+19 Kruschke, J. K. (1993). Human category learning: Implications for backpropagation
+20 models. Connection Science, 5(1), 3-36.
+21 Kruschke, J. K. (2020). ALCOVE: An exemplar-based connectionist model of category learning.
+22 Mack, M. L., Preston, A. R., & Love, B. C. (2020). Ventromedial prefrontal cortex compression
+23 during concept learning. Nature communications, 11(1), 1-11.
+NOVEL CATEGORY BIASES IN SCENE PERCEPTION
+1 Nosofsky, R. M. (1984). Choice, similarity, and the context theory of classification. Journal of
+2 Experimental Psychology: Learning, memory, and cognition, 10(1), 104.
+3 Nosofsky, R. M. (1986). Attention, similarity, and the identification–categorization
+4 relationship. Journal of experimental psychology: General, 115(1), 39.
+5 Oliva, A., & Torralba, A. (2001). Modeling the shape of the scene: A holistic representation of
+6 the spatial envelope. International journal of computer vision, 42(3), 145-175.
+7 Plebanek, D. J., & Sloutsky, V. M. (2019). Selective attention, filtering, and the development of
+8 working memory. Developmental Science, 22(1), e12727.
+9 R Core Team (2021). R: A language and environment for statistical computing. R Foundation for
+11 Shepard, R. N. (1964). Attention and the metric structure of the stimulus space. Journal of
+12 mathematical psychology, 1(1), 54-87.
+13 Sloutsky, V. M. (2003). The role of similarity in the development of categorization. Trends in
+14 cognitive sciences, 7(6), 246-251.
+15 Sloutsky, V. M., Lo, Y. F., & Fisher, A. V. (2001). How much does a shared name make things
+16 similar? Linguistic labels, similarity, and the development of inductive inference. Child
+17 development, 72(6), 1695-1709.
+18 Son, G., Walther, D. B., & Mack, M. L. (2022). Scene wheels: Measuring perception and
+19 memory of real-world scenes with a continuous stimulus space. Behavior Research
+20 Methods, 54(1), 444-456.
+21 Wilken, P., & Ma, W. J. (2004). A detection theory account of change detection. Journal of
+22 vision, 4(12), 11-11.

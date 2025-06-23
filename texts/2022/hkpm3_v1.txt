@@ -1,0 +1,674 @@
+Inductive Reasoning in Minds and Machines
+Sudeep Bhatia
+University of Pennsylvania
+November 23, 2022
+Abstract. Induction --the ability to generalize from existing knowledge-- is the cornerstone of
+intelligence. Large language models have been shown to be capable of certain types of reasoning,
+however, they are limited in their ability to mimic human induction. In this paper, we combine
+representations obtained from large language models with theories of human inductive reasoning
+developed by cognitive psychologists. Our approach can capture several benchmark empirical
+findings on human induction, and generate human-like responses to natural language arguments
+with thousands of common concepts and properties. These findings shed light on the cognitive
+mechanisms at play in human induction, and show how existing theories in psychology and
+cognitive science can be integrated with leading methods in artificial intelligence, to successfully
+model high-level cognition. Keywords: Induction; Reasoning; Cognitive Science; Computational
+Modeling; Artificial Intelligence
+Significance Statement. How do people generalize from what they know to make predictions in
+new settings, and how can we build machines that perform this type of generalization in a human-
+like manner? We address these questions by integrating psychological models of human induction
+(which specify intelligent, cognitively plausible, reasoning rules) with leading models from AI
+research (which possess the world knowledge necessary for everyday reasoning). We show that
+by combining these two approaches, we are able to generate better predictions than by using each
+approach by itself. In this way we provide a powerful account of high-level human cognition, and
+generate new insights for the design of artificial systems with intelligent reasoning capabilities.
+Introduction
+Our ability to learn and reason about the world relies on successful induction: We often
+have to generalize from we know, in order to form beliefs and make predictions about new
+observations. Thus, unsurprisingly, human induction has been the focus of considerable scholarly
+enquiry in cognitive science and psychology [1, 2, 3, 4]. Over the past three decades, this work has
+uncovered a large set of systematic regularities in how people evaluate the strength of induction
+arguments, particularly those in which the properties of some concepts and categories are induced
+from others. Here, researchers have found that people more easily generalize the properties of an
+item to its superordinate category if it is highly typical of the superordinate category. Thus, for
+example, the argument
+robins have a higher potassium concentration in their blood
+than humans, therefore birds have a higher potassium concentration in their
+is judged by people to be stronger than the argument
+blood than humans penguins have a
+higher potassium concentration in their blood than humans therefore birds have
+[1]. Another finding
+a higher potassium concentration in their blood than humans
+involves the diversity of the items in the premise: People find it easier to generalize from premises
+that are dissimilar to each other than from premises that are similar to each other. For example, the
+argument that
+lions and giraffes use norepinephrine as a neurotransmitter
+is judged to be stronger
+therefore rabbits use norepinephrine as a neurotransmitter
+than the argument
+lions and tigers use norepinephrine as a neurotransmitter
+[1]
+therefore rabbits use norepinephrine as a neurotransmitter .
+The premise typicality and diversity effects, along with several related effects, have been
+used to motivate motivated cognitive theories of human induction [1, 2, 3, 6, 7]. These theories
+attempt to describe the reasoning rules that people use when generalizing across items. For
+example, one prominent theory, the Feature Overlap model [2], proposes that people judge the
+strength of an inductive argument by measuring the extent to which the known properties of the
+premise item are shared with the known properties of the conclusion item. The Feature Overlap
+model can explain the premise typicality effect as highly typical items ( ) have more shared
+robins
+features with other members of their superordinate categories ( ) than do atypical items
+birds
+( ). Likewise, it can explain the premise diversity effect as the common features of
+penguins
+dissimilar premises ( and ) are more likely to be shared with a conclusion item
+lions giraffes
+( ) relative to the common features of similar premises ( and ).
+rabbits lions tigers
+Theories of inductive reasoning, like the Feature Overlap model, are some of the most
+prominent and influential accounts of high-level cognition. Yet currently, these theories are only
+applied to toy problems in which researchers hand-code the features or similarity relations of a
+small number of concepts and categories, and use these to illustrate the descriptive scope of their
+models. Currently, there are no computational models capable of predicting human responses to
+the thousands of different induction problems that have been studied by researchers, or to the
+millions of different induction problems that could be encountered in everyday life. This is because
+theories of inductive reasoning in cognitive science lack the world knowledge necessary to judge
+arguments involving natural concepts and categories. For example, the Feature Overlap model
+specifies reasoning rules for judging induction arguments but cannot specify the underlying
+features of the items in the arguments, and thus cannot assess the actual extent of feature overlap.
+Recently, a new class of models have been developed in statistical natural language
+processing. These models encode representations for words and sentences in the layers of deep
+neural networks, which are trained on language statistics obtained from vast amounts of text data
+[8, 9, 10]. Unlike models developed in cognitive science, these large language models (LLMs)
+have rich world knowledge that can be used to solve several many types of natural language
+processing tasks. These include reasoning tasks like natural language inference, in which LLMs
+attempt to predict the extent to which a premise sentence entails or contradicts a conclusion
+sentence [11, 12, 13]. The inductive reasoning tasks examined in this paper are a special type of
+natural language inference, suggesting that these tasks may be within the descriptive scope of
+leading LLMs. However, Han et al. [14] have tested this, and have found that LLMs do quite
+poorly. For example, these models fail to generate premise diversity effects with the stimuli used
+in prior psychology experiments. They also fail at replicating many of the other effects
+documented in the psychology and cognitive science literatures. This indicates that even though
+LLMs may possess the type of background knowledge necessary for inductive reasoning (e.g.
+knowledge of category membership relations [15]), they do not possess the reasoning rules
+necessary to generate human-like behavior.
+The goal of this paper is to develop computational models capable of human-like inductive
+reasoning by combining the knowledge representations of LLMs with reasoning rules previously
+proposed in psychology and cognitive science. Specifically, we fine-tune an LLM [8] on a large
+dataset of participant-generated concept-feature pairs [16, 17]. In our prior work, we have shown
+that this model predicts which of tens of thousands of features apply to out-of-sample concepts
+with high accuracy [18]. We extend this model to inductive reasoning tasks by passing its
+knowledge base through a Feature Overlap reasoning rule, which calculates the degree to which
+the features of the premise items are shared with those of the conclusion item [2]. We compare our
+model’s assessments of argument strength with the judgments of human participants, and
+additionally evaluate whether it is able to replicate thirteen different empirical regularities, such as
+the premise typicality and the premise diversity effects [1, 2, 6, 19, 20, 21, 22]. We also test our
+model against several state-of-the-art LLMs for natural language inference, which judge
+entailment relations between premises and conclusions without explicitly calculating feature
+overlap [9, 10, 23, 24]. Our analyses use over 16,000 reasoning problems taken from prior
+psychology studies, as well as new studies. These problems involve hundreds of concepts and
+categories from several common domains, including animals, fruits and vegetables, clothing items,
+furniture, and vehicles. In this way they test both the reasoning capabilities of our models, as well
+as the ability of these models to apply their reasoning rules to rich real-world knowledge structures.
+Results
+Overview of Models
+Our Feature Overlap model takes, as inputs, arguments that generalize a property from one
+or more premise items to a conclusion item. It generates, as outputs, a continuous assessment of
+argument strength in range [0,1]. In order to generate these assessments, the Feature Overlap model
+relies on an underlying BERT network [8] that we refer to as Feature-BERT. We have fine-tuned
+Feature-BERT [18] on a large dataset of participant-generated features for hundreds of natural
+concepts [16, 17]. To query Feature-BERT, we concatenate a concept word (e.g. ) and a
+cats
+feature or property phrase (e.g. ) into a natural language sentence (e.g. ).
+have fur cats have fur
+Feature-BERT generates a probability assessment of the input sentence being true or false. In past
+work [18] we have shown that this assessment accurately predicts whether the input feature applies
+to the input concept, and that Feature-BERT, more generally, replicates many observed patterns
+in human semantic verification. Here, we use Feature-BERT to generate, for a given (potentially
+out-of-sample) item, a feature vector that captures the probability that each of the participant-
+generated features in [17] apply to the item. There are 25,797 unique features in [17], making the
+feature vectors used in our analysis 25,797-dimensional.
+Our Feature Overlap model judges the strength of an argument by calculating the cosine
+similarity of the feature vectors of its premise and conclusion items (e.g cosine similarity of the
+feature vectors of and for the premise typicality argument discussed at the start of
+robins birds
+the paper). In the case of arguments with multiple premise items (e.g. and ), it
+lions giraffes
+simply sums the feature vector of the premise items to get a single feature vector for the premise,
+which is compared with the feature vector of the conclusion (e.g. ) using cosine similarity.
+rabbits
+This summation operation, combined with the normalization inherent in cosine similarity, implies
+that features that are shared by the premise items receive a higher weight when assessing feature
+overlap. When the argument involves a “non-blank” property with semantic content (e.g.
+have a
+) the model uses the bag-of-words GloVe
+higher potassium concentration in their blood
+[25] similarity between the argument property and each of the 25,797 features that make up the
+feature vector, in order to modify the weight on the vector dimensions for the calculation of cosine
+similarity. In this way, features that have similar semantics to the argument property are more
+salient. This influences the dimensions along which feature overlap is assessed, biasing the
+assessment of argument strength in favor of premise and conclusion items that share those features.
+In the tests below, we also consider a variant of the Feature Overlap model to assess the
+robustness of our results. This variant alters the metric used to assess a feature’s relationship with
+a concept, replacing BERT generated probabilities with their associated logits. The results of this
+model are presented in the Supplemental Materials. We also we compare our Feature Overlap
+models to five leading LLMs for natural language inference (NLI). These are the DeBERTa-MNLI
+[10], RoBERTa-MNLI [23], and BART-MNLI [24] models (DeBERTa, RoBERTa, and BART
+models fine-tuned on a large multi-genre natural language inference corpus [12]) as well as the
+GPT3-DaVinci and GPT3-Babbage models [9]. These NLI models take the premise and
+conclusion sentences of an argument as inputs and, as outputs, provide entailment or contradiction
+judgments. Crucially, they do not explicitly assess the features (or the extent of feature overlap)
+for the premise and conclusion items. Instead, their reasoning rules are inbuilt into the layers of
+the network architecture, and have been developed through training on hundreds of thousands of
+NLI problems. In the main text, we will present the results of only the DeBERTa-MNLI and GPT3-
+DaVinci models. Results of the remaining NLI models are in the Supplemental Materials. An
+illustration of the two models examined in the main text is provided in Fig. 1B and 1C.
+Predictive Accuracy
+We began by evaluating the accuracy of the above models in predicting human assessments
+of argument strength collected in prior work. Our first dataset was obtained from Rips [19], and
+involves 60 pairs of animal species. Participants in the Rips dataset were told that one animal
+species has a given disease and were asked to estimate the proportion of instances in the second
+species that also have the disease. Our second and third datasets were obtained from Osherson et
+al. [1] In Exp. 2 of their paper, participants were asked to rank 45 arguments that generalized a
+property from three mammal species to all mammals. In Exp. 4, participants were asked to rank
+36 arguments that generalized a property from two mammal species to horses. We used our Feature
+Overlap and NLI models to assess argument strength for the items in these three datasets, and
+evaluated them based on their correlations with participant responses. These correlations are
+shown in Fig. 2A and Fig S1A. Here we can see that our two Feature Overlap models achieved
+high correlations and consistently outperformed the NLI models. The Feature Overlap models
+also performed similarly to each other indicating that using logits instead of probabilities does not
+alter performance. Overall, the average correlation, across datasets, of the main Feature Overlap
+model was 0.64, whereas the best NLI model, DeBERTA-MNLI, achieved an average correlation
+of only 0.32.
+The above datasets use a small number of induction problems involving only animal
+species. For a more rigorous test of our approach, we conducted four new experiments with 960
+arguments taken from six superordinate categories (birds, fruits, vegetables, clothing, furniture,
+and vehicles). Each experiment offered participants a set of arguments and asked them to provide
+a continuous rating of argument strength. In Exp. 1, there were 300 arguments that generalized a
+property from one item (e.g. ) to another member of its superordinate category (e.g.
+tables
+); in Exp. 2, there were 60 arguments that generalized a property from one item (e.g.
+chairs
+) to all members of its superordinate category (e.g. ); in Exp. 3, 300 arguments
+tables furniture
+generalized a property from two items (e.g. and ) to a third item in their
+tables bookshelves
+superordinate category (e.g. ); and in Exp. 4, 300 arguments generalized a property from
+chairs
+two items (e.g. and ) to all members of their superordinate category (e.g.
+tables bookshelves
+). We correlated our models’ predictions with average participant ratings for each of
+furniture
+the arguments in the four experiments. These correlations are shown in Fig. 2B and Fig S1B.
+Again, our Feature Overlap model achieved high correlations and outperformed the NLI models.
+Empirical Regularities
+Premise Typicality. Next, we tested whether our models generated 13 different empirical
+patterns documented in the psychology and cognitive science literatures. We began with the
+premise typicality effect, which was introduced in the first paragraph of the current paper. We
+tested this effect using typicality ratings for items in eight different superordinate categories (birds,
+clothing, fruits, furniture, toys, vegetables, vehicles, and weapons), collected by [26]. We used this
+data to generate 254 arguments in which a property was generalized from a premise item (e.g.
+) to all members of its superordinate category (e.g. ). Using a median split, we
+sparrows birds
+divided these arguments into two groups: high premise typicality and low premise typicality, and
+offered the arguments in each group to our models. The predictions of these models are shown in
+Fig. 3A and Fig. S2A (the large markers are the models’ predictions for the example arguments
+used in [1] and presented in the introduction). Here we can see that the Feature Overlap model
+generated higher argument strength judgments for high typicality arguments (purple points)
+relative to low typicality arguments (orange points). A separate analysis correlating model
+because the feature vector for the superordinate category is more similar to that of highly typical
+subordinate items than to that of atypical subordinate items [18]. Most of the NLI models also
+captured this effect, likely because they are able to encode typicality relations and use these
+relations for generalization [14,15]. However, some models (BART-MNLI and GPT3-DaVinci)
+failed to do so, showing that these generalizations are not as robust.
+Premise-Conclusion Similarity. A variant of the premise typicality effect involves
+premise-conclusion similarity. This effect describes people’s tendency to generalize to conclusion
+items that are highly similar to the premise items. Thus, for example, the argument
+robins and
+blue jays use serotonin as a neurotransmitter therefore sparrows use serotonin
+is judged to be stronger than the argument
+as a neurotransmitter robins and blue jays
+use serotonin as a neurotransmitter therefore geese use serotonin as a
+[1]. We tested this effect using similarity ratings collected in [27]. These
+neurotransmitter
+ratings measure the similarity of pairs of items, with each pair taken from one of six superordinate
+categories (birds, clothing, fruits, furniture, vegetables, and vehicles). We used this data to generate
+1,662 arguments in which a property was generalized from a premise item (e.g. ) to a
+sparrows
+conclusion item that was a member of the premise’s superordinate category (e.g. ). Using
+robins
+a median split, we divided these arguments into two groups: high and low similarity, and offered
+the arguments in each group to our models. The predictions of these models are shown in Fig. 3B
+and Fig. S2B. Here we can see that the Feature Overlap model generated higher argument strength
+predictions for high similarity arguments (purple points) relative to low similarity arguments
+(orange points). A separate analysis correlating model predictions with continuous similarity
+tests). The Feature Overlap model generated this effect because similar items also overlap on their
+features. By contrast, most of the NLI models failed to generate this effect.
+Premise Diversity (General and Specific). The next two effects involve the role of
+premise diversity: People find it easier to generalize from premise items that are dissimilar to each
+other than from premise items that are similar to each other. This effect has been tested both with
+inductions to a general superordinate category as well as inductions to a specific member of the
+superordinate category. An example of the former (general effect) is the finding that the argument
+hippos and hamsters have a higher sodium concentration in their blood than
+humans therefore mammals have a higher sodium concentration in their blood than
+is judged to be stronger than the argument
+humans hippos and rhinos have a higher sodium
+concentration in their blood than humans therefore mammals have a higher sodium
+[1] An example of the latter (specific effect)
+concentration in their blood than humans .
+is in the first paragraph of the introduction.
+We tested the general premise diversity effect by pooling the datasets in [26] and [27].
+From the latter, we obtained similarity ratings of pairs of items, whereas from the former, we
+obtained typicality ratings of these items for their superordinate category. We excluded premise
+items pairs that were highly atypical (e.g. and ) as those pairs were almost
+penguins ostriches
+always dissimilar to each other, generating a multicollinearity problem. This resulted in a total of
+356 arguments with pairs of (largely typical) items in the premise, that vary in terms of similarity,
+as well as a superordinate category in the conclusion. We also used this approach to test the specific
+premise diversity effect, except that we replaced the superordinate category in the conclusion (e.g.
+) with a highly typical member of that category (e.g. ). This generated a total of
+birds sparrows
+1,592 arguments with pairs of items in the premise and an item (that shares the same superordinate
+category) in the conclusion. Using a median split, we divided the above arguments into two groups:
+high and low premise diversity (inverse of similarity), and offered the arguments in each group to
+our models. There were a total of six superordinate categories in this analysis.
+The predictions of these models are shown in Fig. 3C and 3D in the main text Fig. S2C
+and S2D in the Supplemental Materials. Here we can see that the Feature Overlap model generated
+higher argument strength predictions for high diversity premises (purple points) relative to low
+diversity premises (orange points). A separate analysis correlating model predictions with the
+gives a higher weight to the overlapping features of diverse premise items when assessing the
+cosine similarity of the premise with the conclusion. These overlapping features are more likely to
+be shared with the superordinate category (in the general case) and with members of the
+superordinate category (in the specific case), generating higher argument strength predictions. By
+contrast, non-diverse premises overlap on many idiosyncratic features (e.g. and
+hippos rhinos
+are both quite large and both are found mainly in Africa), that may not be shared with other
+members of their superordinate category.
+It is interesting to note that the NLI models failed to capture this effect. Even though these
+models are able to encode typicality and category membership relations, they do not use this
+information in a manner that considers the differing types of information provided by diverse vs.
+non-diverse premises. In this way their reasoning processes are limited to simplistic assessments
+of typicality, and are unable to mimic the richness of human induction.
+Conclusion Specificity. The more specific the conclusion, the more likely people are to
+generalize a premise to the conclusion. Thus, for example, people judge the argument
+blue jays
+and falcons require vitamin k for the liver to function therefore birds require
+to be stronger than the argument
+vitamin k for the liver to function blue jays and
+falcons require vitamin k for the liver to function therefore animals require
+[1] We tested this effect by extracting animal species
+vitamin k for the liver to function .
+and their immediate superordinate categories ( or ) from [17].
+birds, fishes, invertebrates
+We then constructed 154 argument pairs in which a property was generalized from the animal
+species to either the immediate superordinate category (generating a specific conclusion) or the
+distal superordinate category of (generating a non-specific or general conclusion).
+animals
+The predictions of these models on these argument pairs are shown in Fig. 3E in the main
+text and Fig. S2E in the Supplemental Materials. Here we see that the Feature Overlap model
+generated higher argument strength predictions for arguments with specific conclusions (purple
+statistical tests). This is because items have more features in common with their proximate
+superordinate categories than with distal superordinate categories (e.g. share many of
+blue jays
+the features of but not many of the features of ).
+birds animals
+All of the NLI models failed to capture this effect. It is not clear why this is the case. It
+could, for example, reflect the tendency of these models to favor non-specific conclusions
+(composed of more general categories) in natural language inference tasks. Such a heuristic could
+lead to good performance in deduction, e.g. when judging whether a sentence like
+a blue jay is
+implies a sentence like . However, this heuristic
+in the forest an animal is in the forest
+is not appropriate for the induction of properties across concepts.
+Inclusion Fallacy. The conclusion specificity effect shows that human induction is
+sensitive to category hierarchy. However, people do not always generalize information from a
+superordinate category to all of its members. This is the case with the inclusion fallacy effect,
+according to which atypical conclusion items can lead to the apparent neglect of category
+hierarchies. For example, the argument
+robins have an ulnar artery therefore birds
+is judged to be stronger than
+have an ulnar artery robins have an ulnar artery
+[1], despite the fact that are types
+therefore ostriches have an ulnar artery ostriches
+of , and therefore the conclusion of the first argument should (by deduction) imply the
+birds
+conclusion of the second. To test if the Feature Overlap model explained this effect, we used the
+datasets collected by [26] and [27] to algorithmically generate 1,070 arguments which generalized
+a property from a premise items to either the superordinate category or to an atypical member of
+the superordinate category. There were a total of six superordinate categories in this analysis.
+We also applied our models to the datasets collected by Sloman [21], which involve several
+variants of this effect, including variants that involve manipulating the category membership
+relations of the premise items instead of the conclusion items. The problems used in this work
+contain pairs of arguments in which one argument generates higher assessments of argument
+strength, despite being logically entailed by the other. There are a total of 72 different arguments,
+spanning several distinct superordinate categories (including plants, tools, musical instruments,
+and occupations).
+The predictions of our models on the algorithmically generated argument pairs are shown
+in Fig. 3F and Fig. S2F, and predictions on the Sloman argument pairs are shown in Fig. 4A and
+Fig. S3A. Each point in these figures corresponds to a single argument. Purple arguments are
+logically entailed by orange arguments, but are nonetheless are given higher ratings than the orange
+arguments by participants. We can see the Feature Overlap model generated the inclusion fallacy
+categories (like ) often share few features with the premise categories, leading to
+ostriches
+weaker argument strength judgments. The competing NLI models mostly replicated the effect for
+the algorithmically generated datasets, but failed to do so for the Sloman dataset (which involves
+experimenter curated arguments for diverse categories like occupations and musical instruments).
+Monotonicity (General and Specific). In most settings, knowing that a property is shared
+by many items makes it easier to generalize that property to new items. This effect is known as
+monotonicity, and persists with induction to the superordinate category shared by the premise
+items (the general case) and with induction to a specific item that is in the same superordinate
+category as the premise items (the specific case). An example of the former is the finding that the
+argument
+haws, sparrows and eagles have sesamoid bones therefore birds have
+is judged to be stronger than the argument that
+sesamoid bones sparrows and eagles have
+[1] An example of the latter is
+sesamoid bones therefore birds have sesamoid bones .
+the finding that
+foxes, pigs and wolves use vitamin k to produce clotting in their
+blood, therefore gorillas use vitamin k to produce clotting agents in their
+is judged to be stronger than the argument that
+blood pigs and wolves use vitamin k to
+produce clotting in their blood, therefore gorillas use vitamin k to produce
+[1]
+clotting agents in their blood .
+We tested this effect using the stimuli from [27]. Here we generated argument pairs
+consisting of a one item premise and a two item premise. The conclusions of the arguments
+involved a superordinate category in the general case, and a randomly chosen item from the
+premise superordinate category in the specific case. There were a total of 2,356 arguments for the
+general monotonicity effect and 2,166 arguments for the specific monotonicity effect. These
+spanned six superordinate categories. We offered these arguments to our models, whose
+predictions are shown in Fig. 3G, 3H, S2G and S2H. Here we can see that the Feature Overlap
+model generated higher argument strength predictions for two premise arguments (purple points)
+overlapping features of multiple items are more likely to be shared with other members of the
+superordinate category. In other words, adding additional items to the premise leads to a premise
+feature vector that is, on average, closer to that of other members of the superordinate category.
+This mechanism is the same mechanism responsible for the premise diversity effect described
+above. Thus unsurprisingly, as with the premise diversity effect, the NLI models were unable to
+robustly generate the monotonicity effect.
+Non-Monotonicity (General and Specific). Although providing additional premise items
+increases argument strength when premise categories share superordinate categories, this is not
+necessarily the case when additional premise items are taken from different superordinate
+categories. This effect is known as non-monotonicity, and persists with induction to the
+superordinate category shared by the premise items (the general case) and with induction to a
+specific item that is in the same superordinate category as the premises (the specific case). An
+example of the former is the finding that the argument
+crows and peacocks secrete uric
+is judged to be stronger than
+acid crystals therefore birds secrete uric acid crystals
+the argument that
+crows, peacocks, and rabbits secrete uric acid crystals therefore
+[1] An example of the latter is the finding that
+birds secrete uric acid crystals . flies
+require trace amounts of magnesium for reproduction therefore bees require trace
+is judged to be stronger than the argument that
+amounts of magnesium for reproduction
+flies and orangutans require trace amounts of magnesium for reproduction
+[1]
+therefore bees require trace amounts of magnesium for reproduction .
+We tested this effect using the stimuli from [27], which spanned six superordinate
+categories. Here we generated argument pairs consisting of a one item premise and a two item
+premise. Unlike the monotonicity arguments in the prior section, the two item premises in this
+analysis involved distinct superordinate categories (e.g. and ). The conclusions
+sparrows rabbits
+of the arguments involved the superordinate category (e.g. ) of the first premise in the
+birds
+general case, and a randomly chosen item from the superordinate category of the first premise (e.g.
+) in the specific case. There were a total of 508 arguments for the general non-monotonicity
+ducks
+effect and 3,324 arguments for the specific monotonicity effect. We offered these to our models,
+whose predictions are shown in Fig. 3I, 3J, Fig. S2I and S2J. Here we can see that the Feature
+Overlap model generated higher argument strength predictions for one premise arguments (purple
+points) relative to two premise arguments (orange points) in both the general and specific cases
+premise item that is highly dissimilar to the conclusion item leads to a premise feature vector with
+much less overlap with the conclusion feature vector. Again, the NLI models were unable to
+robustly generate non-monotonicity, as they do not reason over the properties of categories when
+judging argument strength.
+Conclusion Typicality. The effects discussed thus far were initially documented by
+Osherson et al. [1]. However, since their seminal paper, researchers have found several other
+empirical regularities in human induction. One of these pertains to the typicality of the conclusion
+item: The more typical the conclusion is of its superordinate category, the more likely people are
+to generalize a premise to the conclusion. Thus, for example, people judge the argument
+koalas
+require vitamin k for the liver to function therefore tigers require vitamin k
+to be stronger than the argument
+for the liver to function koalas require vitamin k
+for the liver to function therefore guinea pigs require vitamin k for the liver
+[22]. We tested this effect by generating pairs of arguments using stimuli from [26]
+to function
+and [27], which involved six superordinate categories. All arguments used a single item premise
+as well as either a high or low-typicality conclusion item taken from the same superordinate
+category as the premise. This led to 1,392 arguments, which we offered to our models.
+The predictions of these models on these argument pairs are shown in Fig. 4B and Fig.
+S3B. Here we see that the Feature Overlap model generated higher argument strength predictions
+for arguments with highly typical conclusions (purple points) relative to arguments with atypical
+conclusions (orange points). A separate analysis correlating model predictions with the
+with typical conclusions than with atypical conclusions. The competing NLI models did not all
+significantly generate this result, though all of their predictions were in the direction of human
+participants (indicating that they may be able to capture the effect with statistical significance with
+additional data).
+Property Type. Another effect captured by our model is the effect of property type on
+induction. When generalizing properties from one item to another, people are sensitive to the
+semantic content of the property itself, and find it easier to generalize when that property is similar
+to the other properties shared by the premise and conclusion items. For example, people judge the
+argument
+bears have a liver with two chambers that act as one therefore whales
+to be stronger than the argument
+have a liver with two chambers that act as one tuna
+have a liver with two chambers that act as one therefore whales have a liver
+. By contrast, people judge the argument
+with two chambers that act as one tuna usually
+travel in a zig-zag trajectory therefore whales travel in a zig-zag trajectory
+to be stronger than the argument
+bears usually travel in a zig-zag trajectory therefore
+[20]. Overall, generalization from
+whales usually travel in a zig-zag trajectory bears
+to is easier than the generalization from to when the property is anatomical,
+whales tuna whales
+but harder when the property is behavioral.
+Unlike our prior effects, which can be tested by algorithmically generating a large set of
+arguments spanning categories with varying levels of typicality and similarity, the property type
+effect requires a hand-curated dataset with premise and conclusion categories that vary
+systematically in terms of their anatomical vs. behavioral similarity (e.g. vs.
+bears/whales
+vs. vs. etc.).
+tuna/whales, mouse/bat sparrow/bat, lizard/snake worm/snake
+Fortunately, Heit and Rubinstein [20] have collected such a dataset. This has 784 arguments with
+28 different properties (14 anatomical and 14 behavioral), and 28 pairs of items (e.g.
+) involving assessments on each of these arguments. Their dataset also has average
+bears/whales
+participant ratings of the likelihood of the conclusion given the premise for each item pair on each
+property type. We performed a median split on these ratings to generate arguments with high vs.
+low participant ratings, and offered these arguments to our models.
+The predictions of these models on these arguments are shown in Fig. 4C and Fig. S3B.
+Here we see that the Feature Overlap model generated higher argument strength predictions for
+arguments given high (purple points) vs. low (orange points) ratings by Heit and Rubinstein’s
+participants. A separate analysis correlating model predictions with average participant ratings
+models were able to capture this effect as they place higher weights on the dimensions of the
+feature vector that have similar words to the argument property. Thus, arguments with premise
+and conclusion items that overlap on features that are similar to the argument property tend to get
+higher assessments. Most of the competing NLI models did not generate this result, as they do not
+explicitly use feature overlap to assess argument strength.
+To better understand how our model captures the property type effect, we calculated the
+GloVe bag-of-words similarity between Heit and Rubinstein’s anatomical and behavioral features
+and the 25,797 unique participant-generated features from [17], that are the basis of our model.
+We then extracted the 200 participant-generated features that were most similar to Heit and
+Rubinstein’s 14 anatomical features and the 200 participant-generated features that were most
+similar to Heit and Rubinstein’s 14 behavioral features. Word clouds showing the most frequent
+words in these two sets of features are shown in Fig. 4E and 4F. As can be seen here, participant-
+generated features that are most similar to Heit and Rubinstein’s anatomical properties involve
+parts of the body, as well as biologically related words like “mechanism”, “vitamin”, and
+“function”. These are the dimensions of the feature vector that are prioritized in induction with
+anatomical properties, making the model more likely to induce these properties to conclusion items
+that are anatomically similar to the premise items (e.g. and ). By contrast,
+bears whales
+participant-generated features that are most similar to Heit and Rubinstein’s behavioral properties
+typically involve verbs, as well as behaviorally related words like “food” and “fast”. These are
+the dimensions of the feature vector that are prioritized in induction with behavioral properties,
+making the model more likely to induce these properties to conclusion items that are behaviorally
+similar to the premise items (e.g. and ).
+tuna whales
+Property Relevance. The property type effect is one instantiation of a general tendency to
+use background knowledge, rather than simple assessments of item similarity or feature overlap,
+in induction. This tendency can take on many forms and can lead to violations of the premise
+diversity and monotonicity effects when the overlapping features of the premises (which are the
+relevant features for induction) do not apply to the conclusion. For example, people judge the
+argument
+skunks and deer have a given property therefore animals have that
+to be stronger than the argument
+property skunks and stink bugs have a given property
+[6] This violates the premise diversity effect as
+therefore animals have that property .
+and are judged to be less similar than and . The reason why
+skunks stink bugs skunks deer
+we observe this violation is because and have a salient overlapping property
+skunks stink bugs
+( ) that is relevant to the induction problem but is not shared with other
+create a foul odor
+animals, making it harder to generalize when they are the premise items.
+The diversity and monotonicity violations caused by the property relevance effect require
+carefully curated stimuli which cannot be algorithmically generated as with prior findings. Medin
+et al. [6] have collected one such dataset with 34 arguments. Their dataset also has average
+participant ratings of the strength of each argument. We performed a median split on these ratings
+to generate arguments with high vs. low participant ratings, and offered these arguments to our
+models. The predictions of these models on these arguments are shown in Fig. 4D and S3C. Here
+we see that the Feature Overlap model generated higher argument strength predictions for
+arguments given high (purple points) vs. low (orange points) ratings by Medin et al.’s participants,
+though these differences do not cross the threshold for significance, likely due to small sample of
+arguments used in this exercise. A separate analysis correlating model predictions with continuous
+statistical tests). The reason that the Feature Overlap model generated correct directional
+predictions for these effects is because overlapping features of the premise categories play a larger
+role in the feature overlap assessment. Thus, premises with overlapping features not shared with
+the conclusion item are given lower assessments by our model. The competing NLI models do not
+all generate this result, and the ones that do typically have much smaller t-values.
+Discussion
+The study of inductive reasoning has been one of the most active areas of research in
+cognitive science and psychology. Researchers have documented several empirical regularities in
+human induction of properties across concepts and categories, and have developed formal theories
+to account for these regularities [1, 2, 3, 4, 5, 6, 7]. Here we show how one theory, the Feature
+Overlap model [2], can be combined with leading large language models (LLMs) [8, 9, 10] to
+accurately predict human induction and replicate observed empirical regularities. Our approach is
+successful because it combines the relative strengths of these two influential research traditions.
+Psychological theories describe intelligent human-like reasoning processes whereas LLMs possess
+the world knowledge necessary to use these reasoning processes in everyday induction. For this
+reason, our integrative approach is able to generate sophisticated responses to arguments involving
+arbitrary concepts and properties. We demonstrate the power of this approach by applying it to a
+dataset of over 16,000 existing and new induction problems. Psychological theories, by
+themselves, are not be able to make predictions for these problems as they have been developed
+on hand-coded ontologies with only a small set of concepts and properties. Additionally, even
+though LLMs for natural language inference [9, 10, 23, 24] are able to process and respond to
+induction problems, we find that they do not do so in a human-like manner. Cognitively plausible
+reasoning rules, like the Feature Overlap model, are necessary to manipulate and transform LLM
+representations, in order to mimic human behavior. We are not the first to highlight the value of
+combining existing cognitive models with newer AI systems trained on large-scale data.
+Previously, researchers have shown that integrative approaches, like ours, are useful for modeling
+human similarity judgment, categorization, memory, decision making, and analogical reasoning
+[27, 30, 31, 32, 33, 34] (see [35] for a review). Others have argued that such approaches are
+required to bring AI performance to human levels in complex cognitive tasks [36, 37].
+It is worth noting that recent LLMs trace their intellectual lineage to older models of human
+linguistic and semantic cognition [38, 39]. Thus, unsurprisingly, researchers have shown that
+LLMs are able to capture aspects of human linguistic and semantic processing [40, 41, 42, 43]
+and even mimic some types of reasoning [33, 44]. The Feature-BERT model is one example of
+this [18]. This model does not only predict the features that people associate with different
+concepts; it also captures several core patterns of human semantic verification, and by doing so
+shows how these patterns are the natural byproducts of semantic processing in deep neural
+networks. By using Feature-BERT in the current paper, we are illustrating one way in which high-
+level reasoning rules can interface with realistic semantic representations obtained from deep
+neural networks. The success of our approach indicates that people may also be engaging in a
+similar set of operations. In other words, people may use statistical patterns in language data (as
+well as perhaps perceptual data) to approximate the distribution of features across concepts. This
+distribution may then be fed into a second, higher-level set of reasoning processes, for induction
+with new features and concepts.
+We would like to conclude by highlighting two empirical regularities that are currently
+outside the scope of our Feature Overlap model. The first involves asymmetries in generalizing
+from a premise item to a conclusion item. For example, people are more likely to generalize a
+property from to than vice versa [1, 2]. The Feature Overlap model used in this paper
+mice bats
+does not generate asymmetries since the cosine similarity metric is symmetric. In the Supplemental
+Materials we show how using an alternate similarity metric to assess feature overlap can provide
+a good account of asymmetry effects. A second regularity that we are unable to capture involves
+the effect of expertise [6] (see [4] for a discussion): Domain experts generalize based on property
+inheritance relations and causal relations that are often different to the more superficial
+assessments of feature overlap used by non-experts. It may be possible to address this limitation
+by implementing our modeling pipeline with other theories of human induction. For example, the
+feature-concept probabilities generated by Feature-BERT (e.g. in the right panel of Fig 1A) could
+be fed into a Bayesian reasoning module [5, 7, 45]. Such a module may be uniquely suited to
+extracting latent structures (including casual structures) that guide and constrain induction in
+experts [7]. A Bayesian reasoning module may also be necessary for modeling other types of
+induction problems not explored in the current paper [46]. We look forward to future work that
+uses existing cognitive theories, along with knowledge representations derived from LLMs, to
+better understand and predict high-level human cognition.
+Methods and Materials
+Experiments 1-4
+We recruited 50 participants in Exps. 1, 3 and 4, and 10 participants in Exp. 2 from Prolific
+Academic (avg. age = 27, 45% female). Each participant rated 60 items. There were a total of 300
+distinct arguments in Exp. 1, 3 and 4, and 60 distinct arguments in Exp. 2, generating an average
+of 10 ratings per argument. The arguments that were presented to participants in Exps. 1, 3, and 4
+were chosen randomly and uniformly from the full set of 300 arguments. Arguments were
+presented in a random order, with one argument per screen, in all experiments. Each argument
+generalized a hypothetical property from one or more premise items to a conclusion item. Ratings
+were made on a scale of 0 (indicating weak argument strength) to 100 (strong strength). The
+stimuli were taken from [27] and involved 50 sets of randomly selected items for each
+superordinate category in Exps. 1, 3 and 4, and 10 randomly selected sets of items for each
+superordinate category in Exp. 2.
+Feature Overlap Model
+We used a dataset of feature norms from [16, 17] and compiled by [18]. This dataset
+involves a total of 245,642 ‘true’ sentences (sentences that combine concepts with features that
+were generated by participants for those concepts) and 245,642 ‘false’ sentences (sentences that
+combine concepts with features that were not generated by participants for those concepts). These
+sentences contain 2,066 unique concepts and 29,048 unique participant-generated features. We
+trained the uncased base BERT model to classify each sentence as true or false, using the Hugging
+Face BertForSequenceClassification transformers package for Pytorch [47]. We used binary cross-
+entropy to compute loss, the Pytorch AdamW algorithm with default parameters, batch sizes of
+32, and a total of four epochs. The resulting model, Feature-BERT, outputs the probability of a
+sentence being true or false, which is the probability that the feature in the sentence applies to the
+concept in the sentence. See [18] for further details.
+Our Feature Overlap model used the 25,797 unique features in [17]. Specifically, for a
+target item, it passed sentences composed of that item and each of the 25,797 features through the
+Feature-BERT model, to obtain a 25,797-dimensional probability vector of features applying to
+that item. For item i we write this feature vector as f . The elements of f are in range [0,1]. We also
+i i
+used a GloVe [25] bag-of-word model to calculate the cosine similarity between a target property
+and each of the 25,797 features. This yielded a 25,797-dimensional similarity vector. For property
+p we write this vector as s . The elements of s are in range [-1,1]. We transformed s to obtain
+p p p
+feature similarity weights w = (1 + s )/2, in range [0,1]. To calculate the feature overlap between
+p p
+a premise item i and a conclusion item j¸ for a property p, we first performed an element wise
+multiplication operation between w and f to get a 25,797-dimensional weighted feature vector for
+p i
+item i, w ⊙f . Then, using cosine similarity, we calculated the feature overlap between the premise
+p i
+and conclusion as COSSIM[w ⊙f , f ]. When the premise had multiple items, we simply summed
+p i j
+the feature vectors for those items to get a single feature vector for the premise. For example, in
+an argument with two premise items, i and i' (as well as a conclusion item j and a property p) the
+argument strength was as COSSIM[w ⊙(f + f ), f ]. Finally, when the argument involved a blank
+p i i’ j
+property without semantic content, we simply set w to a vector of ones. Note that all vectors used
+in the cosine similarity calculation are in range [0,1], which is why the cosine similarity output is
+also in the range [0,1].
+In the Supplemental Materials we also provide results for a variant of the above model
+which replaces BERT generated probabilities with their associated logits, according to the formula
+−LOGIT
+PROBABILITY = 1⁄(1 + 𝑒 ). Logits provide a more continuous assessment of concept-
+feature pairs (probabilities, by contrast are often very close to 0 or 1), and have been shown in [18]
+to do slightly better at predicting human semantic verification than the associated probabilities.
+Large Language Models
+We used BART [24], RoBERTa [23], and DeBERTa [10] models that were fine-tuned on
+a large multi-genre natural language inference (MNLI) corpus [12]. We queried these models using
+the HuggingFace API (facebook/bart-large-mnli, roberta-large-mnli, and microsoft/deberta-large-
+mnli respectively). We provided BART-MNLI with the premise sentence and the conclusion
+sentence as inputs, and gave it ‘entailment’ and ‘contradiction’ labels with which to classify the
+sentence. RoBERTa-MNLI model and DeBERTa models were also given the premise and
+conclusion sentences as inputs, but since these models were explicitly built to classify the inputs
+into entailment and contradiction (as well as neutral) classes, no further classification labels were
+necessary. Premise and conclusion sentences were separated by the [SEP] token. All three models
+outputted scores for entailment and contradiction, and we used the entailment score, a number in
+range [0,1], to predict argument strength.
+We also used the GPT3-DaVinci-002 and GPT3-Babbage-001 models [9]. We queried
+these models on the OpenAI API with the prompt: We know that [PREMISE SENTENCE]. Does
+this mean that [CONCLUSION SENTENCE]? Please answer ‘Yes’ or ‘No’. This prompt was
+shown to generate the most human like performance out of all the prompts in [14]. We tested
+whether the model’s first five output tokens included ‘Yes’, ‘yes’, ‘YES’, ‘No’, ‘no’, and ‘NO’
+and subsequently calculated the probability attached to ‘Yes’, ‘yes’ and ‘YES’ vs. ‘No’, ‘no’ and
+‘NO’. This probability, which was in range [0,1], was used to predict argument strength.

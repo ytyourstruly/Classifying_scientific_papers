@@ -1,0 +1,581 @@
+Selective Attention, Category Structure, and Supervision in Category Learning: A
+Comparative Approach
+Hyungwook Yim
+Department of Cognitive Sciences, Hanyang University, Seoul, Republic of Korea
+Leyre Castro
+Department of Psychology, The University of Iowa, Iowa City, Iowa, USA
+Jay I. Myung
+Department of Psychology, The Ohio State University, Columbus, Ohio, USA
+Edward A. Wasserman
+Department of Psychology, The University of Iowa, Iowa City, Iowa, USA
+Vladimir M. Sloutsky
+Department of Psychology, The Ohio State University, Columbus, Ohio, USA
+word count: 6205
+Author Note
+The research was supported by the National Institutes of Health Grants R01HD078545
+and P01HD080679 to VMS, and the National Research Foundation of Korea funded by the
+Ministry of Science and ICT (No. RS-2022-00166828) awarded to HY. Part of the study was
+presented at the 36th Annual Conference of the Cognitive Science Society. The data and
+Correspondence concerning this article should be addressed to Vladimir Sloutsky
+(Department of Psychology, The Ohio State University, Columbus, Ohio, USA. E-mail:
+sloutsky.1@osu.edu) or Hyungwook Yim (Department of Cognitive Sciences, Hanyang
+Selective Attention, Category Structure, and Supervision in Category Learning 2
+University, Seoul, Korea. E-mail: hwyim@hanyang.ac.kr).
+Selective Attention, Category Structure, and Supervision in Category Learning 3
+Abstract
+We investigated the interactions between category structure, supervision, and the ability to
+selectively attend in category learning. To examine selective attention, we compared human
+adults and pigeons in a category learning task, where we manipulated the category structure
+(dense vs. sparse) and the level of supervision (low vs. high). Humans, who have a more
+advanced ability to attend selectively, showed faster learning and better generalization
+overall. Both species showed a benefit for the category structures that had multiple
+category-relevant dimensions (i.e., dense categories). In addition, there was a benefit of
+supervision that was particularly strong in learning the sparse categories. Finally, attention
+was optimized to the category-relevant dimension in the sparse category only in human
+adults. Subsequent computational simulation of the data indicates that these patterns are
+well explained by a parameter that controls the ability to flexibly switch attention to
+category-relevant dimensions.
+144/250 words
+Keywords: category learning; selective attention; supervision; category structure;
+comparative study
+Selective Attention, Category Structure, and Supervision in Category Learning 4
+Selective Attention, Category Structure, and Supervision in Category Learning: A
+Comparative Approach
+1. Introduction
+The ability to form categories is crucial for human cognition. Categories serve as a unit
+of knowledge and thought, and help us to generalize and predict beyond what we have
+already experienced (Goldstone & Kersten, 2003). The ability to learn categories also enables
+us to treat discriminable things as equivalent (Bruner et al., 1956), which is essential for us to
+simplify incoming information in a manageable way. However, it is not fully understood how
+organisms form and use categories. The mechanisms underlying the ability to learn categories
+are complex and involve different interdependent components.
+1.1. Selective attention
+One of the most important components in understanding category learning is selective
+attention (Shepard et al., 1961). Studies have shown that when learning a category, human
+adults do not deploy attention equally to the different dimensions of the category items.
+Instead, they focus their attention to the category-relevant dimensions and ignore the
+irrelevant dimensions (Ashby & Ell, 2001; Goldstone & Steyvers, 2001; Nosofsky, 1986;
+Rehder & Hoffman, 2005). The process of selectively attending to the category-relevant
+dimensions during category learning facilitates efficient learning and aids better
+generalization (Mackintosh, 1965), both of which are key features of human category
+learning. For example, when learning how to distinguish alpacas from llamas, the shape of
+the ears is a relevant dimension – alpacas have pointy ears whereas llamas have long ears.
+Selective Attention, Category Structure, and Supervision in Category Learning 5
+Focusing on the shape of the ears, while ignoring the dimensions that the animals share (e.g.,
+four-legged, furry, grass fed), helps one learn the two distinct camelid family animals that
+otherwise look alike.
+The importance of selectively attending to the category-relevant dimension during
+learning has led major theories and computational models to incorporate selective attention
+as a key mechanism in explaining category learning (Kruschke, 1992; Love et al., 2004; Medin
+& Schaffer, 1978; Nosofsky, 1986; Smith & Minda, 1998). In these models, selective attention
+is assumed to stretch the scale of the attended dimension (e.g., shape of the ears) in a multi-
+dimensional psychological space. The stretched dimension, therefore, becomes more
+sensitive to stimulus differences, which not only helps one learn the categories but also
+increases one’s ability to generalize when new instances are given.
+Accordingly, previous studies have supported these models by showing that the ability
+to selectively attend impacts how categories are learned. For example, organisms that may
+not have a fully functional ability to selectively attend compared to human adults (such as
+human infants or nonhuman animals, including pigeons), do not completely focus their
+attention to the category-relevant dimensions during learning, and sometimes use the overall
+similarity of the exemplars when learning the categories (Best et al., 2013; Castro et al.,
+2020). The reason for these different attentional profiles in pigeons and humans may reside
+in the neural substrates underlying selective attention. The human prefrontal cortex (PFC) is
+considered to be critical for executive functions, such as selective attention (e.g., Miller &
+Cohen, 2001; O'Reilly, 2006). Humans’ and pigeons’ anatomical organization of their
+forebrains is considerably different. Among those differences, pigeons do not have a PFC.
+Selective Attention, Category Structure, and Supervision in Category Learning 6
+They have an analogous region, the nidopallium caudolaterale (NCL), but it is not known how
+the NCL may be involved in the deployment of attention. We know though that pigeons tend
+to distribute their attention over different dimensions, rather than focus on most diagnostic
+information (Castro et al., 2020). As a result, they may show less learning and limited
+generalization.
+1.2. Category structure
+In addition to selective attention, the structure of the to-be-learned categories has also
+been found to affect learning. Among the many ways to define category structure, one
+important way is with category density (Gentner, 1981; Kloos & Sloutsky, 2008; Sloutsky,
+2010). The density of a category can be defined as a combination of the similarity among the
+members in the same category and their distinctiveness from the members in the other
+category. Kloos and Sloutsky (2008) and Sloutsky (2010) further quantified category density in
+a formal way. They defined density as the ratio between the variance of the information
+relevant for category membership and the total variance of information regardless of
+category membership. As the formulation measures statistical redundancy of the information
+relevant for category membership, an inverse function of relative entropy (Shannon &
+Weaver, 1949) was used to mathematically define density (see Sloutsky, 2010 for details).
+Specifically, dense categories have multiple intercorrelated features that are relevant
+for the category, while having only a few features that are irrelevant. Therefore, basic level
+categories such as ‘dog’ and ‘cat’ can be considered to be dense. Due to the redundancy of
+the category relevant information, it has been known that even infants are able to learn
+dense categories (e.g., Quinn et al., 1993). On the other hand, sparse categories have many
+Selective Attention, Category Structure, and Supervision in Category Learning 7
+features that are shared across different categories, with only few features being relevant to
+distinguish these categories. Categories such as ‘llama’ and ‘alpaca’ can be considered as
+sparse categories because there are many overlapping features between the categories, but
+only a few features that are relevant for differentiating the two kinds. Due to having little
+category-relevant information, sparse categories can be hard to learn (e.g., x-ray images for
+diagnosing a disease) and may require extensive training even for adults (Palmeri et al., 2004;
+Vong et al., 2019).
+Category density naturally interacts with the ability to selectively attend to the
+category-relevant dimensions when learning the categories. The ability to attend to the
+relevant dimensions is more critical for learning sparse categories as there is little
+information that is relevant for determining category membership. In particular, one needs to
+discard many irrelevant dimensions while attending to the few relevant dimensions to
+efficiently learn the sparse category. On the other hand, selective attention may not be
+crucial for learning dense categories. As dense categories have multiple intercorrelated
+features that are relevant to category membership, learning can be achieved by using the
+overall similarity of the category exemplars (Goldstone, 1994).
+A number of studies have examined the relationship between category density and the
+functionality of selective attention, where the functionality has been primarily linked to the
+size or maturation of the prefrontal cortex (e.g., Squire et al., 2013). For example, studies
+show that 6-to-8-month-olds, who possess an immature prefrontal cortex, are unable to
+learn sparse categories (Yim et al., 2012). At the same time, although 6-to-8-month-old
+infants can learn dense categories, eye-tracking studies show that they do not selectively
+Selective Attention, Category Structure, and Supervision in Category Learning 8
+attend to category relevant dimensions (Best et al., 2013). With the development of the
+ability to selectively attend, four-to-five year-olds start to learn sparser categories while
+attending to category-relevant dimensions (Deng & Sloutsky, 2016). However, they do not as
+sharply focus their attention during learning as do adults. As selective attention undergoes
+prolonged development (Diamond, 2002), it becomes an important factor in explaining the
+types and structures of categories that children can (e.g., dense categories) or cannot learn
+(e.g., sparse categories; Sloutsky, 2010).
+Comparative studies with pigeons have shown similar results. Although pigeons can
+use category-relevant information, they may not selectively attend to the category-relevant
+dimensions (Castro et al., 2020; Nicholls et al., 2011; Wasserman et al., 2021). For example,
+Castro et al., (2020) examined the performance of pigeons and human adults in a category
+learning task where the categories could be learned via a single deterministic feature or via
+multiple probabilistic features. Both pigeons and humans showed evidence for using the
+single deterministic feature over the multiple probabilistic features. However, further
+analysis using computational modeling showed that only humans deployed their attention to
+the single deterministic feature, whereas pigeons distributed their attention over several
+features. The results imply that pigeons are able to use a single deterministic feature, as it
+has high predictive value, but they do not selectively attend to that feature as strongly as do
+human adults. These results also suggest that pigeons may not be able to learn and
+generalize sparse categories as well as human adults.
+1.3. Supervision
+Supervision, in the form of corrective feedback or explicit instruction, is another factor
+Selective Attention, Category Structure, and Supervision in Category Learning 9
+that affects category learning. The different outcomes elicited by supervised and
+unsupervised category learning have been well documented along with their possible
+underlying mechanisms (e.g., Colreavy & Lewandowsky, 2008; Love, 2002; Love et al., 2004;
+Pothos et al., 2011). Moreover, evidence shows that the effect of supervision is modulated by
+the density of the category structure and the ability to selectively attend (e.g., Ell et al., 2012;
+Kloos & Sloutsky, 2008; Pothos et al., 2011; Vandist et al., 2009). For example, Kloos and
+Sloutsky (2004) examined human adults and 4-to-5 year-old children in a category learning
+task, and compared the effects of category density and supervision. When supervision was
+provided, learning was enhanced for sparse categories and the enhancement was greater for
+children. As supervision acts as a top-down signal and aids category learning, children with
+immature selective attention benefited more from supervision than did adults, who already
+have the ability to selectively attend. On the other hand, when learning dense categories,
+supervision hindered learning in both age groups. Therefore, it is not clear whether
+supervision, when provided without increasing cognitive load, will also hinder learning dense
+categories.
+1.4. Current study
+As previous studies have found that different factors affect category learning,
+examining the interactions among these factors may be crucial for a better understanding of
+the mechanism(s) of how we and other organisms learn categories. In the current study,
+therefore, we systematically examined how (1) selective attention, (2) category density, and
+(3) supervision affect category learning, and how these factors interact. The effect of
+Selective Attention, Category Structure, and Supervision in Category Learning 10
+selective attention was investigated in two experiments with human adults and pigeons . The
+two populations are likely to differ in their ability to attend selectively (e.g., Castro et al.,
+2020; Smith et al., 2012). In each experiment, we manipulated category density (i.e., dense
+vs. sparse category) and the amount of supervision (i.e., low- vs. high- supervision). Finally, to
+compare the results across the two experiments, we utilized a computational model (i.e.,
+ALCOVE; Kruschke, 1992) to simulate the data patterns and to infer the latent parameters
+that may drive the performance differences across the groups.
+2. Experiment 1
+In Experiment 1, human adults learned two flower-like artificial categories, where
+we manipulated category density and the level of supervision. In the task, participants
+were presented with a category member one at a time and had to choose whether it
+belonged to one category or the other. We were especially interested in the number of
+trials it took to learn the categories. After participants learned the categories by reaching
+a set criterion, we introduced a generalization phase. In the generalization phase,
+participants were presented with new exemplars of the studied categories where
+irrelevant features were substituted by novel features. We expected that the ability to
+generalize would provide valuable evidence for how well participants selectively attended
+to the category relevant dimensions during learning.
+2.1. Method
+2.1.1. Participants
+We additionally tested 4-5-year-olds using a similar paradigm as in Experiment 1. However, many children did not
+learn the sparse category after two days of training, which made the interpretation of the results unclear. We have
+included the experiment in the supplementary materials for full disclosure.
+Selective Attention, Category Structure, and Supervision in Category Learning 11
+One hundred undergraduate students at The Ohio State University participated for
+course credit (66 females, M = 19.31 years, SD = 2.04). Each participant was randomly assigned
+to one of four conditions created by crossing two independent variables: Density (Dense vs.
+Sparse) × Supervision (Low vs. High). There were 25 participants in each condition. We have
+not conducted a power analysis prior to the experiment. A post-hoc power analysis on the
+ANOVA with an effect size (f) of .25, alpha of .05, N = 100 showed a power of .70. The
+experiment was approved by the Institutional Review Board at The Ohio State University,
+Columbus, Ohio, USA.
+2.1.2. Materials
+learning phase, there were two sets of categories (i.e., Category A and Category B) for each
+density condition (i.e., Dense and Sparse). Every exemplar had a gray hexagon in the middle
+with six colored shapes on each side. Each of the six locations was considered a dimension. For
+the Dense categories, three out of the six dimensions had variable colors and shapes, whereas
+the other three dimensions had the same shape and color within a category and different
+from those in the contrast category; the latter three were category relevant dimensions. For
+example, Category A in the Dense condition had three pink triangles that were the same for all
+members of Category A, whereas Category B had three blue semicircles in the same location
+their color and shape, so that they were irrelevant, whereas one was constant, the relevant
+dimension. For example, one category in the Sparse condition (i.e., Category A) had a pink
+triangle, whereas the other category (i.e., Category B) had a blue semi-circle (marked as ‘R’ in
+Selective Attention, Category Structure, and Supervision in Category Learning 12
+irrelevant dimensions had new values. Each category set had 18 unique exemplars, and there
+were two sets each for the learning phase and the generalization phase. As there were two
+density conditions, the total number of exemplars used in the experiment was 144 (= 18
+exemplars ⨯ 2 category sets (category A/B) ⨯ 2 phases (learning/generalization) ⨯ 2 density
+conditions (dense/sparse)).
+structures used in the learning phase and the generalization phase. The letter ‘R’ in the first
+column represents the relevant dimension of the category; the letter was not shown to the
+participants. (B) Experimental design in Experiments 1. (C) Experimental design in Experiment 2.
+2.1.3. Design and procedure
+Participants were told they were going to play a game where a cartoon character (i.e.,
+Selective Attention, Category Structure, and Supervision in Category Learning 13
+Dora the Explorer) was investigating magic flowers from a different planet, which would turn
+into black or white aliens when she touched them. Participants were told that their job was to
+help the cartoon character find out which flowers would turn into black aliens and which
+flowers would turn into white aliens, so that they should carefully look at the flowers.
+There were 12 trial blocks, with 12 learning trials per block. Half of the learning trials
+had Category A exemplars, and the other half had Category B exemplars, with exemplars
+presented in a random order. On each trial, an exemplar was presented on the top center of
+the computer screen, and an image of a white alien and a black alien were each presented on
+the bottom left and right sides of the screen, left and right locations were randomized across
+image of a white or black alien to indicate their decision about how the presented flower would
+change.
+In the Low-Supervision condition, when the participant made a decision, regardless of
+their accuracy, a star appeared on the correct side for 500 msec. A “Good Job!” sign was also
+simultaneously presented at the bottom of the screen. In the High-Supervision condition, the
+star was only presented when the participant made a correct response. If the participant made
+an incorrect response, a “Try again!” sign was presented in the center of the screen for 500
+msec. Then the participant was presented with the same exemplar and was again asked to
+make a choice.
+When a participant obtained more than 10 correct trials in a 12-trial block, a
+generalization phase was introduced before proceeding to the next block. Trials in the
+generalization phase were identical to the learning trials except: (1) stimuli from the
+Selective Attention, Category Structure, and Supervision in Category Learning 14
+generalization set were used, (2) there were six trials, and (3) a blank screen was presented for
+500 msec after the participant’s response, without any feedback. The experiment was
+terminated either when the participant responded to all 12 blocks or when the participant
+responded incorrectly for only one trial across two consecutive blocks (i.e., 23 correct
+responses out of 24 trials). The experiment was controlled by MatLab, using PsychToolbox
+(Brainard, 1997; Pelli, 1997).
+2.2. Results
+We first examined the number of participants who successfully learned the categories.
+Successful learners were defined as those who reached an accuracy higher than .85 in each
+block for two consecutive blocks, and displayed asymptotic performance after reaching the
+criterion. Overall, there were more learners in the Dense conditions and in the High-
+as covariates showed that there was a statistically significant effect for Density (Z = 2.50, p
+= .013), but not for Supervision (Z = 1.27, p = .20). The non-learners were excluded from all
+following analyses unless mentioned otherwise.
+Proportion of learners in Experiment 1. The numbers in parentheses represent the number of
+learners and the total number of participants.
+Sparse Dense
+Adults Low-Supervision 0.72 (18/25) 0.96 (24/25)
+High-Supervision 0.84 (21/25) 1.0 (25/25)
+Additionally, we examined how many trials it took to learn the category (i.e., trials-to-
+Selective Attention, Category Structure, and Supervision in Category Learning 15
+how learners were determined (i.e., the number of trials until accuracy was higher than .85 in
+each block for two consecutive blocks, and asymptotic performance after reaching criterion was
+attained). The Dense-High-Supervision condition showed the fastest learning (M = 38.4, SD =
+17.32) followed by the the Dense-Low-Supervision condition (M = 44.5, SD = 29.07), the Sparse-
+High-Supervision condition (M = 64.57, SD = 30.47), and the Sparse-Low-Supervision (M = 78.0,
+SD = 27.69) condition. A 2 × 2 (Density × Supervision) between-subjects analysis of variance
+(ANOVA) showed a statistically significant main effect for Density (F = 27.79, p < .001, η2 = .24),
+a suggestive trend for Supervision (F = 2.98, p = .09, η2 = .03), but no sign of an interaction (F
+= .42, p = .52).
+accuracy. (Note that error bars represent +/- 1 SEM)
+For the generalization trials, the highest accuracy was shown in the two Dense
+conditions (High-Supervision: M = .99, SD = .028; Low-Supervision: M = .99, SD = .034), followed
+by the Sparse-High-Supervision condition (M = .88, SD = .23), and the Sparse-Low-Supervision
+Selective Attention, Category Structure, and Supervision in Category Learning 16
+condition (M = .78, SD = .32). A Density × Supervision between-subjects ANOVA showed a
+statistically significant main effect for Density (F = 16.0, p < .001, η2 = .16). There was no effect
+for Supervision, nor an interaction (ps > .21). Generalization performance was above chance
+(.50) for all conditions (ts > 3.71, ps < .005).
+Overall, human adults showed an effect of density and supervision during learning,
+supported by comparing the number of learners and the trials to criterion in each condition.
+Generalization was affected by category density, but not by supervision. In Experiment 2, we
+examined pigeons, who exhibit a lower functioning selective attention, in a similar category
+learning task.
+3. Experiment 2
+In Experiment 2, pigeons were given the same four category learning tasks as in
+Experiment 1, except for necessary modifications in the training procedures.
+3.1. Method
+3.1.1. Participants
+The subjects were 16 feral pigeons maintained at 85% of their free-feeding weights by
+controlled daily feedings. The pigeons were randomly assigned to each of the conditions,
+resulting in 4 pigeons for each condition. The pigeons had served in unrelated studies prior to
+the present project. We have not conducted a power analysis prior to the experiment. A post-
+hoc power analysis on the ANOVA with an effect size (f) of .463, alpha of .05, N = 16 showed a
+power of .402. The experiment was approved by the Institutional Review Board and the
+Despite the relatively low statistical power, we found robust main effects of Density and Supervision on pigeons’
+measures of their performance. There was a tendency for an interaction between Density and Supervision that fell
+short of statistical significance for both trial-to-criterion and generalization accuracy. Perhaps these interactions
+Selective Attention, Category Structure, and Supervision in Category Learning 17
+Institutional Animal Care and Use Committee at the University of Iowa.
+3.1.2. Materials
+The experiment used four 36 × 36 × 41 cm operant conditioning chambers detailed by
+Gibson et al. (2004). The chambers were located in a dark room with continuous white noise.
+Each chamber was equipped with a 15-in LCD monitor located behind an AccuTouch resistive
+touchscreen (Elo TouchSystems, Fremont, CA). The portion of the screen that was viewable by
+the pigeons was 28.5 cm × 17 cm. Pecks to the touch screen were processed by a serial
+controller board outside the box. A rotary dispenser delivered 45-mg pigeon pellets through a
+vinyl tube into a food cup located in the center of the rear wall opposite the touchscreen.
+Illumination during the experimental sessions was provided by a house light mounted on the
+upper rear wall of the chamber. The pellet dispenser and houselight were controlled by a
+digital I/O interface board. Each chamber was controlled by a personal computer, and the
+experiments were developed in MatLab. The category exemplars used in the experiment were
+identical to those used in Experiment 1.
+3.1.3. Design and Procedure
+The learning phase consisted of 144 trials each day. Among the 144 trials, half contained
+exemplars from Category A and the other half contained exemplars from Category B. On each
+trial, two identical exemplars were presented on the right and left side of the computer screen
+a target stimulus (i.e., black concentric rings on a white background) was presented on the
+correct side of the screen; the correct side for Category A and Category B was counterbalanced
+could have been statistically significant had we had a larger sample.
+Selective Attention, Category Structure, and Supervision in Category Learning 18
+across subjects. After one peck to this target stimulus, food reward was delivered. Completing
+the sequence of category exemplars-target stimulus always ended with food reinforcement,
+regardless of the specific side that the pigeons chose when the exemplars were presented.
+Inter-trial intervals were 5000 msec in duration. The High-Supervision condition was very
+similar to the Low-Supervision procedure. However, the five pecks to the category exemplar
+had to be on the correct side for the target stimulus to be presented. If the last peck was on
+the wrong side, then the screen turned black for 1000 msec and the same category exemplar
+was again presented. The pigeons had to complete the 5-peck response requirement again until
+the correct response was made. Responses from the correction trials were not analyzed. When
+a bird reached a learning criterion of .85, the generalization phase was introduced the next day
+and continued for 4 days. The generalization phase consisted of 162 trials a day, which included
+144 training trials and 18 randomly intermixed testing trials. The testing trials presented the
+generalization stimuli; on these trials, no correction procedure was given (to avoid teaching the
+birds the correct response) so that pigeons’ choices were always reinforced, regardless of the
+pigeons being in the Low- or High-Supervision conditions.
+3.2. Results
+All birds were trained until they reached the same learning criterion as in Experiment 1
+(i.e., .85 correct), except for one bird in the Low-Supervision/Sparse condition which had not
+from all following analyses. We did not conduct a statistical analysis for examining the effect
+of Supervision and Density on the number learners as in Experiment 1 as the experiment was
+intended to provide learning trials until the birds learned the categories.
+Selective Attention, Category Structure, and Supervision in Category Learning 19
+Proportion of learners in Experiment 2. The numbers in the parentheses represent the number
+of learners and the total number of participants.
+Sparse Dense
+Pigeons Low-Supervision 0.75 (3/4) 1.0 (4/4)
+High-Supervision 1.0 (4/4) 1.0 (4/4)
+High-Supervision conditions showed faster learning (Dense: M = 288, SD = 0; Sparse: M = 612,
+SD = 72), than the two Low-Supervision conditions (Dense: M = 1836, SD = 1685; Sparse: M =
+5664, SD = 3169). A 2 × 2 (Density × Supervision) between-subjects ANOVA showed a
+statistically significant main effect for Density (F = 6.12, p = .031, η2 = .17) and Supervision (F =
+15.46, p = .002, η2 = .42) with a suggestive interaction (F = 4.36, p = .061, η2 = .12).
+Generalization performance was also higher in the High-Supervision conditions (Dense: M = .94,
+M = .88, SD = .07; Sparse: M = .67, SD = .11). A Density × Supervision between-subjects ANOVA
+showed a statistically significant main effect for Supervision (F = 9.14, p = .012, η2 = .25) and
+Density (F = 14.03, p = .003, η2 = .39), but not an interaction (p = .17). Additionally,
+generalization performance was above chance (.50) for all conditions (ts > 8.15, ps < .005),
+except for the Low-Supervision/Sparse condition (t = 2.54, p = .13).
+Selective Attention, Category Structure, and Supervision in Category Learning 20
+accuracy. Note that error bars represent +/- 1 SEM.
+The results from pigeons showed a tendency for an interaction in the trials-to-criterion
+data, which implies that pigeons benefited more from a stronger supervisory signal in the
+Sparse condition than in the Dense condition. During generalization, pigeons showed both an
+effect of Density and Supervision unlike the adults’ pattern. We further investigated the
+differences between pigeons and adults in the next section by conducting a computational
+model simulation.
+4. Computational Model Simulation
+The results across the two experiments suggested that the ability to selectively attend
+declined from adults to pigeons, as shown by the increase in the number of trials to reach the
+learning criterion, and by the decrease in accuracy of generalization performance.
+Additionally, generalization performance was not statistically different from chance in pigeons
+in the Low-Supervision/Sparse condition, indicating that pigeons may not have optimally
+attended to the category-relevant dimension and simply learned the exemplars by rote
+Selective Attention, Category Structure, and Supervision in Category Learning 21
+memory. Finally, the effect of supervision was more prominent in pigeons than in adults; in
+addition, the benefit of supervision for pigeons was greater in the sparse categories than in
+the dense categories during learning.
+The overall pattern across the two participant groups can be explained by differences in
+the ability to selectively attend to the category relevant information. If selective attention is
+highly functional, then it should be easier to pinpoint the category relevant information and to
+ignore the category irrelevant information. As a consequence, category learning will be faster
+and generalization accuracy will be higher. On the other hand, if selective attention is less
+functional, pinpointing the relevant information will be difficult and category learning may have
+to rely on remembering each exemplar (i.e., rote memory). Generalization will also be less
+robust because the overall similarity of the exemplars will have to be used when categorizing
+the exemplars rather than only relying on the category relevant information.
+To further examine this account, we used a computational model of category learning.
+Here, we chose ALCOVE (Kruschke, 1992; Lee & Navarro, 2002) to identify which component of
+the model contributes to the overall pattern that changes across groups. ALCOVE is an
+exemplar-based network model that represents the exemplars in a multidimensional space and
+incorporates attentional learning. Importantly, ALCOVE is able to simulate not just an outcome
+but also the learning process of category learning (c.f., Nosofsky, 1986).
+We took a simulation approach where we changed each parameter one at a time and
+examined the model predictions. The four main parameters of ALCOVE are: the attention
+learning rate (𝝀 ), the output learning rate (𝝀 ), the decision scaling parameter (𝜙), and the
+ɑ 𝑤
+specificity constant (c). Most importantly, the 𝝀 parameter controls how flexibly the model is
+Selective Attention, Category Structure, and Supervision in Category Learning 22
+able to allocate attention throughout learning; it has been a useful parameter in explaining the
+results of various category learning studies (e.g., Nosofsky & Kruschke, 2002). The 𝝀 parameter
+controls how well the model associates each exemplar to the correct responses (i.e., category
+membership). The 𝜙 parameter reflects the consistency of choice responses (i.e., temperature
+parameter in a softmax function). Finally, the c parameter controls the activation of the
+psychological exemplar space and tunes (or scales) the psychological exemplar space. A smaller
+c parameter will activate more exemplars near the encountered exemplar, while a larger c
+parameter will only activate the encountered exemplar in the psychological space. The
+simulation involved the same category structures and design used in the current study, and the
+parameters were fixed to c = 5, 𝜙 = 2.5, 𝝀 = .001, and 𝝀 = .001 when they were not varied in
+ɑ 𝑤
+the simulation3. We used the catlearn R package (Wills et al., 2017) to implement the
+simulation, and ran the simulation 100 times for each condition, where the order of the
+presented exemplars was randomized in each simulation.
+results from changing a single parameter while fixing the other parameters. The dots in the
+plots represent the mean values across 100 simulations. The top row presents trials-to-
+criterion, and the bottom row presents generalization accuracy as the parameter value is
+changed. If the parameter is crucial for explaining differences across groups when increasing
+the parameter values, then trials to criterion will decrease and generalization accuracy will
+We were not able to obtain stable estimates of the parameters by fitting the data and instead used a simulation approach.
+The values were chosen within a range that were selected from previous studies. There were no qualitative differences when
+we used different values for the fixed parameters. Simulation code and results can be found in our OSF repository
+Selective Attention, Category Structure, and Supervision in Category Learning 23
+the other hand, the c parameter shows an increase in both learning to criterion and
+𝝀 , and (D) 𝝀 . For each column, the top row presents trials to reach a learning criterion of .85
+ɑ 𝑤
+for a given parameter, and the bottom row presents corresponding generalization accuracy at
+test. To examine the effect of these parameters, each was changed one at a time with the other
+parameters being fixed to c = 5, 𝜙 = 2.5, 𝝀 = .001, and 𝝀 = .001. Across the simulation results,
+ɑ 𝑤
+only 𝝀 shows a decrease in trials to criterion and an increase in generalization accuracy with
+increases in the parameter value.
+We further examined how the model deployed attention to the category dimensions as
+The top row shows the trials to criterion prediction, the middle row shows the generalization
+accuracy prediction, and the bottom row shows how attention was allocated to all of the
+Selective Attention, Category Structure, and Supervision in Category Learning 24
+dimensions after reaching criterion, where the category relevant dimension is presented in red.
+long time to reach criterion (i.e., 3344 trials) and, even after reaching criterion, generalization
+accuracy is low (i.e., .53). The model also shows that attention is distributed across all of the
+dimensions and is not focused on the category relevant dimension (i.e., red bar). This pattern
+resembles the results in the Low-Supervision/Sparse condition with pigeons
+, who seem to exhibit little or no selective attention. On the other hand, when the 𝝀
+required to reach criterion and generalization accuracy is high (i.e., .86). Additionally, attention
+is heavily focused on the category relevant dimension depicted in the red bar. In sum, the
+simulation results using ALCOVE supported our conclusion that selective attention is a critical
+factor in understanding the behavioral differences between human adults and pigeons.
+condition. Each column shows the simulation result of the model for a specific 𝝀 value
+presented on the top of each column while the other parameters were fixed (i.e., c = 5, 𝜙 = 2.5,
+Selective Attention, Category Structure, and Supervision in Category Learning 25
+and 𝝀 = .001). The top row presents the trials to criterion, where the criterion was .85. The
+middle row presents accuracy during the generalization phase after the criterion was reached.
+The bottom row presents attention weights after the criterion was reached, where the bar in
+red represents the attention weight for the category-relevant dimension.
+5. General Discussion
+In the current study, we investigated the effects of selective attention, category
+structure, and supervision on category learning. We examined two participant groups–human
+adults and pigeons–that we suspected might exhibit different levels of selective attention, and
+manipulated the structure of the to-be-learned category in terms of the density and level of
+supervision during learning. Results showed that: (1) the group that displayed the greater level
+of selective attention, human adults, learned the categories faster and generalized to new
+exemplars better, (2) overall learning was faster in the Dense condition than in the Sparse
+condition, and (3) the benefit of supervision became more prominent when training involved
+sparse categories. By utilizing a computational model of category learning (i.e., ALCOVE), we
+were able to show that these patterns of performance were well explained by the parameter
+that controls the ability to flexibly attend to different dimensions (i.e., 𝝀 ).
+5.1. Selective attention
+Most importantly, our results revealed that the functionality of selective attention
+greatly affects category learning. As the ability to focus on the category-relevant dimension
+increased (e.g., human adults), fewer trials were required to learn the categories and more
+individuals learned the categories by the end of the training phase. Moreover, greater attention
+to the relevant dimension prevented distraction by the novel irrelevant features in the
+generalization trials, thereby promoting better generalization. These results are in line with
+Selective Attention, Category Structure, and Supervision in Category Learning 26
+previous developmental studies, which showed that infants and children do not fully focus their
+attention on the category-relevant information during learning due to their immature selective
+attention (Best et al., 2013; Deng & Sloutsky, 2015, 2016). As a consequence, infants and
+children have shown slower learning and poorer generalization. Previous studies have also
+shown that pigeons tend to distribute their attention, rather than to selectively attend to the
+category-relevant dimensions (Castro et al., 2020). Thus, it seems that a fully developed PFC
+may be necessary to focus attention on relevant information and/or suppress attention to
+irrelevant or less reliable information.
+5.2. Category structure
+The advantage of the Dense category structure held for both humans and pigeons, and
+it was observed regardless of the amount of supervision. The Dense category structure required
+fewer trials to learn and showed better generalization than the Sparse category structure.
+There are at least two possible explanations for this result. First, the Dense category had more
+category-relevant dimensions (three out of six) than the Sparse category (one out of six).
+Therefore, there is a greater chance for the learners to discover a relevant dimension in the
+Dense condition. Additionally, as the total number of dimensions did not change between the
+Dense and Sparse structures, there were also fewer category-irrelevant dimensions in the
+Dense structure; this too could decrease the level of distraction compared to the Sparse
+structure.
+The former possibility is related to the ability to focus on the relevant information,
+whereas the latter possibility is related to the ability to filter out irrelevant information. Both
+abilities have been conceptualized under the term "selective attention.” However, studies show
+Selective Attention, Category Structure, and Supervision in Category Learning 27
+that these two abilities may not entail the same construct in category learning (e.g., Gao et al.,
+2024; Unger & Sloutsky, 2023). Theories of category learning have not effectively distinguished
+these two constructs (e.g., ALCOVE does not have a separate parameter for focusing and
+filtering), and it is not possible to disentangle which sub-construct may have been responsible
+for the participant differences in the current study. In future research, it would be useful to
+distinguish the contributions of focusing and filtering to understand how density affects
+category learning and generalization.
+Another, but not mutually exclusive explanation for the Dense category advantage
+stems from the fact that the relevant dimensions in the Dense category had multiple features
+that were identical (i.e., three red triangles vs. three blue semi-circles). The repetitive
+configurations may make these features more salient and increase the overall discriminability
+of the training stimulus, perhaps also helping the learner discriminate this information as
+category-relevant to optimize their attention (e.g., Hammer, 2015; Hammer & Sloutsky, 2016).
+This argument is also supported by the fact that most of the participants in the two groups
+were able to learn and generalize the Dense category without high supervision.
+5.3. Supervision
+Overall, supervision aided learning either through reducing the number of trials to learn
+the category and/or improving generalization accuracy. As to the interactions with category
+density, the results differed from previous studies that examined the effect of supervision
+across different category densities. For example, Kloos and Sloutsky (2008) found that, although
+supervision helped learning sparse categories, it hindered learning dense categories. As noted
+earlier we believe that the discrepancy stems from the way supervision was implemented. In
+Selective Attention, Category Structure, and Supervision in Category Learning 28
+Kloos and Sloutsky (2008), supervision was provided through verbal instructions, which
+described all of the features that were relevant to category membership. Although verbal
+instruction can be helpful, as it provides more detailed information of category membership
+than simple correct/incorrect feedback, it can also increase cognitive load for the participant
+and hinder learning (e.g., Zeithamova & Maddox, 2006). In the current experiment, it is possible
+that, because supervision was provided through response feedback, no such additional
+cognitive load could hinder category learning; now, category learning was facilitated.
+The benefit of supervision interacted both with the ability to selectively attend and with
+category density. For adults, supervision only aided in decreasing the trials-to-criterion, but did
+not affect the proportion of learners or the accuracy of category generalization. It seems that
+the absence of an effect for adults in the latter two measures was due to their performance
+being near ceiling in the Dense condition. This result implies that adults were capable of
+learning and generalizing the Dense categories and there was no room for supervision to afford
+additional assistance. On the other hand, there was a numerical difference in the Sparse
+conditions in terms of the proportion of learners (Low-Supervision: .72, High-Supervision: .84)
+and category generalization (Low-Supervision: .78, High-Supervision: .88). For pigeons, there
+was a benefit of supervision in the trials-to-criterion4, and generalization. Although the
+magnitude of the benefit was not different between the Dense and Sparse conditions (i.e., no
+interaction effect), it is noteworthy that pigeons’ generalization performance was not
+statistically different from chance in the Low-Supervision Sparse condition.
+Note that the current experiment intended to train the pigeons until they learned. Therefore, comparing the proportion of
+learners across conditions in the pigeon group is misleading.
+Selective Attention, Category Structure, and Supervision in Category Learning 29
+The fact that pigeons did not generalize the sparse category in the low-supervision
+condition, even after learning the training exemplars, implies that selective attention may not
+have been utilized during learning in the Low-Suversion/Sparse condition. Instead, it is possible
+that pigeons in this condition stored all of the exemplars via rote memory. Therefore, in the
+generalization phase, they failed to use the category-relevant dimension which was embedded
+within new features. The explanation is supported by the fact that pigeons failed to generalize
+even when they had more trials to learn the categories than the adults (i.e., 10,944 trials, which
+is equivalent to 304 repetitions of the 36 exemplars, compared to human adults who were only
+tested up to 144 trials, which is equivalent to 4 repetitions of the whole set). Moreover, in the
+attention deployment that lacked focusing on the category-relevant dimension, which was a
+consequence of a low attention learning parameter (i.e., 𝝀 ).
+5.4. Conclusion
+In the current study, we examined how category learning is affected by selective
+attention, category structure, and supervision. We specifically showed how selective attention
+affects category learning, while interacting with category structure and supervision, based on
+the functionality of selective attention in two different species: human adults and pigeons.
+Supervision overall aids category learning, although the amount of benefit depends on whether
+the category structure requires selective attention, and whether selective attention is fully
+functional. Based on the structure of the category, selective attention may not be crucial for
+category learning with dense categories. However, when the structure can benefit from
+selective attention (e.g., with sparse categories), the functionality of selective attention can
+Selective Attention, Category Structure, and Supervision in Category Learning 30
+affect how the categories are learned–either through optimizing attention to the category-
+relevant dimension (e.g., human adults) or through not optimizing attention and relying on rote
+memory or simple association strength (e.g., pigeons).

@@ -1,0 +1,530 @@
+An analytical framework-based pedagogical method for scholarly community
+coaching: A proof of concept
+Ruining Jin 1, Giang Hoang 2, Thi-Phuong Nguyen 3, Phuong-Tri Nguyen 4, Tam-Tri Le 5,6,
+Viet-Phuong La 5,6, Minh-Hoang Nguyen 5,6,*, Quan-Hoang Vuong 5,6
+1 Civil, Commercial and Economic Law School, China University of Political Science and Law,
+Beijing, China
+2 Monash Business School, Monash University, Victoria 3145, Australia
+3 Centre for Crop Systems Analysis, Wageningen University, P.O. Box 430, 6700 AK
+Wageningen, The Netherlands
+4 Securities Research and Training Center, State Security Commission, Ho Chi Minh 700000,
+Vietnam
+5 Centre for Interdisciplinary Social Research, Phenikaa University, Yen Nghia Ward, Ha
+Dong District, Hanoi 100803, Vietnam
+6 A.I. for Social Data Lab(AISDL), Vuong & Associates, Hanoi 100000, Vietnam
+* Corresponding: hoang.nguyenminh@phenikaa-uni.edu.vn
+Un-peer-reviewed manuscript
+Version 5
+December 29, 2022
+* * * * *
+Abstract
+Working in academia is challenging, even more so for those with limited resources and
+opportunities. Researchers around the world do not have equal working conditions. The
+paper presents the structure, operation method, and conceptual framework of the SM3D
+Portal’s community coaching method, which is built to help Early Career Researchers
+(ECRs) and researchers in low-resource settings overcome the obstacle of inequality and
+start their career progress. The community coaching method is envisioned by three science
+philosophies (cost-effectiveness, transparency spirit, and proactive attitude) and
+established and operated based on the Serendipity-Mindsponge-3D knowledge (SM3D)
+management framework (i.e., mindsponge thinking and Bayesian Mindsponge Framework
+analytics serve as the coaching program’s foundational theory and analytical tools). The
+coaching method also embraces Open Science’s values for lowering the cost of doing
+science and encouraging the trainees to be transparent, which is expected to facilitate the
+self-correcting mechanism of science through open data, open review, and open dialogue.
+Throughout the training process, members are central beneficiaries by gaining research
+knowledge and skills, acquiring publication as the training’s product, and shifting their
+mindsets from “I can’t do it” to “I can do it,” and at the same time transforming a mentee to
+be ready for a future mentor’s role. The coaching method is thus one of the members, for
+the member, by the members.
+Keywords: Scholarly community coaching, ECRs, low-resource settings, mindsponge theory,
+cost-effectiveness, research integrity, open science, analytical framework
+1. Method details
+In this article, we aim to present a community coaching platform that is built to support
+Early Career Researchers (ECRs) and researchers in low-resource settings in doing
+community coaching method envisioned by three science philosophies of transparency
+(Vuong, 2020a), cost-effectiveness (Vuong, 2018), and proactiveness (Vuong, 2019). It has
+operated based on the SM3D (Serendipity-Mindsponge-3D) knowledge management
+system (Vuong, Le et al., 2022). The framework is constituted by the mindsponge theory
+(Vuong, 2023; Vuong & Napier, 2015), serendipity theory (Vuong, 2022c), the bayesvl
+package (La & Vuong, 2019), and the Bayesian Mindsponge Framework (BMF) analytics
+(Nguyen, La, Le, & Vuong, 2022a, 2022b; Vuong, Nguyen, & La, 2022). Before delving into
+the structure, operation method, and conceptual framework of the SM3D Portal’s
+community coaching method, it is essential to understand the reasons for the platform’s
+development.
+Fierce competition in academia and evaluating academics based on publication and citation
+metrics are generally challenging for all researchers. “Publish or perish” is a well-known
+maxim representing in stark terms the pressure academics face to publish to advance their
+career (El Halabi et al., 2021). The pressure appears more striking for early career
+researchers (ECRs) and researchers in low-resource countries, for they are usually
+deprived of guidance and lack resources, experience, and knowledge (Callier & Polka,
+2015). As a result, they usually encounter multiple setbacks, central to which are mental
+distress and career dropout.
+On the job search front, since it is not easy for ECRs to obtain tenure in their early career
+stage, they might work multiple successive fixed-term contracts or physically relocate to
+take up employment opportunities (Fisher & James, 2022). The ongoing precarity can
+cause anxiety and hurt their ability to maintain career momentum and trajectory. Another
+culprit of ECRs is possible career dropout. This occurs because, despite efforts, ECRs
+sometimes cannot publish their work due to their failure to pass rigorous review coupled
+with a low rate of acceptance by highly indexed journals or lack of experience impacted by
+their little exposure to avenues available for publication. Prolonged stress, burnout, and
+limited job opportunities by a global stagnation in academic positions accompanied by an
+increase in Ph.D. graduates (Ghaffarzadegan, Hawley, Larson, & Xue, 2015) can overrule
+the resilience of researchers, which, in turn, can lead to their decision to quit academic
+careers.
+These repercussions have been exaggerated when the budget for scientific research is
+being cut globally (in both developing and developed countries), and the cost of doing
+science is getting more costly. Conducting research incurs many expenses, such as
+professional fees, field schedules fees, costs associated with laboratory experiments, and
+subscription fees to databases. Other costs during the publication of scientific work include
+editing services, article processing charges, and open access fees. These are not easily
+affordable, especially for ECRs and researchers from low-income countries with limited
+funds.
+The situation is further deteriorated by pervasive budget cuts worldwide. In one instance,
+Guglielmi (2019) reported that Mexico’s chronically underfunded science now suffered a
+broader cost-cutting measure leading to the dismissal of researchers in many institutions;
+alternatively, researchers themselves needed to run crowdfunding campaigns. Budget cut
+also fuels frustration among academics in advanced countries such as Japan and Australia
+(Editorial, 2017; Mallapaty, 2019), so collaborating with peers in developed countries to
+access more resources seems less feasible for researchers in developing countries (Nguyen
+& Vuong, 2021). Thus, costly scientific work and its publication, coupled with declining
+funding rates, create an environment where ECRs and researchers in low-resource settings
+face higher risks than ever before (Maher & Anfres, 2016).
+At the same time, there is an ongoing concern about scientific misconduct due to pressure
+from publication metrics fulfillment. Prevalent general science misconduct includes, but is
+not limited to, fabricated data, paper mills, and data manipulation. This sent a shockwave to
+the public when many prestigious organizations and journals conducted the retraction of
+papers due to fraud or suspected fraud (Fang, Steen, & Casadevall, 2012). In one instance,
+Nobel Prize winner Gregg Semenza has retracted four papers from the Proceedings of the
+National Academy of Sciences (PNAS) for concerns about images in the articles (Oransky,
+2022a). Apart from PNAS, Nature, Science, and the New England Journal of Medicine have
+also faced massive retraction incidents. Another instance is that the Institute of Electrical
+and Electronic Engineers (IEEE) has recently retracted 400 peer-reviewed articles
+(Oransky, 2022b). In the same vein, social science and psychology, in particular, also face
+their issues, described as reproducibility crises and discussed in some studies, such as the
+ones by Camerer et al. (2018) and Nosek et al. (2015).
+Given the deteriorating situation of scientific misconduct as well as the pressure and
+deprivation of resources borne by ECRs and low-resource-setting researchers, one of the
+platform founders has proposed his opinions on many prestigious scientific journals (e.g.,
+Nature, Nature Human Behaviour, and Learned Publishing) and scientific forums (e.g., LSE
+Impact Blog, Scientific Data Updates, and Times Higher Education) (Vuong, 2017, 2018,
+2019, 2020a, 2020b, 2022a, 2022b).
+Specifically, the foundational philosophy suggests that research integrity can be enhanced
+in many ways, from open science to self-critique and other practices, which should then be
+well communicated to ERCs in the early stage of their career. Indeed, an open review
+system helps facilitate a transparent discovery process, leading to significant social benefits
+and improving public trust in science (Nosek et al., 2015). In addition, ECRs or researchers
+in developing countries can still progress in low-resource settings if they acquire a
+proactive attitude, cost-effectiveness consideration, and self-correcting spirit. These
+science philosophies have given birth to the SM3D Portal and invigorated it during its
+operation. The following section will present more details about how Vuong’s science
+philosophies have shaped and invigorated the platform.
+Taking into account obstacles encountered by ECRs and researchers from developing
+countries, the SM3D Portal was established to provide a platform to support them through
+on-the-job coaching activities using the Bayesian Mindsponge Framework analytics method
+and allow them to communicate and exchange knowledge. Since its foundation on 22nd June
+2022, the SM3D Portal has been training 10 ECRs and low-resource-setting researchers
+affiliated with institutions in Australia, China, Ethiopia, Fiji, Netherlands, New Zealand, and
+Vietnam. The training has led to not only the improvement in their research skills and
+publishing experience but also the completion of seven manuscripts, of which one was
+successfully published after four months (Nguyen, Khuc, et al., 2022).
+Therefore, this paper aims to present the SM3D Portal’s method-based pedagogical
+approach to assist ECRs and researchers from low-resource settings, hoping the model can
+be expanded and replicated. Our paper begins by laying out the background and
+motivations for supporting ECRs and researchers in low-resource settings. It will then
+discuss the coaching design or how the community coaching platform works. Afterward,
+we embark on the conceptual framework upon which the ECRs coaching is built. To
+elaborate, we explain how the platform creates an environment that can shift trainees’
+mindsets from “I can’t do it” to “I can do it.” The final part draws upon future directions.
+2. Coaching design
+2.1. Platform overview: Trainees as central beneficiaries
+The coaching is executed via an online platform named SM3D Portal. Mindsponge thinking
+and BMF analytics play the backbone theory and analytical tools in the coaching program.
+The Portal’s name roots from its establishment based on the Serendipity-Mindsponge-3D
+knowledge management framework, and it is freely accessible at
+in detail and linked to the related publications for references. The platform was initially
+created on 7th April and has been officially operated since 22nd June 2022 by the AISDL
+team. The team is also the creators of the mindsponge theory (Vuong, 2023), the
+serendipity theory (Vuong, 2022c), the bayesvl R package (La & Vuong, 2019), and the BMF
+analytical approach (Nguyen, La, et al., 2022a, 2022b).
+The platform aims to train and improve the research and publication skills of ECRs, which
+is specified in three major objectives:
+(i) Promote knowledge exchange and facilitate worldwide collaboration based on
+openness, transparency, equality, and innovation;
+(ii) Create opportunities for researchers, especially ECRs and those from the low-
+resource background, to participate in joint research projects utilizing the BMF
+analytics; and,
+(iii) Allow participants to discuss interesting findings, achieve products, and gain
+useful research skills with the core team’s theoretical, technical, and editorial
+Through the platform, the team aims to create collaborative projects in which trainees are
+the main beneficiaries by:
+1) Improving research knowledge and skills via rich experiences shared by the AISDL
+members who have (co)authored hundreds of peer-review research articles in a
+variety of disciplines, as well as serving as editors and reviewers of hundreds of
+other articles and books;
+2) Honing research skills and gaining confidence through the “learning-by-doing”
+process (i.e., practicing conducting study and writing manuscripts in real projects).
+It is not a theoretical class lesson per se, but the participants will be joining a
+collaborative project, from the initial conceptualization step to the final response-
+to-reviewer process; and
+3) enhancing the participants’ visibility via publications as a result of the training
+process. The publication must be a peer-reviewed journal, book chapter, or book
+(preferably indexed in major bibliographical databases, such as the Web of Science
+Throughout the training project, all the project members (trainees included) are
+considered collaborators who contribute to sharing ideas and completing the assigned
+tasks under the clear and reasonable guidance of the mentor from the AISDL team.
+Although the project mentor gives the directions and tasks of the project, the members are
+equally contributing to open discussions with the mentor to improve their understanding
+of the conceptual framework and fundamental theories behind the project scheme, which is
+sometimes not close to the trainees’ expertise. Moreover, all participants are equally
+credited, and their efforts will be valued appropriately through their actual contribution
+throughout project implementation.
+The most recent achievement of the coaching platform is making the first product co-
+authored by our members published in a qualified journal after four working months: the
+Journal of Risk and Financial Management (JRFM) (Nguyen, Khuc, et al., 2022). The journal
+is indexed in both Scopus and Web of Science databases. According to the ABDC Journal
+Quality List, issued by the Australian Business Deans Council, JRFM is rated B rank
+(belonging to the top 27.6% of 2,682 qualified journals). The journal is also affiliated with
+various scholarly societies, such as the International Engineering and Technology Institute
+(IETI), the Institute of Data Science and Artificial Intelligence (IDSAI), and the International
+Research Institute for Economics and Management (IRIEM). It should also be noted that
+the article’s Article Processing Charge (APC) was entirely handled by the team using the
+APC waiver of one of the team members.
+2.2. Philosophies behind the coaching platform
+The coaching design is envisioned by three core science philosophies: cost-effectiveness,
+transparency spirit, and proactive attitude (Vuong, 2018, 2019, 2020a). A cost-effective
+mindset and proactive attitude can help researchers strive in low-resource conditions. At
+the same time, the transparency spirit can contribute to reducing the cost of doing science
+and facilitating the self-correcting mechanism of science (Vuong, 2017). The intertwining
+of these philosophies can be easily observed through the platform operation and
+participant training methods.
+The coaching activities are built to guide trainees to conduct research using BMF
+analytics. To lower the cost of participating in the training, the team has the resources used
+for conducting research freely open, from the statistical software to the datasets.
+Specifically, the bayesvl package was created on the open-source R platform, allowing all
+researchers to utilize it for Bayesian inference for free (La & Vuong, 2019). The package’s
+guiding protocol and a brief version of BMF analytics are also published as open-access
+articles in MethodsX for free accessibility to the content (Nguyen, La, et al., 2022b; Vuong et
+al., 2020). In addition to the method, the team’s materials are also submitted to data
+journals, such as Scientific Data, Data in Brief, and Data (Ho et al., 2019; Nguyen, 2021;
+Nguyen, Ho, Nguyen, & Vuong, 2019; Vuong, 2016; Vuong, La, et al., 2021; Vuong et al.,
+2018), or deposited to open repositories, such as The Open Science Framework (OSF), to
+make it widely accessible and to enhance the reusability of the resources.
+During the training process, the team encourages participants to adopt a
+transparency spirit and a proactive attitude to make use of secondary data available in data
+journals (e.g., Scientific Data, Data Intelligence, Data in Brief, and Data), open data sharing
+platforms, and reliable open repositories (e.g., Mendeley Data, Havard Dataverse, Open
+Science Framework, Zenodo, Science Data Bank, etc.).
+To nurture the trainees’ transparency spirit, the team also uploads the completed
+manuscripts to preprint servers and announces them on the coaching platform, along with
+making the method and data open. By doing so, the team expects to receive early public
+feedback on the study quality for polishing before the official publication. Besides, in each
+research project, the team strives to make all the relevant codes and data used for
+conducting the study available in online repositories to encourage reproduction,
+reevaluation, and reuse. For example, some of the latest collaborative projects and their
+codes and data are deposited in the OSF Preprints and PsyArXiv Preprints:
+The three science philosophies are also expressed clearly through the design of the trained
+method of the coaching platform: the BMF analytics. With the following characteristics,
+BMF analytics can help researchers work effectively and efficiently with limited resources
+and promote open science (Nguyen & Vuong, 2022).
+First, BMF analytics is not a data-intensive method. As the analytics is the combination of
+mindsponge theory and Bayesian inference, it inherits the estimation power of Bayesian
+inference when the priors are correctly specified (McNeish, 2016; Uusitalo, 2007) and the
+reasoning strength of mindsponge theory based on set theory logic to improve the
+precision of prior specification (Vuong, Nguyen, et al., 2022). These advantages allow
+researchers to work well with small sample-size datasets.
+Second, the method allows users to capitalize on secondary data available in data journals
+and online repositories. The mindsponge theory’s generalization and flexibility in
+explaining human psychology and behaviors allow users to reconstruct used datasets to
+explore the studied phenomenon more deeply or reexamine the subject from the
+information-processing perspective. In addition, with its fundamental feature of treating all
+properties probabilistically and the assistance of Markov Chain Monte Carlo (MCMC)
+algorithms (Dunson, 2001; Gill, 2014; Lunn, Jackson, Best, Thomas, & Spiegelhalter, 2012),
+Bayesian inference can help users fit various types of models, ranging from parsimonious
+to highly hierarchical models (Cowles, 2013; Wagenmakers et al., 2018). This capability of
+BMF analytics has been tested and validated by several studies reusing materials in data
+journals for more in-depth research (Nguyen, 2021; Nguyen et al., 2019; Nguyen & Jones,
+2022a, 2022b; Nguyen et al., 2021; Vuong, Nguyen, & Le, 2021b). Two recent collaborative
+projects with trainees also employed datasets not designed and collected by the AISDL
+team, namely:
+- “Mindsponge-based investigation into the non-linear effects of threat perception
+and trust on recycled water acceptance” employed the dataset of Vila-Tojo et al.
+(2022b) and shed light on the non-linear relationships between threat
+perception, trust, and recycled water acceptance for drinking. The dataset had
+been used in the study of Vila-Tojo et al. (2022a) earlier.
+- “Examining the influence of generalized trust on life satisfaction across different
+education levels and socioeconomic conditions using the Bayesian Mindsponge
+Framework,” which employed the dataset of Martínez (2019) and argued that
+generalized trust might have different impacts on life satisfaction across
+education levels and socioeconomic conditions. The dataset had been used in the
+study of Martínez, Estrada, and Prada (2019) earlier.
+For completing the training process, participants are encouraged to adopt a proactive
+attitude. Specifically, when giving tasks to trainees, the mentor focuses solely on
+communicating the project’s core ideas and directions to complete the tasks but not exactly
+what to do. Doing so gives trainees the freedom to explore new knowledge and proactively
+apply creative thinking when completing tasks. Later, the mentor will validate the
+knowledge and thoughts and give feedback to the trainees. Additionally, a strict deadline is
+vital to maintain self-responsibility, discipline, and teamwork productivity during a project.
+Therefore, the mentor and trainees reach an agreement on the deadline for the task to be
+completed at the beginning of the project. Then, the mentor is in charge of keeping track of
+the task progress and deadline, while trainees are responsible for completing the given
+task by the deadline.
+3. Exemplary training process
+During the training process, each trainee is assigned a particular task along with the
+direction to finalize the given task by the mentor. Such tasks can be writing the literature
+review, doing the analysis, describing the materials or method, presenting the results,
+and/or adding more ideas to the discussion. To demonstrate the training process more
+clearly, we summarize how we guide our trainees to perform the Bayesian analysis and
+result presentation in the recently finalized project: “Exploring factors contributing to
+creativity performance among entrepreneurs using the Bayesian Mindsponge Framework.”
+In the first step, we selected a trainee with relevant background and willingness to learn
+more about analytical knowledge. The selected trainee was later provided with an
+overview of the project and asked whether he/she was interested in joining the project and
+conducting the Bayesian analysis. We would not disclose the trainee’s identity due to
+privacy issues. However, more details about the trainee will be given upon reasonable
+request and the trainee’s acceptance.
+After the trainee accepted to take on the Bayesian analysis task, the mentor (M.-H.N.)
+provided the trainee with the provided data and codes employed to perform the Bayesian
+analysis tasks, along with the instruction. The instruction includes:
+1) How to use the data to proxy the studied subjects (e.g., entrepreneurs’ creativity,
+information within the entrepreneurs’ minds, and information from beyond the
+entrepreneurs’ minds),
+2) How to construct and fit the models using the bayesvl package, and
+3) How to present the results in a transparent, logical and concise way.
+The mentor ran the codes several times to ensure that the code operated well before
+sending them to the trainee. For pedagogical purposes, the code was separated into four
+steps with a clear explanation for each step: 1) preparing the data, 2) constructing the
+model, 3) fitting the model, and 4) visualizing the results and diagnoses. The mentor also
+provided the trainee with appropriate reading materials to understand the code and its
+meaning and encouraged the trainee to proactively ask questions to which the answers
+cannot be found in the provided materials. For example, the Bayesian analysis protocol
+using bayesvl was sent to the trainee (Vuong et al., 2020); the mentor indicated the
+sections containing information that helped answer the trainee’s questions in the
+methodological book (Vuong, Nguyen, et al., 2022). The trainee used the following code
+snippet to prepare the data and construct Model 4 in the study:
+# Preparing data
+dat <- read.csv("C:/Users/ACER/… /2015Ent3071.vn.goc.csv", header = T)
+require(dplyr)
+dat$TransMind <-
+case_when(
+dat$X19.msponge %in% c("strong") ~ 4,
+dat$X19.msponge %in% c("some") ~ 3,
+dat$X19.msponge %in% c("negl") ~ 2,
+dat$X19.msponge %in% c("none") ~ 1
+dat$InternalInfor <-
+case_when(
+dat$X1.job %in% c("hmr") ~ 1,
+dat$X1.job %in% c("salesm") ~ 1,
+dat$X1.job %in% c("pom") ~ 1,
+dat$X1.job %in% c("finance") ~ 1,
+dat$X1.job %in% c("admin") ~ 1,
+dat$X1.job %in% c("none") ~ 0
+dat$ExternalInfor <-
+case_when(
+dat$X10.failurel %in% c("a") ~ 3,
+dat$X10.failurel %in% c("b") ~ 2,
+dat$X10.failurel %in% c("c") ~ 1
+dat$EvaluatedSuccess <-
+case_when(
+dat$X23.chance %in% c("certain") ~ 4,
+dat$X23.chance %in% c("high") ~ 3,
+dat$X23.chance %in% c("med") ~ 2,
+dat$X23.chance %in% c("low") ~ 1
+dat$Creativity <-
+case_when(
+dat$X14.inno %in% c("a") ~ 4,
+dat$X14.inno %in% c("b") ~ 3,
+dat$X14.inno %in% c("c") ~ 2,
+dat$X14.inno %in% c("d") ~ 1
+dat$TimeforEntre <-
+case_when(
+dat$X7.tforstart %in% c("g24") ~ 3,
+dat$X7.tforstart %in% c("b1224") ~ 2,
+dat$X7.tforstart %in% c("less12") ~ 1
+keeps <- c("TransMind","InternalInfor", "ExternalInfor", "Creativity","TimeforEntre")
+dat <- dat[keeps]
+dat<-na.omit(dat)
+# Design the model 4: Uninformative priors = norm (0,10)
+library(bayesvl)
+model4 <- bayesvl()
+model4 <- bvl_addNode(model4, "Creativity", "norm")
+model4 <- bvl_addNode(model4, "ExternalInfor", "norm")
+model4 <- bvl_addNode(model4, "InternalInfor", "binom")
+model4 <- bvl_addNode(model4, "TimeforEntre", "norm")
+model4 <- bvl_addNode(model4, "TransMind", "norm")
+model4 <- bvl_addNode(model4, "ExternalInfor_TransMind", "trans")
+model4 <- bvl_addArc(model4, "TransMind", "ExternalInfor_TransMind", "*")
+model4 <- bvl_addArc(model4, "ExternalInfor", "ExternalInfor_TransMind", "*")
+model4 <- bvl_addNode(model4, "InternalInfor_TransMind", "trans")
+model4 <- bvl_addArc(model4, "TransMind", "InternalInfor_TransMind", "*")
+model4 <- bvl_addArc(model4, "InternalInfor", "InternalInfor_TransMind", "*")
+model4 <- bvl_addArc(model4, "ExternalInfor", "Creativity","slope")
+model4 <- bvl_addArc(model4, "ExternalInfor_TransMind","Creativity","slope")
+model4 <- bvl_addArc(model4, "InternalInfor", "Creativity", "slope")
+model4 <- bvl_addArc(model4, "InternalInfor_TransMind", "Creativity", "slope")
+model4 <- bvl_addArc(model4, "TimeforEntre","Creativity","slope")
+model_string <- bvl_model2Stan(model4)
+cat(model_string)
+The trainee could check whether the model was correctly constructed using the
+bvl_bnPlot() function, which displayed the logical network of the built model.
+# display the logical network
+bvl_bnPlot(model4)
+* * * Visualized logical network of Model 4 * * *
+Then, the trainee could use the following code snippet to fit the model and present the
+estimated results.
+# fit the model using appropriate technical parameters
+model4 <- bvl_modelFit(model4, dat, warmup = 2000, iter = 5000, chains = 4)
+# present estimated results
+summary(model4)
+Parameters Mean SD n_eff Rhat
+Constant 1.97 0.09 6211 1
+ExternalInfor 0.20 0.06 3989 1
+ExternalInfor*TransMind 0.05 0.01 3731 1
+InternalInfor 0.14 0.12 3814 1
+InternalInfor*TransMind 0.01 0.04 3734 1
+TimeforEntre -0.09 0.02 6760 1
+One of the fundamental steps in interpreting Bayesian inference results is using trace plots,
+Gelman-Rubin-Brooks plots, and autocorrelation plots to diagnose the convergence of the
+estimated results. Therefore, the mentor also provided the trainee with the code snippets
+to visualize those plots.
+For visualizing trace plots:
+# visualize trace plots
+bvl_plotTrace(model4)
+* * * Visualized Model 4’s trace plots * * *
+For visualizing Gelman-Rubin-Brooks plots:
+# visualize Gelman-Rubin-Brooks plots
+bvl_plotGelmans(model4, row = 3, col=2)
+* * * Visualized Model 4’s Gelman-Rubin-Brooks plots * * *
+For visualizing autocorrelation plots:
+# visualize autocorrelation plots
+bvl_plotAcfs(model4, row=3, col = 2)
+* * * Visualized Model 4’s autocorrelation plots * * *
+Displaying the parameters’ posterior distributions and credible intervals is the main
+strength of Bayesian inference. Thus, the mentor provided the trainee with the code
+snippet to plot Model 4’s posterior distributions and their credible intervals at 89%.
+# visualize posterior distributions with credible intervals
+bvl_plotParams(model4, 2, 3, credMass = 0.89)
+* * * Visualized Model 4’s posterior distributions with credible intervals * * *
+After the trainee had successfully constructed and fitted all the models (there are four
+models in total), the mentor continued to instruct the trainee on how to present those
+results in the manuscript and recommended the trainee some definitive studies for
+reference (Nguyen et al., 2021; Vuong, Nguyen, & Le, 2021a). More details of the study’s
+4. The conceptual framework
+In this section, we employ the mindsponge theory and BMF analytics to construct a
+conceptual framework explaining how we create an environment that helps shift trainees’
+mindsets from “I can’t do it” to “I can do it.” The whole mindset-shifting process includes
+three stages: 1) the beginning stage, 2) the transitional stage, and 3) the final stage.
+3.1. Beginning stage
+For ECRs and low-resource researchers, their collective belief system prior to the training
+is mainly “I can’t do it” due to many setbacks impeding their professional development. The
+low-resource context in developing countries is a major obstacle for many researchers,
+especially ECRs, to progress in their academic careers. They lack mentors, funding,
+literature, and research writing skills (Nchinda, 2002). Their publishing-related knowledge
+is also limited, so their research practices do not often meet the international standards of
+scientific conduct and ethics, and they can be easily ripped off by “predatory journals”
+(Jones, 2015).
+Even for ECRs in developed countries, despite being able to access funding, many still face
+difficulties, such as insufficient support and research impairment due to the fierce
+competition. McAlpine and Amundsen (2015) indicate two types of challenges that ECRs
+usually encounter: day-to-day challenges (e.g., caused by failed experiments and the
+unpredictable nature of scientific work) and longer-term challenges (e.g., institutional and
+societal factors-caused challenges such as unsupportive supervisors and ill-connectedness
+to department structures). The COVID-19 lockdown also exacerbated the research
+impairment of ECRs as they could not practice their research skills during the data
+collection process (Byrom, 2020).
+Altogether, insufficient support and resources lead to low academic recognition and
+publishing struggles for ECRs and low-resource-setting researchers. Meanwhile,
+governments’ and institutions’ resource allocation (e.g., funding, promotion, and tenure)
+based on academics based on publication and citation metrics also greatly hinder ECRs’ and
+low-resource-setting researchers’ opportunities to improve their academic records and
+worsen their publishing struggles. Nicholas et al. (2017) imply that, on average, ECRs could
+only be named as the first author for one-third to one-half of academic papers they
+contributed to and did not have much influence on which journal to submit their papers.
+Given that the infosphere in which a person lives substantially influences his/her mindset,
+such a fierce-competitive and limited-resource environment can easily inject the thinking
+among ECRs and researchers before participating in the SM3D Portal’s community
+coaching.
+3.2. Transitional stage
+The SM3D Portal attempts to create an environment where ECRs and low-resource
+researchers can see and capitalize on the opportunities to grow and continue to nurture
+their motivations to thrive. In other words, the platform provides them with direct support
+to change their pessimistic infosphere to a more optimistic one. The mindset-shifting
+process can be separated into three steps:
+1) In the first step, the AISDL team will give ECRs, and low-resource researchers
+access to navigational and useful information and gain the opportunity to grow
+(Vuong, 2022c). For example, the team will provide potential research directions
+to new trainees by inviting them to participate in research projects suitable for
+their careers. Moreover, they are guided to create academic profiles on important
+scholarly databases (e.g., Scopus, Web of Science, ORCID, Google Scholar, and
+ResearchGate) and familiarize themselves with useful scientific research tools (e.g.,
+R software, Microsoft Office, Zotero, and Drawio).
+2) In a research project, they will be coworking with mentors to hone their research
+skills, gain confidence when performing their tasks, and receive immediate support
+from the mentor. All the information is provided to the trainees little by little
+through the collaborative process, including the advanced theoretical and technical
+supports for performing Bayesian Mindsponge Framework (BMF) analytics. When
+the manuscripts are finalized, the trainees will have a chance to experience
+working with preprint servers and different publishing systems and gain more
+journal-submission-related knowledge and skills (e.g., journal-specific format-
+adjusting, reviewer-feedback-based modification, evaluation of reviewer’s
+comments, and methods responding to reviewers).
+3) The training process is only considered completed when the manuscript is
+successfully published in a peer-review journal, preferably in the Scopus and Web
+of Science databases (for increased visibility). Sometimes, a trainee needs several
+training rounds to gain confidence and acquire sufficient knowledge and skills for
+conducting research independently.
+Based on our training experience, there is also a possibility that trainees’ mindsets bounce
+back to the low-confidence stage after multiple publications in academic journals. To
+elaborate, after several successful publications with the help of mentors and the
+contribution of other teammates, trainees were likely to overestimate their actual research
+capabilities and become arrogant. The arrogance makes them think that conducting
+research is easy. As a result, they became frustrated when facing publishing and
+recognition problems again. Eventually, those trainees became panic and lost confidence
+rapidly, shifting their mindsets back to the initial stage.
+3.3. Final stage
+The final stage solidifies trainees’ “I probably can do it” mindsets and turns them into “I can
+do it” mindsets. Trainees reach this stage (or have a manuscript officially published) when
+they have already acquired the skills and sufficient knowledge to meet the standard of
+scientific conduct and ethics, so they are encouraged to conduct independent research. The
+research skill sets and publishing experience will make trainees more competitive in
+academia and have more chances to get recognized and promoted.
+Trainees at this stage would also undergo an inevitable experience: many manuscript
+rejections. However, such rejections are treasures for the trainees to grow. When an ECR or
+researcher in low-resource setting work alone, a rejection will harm his/her confidence
+and increase the doubt over his/her study’s values and research abilities. On the contrary,
+when in the community coaching system, the mentor will evaluate the rejection notice and
+explain to the trainees the possible reasons behind the rejection. Manuscript rejection does
+not always associate with the manuscript’s quality; instead, it could also stem from the
+journal’s scope, the editor’s biases, research values, and the journal’s political correctness.
+Through those experiences, the mentor will also elucidate how science’s filtering and self-
+correcting systems work. As a result, trainees will gain more knowledge about the
+publishing system and recognize the weaknesses for self-improvement.
+This perception about the values of rejection comes from one of our team’s saying:
+“We celebrate less on victory; we celebrate more on the
+failure that helps us recognize our weakness.”
+5. Future directions
+Working in academia is challenging, and academic work, to some people, can be
+unnecessarily costly due to inequality issues. Thus, the SM3D Portal offers a community
+coaching method to support Early Career Researchers (ECRs) and researchers in low-
+resource settings in doing research using BMF analytics. The method is envisioned and
+designed following three core science philosophies: cost-effectiveness, transparency spirit,
+and proactive attitude.
+Although the coaching method has acquired several outcomes supporting ECRs and low-
+resource researchers, it still has limitations. Increasing the number of trainees, the trainees’
+backgrounds, and training quality require more human and financial resources, which are
+not currently available.
+Training and recruiting more qualified mentors through the coaching process is an
+effective method for increasing human resources. Successful trainees are invited to join the
+SM3D Portal to become mentors who would later support more ECRs and low-resource
+researchers in the beginning stage. Since mentor-to-be trainees had the feeling and
+thinking of being ECRs or researchers in a low-resource context, they would understand
+the new trainees’ difficulties and needs well. When becoming a part of the community
+coaching platform, they will have the willingness, knowledge, and experience to offer help
+and support.
+For enhancing trainees’ recognition and promoting science, publishing in Open Access is
+preferable. Nevertheless, paying the Article Processing Charge (APC) requires a substantial
+amount of finance. Although the AISDL team manages to use waivers and discount coupons
+(acquired through serving as editors and peer-reviewers) to pay for the trainees’ APC, it is
+largely insufficient, especially when the number of trainees increases. Establishing a
+resource pool for pure academic pursuits with APC settlement or any required services
+from “angel investors” or science funding agencies is feasible, freeing the trainees from
+unnecessary financial concerns.

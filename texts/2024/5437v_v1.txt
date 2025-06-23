@@ -1,0 +1,922 @@
+Automating the Assessment of Collaborative Engagement Using
+Natural Language Processing
+1,2 1,2 1 1 3,2
+Loris T. Jeitziner . Lisa Paneth , Oliver Rack , Carmen Zahn , & Dirk U. Wulff
+University of Applied Sciences and Arts Northwestern Switzerland, Switzerland
+University of Basel, Switzerland
+Max Planck Institute for Human Development, Germany
+Corresponding author: Dirk U. Wulff; wulff@mpib-berlin.mpg.de; ORCID ID: 0000-0002-4008-8022
+All authors: Loris T. Jeitziner, loris.jeitziner@fhnw.ch; Lisa Paneth, lisa.paneth@fhnw.ch, Oliver Rack,
+oliver.rack@fhnw.ch; Carmen Zahn, carmen.zahn@fhnw.ch, Dirk U. Wulff wulff@mpib-berlin.mpg.de
+Abstract
+This study explores the use of natural language processing to automate the evaluation of collaborative
+group engagement in collaborative learning settings. We evaluated two approaches involving large-language
+models (LLMs) and a set of interpretable linguistic markers to predict the four dimensions—behavioral,
+social, cognitive, and conceptual-to-consequential engagement—of the quality of collaborative group engage-
+ment (QCGE) model. Analyzing conversation transcripts from three-person student groups engaged in a
+computer-supported collaborative design task produced four major findings. First, natural language pro-
+cessing successfully predicted out-of-sample about 10% of variance in collaborative engagement, suggesting
+that assessment can be automated. Second, interpretable linguistic markers explained more of this variance
+than did ratings from an intransparent LLM. Third, the best linguistic markers were not specifically related
+to any individual dimension of QCGE, suggesting a common core of collaborative engagement. Fourth, the
+QCGE’s manual rating model was limited due to its lack of granularity and insensitivity to natural variability
+in engagement. Overall, our analysis demonstrates both how natural language processing approaches can
+be leveraged to successfully automate the assessment of collaborative engagement and how these approaches
+can reveal key insights into the drivers of collaborative engagement.
+Keywords: computer-assisted collaborative learning, collaborative group engagement, large language mod-
+els, natural language processing
+1. Introduction
+One central goal in research on computer-supported collaborative learning (CSCL) is to understand the
+quality and dynamics of collaborative engagement in educational settings (e.g., Burkhardt et al., 2009;
+Meier et al., 2007; Rogat et al., 2022; Sinha et al., 2015). Current research on collaborative engagement
+relies primarily on qualitative analyses of behavioral data, using interaction analysis (Brauner et al., 2018),
+content analysis (Trausan-Matu & Uttamchandani, 2021), dialogue analysis (Hu et al., 2022), conversation
+analysis (Zemel et al., 2005), or multimethod approaches (Paneth et al., 2023; Schneider et al., 2021).
+These approaches have produced valuable insights into collaborative engagement, but they also come with
+limitations. Different approaches to measuring engagement can lead to different outcomes (Paneth et al.,
+2023). Moreover, as these approaches are typically based on video recordings that are manually coded and
+rated (Derry et al., 2010; Zahn et al., 2021) using, for instance, activity transcripts (e.g., Barron, 2003;
+Rogat et al., 2022; Zahn et al., 2010), they are cost-intensive and require numerous hours of human labor.
+Consequently, scaling qualitative approaches to capture the full breadth and depth of behavior in CSCL
+contexts is challenging (Hmelo-Silver & Jeong, 2021).
+A potential alternative is to use automated methods based on new computational tools (Liu et al., 2022; L.
+Zheng et al., 2023). This study explores the utility of such an automated approach to analyzing collaborative
+engagement in CSCL group discussions. We recruited natural language processing methods, including large
+language models (LLMs) and interpretable linguistic markers, to predict a multidimensional construct of
+collaborative group engagement. Our goal was to assess whether automated assessment presents a viable
+alternative to manual ratings and whether it can help uncover factors driving the quality of collaborative
+engagement.
+1.1 Collaborative engagement in CSCL
+Collaborative engagement refers to the amount and quality of participation, interaction, and collaboration
+among members of a learning group. It has been widely explored in CSCL research (e.g., Rogat et al., 2022;
+Sinha et al., 2015; Xing et al., 2022) due to its critical role in student and group learning success (Blumenfeld
+et al., 2006; Liu et al., 2022; Sinha et al., 2015). For instance, student groups with higher quality collaborative
+engagement also show higher learning outcomes (Sinha et al., 2015). Several frameworks have been developed
+to capture the multifaceted and dynamic nature of collaborative engagement (Rogat et al., 2022; Sinha et
+al., 2015; Xing et al., 2022), including the quality of collaborative group engagement (QCGE) model. This
+popular model, which was developed based on observational video data from student groups (Sinha et al.,
+2015), consists of four dimensions—behavioral engagement, social engagement, cognitive engagement, and
+A key challenge in research on collaborative engagement is the reliance on manual ratings. Although it has
+been successfully deployed in past research (Paneth, Jeitziner, Zahn, et al., 2024; Sinha et al., 2015), this
+approach has several limitations. First, manual rating is time-consuming and costly, often requiring dozens,
+if not hundreds, of hours of human labor. Second, this approach often lacks granularity. For instance, the
+QCGE model distinguishes only three levels of engagement for each dimension: low, moderate, and high.
+Third, manual rating relies on human judgments, which may not be completely objective or reliable. There
+is, therefore, a need to consider additional approaches to measuring collaboration engagement, including
+automated approaches. Automated analysis of audio and video data can potentially provide a richer and
+more granular picture of collaborative engagement at a much lower cost and greater scale (Paneth et al.,
+2023).
+In this article, we extend past work (e.g., Liu et al., 2022; L. Zheng et al., 2023) by exploring natural
+language processing, including the use of LLMs, as an automated approach to assessing the four dimensions
+of the QCGE model of collaborative engagement.
+1.2 Automatic analysis of collaborative learning
+Past work on the automated measurement of collaborative engagement based on verbal communication
+has primarily taken two approaches. The first approach is based on LLMs: advanced artificial intelligence
+systems designed to interpret and generate human language at scale. LLMs are trained on vast amounts
+of text data, enabling them to perform various language-related tasks, such as translation, summarization,
+question-answering, and conversation (Vaswani et al., 2017). They have, therefore, been increasingly used
+in behavioral and social science research (for a tutorial, see Hussain et al., 2024). Previous research in
+CSCL has employed LLMs to automatically evaluate aspects of collaborative engagement in online learning
+environments based on chat protocols (Liu et al., 2022; L. Zheng et al., 2023) and learning analytics data
+(Xing et al., 2022). These efforts have demonstrated that LLMs can be a powerful tool for measuring and
+predicting collaborative engagement. However, because LLMs are based on intransparent algorithms, using
+them presents challenges related to interpretability and explanation (von Eschenbach, 2021; Xu et al., 2019):
+It can be difficult to ascertain which features of collaborative work may have triggered a low or high estimate
+of collaborative engagement. Further challenges are that LLMs can hallucinate and reflect training biases
+(Ji et al., 2023; Weidinger et al., 2021). Consequently, if the goal is to not only evaluate engagement but
+also understand the evaluation process (e.g., to inform targeted interventions; Hattie & Timperley, 2007),
+other approaches may be preferable.
+The second approach uses more traditional natural language processing techniques to extract simple, trans-
+parent markers of communication and collaboration, such as the conversation’s sentiment or distribution
+of speech. These linguistic markers can predict aspects of collaborative learning. For instance, Ros´e et al.
+(2008) used simple text features, including punctuation and rare words, to successfully predict a manual cod-
+ing of argumentative knowledge construction (Weinberger & Fischer, 2006). Similarly, J. Zheng et al. (2019)
+used features from the commercial software Linguistic Inquiry and Word Count (Pennebaker et al., 2022)
+to predict self- and socially shared regulation in collaborative settings. Finally, Dowell et al. (2019) used
+linguistic representations of on-task and equal participation to identify sociocognitive roles in CSCL groups.
+With this approach, linguistic features can be leveraged to assess key aspects of collaborative learning in an
+interpretable way that can inform targeted learning interventions.
+1.3 Current study
+This study investigates the two approaches for automatically assessing collaborative engagement based on
+the QCGE model (Sinha et al., 2015). Using an existing dataset of three-person student groups working
+on a computer-based interior design task, we compared the predictive accuracy of the LLM-based and the
+linguistic marker approaches. To this end, we developed novel linguistic markers to capture the manual
+rating criteria of the QCGE model and combined them using machine learning to produce an interpretable
+predictive model. We then contrasted and combined this model with the predictions of a state-of-the-art
+open LLM. Our goals in this study were to assess both how well collaborative engagement can be predicted
+using an automated approach and which approach and markers perform best.
+2. Methods
+2.1 Sample, study design, and procedure
+We conducted a preregistered secondary analysis of an existing study (Paneth, Jeitziner, Rack, et al., 2024).
+In the study, 38 groups consisting of three undergraduate students each completed a design task (Kafai &
+Resnick, 1996; Stahl & Hakkarainen, 2021) with aspects of a hidden-profile task (Schulz-Hardt & Mojzisch,
+2012). The groups were instructed to learn to collaboratively use the 3D architectural design tool Sweet
+Home 3D (eTeks, 2023) to design a co-working space. Each group member was given different information
+about their needs for the co-working space, which could contradict the needs of other group members. For
+instance, one participant was instructed to design their office so they could listen to loud music, while another
+participant needed to welcome guests without being disturbed. Group members were, therefore, required to
+share information and to compromise to find an optimal solution. The participants were assigned to either
+a low-structure (as described above) or a high-structure condition. In the high-structured condition, groups
+also had to plan, structure, and reflect on their collaboration. As the original analysis of this data concluded
+that there were no differences in QCGE between conditions (see Paneth, Jeitziner, Rack, et al., 2024), we
+pooled the data from both conditions into a single dataset. The groups were video recorded during the
+task, which lasted from 70 to 75 minutes. The audio of these videos was manually transcribed into digitized
+text, forming the basis of our analysis. The transcripts comprised a total of 273,329 words, with each group
+contributing, on average, 7,193 words (SD = 2,217). As the original study was carried out at the University
+of Applied Sciences Northwestern Switzerland, the transcripts were in German.
+2.2 QCGE rating
+The data included manual ratings of the quality of collaborative group engagement following the QCGE
+rated, which is more fine-grained than the 5-minute intervals used in the original procedure. QCGE ratings
+were provided by two raters, who showed moderate to higher agreement (i.e., ICC values between .63 and
+.88 for the four dimensions; Paneth, Jeitziner, Zahn, et al., 2024). Overall, the analysis was based on 2,632
+1-minute segments, which excludes segments without communication.
+2.3 LLM-based approach
+To generate predictions of collaborative group engagement using the LLM-based approach, we used a state-
+of-the-art open LLM model, Llama-3-70B-Instruct (AI@Meta, 2024). We selected an open rather than a
+closed LLM to increase reproducibility (Wulff et al., 2024). We instructed the model to apply the manual
+)5102
+,.la
+te
+ahniS
+morf
+detpada(
+emehcs
+gnitar
+EGCQ
+:1
+elbaT
+airetirC
+noisserpxE
+noisnemiD
+ksat-ffo
+si
+puorg
+elohw
+eht
+ro
+ksat
+htiw
+ysub
+si
+rebmem
+puorg
+eno
+ylnO
+woL
+laroivaheB
+puorg
+eht
+nihtiw
+snoitasrevnoc
+ksat-ffo
+tnacfiingiS
+esu
+loot
+ro
+krow
+ksat
+detimiL
+ksat
+eht
+ni
+degagne
+era
+srebmem
+puorg
+owT
+etaredoM
+ksat
+eht
+no
+gnikrow
+ton
+si
+rebmem
+puorg
+gniniameR
+roivaheb
+ksat-ffo
+tnettimretnI
+ksat-no
+era
+srebmem
+puorg
+llA
+hgiH
+snoitcartsid
+fo
+ecaf
+eht
+ni
+neve
+ksat
+seusrup
+puorG
+noissucsid
+ksat-ffo
+detimiL
+srebmem
+puorg
+neewteb
+segnahcxe
+lacitirc
+ylhgih
+ro
+luftcepsersiD
+woL
+laicoS
+srebmem
+puorg
+erom
+ro
+eno
+fo
+snoitubirtnoc
+eht
+etargetni
+ot
+gniliaf
+ro
+gnirongI
+ksat
+puorg
+naht
+rehtar
+laudividni—noisehoc
+puorg
+woL
+krow
+eht
+lla
+gniod
+rebmem
+puorg
+tnanimod
+ro
+”I“
+fo
+esU
+gnitepmoc
+ro
+snoisnet
+gnivloser
+tuohtiw
+saedi
+gnisopmi
+,etanimod
+srebmem
+wef
+etaredoM
+detargetni
+ylluf
+ton
+tub
+degdelwonkca
+era
+snoitubirtnoc
+dna
+sthguohT
+snoitcaretni
+luftcepsersid
+yletaredom
+ot
+ylthgiL
+dexim
+si
+noisehoc
+puorG
+sevitcepsrep
+’srehto
+rof
+tcepser
+;dedulcni
+dna
+degdelwonkca
+era
+srebmem
+puorg
+lla
+fo
+snoitubirtnoC
+hgiH
+noitulos
+dnfi
+ot
+gniyrt
+dna
+tnuocca
+otni
+saedi
+s’enoyreve
+gnikat
+,noissucsid
+rehtruf
+segaruocne
+tnemeergasiD
+ylevitaroballoc
+desu
+era
+sksat
+dna
+,slairetam
+,slooT
+nalp
+eugav
+ro
+,gninnalp
+laminim
+,nalp
+fo
+kcaL
+woL
+evitingoC
+)tahw
+seod
+ohw
+,ssentaen
+,gnilleps
+,.g.e(
+stcepsa
+laicfirepus
+no
+sesucof
+gnirotinom
+ksaT
+etelpmocni
+eb
+yam
+hcihw
+,rehtegot
+nalp
+noitca
+sessucsid
+puorG
+etaredoM
+dednetni
+sa
+nalp
+eht
+tcane
+ton
+seod
+ro/dna
+snalp
+sti
+fo
+noitatnemelpmi
+eht
+rotinom
+ton
+seod
+puorG
+gnidnatsrednu
+dna
+,ssergorp
+,noitelpmoc
+ksat
+sa
+llew
+sa
+stcepsa
+laicfirepus
+fo
+xim
+no
+sesucof
+gnirotinom
+ksaT
+esiver
+yeht
+taht
+nalp
+sah
+puorG
+hgiH
+melborp
+regral
+eht
+gnivlos
+drawot
+gnivom
+no
+sesucof
+nalp
+ksaT
+)ecnedive
+fo
+esu
+,.g.e(
+ecitcarp
+cfiitneics
+fo
+esu
+dna
+gnidnatsrednu
+lautpecnoc
+no
+sesucof
+gnirotinom
+ksaT
+detseggus
+era
+snoitcennoc
+wef
+;stcaf
+,egdelwonk
+evitaralced
+level-wol
+no
+desab
+llits
+era
+snoitulos
+ksaT
+woL
+-ot-lautpecnoC
+secruoser
+dna
+ecnedive
+fo
+esu
+detimiL
+laitneuqesnoC
+snoitcennoc
+laudividni
+yltnatropmi
+erom
+tub
+,sknil
+tnetnoc
+dliub
+ot
+mia
+krow
+ksat
+dna
+snoissucsid
+puorG
+etaredoM
+tnetsisnocni
+si
+noitacfiitsuj
+dna
+ecnedive
+fo
+esu
+ehT
+noitseuq
+regral
+eht
+dna
+tnetnoc
+eht
+neewteb
+snoitcennoc
+ekam
+snoitulos
+ksaT
+hgiH
+secruoser
+,elanoitar
+dna
+ecnedive
+fo
+esu
+tnetsisnoC
+stinu
+rehto
+morf
+secitcarp
+cfiitneics
+ro
+tnetnoc
+ot
+snoitcennoC
+engagement as low, moderate, or high. The model was instructed using the following system and user
+prompts:
+system = """
+You are a behavioral scientist evaluating the
+quality of collaborative group engagement.
+Your task is to evaluate a 1-minute conversation
+excerpt between three group members,
+labeled P1, P2, and P3, who are instructed to
+solve a collaborative task.
+Evaluate the excerpt according to the following
+criteria indicating LOW, MODERATE, and HIGH
+collaborative group engagement.
+Criteria for LOW collaborative group engagement:
+CRITERIA_LOW
+Criteria for MODERATE collaborative group
+engagement:
+CRITERIA_MODERATE
+Criteria for HIGH collaborative group engagement:
+CRITERIA_HIGH
+"""
+user = """
+Evaluate the following conversation excerpt
+between P1, P2, and P3:
+P1: UTTERANCE_P11
+P3: UTTERANCE_P31
+P1: UTTERANCE_P12
+P2: UTTERANCE_P21
+Assess whether the quality of collaborative
+group engagement is LOW, MODERATE, and HIGH
+based on the criteria. Reason through your
+assessment. Only in the end, provide your
+assessment in the following format:
+Assessment: [LOW, MODERATE, HIGH].
+"""
+The elements CRITERIA LOW, CRITERIA MODERATE, and CRITERIA HIGH are placeholders for the
+Note that the conversation excerpt could be shorter or longer than the four-utterance excerpt in the prompt.
+2.4 Linguistic marker approach
+that we thought could plausibly capture a low or high aspect in one or more of the four dimensions. We
+dimensions
+Derived from QCGE dimension:
+tnuomA
+ytiralimis
+ksaT
+ssenevisnopseR
+ycneuqerf-I
+ycneuqerf-eW
+ytimrofinU
+ytisned
+tnemitneS
+ecnelav
+tnemitneS
+sdrow
+laropmeT
+ytirar
+egarevA
+Behavioral + + + +
+Social + + + + + +
+Cognitive + +
+Conceptual-to-consequential +
+grouped them into categories: amount, task similarity, responsiveness, I- and we-frequency, uniformity of
+participation, sentiment valence and density, temporal words, and word rarity. Our hypotheses concerning
+markers for each 1-minute segment using the programming language Python and the pandas (McKinney,
+2010) and NLTK libraries (Bird et al., 2009).
+2.4.1 Amount
+High behavioral QCGE requires that all group members are engaged in the task and communicate with each
+other. Consequently, more communication should, all other things being equal, indicate higher behavioral
+engagement. We defined the amount of communication in six ways, leading to six markers: We counted the
+number of words, sentences, and contributions separately and distinguished absolute and relative amounts.
+abs
+Absolute amount (Amount ) at time i for group j was defined as
+ij
+(cid:88)
+abs
+Amount = U , (1)
+ij ijk
+with U being the number of utterances (words, sentences, or contributions) of group member k. Relative
+ijk
+rel
+amount (Amount ) was defined as
+ij
+abs
+Amount
+ij
+rel
+Amount = . (2)
+(cid:80)
+ij
+ijk
+i,k
+2.4.2 Task similarity
+Another key criterion for behavioral QCGE is a sustained focus on the task, which should imply a high
+similarity between the group’s utterances and the content of the task. A similarity measure can, therefore,
+be an indicator of behavioral QCGE. We measured the similarity between utterances using Sentence-BERT
+(distiluse-base-multilingual-cased-v1; Reimers & Gurevych, 2019), a pretrained transformer-based embed-
+ding model. We computed task similarity as
+Task-similarity = Sim(U , T ), (3)
+ij ij
+with U being, in this case, the concatenated utterances per sequence and T being the text of the task
+ij
+description. The similarity metric was cosine similarity.
+2.4.3 Responsiveness
+High social QCGE implies a cohesive group that acknowledges and responds to each group member’s contri-
+butions. Consequently, utterances that are responsive in the sense that they relate to or paraphrase previous
+utterances should indicate high social QCGE. We defined responsiveness as a high semantic similarity be-
+tween utterances, that is,
+(cid:88)
+Responsiveness = Sim(U , U ), (4)
+ij ij,l−1 ij,l
+L − 1
+with U being the lth of L utterances in segment i of group j. The similarity between utterances was
+ij,l
+computed as the cosine similarity between embedding vectors generated by a pretrained sentence BERT
+model (distiluse-base-multilingual-cased-v1; Reimers & Gurevych, 2019).
+2.4.4 I- and we-frequency
+Low social QCGE is associated with frequent use of self-references in the singular, such as “I” or “me.”
+Frequent use of first-person singular pronouns should thus indicate low social QCGE, whereas frequent use
+of first-person plural pronouns should indicate high social QCGE. To measure the frequency of pronoun use,
+we specified two sets of German keywords to capture their use in the singular (corresponding to “I,” “me,”
+“mine,” and “myself”) and plural (corresponding to “we,” “us,” and “our”). We defined the I-frequency and
+we-frequency as
+(cid:88)
+Pronoun-frequency = I(U ∈ A), (5)
+ij ijm
+with U being the mth of M words in segment i and group j and I(·) being the indicator function returning
+ijm
+1 if U is in the pronoun-specific keyword set A and otherwise 0.
+ijm
+2.4.5 Uniformity of participation
+High behavioral and social QCGE is characterized by group members’ equal involvement and contribution.
+A higher uniformity of participation should thus indicate higher levels of behavioral and social QCGE.
+Uniformity was calculated as the normalized entropy defined as
+(cid:80)
+− p log (p )
+k ijk 2 ijk
+Uniformity = , (6)
+ij
+log (3)
+with p being the relative amount of utterances contributed by group member k in group j at time i.
+ijk
+2.4.6 Sentiment valence and density
+High social QCGE is characterized by respectful discourse between group members, which itself is charac-
+terized by the absence of statements with negative sentiment. Positive sentiment might therefore be used as
+an indirect index of high social QCGE. Following past work (Fischer et al., 2024), we distinguished two mea-
+sures of sentiment, sentiment valence and sentiment density. Sentiment valence captures whether positive or
+negative utterances predominate, whereas sentiment density captures the proportion of positive and negative
+utterances relative to neutral ones. Both markers were derived from a pretrained sentiment classifier (Guhr
+et al., 2020), which provided probabilities of a text having positive, neutral, or negative valence. Sentiment
+valence was calculated as
+(cid:88)
+pos neg
+Sentiment valence = P − P , (7)
+ij
+ijl ijl
+pos pos
+where P and P are the probabilities of positive and negative valence for utterance l of group j in
+ijl ijl
+segment i. Using the same elements, sentiment density was calculated as
+(cid:88)
+pos neg
+Sentiment valence = P + P . (8)
+ij
+ijl ijl
+2.4.7 Temporal words
+Higher cognitive QCGE is associated with planning and monitoring task completion, which requires keeping
+track of time. We therefore suggest that considerations of time could be linked to higher cognitive QCGE.
+We measured temporal thinking using a keyword approach, including the German words corresponding to
+“time,” “now,” “earlier,” “later,” “minute,” and “hour.” The frequency of temporal words was calculated
+analogously to I- and we-frequency (see section 2.4.4).
+2.4.8 Word rarity
+Higher behavioral QCGE is associated with on-task conversations, higher cognitive QCGE is associated
+with conceptual understanding, and higher conceptual-to-consequential QCGE is associated with the use
+of evidence and scientific practice. All three should involve the use of technical task-related language that
+is distinct from everyday language because it includes words with lower word frequency. Word rarity may
+therefore act as an index of high collaborative engagement for these three dimensions. We measured word
+rarity using the German SUBTLEX-DE word frequency list (Brysbaert et al., 2011). We calculated word
+rarity as
+1 1
+(cid:88)
+Word rarity = , (9)
+ij
+M f
+ijm
+where f is the frequency of word m in segment j of group i.
+ijm
+2.5 Data analysis
+2.5.1 Descriptive overview
+To provide an overview of the distribution of each criterion (i.e., each of the four QCGE dimensions) and how
+they covary with each of the predictions of the LLM and the linguistic markers, we calculated the distribution
+of low, moderate, and high ratings, the correlations among QCGE dimensions and the correlations between
+QCGE dimensions, the LLM-based predictions, and the linguistic makers. We calculated Spearman rank
+correlations to account for the ordinal scale level of QCGE ratings.
+2.5.2 Evaluating predictive accuracy
+Before running the predictive analyses, we group-standardized the linguistic markers using the Z-transform
+to account for the nested data structure. We did this separately for training and test data to prevent data
+leakage (Brownlee, 2020).
+We employed ridge regression as our predictive model. Model performance was evaluated using two standard
+metrics: mean squared error (MSE) and R-squared. We calculated these metrics using a repeated and
+stratified k-fold cross-validation procedure, ensuring unbiased assessments of out-of-sample performance.
+We evaluated five predictive models of the QCGE dimensions. The first model served as a baseline model;
+it used only an intercept and the sequence position (i.e., the position of the 1-minute interval within the
+full sequence of intervals in the task) as a predictor. The second model included the Llama model ratings
+as an additional predictor to evaluate the predictive power of the LLM-based prediction alone. The third
+model also included the LLM-generated ratings for the other three QCGE dimensions, thus evaluating
+potential performance gains from leveraging the correlations between the QCGE dimensions and LLM-based
+predictions. The fourth model did not include the LLM-based ratings; instead, it included the 18 linguistic
+are differentiated by QCGE dimension.
+included both the LLM-based ratings and the linguistic markers in order to assess the total predictive
+accuracy and whether the LLM-based and linguistic marker-based approaches can complement each other.
+To determine the relevance of the LLM-based ratings and the individual linguistic markers in predicting the
+QCGE dimensions, and to see whether the hypothesized linguistic markers would predict the hypothesized
+dimensions, we calculated permutation feature importance scores using the fifth model, which included both
+the LLM-based ratings and the linguistic markers. This score measures the drop in predictive performance
+caused by scrambling individual predictors. To improve the interpretation of the results, we graphically
+represented the permutation feature importance scores by aggregating them into feature categories (e.g.,
+amount, uniformity) and standardizing them across models.
+All predictive analyses and feature importance calculations were conducted using the scikit-learn Python
+library (Pedregosa et al., 2011).
+2.5.3 Deviations from the pre-registration
+Our analysis deviates from the preregistered plan in two key ways. First, instead of using multiple ma-
+chine learning algorithms, we focused exclusively on ridge regression, as it provided the most interpretable
+results. Second, we expanded the analyses by introducing an LLM-based approach and comparing it to the
+preregistered interpretable feature approach.
+3. Results
+In this section, we first provide a descriptive overview of the QCGE ratings. This is followed by the assessment
+of correlations between the QCGE dimensions, the LLM-based ratings, and the linguistic markers. Finally,
+we present the results of the predictive analysis and feature importances.
+and linguistic markers. Hypothesized relationships are marked with a red asterisk.
+3.1 Overview of collaborative engagement ratings
+1-minute intervals. It shows that QCGE ratings are distributed unevenly across dimensions. Behavioral
+QCGE ratings and, to some extent, social QCGE ratings exhibited limited variance within and across
+groups, with 96% of behavioral QCGE ratings and 68% of social QCGE ratings indicating a high level
+of engagement. Cognitive and conceptual-to-consequential QCGE showed only somewhat more balanced
+rating distributions, with moderate engagement being the most frequent category in cognitive (63%) and
+which were mostly low. The only notable correlation was observed between cognitive and conceptual-to-
+consequential QCGE (ρ = .38).
+Overall, the descriptive overview revealed potential limitations of predictive analyses due to limited variance,
+especially for two out of the four dimensions; however, it also lent support to the independent analysis of
+QCGE dimensions due to low intercorrelations.
+3.2 Descriptive analysis of the relationships of the QCGE dimensions with LLM-
+based ratings and linguistic markers
+with Llama. The correlations ranged between small and moderate sizes, with their pattern suggesting only
+mildly specific relationships between the LLM-based and human ratings. That is, correlations for the ratings
+of the same dimensions (average r = .15) were only slightly higher than ratings of different dimensions
+(.11). In line with the limited variance in human ratings, correlations were highest for the cognitive and
+conceptual-to-consequential dimensions of QCGE.
+were at most moderate in size. Again, in line with the limited variance of ratings, correlations were lower for
+behavioral (average r = .04) and social (.06) QCGE than for cognitive (.12) and conceptual-to-consequential
+= .04 vs. non-hypothesized average r = .04), social (hypothesized average r = 0.06 vs. other r = 0.09),
+cognitive (hypothesized average r = 0.09 vs. other r = 0.13), and conceptual-to-consequential (hypothesized
+average r = 0.00 vs. other r = 0.12) QCGE were lower than non-hypothesized correlations. Finally, absolute
+word amount and frequency of I and we pronouns, followed by uniformity and frequency of temporal words,
+showed notable relationships to collaborative engagement, independent of the QCGE dimension.
+Mean squared error R-squared
+enilesaB
+amalL
+D4
+amalL
+srekram
+citsiugniL
+srekram
+citsiugniL
+amalL
+enilesaB
+amalL
+D4
+amalL
+srekram
+citsiugniL
+srekram
+citsiugniL
+amalL
+Behavioral .043 .043 .043 .043 .043 -.004 .012 .013 .001 .012
+Social .240 .239 .234 .226 .225 -.002 -.003 .016 .053 .055
+Cognitive .371 .360 .352 .341 .333 -.000 .030 .050 .079 .101
+Conceptual-to-consequential .534 .520 .512 .494 .487 -.003 .025 .038 .076 .085
+Note. Values represent performance metrics of the prediction of the QCGE levels for each dimension.
+In sum, the LLM-based ratings and linguistic markers were correlated with QCGE dimensions. However,
+these correlations were mostly not dimension-specific and inconsistent with our hypotheses.
+3.3 Predicting collaborative engagement
+formance in terms of MSE and R-squared. The baseline model, using only an intercept and sequence as
+a predictor, was no better than random in out-of-sample prediction, as indicated by negative R-squared
+values. Including the dimension-specific LLM-based ratings from Llama as an additional predictor im-
+proved performance, particularly in the two dimensions with notable rating variance, cognitive (MSE =
+.36, R-squared = .03) and cognitive-to-consequential engagement (MSE = .52, R-squared = .025). The
+performance further improved relative to the baseline when all LLM rating dimensions were included in
+the prediction of each QCGE dimension (overall: ∆MSE = −.012, ∆R-squared = .032). A considerably
+larger improvement in out-of-sample performance relative to the baseline was achieved using the linguistic
+markers instead of the LLM-based ratings (overall: ∆MSE = −.021, ∆R-squared = .054). This was the case
+not only for the high-variance cognitive and cognitive-to-consequential dimensions but also for the social
+dimension. Finally, a model including both the LLM-based ratings and the linguistic markers led to the
+best performance overall (∆MSE = −.025, ∆R-squared = .066), especially in the high-variance cognitive
+and cognitive-to-consequential dimensions.
+In sum, our predictive analysis showed that both automated approaches—LLM-based ratings and linguistic
+markers—are capable of predicting QCGE. Together, they account for between 1.2% and 10.1% of the
+variance of human QCGE ratings.
+3.4 Evaluating the importance of features in predicting collaborative engagement
+predictive model relied on the LLM-based ratings and the linguistic markers in predicting the QCGE di-
+mensions. These importance scores were scaled such that the most important predictor for each dimension
+received a score of 1 and all other predictors a score relative to that of the top predictor.
+The analysis revealed five important predictors. The overall most important predictor was amount of commu-
+nication, which was the most important predictor for the social and conceptual-to-consequential dimensions
+and the second most important predictor for the behavioral and cognitive dimensions. The second most im-
+portant predictors were Llama (the most important predictor of the behavioral dimension) and we-frequency
+(the most important predictor of the cognitive dimension). Both Llama and we-frequency also contributed
+standardized per dimension to show relative importance. A score of 1 marks the highest importance per
+to the prediction of other dimensions. Finally, uniformity and sequence valence and density contributed to
+only a single dimension each (social and cognitive, respectively).
+In sum, the prediction of collaborative engagement dimensions drew on only a small subset of predictors that
+included both the LLM-based ratings and linguistic markers and were, in the majority of cases, important for
+more than several dimensions. The lack of specificity between the dimensions and their predictors suggests
+a common core of collaborative engagement.
+4. Discussion
+With this study, we sought to evaluate natural language processing methods as an approach to automate
+the assessment of engagement quality in a collaborative learning setting. Four major results emerged. First,
+natural language processing successfully predicted out-of-sample about 10% of the variance in collaborative
+engagement, demonstrating that assessing collaborative engagement can be automated successfully. Second,
+interpretable linguistic markers, not intransparent LLM ratings, explained the larger part of this variance,
+highlighting the advantages of interpretable natural language processing. Third, the best linguistic markers,
+including amount of communication, were not specifically related to any individual engagement dimension,
+suggesting a common core in ratings of collaborative engagement. Fourth, the QCGE’s manual rating
+model was limited by its lack of granularity and insensitivity to natural variability in engagement. Overall,
+these results highlight the potential for automating the assessment of collaborative engagement in learning
+contexts using natural language processing but also demonstrate concrete limitations and opportunities for
+future improvements.
+4.1 Automating the prediction of collaborative engagement
+Our study illustrates the potential of automating the prediction of collaborative engagement in a learning
+context using a core engagement model. We observed out-of-sample performances far exceeding those of
+baseline models, accounting for about 10% of the variance in collaborative engagement quality. The larger
+portion of this performance is due to interpretable linguistic features. Specifically, amount, we-frequency,
+and uniformity contributed substantially to the predictions of engagement quality. However, these contribu-
+tions were neither specific nor aligned with our preregistered hypotheses. Moreover, predictive accuracy was
+highest when LLM-based ratings, which are less interpretable, were included as additional predictors. To-
+gether, these findings suggest that although it is possible to predict the quality of collaborative engagement,
+we did not establish a fully interpretable account that could inform targeted interventions. Still, our find-
+ings demonstrate the advantages of predicting collaborative engagement using a collection of interpretable
+markers relative to an intransparent LLM-based approach.
+A critical factor that limits the performance of the predictive models, and likely the specificity of relationships
+between LLM-based ratings, linguistic markers, and engagement dimensions, is the reliance on the QCGE
+model. Our descriptive analyses show that the ratings of our trained human raters resulted in very little
+variability in engagement: Behavioral and social engagement was consistently rated as high and cognitive
+engagement was consistently rated as moderate. Only the conceptual-to-consequential dimension showed
+notable rating variance. The lack of variance suggests that the QCGE model was not sensitive to natural
+variability in engagement, likely due to the model’s low granularity—it included only three rating categories
+and insensitive rating criteria. To demonstrate the limitations of the QCGE model, we used the linguistic
+criteria to predict the LLM-based ratings and found higher accuracy (12.3% vs. 5.3% of explained variance)
+and specificity, suggesting that the LLM model can pick up engagement variation that the QCGE model
+cannot. Although our results demonstrate the potential of automated prediction of collaborative engagement
+using a combined approach of LLMs and linguistic markers, higher performance can likely be achieved using
+more granular and sensitive measures of collaborative engagement.
+4.2 Identifying drivers of collaborative engagement
+The second goal of this study was to identify interpretable drivers of collaborative engagement. Our results
+identified three linguistic markers—amount, we-frequency, and uniformity—that were reliably related to
+engagement quality, each in a positive direction. These findings suggest that the quality of engagement is
+higher when group members communicate more (amount) and more evenly (uniformity) with each other and
+refer to themselves as a collective (we-frequency). We observed relatively low specificity between linguistic
+markers and engagement dimensions. However, considering both the first-order correlations and feature
+importances, as well as the variance constraints in the behavioral and social dimensions, it seems possible
+that amount and uniformity are related to engagement quality generally, whereas we-frequency may be
+particularly important for cognitive engagement.
+Other markers showed notable correlations with engagement quality; for instance, temporal word frequency
+showed a small correlation with cognitive engagement. However, these relationships did not survive in the
+feature importance analysis, suggesting that these relationships are either less reliable or captured by other
+markers.
+Overall, our results demonstrate the potential of using linguistic markers to obtain interpretable predictors of
+collaborative engagement. Importantly, they suggest that there are common drivers that affect collaborative
+engagement unspecifically across engagement dimensions.
+4.3 Opportunities of natural language processing approaches in collaborative
+learning research
+Past work has emphasized the importance of using and integrating multiple data sources to fully understand
+learning processes in collaborative learning (Blikstein & Worsley, 2016; Ouhaichi et al., 2023). This study
+adds to these efforts by presenting an analysis of spoken communication in a collaborative learning setting
+that leverages modern natural language processing techniques. Although we find only moderate predictive
+accuracy and unspecific interpretability, our analysis nevertheless showcases how automated analysis using
+natural language processing can reveal insights that may complement alternative approaches focusing on,
+for instance, physiological measurements or the automated analysis of video material (J¨arvel¨a et al., 2021).
+Given the complexity of collaborative learning processes, we see merit in considering either of the two natu-
+ral language processing approaches—using LLMs or linguistic markers—in future research on collaborative
+learning.
+4.4 Limitations
+We would like to discuss three major limitations of our study. First, our descriptive analysis revealed low
+variability in at least three out of four collaborative engagement dimensions. We have interpreted this low
+variability as a result of a lack of granularity in the response format and a lack of sensitivity in the criteria.
+However, there may be other reasons. For instance, the consistently high ratings in behavioral and social
+collaborative engagement could have been caused by the laboratory setting, which may have incentivized
+participants to collaborate well and thus led to ceiling effects. While we cannot exclude this possibility,
+it is important to note that the distinct task instructions given to participants introduced some level of
+collaborative friction. We encourage future investigations into factors that may drive variability in QCGE
+ratings, as well as ways to increase the granularity of QCGE ratings.
+Second, our study considered only a limited number of linguistic features, which were derived based on
+the rating criteria of the QCGE model (Sinha et al., 2015). However, we were unable to identify linguistic
+markers capturing all criteria. Moreover, there are likely other linguistic markers beyond those related to
+the QCGE criteria. Tentative evidence of this is provided by the superior performance of the full model,
+which considers both the linguistic markers and the LLM-based ratings, compared to that of the model that
+considers linguistic markers only. The improved performance reflects that the LLM picked up on linguistic
+information that was not captured by our set of linguistic markers. We encourage future work on developing
+further linguistic markers, which can take inspiration from research on other natural language processing
+applications in collaborative learning settings (Dowell et al., 2019; Ros´e et al., 2008; J. Zheng et al., 2019).
+Finally, our study investigated a specific educational context using a collaborative design task and a par-
+ticular group structure. While such settings are not uncommon in collaborative engagement research, we
+encourage future investigations into automated prediction approaches using natural language processing in
+other settings and with different group structures.
+5. Conclusion
+This study advances the use of natural language processing to understand and predict collaborative engage-
+ment in learning contexts. Using two approaches, one based on LLMs and one on linguistic markers, we
+demonstrate that the quality of collaborative engagement can be automated and generate insights into the
+factors driving high-quality engagement. We also uncover limitations linked to the granularity and sensitivity
+of existing measurement models that rely on human ratings and point the way to future improvements in
+manual and automated assessment of collaborative engagement. We believe that natural language processing
+can play an important role in a multimodal approach to understanding the complex processing underlying
+collaborative engagement in learning contexts.
+Statements and Declarations
+Competing interest
+The authors declare no competing interests.
+Ethics vote
+The study was approved by the ethics committee of the School of Applied Psychology, University of Applied
+Sciences and Arts Northwestern Switzerland. Approved application number: EAaFE200622a
+Acknowledgements
+We thank Deborah Ain for editing the manuscript. This work was supported by two grants from the Swiss
+National Science Foundation to Dirk U. Wulff (197315) and to Carmen Zahn and Oliver Rack (187258).
+Author contributions
+Loris Jeitziner: Conceptualization, Methodology, Software, Validation, Formal Analysis, Investigation, Re-
+sources, Data Curation, Writing - Original Draft, Review & Editing, Visualization, Project administration.
+Lisa Paneth: Conceptualization, Investigation, Qualitative Methodology, Writing - Original Draft, Review
+& Editing, Data Curation. Oliver Rack: Conceptualization, Writing - Review & Editing, Funding acqui-
+sition, Supervision. Carmen Zahn: Conceptualization, Writing - Review & Editing, Supervision, Funding
+acquisition. Dirk U. Wulff: Conceptualization, Methodology, Software, Validation, Data Curation, Writing
+- Original Draft, Review & Editing, Supervision, Funding acquisition.
+Data availability statement

@@ -1,0 +1,471 @@
+An EZ Bayesian hierarchical drift diffusion model
+for response time and accuracy
+a,b a,b,*
+Adriana F. Chávez De la Peña and Joachim Vandekerckhove
+Draft of December 31, 2023.
+The EZ-diffusion model is a simplification of the popular drift diffusion model of choice response times that allows researchers to calculate
+diffusion model parameters directly from data with no need for expensive computations. The EZ-diffusion model is based on a system of
+equations in which the diffusion model’s drift rate, boundary separation, and nondecision time parameters are jointly used to predict three
+summary statistics (the accuracy rate and the mean and variance of the correct response times). These equations can then be inverted to
+obtain estimators for the three parameters from these summary statistics. Here, we describe a probabilistic formulation of the EZ-diffusion
+model that can serve as a hyper-efficient proxy model to the drift diffusion model. The new formulation is based on sampling distributions of
+summary statistics and consists only of normal and binomial distributions. It can easily be implemented in any probabilistic programming
+language. We demonstrate the validity of the proxy model through extensive simulation studies and provide multiple examples (via osf.io/
+bzkpn), including an implementation in JASP. We conclude that, although the recovery of some parameters with the proxy model is biased, the
+recovery of regression parameters is good, making the method useful for explanatory cognitive modeling. Casting the EZ-diffusion model
+in the broad family of Bayesian generative models allows us to benefit from mature implementations, practical workflows, and powerful
+extensions that are not possible without a probabilistic implementation and not feasible with the regular drift diffusion model.
+Hierarchical Bayesian | EZ diffusion | cognitive psychometrics
+Cognitive psychometrics is a relatively new, specialized discipline Theoretical progress in cognitive psychometrics is achieved
+in which advances in cognitive modeling are applied in psycholog- through the development of cognitive models to describe the latent
+ical measurement (Batchelder, 2016). The advance of cognitive processes that generate data. Ideally, the models specify such
+psychometrics reflects a broader trend towards the use of idealized processes with parameters that carry psychological meaning and
+models in the philosophy of measurement (Tal, 2020). that can be interpreted in the context of the data collection, while
+formalizing only those substantive assumptions about cognition to
+The relationship between cognitive science and cognitive psy-
+which the researcher is willing to commit.
+chometrics is by nature symbiotic: As cognitive scientists develop
+ever more sophisticated models of cognition and behavior, so are
+Some of these models, however, are somewhat involved and
+psychometricians empowered to use those models as measure-
+require significant modeling expertise to be implemented. The
+ment tools. The goal of cognitive psychometrics is to construct
+DDM in particular became popular for its ability to account for
+an algebra of data, so that complex and nonlinear data patterns
+data patterns that are known to be elicited by specific aspects
+can be expressed as simple composites of interpretable units. An
+of experimental task designs, but its implementation is computa-
+example success story of this research program is the diffusion
+tionally complex, erecting a barrier to applications. In response
+model for two-choice response times. The model was developed,
+to these limitations, Wagenmakers, van der Maas, and Grasman
+gradually, byPStone (1960) and Link (1975). It was then made
+(2007) developed an “EZ” version of the DDM that allows the user
+popular through extensive work by Ratcliff (1978), who showed
+to estimate the model’s key parameters from summary statistics
+that diffusion model parameters behave like their namesakes in
+of observed choice RT data (i.e., the mean and variance of the
+a wide variety of contexts (Wagenmakers, 2009; see also Voss,
+correct RTs and the accuracy rate). The EZ-DDM has since been
+Rothermund, & Voss, 2004). After that, the model was developed
+widely applied in the study of, among others, perceptual decision-
+into a measurement tool (Vandekerckhove, Verheyen, & Tuerlinckx,
+making (Bitzer, Park, Blankenburg, & Kiebel, 2014; Mulder, van
+2010; Vandekerckhove, Tuerlinckx, & Lee, 2011), and many inter-
+Maanen, & Forstmann, 2014), of working memory and intelligence
+esting applications have resulted (see, e.g., Ratcliff, Smith, Brown,
+(Schmiedek, Oberauer, Wilhelm, Süß, & Wittmann, 2007), of self-
+& McKoon, 2016). Taken together, this is a cognitive psychometric
+regulation (Enkavi et al., 2019).
+research program, intended to quantify patterns of data that are in-
+The Bayesian implementation of cognitive process models is
+dicative of underlying latent features that vary between individuals
+crucial to the cognitive psychometrician, as it facilitates their appli-
+and other empirical units. When quantified, we may then seek to
+cation as measurement models. Cognitive process models that are
+explain the observed variability (De Boeck & Wilson, 2004).
+typically used to account for the underlying response processes
+at the individual level can be extended hierarchically to take into
+account between-subjects variability and capture individual differ-
+ences (Lee, 2011; Vandekerckhove et al., 2011). Furthermore,
+a b
+Department of Cognitive Sciences, University of California, Irvine; Department of
+models can be extended into cognitive latent variable models that
+Statistics, University of California, Irvine
+All authors contributed to the final draft. distinguish across different levels of variation, or incorporate meta-
+Correspondence should be addressed to Joachim Vandekerckhove (joachim@uci.edu).
+regression structures that capture predictors associated with any
+This work was supported by National Science Foundation grants #1658303, #1850849,
+of the parameters (Vandekerckhove, 2014).
+and #2051186.
+To deal with complex models with intractable likelihoods, statis- Parameter Process role Interpretation
+Drift rate ν Evidence accumulation rate “Ability”
+ticians will sometimes adopt so-called ‘indirect inference’ ap-
+Boundary separation α Speed-accuracy trade-off “Caution”
+proaches, in which a target likelihood is approximated by an auxil-
+Nondecision time τ Perceptual encoding and motor execution time
+iary or proxy model (Jiang & Turnbull, 2004; Price, Drovandi, Lee,
+& Nott, 2017). For example, Wood’s (2010) synthetic likelihood
+method models relevant summary statistics using a multivariate
+normal distribution.
+In this paper, we propose a similar approach to working with
+the DDM. We construct a proxy model from the sampling distri-
+butions of the EZ-DDM summary statistics. This simplified model
+can easily be implemented in specialized software as a Bayesian
+generative model, allowing for the implementation of hierarchical
+and explanatory meta-regression structures. We demonstrate the
+viability of this application through multiple examples developed in
+JASP (via osf.io/bzkpn). First, we will review the DDM and EZ-
+DDM. Then we will introduce our proxy model, and then illustrate
+how it can be made into a proxy for a Bayesian hierarchical DDM.
+Fig. 1. Evidence accumulation in a two-choice decision task. The jagged line rep-
+resents the noisy process of evidence accumulation over time until the observed
+The drift diffusion model
+reaction time (RT) when the evidence hits the ‘correct’ decision bound. The distribu-
+tions are predicted RT distributions for correct decisions (top) and errors (bottom).
+The drift diffusion model (DDM) is a cognitive process model that
+The drift rate ν captures the participant’s evidence accumulation rate: their ability
+describes binary choice response time data as the result of a
+at the task. The boundary separation α captures the participant’s speed-accuracy
+stochastic sampling process. The core assumption is that decision- trade-off: their caution at the task. The nondecision time τ captures the time spent
+on processes other than decision making.
+makers accumulate information about stimuli presented, starting
+the moment they are asked to make a binary judgment and ending
+once a decision boundary is met. One implication of the princi-
+application of a process model as a measurement model will typi-
+ple of accumulation of information (Laming, 1968) is that people
+cally necessitate the use of a Bayesian hierarchical model (Dutilh
+make two decisions: when they are ready to respond and what to
+et al., 2017; Rouder & Lu, 2005; Rouder et al., 2014; Rouder
+respond. These aspects are captured by the response time and
+& Haaf, 2019; Schubert, Nunez, Hagemann, & Vandekerckhove,
+choice data, respectively.
+2019; Vandekerckhove et al., 2011; Villarreal et al., in press).
+The drift rate parameter ν (nu) indicates E the average amount of
+evidence sampled per unit of time; the boundary separation pa- Hierarchical cognitive models
+rameter α (alpha) corresponds to the distance between the two
+Cognitive models are traditionally implemented to describe
+response boundaries; and the non-decision time parameter τ (tau)
+individual-level performance (e.g., Lee, Newell, & Vandekerck-
+accounts for the time required to encode and process the infor-
+hove, 2014), with group performance being described using aggre-
+mation presented by the stimuli. The parameters of the DDM
+gate measures that assume low between-subject variability (Estes,
+capture relevant aspects of the psychological process that under-
+1956). This traditional approach implies a multi-step analysis that
+lies decision-making. These aspects can be manipulated through
+starts by estimating individual parameter values and then using
+experimental design: The drift rate is affected by the quality of the
+summary measures for inference regarding average group perfor-
+information conveyed by the stimuli and by individual differences
+mance and individual differences (e.g., Klauer, Voss, Schmitz, &
+in processing efficiency. The boundary separation captures the
+Teige-Mocigemba, 2007). While this two-stage approach is com-
+speed-accuracy trade-off imposed by task instructions and serves
+mon, it is important to remember that the parameters estimated
+as an indicator of individual caution. The nondecision time is an
+in the first stage have uncertainty associated with them (either
+indicator of the perceptual complexity of the stimulus (encoding
+posterior variability or standard error of measurement), and for the
+time) and of the response modality (motor response time), and
+purposes of statistical inference this uncertainty needs to be prop-
+seems to be affected by stimulus complexity (Nunez, Gosai, Van-
+agated appropriately. Neglecting to account for this uncertainty in
+dekerckhove, & Srinivasan, 2019) and participant age (Ratcliff,
+the second stage leads to a risk of so-called generated regressor
+Thapar, & McKoon, 2001).
+bias (Pagan, 1984).
+The DDM is frequently implemented as a cognitive process
+Hierarchical cognitive models are extensions of cognitive mod-
+model to account for the underlying mechanisms that generate
+els that model multiple sources of variability simultaneously (e.g.,
+the collected data. In contrast, cognitive psychometricians use
+measurement error, variability between individuals, stimuli, exper-
+the DDM as a statistically tractable measurement tool that can be
+imental conditions, etc.; Coleman, 1964; Clark, 1973). In these
+extended to explore latent variable structures, quantify individual
+models, parameter values across levels of variation are assumed
+differences, and estimate regression coefficients for covariates of
+to be sampled from parent distributions (Lee, 2011), such that
+interest (Rouder, Province, Morey, Gomez, & Heathcote, 2014).
+variability in individual performance is taken into account when esti-
+In the present paper, we focus on the latter case: the implemen-
+mating population-level statistics (Lee & Webb, 2005; Rouder & Lu,
+tation of the DDM as a measurement model to explain variability in
+2005). In the context of nonlinear models of cognition, hierarchical
+the model’s parameters with exogenous predictors. The practical
+modeling is especially critical because generated regressor bias
+may be asymptotic (i.e., the bias does not go to zero even with
+Indirect inference has recently come to imply the use of simulated data sets to fit models and
+very large samples; Rouder & Lu, 2005).
+estimate parameters, but that is not what we will do here.
+2 of 13 Chávez et al.
+While it is possible to implement hierarchical cognitive models and parameter estimation is made possible through the following
+under any statistical philosophy, it is often most convenient to make inverse EZ equations:
+use of flexible Bayesian modeling strategies (Lee & Wagenmakers,
+(cid:18) (cid:19)
+2013), and this is the default practice.
+L = log
+Going forward, we will use the following notational conventions. 1 − R
+The choice and response time y of person p on trial i is modeled s
+pi (cid:0) (cid:1)
+˙ ˙ ˙
+(cid:16) (cid:17) L R2L − RL + R −
+using a Wiener distribution with participant-specific drift rate ν , 1
+p ˙ 4 2
+νˆ = sgn R − [8]
+boundary separation α , and nondecision time τ (Eq. 1). The 2 V
+p p T
+hierarchical model assumes that individual parameters ν , α , and
+p p L
+αˆ = [9]
+τ are sampled from parent normal distributions with a mean and
+p νˆ
+variance that describe the population (Eqs. 2, 3, and 4). (cid:20) (cid:21)
+(cid:16) (cid:17)
+αˆ 1 − exp(−νˆαˆ)
+τˆ = M − . [10]
+y ∼ Wiener (α , τ , ν ) [1] 2νˆ 1 + exp(−νˆαˆ)
+pi p p p
+(cid:0) (cid:1)
+ν ∼ Normal µ + βx , σ [2]
+p ν p ν ˙ ˙
+Here, R is the observed accuracy rate, M is the observed mean
+(cid:0) (cid:1)
+α ∼ Normal µ , σ [3] ˙
+p α α of the correct-trials reaction times, and V is the observed variance
+(cid:0) (cid:1)
+2 of the correct-trials reaction times. νˆ, αˆ, and τˆ are parameter
+τ ∼ Normal µ , σ [4]
+p τ τ
+estimates.
+Equation 2 includes by way of example a metaregression struc-
+The EZ-DDM gained popularity rapidly as a parameter esti-
+ture on the drift rate. Here, person-specific drift rates are modeled
+mation tool due to its simplicity and practicality. Despite initial
+as samples from normal distributions that are shifted from a shared
+criticism calling the EZ model ”too EZ”—for model fit assessments
+population mean by an individual predictor (indexed with p) multi-
+and for obtaining meaningful parameter interpretations when its
+plied by a regression coefficient β. Similar regression structures
+assumptions are not met, the trial size is limited, or there are out-
+can be applied to the boundary separation and nondecision time
+lier response times (Ratcliff, 2008)—Wagenmakers, van der Maas,
+parameters, and nonlinear regressions may be implemented as
+Dolan, and Grasman (2008) have shown that the EZ-DDM can
+well.
+be extended to address most of these cases. Moreover, as van
+Ravenzwaaij et al. (2017) point out, most binary choice tasks do
+The EZ-diffusion model P not elicit the data patterns specifically captured by the full DDM in
+the first place.
+The ”full” DDM accounts for empirical data patterns commonly
+Importantly, van Ravenzwaaij and Oberauer (2009) compared
+observed in binary choice tasks through the implementation of trial-
+the performance of the full and EZ-DDM in a parameter recovery
+by-trial variability in the drift rate, starting point, and nondecision
+simulation study, and demonstrated that the EZ model can capture
+time (Ratcliff, 1978; Ratcliff & Rouder, 1998; Ratcliff & Tuerlinckx,
+individual differences in true data-generating parameters, while
+2002). However, this seven-parameter version of the DDM is sig-
+the full model failed to recover individual differences in parameters
+nificantly more complex and requires specific modeling expertise
+with across-trial variability. Further, van Ravenzwaaij et al. (2017)
+(Vandekerckhove & Tuerlinckx, 2007). Furthermore, the data pat-
+used the full DDM to generate data emulating experimental effects
+terns specifically captured by the full DDM are elicited only by
+and then contrasted the ability of the EZ-DDM to detect said those
+certain task designs. In maRny cases—including many of those
+effects against the full model, and were able to conclude that the
+where the DDM is used as a measurement model—using the full
+EZ-DDM provides a powerful test of simple empirical effects.
+DDM is asking too much of the data (van Ravenzwaaij, Donkin, &
+Vandekerckhove, 2017).
+A probabilistic proxy model for the drift diffusion model
+In cases where it is reasonable to forgo these assumptions of
+between-trial variability in the parameters of the model, as well
+Equations 8-10 provide deterministic estimators of the three diffu-
+as the need for a response bias, parameter estimation is much
+sion model parameters. To implement the EZ model in a proba-
+easier through the ‘EZ-diffusion’ implementation of the DDM (EZ-
+bilistic programming language, we require a probabilistic estimator
+DDM) presented by Wagenmakers et al. (2007). The EZ-DDM was
+– that is, we need a distribution over data that is conditional on
+developed by first constructing a system of equations showing how
+the model parameters. Such a distribution can be derived from
+the DDM parameters can be used to predict the accuracy rate R e
+Equations 5-7 and application of sampling statistics (e.g., Rice,
+and the mean M e and variance V e of the correct response times
+2006).
+(the ‘forward’ system). The insight by Wagenmakers et al. is that
+If N observations are drawn from a diffusion model whose
+the forward system is invertible, so that parameter estimates can
+accuracy rate is R e, then the sampling distribution of the number of
+be obtained directly from these three summary statistics. ˙
+correct trials T is:
+Let y = exp (−αν). The forward EZ equations are then:
+(cid:16) (cid:17)
+T ∼ Binomial R e , N . [11]
+R e = [5]
+y + 1
+Similarly, if N observations are drawn from a sample whose
+(cid:18) (cid:19)
+(cid:16) (cid:17)
+α y − 1
+M e = τ + , [6] mean and variance of the correct RTs are M e and V e, then the
+2ν y + 1 ˙
+sampling distribution of mean correct RT M is:
+(cid:26) (cid:27)
+(cid:16) (cid:17) 2
+α 1 − 2ανy − y
+(cid:18) (cid:19)
+V e = [7] V
+2ν3 (y + 1) 2 M ˙ ∼ Normal M e , . [12]
+Although care should be taken with parameters that are naturally bounded to be positive. Some-
+times it is preferable to apply a linear regression to log(α) or log(τ) instead. Here the normal distribution is expressed with a mean and variance parameter.
+Chávez et al. Cognition and Individual Differences lab | University of California, Irvine | cidlab.com | December 31, 2023 | 3
+Finally, the sampling distribution of the variance of the correct
+RTs follows this probability law:
+(cid:0) (cid:1)
+˙ ˙
+(T − 1) ∼ Chi-squared T − 1
+(cid:18) (cid:19)
+˙ ˙
+V T − 1
+⇒ (T − 1) ∼ Gamma , 2
+(cid:18) (cid:19)
+T − 1 2V
+⇒ V ∼ Gamma , .
+T − 1
+As T becomes sufficiently large, this is well approximated by a
+normal distribution:
+(cid:18) (cid:19)
+2V
+V ∼ Normal V e , . [13]
+T − 1
+Together with Equations 5, 6, and 7, Equations 11, 12, and 13
+provide a predictive distribution of three summary statistics in terms
+of three DDM parameters – that is, a likelihood. We call this set
+of equations our “proxy model” for the DDM. It is easy to see from
+Equations 11-13 that the EZ-DDM estimators in Equations 8-10
+are the maximum likelihood estimators of the proxy model.
+Equipped with a likelihood for the EZ-DDM, we can now im-
+plement it in a probabilistic programming language like JAGS
+(Plummer, 2003) or Stan (Carpenter et al., 2017). This will allow
+us, among other things, to use this proxy model as a component
+of a Bayesian hierarchical model.
+The EZ Bayesian hierarchical drift diffusion model
+A hierarchical Bayesian extension of the EZ-DDM allows for a
+Fig. 2. Root mean squared error (RMSE) of beta weights β as defined in Equation 2.
+practical and easy implementation of the hierarchical DDM as a
+Left column: “t test” design. Right column: “linear regression” design. Top to bottom:
+measurement model. Equations 1-4 describe the initial hierarchical
+drift rate criterion, boundary separation criterion, nondecision time criterion. Different
+extension of the DDM (Vandekerckhove et al., 2011). To implement
+lines indicate different numbers of simulated participants, from 20 (blue, highest
+our proxy model, it suffices to substitute the likelihood equation RMSEs) doubling each time to 320 (purple, lowest RMSEs).
+(Eq. 1) with the three equations that constitute our proxy model
+(Eqs. 11-13). In practical applications, we will also have to adjust
+data preprocessing code so that mean accuracy and the mean (RMSE) was higher for the linear regression design than the t test
+and variance of correct RTs in each design cell are available. An design, lower when nondecision time was the criterion than for the
+illustrative implementation of the EZ Bayesian hierarchical drift other two parameters, and generally decreases in the expected
+diffusion model in JAGS is given in Appendix A. ways as P and T increase. For typical data sizes (e.g., 40 partici-
+To test the ability of our proxy model to recover DDM parame- pants with 80-160 trials), the RMSE hovers around 0.1, or 10% of
+ters, we conPducted a large simulation study. Reproducible code the range of the covariate, which we considered acceptable.
+for the simulation study can be found via osf.io/bzkpn and more
+In Appendix B, we further observe that our model estimates
+extensive detail is in Appendix B. Briefly, we simulated data sets
+the beta weight and the mean drift rate well with no notable bias
+from a hierarchical diffusion model in which P participants pro- (other than β being drawn to the prior with very small samples).
+vide T trials in exactly one condition (a between-subjects design).
+The model tends to underestimate the mean boundary separation
+Exactly one of the three DDM parameters was selected as the parameter when T is small, but this bias quickly recedes for T ≥
+‘criterion’ and made a linear function of an exogenous covariate 40. The mean nondecision time parameter appears the most
+X (Eq. 2 shows the case where drift rate was the criterion). X
+difficult to recover, as our model tends to overestimate it for small
+was either binary (taking only values of 0 or 1; the ‘t test’ design values of T but underestimate it for large T , and more so as P
+scenario) or took a value between 0 and 1 (inclusive, the ‘linear
+increases.
+regression’ design), yielding six distinct scenarios. Additionally,
+we varied the number of participants and trials per participant,
+participants, in the data set is the same between each marker and
+P ∈ {20, 40, 80, 160, 320} and T ∈ {20, 40, 80, 160, 320}, for a
+its neighbor to the right and one line up (or left and down). This
+total of 6 × 25 = 150 conditions. In each condition, we simulation
+1,000 data sets and used our proxy method (implemented in JAGS
+often gained by increasing the sample size P than the trial count
+using pyjags; Miasko, 2017) to recover the parameters.
+T , a known but underappreciated fact (DeKay, Rubinchik, Li, &
+Complete results and full details of the implementation are in
+De Boeck, 2022; Rubinchik, 2019; Vandekerckhove, in press).
+In summary, the simulation study illustrates highly desirable
+sion weight β in all 150 conditions. The root mean squared error
+recovery properties of the mean drift rate parameter and the beta
+4 weight parameter, but also shows that our proxy model inherits the
+Here the Gamma distribution is expressed with a shape and scale parameter.
+4 of 13 Chávez et al.
+estimation biases from the EZ diffusion model. Consequently, we Boehm, U., Evans, N. J., Gronau, Q. F., Matzke, D., Wagenmakers,
+recommend the use of the EZ Bayesian hierarchical drift diffusion E.-J., & Heathcote, A. J. (2023). Inclusion Bayes factors for
+model specifically in the cognitive-psychometrical context, where mixed hierarchical diffusion decision models. Psychological
+the focus of interpretation is on regression structures. Methods. doi: 10.1037/met0000582
+Carpenter, B., Gelman, A., Hoffman, M. D., Lee, D., Goodrich, B.,
+Betancourt, M., . . . Riddell, A. (2017). Stan: A probabilis-
+Conclusion
+tic programming language. Journal of statistical software,
+The drift diffusion model (DDM) is a popular model of choice
+76(1).
+response time that comes at a significant computational cost.
+Clark, H. H. (1973). The language-as-fixed-effect fallacy: A critique
+Moreover, many of its applications add computational complexity
+of language statistics in psychological research. Journal
+above and beyond that of calculating the expensive DDM likelihood.
+of Verbal Learning and Verbal Behavior, 12(4), 335–359.
+Such costly applications have included Bayesian hierarchical ex-
+doi: 10.1016/S0022-5371(73)80014-3
+tensions (Vandekerckhove et al., 2011), latent variable structures
+Coleman, E. B. (1964)N. Generalizing to a Language
+(Vandekerckhove, 2014), applications to large population samples
+Population. Psychological Reports, 14(1), 219–226.
+(Lucio et al., 2017; Salum et al., 2014a, 2014b), use of DDMs as a
+doi: 10.2466/pr0.1964.14.1.219
+component in numerical experiments (Stafford, Pirrone, Croucher,
+De Boeck, P., & Wilson, M. (2004). Explanatory item response
+& Krystalli, 2020), real-time adaptive design optimization (Bahg et
+models: A generalized linear and nonlinear approach. New
+al., 2020), and model comparisons that involve high-dimensional
+York: Springer.
+numerical integration (Boehm et al., 2023; Gronau, Heathcote, & I
+DeKay, M. L., Rubinchik, N., Li, Z., & De Boeck, P. (2022).
+Matzke, 2019).
+Accelerating psychological science with metastudies: A
+The EZ-diffusion model (Wagenmakers et al., 2007) was a sig-
+demonstration using the risky-choice framing effect. Per-
+nificant development in this regard, allowing for rapid approxima- R
+spectives on Psychological Science, 17(6), 1704–1736.
+tions to DDM parameters with relative ease. However, enhancing
+doi: 10.1177/17456916221079611
+the EZ-diffusion model with additional statistical structure was not
+Dutilh, G., Vandekerckhove, J., Ly, A., Matzke, D., Pedroni, A.,
+yet possible. We have introduced the EZ Bayesian hierarchical
+Frey, R., . . . Wagenmakers, E.-J. (2017). A test of the
+DDM, a new formulation of EZ-diffusion as a Bayesian generative
+diffusion model explanation for the Worst Performance Rule
+model that lends itself to implementation in generic probabilistic
+using preregistration and blinding. Attention, Perception, and
+programming languages. The derivation was based in standard
+Performance, 79, 713–725.
+mathematical statistics – the key equations are Equations 11, 12,
+Enkavi, A. Z., Eisenberg, I. W., Bissett, P. G., Mazza, G. L.,
+and 13. We conducted simulation studies showing good recovery
+MacKinnon, D. P., Marsch, L. A., & Poldrack, R. A. (2019,
+of DDM parameters using our new method, including good recov-
+March). Large-scale analysis of test–retest reliabilities
+ery of hierarchical regression parameters, and we provide some
+of self-regulation measures. Proceedings of the National
+examples in an online repository (osf.io/bzkpn).
+Academy of Sciences, 116(12), 5472–5477. doi: 10.1073/p-
+With this new ‘EZ’ formulation, using the DDM is no more costly
+nas.1818430116
+than using a normal distribution, opening the door to a wide array
+Estes, W. K. (1956). The problem of inference from curves based
+of modeling applications.
+on group data. Psychological Bulletin, 53, 134–140.
+Gronau, Q. F., Heathcote, A., & Matzke, D. (2019). Computing
+Open practices: Code availability and reproducibility Bayes factors for evidence-accumulation models using Warp-
+III bridge sampling. Behavior Research Methods, 52(2),
+Our simulation studies can be reproduced using code made
+918–937. doi: 10.3758/s13428-019-01290-6
+available via GitHub, github.com/joachimvandekerckhove/
+Jiang, W., & Turnbull, B. (2004). The indirect method:
+ezbhddm, and archived on the Open Science Framework (osf.io/
+P Inference based on intermediate statistics—a syn-
+bzkpn). The python codebase is in the src/ directory. Python
+thesis and examples. Statistical Science, 19(2).
+notebooks to repeat small-scale simulations and create figures are
+doi: 10.1214/088342304000000152
+in the notebooks/ directory. Finally, the vm/ directory contains set-
+Klauer, K. C., Voss, A., Schmitz, F., & Teige-Mocigemba, S. (2007).
+up information for a virtual machine with a suitable computational
+Process components of the implicit association test: A
+environment for reproducibility.
+diffusion–model analysis. Journal of Personality and So-
+cial Psychology, 93, 353–368.

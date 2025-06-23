@@ -1,0 +1,920 @@
+The impact of stability in appearance on the development of facial representations
+Christel Devue1,2* and Sofie de Sena1
+1School of Psychology, Victoria University of Wellington, New Zealand
+2Psychology Department, Psychology and Neuroscience of Cognition, University of
+Liège, Belgium
+Manuscript accepted for publication in Cognition (July 2023)
+*Corresponding author: School of Psychology, Victoria University of Wellington, Kelburn
+Parade, Wellington 6012, New Zealand
+Permanent address: Psychology Department, Psychology and Neuroscience of Cognition,
+Place des Orateurs 2, 4000 Liège 1, Belgium; Phone: +32 366 9282; Email:
+cdevue@uliege.be.
+Author’s notes: Image stimuli and datasets for all experiments are available on
+Pre-registrations of the study designs and analyses plans are available on the Open Science
+Acknowledgements: We thank Serge Brédart, Arnaud D’Argembeau and Valentine
+Vanootighem for proofreading and commenting on an earlier version of on the manuscript,
+as well as two reviewers for their constructive feedback. We thank the Susilo lab at Victoria
+University of Wellington for their support with this research.
+Abstract
+The way faces become familiar and what information is represented as familiarity develops
+has puzzled researchers in the field of human face recognition for decades. In this paper, we
+present three experiments serving as proof of concept for a cost-efficient mechanism of
+face learning describing how facial representations form over time and accounting for
+recognition errors. We propose that the encoding of facial information is dynamic and
+modulated by the intrinsic stability in individual faces’ appearance. We drew on a robust
+and ecological method using a proxy of exposure to famous faces in the real world and
+manipulated test images to assess the prediction that recognition of famous faces is
+affected by their relative stability in appearance. We consistently show that stable facial
+appearances (like Tom Cruise’s) facilitate recognition in early stages of familiarisation but
+that performance does not improve much over time. In contrast, variations in appearance
+(like Jared Leto’s) hinder recognition at first but improve performance with further media
+exposure. This pattern of results is consistent with the proposed cost-efficient face learning
+mechanism whereby facial representations build on a foundation of large-scale diagnostic
+information and refine over time if needed. When coarse information loses its diagnostic
+value through the experience of variations in appearance across encounters, diagnostic
+facial details and/or their spatial relationships must receive more weights, leading to refined
+representations that are more discriminative and reliable than representations of stable
+faces.
+Keywords: face recognition, familiarisation, representational weight, identification, face
+processing
+Highlights
+- We propose that face learning is cost-efficient and modulated by the relative
+stability of individual faces’ appearance over episodic encounters, over and beyond
+changes in viewing conditions, and that encoding of facial information operates in a
+flexible and coarse-to-fine manner.
+- We predicted that actors’ stability in appearance and their levels of media exposure
+should interact to produce representations that are more or less reliable in a face
+recognition task.
+- Results suggest a contribution of the most typical peripheral information to holistic
+facial representations.
+- Data show an overall recognition advantage for famous faces with a stable
+appearance compared to faces displaying more variable looks.
+- This advantage is due to stability facilitating recognition in earlier stages of
+familiarisation but performance is reversed to the benefit of variable faces with
+higher degrees of media exposure.
+- This pattern is in line with a cost-efficient encoding mechanism yielding coarser
+representations for stable faces and promoting refinement when variations in
+appearance are observed over episodic encounters.
+- This pattern seems in contrast with demonstrated benefits of exposure to variations
+during face learning but we discuss the role of learning supervision or lack therefore
+in laboratory and real-world conditions to explain the unexpected benefits of
+stability in appearance we found.
+- Research on familiar face recognition and face learning must consider individual facial
+characteristics to help refine existing theoretical accounts.
+The impact of stability in appearance on the development of facial representations
+While most of us recognise a large number of familiar faces effortlessly and with great
+accuracy (Brédart & Devue, 2006; Devue et al., 2007; Jenkins, Dowsett, & Burton, 2018;
+Tong & Nakayama, 1999), learning new faces is difficult and highly error-prone (Hancock et
+al., 2000; Young & Burton, 2018). Understanding this transition in performance between
+these extremes is the number one challenge to move research on face learning and
+recognition forward (O’Toole et al., 2018; Young & Burton, 2018).
+In fact, we know surprisingly little about which facial cues we memorise and draw on
+to recognise people, and whether and how what we memorise changes over time. Seminal
+research showed that upon viewing novel faces, we rely by default on external or peripheral
+features, like hairstyle, even if this strategy is suboptimal and leads to poor recognition
+performance (Ellis, Shepherd, & Davies, 1979; Patterson & Baddeley, 1977; Young, Hay,
+McWeeny, Flude, & Ellis, 1985; see also Bruce et al., 2001; Hill et al., 1997; Longmore et al.,
+2017; White et al., 2014). By contrast, recognition of highly familiar faces would rely on both
+internal and external features or favour the former (R. Campbell et al., 1995; Ellis et al.,
+1979; Kramer, Manesi, et al., 2018). The two categories of features would be part on the
+same holistic representation (see e.g., Andrews, Davies-Thompson, Kingstone, & Young,
+2010), even though when presented in isolation, internal features are judged as more
+diagnostic of identity than external features (Kramer, Manesi, et al., 2018). The way
+representations transition from a suboptimal reliance on external features to a more
+optimal reliance on both internal and external features in familiar faces thus remains to be
+established.
+One obstacle to understanding how familiarity with faces develops has been a
+tendency to study the processing of new faces and familiar faces separately (Burton, 2013).
+A possible reason for that tendency is an interpretation of observed differences in
+performance between unfamiliar and familiar faces as the manifestation of qualitatively
+different processes (for a review, see Johnston & Edmonds, 2009). Upon encounter with
+new faces, we would form simplistic pictorial representations that do not generalise well to
+new views and that fail to match new percepts of the same face resulting from changes in
+lighting or physical appearance (Burton, Bruce, & Hancock, 1999; Longmore et al., 2017).
+Once familiar, faces would benefit from face-specialized processing—i.e., view-invariant,
+holistic, or centred on inner-features and their configuration, depending on theories—
+allowing their recognition despite changes in viewing conditions. However, this dichotomy
+between unfamiliar and familiar faces may be the by-product of unfair comparisons. Unlike
+famous or personally familiar faces that have been learned in rich conditions (e.g., in
+motion, with changes in lighting and context), unfamiliar faces have traditionally been
+learned from one or a limited number of photographs in artificial laboratory conditions. The
+latter learning conditions are insufficient to form three-dimensional representations of
+complex objects like faces and it was established that exposure to multiple viewpoints
+and/or movement improves learning (Etchells et al., 2017; Johnston et al., 2013; Lander &
+Bruce, 2003; Pilz et al., 2006). Therefore, it is plausible such dichotomy does not apply to
+real-world situations where we learn new faces in rich circumstances similar to those in
+which we also encountered faces that have become familiar. Recent studies examining
+neural changes produced after brief real-life encounters with new persons suggest these
+encounters are sufficient to yield activation in areas devoted to perception and memory for
+faces and image-independent representations (Campbell & Tanaka, 2021; Popova & Wiese,
+2023; Sliwinska et al., 2022).
+More recently, computational models have refined what plausible mechanisms of
+familiarisation might entail. They suggest that we come to remember familiar faces by
+focusing on stable inner features (e.g., eyes, nose, mouth) and ignoring changeable
+peripheral ones (Burton, Jenkins, Hancock, & White, 2005; Burton, Bruce, & Hancock, 1999;
+Jenkins & Burton, 2011; Kramer, Young, & Burton, 2018; Robins, Susilo, Ritchie, & Devue,
+2018). Somehow, we would incorporate or average out variations in lighting, viewpoint,
+appearance, and expression to form robust memory representations that include stable
+inner aspects and unique ways in which a given face varies (Jenkins & Burton, 2011). Once
+formed, these abstract representations would enable recognition of novel instances of an
+individual (Burton, Kramer, Ritchie, & Jenkins, 2016; Kramer et al., 2018). Principal
+component analysis (PCA) models predict that the quantity and the quality of variations
+observers are exposed to should gradually improve recognition performance (Kramer,
+Young, et al., 2018).
+Recent human data partly support this rationale in research focused on the
+development of familiarity in more ecological conditions. For example, we showed that
+increased exposure times to faces of actors learned incidentally in a TV show led to linear
+increases in recognition (Devue et al., 2019). Moreover, familiarisation with new faces in
+laboratory conditions is facilitated by exposure to large ranges of variations in natural
+images, mixing environmental (e.g., lighting, background, camera lens, camera angle) and
+facial (e.g., expression, age, weight, look/appearance) factors, and more so than by mere
+increases in exposure time (Baker, Laurence, & Mondloch, 2017; Menon, Kemp, & White,
+2018; Menon, White, & Kemp, 2015; Murphy, Ipser, Gaigg, & Cook, 2015; Ritchie & Burton,
+2017; Robins, Susilo, Ritchie, & Devue, 2018). Interestingly, a recent study shows that a
+combination of changes in facial appearance, clothing and context help yield more reliable
+and durable facial representations than just systematic changes in viewpoints (Corpuz &
+Oriet, 2022).
+However, conclusions drawn from PCA models on the crucial role of inner features are
+sometimes in conflict with human data. Most strikingly, people occasionally fail to recognise
+highly familiar people, including themselves, when peripheral features deviate from their
+usual appearance, even if inner features are clearly visible (Brédart & Young, 2004; Carbon,
+2008; Devue et al., 2019; Sinha & Poggio, 1996). Further, some famous individuals are better
+recognised from their peripheral features alone than from their inner features alone (see
+representations of familiar faces heavily and universally rely on invariant internal features.
+This inconsistency between human and computer data could occur partly because most
+computational models ignore peripheral features by design, thereby discounting
+information valuable to humans. It seems that in humans, inner features are not always
+necessary nor sufficient to trigger recognition of familiar faces and so they might not always
+carry the most diagnostic information for a given face.
+To resolve these apparent contradictions and explain how facial representations
+evolve as familiarity unfolds, we propose a parsimonious mechanism of face learning that
+integrates multiple aspects of existing theoretical accounts. First, we assume that any
+feature (e.g., hair colour, ear or nose shape) can be more or less diagnostic of individual
+facial identity, regardless of its location and of the face’s familiarity (see also Abudarham &
+Yovel, 2018). Rather than systematically relying on a costly encoding of all inner features
+and their details, representations are weighted based on the relative stability of different
+features over time, which make them more or less diagnostic (e.g., invariable nose vs.
+changing aspect of eyes due to variable makeup). Second, we take limitations in storage
+abilities inherent to humans into account and assume that the encoding of coarser
+information (e.g., head silhouette, hairstyle and colour, light/dark pattern of inner features)
+is prioritised over that of finer details (e.g., details of the lips) because a coarse-to-fine
+prioritisation during encoding should incur fewer storage resources (Gao et al., 2013). This
+flexible and dynamic encoding mechanism would create cost-effective memory
+representations that start off as coarse but refine over time, particularly if changes in
+appearance are encountered (Corpuz & Oriet, 2022) and/or if demands for recognition out
+of context increase.
+From these two basic assumptions, we hypothesise that the relative stability of
+changeable aspects (e.g. hairstyle, hair colour, facial hair) of people’s facial appearance
+affects the quality of facial representations, specifically in terms of their spatial resolution.
+Coarse-to-fine processing is ubiquitous in scene, object, and face perception and depends
+on factors such as the type of categorisation task (e.g., Morrison & Schyns, 2001; Nakashima
+et al., 2008; Schyns & Oliva, 1994; Yan et al., 2022). Therefore, we propose that the scale of
+information encoded for a given face depends on its intrinsic characteristics, and on what is
+diagnostic enough to distinguish it from other faces. We further assume that the refinement
+of facial representations unfolds over longer time scale than the coarse-to-fine processing
+occurring during visual perception, and that memory refinement takes place across episodic
+encounters as a function of one’s relative stability in appearance. When we view a face with
+a stable appearance, large-scale peripheral features and coarse information (e.g. hair colour
+and style) are diagnostic and receive substantial representational weight. Moreover, details
+of inner features need not be encoded, yielding low-resolution representations. By contrast,
+when we observe that people change their appearance frequently through variations in
+hairstyle, hair colour, makeup or facial hair, the set of large-scale diagnostic features one
+might rely on decreases. Therefore, finer aspects that remain stable over time or that are
+less likely to be occluded by changes in hair, facial hair or make-up must receive more
+representational weight, thereby producing representations that include areas with higher
+resolution. In this framework, recognition errors like a failure of recognition following
+unexpected changes in appearance in a well-known person or false recognitions of strangers
+based on gross resemblance with familiar faces are thus viewed as the flipside of an
+otherwise efficient mechanism.
+terms of hairstyle, make-up and accessories (variable appearance on top and
+stable appearance at the bottom), over and beyond natural variations in facial
+expression, viewpoint, lighting, clothing and context, or variations due to camera
+artefacts. [Due to copyright restrictions, pictures used in the experiments are not
+shown. The people depicted here have provided permission.]
+As a first step for testing the assumptions of this model, we present a series of three
+recognition experiments using actors’ faces. One advantage of using actors is that their
+faces were learned through a rich variety of viewing conditions, over extended time periods,
+and without explicit instructions to do so, leading to very ecological encoding conditions
+compared to classical lab-based face learning tasks. Simultaneously, we can operate a strict
+selection of individual actors based on their physical appearance (see an illustration on
+variable appearance (e.g., Jared Leto). Further, to probe the nature of representations
+observers relied on during recognition, we manipulated the type of information available in
+test images, and measured how this affected recognition performance.
+We examined whether and how the relative stability of one’s appearance over
+encounters changes the likelihood that they are recognised. If efficient face encoding relied
+on averaging inner features as a group, as implicitly suggested by PCA models, one could
+expect comparable recognition performance regardless of variations in facial appearance,
+because recognition should rest upon robust representations of invariant inner features.
+Instead, we predicted different recognition performance for actors with a stable appearance
+and those with a more variable appearance. This pattern would in and of itself demonstrate
+that face encoding operates in a flexible and dynamic manner as a function of a face’s
+relative stability.
+Finally, to examine how stability in appearance modulates the evolution of
+representations over time and with increased exposure, we drew on a method developed
+recently that uses a proxy of exposure to actors in the real world (see Devue et al., 2019).
+Specifically, we controlled that the amounts of media exposure stable and variable actors
+had received were comparable, based on an objective measure of public visibility available
+on the Internet Movie Database (IMDb). To get a snapshot of how reliable representations
+may be at different levels of exposure, we compared recognition performance for actors
+with two levels of popularity (popular and less popular). Based on previous research that
+suggests a shift of focus from external features for newly encountered faces, towards a
+conjoint use of internal and external features or favouring the former as a face becomes
+familiar (Ellis et al., 1979; Young et al., 1985), we hypothesised that representational
+weights initially set on large-scale external features would converge towards inner features
+and their details over time. In other words, the encoding and consolidation of
+representations would operate based on statistical learning of stable elements of varying
+scales over encounters. We thus expected that stability would interact with popularity.
+General Methods
+Participants. Based on power analyses (see Supplementary Materials) and to
+minimise the impact of individual differences in face recognition skills or in individual
+exposure to individual actors amongst participants, we recruited a large sample of 100 first
+year psychology students in Experiment 1 (i.e. ten times more than needed from a priori
+power calculations). Sample sizes were adapted in subsequent experiments. In all
+experiments, we excluded participants who did not comply with instructions (i.e., who failed
+more than 50% of attention checks; see procedure below), and/or who responded too fast
+(<600 ms or under -2SD from the sample’s overall mean reaction time). The study was
+approved by the local Ethics Committee.
+Materials. Actor selection. Stability in appearance of prospective actors within given
+ranges of popularity based on StarMeter ranks (see below) was determined from a visual
+inspection by authors CD and SD of the pictures on the right-hand side thumbnails returned
+from a Google web search and in the first five to six rows of Google image searches.
+Prospective actors were first rated by the authors as displaying low, moderate or high levels
+of variations based on the appearance of changeable dimensions like hairstyle, hair colour,
+facial hair, makeup, and accessories (e.g., glasses, hats) across images in the two search
+results. CD and SD then agreed on a selection based on those ratings while ensuring
+equivalent sex and age distributions in four different conditions (2 stability x 2 popularity).
+For the stable condition, we selected 48 actors (24 women, 24 men; Mean age = 41.65
+years, SD = 13.04) whose pictures showed similar appearance on changeable dimensions
+(e.g. similar hairstyle, hair colour, facial hair across photos and no changes involving several
+dimensions). For the variable condition, we selected 48 actors (24 women, 24 men; Mean
+age = 40.77 years, SD = 10.5) whose pictures markedly varied through various combinations
+of changes on changeable dimensions. Actors’ popularity was determined via the StarMeter
+ranks on IMDb pro, which reflect current popular interest for an actor and their visibility or
+exposure in the media—smaller ranks reflect higher popularity. Since we could not measure
+individual participants’ exposure to individual actors, the logic here is that the more media
+exposure an actor has, the more likely it is that participants as a group will have been
+exposed to them, and so the better they should be recognised. These ranks were found to
+predict recognition performance of actors’ faces in a recent study (Devue et al., 2019). We
+selected 48 actors (24 variable, 24 stable) with starMeter ranks between 1 and 500 for the
+“popular” condition. Importantly, startMeter ranks of variable actors (Mean = 170.5 ± 104.5,
+range = 1 - 385) and of stable actors (Mean = 168.5 ± 116, range = 5 - 407) were overall
+similar1. We selected 48 actors (24 variable, 24 stable) with starMeter ranks between 1000
+and 1500 for the “less popular” condition, so that the ranks of variable (Mean = 1208.2 ±
+162, range = 1006 - 1480) and stable actors (Mean = 1199.6 ± 114, range = 1015 - 1470)
+Unfamiliar faces (48 women and 48 men) were actors with very low popularity on
+IMDb (i.e., ranks >100,000; Mean = 246,309; SD = 354,212) from non-English speaking
+countries and/or who worked in theatre, so that they would not be known by our
+participants. Their average age (Mean age = 39.49 years, SD = 11.04) overall matched that of
+known actors (Mean age = 41.21 years, SD = 11.8).
+Image stimuli. For each of the 96 actors, we selected one image showing their most
+typical appearance—where the aspect of changeable features shows the most overlap
+across Google search images (e.g., no facial hair and short grey hair for Harrison Ford; blond
+short beard and semi long hair for Brad Pitt). For Experiment 3, we also selected 96 atypical
+pictures. We used the same approach as in Devue et al. (2019) and selected pictures with
+the most deviations possible from the usual appearance, including hair length, colour,
+and/or style, presence of facial hair, glasses, and differences in make-up that did not conceal
+internal features (e.g., goatee and earring for Harrison Ford; dark short hair and moustache
+for Brad Pitt).
+The set of 288 images (96 typical images of actors, 96 atypical images of actors, and 96
+images of strangers) showed faces in a frontal or slightly angled view and with a neutral or
+1Note that since individual ranks are by definition unique, it is not feasible to pair stable and variable actors
+based on exact matched ranks. Moreover, actors that follow one another in the ranking do not necessarily
+display the desirable degree of stability/variability in appearance, gender, or age to achieve a perfect
+matching.
+happy expression (all evenly distributed across conditions). Images were rotated to align the
+eyes on a horizontal axis. They were then cropped, so that the hairstyle was apparent while
+minimising the amount of visible clothing, and resized to 399 by 476 pixels.
+We created a “headshot” version of each image, in which the background was
+concealed with a grey field. For Experiment 1 and 2 we also created a “cropped inner
+features” version of typical images, where inner features appeared within a truncated
+ellipse (width = 264, height = 260 pixels), so that bangs and other external features were
+concealed by a grey field.
+Procedure. Participants performed a recognition test online via Testable.org. The 96
+pictures of actors and 96 pictures of strangers were presented in a random order at the
+centre of the screen—until a response was provided or for up to 3 seconds—and
+participants judged as accurately and fast as possible if they knew the face (i.e. yes, the face
+looks familiar, it has been seen before) or not via two response keys (1 = yes and 2 = no).
+Instructions thus emphasised visual familiarity with a face and specified that there was no
+need to remember the person’s name or identity to judge that their face was familiar. A
+1500-ms central fixation cross separated individual trials. Four attention checks—image
+with instructions to press a specific key (i.e., 5, 6, 7, or 8) instead of the two response keys—
+and four breaks were dispersed randomly through the trials. Participants performed three
+practice trials before the test.
+Design and measures. Popularity (popular, less popular) and appearance (variable,
+stable) were manipulated within-subject in all experiments. Image condition (inner
+features/headshot, typical/atypical) was manipulated between-subject in experiments 2 and
+3a, and within-subject in Experiment 3b. We calculated d’ based on hit rate (i.e., proportion
+of “familiar” responses to actors) in each famous actor face category (i.e. popular variable,
+popular stable, less popular variable, less popular stable) and on false alarm rate (i.e.,
+proportion of “familiar” responses to unfamiliar faces) in the corresponding image
+condition. Descriptive statistics (means and standard deviations) for familiarity judgments
+(i.e. hit and false alarm rates) and reaction times of all experiments, as well as reaction
+times analyses for Experiments 2 and 3 appear in Supplementary materials.
+Transparency and openness. We preregistered the experimental design, analyses and
+hypotheses for the three experiments with in-built replication on the Open Science
+Framework before data collection, the document is visible at
+unexpected results in Experiment 1, analyses plans for Experiments 2 and 3 were amended
+and preregistered on 10 September 2018
+Experiment 1
+Methods. Participants were all tested with cropped images of inner features and so
+familiarity judgments relied exclusively on those features. Of the 100 participants recruited,
+96, aged between 18 and 40 years (72 women, 22 men, 2 non-binary; Mean age = 19.81
+years, SD = 3.62), completed the experiment in exchange of course credits. None of them
+was excluded.
+cropped inner features as a function of popularity and appearance. Red circles
+show the mean, and boxplots show distribution in quartiles. Violin size is
+proportional to the distribution of performance in each condition. Values on the
+plot are effect sizes (Cohen’s d) for paired-comparisons.
+Results and discussion. We conducted a two-way repeated measure Analysis of
+Variance (ANOVA) with appearance (stable, variable) and popularity (popular, less popular)
+as within-subject factors on d’. As expected, popular actors (Mean = 1.36, SD = 0.85) were
+better discriminated from strangers than less popular actors (Mean = 0.74, SD = 0.58),
+F(1,95) = 226.755, p < .001, η 2 = .705. The predicted main effect of appearance (i.e.,
+variable > stable) was not significant, F(1,95) = .342, p = .56, η 2 = .004, because of a crossed
+Benefit of increased media exposure/popularity. We followed up the interaction with
+one-tailed paired sample Student t-tests. As expected, sensitivity improved with increased
+exposure in both variable, t(95) = 16.825, p < .001, d = 1.717 (95% C.I. = 1.4 –
+one-tailed two-tailed
+2.031), and stable actors, t(95) = 6.775, p < .001, d = 0.691 (95% C.I. = 0.467 –
+one-tailed two-tailed
+0.913). Cohen’s d values and the lack of overlap between their respective confidence
+intervals2 suggest that benefits of increased media exposure were significantly larger for
+variable than for stable faces.
+Impact of appearance. As predicted, for popular actors, inner features of variable
+faces were better recognised than those of stable faces, t(95) = 7.958, p < .001, d =
+one-tailed
+0.812 (95% C.I. = 0.58 – 1.041). Unexpectedly, for less popular actors, sensitivity to inner
+features was higher for stable faces than for variable faces, and so the one-tailed test based
+on our expectation of the opposite pattern was not significant, even if Cohen’s d indicates a
+large effect, t(95) = -9.029, p = 1, d = 0.921 (95% C.I. = 0.681 – 1.159). This advantage
+one-tailed
+for stable faces contrasts with findings in face learning studies where exposure to increased
+levels of variability leads to immediate increases in recognition rates compared to less
+variable viewing conditions (Baker et al., 2017; Corpuz & Oriet, 2022; Ritchie & Burton,
+2017). We assume that this difference is due to unsupervised learning conditions in which
+actors’ faces are often learned, contrasting with face learning in typical lab situations.
+Before actors become extremely famous, we might see them in multiple support roles
+without the explicit knowledge that they are the same person. In that situation, stability
+could help “put faces together” in that we are more likely to recognise someone who had
+similar appearances in different movies than someone who has changed. Stability may thus
+allow us to consolidate the representation of newly learned faces and of their inner features
+across episodic encounters.
+2 We present two-tailed confidence intervals for comparison purposes as the one-tailed version’s upper limit is
+infinite.
+Although the interaction between appearance and popularity did not take the
+anticipated shape—where a disadvantage of stable faces compared to variable faces would
+decrease over time if representations of all faces converged towards the same levels of
+refinements—the results of this experiment remain consistent with a cost-efficient face
+encoding mechanism. Faces that vary more are ultimately better recognised from inner
+features than faces that are more stable, suggesting that these features are represented in a
+more reliable manner—at a higher resolution. The larger improvement in recognition
+performance that variable faces display over time compared to stable faces suggests that
+their representations develop to be more fine-tuned than representations of stable faces,
+which tend to remain coarser.
+Experiment 2
+This experiment replicates and expands on Experiment 1. We compared recognition
+from images of inner features and headshots where external features are visible. We
+expected that in popular actors, the presence of coarse external features would reduce the
+disadvantage of stable faces in compensating for lower resolution representations of inner
+details.
+Methods. Because of the unexpected pattern with less popular actors in Experiment
+1, we pre-registered an amended analysis plan before data collection
+variables remain identical to those described in the original pre-registration.
+We used sequential analyses (Lakens, 2014)—details are presented in Supplementary
+Materials—and recruited a total of 123 participants, 3 of whom replaced participants who
+did not follow instructions (N = 2) or responded too fast (N = 1). Participants completed an
+online recognition task either in the “inner features” condition (39 women, 18 men, 3 non-
+binary; Mean age = 18.9 years, SD = 1.32) or in the “headshot” condition (41 women, 19
+men; Mean age = 19.15 years, SD = 1.87).
+Results and discussion. The critical p value for our sequential analyses was set at
+.0182. We present uncorrected p values and so an effect must be interpreted as significant
+when p < .0182. We conducted a three-way mixed effect ANOVA with appearance (variable,
+stable) and popularity (popular, less popular) as within-subject factors, and image condition
+(inner features, headshot) as between-subject factor on d’. We found the expected main
+effect of image condition, F(1,118) = 73.97, p < .001, η 2 = .385, as sensitivity was higher
+with headshots (Mean = 2.023, SD = 0.59) than with images of inner features (Mean = 1.121,
+SD = 0.556). The three-way interaction between appearance, popularity, and image
+examined performance separately in each image condition and tested whether we
+replicated findings of Experiment 1 in the inner features condition.
+Inner features. As in Experiment 1, a two-way repeated measure ANOVA showed a
+main effect of popularity, F(1,59) = 216.173, p < .001, η 2 = .786, qualified by an interaction
+with appearance, F(1,59) = 43.161, p < .001, η 2 = .422. The main effect of appearance was
+not significant, F(1,59) = 1.539, p = .22, η 2 = .025.
+Follow-up t-tests showed that sensitivity to inner features increased with popularity
+for both variable, t(59) = 12.31, p < .001, d = 1.589 (95% C.I. = 1.204 – 1.967), and stable
+actors, t(59) = 8.136, p < .001, d = 1.05 (95% C.I. = 0.732 – 1.363). Effects sizes suggest
+3 Results of the same ANOVA conducted at step 1 and step 2 of sequential analyses followed a
+similar pattern and are visible in Supplementary Materials.
+numerically larger improvements from increased media exposure for variable than for
+stable actors but Cohen’s d confidence intervals overlap and so the size of the improvement
+is not significantly different. In popular actors, variable faces were better recognised than
+stable ones, t(59) = 4.125, p < .001, d = 0.533 (95% C.I. = 0.26 – 0.801), while in less popular
+actors, stability facilitated recognition compared to variability, t(59) = -5.967, p < .001, d =
+0.77 (95% C.I. = 0.479 - 1.056).
+of popularity, appearance of actors and image type(inner features vs. headshot).
+Red circles show the mean, and boxplots show distribution in quartiles. Violin
+size is proportional to the distribution of performance in each condition. Values
+on the plot are Cohen’s d for paired-comparisons.
+Headshots. The same ANOVA in the headshot condition yielded a roughly similar
+pattern, except that the main effect of appearance was significant, F(1,59) = 21.59, p < .001,
+η 2 = .268. Overall, headshots of stable faces (Mean = 2.14, SD = 0.65) were better
+discriminated from strangers than headshots of variable faces (Mean = 2, SD = 0.615). Here
+too a significant main effect of popularity, F(1,59) = 433.31, p < .001, η 2 = .88, was qualified
+by an interaction with appearance, F(1,59) = 269.56, p < .001, η 2 = .82.
+Follow-up analyses showed that sensitivity improved with popularity for both variable,
+t(59) = 25.066, p < .001, d = 3.236 (95% C.I. = 2.598 – 3.868), and stable faces, t(59) = 7.186,
+p < .001, d = 0.928 (95% C.I. = 0.622 – 1.228). Cohen’s d values and their respective
+confidence intervals indicate that benefits of increased media exposure were much stronger
+for variable faces than for stable faces. Amongst popular actors, variable faces were better
+recognised than stable ones, t(59) = 8.05, p < .001, d = 1.039 (95% C.I. = 0.722 – 1.351),
+whereas in less popular actors, stability improved recognition compared to variability, t(59)
+= -14.665, p < .001, d = 1.893 (95% C.I. = 1.466 - 2.315). The significantly larger advantage of
+stable faces over variable faces in less popular actors relative to the advantage of variable
+faces over stable faces in popular actors must be driving the overall advantage of stable
+faces over variable faces shown in the main effect of appearance above.
+images of inner features to full headshots. We examined the gains provided by peripheral
+features in each actor category with four independent sample t-tests. We hypothesised that
+external information is more diagnostic in stable faces than in variable faces and so we
+expected larger gains—reflected by larger Cohen’s d—for stable faces than for variable
+faces. Peripheral features helped recognition in all the conditions and Cohen’s d values were
+numerically larger for less popular stable faces, t(118) = 8.853, p < .001, d = 1.616 (95% C.I. =
+1.201 – 2.027), than in the three other categories, in which gains were all in the same
+ballpark: popular variable, t(118) = 7.735, p < .001, d = 1.412 (95% C.I. = 1.009 – 1.81);
+popular stable, t(118) = 7.477, p < .001, d = 1.365 (95% C.I. = 0.965 – 1.761); less popular
+variable, t(118) = 7.772, p < .001, d = 1.419 (95% C.I. = 1.016 – 1.817). However, the overlap
+of the four Cohen’s d confidence intervals suggest that the numerical difference was not
+significant.
+Consistent gains from inner features to headshots suggests that the presence of
+peripheral information supports recognition of both variable and stable faces, probably
+because it is part of a holistic representation(Andrews et al., 2010; Tanaka & Simonyi, 2016;
+peripheral information seems particularly useful to both variable and stable faces in earlier
+stages of familiarisation. During that same stage, stability in appearance seems to facilitate
+familiarisation since it improves recognition compared to variable appearances. Over time
+however, further exposure to a stable appearance seems less effective in increasing the
+reliability of representations than when appearance has varied more. In other words,
+although increased variations in appearance initially slow down familiarisation, they
+eventually lead to more robust representations.
+Experiment 3
+Here we compared recognition of typical and atypical headshots, following the same
+design as Experiment 2, except that atypical headshots replaced images of inner features.
+We expected that once an actor is popular, atypical changes in appearance should be less
+disruptive for variable than for stable faces because recognition could be based on fine-
+tuned representation of invariable features.
+Methods. Experiment 3a. We tested 59 first year psychology students and 67
+additional New Zealanders recruited via social media or amongst colleagues. We aimed to
+have at least 60 participants per group like in Experiment 2. We excluded two participants
+who failed more than two attention checks and one participant whose accuracy was below
+50%. The final combined sample consisted of 123 participants (78 women, 45 men) aged
+between 18 and 55 (Mean = 22.93 years, SD = 6.8). There were 62 participants in the typical
+condition (35 women; Mean = 22.34 years, SD = 6.4) and 61 in the atypical condition (43
+women; Mean = 23.52 years, SD = 7.2). We did not find the expected advantage of
+typicality, which could have been due to individual differences in exposure to actors or in
+face recognition skills between groups. Further, this could be down to the mere fact that
+typicality effects are more subtle than effects from the removal of external features and
+that a between-subject design was underpowered in this situation despite a sample size
+similar to that in Experiment 2. To address these possibilities, we ran an additional
+experiment where image condition was manipulated within-subject.
+Experiment 3b. Here we aimed to collect data from 80 participants and tested 89
+Mechanical Turk workers located in the US. We excluded eight participants who failed
+attention checks, responded too fast, and/or whose accuracy was below 50%. The final
+sample consisted of 81 participants (35 women, 45 men, 1 non-binary) aged between 18
+and 67 (Mean = 37.19 years, SD = 10.62). As this sample had different demographics than
+those in the other experiments, it also provides an opportunity to test the generalisability of
+our findings.
+We presented typical and atypical headshots of the 96 actors to the same participants
+in a random order. Images of the 96 strangers were presented twice to maintain the ratio of
+trials with actors and strangers, giving a total of 348 trials. Eight breaks and four attention
+checks were dispersed throughout. The instructions specified that familiarity judgments
+concerned pre-experimental familiarity, and that any person that appeared multiple times
+but was unknown prior the experiment should still be judged unfamiliar.
+Results. Experiment 3a. We conducted a three-way mixed effect ANOVA with
+appearance (variable, stable) and popularity (popular, less popular) as within-subject
+factors, and image condition (typical, atypical headshot) as between-subject factor on d’.
+Although performance was numerically lower with atypical headshots (Mean = 1.74, SD =
+0.7) than with typical ones (Mean = 1.91, SD = 0.09), we did not find the expected typicality
+effect, F(1,121) = 1.595, p = .21, η 2 = .013. There was a main effect of popularity, F(1,121) =
+813.399, p < .001, η 2 = .871, and of appearance, F(1,121) = 22.705, p < .001, η 2 = .158, with
+p p
+stable faces (Mean = 1.92, SD = 0.83) overall being better recognised than variable ones
+(Mean = 1.82, SD = 0.95). The three-way interaction between appearance, popularity, and
+image condition was not significant, F(1,121) = 1.491, p = .224, η 2 = .012. Nevertheless,
+sake of space, we do not report follow-up analyses and move on to Experiment 3b.
+Experiment 3b. Using a fully within-subject design, we found the expected main effect
+of image type, F(1,80) = 210.898, p < .001, η 2 = .725. Typical images (Mean = 1.62, SD =
+0.86) were now significantly better discriminated from strangers than atypical images (Mean
+= 1.37, SD = 0.86). There was a main effect of popularity, F(1,80) = 203.147, p < .001, η 2 =
+.717, and of appearance, F(1,80) = 8.673, p = .004, η 2 = .098, with an overall advantage for
+stable faces (Mean = 1.52, SD = 0.81) compared to variable ones (Mean = 1.47, SD = 0.92).
+The three-way interaction between image type, popularity and appearance was significant,
+performance (d’) as a function of popularity and appearance, for typical and
+atypical images of actors. Red circles show the mean, and boxplots show
+distribution in quartiles. Violin size is proportional to the distribution of
+performance in each condition. Values on the plot are Cohen’s d from paired-
+comparisons.
+Atypical headshots. A follow-up 2-way ANOVA on atypical headshots showed a main
+effect of popularity, F(1,80) = 115.579, p < .001, η 2 = .591, and of appearance, F(1,80) =
+5.092, p = .027, η 2 = .06, and an interaction between the two, F(1,80) = 88.601, p < .001, η 2
+p p
+= .526. Paired comparisons showed that sensitivity improved with increased popularity for
+all actors, with a significantly larger improvement for variable faces, t(80) = 14.563, p < .001,
+d = 1.618 (95% C.I. = 1.284 – 1.948), than for stable ones, t(80) = 2.244, p = .028, d = 0.249
+(95% C.I. = 0.027 – 0.47). In popular actors, variable faces were recognised better than
+stable ones, t(80) = 6.181, p < .001, d = 0.687 (95% C.I. = 0.443 – 0.927). In less popular
+actors, stable faces were better recognised than variable ones, t(80) = -8.342, p < .001, d =
+0.927 (95% C.I. = 0.664 – 1.186).
+Typical headshots. The same 2-way ANOVA on typical headshots also showed a main
+effect of popularity, F(1,80) = 188.779, p < .001, η 2 = .702, and of appearance, F(1,80) =
+4.284, p = .042, η 2 = .051, and an interaction between the two, F(1,80) = 144.981, p < .001,
+η 2 = .644, replicating results with headshots in Experiment 2. Like in Experiment 2,
+performance improved with popularity for stable faces, t(80) = 2.95, p = .004, d = 0.328 (95%
+C.I. =0.103 – 0.55), and improved significantly more for variable faces, t(80) = 14.8513, p <
+.001, d = 1.65 (95% C.I. = 1.312 – 1.983). In popular actors, variable faces were better
+recognised than stable ones, t(80) = 7.26, p < .001, d = 0.807 (95% C.I. = 0.554 – 1.056). In
+less popular actors, stable faces were better recognised than variable ones, t(80) = -10.773,
+p < .001, d = 1.197 (95% C.I. = 0.909 - 1.481).
+Gain from typicality. We examined the gain in performance from typicality (i.e., typical
+facial information improved performance in all actor categories: Popular variable, t(80) =
+8.552, p < .001, d = 0.95 (95% C.I. = 0.685 - 1.211); popular stable, t(80) = 7.955, p < .001, d =
+0.884 (95% C.I. = 0.625 - 1.139); less popular variable, t(80) = 5.398, p < .001, d = 0.6 (95%
+C.I. = 0.362 - 0.835); and less popular stable, t(80) = 7.705, p < .001, d = 0.856 (95% C.I. =
+0.599 - 1.109). Effects sizes and the fact that they overlap indicate that gains from typicality
+were comparable in all actor categories. This may suggest that although representations of
+variable actors refine over time and more so than those of stable actors, they also tend to
+incorporate more typical aspects of elements that vary (e.g., most frequent hairstyle or
+makeup) into a holistic representation. Indeed, if recognition of variable faces only relied on
+invariable internal features, recognition would have been equally good from typical and
+atypical images.
+A - Experiment 2 B - Experiment 3b
+3 3
+1.41
+2.5 1.37 2.5
+1.62 0.95
+2 2
+0.88
+0.86
+' 1.5 1.42 ' 1.5
+0.60
+d d
+1 1
+0.5 0.5
+Variable Stable Variable Stable
+Variable Stable Variable Stable
+Popular Less popular
+Popular Less popular
+Atypical image Gain from typicality
+Gain from peripheral information Inner features
+as a function of popularity and appearance. The top of the grey bar represents
+sensitivity to typical headshots, which was compared to recognition from inner
+features in Experiment 2 (N = 123 New Zealanders), from atypical headshots in
+Experiment 3b (N = 81 US Mechanical Turk workers). Values in the plot area
+represent Cohen’s d for paired-comparisons of performance in different image
+conditions.
+We note that discrimination performance was overall lower on the Mechanical Turk
+sample from the US in Experiment 3b than in other experiments, but that the pattern of
+performance with headshots seen in other experiments nonetheless replicated.
+Exploration of the impact of actors’ sex
+In addition to initial pre-planned analyses, we explored whether the sex of the actors
+had an impact on discrimination performance (d’) by means of 3-ways repeated measures
+ANOVA with popularity, appearance and sex as within-subject factors for each type of image
+in each experiment. For the sake of space, we report descriptive statistics and results of the
+condition are presented in Supplementary materials (Figures S1 to S7). In all experiments
+using intact images, we found a similar pattern of performance. In less popular actors,
+stable faces were better recognised than variable faces for both female and male actors.
+However, differences were observed between female and male faces for popular actors
+with a stable appearance. Whereas discrimination performance for stable women increased
+with media exposure, discrimination of stable male faces did not improve with media
+exposure or when it did, it did not as much as women’s. Similar patterns of interaction were
+also observed with cropped images of inner features, but not with atypical images.
+italics) as a function of sex, popularity and appearance in different image
+conditions of all experiments. Results of the associated three-way interactions
+appear in the three rightmost columns.
+Female Male
+Popularity ✻
+Popular Less popular Popular Less popular Appearance ✻ Sexe
+Test
+image Exp. N Variable Stable Variable Stable Variable Stable Variable Stable F(1,N-1) p η²
+Headshot 2 60 2.5 0.9 2.5 1.0 1.1 0.7 1.7 0.7 2.9 0.7 2.3 0.6 1.5 0.7 2.3 0.6 33.418 < .001 0.362
+0.80
+3a 62 2.2 0.9 2.2 1.0 1.1 0.8 1.5 0.9 2.9 1.0 2.2 0.9 1.6 0.8 2.2 0.8 48.900 < .001 0.445
+3b 81† 1.7 0.9 1.6 0.9 0.9 0.7 1.4 0.7 2.5 1.3 1.8 0.8 1.4 0.8 1.9 1.0 14.810 < .001 0.156
+Inner
+features 1 96 1.5 1.0 1.5 1.0 0.5 0.7 0.9 0.7 1.7 1.0 1 0.9 0.6 0.6 1 0.8 28.866 < .001 0.233
+2 60 1.5 0.8 1.5 0.8 0.6 0.7 0.9 0.7 1.8 0.9 1.3 0.8 0.6 0.6 1.1 0.8 14.300 < .001 0.195
+Atypical 3a 61 2.2 1.0 2 1.0 1 0.7 1.5 0.8 2.5 1.0 2.1 0.8 1.4 0.8 1.8 0.9 0.069 0.793 0.001
+3b 81† 1.4 0.9 1.2 0.9 0.8 0.6 1.2 0.8 2 1.3 1.6 0.9 1.2 0.9 1.4 0.9 1.599 0.210 0.020
+† Indicates participants in a given image condition of a within-subject experiment.
+A likely explanation for that pattern is that the appearance of stable men is even more
+stable than that of stable women. Women with long hair can present small variations in
+hairstyle, even if the colour and length are constant, for example by tying their hair up or by
+straightening/waving it. By contrast, men with shorter hair cannot display this type of small
+variations. Consequently, on average, extra-facial features and coarse information could
+carry more weight in men than in women, and small variations in the appearance of women
+could help refine the representations of their face despite a relatively stable appearance.
+Validation of IMDb StarMeter ranks as a proxy of exposure
+We demonstrated in Devue and colleagues (2019) that StarMeter ranks available on
+the IMDb website were a good proxy of the actual exposure of a set of actors from a specific
+TV show, as they correlated with screen times (r = -0.441, p = 0.001). Unlike here, we had
+used a selected sample of 32 participants who had watched the entirety of the TV show,
+providing an excellent control of individual participants’ exposure to individual actor faces.
+In the current situation, we were unable to calculate screen times of individual actors or to
+objectively measure individual exposure of participants to each of them. We thus calculated
+Pearson’s correlations between average hit rates per actor in each image condition of each
+experiment and their StarMeter rank to explore if these latter predict recognition
+performance and are thus a valid proxy of probable exposure for participants in
+uncontrolled learning conditions. The correlations ranged from -.604 to -.788 and were all
+These results thus validate our use of StarMeter ranks as a proxy measure of exposure
+since smaller StarMeter ranks, which indicate a higher media visibility, are associated with
+higher recognition rates4. Results of the same correlations calculated between mean hit
+rates on 90 actors and their StarMeter ranks from Devue et al. (2019)’s data were
+comparable, r = -0.628, p < 0.001, 95% C.I. = -0.739 – -0.484 with typical images (N = 16),
+and r = -0.448, p < 0.001, 95% C.I. = -0.600 – -0.266 with atypical images (N=16). We note
+that associations between mean hit rates and StarMeter ranks are numerically larger in the
+current series of experiments than in our previous work, but this is likely due to the larger
+samples we used to compensate for the aforementioned lack of control on individual
+exposure and on individual face recognition abilities.
+different image condition and experiments.
+Test image Experiment Sample N Number Pearson's p Lower Upper
+origin of actors r 95% CI 95% CI
+NZ 60
+Headshot 2 96 -0.773 < .001 -0.843 -0.678
+NZ 62
+3a 96 -0.788 < .001 -0.853 -0.697
+US 81†
+3b 96 -0.725 < .001 -0.808 -0.614
+NZ 96
+Inner features 1 96 -0.634 < .001 -0.740 -0.496
+NZ 60
+2 96 -0.666 < .001 -0.764 -0.537
+NZ 61
+Atypical 3a 96 -0.680 < .001 -0.775 -0.556
+US 81†
+3b 96 -0.627 < .001 -0.735 -0.488
+Note. Sample origin and N refers to participants tested in our recognition tests.
+Number of actors refers to the number of individual actors used in a given test. † indicates
+participants in a given condition of an experiment with a within-subject design.
+Finally, to check the validity of StarMeter ranks in different English speaking
+geographical areas, we calculated Pearson’s correlations between hit rates per individual
+actor headshots in a sample from the US and in the different NZ samples used in different
+4 Note that as part of another study, we collected familiarity ratings (1 = “not familiar” to 7 = “very familiar”)
+from 35 independent judges on the same set of 96 actors’ headshots. These mean ratings were also
+significantly correlated with StarMeter ranks, r = -0.422, p < 0.001, 95% C.I. = -0.591 – -0.265. This smaller
+correlation is likely due to Likert scales allowing for more variable ranges of responses than the “yes/no”
+responses compiled to yield hit rates in our recognition tasks and to the smaller sample used to collect those
+familiarity ratings.
+experiments. Results indicate large positive associations between hit rates in the two
+confirms that actors we selected based on the US-based IMDb website have comparable
+visibility in both populations.
+sample and in two NZ samples used in different experiments.
+Experiment Experiment Number Pearson's p Lower Upper
+(US sample) (NZ samples) of actors r 95% CI 95% CI
+3b 2 96 0.830 < .001 0.756 0.884
+3a 96 0.874 < .001 0.817 0.915
+General discussion
+We conducted three famous face recognition experiments on a total of 420
+participants to provide preliminary evidence for the two main assumptions of a cost-
+efficient mechanism of face learning, namely that the quality of facial representations
+specifically depends on the relative stability in appearance of individual faces, and that
+representations evolve following a dynamic coarse-to-fine encoding over the course of
+familiarisation.
+Impact of stability and exposure on facial representations. We have considered the
+impact of intrinsic characteristics of famous faces on recognition performance and we show
+for the first time to our knowledge that the relative stability in appearance of individual
+faces specifically affects recognition performance. Unexpectedly and in apparent contrast to
+previous research on lab-based face learning (e.g. Baker et al., 2017; Kramer, Young, et al.,
+2018; Ritchie & Burton, 2017), in all experiments using intact headshots, we found that
+overall, famous faces with a stable appearance were better discriminated from strangers
+than faces that display looks that are more variable. In line with computer simulations
+(Burton et al., 2016) and recent studies on humans (Devue et al., 2019), we also found that
+recognition performance improves with increased media exposure, confirming that facial
+representations evolve to become more reliable.
+Our manipulation of popularity levels by means of an objective index of media
+visibility/exposure (i.e. the StarMeter ranks on IMDb) allows nuancing these results. We
+show that, all else being equal, stability in appearance affects recognition performance in
+different ways along the course of familiarisation with faces. Specifically, in earlier stages of
+learning, stability in appearance supports recognition compared to variability, suggesting
+that stable faces benefit from representations that are more reliable at first. Over time, a
+shift in performance occurs and variable faces are more likely to be recognised than stable
+faces, consistent with the idea that variations in appearance yield more reliable
+representations by encouraging more refinement5. Further, while sensitivity to both
+variable and stable faces increases with media exposure, the improvement is significantly
+larger with variable faces than with stable faces, suggesting that once a representation of a
+stable face is formed, it does not refine as much as representations of variable faces. The
+relative benefits of stability compared to variability in earlier stages of familiarisation are
+also larger than the benefits of variability compared to stability in later stages of
+familiarisation, a pattern that replicated across all experiments using intact images and that
+explains the overall advantage of stable faces over variable faces. In sum, our results
+consistently suggest that the quality of facial representations is the product of a given face’s
+5 Note that during the original selection of actors, we purposefully left a gap in StarMeter ranks between
+popular and less popular ones. We can thus assume that recognition rates of variable and stable actors would
+be equivalent at some intermediate levels of popularity/exposure.
+stability in appearance and its interplay with exposure, in line with hypotheses drawn from a
+cost-efficient mechanism of face learning.
+Unlike what we found here, recent lab-based face learning studies have shown that
+exposure to high degrees of natural variations in images of faces—both in viewing
+conditions and in appearance—improves recognition of newly learned faces relative to
+stable viewing conditions, even after a single brief learning session ( Burton et al., 2016;
+Kramer, Manesi, et al., 2018, Robins et al., 2019). This seems inconsistent with the
+advantage for stable faces compared to variable faces we found in less popular actors and
+with the overall benefit of stability we observe. This apparent discrepancy is likely due to
+differences in learning supervision when learning new faces in the lab and when learning
+faces in the real world. In the lab, faces are typically learned under supervised conditions,
+and so observers can take advantage of natural variations in images to refine their
+representations with the explicit knowledge that a set of images shows the same person. In
+contrast, when we encounter emerging actors in the real world, we often learn their faces
+incidentally and with low levels of supervision—for example, those can be in the form of
+credits or comments from peers. If we are correct in assuming that face encoding operates
+parsimoniously, then a default assumption an observer makes must be that the appearance
+of a newly encountered face is stable and will not change in the future, leading to the
+creation of a coarse representation. One can only revisit this assumption with repeated
+exposure to a person and the realisation that their appearance varies, which typically occurs
+readily in lab-based face learning studies. This revision is most likely more challenging when
+an observer is not aware that they are viewing a person they have seen before than when
+they are explicitly told so. Therefore, if an emerging actor acts in several movies with the
+same appearance, we have the opportunity to recognise them based on the same coarse
+representation from one movie to another. By contrast, if an emerging actor sports a
+different appearance in different movies, we may fail to recognise them as the same person
+across encounters. The benefit of associating various depictions of a face with a single
+identity was demonstrated in the lab. When viewing a mix of different images of multiple
+people, participants are better at sorting images per identity when told how many different
+identities there are than when they are not informed or misinformed about it, in which case
+they tend to interpret singles identities as multiple identities (Andrews et al., 2015; Menon
+et al., 2018). Consistently, our data suggest that with low levels of learning supervision,
+variability in appearance has a negative impact on learning compared to stability, probably
+because differences in appearance are interpreted as differences in identity.
+More generally, the reasoning derived from our framework also explains the poor
+performance classically observed with new faces learned in non-ecological laboratory
+conditions (see e.g. Hancock et al., 2000). When an observer is learning a limited set of faces
+from single pictures, a cost-efficient encoding mechanism would lead to assume that the
+stimulus is stable, will not change in the future, and so to favour coarse elements of the
+person’s appearance (e.g. the shape of the hairline in the given view, hair colour) or even
+diagnostic pictorial elements (e.g. a difference in background colour or a photographic
+artefact). This process would yield low cost representations with low generalisability and
+lead to poor performance in a subsequent memory test that uses images where the
+appearance, viewpoint, accessories or pictorial artefacts have changed and/or where
+distractors display gross resemblances with learned faces (see Flack et al., 2019a for a
+recent example with viewpoint; see Hsiao et al., 2022; Noyes et al., 2021 for recent
+examples with face masks). The same reasoning can also help explain poor performance
+with new faces briefly encountered in the real world, for example, when one is witnessing a
+crime. On the flip side, stimuli in face learning or face perception studies in which external
+features are removed may force a finer processing of facial features than what would occur
+naturally since there are no coarse peripheral features to rely on. Such conditions may
+inflate the difficulties of participants that are over reliant on external features as in acquired
+or developmental prosopagnosia (see e.g., Jansari et al., 2015; Towler et al., 2018).
+Content of facial representations. The comparison of recognition performance with
+typical headshots of actors and with images containing partial or atypical information gives
+us some clues on the content of facial representations and on the contribution of different
+types of information.
+Peripheral and inner features. In initial stages of familiarisation, recognition of both
+stable and variable faces is greatly improved by the presence of peripheral information
+compared to internal features alone (Experiment 2). Contrary to the view drawn from PCA
+models that recognition of familiar faces relies on an average representation of inner
+features, the presence of peripheral features also improved recognition of more familiar
+faces. This suggests that all faces in our set were encoded holistically, in line with studies
+showing that the holistic processing of unfamiliar faces is disrupted by the removal of
+external features (García-Zurdo et al., 2018; Toseeb et al., 2012) or that recognition of
+familiar faces is impaired when extra-facial features are altered (Carbon, 2008; Devue et al.,
+2019; Sinha & Poggio, 1996). Consistent with seminal studies showing a stronger reliance on
+peripheral features for less familiar faces than for more familiar ones (R. Campbell et al.,
+1995; Ellis et al., 1979), we observe that peripheral features facilitate the correct
+discrimination of familiar faces from strangers proportionally more for less popular faces
+provides a plausible encoding mechanism for present and past data: representational
+weights are broadly distributed over large-scale information at first, forming low-cost coarse
+representations, to converge towards internal information over time, giving more costly but
+more reliable refined representations.
+Typical information. We show that headshots with the most typical individual
+appearance were better recognised than headshots deviating from that appearance,
+regardless of their popularity or relative stability (Experiment 3). This suggests that
+representations give more weight to facial information encountered more frequently (e.g.
+most frequent hairstyle), even for variable aspects when someone changes their
+appearance from one encounter to another. We can speculate that at the neural level,
+activations associated with changeable aspects are more likely to consolidate for those
+patterns of activations that reoccur and overlap more over time (Sekeres et al., 2018).
+Integration of current findings. Altogether, our series of experiments suggest that
+faces are represented via holistic representations, and that these representations refine
+over time to become more reliable depending on levels of variations in appearance they
+display. Our data seem consistent with the suggestion that when changeable features
+remain stable over time, representational weights remain broadly distributed over large-
+scale extra-facial information and internal features are encoded at lower resolution. In other
+words, compared to variable faces, stable faces may ultimately lack one crucial type of
+variation, i.e. variations in appearance, amongst the set of variations that have been shown
+to improve face learning (e.g., Andrews et al., 2015; Burton et al., 2016; Ritchie & Burton,
+2017).
+In practice, this is not necessarily a problem as long as the target person does not
+change appearance, and coarse representations have the benefit of being cheap in terms of
+memory resources. However, coarse representations also carry the risk of poor
+discriminability between similar individuals. For efficiency purposes, they are thus
+presumably favoured when we encounter new people and have no reason to assume that
+they will change or that we will see them again in the future. They could also be favoured
+when episodic encounters with an individual are consistently linked to a specific context and
+that gross information is discriminative enough in that context, perhaps contributing to
+well-known recognition difficulties when a person appears in a different context (Mandler,
+1980). The more we experience variations in a person’s appearance over encounters, the
+highest the resolution of invariant information needs to be to guarantee recognition. Finer
+representations are more costly but more discriminative, and the face recognition system
+must turn to them as we get to know people and demands for recognition out of context
+increase.
+Implications and future directions. Our series of experiments confirm that the large
+amount of data on celebrities available on the internet can be exploited to advance
+psychology research. The StarMeter ranks we have used to create sets of images of famous
+faces that have comparable levels of media exposure have generated highly replicable
+results despite differences in populations used, variations in experimental paradigms, and
+varying levels of performance in different image conditions (i.e. lower with just inner
+features or with atypical images than with typical headshots).
+One may actually be surprised or concerned by the consistency of the pattern of
+findings across experiments (i.e. interaction between Popularity and Stability) and we were
+initially as well. We believe it is useful to keep in mind that one should not expect such
+consistency to apply at the individual (participant or even actor) level, as individual
+participants will undoubtedly vary in their recognition skills and in the amount and nature of
+exposure they would have had to each actor. Even when exposure is controlled, individual
+performance with individual faces is not predictable. In a research using participants who
+had watched all the episodes of a specific TV show (Devue et al., 2019), participants
+recognised overlapping but different sets of individual actors despite having all been
+exposed to the same faces. This is why we believe it is crucial to use StarMeter ranks in
+combination with large samples of participants and high numbers of actors per category as
+we have done here. This approach allows for average performance in each actor category to
+average out uncontrolled individual variations6.
+In further support of this approach relying on StarMeter ranks combined with large
+samples, actor-level analyses have shown that mean hit rates from English-speakers’
+samples on different continents were very strongly correlated (r ranging from .83 to .873).
+More importantly, StarMeter ranks were strongly correlated with hit rates (i.e. ranging from
+r = .627 with atypical headshots to r = .788 with typical headshots). A study by Ritchie and
+colleagues (2018) provides a relevant point of comparison. They examined individual
+correlations between the reported level of familiarity with five actors and the reported
+6 Experiment 3b in which typical and atypical images of each actor were presented to the same participants
+provides an opportunity to check the consistency of responses of individual participants to individual pictures
+of actors. We examined the responses of each participant (N = 81) to images of each actor (N = 96), giving a
+total of 81 x 96 = 7,776 cases. There were 1,833 instances where the two images of a given actor did not
+receive the same response by a given participant (i.e. recognition of only one of the two images), that is 23.6 %
+of inconsistent responses. Responses were thus consistent 76.4% of the time despite the fact that both typical
+and atypical appearances were presented. Importantly, rates of inconsistent responses were similar for stable
+and variable actors (i.e., 23.48 % and 23.66 %, respectively) and so that would not have skewed the results.
+Despite what could be seen as an imperfect consistency at the individual participant/actor level (i.e.
+inconsistent responses in close to one out of four instances), group-level patterns of performance in the two
+image conditions were remarkably consistent. This speaks to the relevance of our approach examining average
+performance on large samples in order to average out uncontrolled observer-related variations.
+number of movies seen with the same five actors. The mean correlation they found,
+expressed in Z-scores, was of 0.288. In Z-scores, the abovementioned correlations ranged
+from 0.736 to 1.066, which is quite remarkable given that they are between the pooled
+performance of participants (with all the observer-related variations involved) and an
+independent but objective measure of media exposure, instead of between two subjective
+ratings provided by the same individuals. In other words, providing that large enough
+samples are used to account for individual preferences and skills of observers, StarMeter
+ranks may even prove more reliable and predictive of recognition performance than more
+typical checks of pre-experimental exposition that rely on various aspects of observers’
+memory.
+While recent research has emphasised the use of uncontrolled natural stimuli to study
+face recognition in a more ecological manner, we show that an approach maximising
+internal and external validities may be even more productive. Importantly, our data show
+that studying face recognition based on averaged performance on indiscriminate
+heterogeneous sets of face images may muddy waters. This is striking through the
+interaction we consistently found between popularity and stability in appearance.
+The current series of experiments is not without its own shortcomings in that regard.
+For example, we referred to and studied the role of inner features as a group, although we
+explicitly assumed that single or multiple features within that group could carry more or less
+representational weight. For example, past behavioural and ERP research showed that the
+eyes are strong identity cues, more reliable than other features like the mouth (Hsiao et al.,
+2022; Mohr et al., 2018; Nemrodov et al., 2014). Therefore, the eyes may carry more
+representational weight than other inner features, which could result from their central
+position in the head, allowing to take in surrounding coarse information. However, regular
+changes (e.g. make-up and/or swapping between glasses and contacts) or occlusions (e.g.
+with hair of sunglasses) of the eyes area in a given individual face could lead to refine
+representations of other aspects less affected by changes and occlusions (e.g. the nose). The
+role of individual facial features as a function of their intrinsic characteristics in terms of
+stability or of other aspects like their distinctiveness will thus be the object of future
+research.
+Moreover, exploratory analyses including the sex of the actors have suggested
+differences in discrimination patterns of popular male and female actors, whereby
+discrimination sensitivity to stable women increased with media exposure more than
+discrimination sensitivity to stable men. In other words, women faces may have been
+driving the small improvement seen over time for stable faces. This might be due to stable
+women displaying more variations than stable men (e.g. larger differences in hair styling
+despite consistent length and colour in women than in men) and will warrant further
+investigations too.
+The series of experiments presented here only offer indirect support for our new
+theoretical framework. Future research should endeavour to more directly assess the
+contribution of coarse and fine-grained information to facial representations, for example
+via systematic manipulations of spatial frequencies in test images of celebrities with various
+levels of relative stability in appearance.
+Finally, at the neural level, recent research has shown that refinement of
+representations with increased familiarity is indexed by the N250 component, and in similar
+ways for famous and personally familiar faces (Wiese et al., 2021). Future developments of
+that research could manipulate stability in appearance to examine how it modulates ERP
+responses.
+Conclusions
+We proposed a new account of face learning and familiarisation that takes stability in
+appearance into account and a series of three experiments as a proof of concept. We posit
+that representations are cost-efficient and laid out differently depending on intrinsic
+characteristics of individual faces. We show that despite comparable levels of popularity of
+actors like Brad Pitt and Tom Cruise, the representation of people like the former, who have
+a variable look, are more refined than that of people like the latter, who have a more
+consistent appearance. Although it leads to less reliable representations, stability facilitates
+recognition in earlier stages of familiarisation. Tom Cruise’s signature look helped us
+remember him from encounter to encounter, and his face must have become familiar faster
+than the face of Brad Pitt. This account is integrative in nature and resolves conflicting
+theoretical conceptions as to what type of facial information is encoded and whether
+qualitatively different processes are used for unfamiliar and familiar faces. Indeed,
+seemingly conflicting empirical data in past research may be the result of the same cost-
+efficient face learning mechanism and its interplay with exposure. This account also
+generates numerous hypotheses for future research, which will hopefully further our
+understanding of how most of us are able to recognise large amounts of faces despite large
+memory constraints.

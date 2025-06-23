@@ -1,0 +1,1310 @@
+mixtur: An R package for designing, analysing, and modelling
+continuous report visual short-term memory studies
+1 1
+James A. Grange & Stuart B. Moore
+School of Psychology, Keele University
+Abstract
+Visual short-term memory (vSTM) is often measured via continuous-report
+tasks whereby participants are presented with stimuli that vary along a
+continuous dimension (e.g., colour) with the goal of memorising the stimulus
+features. At test, participants are probed to recall the feature value of one
+of the memoranda in a continuous manner (e.g., by clicking on a colour
+wheel). The angular deviation between the participant response and the true
+feature value provides an estimate of recall precision. Two prominent models
+of performance on such tasks are the two- and three-component mixture
+models (Bays et al., 2009; Zhang & Luck, 2008). Both models decompose
+participant responses into probabilistic mixtures of: (1) responses to the true
+target value based on a noisy memory representation; (2) random guessing
+when memory fails. In addition, the three-component model proposes (3)
+responses to a non-target feature value (i.e., binding errors). Here we report
+the development of mixtur, an open-source package written for the statistical
+programming language R that facilitates the fitting of the 2- and 3-component
+mixture models to continuous report data. We also conduct simulations
+to develop recommendations for researchers on trial numbers, set-sizes and
+memoranda similarity, as well as parameter recovery and model recovery. In
+the Discussion, we discuss how mixtur can be used to fit the slots and the
+slots-plus-averaging models, as well as how mixtur can be extended to fit
+explanatory models of visual short-term memory. It is our hope that mixtur
+will lower the barrier of entry for utilising mixture modelling.
+Keywords: visual short-term memory, mixture modelling, R, simulation
+Word count: 9,741
+Visual short-term memory (vSTM) refers to the system involved with the storage of
+visual information over brief periods of time (Phillips, 1974). While the duration of iconic
+memory lasts on the order of milliseconds (Rensink, 2014; Sperling, 1960), vSTM stores
+information for considerably longer periods of time (on the order of seconds), and can also
+withstand the effects of masking and shifts of spatial location (Hollingworth, Richard, &
+MIXTUR: MODELLING VSTM 2
+Luck, 2008; Phillips, 1974).
+Understanding the nature of vSTM and its limitations is important as vSTM is
+the interface between sensory visual perception and higher order cognitive processes, such
+as attention (e.g., Awh & Jonides, 2001). To assess vSTM performance, two prominent
+methods are typically employed: The change detection task (see e.g., Luck & Vogel, 1997;
+Pashler, 1988; Phillips, 1974; Phillips & Baddeley, 1971; Purdy, Eimann, & Cross Jr.,
+1980; Vogel, Woodman, & Luck, 2001) and the continuous report task (Bays, Catalao, &
+Husain, 2009; Wilken & Ma, 2004). Whilst the change detection task can be analysed using
+(relatively) simple signal detection methods, analysis of continuous report tasks relies on
+fitting probabilistic mixture models to participant data. The fitting of such models can
+be challenging to implement for researchers with limited programming and model fitting
+experience.
+The purpose of the current paper is to present mixtur: A package written in the
+statistical programming language R that allows users with minimal programming experience
+to implement the two-component mixture model of Zhang and Luck (2008) and the three-
+component mixture model of Bays et al. (2009). The package allows users to fit the models
+to participant data, but also allows for the simulation of artificial data from these models.
+The mixtur package provides utility functions for analysing and plotting behavioural data
+together with the model outcomes.
+The structure of the paper is as follows. We first briefly describe the continuous report
+task, before presenting an overview of the two-component model of Zhang and Luck (2008)
+and the three-component model of Bays et al. (2009). We then present mixtur. We begin
+by providing an overview of all of the main functions in the package: We show how to
+generate model-free summary statistics of behavioural data, how to fit the mixture models
+to behavioural data (including formal model comparison techniques), how to plot fits of the
+models to behavioural data, and how to simulate data from the models. In a final section,
+we present a series of simulations with the aim of exploring the performance of the mixture
+models (e.g., parameter recovery, parameter- and model-mimicry) as well as informing
+experimental design considerations (e.g., number of trials to use in an experiment). In the
+discussion, we describe how mixtur can also be used to fit the slots and slots-plus-averaging
+models described by Zhang and Luck (2008), and how mixtur can be extended in future
+work to fit other models of visual short-term memory.
+We are grateful to Ed D. J. Berry who assisted with the package development. We are also grateful to
+Paul Bays for making the MatLab code for the 3-component model publicly available under General Public
+the code to be modified and translated.
+The authors made the following contributions. James A. Grange: Conceptualization, Investigation,
+Methodology, Software, Visualisation, Writing (Original Draft Preparation), Writing (Review & Editing);
+Stuart B. Moore: Conceptualization, Writing (Original Draft Preparation), Writing (Review & Editing).
+Correspondence concerning this article should be addressed to James A. Grange, School of Psychology,
+Dorothy Hodgkin Building, Keele University, Keele, ST5 5BG, United Kingdom. E-mail: grange.jim@gmail.c
+om
+MIXTUR: MODELLING VSTM 3
+Continuous Report Task
+Unlike change detection tasks where a binary change/no-change judgement is provided,
+the continuous report task—popularised by Wilken and Ma (2004) but introduced by
+Prinzmetal, Amiri, Allen, and Edwards (1998)—is thought to provide a continuous estimate
+of the precision of the internal memory representations of presented items. In one version
+a stimulus display consisting of several coloured squares with the task of remembering
+the colours. After a variable retention interval, a probe display is then presented where
+the location of a specific item presented on the initial display is probed. The task of the
+participant is to recall and report the colour of the probed item by clicking on a colour wheel.
+By calculating the angular deviation between the participant’s response and the true value
+of the target, researchers can estimate the precision of the participant’s memory for this
+item: If memory for the target’s feature value is excellent, their response will be very close
+to the true target value (i.e., there will be minimal angular deviation); if however memory
+for the target’s feature value is poor, their response will be further away from the true target
+value (i.e., angular deviation will be high); on some trials, they may even just be guessing.
+task. R = Response value from participant. T = Target value.
+Thus the error distributions of participant responses are thought to provide some
+information as to the precision of the internal memory representation, and can therefore
+be used to probe the nature of vSTM and its capacity limitations. For example, in their
+MIXTUR: MODELLING VSTM 4
+Experiments 7–9, Wilken and Ma (2004) used the continuous report task (using coloured
+stimuli in Experiment 7, and spatial frequency and Gabor patches in Experiments 8–9)
+and explored the effect of stimulus set-size (N = 2, 4, 6, and 8) on memory precision.
+Error distributions in these experiments showed that the precision of participant responses
+decreased as set-size increased (see also Bays et al., 2009), an observation they used as an
+argument against vSTM having a fixed capacity: If vSTM has a fixed capacity, it would
+be expected that until capacity is reached, the recall accuracy of probed items should be
+excellent (because all presented items will have been stored with high precision); once
+capacity is reached, although the items receiving a slot will still be stored with high precision,
+the probability of a non-stored item being probed increases, which leads to more noise in
+the response distributions due to increased guessing rates.
+Mixture Models
+Responses in the continuous report task are thought to consist of a mixture of
+different modes of responding: For example, in one account it is thought that on some
+trials, participants are making their response based on an internal (but noisy) memory
+representation of the true target value; on other trials, this memory may fail (either due to
+recall failure or failure to encode the stimulus due to capacity limitations) and the participant
+merely guesses their response (e.g., Zhang & Luck, 2008). In an extension of this account, on
+some trials participants may also incorrectly report one of the non-probed target’s feature
+values (e.g., Bays et al., 2009). Researchers have therefore developed mixture models to
+quantify these different processes from behavioural data (however, see Schurgin, Wixted, &
+Brady, 2020 for an alternative interpretation of response error distributions in the continuous
+report task). Below we discuss two successful mixture models—the two-component model of
+Zhang and Luck (2008) and the three-component model of Bays et al. (2009)—that have
+been used widely to explore vSTM.
+Zhang & Luck (2008)
+In the two-component model of Zhang and Luck (2008), responses in the continuous
+report task are a probabilistic mixture of two processes: (1) responses based on a noisy
+internal representation of the target’s feature value, and (2) random guessing. It is assumed
+that if a representation of the colour of the target item is held in memory, the reported
+colour value will have a propensity to be located close to the actual target value. This can
+be modelled as a von Mises distribution (a normal distribution for circular data) centered on
+the true target value with a standard deviation representing the precision of the participant’s
+internal representation (i.e., higher standard deviation provides poorer precision). When no
+representation is stored (or it is inaccessible) then no information about the colour of the
+probed item will be available to the participant, resulting in a random guess (which—by
+definition—can occur anywhere on the circle).
+Formally, the two-component mixture model is given by
+ˆ ˆ
+p(θ) = (1 − p )φ (θ − θ) + p , (1)
+u κ u
+2π
+MIXTUR: MODELLING VSTM 5
+where θ is the participant’s response value (in radians), θ is the true target colour value (in
+radians), and p is the probability of giving a uniform response which captures guessing.
+From this, the probability of providing a target response—p —is therefore given as 1 − p .
+t u
+φ represents the probability density of the von Mises distribution with mean zero and
+concentration parameter κ. Concentration parameter κ (kappa) is a measure of dispersion,
+of how probability density changes with different concentration parameters κ).
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+−3 −2 −1 0 1 2 3
+Degrees (Radians)
+ytisneD
+ytilibaborP
+= 8
+= 4
+= 2
+= 1
+parameter κ Higher values reflect more precise memory representations.
+When manipulating set size, Zhang and Luck (2008) (Experiment 1) found that the
+parameter reflecting the probability of making a target response—p —was approximately
+twice as high at set sizes of three when compared to set sizes of six, with no significant
+change in memory precision κ. The authors took this as evidence in support of a slots model:
+the view that a fixed and small number of item representations can be stored in memory
+slots with a high degree of precision. Once these slots are full (i.e., at larger set sizes),
+additional items are not stored at all, and if one of these non-stored items are probed at
+test, the participant will resort to guessing. We will return to the slots model in the General
+Discussion.
+Bays et al. (2009)
+Accurate performance in the continuous report task does not only require accurate
+memory for the feature value of the target item; the participant also needs an accurate
+memory for which feature value was associated with which item in the stimulus display. That
+is, at encoding participants must bind together information regarding the target’s location
+as well as the target’s feature value. At test, then, errors in responding could occur due to
+incorrectly retrieving (with noise) a stored non-target feature value. Responses according to
+this three-component model are a probabilistic mixture of (1) responses based on a noisy
+MIXTUR: MODELLING VSTM 6
+internal representation of the target’s feature value; (2) responses to a non-target feature
+value; and (3) random guessing.
+Formally, the three-component model is given by
+1 1
+ˆ ˆ ˆ ∗
+p(θ) = (1 − p − p )φ (θ − θ) + p + p φ (θ − θ ) (2)
+u n κ u n κ
+2π n
+where p and κ are as in the two-component model. The new parameter is p , the probability
+u n
+∗ ∗ ∗ ∗
+of making a response based on a non-target feature value, with θ (θ , θ , θ , ...) representing
+i 1 2 3
+the feature values of the non-targets x (therefore p = 1 − p − p ). It is important to
+t u n
+note that non-target feature values are stored with the same precision as the target feature
+value (i.e., κ is the same for target and non-target feature values) because at encoding the
+participant does not yet know which item will be probed.
+Bays et al. (2009) used the three-component model in an experiment that manipulated
+set size (N = 1, 2, 4, and 6). The modelling showed that increasing set size resulted in
+significantly poorer estimates of the precision of responses and increased the frequency of
+non-target responses. It is theoretically important to note that Bays et al. (2009) found
+a reduction in precision even at set sizes of two, which is well below any putative vSTM
+capacity limit. Instead, this favours a resource model (e.g., Bays & Husain, 2008; Frick,
+1988) whereby memory resources are evenly distributed across all items in the display; at
+larger set sizes, each item receives fewer resources leading to poorer memory.
+Overview of mixtur
+We developed mixtur to reduce the burden on researchers wishing to apply mixture
+modelling to continuous report data. mixtur allows users to fit both the two-component
+and three-component models to their data. The package allows the models to be fitted
+across different experimental conditions, including the common manipulation of set-size as
+well as bespoke conditions. The fit routines will return the best-fitting parameters for each
+participant and each condition (if specified), allowing researchers to apply their preferred
+inferential analysis technique. The package will produce publication-ready plots of both
+behavioural data as well as plots of the model fit. The mixtur package also allows users to
+simulate artificial data from each model. We believe that the ability to simulate data from a
+model is important to explore the models in detail, as well as to help inform experimental
+and/or analytical design considerations (for example to calculate statistical power). In later
+sections of this paper we utilise these simulation functions to explore various aspects of the
+models as well as establishing experiment design recommendations.
+It is important to note that the assumption of equal distribution of resources across all items in the
+display as stated by Bays et al. (2009) is not true of all mixture models, such as the variable precision model
+of van den Berg, Shin, Chou, George, and Ma (2012).
+Note that mixtur does not do the analysis for the user. We decided against including this as a feature in
+the package so that the software remains agnostic as to the best way to analyse data (i.e., to remain neutral
+in the Bayes vs. frequentist debate).
+MIXTUR: MODELLING VSTM 7
+Note that we are aware of a software package MemToolbox that also implements the
+two- and three-component mixture models (as well as allowing modelling of data from the
+change detection task; Suchow, Brady, Fougnie, & Alvarez, 2013). The mixture models are
+also implemented in code made available to supplement Bays et al. (2009) and van den Berg,
+Awh, and Ma (2014). However, these materials are written for the proprietary software
+MatLab. While many researchers have access to MatLab via institutional subscriptions, the
+same cannot be said for independent researchers and newer/smaller institutions without
+the means to supply such a subscription. Whilst there are free alternatives to MatLab
+(for example Octave, Eaton, Bateman, Hauberg, & Wehbring, 2019), there are a number
+of MatLab functions which have not yet been implemented, thus limiting the scope of its
+analytical ability. MemToolBox currently requires one of these unavailable functions, meaning
+that the toolbox (at present) can only be run using MatLab. In contrast, mixtur has been
+written for R, a free statistical programming language. This enables everyone, regardless of
+circumstance, to implement mixture modelling in their research.
+Using mixtur
+In this section we provide a comprehensive overview of how to use mixtur, providing
+code examples for each step. mixtur is written in R (Version 4.0.2; R Core Team, 2020) , a
+addition, we recommend downloading and installing R-Studio, which provides a free user
+The mixtur package itself is hosted on the Comprehensive R Archive Network
+(“CRAN”). To install (and then load) the package from CRAN, run the following lines of
+code:
+install.packages("mixtur")
+library(mixtur)
+view a help file for each function (which also include examples of the function’s usage) by
+typing help(FUN) into the R console, replacing FUN with the function name.
+mixtur ships with example data sets to allow the user to familiarise themselves with
+2 and are publicly available. Users can load a particular data set by using the R function
+data() and can glimpse the first few rows of the data file using the head() function:
+lab/resources.html respectively.
+We, furthermore, used the R-packages dplyr (Version 1.0.6; Hadley Wickham et al., 2021), forcats (Version
+0.5.0; Wickham, 2020), ggplot2 (Version 3.3.3; Wickham, 2016), gridExtra (Version 2.3; Auguie, 2017), here
+(Version 1.0.1; Müller, 2017), kableExtra (Version 1.2.1; Zhu, 2020), papaja (Version 0.1.0.9997; Aust & Barth,
+2020), purrr (Version 0.3.4; Henry & Wickham, 2020), RColorBrewer (Version 1.1.2; Neuwirth, 2014), readr
+(Version 1.3.1; Wickham, Hester, & Francois, 2018), stringr (Version 1.4.0; Hadley Wickham, 2019), tibble
+(Version 3.1.1; Müller & Wickham, 2021), tidyr (Version 1.1.3; Hadley Wickham, 2021), tidyverse (Version
+1.3.0; Hadley Wickham, Averick, et al., 2019), and tinylabels (Version 0.1.0; Barth, 2020).
+MIXTUR: MODELLING VSTM 8
+mixtur
+A list of all of the main functions provided by the package. For more information
+about these functions, see the help files.
+Function Description
+get_summary_statistics Returns participant-level, model-free, summary statistics of
+response error distributions.
+plot_summary_statistic Produces a plot of the means of chosen summary statistic of
+response error distributions.
+plot_error Produces a plot of the response error distribution.
+fit_mixtur Fits the mixtur models to behavioural data.
+plot_model_fit Plots estimates of the model fit to observed response error
+distributions.
+plot_model_parameters Produces a plot of the means of the best-fitting model
+parameters.
+simulate_mixtur Simulates data from the mixtur models.
+data(bays2009_sample)
+head(bays2009_sample)
+## id response target non_target_1 non_target_2 non_target_3
+## 1 1 -2.186 -0.002 -2.989 2.648 2.262
+## 2 1 -1.980 -2.498 -1.861 -1.340 -0.309
+## 3 1 -0.177 -2.088 -2.845 -3.102 -0.371
+## 4 1 1.342 1.334 2.844 1.007 -0.599
+## 5 1 -1.644 -2.224 3.129 2.936 1.295
+## 6 1 1.219 1.253 2.886 -0.924 -1.035
+Data structures in mixtur. mixtur has some flexibility in the data structures it
+can deal with, but you need to tell mixtur some things about your data so it can work with
+it. The data should be in long format, where rows indicate separate trials, and columns
+indicate trial and participant information (i.e., “tidy data”; Wickham, 2014). Typically the
+need these names as they can be set within function calls (see examples later).
+Model-Free Summary Statistics
+Before discussing how to fit the mixture models, we first present how to use mixtur
+to obtain and then visualise model-free summary statistics—specifically, the mean absolute
+error, resultant vector length, precision, and bias—of the behavioural data (for an excellent
+overview of circular data analysis, see Cremers & Klugkist, 2018). Mean absolute error
+provides the circular mean of the absolute deviation between the response value and the
+true target value, with values closer to zero representing more accurate responding. The
+resultant vector length is an estimate of variability in responding which can vary between
+zero and one. A resultant vector length of one means all responses matched a single value
+MIXTUR: MODELLING VSTM 9
+Description of data sets shipped with the mixtur package. The Data column indicates the
+name of the data variable in the package.
+Data Description
+bays2009_full The full data set from Bays et al. (2009) including data
+from 12 participants (coded in the id column). The data
+includes set size manipulations (1, 2, 4, and 6 items) plus a
+manipulation of duration of the sample array presentation
+(100ms, 500ms, and 2,000ms). The response, target, and
+non-target values are in radians (-pi to pi).
+bays2009_sample A sample of data taken from the full data from Bays et al.
+(2009). This data just consists of set sizes of 4 and sample
+array duration of 500ms. This sample data is provided if the
+user wishes to interact with a simpler data structure. The
+response, target, and non-target values are in radians (-pi to
+pi).
+berry_2019 The full data set from Berry et al. (2019) including data
+from 30 participants (coded in the id column). The
+experiment always had a set size of three. There was an
+additional manipulation (coded in the condition column)
+indicating whether the task was completed under single-task
+or dual-task conditions. Note that the data has the
+response, target, and non-target values in degrees in the
+range -180 to 180.
+(i.e., no variability in responding) and a resultant vector length of zero means all responses
+were spread around the circle. Following Bays et al. (2009), the function also provides an
+estimate of response precision; this is calculated as the reciprocal of the standard deviation
+for circular data, subtracting from this the value expected by chance. The function also
+provides an estimate of response bias, which is the circular mean of the angular deviation
+between a participant’s response and the location of the true target value. Bias values close
+to zero indicate no clockwise or anti-clockwise bias in responses.
+4. We provide these arguments here in full because many other functions in mixtur share
+these arguments. In the following example, we take the full data from Bays et al. (2009)
+which is included in the mixtur package, and obtain summary statistics as a function of
+set-size (which included set sizes of 1, 2, 4, and 6 items). Note that we need to tell mixtur
+the name of the column that includes information relating to the set-size of each trial:
+summary <- get_summary_statistics(data = bays2009_full,
+unit = "radians",
+id_var = "id",
+MIXTUR: MODELLING VSTM 10
+Variables (as columns) expected by mixtur in data sets. The Name column shows the default
+names for the columns accepted by mixtur.
+Name Description
+id A column indicating the participant numbers / identifiers.
+response A column providing the participant’s response for each trial.
+This can either be in degrees (i.e., 1-360), degrees limited to
+the range 1-180 (i.e., if the experiment uses bar
+orientations), or radians (typically in the range 0-2pi, but
+could also be -pi to pi.
+target A column providing the target value. This will be used by
+the package to calculate response error (i.e., the deviation
+between the response value and the true target value). This
+should be in the same units as the response data.
+non_target If the experiment has set sizes greater than one, the data
+should include a column that provides the non-target values
+(one column for each non-target). If there is more than one
+non-target (i.e., set sizes greater than 2), each column name
+should begin with a common term (e.g., the “non_target”
+term is common to the non-target columns “non_target_1”,
+“non_target_2” etc.).
+set_size A column indicating the current trial’s set size (i.e., number
+of items to remember during the encoding phase), if your
+experiment manipulated this.
+condition A column indicating the current trial’s condition if your
+experiment had an additional manipulation (for example the
+duration of the sample array presentation, as in the Bays et
+al. [2009] data).
+response_var = "response",
+target_var = "target",
+set_size_var = "set_size",
+condition_var = NULL)
+## id set_size mean_absolute_error resultant_vector_length precision bias
+## 1 1 1 0.188 0.973 3.816 -0.023
+## 2 1 2 0.273 0.934 2.266 -0.042
+## 3 1 4 0.581 0.656 0.657 -0.005
+## 4 1 6 0.681 0.590 0.543 0.003
+## 5 2 1 0.206 0.945 2.529 0.034
+## 6 2 2 0.347 0.825 1.181 0.002
+MIXTUR: MODELLING VSTM 11
+Arguments that can be passed to the get_summary_statistics() function.
+Name Description
+data A data frame containing the data that is to be plotted. See
+the data structure section for how this should be formatted.
+unit A character variable indicating the unit of measurement in
+the data. mixtur accepts units in degrees (1-360),
+degrees_180 capped at 180 (1-180), and radians (either
+0-2pi or -pi to pi). Defaults to “degrees”.
+id_var A character variable indicating the column name that codes
+for participant identification. Defaults to “id”.
+response_var A character variable indicating the column name that codes
+for participants’ responses. Defaults to “response”.
+target_var A character variable indicating the column name that codes
+for the target value. Defaults to “target”.
+set_size_var If set size was manipulated, a character variable indicating
+the column name that codes for the set size. Defaults to
+NULL.
+condition_var If an additional condition was manipulated, a character
+indicating the column name that codes for this condition.
+Defaults to NULL.
+Plotting
+Users can obtain publication-ready plots of the model-free summary statistics, as
+well as a plot of the response error distribution. For plots containing multiple set-sizes
+and experimental conditions, the colour palette of the plots can be set via the palette
+argument using the palettes provided in the RColorBrewer package (Neuwirth, 2014), which
+is installed and loaded when mixtur is loaded. To see the names of all available colour
+palettes, type display.brewer.all() into the R console. By default, mixtur utilises the
+“Dark2” palette which is colour-blind friendly. Additionally, if the user wants the data
+underlying these plots, this can be achieved by setting the return_data argument in the
+respective functions to TRUE; the returned data is formatted in such a way that it is ready
+for inferential analysis.
+Plotting model-free summary statistics. Each of the model-free summary statis-
+tics can be plotted using the plot_summary_statistic() function. The user must select
+which summary statistic to plot (using the statistic argument). By default, the plotting
+function returns a plot of the requested summary statistic averaged across participants,
+together with error bars denoting one standard error around the mean (i.e., +/- 1 SE). The
+user can also plot by set-size and/or an additional condition if this structure is present
+in the data. As an example, the following code plots response precision as a function of
+set size from the full data set of Bays et al. (2009). The plot also includes the additional
+manipulation of duration of the sample array presentation (with three levels: 100ms, 500ms,
+MIXTUR: MODELLING VSTM 12
+3.
+plot_summary_statistic(data = bays2009_full,
+statistic = "precision",
+unit = "radians",
+id_var = "id",
+response_var = "response",
+target_var = "target",
+set_size_var = "set_size",
+condition_var = "duration",
+return_data = FALSE)
+2 4 6
+Set Size
+noisicerP
+duration
+function of set size (each plot is a different set size, with levels 1, 2, 4, and 6). Error bars
+denote +/- 1 standard error around the mean.
+Plotting response error. Response error refers to the angular deviation between
+a participant’s response and the location of the true target value (i.e., where the participant
+should have responded). By default, the plotting function returns the probability density of
+response error averaged across participants, together with error bars denoting one standard
+error around the mean (i.e., +/- 1 SE). The user can also plot by set-size and/or an additional
+condition if this structure is present in the data. In the following code, we plot response
+error as a function of set size and duration from the Bays et al. (2009) data. The resulting
+plot_error(data = bays2009_full,
+unit = "radians",
+id_var = "id",
+response_var = "response",
+MIXTUR: MODELLING VSTM 13
+target_var = "target",
+set_size_var = "set_size",
+condition_var = "duration",
+return_data = FALSE)
+Modelling
+The main reason for developing the mixtur package was to assist researchers who wish
+to fit mixture models to participant data. The mixtur package can fit both the 2-component
+mixture model of Zhang and Luck (2008) and the 3-component mixture model of Bays et
+al. (2009), as well as the slots and slots-plus-averaging models of Zhang and Luck (2008),
+which we return to in the General Discussion. The models are fit to trial-level data via
+maximum likelihood estimation of the key parameters (see Equations 1 and 2) using the
+Nelder-Mead gradient descent algorithm to minimise the negative log-likelihood. Multiple
+starting values are used for each parameter to avoid local minima. Specifically, a grid of all
+permutations of the following paramater values are used as starting points: κ – 1, 10, 100; p
+(and p if fitting the 3-component model) – 0.01, 0.1, 0.4. The model recovery simulations
+reported later show this fit routine has acceptable accuracy.
+The models can be fit via the fit_mixtur() function. The arguments to pass to this
+function are similar to other functions previously discussed (see the help files by typing
+help(fit_mixtur) into the R console) with the addition of the model argument; the user
+should inform mixtur whether the two-component model (model = "2_component") or
+three-component model (model = "3_component") should be fit to the data. By setting
+the additional argument return_fit = TRUE, the fit routine will return the log-likelihood
+of model fit (which can be useful for formal model comparison; see later section).
+To fit the model to individual participant data, the user should inform mixtur which
+column in the data set codes for participant identification (via the id argument). As with
+the plotting functions, users can inform mixtur whether there was a set-size manipulation
+and/or an additional condition manipulation; if so, by passing the column names to the
+respective arguments the package will fit the model to these independent variables.
+Two-component model. The parameters estimated when fitting the two-
+component model are κ (kappa, the concentration parameter of the von Mises distribution)
+and p (the probability of a uniform response); the probability of a target response (p )
+u t
+is calculated as 1 − p . The following code shows how to fit the two-component model
+to data from Bays et al. (2009), fitting the model to individual participant data and the
+set-size manipulation (and ignoring the duration manipulation). The function returns the
+best-fitting parameters per participant per set-size. Note that in this example (in contrast
+to the previous examples), it is best to save the results of the function call to a variable so
+that it can be accessed later (here we save the function results to the variable model_fit_2 ):
+model_fit_2 <- fit_mixtur(data = bays2009_full,
+model = "2_component",
+unit = "radians",
+id_var = "id",
+MIXTUR: MODELLING VSTM 14
+1 2
+1.5
+1.0
+0.5
+0.0
+4 6
+1.5
+1.0
+0.5
+0.0
+−2 0 2 −2 0 2
+Error (Radians)
+ytisneD
+ytilibaborP
+duration
+the Bays et al. (2009) data, plotted as a function of set size (each plot is a different set size,
+with levels 1, 2, 4, and 6) and an additional condition manipulation of duration. Error bars
+denote +/- 1 standard error around the mean.
+MIXTUR: MODELLING VSTM 15
+response_var = "response",
+target_var = "target",
+set_size_var = "set_size",
+condition_var = NULL)
+head(model_fit_2)
+## id kappa p_t p_u set_size
+## 1 1 18.358 1.000 0.000 1
+## 2 2 16.359 0.983 0.017 1
+## 3 3 15.692 1.000 0.000 1
+## 4 4 26.955 0.986 0.014 1
+## 5 5 13.831 0.976 0.024 1
+## 6 6 27.090 0.985 0.015 1
+Three-component model. The three-component model extends the two-
+component model by also taking into account binding errors (often called “swap errors”)
+whereby participants make an erroneous response to one of the non-cued non items held
+in memory. The parameters estimated when fitting the three-component model are κ (the
+concentration parameter of the von Mises distribution), p (the probability of a uniform
+response); and p (the probability of a non-target response). The probability of a target
+response, p , is calculated as 1 − p − p .
+t n u
+To fit the three-component model to the Bays et al. (2009) data (again modelling
+individual participant data and the set-size manipulation) users just need to alter the model
+argument:
+model_fit_3 <- fit_mixtur(data = bays2009_full,
+model = "3_component",
+unit = "radians",
+id_var = "id",
+response_var = "response",
+target_var = "target",
+non_target_var = "non_target",
+set_size_var = "set_size",
+condition_var = NULL)
+head(model_fit_3)
+## id kappa p_t p_n p_u set_size
+## 1 1 18.358 1.000 0 0.000 1
+## 2 2 16.359 0.983 0 0.017 1
+## 3 3 15.692 1.000 0 0.000 1
+## 4 4 26.955 0.986 0 0.014 1
+## 5 5 13.831 0.976 0 0.024 1
+## 6 6 27.090 0.985 0 0.015 1
+If the user wishes to obtain details of the fit routine, users can set the additional
+MIXTUR: MODELLING VSTM 16
+argument return_fit = TRUE. In addition to the best-fitting parameters, the function will
+also return the log-likelihood value, and the number of trials used in the fit routine. The
+function will also return Akiake’s Information Criterion (AIC) and Bayesian Information
+Criterion (BIC), which are estimators of prediction quality penalised by the number of model
+parameters. AIC and BIC can thus be used for model comparison (for both metrics, lower
+values suggest a superior model). AIC is given by
+AIC = −2LL + 2p (3)
+where LL refers to the log-likelihood of model fit and p represents the number of free
+parameters (p = 2 & 3 in the 2-component and 3-component model respectively). The
+model with the lowest AIC value is to be preferred. mixtur also provides a version of AIC
+corrected for small trial numbers, given by
+(cid:18) (cid:19)
+AICc = −2LL + 2p (4)
+n − p − 1
+BIC is given by
+BIC = −2LL + pln(n) (5)
+where LL and p are as in the AIC, ln is the natural logarithm and n is the number of trials
+used in the LL estimate.
+Plotting model fit. mixtur provides utility functions to assist the researcher in
+plotting model outcomes; users can plot goodness-of-fit of the model to the data, and plot
+participant-averaged estimates of the best-fitting parameters. Whilst the model fitting
+functions will return the best-fitting parameters per participant (and per set-size and/or
+condition, if requested), it is recommended to check the goodness-of-fit of the model to the
+participant data. The function plot_model_fit() in mixtur will plot the model-predicted
+response error against the participant-averaged data. We pass to this function the variable
+containing the participant data, and the variable containing the model fit results (other
+arguments are similar to previous functions), as well as stating which model was used to fit
+the data. In the following example, we plot the fit of the 3-component model to the Bays et
+plot_model_fit(participant_data = bays2009_full,
+model_fit = model_fit_3,
+model = "3_component",
+unit = "radians",
+See Appendix A for a sample script that can be used if the user wishes to plot the model fit per participant
+to see if any individual participant’s data was not well fit by the model.
+MIXTUR: MODELLING VSTM 17
+response_var = "response",
+target_var = "target",
+set_size_var = "set_size",
+condition_var = NULL)
+1 2
+1.5
+1.0
+0.5
+0.0
+4 6
+1.5
+1.0
+0.5
+0.0
+−2 0 2 −2 0 2
+Error (Radians)
+ytisneD
+ytilibaborP
+(shown by the solid line) and participant-averaged data (points). Error bars denote +/- 1
+standard error around the mean. Each plot shows a different set size (with levels 1, 2, 4,
+and 6).
+The plot_model_parameters() function can be used to plot the average parameter
+values across participants for each set-size and condition (if manipulated) by passing to it
+the variable containing the model fit information and the model that was fit to the data
+obtain the data underlying the plot.
+plot_model_parameters(model_fit = model_fit_3,
+model = "3_component",
+id_var = "id",
+set_size_var = "set_size",
+MIXTUR: MODELLING VSTM 18
+condition_var = NULL,
+return_data = FALSE)
+kappa p_t
+1.0
+0.9
+0.8
+0.7
+0.6
+0.5
+2 4 6 2 4 6
+p_n p_u
+0.3
+0.20
+0.2 0.15
+0.10
+0.1
+0.05
+0.0
+0.00
+2 4 6 2 4 6
+Set Size
+eulaV
+retemaraP
+naeM
+model to the Bays et al. (2009) data, plotted as a function of set size. Error bars denote +/-
+1 standard error around the mean.
+Simulating
+As well as fitting models to participant data, mixtur can also be used to simulate
+artificial data from both the 2-component and 3-component models. The critical function—
+simulate_mixtur()—needs to be passed as arguments the name of the model to simulate
+from, the parameters to use in the simulation, as well as the number of trials and the set
+size to use in the simulation. If simulating from the 2-component model, values for κ and p
+need to be provided; if simulating from the 3-component model, a value for p must also be
+provided.
+In the following example, we simulate 5,000 trials from the 2-component model with a
+set-size of 4, κ = 15 and p = 0.25. The simulation returns (in radians) the target feature
+value, the simulated response from the model, and the non-target feature values. These
+non-target feature values do not influence the simulated data from the 2-component model,
+but do influence responses for the 3-component (the degree to which is set by the p_n
+argument when simulating from this model).
+MIXTUR: MODELLING VSTM 19
+simulated_data <- simulate_mixtur(n_trials = 5000,
+model = "2_component",
+kappa = 15,
+p_u = 0.25,
+set_size = 4)
+head(simulated_data)
+## id set_size target response non_target_1 non_target_2 non_target_3
+## 1 1 4 0.157 -0.178 0.541 1.222 -2.025
+## 2 1 4 -3.054 2.866 2.670 -0.454 0.890
+## 3 1 4 2.112 1.803 -1.833 -0.209 2.478
+## 4 1 4 -2.601 -2.342 -1.606 2.531 -0.681
+## 5 1 4 0.140 0.387 -2.391 2.182 -1.990
+## 6 1 4 1.344 1.635 -0.611 2.740 -0.244
+If the user wishes to simulate multiple set-sizes at once, a vector of set sizes can be
+passed to the set-size argument; however, if choosing this option, the user must also provide
+a vector of matching length to each model parameter argument to use for each set size. For
+example, the following code simulates data from the 2-component model for set sizes of 1, 2,
+4 and 6, with p increasing with set size:
+simulated_data <- simulate_mixtur(n_trials = 5000,
+model = "2_component",
+kappa = c(15, 15, 15, 15),
+p_u = c(0.01, 0.05, 0.1, 0.25),
+set_size = c(1, 2, 4, 6))
+head(simulated_data)
+## id set_size target response non_target_1 non_target_2 non_target_3
+## 1 1 1 1.955 1.659 NA NA NA
+## 2 1 1 -0.611 -0.848 NA NA NA
+## 3 1 6 -0.890 -0.869 -1.466 1.955 -3.107
+## 4 1 6 -1.344 -1.037 -2.094 -0.768 2.059
+## 5 1 6 -1.658 -1.963 0.279 -2.810 2.705
+## 6 1 2 1.850 1.632 -2.426 NA NA
+## non_target_4 non_target_5
+## 1 NA NA
+## 2 NA NA
+## 3 0.070 0.855
+## 4 -2.985 0.908
+## 5 3.089 -0.349
+## 6 NA NA
+MIXTUR: MODELLING VSTM 20
+Simulations
+In this section, we present the result of simulations conducted to assess some funda-
+mental properties of the model and the fitting procedure to establish recommendations for
+the design of experiments that wish to utilise these mixture models.
+Simulation 1: Parameter Recovery
+In the first simulation, we were interested in the accuracy of the fitting routine in
+estimating model parameters. To explore this issue, we conducted a parameter recovery
+simulation, whereby we simulate data from synthetic participants with known parameter
+values, and then fit the model to these synthetic participants; if model fitting is accurate, the
+fitting routine should recover the parameters used to generate the data. In this simulation,
+we also explored the effect of the number of trials on the accuracy of parameter recovery to
+establish recommendations for researchers designing experiments to assess these parameters
+in participants.
+We simulated the 2-component and 3-component model separately. For each simulation,
+we generated data from 500 synthetic participants; each synthetic participant’s data set
+consisted of N simulated trials, where N varied across simulations with the levels 20, 50,
+100, 200, 500, and 1,000. The parameters used to simulate each participant’s data were
+randomly generated from a uniform distribution for each model parameter covering a range
+of plausible values. For the 2-component model, the range of possible parameter values was
+κ = 1–16 and p = 0.00–0.40; for the 3-component model it was κ = 1–16, p = 0.00–0.40,
+u u
+and p = 0.00–0.14.
+To assess the quality of parameter recovery, we calculated the product-moment
+correlation between generated and recovered parameter values. Following White, Servant,
+and Logan (2018), parameter recovery was considered poor if r < .5, fair if .5 < r < .75,
+good if .75 < r < .9, and excellent for r > .9. The results of the simulation can be seen in
+For the 2-component model, parameter recovery was good with as few as 50 trials
+(r = .82, r = .84); for excellent recovery, 200 trials were required for κ, and 500 trials were
+κ pu
+required for p . For the 3-component model, 200 trials were required before all parameters
+were recovered to a good level (r = .93, r = .86, r = .88). The results of this simulation
+κ pu pn
+suggest that at least 200 trials are required (per set-size) for good-to-excellent parameter
+estimation.
+Simulation 2: Parameter Trade-Offs
+In the next simulation, we were interested in exploring whether model parameters
+trade-off against each other during the fit routine. That is, if we systematically vary one
+parameter across a range of values when generating simulated data and hold all other model
+parameters constant, then the fit routine should show a selective change in the parameter
+that was varied and no change in the constant parameters. If we find that non-varied
+parameters also change during the fit-routine, this would suggest that there is some degree
+of trade-off in the model parameters.
+MIXTUR: MODELLING VSTM 21
+20 50 100 200 500 1000
+0 10 20 30 40 50 0 10 20 30 40 50 0 10 20 30 40 50 0 10 20 30 40 50 0 10 20 30 40 50 0 10 20 30 40 50
+Generating Value
+eulaV
+dettiF
+2 Component: Kappa
+20 50 100 200 500 1000
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.60.0 0.2 0.4 0.60.0 0.2 0.4 0.60.0 0.2 0.4 0.60.0 0.2 0.4 0.60.0 0.2 0.4 0.6
+Generating Value
+eulaV
+dettiF
+2 Component: p_u
+20 50 100 200 500 1000
+0 10 20 30 40 50 0 10 20 30 40 50 0 10 20 30 40 50 0 10 20 30 40 50 0 10 20 30 40 50 0 10 20 30 40 50
+Generating Value
+eulaV
+dettiF
+3 Component: Kappa
+20 50 100 200 500 1000
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.60.0 0.2 0.4 0.60.0 0.2 0.4 0.60.0 0.2 0.4 0.60.0 0.2 0.4 0.60.0 0.2 0.4 0.6
+Generating Value
+eulaV
+dettiF
+3 Component: p_u
+20 50 100 200 500 1000
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.60.0 0.2 0.4 0.60.0 0.2 0.4 0.60.0 0.2 0.4 0.60.0 0.2 0.4 0.60.0 0.2 0.4 0.6
+Generating Value
+eulaV
+dettiF
+3 Component: p_n
+(rows 1 and 2) and the 3-component model parameters (rows 3-5). Points represent the
+best-fitting parameter values (y-axis) plotted against generating parameter values (x-axis) for
+500 simulated participants. Column titles show the number of trials used in each simulation.
+The diagonal line represents perfect correspondence between generated and fitted parameter
+values.
+MIXTUR: MODELLING VSTM 22
+We explored this in another parameter recovery study; the 2-component and 3-
+component model were explored in separate simulations. For each model we conducted a
+separate parameter recovery simulation per model parameter where we systematically varied
+that parameter whilst holding other parameters at a default constant value; 50 parameter
+values were explored for the varying parameter. The default parameter values were κ =
+8 and p = 0.10 for the 2-component model, and κ = 8, p = 0.10, and p = 0.15 for the
+u u n
+3-component model. When varied, 50 equally-spaced parameter values were selected from
+the following ranges: κ = 4–12; p = 0.05–0.80; and p = 0.05–0.80. For each combination
+u n
+of parameter values, 500 trials were simulated. The relevant model was then fit to this data
+set, and the best-fitting parameters were compared against the generating parameter values.
+This process was repeated 500 times for each combination of parameter value.
+4 6 8 10 12
+Generating Value (kappa)
+)appak(
+eulaV
+derevoceR
+Varying kappa
+kappa
+0.20
+0.15
+0.10
+0.05
+0.00
+4 6 8 10 12
+Generating Value (kappa)
+)u_p(
+eulaV
+derevoceR
+p_u
+0.2 0.4 0.6 0.8
+Generating Value (p_u)
+)K(
+eulaV
+derevoceR
+Varying p_u
+kappa
+0.8
+0.6
+0.4
+0.2
+0.2 0.4 0.6 0.8
+Generating Value (p_u)
+)u_p(
+eulaV
+derevoceR
+p_u
+Points represent the mean of 500 simulations for each combination of parameter value (error
+bars denote 95% confidence intervals). The solid line represents perfect correspondence
+between generated and fitted parameter values.
+parameter recovery estimates for κ and p when κ was systematically varied. The second
+row shows parameter recovery estimates for κ and p when p was systematically varied.
+u u
+Note that we explored other default parameter values to make sure our findings were robust to our choice
+of starting values. These additional analyses were qualitively similar to that reported here.
+MIXTUR: MODELLING VSTM 23
+The solid line shows the generating parameter value in each plot. As can be seen in the top
+a corresponding and selective increase in the κ parameter; had p varied as κ was varied
+this would suggest a degree of parameter trade-off. This however was not observed. There
+was also little evidence for parameter trade-offs when p was systematically varied (lower
+However, when p was varied to values larger than 0.6, the accuracy of estimating
+the κ parameter became less stable. The mean absolute deviation of parameter estimates
+from the generating value of 8 was below 0.898 when p was below the 60th percentile of all
+p values explored (equating to p =.46), but increased above 1.22 when p was above the
+u u u
+70th percentile (equating to p =.54). This suggests that when high degrees of guessing are
+present in the data set, estimation of κ becomes less accurate.
+9. When κ was varied (top row), variation in recovered parameter values was limited to κ,
+where recovery was excellent; neither p nor p systematically varied. Likewise, variation in
+n u
+recovered parameter values was limited to p when p was varied (middle row), and variation
+n n
+in recovered values was limited to to p when p was varied (middle row). However, we
+u u
+observed the same pattern as for the 2-component model: The mean absolute deviation
+of parameter estimates from the generating value of 8 was below 0.94 when p was below
+the 50th percentile of all p values explored (equating to p =.39), but increased above 1.10
+u u
+when p was above the 60th percentile (equating to p =.46).
+u u
+Simulation 3: Model Recovery
+Simulations 1–2 together suggest that parameter recovery of both the 2-component
+and 3-component model is very good. In Simulation 3, we were interested in exploring the
+extent to which the models mimic each other. As the 3-component model is an extension of
+the 2-component model, it can fit any data set equally as well as the 2-component model
+(for example, when the p parameter is set at zero, it behaves identically to the 2-component
+model). Theoretically this additional flexibility is thought essential to account for binding (or
+swap) errors, where on some trials participants erroneously recall the feature value of one of
+the non-probed targets (Bays et al., 2009). As the additional flexibility of the 3-component
+model is a theoretical stance, some researchers may be interested in assessing whether the
+2-component or 3-component model best accounts for empirical data. The earlier section
+describing model fitting outlined how mixtur is able to conduct model competition using
+Akiake’s Information Criterion (AIC) and Bayesian Information Criterion (BIC), both of
+which jointly account for goodness-of-fit and model complexity.
+However, if researchers are engaged in a program of work formally comparing the fits
+of the 2-component and 3-component model, it would be important to know the extent to
+which the two models mimic each other. That is, if the 2-component model were the “true”
+generating process in participant data, the 2-component model should win the formal model
+competition (likewise if the “true” generating process were the 3-component model, this
+model should win the formal model comparison).
+We explored this question via a model recovery simulation: We simulated data from a
+MIXTUR: MODELLING VSTM 24
+12.5
+10.0
+7.5
+5.0
+4 6 8 10 12
+Generating Value (kappa)
+)appak(
+eulaV
+derevoceR
+Varying kappa
+kappa
+0.200
+0.175
+0.150
+0.125
+0.100
+4 6 8 10 12
+Generating Value (kappa)
+)n_p(
+eulaV
+derevoceR
+p_n
+0.20
+0.15
+0.10
+0.05
+0.00
+4 6 8 10 12
+Generating Value (kappa)
+)u_p(
+eulaV
+derevoceR
+p_u
+0.2 0.4 0.6 0.8
+Generating Value (p_n)
+)appak(
+eulaV
+derevoceR
+Varying p_n
+kappa
+0.8
+0.6
+0.4
+0.2
+0.2 0.4 0.6 0.8
+Generating Value (p_n)
+)n_p(
+eulaV
+derevoceR
+p_n
+0.20
+0.15
+0.10
+0.05
+0.00
+0.2 0.4 0.6 0.8
+Generating Value (p_n)
+)u_p(
+eulaV
+derevoceR
+p_u
+0.2 0.4 0.6 0.8
+Generating Value (p_u)
+)appak(
+eulaV
+derevoceR
+Varying p_u
+kappa
+0.20
+0.15
+0.10
+0.05
+0.00
+0.2 0.4 0.6 0.8
+Generating Value (p_u)
+)n_p(
+eulaV
+derevoceR
+p_n
+0.8
+0.6
+0.4
+0.2
+0.2 0.4 0.6 0.8
+Generating Value (p_u)
+)u_p(
+eulaV
+derevoceR
+p_u
+Points represent the mean of 500 simulations for each combination of parameter value (error
+bars denote 95% confidence intervals). The solid line represents perfect correspondence
+between generated and fitted parameter values.
+MIXTUR: MODELLING VSTM 25
+“true” model (e.g., both the 2-component model and the 3-component model, in separate
+simulations), and then conducted formal model comparison on this data set by fitting both
+the 2-component and the 3-component model using both AIC and BIC. Repeating this
+process many times, we were then able to quantify the percentage of fits where the true
+generating model was accurately recovered.
+For each model, we simulated 1000 data sets, with each data set comprising 500 trials.
+To each data set, we then fit both the 2-component and 3-component model to the data.
+We then calculated the difference in AIC between the 2-component model and 3-component
+model fit (where AIC = AIC − AIC ), and did the same for
+difference 2component 3component
+BIC, with values above zero indicating a better fit for the 3-component model and values
+the AIC and BIC difference scores across these simulations.
+As can be seen, when the 2-component model was the true generating model, both
+the AIC and BIC were able to correctly recover this model in the majority of simulations.
+The 2-component model was correctly recovered in 92.8% of the simulations via AIC, and
+99.7% of the simulations via BIC. When the 3-component model was the true generating
+model, AIC recovered the correct model in 87.8% of the simulations, and BIC recovered the
+correct model in 77.6% of the simulations. Although both AIC and BIC correctly recovered
+the generating models in the majority of simulations, AIC performed (on average) better
+than BIC, likely due to BIC’s over-penalisation of model complexity, a result also reported
+by Donkin, Nosfsky, Gold, and Shiffrin (2015) and van den Berg et al. (2014) using similar
+mixture models.
+Simulation 4: Effect of Set Size
+In Simulation 4 we explored the effect of stimulus display set size on the ability of
+the models to accurately recover true generating parameters. The mathematics of the 3-
+component model takes into account the feature values of non-probed items when calculating
+the proportion of binding errors (captured by the p parameter) so it is plausible that the
+number of items presented to participants might influence the accuracy of estimating this
+(and other) parameters.
+All of the simulations reported so far were conducted using the default set-size in
+the simulate_mixtur() function of 4. These simulations have shown that—with a good
+number of trials—the model parameters can be accurately recovered. In Simulation 4, we
+varied the set size used in simulating artificial data, exploring set size values of 2, 3, 4, 6,
+and 8. As the 2-component model does not consider non-probed items in its mathematics,
+we did not include this model in the simulations.
+We simulated 500 trials for each level of set size from the 3-component model; the
+generating parameter values were randomly selected using the same process as in Simulation
+1. We then fit the 3-component model to the simulated data and stored the best-fitting
+parameter values. This process was then repeated for 500 simulations. The recovered
+11. As with Simulation 1, we calculated product-moment correlations to assess adequacy of
+parameter recovery, which are reported in Appendix B.
+MIXTUR: MODELLING VSTM 26
+−5 0 5
+AIC Difference
+tnuoC
+2−Component Generated
+−5 0 5
+BIC Difference
+tnuoC
+2−Component Generated
+−200 −100 0 100 200
+AIC Difference
+tnuoC
+3−Component Generated
+−200 −100 0 100 200
+BIC Difference
+tnuoC
+3−Component Generated
+simulation (Simulation 3). The upper row shows the AIC and BIC difference scores when
+the 2-component model was the true generating model. The lower row shows the AIC and
+BIC difference scores when the 3-component model was the true generating model. Values
+greater than zero (marked by the vertical line in each plot) indicate a better fit for the
+3-component model, and values below zero a better fit for the 2-component model.
+MIXTUR: MODELLING VSTM 27
+2 3 4 6 8
+0 5 10 15 20 25 0 5 10 15 20 25 0 5 10 15 20 25 0 5 10 15 20 25 0 5 10 15 20 25
+Generating Value
+eulaV
+dettiF
+3 Component: Kappa
+2 3 4 6 8
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.0 0.2 0.4 0.6 0.0 0.2 0.4 0.6 0.0 0.2 0.4 0.6 0.0 0.2 0.4 0.6
+Generating Value
+eulaV
+dettiF
+3 Component: p_u
+2 3 4 6 8
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.0 0.2 0.4 0.6 0.0 0.2 0.4 0.6 0.0 0.2 0.4 0.6 0.0 0.2 0.4 0.6
+Generating Value
+eulaV
+dettiF
+3 Component: p_n
+model as a function of the set-size of stimulus display (i.e., number of memoranda). Points
+represent the best-fitting parameter values (y-axis) plotted against generating parameter
+values (x-axis) for 500 simulated participants. Column titles show the set-size (i.e., number
+of memoranda) used in each simulation. The diagonal line represents perfect correspondence
+between generated and fitted parameter values.
+all set sizes (all rs > .95). Although the parameter recovery for parameters p and p was
+u n
+always good (i.e., all r > .75, there was a slight decline in parameter recovery adequacy
+with increasing set size for both p (r = .933 at set size 2, r = .850 at set size 8) and p
+u n
+(r = .972 at set size 2, r = .842 at set size 8).
+Simulation 5: Memoranda Similarity
+In Simulation 5 we explored the effect of the distance in feature space between
+memoranda on parameter recovery adequacy. In continuous report studies, researchers often
+put constraints on the minimum difference between memoranda to ensure participants can
+discriminate between memoranda. For example, colours may be randomly selected from a
+(360 degree) colour wheel with the constraint that each stimulus feature value must be at
+least 40 degrees away from any other feature value. Whilst this is useful for enhancing the
+discriminability of memoranda, it is unclear whether the spacing of non-probed item feature
+MIXTUR: MODELLING VSTM 28
+values impacts the ability of the 3-component model to differentiate between p errors and
+p errors, leading to a mis-specification of errors (and inaccurate parameter estimates).
+That is, whilst some minimum degree of separation is good for participants to discriminate
+between items, does this value affect the accuracy of the model’s parameter estimation?
+We explored this question in a parameter recovery simulation with a set size of 4.
+Differences between each feature value across each of the 4 items on each trial was fixed
+at a particular value: Either 5, 10, 15, 20, 30, or 40 degrees difference. For example, with
+a difference of 5 degrees, the feature values could be 17, 22, 27, and 32 degrees. For each
+level of separation explored, 500 trials were simulated (by randomly selecting generating
+parameters using the same process as in Simulation 1) and the model was fit to this data
+set. This process was repeated 500 times. Note that as the 2-component model does not
+consider non-probed feature values, we only simulated the 3-component model.
+5 10 15 20 30 40
+0 10 20 30 0 10 20 30 0 10 20 30 0 10 20 30 0 10 20 30 0 10 20 30
+Generating Value
+eulaV
+dettiF
+3 Component: Kappa
+5 10 15 20 30 40
+1.00
+0.75
+0.50
+0.25
+0.00
+0.00 0.25 0.50 0.75 1.000.00 0.25 0.50 0.75 1.000.00 0.25 0.50 0.75 1.000.00 0.25 0.50 0.75 1.000.00 0.25 0.50 0.75 1.000.00 0.25 0.50 0.75 1.00
+Generating Value
+eulaV
+dettiF
+3 Component: p_u
+5 10 15 20 30 40
+1.00
+0.75
+0.50
+0.25
+0.00
+0.00 0.25 0.50 0.75 1.000.00 0.25 0.50 0.75 1.000.00 0.25 0.50 0.75 1.000.00 0.25 0.50 0.75 1.000.00 0.25 0.50 0.75 1.000.00 0.25 0.50 0.75 1.00
+Generating Value
+eulaV
+dettiF
+3 Component: p_n
+all plots, the points represent the mean recovered parameter values across 500 simulations for
+each level of degree separation. Error bars denote 95% confidence intervals. The horizontal
+line in each plot represents each parameter’s true generating value. A: Recovery results for
+κ. B: Recovery results for p . C: Recovery results for p .
+u n
+the whole range of memorandum similarity explored, parameter recovery was excellent
+for both κ and p (minimum r=.914). However, for p , parameter recovery was only fair
+u n
+(r=.673) for a separation of 5 degrees, and good (r=.883) for a separation of 10 degrees,
+becoming excellent (r=.906) with 15 degrees of separation. Together, these results suggest
+MIXTUR: MODELLING VSTM 29
+that—whilst some degree of separation is advised to ensure participants can discriminate
+between memoranda—the minimum value chosen for item similarity does not impact on
+parameter estimation quality for κ or p , but at least 15 degrees of separation is required to
+estimate p to an excellent level.
+General Discussion
+The application of mixture modelling to continuous report visual short-term memory
+data has advanced theorising of vSTM and its capacity limitations (Bays et al., 2009; Zhang
+& Luck, 2008). mixtur provides the researcher with a set of utility functions that aid
+the design, analysis, and modelling of continuous report visual short-term memory studies
+using the 2-component and 3-component models. In addition to providing a comprehensive
+overview of how to use mixtur, we also conducted simulation studies to develop some clear
+recommendations for researchers wishing to apply these models to their data. We outline
+these below.
+Design Recommendations
+In Simulation 1 we found that for the 2-component model parameter recovery for κ and
+p was good with as few as 50 trials, but 200 trials were required for κ’s recovery to become
+excellent, and 500 for p . For the 3-component model, 200 trials were required for very good
+parameter recovery. Given these outcomes, we recommend that at least 200 trials should be
+used per cell of the experimental design (i.e., per set-size and/or experimental condition).
+Oberauer et al. (2017) demonstrated via simulations using the 2- and 3-component models
+(as well as the interference model of Oberauer & Lin, 2017) that low trial numbers can
+be compensated for by larger participant sample sizes when using hierarchical Bayesian
+modelling methods, leading to improved parameter estimation. These methods are, however,
+not currently implemented in mixtur.
+In Simulation 2 we showed that generally the parameters did not trade-off against
+each other (i.e., systematic variation of one parameter led to selective changes in estimates
+of just that parameter). However, when p was varied above around 0.5, accurate recovery
+of the concentration parameter κ became unstable; this was true for both the 2-component
+model and 3-component model. Thus our recommendation is that researchers should be
+cautious about interpreting κ for a participant whose p parameter is above 0.5. One might
+even consider using p > 0.5 as an a priori exclusion rule for participant data. Other studies
+have highlighted poor recovery of precision parameters when guessing rates are high. For
+example, Sutterer and Awh (2016) conducted a simulation wherein data was generated based
+on the two-component model of Zhang and Luck (2008). The authors observed a systematic
+over-estimation of precision when the probability an item was held in memory was below 40%
+(i.e., p greater than 0.6). However, our recovery of the two-component model found increased
+variability in κ when p was greater than 0.6 rather than a systematic over-estimation. It is
+also important to note that the Bayesian hierarchical approach demonstrated by Oberauer
+et al. (2017) minimises this estimation bias.
+The competitive model recovery simulation (Simulation 3) showed that when the data
+was generated by the 2-component model, generally this model would fit the data better
+MIXTUR: MODELLING VSTM 30
+than the 3-component model, and when the data was generated by the 3-component model,
+generally this model would fit the data better than the 2-component model. This suggests
+that these models can be used to determine with some accuracy whether the data were
+generated by a 2-component process (i.e., a mixture of responses to the target value plus
+random guessing) or a 3-component process (i.e., a mixture of responses to the target value,
+responses to non-target values, and random guessing). There is a limit, though, on how
+much “better” the 2-component model can ever fit the data compared to the 3-component
+model even when it is the true generating process. This is because the 3-component model
+can always fit data at least as well as the 2-component model because when p is set to zero,
+the 3-component model becomes the 2-component model. Therefore, according to Equation
+(3), in cases where both models fit the data equally well, the deciding factor is the model
+complexity; according to Equation (3), then, when fit is identical (e.g., if LL is factored out
+of the equation) the AIC difference becomes:
+AIC =AIC − AIC
+difference 2−component 3−component
+=2k − 2k )
+2−component 3−component
+(6)
+=(2 ∗ 2) − (2 ∗ 3)
+= − 2
+Thus, the maximum AIC difference that can ever be achieved in support of the
+2-component model—even when it is the “true” generating model—is an AIC difference
+of -2. A similar outcome is true for the BIC statistic, where—–given a fixed number of
+trials—the maximum BIC difference in support of the 2-component model is a constant value.
+In contrast, because the 3-component model can fit data much better than the 2-component
+model when it is the true generating model, there is no upper limit on the AIC or BIC
+difference in model fit. Thus researchers should keep this asymmetry in mind if engaging
+with model competition studies.
+Slots Models
+The main motivation for mixtur was to provide an implementation of the popular 2-
+and 3-component mixture models. These models are so-called measurement models in the
+sense that they quantify key parameters of interest to explain response error (i.e., memory
+precision, guessing etc.). However, the models do not provide an explanation for these
+errors. This provides some flexibility as to the type of experimental data that mixtur can
+be used for. For example, versions of these mixture models have also been used to explore
+accessibility and precision of episodic memory representations (Berens, Richards, & Horner,
+2020; Richter, Cooper, Bays, & Simons, 2016).
+Explanatory models on the other hand do provide mechanistic explanations for observed
+errors. mixtur can be extended to accommodate such models. Indeed, two explanatory
+models—the slots model and the slots-plus-averaging models of Zhang and Luck (2008)—are
+already implemented in mixtur. The slots model assumes that visual short-term memory
+consists of a fixed number of slots; each slot can store one item in the display with high
+MIXTUR: MODELLING VSTM 31
+resolution. However, if set-size is larger than the number of slots, some items in the display
+will not be encoded, and if one of these non-encoded items are probed at test the participant
+will resort to guessing. In this model, the number of slots is given by parameter K, and the
+precision of the representation of items stored in the slots is given by parameter κ (kappa).
+This is a re-parameterisation of the two-component model, providing an explanation for
+the guessing rate (i.e., K) rather than statistically estimating its consequences (i.e., p ).
+An extension to the slots model is the slots-plus-averaging model. This model is similar
+to the slots model in that it is assumed vSTM consists of a fixed number of slots (again
+given by K). However, when K is larger than the set-size, items can be stored in more
+than one slot (until all slots are full); at test, the average value in each slot is available for
+report. This leads to better memory for items that are stored in multiple slots. This model
+provides a good account of the set-size effect (decreasing precision with increasing set-size).
+We provide a full overview of how to fit and simulate these models in Appendix C; we also
+repeat the design simulations using these models (the outcome of which do not alter our
+recommendations in this section).
+Future Directions
+Although the slots and slots-plus-averaging models are implemented in mixtur, there
+are others that are currently not implemented that could be the source of future developments
+of mixtur. One example is the non-parametric version of the 3-component model developed
+in Bays (2016): Whilst the models discussed in the current paper assume noise in vSTM
+representations is captured by a von Mises distribution, the model presented by Bays
+(2016) does not require this assumption. Bays (2016) revealed that by relaxing this strong
+assumption, the non-parametric model discovered that estimates of the frequency of binding
+errors (i.e., p ) are much more frequent than suggested by the parametric models provided in
+mixtur. In the neural resource model of Bays (2014; see also Schneegans, Taylor, and Bays,
+2020), feature values are encoded into vSTM via activity in simulated neural population
+codes, with separate neurons tuned to prefer particular feature values; errors at recall are
+explained by the noise associated with these population codes.
+Another model is the interference model of Oberauer and Lin (2017). The model
+explains vSTM errors as arising from interference in memory from three sources: (1) location-
+based cuing triggering activation of non-target feature values; (2) residual activation from
+non-target feature values presented at encoding; and (3) random guessing. The interference
+model appears a very promising model as it builds on the successes of interference models in
+explaining errors in verbal working memory (e.g., Oberauer, Lewandowsky, Farrell, Jarrold,
+& Greaves, 2012), thus providing a unifying account of memory.
+Models wherein precision is variable across items and trials (see for example van
+den Berg et al., 2012), have been shown to better account for data obtained from delayed
+estimation tasks (as well as change localisation) compared to slot models. Indeed, in a
+factorial comparison of multiple models of vSTM, van den Berg et al. (2014) showed that
+the underlying nature of precision was variable across both items and trials, as opposed
+to being fixed (e.g., Zhang & Luck, 2008) or equal (Wilken & Ma, 2004), with increasing
+set sizes resulting in reductions of precision. However, this comparison also revealed that a
+model wherein the number of items remembered is fixed or Poisson-distributed performs
+MIXTUR: MODELLING VSTM 32
+better than a model wherein all items are remembered. While this may suggest a slot model
+may be best suited to account for vSTM performance, van den Berg et al. showed that
+the number of remembered items is underestimated by models assuming a fixed number of
+remembered items. The authors highlight that such models do not account for variability or
+non-target responses, meaning that responses provided on the basis of a low-precision or
+non-target representation are erroneously considered as items not held in memory by these
+models. As such, a variable precision model wherein the number of remembered items is
+fixed or Poisson-distributed appears to be a more appropriate model than a simple fixed
+precision slot model.
+A further model that could be implemented in the mixtur package is the target
+confusability competition (TCC) model by Schurgin et al. (2020), which proposes that errors
+in the continuous report task do not arise from a mixture of different memory states (e.g.,
+noisy memory response or guessing), but rather arise naturally from the psychophysical
+similarity (and hence, potential confusability) of stimuli used in continuous report tasks
+(e.g., colours on a colour wheel). The model assumes that responses are based on a noisy
+familiarity signal, with colours close to the true target feature value receiving high levels of
+familiarity (and hence, an increased probability of being chosen as the response); however,
+the strength of familirity falls exponentially as distance from the target value increases,
+meaning values further from the target value receive less familiarity and hence are associated
+with a reduced probability of being selected. The model has been shown to parsimoniously
+account for performance across a wide array of manipulations (e.g., set size, sample duration)
+and stimulus spaces (e.g., colours and faces). At present, however, the TCC model does not
+account for binding errors, which appear prevalent in continuous report tasks (Bays et al.,
+2009; Oberauer & Lin, 2017) as implemented in the three-component mixture model.
+Conclusion
+We hope that mixtur will be a useful and accessible tool for anyone who wishes to
+apply mixture modelling to their research, specifically those who have minimal programming
+knowledge or limited/no access to proprietary software. Furthermore, we hope that the
+recommendations discussed above will not only assist those currently utilising mixture
+modelling, but also provide a good basis for anyone who may wish to do so in the future.
+Open Practices Statement
+.com/JimGrange/mixtur where users can also post bug reports. The code and associated
+MIXTUR: MODELLING VSTM 33

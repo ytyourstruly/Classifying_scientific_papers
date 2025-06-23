@@ -1,0 +1,439 @@
+Virtual hands: a comparative study of two text
+input paradigms for VR
+A. Pastor
+Information Technologies, Multimedia and Telecommunications Department,
+Universitat Oberta de Catalunya, Barcelona, Spain
+alvaropastor@uoc.edu
+Abstract. Typing is still the primary input modality for computing
+systems. Most typical Virtual Reality (VR) setups replace users’ capa-
+ble hands and fingers with cumbersome hand-held controllers (HC). This
+study examines the hypothesis that finger interaction and realistic repre-
+sentation of users’ hands increases typing performance, sense of Presence,
+and the usability of a typing system for a text transcription task in VR.
+We developed a hand and finger tracking and visualization system (VH)
+aimed to help users interact with on-screen keyboards in VR, and com-
+pared participants typing performance using HC. We found that the VH
+paradigm in VR significantly increased typing performance for inexpe-
+rienced typists and that HC users were more prone to commit errors.
+Further research may delve deeper into the utility of VH input paradigm
+for people unable to grasp HCs and for other symbolic communications
+such as sign language.
+· · ·
+Keywords: Interaction Input Interface Virtual Reality Keyboard
+1 Introduction
+In recent years, virtual reality (VR) has increased in realism, providing an im-
+mersive experience that allows users to deploy their cognitive and physical abil-
+ities. However, by using the typical paradigm of head-mounted display (HMD)
+and hand-held controllers (HC), users lack the critical ability to interact with
+the system using their hands and fingers. Among all interactions in VR, the
+keyboard is still the primary text input modality. Its widespread implementa-
+tion has made users familiar with the standard PC keyboard and proficient in
+its usage. Although hand and finger interaction remains desirable in order to
+manually interact with any virtual object, its lack is specially notorious in appli-
+cations where typing is required. This study examines the hypothesis that finger
+interaction and virtual representation of users’ hands increases typing perfor-
+mance of inexperienced typists. We also examined whether sense of Presence,
+and the system usability score would significantly correlate with typing perfor-
+mance. We hypothesized that use of HC paradigm would increase number of
+typing errors in comparison to text input via hands and fingers interaction. To
+test these hypotheses, we designed a text transcription experiment in VR fol-
+lowing a within-subject design. We developed a hand and finger tracking and
+2 A. Pastor
+visualization system aimed to assist users to interact with on-screen keyboards
+in VR. We compared participants’ typing performance using our virtual hands
+paradigm (VH) to their performance using HC. As objective measures for text
+input performance we collected correct words per minute (WPM), corrected er-
+ror rate (CER), and response time until the first correct keystroke (RTK). As
+subjective measures, we collected in HMD scores for the system’s usability and
+the users’ sense of Presence in each of the experimental conditions using previ-
+ously validated questionnaires.
+Previous research on this topic has established that natural interaction us-
+ing hands and fingers enhances typing proficiency [1, 2]. However in few studies
+the sample population is naive of typing skills in computing systems. Aiming to
+understand this segment of the population, we aimed to test only inexperienced
+typists, who were not proficient using either on-screen nor physical keyboards,
+and who had not had previous experience using VR technologies. Furthermore,
+by developing our VH input paradigm we aim to contribute a new alternative
+54 A
+to input paradigms for VR users that are unable to grasp HCs (e.g. with fewer
+fingers or muscle atony). This study addressed correlations of objective typing
+measures to important factors in VR such as system usability and users sense
+of Presence. By presenting materials both in native language and a foreign lan-
+guage largely unknown to the participants, this study aimed to clarify whether
+there was an influence of participants’ language proficiency in their typing per-
+formance. We found that the ability to interact with hands and fingers and
+visualize them in VR in real time significantly increased typing performance for
+inexperienced typists.Also a significant increase of CER in the HC users group
+was found during trials. However, our study was not able to find a significant
+correlation between input paradigm and users’ sense of Presence and system
+usability ratings.
+2 Related work
+Text input is one of the most common tasks in computing environments includ-
+ing VR systems. Bowman et al.[3] provides a number of possible scenarios of
+use that demonstrate the potential for alphanumeric input in VR such as the
+need for entering file names, labeling objects, parameter setting, and commu-
+nication between users and system. Other scenarios may include working with
+text in VR, for example VR developers who would not need to frequently switch
+between the virtual and real world causing increased cybersickness. Researchers
+and technological developers have proposed a wide variety of different text input
+solutions for VR, including head/gaze direction, pen and tablet keyboards, vir-
+tual keyboards, touchscreen keyboards, speech-to-text and hand/finger gestures
+[1, 4–8]. An early comparison of keyboard, pen, and gesture-based techniques
+showed poor text input rates which were superseded by physical keyboard typ-
+ing speeds [1]. Research with other text input techniques for VR such as mobile
+phone keyboard integration and handwritten character recognition confirmed
+these results [2]. Researchers obtained up to 9.2 WPM by implementing the use
+Virtual Hands 3
+of the touch screen with hovering capabilities from a smartphone for selecting
+characters on a virtual keyboard.
+84 T
+Nowadays, most commercially available controllers such as HTC and Oculus
+support text input on a virtual keyboard by means of pointing. In this paradigm,
+users point a virtual beam using the HC onto a character and confirm their
+selection by pressing a physical button on the HC. Alternatively, a built-in touch
+pad can be used to move the pointer around. Pointing methods can make use
+of the QWERTY layout. Due to the fact that many commercially successful VR
+products use pointing as a general input, text input via pointing has become the
+most common VR text input method. For instance Playstation VR is shipped
+with a tracked Playstation Controller, while Google Daydream proposes a HC to
+interact with the virtual world. Oculus Touch uses HC containing two buttons,
+a joystick for the thumb and a touchpad for the index finger. HTC vive relies on
+HC with a touchpad for the thumb and a trigger button for the index finger [2].
+Current text entry methods with HC employ the pointing paradigm[3] but such
+method can be tedious and cumbersome. Alternative text input techniques using
+HC, require a substantial training time for novice typists and are prone to quickly
+fatigue users [6]. Son et al [9] implemented an alternative for improving HC
+performance focusing on the use of thumbs and its results showed that users could
+achieve a typing speed over 30 WPM. However, they also found that participants
+required over two hours of practice as they were unable to translate previous
+typing knowledge Rand needed to learn a new set of skills. A similar problem
+was faced by the HoVR typing paradigm for the Microsoft HoloLens [10] which
+proposed text input in augmented reality applications through a holographic
+keyboard and a pointer which is controlled using head rotation. Yu et al. [7]
+studied head-based text entry for VR and combined the concept with gesture-
+word recognition whereby experienced users perform up to 25 WPM. The VR
+system FaceTouch [11] leverages a touch-sensitive front cover of the HMD and
+Dthe sense of proprioception to enable text input with up to ten WPM on a virtual
+keyboard. Bowman et al. [1] presented three interaction techniques designed for
+virtual environments and employing pinch gloves including a text input and a
+menu item selection technique. However none of these approaches can profit from
+the speed and usability known from typing using human fingers, and demand
+from users the development of a new set of skills.
+Image and depth-sensor approaches for hand motion capture have been ac-
+tively researched since they alleviate the need for instrumentation of the hand—in
+contrast to marker-based or glove-based approaches. Terajima et al. [12] devel-
+oped a system which performs 3D motion tracking of human’s hand and fingers
+from images of a single high-frame-rate camera and that recognizes her typ-
+ing motion in the air and achieved fast real-time recognition of typing motion.
+Skripcak et al. [13] illustrated a technique applied in interactive visualizations for
+virtual reality environments employing gestures to increase and decrease numeric
+input values, while in Hesselmann et al. [14] the authors presented a technique
+which allows a user to enter numbers on interactive multitouch tabletops us-
+ing the 10 fingers of both hands. Bailly et al. [15] on the other hand presented
+4 A. Pastor
+Finger-Count gestures for multitouch displays, a coherent set of multi-finger
+and two-handed gestures and present a variation of finger-count technique for
+gestures.
+Early research on image and depth-sensor approaches employed multi-camera
+setups consisting of multiple calibrated RGB and/or depth cameras to leverage
+multi-view constraints. However, calibration of these setups has proved tedious
+especially for non-expert users. Therefore, more recent approaches have focused
+on hand motion capture from a single RGB or depth camera [16–19]. Commercial
+products have been developed in this area such as the LeFap motion or the Oculus
+Quest. Leap Motion (LM) is a sensor device that recognizes the user’s hands and
+fingers, while providing interoperability with the head mounted display (HMD)
+[20]. LM may be attached to the front of the HMD in order to recognize and
+interpret the 3D locations of the user’s hands while presenting the results in real
+time in the HMD [21–24] attempting to enhance VR experience [25].
+Recently, researchers focused on augmenting VR by incorporating a a desktop
+keyboard and a video stream into the virtual environment aiming to compensate
+typing difficulties. McGill et al. [8] compared a physical keyboard view, to VR
+with no keyboard view, VR with partial view and blended view in a study with
+16 participants. They found that providing any type of view of the keyboard
+in VR, partial view or composite, had a positive effect on typing performance.
+VR text entry rates of 23.6, 38.5 and 36.6 WPM with mean total error rates of
+30.86%, 9.2% and 10.41%, respectively, for the three conditions in VR. Using a
+similar approach Lin et al. [26] used a depth camera to display a point cloud of
+a user’s hands beside a rendered virtual representation of the physical keyboard.
+Results showed mean text entry rates ranging from 24.3–28.1 WPM and mean
+total error rates ranging from 20–28%, from 16 participants.
+New hardware and software is being developed every year and increasingly,
+developers have to tackle the implementation of efficient interaction methods
+for basic operations such as text entry in VR. However, while hand and finger
+tracking is possible, most commercial platforms still use HC to interact in virtual
+environments. Recently the users of Oculus Quest have at their disposal a Virtual
+Keyboard Overlay as part of the Immersed applications suite, which advertises
+hand tracking application that would enable users to perform natural typing out-
+of-the-box [27]. Still, it remains an open challenge how to build a VR system
+that supports natural interaction for accurate and fast text input using both
+hands and fingers.
+3 Method
+The goal of this study was to evaluate the effect of VH input modality on typing
+performance of inexperienced typists in VR in comparison to HC input modality.
+We developed a VR system that enabled users to interact using their hands and
+fingers while seeing a virtual representation in the HMD. We collected typing
+performance data during a transcription task using native and foreign languages
+Virtual Hands 5
+target phrases. A phrase was presented in the virtual environment and partici-
+pants were required to correctly type every character as fast they could.
+A within subject design was implemented using VH and HC experimental
+conditions. We assessed typing performance via the objective measures of cor-
+rect words per minute (WPM), corrected error rate (CER), and response time
+until the first correct keystroke (RTK). Further, we investigated the overall typ-
+ing experience via subjective measures on the system’s usability and the users’
+sense of Presence by presenting to users corresponding questionnaires in VR,
+when still under each of the treatments. Comparisons were made on text input
+performances in the VH and HC conditions. We inquired whether subjects in
+HC condition were more prone to error, and if this effect was dependent on lan-
+guage proficiency. We investigated correlations between typing performance and
+the subjective measures of user’s experience. An overview of two conditions is
+3.1 Subjects
+We asked 50 (34 female) native Spanish speakers aged from 47 to 71 to conduct
+a simple online test using a desktop PC [28]. This test measured WPM in a 15
+phrase text transcription task in English language. Based on their results (M =
+23.74 WPM, SD = 8.45), we invited the 9 worst performing participants each
+with less than 18 RWPM. Seven (three female) unpaid volunteers accepted to
+take part in this study. Participants were aged from 49 to 71 (M = 59.67, SD =
+7.65). None of them declared having significant knowledge on English language.
+All were right handed and wore corrective lenses during the study.
+3.2 Apparatus
+The apparatus for this study comprised one individual setup that allowed users
+to type on an on-screen keyboard while immersed in VR, in the HC condition
+and in the VH condition in which a virtual representation of their own hands
+was provided.
+We designed an empty virtual room using Unity 2019.4.10 software. The
+room featured an on-screen virtual keyboard that enabled users to type. One of
+the walls served as a phrase display so participants may read the target phrase
+as they write as fast as possible. The graphic attributes and positions of these
+elements as well as the type size was constant for each of the conditions. Each of
+the phrases displayed for each participant were unique and randomly assigned.
+Our experiment was running on a Windows 10 PC with an Intel i7-6700,
+32GB RAM, and a Nvidia GeForce GTX 1080 graphics card. The target frame
+rate was set to 90 frames per second (FPS).
+For the hand and finger tracking we used a Leap Motion (LM) sensor that
+supported hand and finger motion tracking as input, attached to a HTC Vive
+HMD hardware. The summed up calculated latency caused by motion tracking,
+rendering pipeline, and HMD never exceeded 30 ms during the study.
+6 A. Pastor
+3.3 Hand-held controller
+We used a pair of the standard HTC Vive HC devices, and we developed a custom
+visual representation to indicate the position of the pointer in VR. Pressing a
+key from the on-screen keyboard was only achieved by activating the trigger
+button over the corresponding spatial location. Only one trigger of each HC at
+a time was allowed to stroke a key. Haptic feedback was disabled.
+3.4 Virtual hands
+By integrating the LM sensor in our VR setup we were able determine the
+hands and fingers positions and render them in the HMD accordingly. Our VH
+experimental condition allowed participants to interact with the virtual on-screen
+keyboard using their hands and fingers. For this study, the virtual representations
+of hands were rendered using a custom version of the LM core assets for Unity
+222 A
+[29]. Typing was achieved by pointing with any of the fingers towards an on-
+screen key. The most outstanding finger was computed as the desired pointing
+coordinates, and horizontal displacement of these as the keystroke event. Only
+one finger of each hand at a time may stroke a key.
+3.5 On-screen keyboard
+Our on-screen keyboard followed the QWERTY layout and was presented to
+users with 50% opacity occupying the left horizontal half and one third of the
+vertical height of the visible area in the HMD. Keystroke was visualized by
+changing the color attribute of a pressed key from light blue (RGBA 151, 197,
+213, 0.5) to light red (RGBA 232, 168, 165, 0.5).
+3.6 Phrases
+We used a custom version of the MacKenzie and Soukoreff 500 phrase set [30].
+First, aiming to avoid any influence of participants’ language proficiency in typ-
+ing performance [31, 32], participants had to transcribe phrases both in their
+native and a foreign language. Thus an Spanish translation was prepared. Like-
+wise, our experimental design aimed to provide phrase set with constant number
+of characters for each participant. From the original set and its Spanish trans-
+lation, we selected 20 phrases each that matched this criterion. The order of
+presentation of each phrase was randomized for each participant. In sum, every
+participant was provided with a constant randomized 2400 character set during
+the experimental trial. The phrases contained no punctuation symbols.
+3.7 Task
+In this study participants had to accomplish a simple text transcription task
+in VR using an on-screen keyboard in the two experimental conditions: typing
+Virtual Hands 7
+using HC, and typing using the VH paradigm. The order of administration of
+treatments was randomly assigned to each participant.
+248 T
+Once participants were located in the virtual room, phrases were sequentially
+presented using a distinct light blue (RGBA 151, 197, 213, 0.5), sans-serif font, on
+one of the walls. As each character was correctly input, the color attribute of the
+corresponding character changed to black. Only after correct phrase completion,
+the system provided a new phrase. A total of 40 phrases (20 in English) were
+provided to each participant in each condition. There was no time limit for task
+completion.
+3.8 Objective measures
+Words per minute (WPM) The average typing performance is calculated in
+WPM where one word is defined to be five characters long. Our system logged
+participants’ keystrokes, and the timeAthe participant took to enter the correct
+character that composed each phrase.
+Corrected error rate (CER) One measure as an indicator of the users’ typing
+performance alongside the WPM is the number of errors in the transcribed string.
+As the system requires correct phrase completion for proceeding to next phrase,
+corrected error rate was calculated as the number of substitutions users had
+to perform to change one character into another in relation to the total 1200
+required characters for each condition.
+Response time until first correct keystroke (RTK) For several applica-
+tions, the time to react on a specific event using keyboard input is a critical
+measure of typing performance. Thus, in addition to standard typing metrics of
+WPM we measured the accuracy and time to first correct keystroke, to evalu-
+ate how efficiently participants could interact with the typing system. RTK was
+measured as the latency in seconds between visual display of a phrase and the
+first correct keystroke of its first character.
+3.9 Subjective measures
+Presence score (PQ) One of the key characteristics of VR is the ability to
+create a sense of Presence, the feeling of being or acting in a place, even when one
+is physically situated in another location [33]. For this study we used an Spanish
+translation of the 6 item Slater-Usoh-Steed questionnaire (PQ) [34] presented to
+participants via the HMD in VR, and completed using the on-screen keyboard
+while under the effects of each treatment. We used a 7 point scale where the
+highest value corresponded to strong agreement. Previous use of a similar method
+of presentation indicated that, besides reducing a study’s duration and reducing
+disorientation, completing questionnaires in VR does not change the measured
+Presence but can increase the consistency of the variance [35].
+8 A. Pastor
+Usability rating (PSSUQ) As typing in VR has been known to be a chal-
+lenges among users especially novice [36], we have measured usability with the
+286 T
+IBM usability satisfaction survey [37] as it remains a widely used instrument to
+measure usability of software systems. Specifically, we administered via HMD
+[38] a custom Spanish translation of the 19-item Post-Study System Usability
+Questionnaire (PSSUQ) which participants completed using each input modality
+once at the end of each treatment. Our system did not provide error messages
+while the users interacted, thus item number 9 was excluded. A 7 point scale
+was used where the highest value matched strong agreement.
+3.10 Procedure
+After welcoming the participants, we asked them to sign the consent form and
+stand next to the apparatus. We explained the general course of the study and
+each of the concrete steps to be taken. Afterwards, we proceeded to adjust the
+HMD to the participant’s head and calibrate it to the participant’s inter pupil
+distance for best visual results. Then participants begun the first part of the
+familiarization run during which the essentials of the main experimental task
+were explained. A test phrase was showed on the display wall, which allowed
+participants to spend time trying several locations in the virtual room to achieve
+the most comfortable reading location. In the second part of this phase the on-
+screen keyboard is presented in HMD to participants, and tested typing one
+phrase using each input modality in the same order as they would during the
+experimental trial. This part had a maximum duration of 60 seconds for each
+condition after which the on-screen keyboard was removed while the test phrase
+remained on the wall. We did not include these data in our analysis.
+After the familiarization run, participants remained in the virtual room with
+their HMD on. Before proceeding to the experimental trial, participants con-
+firmed that were able to read the test phrase from their location. Once verifi-
+cation was completed, and without removing the HMD, the test phrase disap-
+peared from the display wall and a 5 seconds countdown was visualized instead
+to prepare participants for the beginning of the main task. Forty phrases (20
+English) were presented sequentially for each condition. Participants were asked
+to accurately transcribe all of the characters including spaces as fast as possible
+and were allowed to correct errors. Order of phrases was randomly assigned for
+each participant. There was no inter treatment delay and no time limit for task
+completion.
+Once the main task was completed, the third phase started. Without remov-
+ing HMD, participants were presented with the usability and Presence question-
+naires directly in the HMD in randomized order and with no inter questionnaire
+delay. There was no time limit for the completion of this phase. No scores were
+displayed to participants.
+The final step consisted in helping participants to detach the HMDs and then
+debriefing was conducted. Participants completed all the phases of the study in
+one session, ranging from 42 to 59 minutes in total duration.
+Virtual Hands 9
+Fig. 1. Two paradigms of text input in VR assessed in this study: Virtual hands (VH)
+and hand-held controller (HC).
+4 Results
+Seven volunteers took part and complAeted this pilot study. We assessed the role
+of input modality in users’ performance on the text transcription task. For each
+condition, participants used our VR system to correctly input 1200 characters
+in 40 phrases. All significance levels are at p=.05.
+We hypothesized that in a VR text input task, VH condition would lead to
+an increase in typing performance of inexperienced typists measured in WPM
+and RFK. In addition, we hypothesized that the use of HC paradigm would
+increase CER. We Ralso hypothesized that participants with higher ratings in PQ
+and PSSUQ would significantly outperform others.
+When we examined whether VH condition impacted on WPM, a trend was
+observed for increased typing performance in VH conditions: Using ANOVA we
+found statistically significant results for F = 18.913 and p=.005. We then assessed
+RTK in respect to the two experimental conditions and found a significant effect
+of input modality on RFK favoring the VH paradigm at F=6.899 p=.039.
+To test our second hypothesis we measured the CER for each condition and
+found error rates were overall low (VH mean 1.91%, HC mean 2.68%). We eval-
+uated whether users in HC condition were more prone to commit typing errors.
+Using ANOVA we found statistically significant increase of error in the HC con-
+dition for F= 10.618 p=.017. Further, we investigated if these effects were related
+to language proficiency in the two experimental conditions. We found no signif-
+icant difference between language for VH condition F = 0.897 p=.380. Instead,
+for HC condition we found statistically significant increase in CER for English
+F=7.399, p=.034.
+A Pearson product-moment correlation coefficient was computed to assess
+the relationship between the mean scores of WPM and the scores on PQ. We
+found a moderate positive correlation between Presence and input performance
+for r=0.505, p=.247 for the VH condition and a weak correlation between WPM
+and PQ score r=0.077, p=.868 for the HC condition. We performed a similar
+analysis to find correlations between PQ scores and CER speculating whether
+users’ sense of Presence affects propensity to commit typing mistakes. While not
+significant correlations, for VH we found a moderate positive correlation r=0.650
+10 A. Pastor
+p=.114, and for the HC condition we found a weak negative correlation between
+PQ score and CER r=-0.107 p=.819.
+We addressed the relation between WPM and usability ratings obtained via
+PSSUQ. Using Pearson product-moment correlation coefficient for each condi-
+tion we obtained a non significant negative correlation in VH r=-0.123, p=.792,
+and likewise for HC condition r=-0.048 p= .918. To clarify if users typing mishaps
+may have been evaluated as shortcomings of the VR system, we performed an
+evaluation of the relation between CER and PSSUQ ratings. A Pearson product-
+moment correlation coefficient was calculated to find a significant negative cor-
+relation r=-0.965 p¡.001 in data from the VH condition. On a similar analysis
+performed for the HC condition, a weak correlation between CER and PSSUQ
+usability ratings was found r=-0.269 p=.559.
+5 Discussion
+Our primary aim was to investigate whether the capacity to interact with hands
+and fingers and visualize them in VR in real time significantly increased typing
+performance for inexperienced typists.
+The results of this study supported our first hypothesis, that participants
+in the VH condition showed a statistically significant increase in typing per-
+formance. Evidence supported our second hypothesis as we analyzed CER in
+each condition and found a significant increase of typing errors in the HC users
+group. Nevertheless, our study found only a weak but not significant correla-
+tion between input paradigm and users’ sense of Presence and system usability
+ratings. However this correlation did show a trend that may require further
+examination.
+We have shown an experimentally validated setup for studying two text in-
+put paradigms in VR. For this study we developed a VH text input paradigm
+as a solution to widespread problem of text input in VR using HC. Our solution
+showed increased text input performance while indicating a trend for increased
+Presence score and usability in VR. There was an altogether positive acceptance
+of the VH input paradigm among participants. The impact of enabling users
+to interact with virtual keyboards using their fingers while visualizing a virtual
+representation of their hands was demonstrated. As the task relied entirely in
+character by character transcription skills we found no significant effect on lan-
+guage used during trials. The results of this paper are expected to benefit further
+research of text input paradigms in VR without requiring cumbersome hardware
+or learning new skills. Moreover, they may also contribute to research of text
+input in augmented reality applications.
+During this study we evaluated the LM sensor specific and used it to build
+our apparatus. Positional tracking was accurate, however, future iterations may
+profit from considering other devices such as the Intel’s Real Sense sensor series
+[39] to achieve more precise tracking and visual accuracy. Future studies may
+work on optimizing overall system latency for VH text input paradigm, as en-
+hance accuracy of the VH visual representation. Interestingly, it was observed
+Virtual Hands 11
+that all VH paradigm users, which relied on most outstanding finger of each
+hand as pointing device, used the index and middle finger of the dominant hand
+404 T
+and the index finger of the non dominant hand in the text input task, although
+no previous suggestion was provided. Regarding experimental materials, future
+research may profit from the use of more challenging phrase sets, e.g. includ-
+ing more difficult punctuation, and the study of native and foreign languages in
+users transcription abilities [40]. The impact of keyboard shape and the visual
+attributes of the interactions over text entry performance in VR should also be
+considered [41].
+The findings presented in this pilot study should be interpreted with caution.
+However its results have pointed towards interesting research directions. Future
+iterations may delve deeper into participants typing proficiency and learning
+curve using these paradigms [42–44], comparing novice typists with expert typ-
+ists. Another approach may inquire further on the utility of such text input
+paradigm for people unable to grasp HCs (e.g. with fewer fingers or muscle
+atony) [45, 46]. Other symbolic forms of communication in VR seem plausible
+using our VH paradigm. Future studies may address sign language recognition
+systems which can potentially be derived from the findings in this pilot study,
+and from our technological framework [47, 48].

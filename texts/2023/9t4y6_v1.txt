@@ -1,0 +1,1141 @@
+A retrieved context model of serial recall and free
+recall
+1*
+Lynn J. Lohnas
+1*
+Department of Psychology, Syracuse University, 430 Huntington Hall,
+Syracuse, 13244, New York, United Stated of America.
+Corresponding author(s). E-mail(s): ljlohnas@syr.edu;
+Abstract
+A full characterization of memory must include how participants use exogenous
+and endogenous cues to guide retrieval. In free recall, in which endogenous cues
+play a large role, retrieved context theories have emerged as a leading expla-
+nation of data on the dynamics of memory search (Lohnas & Healey, 2021).
+More recently, Logan and colleagues have advanced a retrieved context model to
+explain data on serial recall and motor production (Logan, 2018, 2021; Logan &
+Cox, 2021, 2023). Comparisons of recall transitions have further highlighted sim-
+ilarities among these tasks (e.g., Bhatarah, Ward, & Tan, 2008; Golomb, Peelle,
+Addis, Kahana, & Wingfield, 2008). Here I evaluate retrieved context theory’s
+ability to simultaneously account for data from these classic recall procedures. I
+show how a serial version of the context maintenance and retrieval model (termed
+sCMR) can account for dissociations between serial position curves and temporal
+clustering effects. I also show how sCMR can account for grouping effects in serial
+recall, extending the assumptions of grouping from free recall (Lohnas, Healey,
+& Davachi, 2023). The sCMR model provides a common theoretical framework
+to harmonize the disparate phenomena studied using these classic memory pro-
+cedures, but also reveals the distinctions between serial and free recall through
+their relative dependence on different model-based mechanisms.
+Keywords: episodic memory; free recall; modeling; retrieved context; serial recall
+Statements and Declarations: The author declares that no funds, grants, or other support
+were received during the preparation of this manuscript. The author has no relevant financial
+or non-financial interests to disclose.
+Acknowledgments: I thank Jonathan Eskreis-Winkler, Jonathan Schwartz, and Minqi Jang
+for their assistance with developing the model code. I thank Michael Kahana for helpful
+discussions and feedback.
+1 Introduction
+It is well-established that memory performance varies with the type of retrieval cues
+provided at test (e.g., Greene, 1989; Tulving, 1985; Tulving & Pearlstone, 1966).
+However, in more open-ended recall tasks, it remains debated how participants use
+internally-generated cues to retrieve information from memory. In recent decades,
+dozens of studies have attempted to resolve this debate with analyses in two clas-
+sic recall paradigms: free recall and serial recall. In both tasks, participants study a
+sequence of individually presented items. In free recall, participants attempt to recall
+the items in the order they come to mind whereas in serial recall participants attempt
+to recall the items in their presentation order. Each task gives rise to a characteristic
+serial position effect, with free recall exhibiting marked advantages in recall of recently
+studied items (the recency effect) and a smaller benefit for early list items (the pri-
+macy effect). Serial recall exhibits both effects as well, but has a much larger primacy
+effect than free recall and a small recency effect, often affecting only the last one or
+two items.
+Based on these and other dissociations, distinct classes of theories have emerged to
+explain data from these two paradigms. Recent theories of free recall have emphasized
+the importance of contextual coding of memories as well as their semantic organiza-
+tion (Howard & Kahana, 2002a; Lohnas, Polyn, & Kahana, 2015; Polyn, Norman, &
+Kahana, 2009; Sederberg, Howard, & Kahana, 2008). In contrast, theories of serial
+recall have emphasized positional coding, chunking and the importance of tagging
+the beginning of the list to facilitate recall initiation (Brown, Preece, & Hulme, 2000;
+Burgess & Hitch, 2006; Farrell, 2012; Henson, Norris, Page, & Baddeley, 1996; Ladd &
+Woodworth, 1911; Lewandowsky & Farrell, 2008; Page & Norris, 1998). Although the
+development of these parallel theories proceeded for several decades, recent evidence
+suggests that the tasks exhibit some striking similarities, particularly in the manner in
+which participants transition among items (Bhatarah, Ward, & Tan, 2006; Bhatarah
+et al., 2008; Bhatarah, Ward, & Tan, 2009; Golomb et al., 2008; Grenfell-Essam &
+Ward, 2012; Grenfell-Essam, Ward, & Tan, 2017; Spurgeon, Ward, & Matthews, 2014;
+Ward, Tan, & Grenfell-Essam, 2010). These findings pave the way for a theoretical
+harmonization of the two procedures.
+As one notable recent example, Farrell developed a chunking model to explain data
+from both free and serial recall, emphasizing that participants endogenously group
+each list into smaller groups (Farrell, 2012; Spurgeon, Ward, Matthews, & Farrell,
+2015). According to this model, recall begins by cuing the context of a group, and
+then the model attempts to recall items from that group in order using within-group
+positional codes. In brief, recall of a group begins with the item associated with posi-
+tion 1 within that group, then the item associated with position 2, and so forth. This
+approach is similar to other serial recall models which use explicit positional codes to
+cue retrieval, but across all serial positions rather than within a group (e.g., Brown et
+al., 2000; Burgess & Hitch, 1999; Henson, 1998).
+The model of Farrell (2012) generalizes the use of groups and positional codes
+to both serial and free recall, and mainly differs between paradigms with using the
+final group cue to initialize immediate free recall but not serial recall. This model can
+account for recall initialization, recall transitions, recall accuracy, and recall errors
+across a variety of standard recall manipulations.
+The current set of studies present an alternative model approach, showing how
+retrieved context theory can account for several major phenomena across the two
+paradigms. According to this theory, each studied item is associated with a temporal
+context state, and temporal context changes slowly with each studied item. Temporal
+context also serves as the retrieval cue during recall. The present model builds upon
+recent studies by Logan which show how principles of retrieved context theory offer
+a parsimonious account of several key features of data obtained in serial recall tasks
+(Logan, 2018, 2021; Logan & Cox, 2021, 2023, see also Osth & Hurlstone, 2023).
+Logan’s Context Retrieval and Updating (CRU) model extends principles of retrieved
+context theory from free recall (Howard & Kahana, 2002a; Polyn et al., 2009; Sederberg
+et al., 2008) such as the context maintenance and retrieval (CMR) model. Yet a unified
+retrieved context model across serial recall and free recall remains undeveloped.
+Importantly, although CRU makes accurate predictions in serial recall and CMR
+makes accurate predictions in free recall, these predictions have thus far been con-
+ducted more flexibly, with different models and some differing assumptions between
+paradigms. It may be that a model constricted to generally the same assumptions
+and parameters across tasks would be unable to account for findings from both tasks.
+In addition, to account for findings from serial recall, whole report and copy typing,
+CRU uses retrieval cues differently than retrieved context models of free recall. Thus,
+a more unified model approach helps to address the similarities and differences across
+tasks, especially with respect to the use of temporal context representations which
+have found to be more critical in free recall than serial recall.
+1.1 Summary of Simulations
+Here I evaluate predictions of the context maintenance and retrieval model generalized
+to serial recall (sCMR) in its ability to account for several key findings emerging from
+analyses of free and serial recall. In Simulation 1 I consider how sCMR can account for
+recall simultaneously in free recall and serial recall. I examine classic findings of recall
+probability and recall transitions in both paradigms, using a study in which the same
+set of participants performed one session of each recall task. To foreshadow the results,
+sCMR makes accurate predictions for most participants, and the distributions of model
+parameters across participants provide further insights into model mechanisms which
+vary across tasks.
+In Simulation 2 I evaluate sCMR’s ability to capture recall transitions which have
+been argued as evidence against core assumptions included in retrieved context mod-
+els (Farrell, Hurlstone, & Lewandowsky, 2013; Henson, 1996; Osth & Dennis, 2015a).
+Considerable prior research on free recall has highlighted the critical role that previ-
+ously recalled items play in cuing subsequent responses (see Lohnas, in press, for a
+review). These studies have demonstrated that participants tend to transition between
+items studies in neighboring serial positions (henceforth, the contiguity effect; Healey,
+Long, & Kahana, 2019; Kahana, 1996), and these transitions have a forward bias.
+Serial recall exhibits a similar pattern: following an omission, participants tend to make
+transitions to the prior or subsequent item, known as fill-in and in-fill errors, respec-
+tively (Farrell et al., 2013; Henson, 1996; Logan, 2021; Osth & Dennis, 2015a; Page &
+Norris, 1998; Solway, Murdock, & Kahana, 2012). The nature of these transitions has
+recently emerged as a touchstone, distinguishing predictions of several models.
+Positional code models predict that fill-in is more common than in-fill (Farrell,
+2012; Henson, 1998; Henson et al., 1996; Page & Norris, 1998). When such model is
+attempting to recall the nth item, broadly speaking the model assumes that early
+list items benefit from greater strength, so if the correct (nth) item is unavailable for
+recall, then the next most likely item to be recalled will be from an earlier list position
+(e.g., n−1). By contrast, retrieved context models more naturally predict in-fill. These
+models assume that recall of an item also updates context with information from that
+item. The updated context state promotes recall of items whose associated contexts
+include the just-recalled item, but items studied prior to the just-recalled item do not
+have that item in their context. Thus, items studied after the just-recalled item are
+more likely to be recalled next. For decades the fill-in effect has assumed to be evidence
+against models without positional codes such as retrieved context models.
+However, Logan and Cox (2023) showed that CRU can predict the fill-in effect
+by assuming that recalling an error evokes retrieval of a start-of-list context. This
+promotes recall of items studied earlier in the list, including items studied before the
+just-recalled item. They noted however that this fit served as a qualitative proof of
+concept for retrieved context models and requires further characterization. Simulation
+2 aims to use retrieved context models with more parsimonious principles from free
+recall, which generally do not use list context, to account for the fill-in effect.
+Simulation 3 evaluates sCMR predictions of segmenting or chunking longer lists
+of serial recall into shorter groups. The presence of grouping has been a longstanding
+interest in serial recall (e.g., Farrell & Lewandowsky, 2004; Henson, 1999; Madigan,
+1980; Maybery, Parmentier, & Jones, 2002; Ryan, 1969; Wickelgren, 1967). Recently
+there has been increasing interest at the intersection of segmenting continuous expe-
+rience into meaningful events and the implications for episodic memory (for recent
+reviews, see Clewett, DuBrow, & Davachi, 2019; Radvansky & Zacks, 2017). In particu-
+lar, grouping is posited to support within-group associations at the cost of across-group
+associations (e.g., Farrell, 2012; Heusser, Ezzyat, Shiff, & Davachi, 2018; Lohnas et al.,
+2023; Radvansky & Copeland, 2006; Swallow, Zacks, & Abrams, 2009; Zwaan, 1996).
+Here I will assess whether principles from CMR, which can account for grouping in
+free recall (Lohnas et al., 2023; Polyn et al., 2009), can generalize to grouping effects in
+serial recall. This account uses a single temporal context representation for the entire
+list, in contrast to requiring a hierarchical or positional structure (e.g., Farrell, 2012).
+More broadly as well, the success of this set of simulations provides a quantitative
+application of assessing the role of temporal context representations in serial recall
+and free recall.
+2 Overview of sCMR: Context maintenance and
+retrieval model of episodic recall
+This section reviews principles of the retrieved context model framework, most gener-
+ally applied to free recall, and the minimal changes required to simulate serial recall.
+Retrieved context models in other paradigms also preserve these principles including
+final free recall (Howard, Youker, & Venkatadass, 2008), item recognition (Healey &
+Kahana, 2016; Rouhani, Norman, Niv, & Bornstein, 2020) and cued recall (Howard,
+Jing, Rao, Provyn, & Datey, 2009; Zhou, Singh, Tandoc, & Schapiro, 2023, see also
+Osth & Fox, 2019). Keeping the changes as minimal as possible serves to demonstrate
+the generalization of this class of models, and also reveals the critical differences in
+model mechanisms across paradigms.
+Fig. 1 Encoding for the serial recall version of the context maintenance and retrieval model (sCMR).
+Each rounded rectangle represents a layer, actualized as a vector. Each circle within the rectangle
+represents an element of the vector. The background color of the elements, from black to white,
+fork
+correspond to values ranging from one to zero, respectively. Left: was presented to the model
+fork
+most recently. Thus in the feature layer, f, the element corresponding to the word is set to one,
+and all other elements are zero. This feature layer updates the context layer, c, through the association
+FC fork
+matrix M . In the context layer, the element associated with has the greatest strength,
+crown, tree
+indicated by the darkest shading of this element. However, previously presented words ( )
+also have nonzero strengths for their elements. As context updates, it downweighs prior context states,
+such that the context elements are a recency-weighted sum of previously presented items (i.e., the
+darkness of the elements is monotonically increasing with recently presented items). Right: The word
+lamp fork fork
+is next presented to the model after . Similar to the presentation of , in f the feature
+element for the currently studied item is set to one and all other elements are zero. Also similar to
+fork
+the presentation of , the context layer c is a recency-weighted sum of previously studied items.
+fork lamp
+In Simulation 3 only, an additional temporal disruption item is presented between and
+lamp
+to indicate the start of a new group with . As a result, the first three items are weighed more
+weakly in context (i.e., have lighter shading) than in Simulations 1 and 2. See text for further details
+2.1 Principles of the context maintenance and retrieval model
+items, contexts, and associations between them. Items are represented by the distri-
+bution of activation across elements (nodes) of a feature vector (layer), f . Each item is
+represented with a localist representation, using a vector of unit length with a single
+non-zero element. Each item has an associated context layer, represented by the distri-
+bution of activation across elements of a context vector c. These two vectors influence
+F C CF
+each other via associative matrices M and M . The superscripts of these matrices
+F C
+indicate the direction of associations, e.g., M stores the strengths of associations
+from items to contexts. Each of these matrices is a weighted sum of a pre-experimental
+component and an experimental component. The pre-experimental component is fixed
+based on memories formed before the simulated experiment, and the experimental
+component is updated during the simulated experiment. Model parameters γ , γ
+F C CF
+scale the relative amount of experimental and pre-experimental contributions to the
+F C CF
+respective matrices M , M .
+fork, lamp
+sample list ( ). The associated item element is set to one in f , represented
+by the dark shading of that element only. The item then creates an input to context,
+IN F C
+c via the item-to-context association matrix M . For an item i, this input updates
+context according to the equation:
+IN
+c = ρ c + βc . (1)
+i i i−1 i
+As each item updates context with Equation 1, context becomes a recency-weighted
+the increasingly dark shading for increasingly recent items. The model parameter β
+controls how much each studied item updates context, such that larger values of β
+cause context states to change more with each context input. During encoding, context
+updates with the free parameter β for each studied item.
+enc
+Each presented item is also associated with the previous state of context using a
+Hebbian learning rule, which updates the experimental components of each association
+matrix:
+CF ⊤ F C ⊤
+(∆M ) = ∆M = c f (2)
+exp exp i−1 i
+In this way, sCMR associates an item with the temporal context in which it occurs.
+CF
+The associations in M are further scaled by a strength parameter which decreases
+with serial position, consistent with the notion that early list items benefit from
+increased encoding efficiency (Lohnas, Davachi, & Kahana, 2020; Serruya, Sederberg,
+& Kahana, 2014; Tulving & Rosenbaum, 2006). Specifically, the item in serial position
+CF
+i updates M according to:
+exp
+−ϕ (i−1)
+ϕ e d + 1, (3)
+where ϕ scales the extra weight and ϕ scales the rate at which this advantage decays
+s d
+with serial position i.
+CF
+In free recall, the M matrix also encodes pre-experimental semantic associations
+among items, based on the hypothesis that similar items appear often in the same
+temporal contexts during one’s lifetime (Rao & Howard, 2008). The model parameter s
+scales the relative contribution of semantic versus experimental (episodic) associations
+CF
+to M .
+Once all items in a list have been presented, the recall period begins but how recall
+proceeds depends on the task. In free recall, the current state of context is used to cue
+recall of the first item. This context state assigns an activation for each item according
+to its associative strength to the current state of context:
+CF
+a = M c . (4)
+where a is a vector with each element corresponding the activation of a studied
+item associated with the current context c . These activations are used as input to a
+Luce choice decision rule (Luce, 1963). By this rule, the probability that each item is
+recalled is related to its activation strength:
+P (retrieve, i) = (5)
+(cid:80)l
+k k
+where τ is a model parameter. Greater values of τ more greatly increase larger
+values and decrease smaller values, thus increasing recall probability for items with
+greater activations, or associations to the current context.
+At each output position, the model may recall an item or may stop attempting
+recall for the list. The probability of stopping increases with output position j according
+to:
+jθ
+P (stop, j) = θ e r (6)
+Thus, altogether, the probability of retrieving item i at output position j is
+P (i, j) = P (retrieve, i)(1 − P (stop, j)). (7)
+If the stop response is selected, then the recall period ends for the current list.
+The model’s memory is reset and then presentation of the next list begins. If an item
+is recalled, it updates context using Equation 1 with the free parameter β . This
+rec
+updated context then leads to a new set of activations a, and the model attempts
+to recall another item. However, once an item is recalled, it cannot be recalled dur-
+ing the current study period. Although other retrieved context models invoke more
+realistic mechanisms for response suppression and response times (e.g., Lohnas et al.,
+2015; Sederberg et al., 2008), the simplifying assumption of sCMR keeps the focus
+on the model’s predictions of correct recalls and order errors rather than on incorrect
+repetitions or response suppression.
+2.2 Model modifications to simulate serial recall
+The model architecture and parameter values were identical across simulations of free
+recall and serial recall, with two exceptions described below.
+2.2.1 Recall Initiation
+In serial recall, participants are instructed to initiate recall with the first presented list
+item, and recall accuracy for this first item is relatively high. In many models of serial
+recall, it is assumed that participants can access the first item or its associated cue with
+high accuracy, due to greater attention, distinctiveness and/or novelty experienced at
+the start of the list (e.g., Anderson & Matessa, 1997; Brown et al., 2000; Burgess &
+Hitch, 1992; Farrell, 2012; Henson, 1998; Lewandowsky & Farrell, 2008; Lewandowsky
+& Murdock, 1989; Page & Norris, 1998).
+Rather than attempt to simulate an additional attentional or retrieval process,
+sCMR initiates recall based on the empirical results from the data it is simulating. For
+Simulations 1 and 2, these probabilities were based on the normalized distribution of
+probability of first recall. For Simulation 3, in which only the serial position curve was
+available, the probability of recalling an item at the remaining serial positions was set
+to a uniform value across the other serial positions such that overall recall probability
+of initiating with a correct list item summed to one. Following recall of the first item
+in serial recall, retrieval of the recalled item’s context, as well as recall of subsequent
+items and recall termination, were identical to free recall.
+2.2.2 Parameters controlling pre-experimental to experimental
+item-context associations.
+The distinguishing difference between serial recall and free recall, the requirement to
+recall items in their studied order, led to two differences in model parameters between
+serial recall and free recall. First, whereas in free recall a just-recalled item tends to
+cue recall of subsequently presented items, in serial recall an item should cue only the
+immediately subsequent item. Thus, the parameter controlling this cuing based on
+experimentally formed associations (γ ) varied between free recall and serial recall.
+F C
+Second, whereas in free recall participants tend to successively recall items with shared
+semantic information (e.g., Cofer, Bruce, & Reicher, 1966; Healey et al., 2019; Howard
+& Kahana, 2002b; Pollio, Richards, & Lucas, 1969; Polyn et al., 2009), in serial recall
+such semantic information does not benefit recalling items in serial order. Thus, the
+serial recall variant assumes that semantic associations do not contribute to memory
+retrieval processes (i.e., the parameter weighing the relative contribution of semantic
+to episodic associations, s, is set to zero).
+2.3 Parameter-fitting technique
+A genetic algorithm determined each best-fitting parameter set. This algorithm search
+minimized the sum of squared errors between sCMR predictions and experimental
+data, including all data plotted in the main text, except recall probability of the first
+item in serial recall because the variance of this datapoint did not rely on model param-
+eters. In addition, to capture the qualitative pattern of the fill-in effect for Simulation
+2, the search also included the difference in the conditional response probabilities
+following the first order at lag = +1 and lag = -1.
+Currently sCMR can only recall items studied in the list, but if a participant begins with an error then
+the probabilities across all valid serial positions will not sum to one. Thus, in the probability of first recall
+functions provided to sCMR, recall of all serial positions aside from the first item were normalized so that
+the values at all serial positions summed to one. Recall of the first item, the most likely possibility, was
+consistent with the value in the behavioral data and the normalization was applied to remaining serial
+positions. This also prevented sCMR from (the rare empirical occurrence of) recalling an intrusion or not
+recalling an item at all in the first serial position.
+The algorithm first randomly selected a set of 10000 values for each parameter,
+drawn from uniform distributions, for an initial generation of 10000 parameter sets.
+Next, 20 generations of 1000 parameter sets were calculated, where the top 20% of
+all parameter sets from the previous generation were used as parents for the next
+generation, with a mutation rate of 10% of each parameter range. From these 20000
+parameter sets, the 100 parameter sets with the smallest sum of squared errors were
+rerun for ten sets of the experimental data. From these 100 parameter sets, the
+parameter set with the smallest fitness value was deemed the best-fit parameter set.
+As described in more detail below, for Simulation 1 the algorithm determined
+a parameter set for each participant, and for the other simulations the algorithm
+determined a single parameter to capture the mean performance across participants.
+Because in Simulation 1 each the dataset forming the basis of the search was from a
+single participant, all simulations except the final 100 were rerun for three sets of the
+data. For Simulations 1 and 2, each parameter set was evaluated once with the dataset.
+3 Simulation 1: Shared temporal dynamics between
+serial recall and free recall
+This first simulation aims to present a retrieved context account of serial recall with
+minimal changes from free recall. To date retrieved context theory has been tested
+separately in free recall or in serial recall, but both tasks have not been examined using
+a single, constrained model framework. This leaves open the possibility that retrieved
+context models may require more fundamental changes to mechanisms or parameters
+between tasks. Such a possibility would preclude a parsimonious theory of episodic
+memory within the retrieved context framework, and would challenge how retrieve
+context models can account for the demonstrated consistencies between serial and free
+recall, even when the recall task is postcued (e.g., Bhatarah et al., 2008; Grenfell-
+Essam & Ward, 2012; Ward et al., 2010). If the model can account for findings from
+both tasks successfully, this would serve as more than a sum of its parts. The model
+would not only explain findings from each task, but also elucidate the minimal set of
+model mechanisms which change between tasks.
+3.1 Method
+I assess whether sCMR, which embeds the CMR retrieved context model of free recall,
+can predict the salient features of serial recall using a dataset of younger adults from
+2008. In this study, each participant performed one session of free recall and one session
+of serial recall. Aside from the instruction of recall order, all other aspects of the
+study were identical between sessions. In brief, in both sessions lists consisted of 10
+words were presented visually on a computer screen for 1 s, and participants said the
+words aloud as they were presented. Across lists, words were drawn randomly without
+From the original study of 36 participants, I excluded five participants who performed free recall in
+their serial recall session—beginning recall with the first item for less than 25% of trials—and excluded one
+participant who performed serial recall in the free recall session, as that participant initiated recall with the
+first two list items for over 50% of trials. This more conservative criterion was meant to ensure that a failure
+of sCMR to capture serial or free recall data was not simply due to qualitatively atypical recall patterns.
+replacement and lists were presented in blocks with varying interstimulus intervals of
+800 ms, 1200 ms and 2400 ms. After the final list item, viewing three asterisks and
+hearing a tone indicated that participants had up to 60 s for verbal recall. However,
+participants could end the recall period sooner with a keypress.
+A genetic algorithm determined a set of best-fit parameters each participant (see
+previous section). Nine parameters varied with the algorithm but remained constant
+between the two recall tasks. Two additional free parameters varied between tasks.
+Both of these variable parameters control the relative influence of pre-experimental
+F C F C
+varied freely within a predetermined range for each recall task. The s parameter also
+varied freely for free recall simulations, but was set to zero for serial recall simulations
+(see Model modifications to simulate serial recall ). For the free recall simulations,
+semantic similarity values were determined using Latent Semantic Analysis (Landauer
+& Dumais, 1997).
+1.0 1.0
+0.8
+0.8 0.8
+0.6
+0.6 0.6
+0.4
+0.4 0.4
+0.2
+0.2 Data 0.2
+sCMR
+0.0 0.0 0.0
+2 4 6 8 10 -3 -2 -1 1 2 3 2 4 6 8 10
+Serial Position Lag Serial Position
+d e f 1.0
+0.8 0.8
+0.8
+0.6 0.6
+0.6
+0.4 0.4
+0.4
+0.2 0.2
+0.2
+0.0 0.0 0.0
+2 4 6 8 10 -3 -2 -1 1 2 3 -3 -2 -1 1 2 3
+Serial Position Lag Lag
+ytilibaborP
+llaceR
+ytilibaborP
+llaceR
+.borP
+.pseR
+.dnoC
+.borP
+.pseR
+.dnoC
+ytilibaborP
+llaceR
+.borP
+.pseR
+.dnoC
+a b c
+Fig. 2 sCMR predictions and experimental data of primacy, recency and contiguity in free and serial
+recall. sCMR predicts accurately the plotted recall analyses. Top Row: Free Recall. Bottom Row:
+Serial Recall. a,d Serial position curves. b,e Conditional response probability as a function of lag. c
+Probability of first recall. f Conditional response probability as a function of lag following the first
+order error. Data are from Golomb et al. (2008)
+3.2 Results
+3.2.1 Free recall
+By starting with sCMR predictions of critical free recall phenomena, this provides an
+intuition of retrieved context models in their primary paradigm while ensuring that a
+simultaneous fit to serial recall does impair model predictions. Fig. 2 presents sCMR
+predictions and empirical data averaged across participants (the appendix provides
+individual participant fits). Fig. 2c shows that sCMR predicts participants’ tendency
+to initiate recall with the most recently presented items. In sCMR, the end-of-list
+context used to cue recall of the first item is a recency-weighted sum of presented
+items, and thus more recently presented items dominate the retrieval cue (see Fig. 1).
+The stronger representation of recency items in the context cue also leads to sCMR’s
+prediction that recency items are more likely to be recalled across output positions
+(Fig. 2a). In free recall, the tendency to recall early list items, or the primacy effect,
+mainly reflects the increased context-item associations of early list items.
+sCMR also predicts the temporal contiguity effect, a salient feature of free recall
+(Healey et al., 2019; Kahana, 1996). This is shown in Fig. 2b, which plots the prob-
+ability of recalling an item from serial position i+lag immediately following recall of
+item i, conditional on the availability of item i+lag as a valid recall (lag-CRP; Kahana,
+1996). sCMR naturally predicts the temporal contiguity effect because recall of an
+item leads to retrieval of its context, and this retrieved context is incorporated into
+the context used to cue recall of the next item. This updated cue promotes recall
+of items with shared temporal contexts of the just-recalled item. sCMR predicts the
+asymmetry effect, or the increased probability of forward over backward transitions
+(Kahana, 1996), because an item’s pre-experimental context is incorporated into tem-
+poral context only after the item is presented. Consequently, a presented item has a
+more similar contextual representation to items presented after its own presentation.
+Taken together, sCMR accounts for classic recall dynamics in free recall.
+3.2.2 Serial recall
+Because sCMR assumes high accuracy for recalling the first list item, this promotes
+recall of items with similar temporal contexts also presented at the beginning of the list,
+and thus discourages recall of recency items. Along with the primacy gradient, these
+mechanisms allow for sCMR to account for the primacy effect in the serial position
+curve (Fig. 2d). When recall begins with an early list item, this promotes recall of
+items with similar temporal contexts, thus encouraging recall of other early list items
+and discouraging recall of recency items. As recall continues and context updates from
+early list items, context serves as a weaker cue for recency items. This contributes to
+reduced recall accuracy across output positions. Further contribution to this finding,
+with each output position it is increasingly likely that the model will recall an incorrect
+item due to the noisiness of the retrieval process. This noise is independent across
+output positions but increasing the number of noisy recalls increases the probability
+that at least one recall will be incorrect. As a final contributing factor to reduced
+recency in serial recall, the probability that the model stops recall increases with
+output position (see Equation 6).
+In the experimental data, the serial recall instruction leads to greater asymmetry
+in the lag-CRP than in free recall (Fig. 2e), which primarily reflects a reduction in
+lag = −1 transitions from free recall to serial recall reduced asymmetry (Ward et
+al., 2010, M = 0.250 versus M = 0.133, SEM = 0.0200, t(29) = 5.83, p < .0001).
+In sCMR, differences between tasks reflect the difference in parameters controlling
+the relative strength of pre-experimental to experimental item-to-context associations
+including γ . This strength contributes to the role of temporal context in retrieval
+F C
+cues. When an item is recalled, its temporal context contributes to the next retrieval
+cue, and stronger experimental item-to-context associations cause more of an item’s
+recent temporal context to contribute to the recall cue. This in turn promotes recall
+of other items represented more strongly in the just-recalled item’s temporal context.
+However, in serial recall, it is not as beneficial to have items studied before the just-
+recalled item in the retrieval cue, because subsequent recalls should be from items
+studied after the just-recalled item. In contrast, in free recall, items studied before the
+just-recalled item can be correct recalls. Thus, the intuition is that sCMR downweighs
+the item-to-context associations in serial recall. Examining the distribution of γ
+F C
+values across participants, the mean is numerically but not statistically lower for serial
+fr
+F C
+F C
+participants there is a significant correlation between the reductions in lag = −1
+transitions and γ values (r = .81, p < .0001). This suggests that the γ parameter
+F C F C
+contributes to the change in temporal transitions across tasks even if the reduction in
+the parameter value is less reliable than the reduction in lag = −1 transitions.
+Differences in the s parameter also contribute to changes to temporal transitions
+in serial recall. In serial recall s was set to zero, but in free recall the distribution of s
+values was set on an open interval containing zero, thus leading to significantly pos-
+itive values (M = 1.31, SEM = 0.136, t(29) = 9.64, p < .0001). Whereas the shared
+temporal context between studied items promotes successive recall of temporal neigh-
+bors, the shared semantic context between items can help to support recall of items
+with stronger semantic associations at all lags. Thus, an increase in s should increase
+reliance on semantic associations generally in conflict with temporal associations and
+the temporal contiguity effect. In each recall paradigm, I quantified each participant’s
+temporal contiguity effect with a temporal clustering score (Polyn et al., 2009). Across
+participants, the reduction in temporal clustering scores from serial recall to free
+recall correlated with their best-fit s parameters in free recall (r = .63, p = .0002),
+thus indicating the contribution of the s parameter to reducing the use of temporal
+associations.
+The lag-CRP in Fig. 2 plots transitions to all items, and in serial recall correct
+lag = +1 transitions dominate this function. The debate among theories of recall
+has centered around errors in recall transitions when the transition is an error and
+thus not lag = +1. Because items following an error may be clouded by the original
+error, recently the convention is to calculate the lag-CRP from the first error on a
+list to another list item (Osth & Dennis, 2015a; Solway et al., 2012). Fig. 2f plots
+this function, assuming that the preceding recalls are correct items and both the error
+and the following recall are neither repeats nor intrusions. In this study, participants
+exhibited an in-fill effect, with transitions more likely to lag = +1 than to lag = −1
+(M = 0.383 versus 0.152, SEM = 0.0445, t(29) = 5.20, p < .0001). sCMR captures
+this effect for the same reason that it captures the forward asymmetry in the lag-
+CRP, because recall of an error still retrieves its context. Thus, items studied after
+the recalled error contain that item within their own context. This overlap in context
+states promotes recall of items studied after the error item.
+Taken together, sCMR can account for benchmark analyses of serial position effects
+and transitions in serial recall in the present dataset. However, the in-fill effect is not
+always present in experimental data. Rather, sometimes participants demonstrate the
+fill-in effect, recalling the items prior to a recall error (Farrell et al., 2013; Henson,
+1996; Logan, 2021; Osth & Dennis, 2015a). This effect has posed a challenge for
+retrieved context models such as sCMR, which traditionally in free recall predict a
+strong forward asymmetry. In the next simulation, we examine sCMR predictions of
+the fill-in effect.
+4 Simulation 2: A retrieved context account of the
+fill-in effect
+A special type of recall error has served as a defining distinction between serial recall
+theories. Specifically, when a participant mistakenly recalls an item too early (e.g.,
+recalls item i + 1 at output position i), theories are divided whether the participant
+next fills in with an earlier item such as i or in-fills with a later item such as i + 2.
+Adding fuel to the theoretical debate, some serial recall studies exhibit the in-fill effect
+(e.g., Dougherty, Halpern, & Kahana, 2023; Golomb et al., 2008; Solway et al., 2012)
+and some studies exhibit the fill-in effect (e.g., Farrell et al., 2013; Henson, 1996;
+Osth & Dennis, 2015a). Thus, although sCMR naturally explains the in-fill effect in
+Simulation 1, the purpose of Simulation 2 is to establish that sCMR can also predict
+greater recall in the backward direction following a recall error.
+4.1 Method
+I simulated sCMR using the list structure from a study presented in Osth and Dennis
+pants performed serial recall of 62 lists each with six words. Each word was presented
+for 1 s followed by a blank interstimulus interval for 250 ms on a computer screen.
+Participants then viewed a prompt to type the studied words one at a time in order,
+and had 20 s to do so. I chose to simulate the condition in which words were randomly
+selected without replacement across lists both because this design more closely par-
+allels classic free recall studies and because sCMR’s memory resets between lists. In
+this condition, if participants knew that an item occurred at a specific position but
+could not remember the item, they could not provide a “pass” response but rather
+recalled the next word from the list. Again, this condition more closely matches free
+recall, in which task instructions usually do not require participants to specify if they
+know other items were studied in the list but cannot remember what they were. Fur-
+ther, because sCMR does not have a mechanism to enable a pass response this avoids
+having the present simulation obfuscate whether the model’s failure reflected incorrect
+assumptions of a pass mechanism or of retrieved context theory. It is worth noting that
+for this condition, Osth and Dennis (2015a) deemed that there was “neither a fill-in
+nor an in-fill effect” because the numerical advantage for transitions of lag = −1 over
+lag = +1 failed to reach significance. However, given that sCMR is fit to the mean
+values of this analysis without incorporating the variance, these numbers nonethe-
+less provide a meaningful standard for sCMR to capture an effect other than the
+in-fill effect while simultaneously predicting recall probability and transitions across
+all output positions.
+I used the same genetic algorithm procedure to determine the best-fit parameters
+as in Simulation 1. However, the algorithm only determined serial recall parameters,
+and thus this model had nine parameters. Further, because the aim was to capture the
+numerical advantage of backward over forward transitions, the algorithm determined
+a single set of best-fit parameters for the average data.
+1.0
+0.8 0.8
+0.8
+0.6 0.6
+0.6
+0.4 0.4
+0.4
+0.2 0.2
+0.2
+0.0 0.0
+0.0
+-3 -2 -1 1 2 3 -3 -2 -1 1 2 3
+1 2 3 4 5 6
+ytilibaborP
+llaceR
+.borP
+.pseR
+.dnoC
+Lag Lag
+Serial Position
+.borP
+.pseR
+.dnoC
+a b c
+Fig. 3 sCMR predictions and experimental data of primacy, recency and the fill-in effect. sCMR
+provides an accurate account of the plotted serial recall analyses. a Serial position curves. b Condi-
+tional response probability as a function of lag. c Conditional response probability as a function of
+lag following the first order error. Data are from Osth and Dennis (2015)
+4.2 Results
+To lead with the critical result of this simulation, sCMR predicts the fill-in effect suc-
+cessfully, shown in here Fig. 3c as greater conditional response probability of backward
+transitions than forward transitions following the first order error. In sCMR, both the
+fill-in effect and the in-fill effect reflect the temporal contiguity effect. As explained
+the in the previous section, sCMR naturally accounts for the contiguity effect because
+the just-recalled item reinstates its associated temporal context from study and this
+updated context cues recall of items studied nearby in the list. One notable difference
+is that with a shorter list-length, at the start of the recall period context remains
+closer to the context state from the start of the list. That is, for a given context drift
+rate, context drifts further from the start-of-list context with more items in a list. As
+a result, in this shorter list of only six items, following a recall error the context cue
+has stronger representations of early list items. The additional strength attributed to
+these items promotes their recall and thus overcomes the forward asymmetry effect in
+the lag-CRP.
+It is also worth noting that the model parameter controlling the drift rate at
+encoding (β ) was determined separately for each participant in Simulation 1 and
+enc
+simulations, then the prediction of the fill-in effect might reflect a difference in drift
+rates rather than in list-lengths. However, β does not differ between the distribution
+enc
+of values across participants in Simulation 1 and the value for Simulation 2 (p > .3).
+The influence of list-length on the presence of the fill-in effect is also consistent with
+some prior findings (Farrell et al., 2013).
+Despite the backward asymmetry following a recall error, across all transitions
+sCMR still predicts that forward transitions are more likely (Fig. 3b). This reflects
+both sCMR’s assumptions leading to the forward asymmetry effect and the inclusion
+of transitions from correct recalls. When the model has already recalled items studied
+earlier in the list, these items no longer compete for recall and cannot be recalled again.
+sCMR accounts for the probability of recall by serial position (Fig. 3a) with recall
+more likely for early list items. As in Simulation 1, across output positions the reduced
+recall advantage for later serial positions, increased probability of recall termination
+and accumulation of errors lead to low recall of recency items. Thus, despite the similar
+serial position effects and correct transitions as in Simulation 1, in Simulation 2 sCMR
+can account for greater probability of filling in over infilling.
+5 Simulation 3: Temporal Grouping Effects
+In this simulation I examine the influence of imposing a grouping structure which
+encourages participants to group the longer sequence of the entire list into smaller
+subsequences or groups. Under such conditions, participants organize their recalls
+based on the temporal grouping structure. Notably they exhibit more errors when
+transitioning across groups, and exhibit primacy and recency effects within each group,
+mirroring the primacy and recency effect across the entire list (DuBrow & Davachi,
+2016; Farrell & Lewandowsky, 2004; Henson, 1996, 1999; Hitch, Burgess, Towse, &
+Culpin, 1996; Madigan, 1980; Ryan, 1969). These results, often taken as evidence
+against retrieved context theory, serve as a critical finding for sCMR to explain. Indeed,
+recently Logan and Cox (2023); Osth and Hurlstone (2023) presented simulations of
+the CRU model, which shares retrieved context assumptions of sCMR, yet CRU failed
+to predict a recency effect across the list and in the final group.
+Here I examine recall grouping effects with studies using the common serial
+recall manipulation of having longer interstimulus intervals between groups (Farrell
+& Lewandowsky, 2004; Henson, 1996, 1999; Hitch et al., 1996; Madigan, 1980; Ryan,
+1969). In such experiments, participants study nine lists of items, either as a sin-
+gle group or as three groups of three items. When there is a temporal pause in the
+list, sCMR assumes that this induces a shift in temporal context, updating context
+according to Equation 1 with an additional free parameter (β ). Otherwise, the
+group
+model parameters remain constant between the grouped lists and ungrouped lists.
+This assumption not only constrains the model between list types, but also assesses
+whether retrieved context model assumptions of grouping in free recall generalize to
+serial recall. For lists in which a shared encoding task defines each group, the free
+recall variant upon which sCMR builds, CMR, assumes that a new group induces a
+shift in temporal context (Lohnas et al., 2023; Polyn et al., 2009).
+5.1 Method
+I used the same genetic algorithm approach from Simulation 2 to fit sCMR to the
+results averaged across several experiments in which participants studied lists of nine
+items as either three groups of three items, indicated by a longer temporal pause
+from Farrell (2012) also presents model predictions of grouping in serial recall, and
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+1 2 3 4 5 6 7 8 9
+Serial Position
+ytilibaborP
+llaceR
+Data-Grouped
+Data-Ungrouped
+sCMR-Grouped
+sCMR-Ungrouped
+Fig. 4 sCMR predictions of probability of recall as a function of serial position in grouped and
+ungrouped lists. In grouped lists, groups of three items were separated by a longer temporal pause
+before items 4 and 7, whereas ungrouped lists had consistent timing between all items. Serial position
+digits from Henson (1996) and Hitch et al. (1996). sCMR accounts for the primary features of these
+serial position curves; see text for details
+thus serves as a good comparison for sCMR. Aside from setting the parameter β
+group
+to 0 in the ungrouped lists and letting this parameter vary in the grouped lists, all
+other parameters remained constant between the grouped and ungrouped lists. For
+this mixture of experiments, I simulated an artificial data set of 50 “participants”,
+each of whom had 50 grouped lists and 50 ungrouped lists.
+5.2 Results
+Fig. 4 shows that sCMR can account for the serial position curves with and without
+grouping. In the latter case, sCMR can account for the primacy and recency effects in a
+similar way to Simulation 1. Early list items benefit from the reinstatement of context
+from the first list item, and the additional associative strengths of primacy items to
+temporal context. The serial position curves in the plotted datasets (averaged from
+Henson, 1996; Hitch et al., 1996) exhibit a greater recency effect than in Simulation
+1, but sCMR can account for this recency effect using the same mechanisms as in free
+recall.
+The serial position curves between the ungrouped, control lists and the grouped
+lists differ at nearly all serial positions. If sCMR correctly recalls the first item then
+when compared to an ungrouped list, in a grouped list the items studied after a pause
+are associated more weakly to the item’s reinstated context because the pause shifts
+temporal context further away from the context at the start of the list (see Fig. 1). As
+a result, the second and third items in the first group benefit from less competition
+from later list items, and these items boast greater recall probability in grouped than
+ungrouped lists.
+Turning to recall of the fourth item in the list, recall of this item is more reduced
+from the preceding item in grouped than ungrouped lists. sCMR predicts this finding
+because recall of an item immediately prior to the pause will cue the next item more
+weakly than in an ungrouped list without a pause. This may also explain why items at
+the end of each group benefit from greater recall. In the ungrouped list, the greatest
+competition (i.e., next most likely recall) comes from the item studied after it, but
+in grouped lists that next item (from the next group) is represented more weakly
+in context of the item which precedes it (in the current group). Thus, this across-
+group item serves as a weaker competitor during recall, and thus increases the recall
+probability of end-of-group items. The reduction in competition from neighboring
+items in grouped lists may also explain why the model predicts accurately that recall
+is greater at each serial position in the grouped list compared to the ungrouped list.
+It is also noteworthy that sCMR captures the list-level recency effect in both list
+types, especially because sCMR predicted the lack of a recency effect in the serial
+position curves from the other two serial recall simulations. Although sCMR predicts
+a recency effect in both ungrouped and grouped lists, the best-fit parameters across
+both list types nonetheless need to account for accurate recall in grouped lists. As
+described in the previous paragraph, items studied in a different group from the just-
+recalled item are represented more weakly in the context cue due to the shift in context
+between groups. This helps to explain why the best-fit free parameter for the amount
+of context retrieval for each recalled item, β , is higher for this simulation than
+rec
+states to ensure that the weakly represented item is still recalled next. This greater
+context retrieval benefits the recency effect as well. When recency items are recalled
+correctly, this increases the retrieval of context states which serve as a stronger cue for
+the final list item. This retrieval is also greater when more recency items are recalled
+correctly and thus retrieve their contexts. In the present simulation, when compared
+higher for the few items preceding the final list item. Thus, this higher accuracy also
+helps to ensure that these recency items support recall of the final list item. Taken
+together, sCMR captures the notable aspects of recall for grouped and ungrouped lists
+consistent with its free recall analog (Lohnas et al., 2023; Polyn et al., 2009).
+Parameter Simulation 1 Simulation 2 Simulation 3
+β 0.581 (0.030) 0.577 0.124
+enc
+β 0.790 (0.037) 0.581 0.922
+rec
+ϕ 2.500 (0.248) 2.086 3.420
+ϕ 1.195 (0.096) 0.134 0.526
+θ 0.035 (0.004) 0.005 0.050
+θ 0.358 (0.037) 0.772 0.018
+τ 4.259 (0.407) 11.389 9.466
+γ 0.852 (0.021) 0.671 0.535
+CF
+γ 0.255 (0.026) 0.520 0.921
+FC
+fr
+γ 0.304 (0.045) - -
+FC
+s 1.310 (0.136) - -
+β - - 0.826
+group
+reported for Simulation 1 include the mean (and SEM) across
+the 30 individual participant fits. The values for Simulations
+2 and 3 are the single parameter set used to fit the data
+averaged across participants. For details of the use and
+meaning of each parameter, see Overview of sCMR: Context
+maintenance and retrieval model of episodic recall.
+6 Discussion
+Theories of episodic memory aim to characterize how memories are represented as well
+as the mechanisms supporting successful encoding and retrieval. Much of the compu-
+tational modeling work emerging from these theories has developed separately in free
+recall and in serial recall. Retrieved context models have had much success in account-
+ing for recall dynamics in free recall (Howard & Kahana, 2002a; Lohnas & Healey,
+2021; Lohnas et al., 2015; Polyn et al., 2009; Sederberg et al., 2008) and principles of
+these models have emerged as an important alternate account in serial recall (Logan,
+2018, 2021; Logan & Cox, 2021, 2023; Osth & Hurlstone, 2023). Combined with recent
+empirical investigation (e.g., Bhatarah et al., 2008; Farrell et al., 2013; Osth & Den-
+nis, 2015a, 2015b; Solway et al., 2012), these lines of work underscore the parallels
+between, and the importance of assessing a generalized retrieve context model across,
+recall paradigms. Here I examined three sets of simulations of sCMR, a generalized
+retrieved context model of free and serial recall. sCMR can account for several key
+findings using its core assumptions that each item is associated with a slowly chang-
+ing temporal context state, temporal context is the recall cue, and recall of an item
+evokes retrieval of its associated context from study.
+Simulation 1 compares model predictions for participants who performed one ses-
+sion each of free recall and serial recall. sCMR makes accurate predictions of each
+participant’s recall patterns with changes to only two (out of 11) parameters, along
+with a difference in recall initiation, between recall sessions. sCMR accounts for the
+primacy effect in both tasks due to the stronger context-item strengths of early list
+items. sCMR accounts for a weaker recency effect in serial recall than free recall
+because the retrieved context of correctly recalled early list items drifts further from
+recency items, and with increasing output position recall errors and stopping are more
+likely. sCMR accounts for the temporal contiguity effect in both recall tasks because
+the temporal context of the just-recalled item most strongly contributes to the recall
+cue for the next item. Finally, sCMR accounts for reduced backward transitions in
+serial recall due to the two model parameters which varied between tasks; both of
+these parameters influence the contribution of experimental episodic associations to
+the recall cue. Thus sCMR uses the same core principles, mechanisms and represen-
+tations for both recall paradigms but assumes that participants rely less on distant or
+backward associations in a task requiring recall in serial order.
+sCMR dissociates between recall paradigms based on the contribution of forward
+episodic associations to the retrieval cue. Specifically, semantic context-to-item associ-
+ations and backward episodic item-to-context associations contributed more strongly
+to the recall cue in free recall than in serial recall. This follows the intuition that
+using these two types of context information would be detrimental in serial recall, in
+which recall of an item should ideally cue the next studied item rather than a prior
+item or a semantic associate. Although sCMR updates the experimental item-context
+associations after studying an item, the relative weight of these experimental associa-
+tions (versus pre-experimental associations) to the recall cue could be determined at
+the start of the recall period. In the present simulations, participants had a consistent
+recall task for an entire session or study and thus the parameter controlling the weights
+of experimental and pre-experimental associations were kept constant (γ , γ , s).
+F C CF
+However, if the type of recall test were postcued then the model could adjust the
+association weights following the recall instructions.
+In Simulation 1, sCMR makes predictions consistent with the experimental data of
+Golomb et al. (2008), in which participants were more likely to make transitions in the
+forward direction in both free recall and serial recall. Yet in some serial recall studies
+participants are more likely to fill in, or recall the preceding item, following a recall
+error of skipping an item. Simulation 2 thus examined sCMR’s ability to explain this
+finding. Because retrieved context models more naturally predict a forward asymmetry
+in free recall, the fill-in effect has been taken as evidence against models such as sCMR
+(Farrell et al., 2013; Henson, 1996; Logan, 2021; Osth & Dennis, 2015a). However,
+sCMR can account for the fill-in effect as well. Like the in-fill effect, sCMR predicts that
+the next recalled item, even if followed by the first order error, is more likely to share
+temporal context with the current context state. Further, Simulation 2 had a shorter
+list-length and thus fewer intervening items between an item’s initial presentation and
+when it is later recalled. As a result, sCMR predicts that following an error temporal
+context more strongly represents neighboring early list items, producing the fill-in
+effect. Remarkably, some positional models use a similar mechanism, accounting for
+the fill-in effect based on stronger representations of early list items (e.g., Henson,
+1998). Further attesting that sCMR can account for this effect more naturally, with
+the same parameter set the model also made accurate predictions of the serial position
+curve and lag-CRP across output positions. sCMR’s account of this effect, based on
+list-length, is also consistent with past studies suggesting that the fill-in effect is more
+likely with shorter list-length (Farrell et al., 2013, but see Dougherty et al., 2023; Osth
+& Dennis, 2015a).
+In Simulation 3, sCMR accounts for serial position curves of grouped and
+ungrouped lists with the same assumption as retrieved context models in free recall
+(Lohnas et al., 2023; Polyn et al., 2009), that a new group induces a disruption to
+temporal context. These disruption items lead to greater transitions between correct
+items in the same group but reduced transitions across groups, as well as primacy and
+recency effects within groups. Thus sCMR did not need to assume different param-
+eter values across grouped and ungrouped lists, nor did the model need to assume
+additional hierarchical representations. This parallels the assumption for CMR2, a
+retrieved context model variant in which memories accumulate over multiple lists in
+a session: the model does not assume a separate list context, but a temporal disrup-
+tion item was presented in between each study-recall cycle (Healey & Kahana, 2016;
+Lohnas et al., 2015; Pazdera & Kahana, 2023). This assumption also has some support
+from the event segmentation literature, as reviewed in the next section.
+6.1 Grouping and segmentation in retrieved context models
+To date, retrieved context models have had success in accounting for grouping struc-
+tures in free recall with experimental manipulations of grouping (Lohnas et al., 2023;
+Polyn et al., 2009). Without this grouping structure, the model does not assume that a
+longer list is divided into groups. However, there is empirical evidence that participants
+may acquire consistent grouping structures in recall tasks (e.g., Kahana & Jacobs,
+2000; Madigan, 1980; Romani, Katkov, & Tsodyks, 2016; Ryan, 1969; Wickelgren,
+1967). On a theoretical level, Farrell’s (2012) model makes more accurate predictions
+in serial recall and free recall when assuming that participants automatically form
+groups from longer lists. For instance, the model can account for the nonmonotonicites
+in the serial position curve of the ungrouped lists from Fig. 4 when assuming that
+participants form groups in those lists.
+As another potential approach to examine grouping, and indeed part of the motiva-
+tion for Farrell’s model, comes from the event segmentation literature. Albeit gauged
+in different terminology than groups, this literature focuses on how people segment
+their continuous stream of experience into meaningful events (Radvansky & Zacks,
+2014; Zacks, Speer, Swallow, Braver, & Reynolds, 2007). This literature also provides
+further foundation for sCMR’s assumption that a new group leads to a disruption to
+temporal context, even in situations where the new group (or event) is not a temporal
+pause. For instance, participants perceive two items (of matched temporal distance)
+as occurring further apart in time when they are from different events than when they
+are in the same event (Clewett, Gasser, & Davachi, 2020; DuBrow & Davachi, 2013;
+Ezzyat & Davachi, 2014; Faber & Gennari, 2017; Lositsky et al., 2016). Further, brain
+regions implicated in temporal information exhibit salient changes at event bound-
+aries (e.g., Baldassano et al., 2017; Ezzyat & Davachi, 2014; Heusser, Poppel, Ezzyat,
+& Davachi, 2016; Lohnas et al., 2023; Lositsky et al., 2016).
+Event segmentation studies have also established that changes to memory per-
+formance and neural activity are similar between experimentally imposed events and
+endogenous updating of event or group information (for a recent review see Clewett et
+al., 2019). In lists of items, boundaries may reflect salient changes to sensory content
+or context (e.g., Clewett et al., 2020; DuBrow & Davachi, 2016; Heusser et al., 2018;
+Lohnas et al., 2023; Pu, Kong, Ranganath, & Melloni, 2022). However, in serial recall
+studies which commonly use lists of unrelated words or digits, other factors may inform
+when participants begin a new group within a longer list. Indeed, much of the serial
+recall literature examining within-list groups rely on experimental manipulations (for
+a review, see Farrell, 2012). Thus theoretical and empirical advances in serial recall
+studies could benefit from the largely untapped approaches from event segmentation
+studies to examine endogenous grouping, such as having participants to indicate when
+they form a new group during presentation (e.g., Bailey, Kurby, Sargent, & Zacks,
+2017; Boggia & Ristic, 2015; Magliano, Radvansky, Forsythe, & Copeland, 2014; Newt-
+son, 1973, 1976), or using brain activity to infer when a participant forms a new group
+(e.g., Baldassano et al., 2017; Schapiro, Turk-Browne, Norman, & Botvinick, 2016).
+In addition to experiment manipulations, future recall studies may also benefit
+from theoretical advancements including models aimed to explain when a participants
+will form a new event (e.g., Elman & McRae, 2019; Franklin, Norman, Ranganath,
+Zacks, & Gershman, 2020; Reynolds, Zacks, & Braver, 2007). As one of the most rele-
+vant computational models to the present work, the Structured Event Memory makes
+quantitative predictions of episodic memory and event structure based on predictabil-
+ity and similarity across events (Franklin et al., 2020). SEM also makes accurate
+predictions of free recall and serial recall as a function of whether items were studied
+in the same or different events.
+Several computational models have been developed to explain the impact of event
+segmentation on episodic memory. Some of these models, like sCMR, assume that
+temporal context changes slowly over time, and each item is associated to this slowly
+changing temporal context representation (Horner, Bisby, Wang, Bogus, & Burgess,
+2016; Pu et al., 2022). Whereas the model of Horner et al. (2016) assumes that a new
+event evokes a sharp drift in temporal context, the model of Pu et al. (2022) assumes
+that an event boundary resets temporal context, and this reset includes reinstatement
+of temporal context from the beginning of the list. Both of these models simulate
+memory for temporal order judgments of item pairs, and Pu et al. (2022) presented
+simulations suggesting that their model could better account for differences such as
+the length and position of the events in which the items occurred. Notably, this model
+predicts a memory advantage for items studied earlier in an event, which also appears
+to be present in the serial position curves of the grouped data presented here. To date
+these models cannot make predictions in recall tasks, but integrating their principles
+and testing their novel predictions with the sCMR framework provides another avenue
+to generalize retrieved context models to effects of episodic memory. We next review
+other computational models which serve to generalize episodic memory across recall
+paradigms.
+6.2 Comparison to other models integrating serial and free
+recall
+The present set of simulation studies aims to provide a model of recall dynamics
+generalized across memory paradigms, and several other models share this goal. sCMR
+is most similar to the CRU model, as both models rely on principles of retrieved
+context theory to define and associate context to studied items (Logan, 2018, 2021;
+Logan & Cox, 2021, 2023; Osth & Hurlstone, 2023). Thus, both models assume that
+each studied item is associated with a slowly changing context representation, and
+in serial recall context serves as the retrieval cue. Both models also have had success
+in accounting for effects of serial position, recall transitions and grouping. However,
+CRU has two noteworthy differences from sCMR, thus underscoring the importance
+of a unified retrieved context model of serial recall and free recall.
+First, in CRU the context retrieval cue updates with item information rather than
+studied context information. This assumption would be more challenging to bridge
+with retrieved contexts models of free recall, or with several notable empirical findings
+in free recall which are more consistent specifically with retrieval of context information
+over item information (e.g., Lohnas & Kahana, 2014; Siegel & Kahana, 2014; Talmi,
+Lohnas, & Daw, 2019). Further, the assumption of retrieved context, rather than
+retrieved item information, may contribute to sCMR’s ability to account for the recall
+advantage for the final item in Simulation 3. By contrast, CRU generally underpredicts
+the recency effect including in grouped lists (Logan, 2021; Logan & Cox, 2023; Osth
+& Hurlstone, 2023). In sCMR, successful context retrieval of the preceding items (e.g.,
+retrieving contexts of the items in serial positions 7 and 8) accumulate to serve as a
+strong compound cue for the next item (e.g., item 9), because these context states are
+represented most strongly in the context for the next item. In CRU, item information
+seems to not be enough to support this recency effect.
+As a second difference between sCMR and CRU, in CRU recalling an error in serial
+recall evokes retrieval of the context state from the start of the list. Whereas CRU
+simulates tasks requiring memory for serial order, retrieved context models of free
+recall assume that each retrieved item—error or not—evokes retrieval of its context.
+Thus, in contrast to CRU, sCMR does not retrieve context any differently following
+an order error in serial recall. However, because in shorter lists the context state will
+be closer to context from the start of the list after an order error, CRU and sCMR
+have a similar conceptual mechanism to support the fill-in effect: the context retrieval
+cue is more similar to items from the start of the list, thus supporting their recall over
+recently presented items.
+sCMR also shares conceptual similarities with several models which represent item
+strength or distinctiveness. For instance, the Adaptive Character of Thought-Rational
+(ACT-R) model (Anderson, Bothell, Lebiere, & Matessa, 1998; Anderson & Matessa,
+1997) also makes accurate predictions of free recall and serial recall. ACT-R assumes
+that as each item is presented it enters a short-term memory buffer, and that mem-
+ory strengths of presented items decay over time. In serial recall, the ACT-R model
+assumes that participants start at the beginning of the list and then recall proceeds
+in a forward direction. ACT-R predicts that recall probability is higher in earlier list
+positions because the model is more likely to make an error with each subsequent
+output position. In free recall, ACT-R begins recall with items in the short-term mem-
+ory buffer, and thus predicts a recency effect. These buffer items have the strongest
+memory strength because less time has passed since their presentations. Thus sCMR,
+like ACT-R, captures the recency effect because recently presented items have greater
+memory strengths but in serial recall errors increase with output position. After ini-
+tializing recall with buffer items, ACT-R uses a set of strongly activated items to cue
+recall of other items. This is similar to sCMR’s recall cue with temporal context; both
+types of recall cues represent recently encountered items more strongly to promote the
+temporal contiguity effect. ACT-R can also account for grouping effects with a simi-
+lar approach to the Farrell (2012) model, representing groups hierarchically and then
+cuing items within each group. ACT-R can also account for recall latencies, but the
+present version of sCMR has not been developed to do so.
+Although this version of the ACT-R model has not explicitly addressed transition
+dynamics in recall tasks, its assumptions would likely lead to reasonable predictions
+of lag-CRPs. Specifically, using salient items in memory to cue recall during free recall
+and shared information among neighboring items could produce a contiguity effect.
+The assumption to attempt to proceed forward in the list during serial recall could
+lead to a pronounced asymmetry effect. This difference in recall strategies between
+the two tasks – whether to attempt to use the next item to move forward or whether
+to use a set of recalled items to cue recall of the next item – is similar to how sCMR
+captures the difference between serial and free recall. In sCMR, changes to the γ
+F C
+parameter influence the strength of the next-presented item versus other studied items
+in the recall cue. Further, in sCMR free recall simulations, the greater value of the
+semantic parameter s reflects that a just-recalled item supports recall of its semantic
+associates, and in free recall ACT-R can also assume a role for semantic information
+(c.f. Anderson & Bower, 1972).
+The Scale-Independent Memory, Perception, and Learning (SIMPLE) model
+(Brown, Neath, & Chater, 2007) assumes that each item’s memory representation is
+based on a logarithmic function of how recently the item was presented, and items
+with more distinctive representations boast greater recall probability. The logarith-
+mic function leads to more distinct temporal representations of recency items, leading
+to the prediction of a recency effect in free recall. In serial recall, recency is reduced
+because more time has passed from the start of the recall period until the items should
+be recalled, not unlike the reduced recency in sCMR due to context drifting further
+away from these items. SIMPLE accounts for the primacy effect in both tasks because
+items presented earlier in the list benefit from edge effects, as they have less tempo-
+ral crowding from subsequently presented items. Thus, the SIMPLE account provides
+a less ad-hoc solution for the advantage of primacy items than sCMR. Although the
+model can account for transposition gradients in serial recall, to date the model only
+produces recall probabilities for each presented item rather than recall dynamics. Also
+like sCMR, SIMPLE can account for the serial position effects between grouped and
+ungrouped lists of items by assuming that the start of each group is more temporally
+isolated from the prior item (Brown et al., 2007; Liu & Caplan, 2020).
+The Laminar Integrated Storage of Temporal Patterns for Associative Retrieval,
+Sequencing and Execution (LIST PARSE) model (Grossberg & Pearson, 2008) rep-
+resents item strengths in memory with neural activity. As each item is presented, it
+enters a short-term memory buffer with total neural network activity consistent across
+the number of items in the buffer. Item strength (i.e., neural activity) generally decays
+over time and thus recency items will benefit from less decay between their presenta-
+tion and the start of the recall period, but less so in serial recall with more recalled
+items occurring between a recency item’s presentation and its recall attempt. LIST
+PARSE predicts the primacy effect because items studied earlier in the list, before the
+buffer is full, benefit from greater neural activity and subsequently recall probability.
+LIST PARSE also predicts that temporal pauses alter the integration and thus the
+activity of items in working memory. As a result, items in different groups are rep-
+resented more distinctly and treated more like mini-lists with primacy and recency
+effects. Shared information between items also leads to predictions of transpositions
+errors, although currently the LIST PARSE model only makes predictions concerning
+recall probabilities.
+Whereas sCMR often shares similar implications with respect to mechanistic and
+reprentational differences across recall paradigms and grouping, sCMR helps to pro-
+vides insight into the role of temporal context as a potential contribution to changes
+in the strengths of memories, both in relation to the retrieval cue and to one another.
+The Farrell (2012) model also elucidates how item representations facilitate item-
+by-item recall. In this model, each presented item is associated with a list context, a
+group context, and an item context. The Farrell (2012) model accounts for the primacy
+effect by assuming that there is a heightened probability for participants to initiate
+recall with the first list item, not unlike sCMR’s assumption for initiating serial recall.
+Similar to the ACT-R model, in free recall the model is more likely to initiate recall
+with the last group, leading the model to predict a greater recency effect in free recall.
+Once the first item is recalled, its group context is reinstated which promotes recall
+of other items in that same group. The Farrell (2012) model always attempts to recall
+the item presented after the just-recalled item, which leads to accurate predictions of
+the temporal contiguity and asymmetry effects in both recall tasks.
+Based on other modeling work, sCMR helps to shed light on shared representations,
+associations, and processes between recall tasks, with some shared principles to other
+models. We next review other model mechanisms and assumptions which may serve
+future advancements to sCMR.
+6.3 Future model developments
+In serial recall sCMR makes the simplifying assumption to initiate recall with the first
+list item on most trials. This assumption is similar conceptually to the assumption
+that, with high accuracy, recall begins with reinstatement of a cue from the beginning
+of the list (e.g., Anderson & Matessa, 1997; Brown et al., 2000; Burgess & Hitch,
+1992; Farrell, 2012; Lehman & Malmberg, 2013; Lewandowsky & Murdock, 1989; Osth
+& Farrell, 2019). This also sidesteps adjudicating between model failures of recall
+initiation versus model failures of retrieved context assumptions. However, sCMR
+may benefit from the assumption of other retrieved context models which assume an
+additional item is encoded at the start of each list and can be reinstated at the start of
+the recall period (Healey & Wahlheim, 2023; Sederberg, Gershman, Polyn, & Norman,
+2011). Recently, Healey and Wahlheim (2023) showed that their model with this post-
+encoding pre-production reinstatement (PEPPR) mechanism accounts for patterns of
+free recall better than a variant which worked ‘backwards’ to get to the beginning of the
+list or a prior list. However future work remains to determine how serial recall evokes
+endogenous cues for accurate recall initiation. Yet given that recall initiation differs
+between serial recall and free recall, the simplistic initiation in serial recall should not
+take away from conclusions of the model’s generalization across recall paradigms.
+Several serial recall effects have been taken as qualitative evidence against retrieved
+context models such as sCMR. Simulations 2 and 3 show that sCMR can account
+for two of these effects but sCMR still faces challenges from other effects. However,
+these effects require developing a variant of sCMR which predicts learning across
+lists instead of resetting memory between lists. As one example, sCMR model might
+also overpredict the recall advantage of keeping the relative order of list presentation
+consistent across lists while varying the positions (Ebenholtz, 1963; Kahana, Mollison,
+& Addis, 2010; Keppel, 1964; Winnick & Dornbush, 1963). As a more critical example,
+items recalled (mistakenly) from prior lists are more likely to be recalled in the same
+serial and/or output position as their original lists. It is challenging to explain how
+sCMR might account for this finding without the addition of positional information
+across lists. In a similar way, sCMR does not have a mechanism to predict increased
+positional confusions in grouped lists. Specifically a recall error in a grouped list for
+th th
+the n item from group g is more likely from the n item of other groups (e.g.,
+g −1,g +1), suggestive of positional codes within each group (e.g., Henson, 1999; Hitch
+et al., 1996; Ryan, 1969). However, retrieved context models such as sCMR and CRU
+predict that serial recall errors are generally from items with similar temporal context
+states. Thus CRU predicts that recall errors in grouped lists are other items studied
+near item n, as in ungrouped lists (Logan & Cox, 2023; Osth & Hurlstone, 2023).
+Although CRU can only overcome this shortcoming when incorporating positional
+codes (Logan & Cox, 2023), this remains a challenge for sCMR.
+Nonetheless, these potential challenges do not need to make the sCMR frame-
+work obsolete. Rather, participants may rely on associative information in free recall
+and serial recall, and additionally may rely on positional information in serial recall.
+However, the boundary conditions of using positional information remain to be charac-
+terized, especially in light of the current results. Further, Logan and Cox (2021, 2023)
+propose several mechanisms by which a retrieved context framework could incorporate
+positional coding when needed, while still maintaining associative information to sup-
+port temporal contiguity effects. Future work remains to assess how temporal context
+works with or against positional information, but the current results reveal the impor-
+tance of using model simulations for querying which effects retrieved context models
+can predict. Thus, the present work provides a piece to the puzzle by demonstrating
+that sCMR can account for findings from free serial and serial recall with minimal and
+informative changes between paradigms, including findings which have been taken as
+evidence against retrieved context theories.
+7 Conclusion
+Episodic memory is generally assumed to reflect a common underlying set of cognitive
+representations and mechanisms. Yet memory performance varies with the memory
+task, partially due to differences in the presence and use of retrieval cues (e.g., Greene,
+1989; Tulving, 1985; Tulving & Pearlstone, 1966). This has led to different theories
+for different memory paradigms, and in particular leaves more open questions for
+paradigms in which participants must generate their own internal cues. The present
+work aims bridge the gap between two paradigms which require such internal cues,
+free recall and serial recall. sCMR, building on the retrieved context model framework
+in free recall, provides a quantitative framework and explanation for memory repre-
+sentations and retrieval mechanisms with minimal changes between paradigms. The
+results serve as more than a sum of their parts, providing a parsimonious account
+of these recall tasks while also highlighting the variability within and across episodic
+memory paradigms.
+8 Author Contributions
+L.J.L. made all author contributions.
+9 Declarations Section
+9.1 Ethics Approval and Consent to Participate
+Not Applicable
+9.2 Conflict of Interests
+The author declares to have no competing interests as defined by Springer, or other
+interests that might be perceived to influence the results and/or discussion reported
+in this paper.
+9.3 Funding
+No funding was obtained for this study.
+9.4 Data Availability
+Computer code used to generate the present simulations is available at the Open

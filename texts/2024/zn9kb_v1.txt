@@ -1,0 +1,583 @@
+Tracking the dynamics of the stream of thought reveals its function
+1 2 3 1
+Faustine Corbani *, Judith N. Mildner *, Danielle S. Bassett , Diana I. Tamir
+Princeton University, Department of Psychology
+Trinity College Dublin, ADAPT Centre
+University of Pennsylvania, Departments of Bioengineering, Physics and Astronomy, Electrical and
+Systems Engineering, Neurology, Psychiatry, and Psychology
+* These authors contributed equally to this article and are listed in alphabetical order
+Corresponding author: Diana Tamir (dtamir@princeton.edu)
+Author Note: There are no data, code, or materials associated with this manuscript. No related data have
+been used prior to this manuscript. The authors report no conflicts of interest or funding.
+Abstract
+The mind constantly roves through the landscape of thought. Why does the mind spend so much time
+wandering, daydreaming, ruminating, feeling, and spontaneously thinking? And what are the
+consequences when the stream of thought runs astray? To answer these questions, much of prior work has
+focused on the content of thought—what people think about when their mind is free to explore. This work
+has identified several potential functions of spontaneous thought in the domains of memory, goal pursuit,
+and emotion regulation. However, the content of spontaneous thought is only one piece of the puzzle. To
+understand the functions of spontaneous thought, we also need to study the dynamics of thought—how
+the mind jumps, near and far, fast and slow, with direction and at random. Advances in natural language
+processing now allow researchers to track thought dynamics on ever larger behavioral datasets. We
+propose that tracking the dynamics of thought opens new opportunities for understanding how and why
+thought enables memory optimization, goal pursuit, and emotion regulation. We describe how to apply
+approaches from computational modeling and network science to think-aloud data to test hypotheses
+about the function of thought. Finally, we review how tracking thought dynamics can offer insight into
+the maladaptive patterns that define clinical and affective disorders, and the adaptive patterns that
+contribute to creativity. Broadly, this review offers an integrative, generative, and testable approach for
+discovering new principles that govern how thought flows and discusses its practical applications in
+mental health and creativity research.
+As our bodies sit still, as we walk, as we work, eat, and socialize, our minds rarely sit still.
+Instead, the human mind constantly roves through the landscape of thought. It wanders, daydreams,
+ruminates, senses, feels—it engages in spontaneous thought. Why does the mind spend so much time
+engaging in internal chatter?
+Why do people think?
+To answer this question, researchers have examined what people think about (Smallwood &
+Schooler, 2015). The mind has a vast landscape of possible thoughts to visit. And yet, the mind reliably
+drifts towards certain parts of the landscape more than others. The mind gravitates toward content that is
+related to the self, personal goals, the social world, and happenings in the past or future (Andrews-Hanna
+et al., 2013; Klinger, 2013; Klinger & Cox, 1987; Song & Wang, 2012). Understanding where the mind
+stops as it moves through the vast landscape of thought could provide insight into why it moves in the
+first place. For example, if people mostly think about recent experiences, this might suggest that thoughts
+function to encode experiences into memory; if people constantly think about threats, this might suggest
+that thoughts function to prepare people to ward off such threats.
+The content of spontaneous thought only partly answers the question of why people think. There
+is more to thought than where the mind lands. To understand the functions of spontaneous thought, we
+also need to study the dynamics of thought—how the mind jumps, near and far, fast and slow, with
+direction and at random from thought to thought. For example, a mind that helps people regulate negative
+emotions might try to take quick, large steps away from negative thoughts and toward positive ones; a
+mind that functions to encode experiences should resample memories in a particular order. Emerging
+research is beginning to reveal these evidentiary dynamics (Mildner & Tamir, 2024).
+Knowing how people think may say more about the function of thought than knowing what
+people think about. This review identifies new tools in natural language processing (NLP), computational
+modeling, and network science that researchers can use to track thought dynamics to reveal thought’s
+function.
+How do people think?
+Thoughts are dynamic. A framework for modeling the flow of thoughts needs to explain how
+thoughts move—when do thoughts jump from one topic to the next, and why do they move in the
+particular directions they move? Several prominent models of spontaneous thought center dynamics. For
+example, Mildner & Tamir (2019) propose a framework based on computational models of memory with
+four layers, including parts that independently account for both dynamics and content. The bottom layers
+represent the episodic memory content of thought, scaffolded by semantic memory. Thoughts traverse
+semantic and episodic memories in a clustered fashion, drawing thoughts from one topic at a time before
+jumping to a new topic cluster. In the top layers of the model, one’s current state and a drifting thought
+context determine which parts of memory space thoughts explore and which topic to select next. These
+dynamics rely on associative structures that organize possible thought content.
+Christoff and colleagues (2016) offer a neurally grounded model of spontaneous thought that
+centers dynamics as the defining feature. Spontaneous thought is defined by the degree to which it is
+dynamic vs. constrained. Constraints on motion can arise from two forces: Deliberate forces constrain the
+freedom of thought through cognitive control. Automatic forces constrain thought dynamics by drawing
+the mind toward highly salient content, either affective or sensory. The amount of constraint imposed by
+neural networks for cognitive control or salience, respectively, determines the dynamics of the mind.
+Quantifying these dynamics will be essential to understanding the key players that determine spontaneous
+thought.
+Quantifying Spontaneous Thought Dynamics
+Emerging methods enable researchers to quantify the thought dynamics proposed by these
+theoretical frameworks. Think-aloud protocols, where participants verbalize their thoughts as they occur,
+are invaluable for capturing the full content in a thought stream (Mildner & Tamir, 2021, 2024; Raffaelli
+et al., 2021; Sripada & Taxali, 2020). Natural language processing makes it possible to quantify this
+content. For example, researchers can automatically transcribe the stream, parse it into individual
+thoughts, and quantify how one thought relates to the next as semantic distance, a proxy for the
+magnitude of the conceptual leap between thoughts. New analytic tools make it possible to model these
+data, and in doing so, uncover the factors that determine the motion of this stream over time. We can
+develop empirically tractable models that allow us to predict the flow of thoughts; we can analyze the
+structure of thought networks and paths through these networks to accurately describe the flow of
+thoughts. Below, we introduce these two approaches for quantifying spontaneous thought dynamics using
+computational modeling and network science, respectively, to reveal its function.
+Modeling Spontaneous Thought
+Here we describe one instantiation of a neural network model that can arbitrate between different
+possible functions of thought. Prior work has modeled the motion of free thought as people sample
+content from memory in service of making a decision (Zhao et al., 2022). This search process is similar
+to, albeit more constrained, than the process of spontaneous thought. At each time point, the decision
+model receives information about a decider's current thought. These thoughts are drawn from a
+circumscribed bank of thoughts generated by all participants (e.g., a positive feature of an option),
+clustered by their support in favor of the decision options (e.g., yes, no, or neutral). It then learns how to
+predict the decider's next thought. The critical component of this model is a context representation or
+memory buffer, inspired by models of memory retrieval (J. R. Anderson et al., 2004; Howard & Kahana,
+2002; Polyn et al., 2009; Raaijmakers & Shiffrin, 1981). This context tracks which thought clusters have
+been sampled, and their associated features. Until the model makes a decision, it continues to sample
+thoughts. This model allows researchers to test which features maximally enable it to correctly pick the
+next thought. By including or excluding specific features, or mechanisms, into the context layer, they can
+quantify which formulation best fits human data. Models that incorporated decay in the memory context,
+such that the most recent thought is more influential in the memory context than preceding thoughts,
+performed very well. This finding suggests that we are more likely to sample thoughts similar to recent
+thoughts than those dissimilar to recent thoughts.
+One could model the flow of thought in a similar way. In the proposed setup, a model of
+spontaneous thought would receive information about a thinker's current thought at each timepoint. These
+thoughts can be drawn from a large but still circumscribed bank of possible thoughts. The model then
+needs to learn how to predict the thinker's next thought. It makes these predictions based on features of
+the current thought and a running tally of previous thoughts. Thus, there are two layers: the context layer
+reflects features of the current and recent thoughts, which serve as input to the model, and the output layer
+thoughts. The number of recent thoughts and their effects are weighted by a decay parameter. The context
+layer keeps track of relevant features of the input thoughts. Some features relate to content, while others
+relate to the dynamics of the input thoughts. A weighted combination of the features in the context layer
+determines the output: the features of the next thought. This output then becomes the current thought and
+the process starts again.
+First, the prior thought(s) comprise the input to the model. For the purpose of this model, we
+define each thought as a set of features based on psychologically relevant dimensions that capture the
+content and abstract features of thoughts. While there are an infinite number of possible thoughts in
+theory, in practice, people tend to think only a smaller subset of them (Andrews-Hanna et al., 2013;
+Smallwood & Schooler, 2015). We can reduce the dimensionality of the possible thoughts layer by
+extracting relevant thought features from real-world data. By analyzing a large dataset of spontaneous
+thoughts we can quantify the most typical topics and features of their content. For instance, while your
+thoughts may be unique in the sense that nobody else is thinking about cuddling up with your fluffy dog
+on your comfy couch after work, many people likely have thoughts that are positive, about the near
+future, in their home, related to their pets. We can use these features as input to a model trained to predict
+subsequent thoughts from current ones.
+The context layer summarizes features of the current thought and active preceding thoughts. In
+this way, this layer keeps track of where in thought-space the mind is currently. The extent to which
+preceding thoughts are represented in the context layer depends on a decay rate. If decay is low, context
+will take into account the current thought and several preceding thoughts weighted according to the decay
+rate; if decay is high, it will encode only the current thought. The context can encode features related to
+both content and dynamics. Content features impact what content is prominent in all thoughts (e.g.,
+relevance to ongoing goal pursuit, temporal orientation, level of abstraction or detail, and valence).
+Dynamics features impact the distance and direction of a subsequent thought (e.g., a momentum
+parameter determining the direction of the next thought). Both types of features can be used to predict
+how a mind jumps from the current thought to the next.
+The output layer uses these features to decide which thought to sample next. This decision is
+based on learned weights between the features encoded in the context layer and features in the output
+later. For example, if the mind chooses thoughts that are similar in valence, then an activated positive
+valence node would have a high weight on other thoughts similar in valence to the current thought; if the
+mind considers momentum, then a positive momentum node would add weights to thoughts that are more
+positive than the current one. Figuring out how to weigh each feature is key to modeling thought flow.
+This decision—and the features in the context layer that drive it—can help reveal the function of
+spontaneous thought.
+We can use this model to formalize and test hypotheses about how different functions shape
+spontaneous thought. By adding or removing features in the context layer, we can test which set of
+features is important for accurately predicting the flow of spontaneous thought. If a feature of current
+thought content influences subsequent thoughts, we can infer that that type of content may be relevant to
+the function of thought; if a thought dynamic does shape the direction of thoughts or the timing of a
+thought jump, this tells us something about why thoughts move at all.
+More complex versions of this model are also possible. For example, the input layer could
+include nodes for all possible clusters of thoughts; a middle layer could represent the learned
+psychologically relevant dimensions; the output layer could decide whether to stay in the current cluster
+or switch clusters in addition to deciding on the next thought. However, for this review, we focus on the
+richness of insight that can be extracted from the simpler implementation.
+Each hypothesis about why people think entails predictions about which features of thought shape
+its flow. We can capture these hypotheses by using different instantiations of the model that include
+different subsets of features, each associated with a particular function. We can then compare the
+accuracy of these models—which features enable the most optimal predictions? Answering this question
+can thus elucidate the function of spontaneous thought.
+Spontaneous Thought as a Network
+Innovations in network theory offer a second approach for testing the function of thought.
+Networks offer a means to quantify the relationships and interactions of interconnected systems. Thoughts
+could operate like nodes in a spatially-embedded network. How nodes of thought are arranged relative to
+each other gives us insight into the shape of the landscape of thought. Thoughts can be close to each
+other—because they are semantically similar or strongly linked in memory—or far from each other.
+Distance is reflected in the edge strength between the nodes. How people traverse these edges gives us
+insight into how people move through that landscape. We can thus quantify an individual’s thought space
+by constructing graphs of individuals’ thought streams. The dynamics of thought are reflected in each
+impacts memory optimization. During a recall task, sparse and dense links in the low- and high-clustered
+networks, respectively, can lead to repeated paths limiting discovery of new animals. B) Activation
+patterns impact emotion regulation. A weak regulator may be able to only activate nodes close to the
+current affective states while a strong regulator can activate more distant, positive nodes. C) The
+centrality of goal relevant thoughts impacts goal pursuit. Central, highly connected goal-relevant thoughts
+would support sustained attention on goals by making it more likely that the thought stream revisit goal-
+related ideas.
+Finally, if certain nodes can shift the activation dynamics of the network, we can test how
+regulation abilities might be activating nodes that drive activation of other nodes that are very far from the
+current affective state nodes. During moments of affective homeostasis, people might activate nodes that
+drive activation of other nearby nodes, creating more focused or rigid flows of thought. As thoughts shift
+from one function to the next (e.g., from emotion regulation to goal pursuit) either over time within
+individuals or across individuals–we might also see these parameters shift between prioritizing thought
+jumps along high edge weights and moving more liberally along lower edge weight paths.
+We can quantify the features of the structure. For example, we can extract metrics such as the
+clustering coefficient, which quantifies the extent to which nodes are interconnected. A high clustering
+coefficient indicates a tightly connected network of thoughts. A lower clustering coefficient might
+indicate a more diffuse and exploratory thought process. The path length quantifies the number of steps or
+distance between thoughts. Shorter path lengths suggest that thoughts are closely related and easily
+accessible, while longer path lengths might indicate a broader search. We can quantify these features for
+an individual walk, or alternatively for repeated walks to probe the underlying structure of a person’s
+thought space. Some structures will be more optimal for certain functions. To test how well a thought
+network is optimized for each function, we can compare summary metrics from thought networks to those
+extracted from networks optimized for specific functions of thought, like efficient memory search or goal
+pursuit (Hills et al., 2012).
+In addition to quantifying the properties of networks as a whole, graph theory also captures the
+qualities of individual nodes. For example, each node can be attributed an eigenvector centrality or
+betweenness centrality that reflects how connected a node is to other highly connected nodes and how
+often a node lies in the shortest path between other nodes, respectively. Influential thoughts should have
+high centrality. By quantifying the relation between centrality and function-relevant features of thoughts,
+we can learn about the function of thought. That is, variation of within-network metrics can help elucidate
+the functions of spontaneous thought.
+Finally, certain nodes might change the activation pattern of the network, or the way in which
+people walk through the network. The dynamical framework of network control theory suggests that
+some nodes will drive activation of only nearby nodes, while others will drive activation of nodes that are
+further away (Parkes et al., 2024). This possibility aligns with the dynamic framework of spontaneous
+thought (Christoff et al., 2016). Identifying nodes that, when activated, can push the whole system into a
+different dynamical regime (e.g., low variability or high variability) has implications for understanding
+the function of spontaneous thought.
+The Functions of Thought
+Spontaneous thought may have multiple concurrent functions. Here we focus on three: memory
+optimization, emotion regulation, and goal pursuit. For each function, we discuss how it is reflected in the
+contents and dynamics of spontaneous thought. We then discuss how it can be tested in a neural network
+model and using network theory.
+Memory Optimization
+One possible function of spontaneous thought is memory optimization, where useful episodes are
+encoded more deeply, and useful abstractions are extracted across related episodes. There is a clear link
+between spontaneous thought and memory. Spontaneous thought during waking rest often looks like
+memory replay, specifically of episodic memories. Experience sampling studies estimate that up to 60%
+of spontaneous thought is episodic in nature (Mills et al., 2018; Song & Wang, 2012). These episodic
+thoughts occur as replay of recent memories, as episodic simulation of future events, and as unique
+fantastical combinations of episodic details (Schacter et al., 2007).
+Such offline processing, or memory replay, during waking rest has been shown to aid in memory
+consolidation (Wamsley, 2022). During memory replay, memory traces in the hippocampus
+spontaneously reactivate. Memory traces do not reactivate in their original order, however; replaying past
+events as they occurred is not the most effective way to improve memory. Instead, they reactivate in
+novel sequences. According to the Default Variability Hypothesis, the variability of spontaneous thought
+is key for memory optimization (Mills et al., 2018). This variability can help optimize memory in two
+ways. First, novel sequences help decorrelate related episodic memories. During episodic simulation,
+people flexibly recombine episodic details from memory. By recalling episodic details in different orders
+and contexts, overlapping episodic memories are decorrelated into separate representations to preserve
+and strengthen important features of each memory. Second, novel sequencing facilitates extraction of new
+semantic knowledge from across multiple experiences. Extracting semantic knowledge is a gradual
+process that relies on revisiting experiences multiple times, preferably jumping between different
+experiences to identify commonalities and differences, as in interleaved learning. Spontaneous thought,
+with its ceaseless wandering from one topic to the next, may provide the perfect conditions for both of
+these memory processes.
+Emerging research suggests that spontaneous thought dynamics may be tailored to optimizing
+memory (Mildner & Tamir, 2024). Researchers tracked the dynamics of episodic detail during
+spontaneous thought to see if it followed patterns predicted by optimal foraging theory. Originally
+developed as a model for how animals forage for food, optimal foraging theory suggests that to maximize
+food intake over time, an animal should switch to a new food source when the current one becomes less
+productive. This concept has been adapted to explain how people search through semantic space during
+semantic fluency tasks. For example, during these tasks, people take longer to find words within a single
+cluster until they decide to switch to a new cluster, at which point search times drop again. Predicting
+when a person will switch clusters can be accomplished by setting a threshold on the search time variable.
+These dynamics also appear in spontaneous thought, where thoughts tend to cluster around a
+single topic until a thought jump moves the mind to a new topic (Mildner & Tamir, 2024). Thoughts
+should jump away from a cluster when it no longer serves its purpose, and land on a new one that does.
+Because memory optimization relies on recalling episodic details, the dynamics of thought should
+prioritize episodic detail, jumping to a new topic when detail dips too low. Indeed, this study found that
+the first thought after a topic jump typically contained the most episodic detail, with detail gradually
+decreasing until the next jump. By using natural language processing and hierarchical clustering to
+identify thought jumps, this work offers a first peek into how the dynamics of thought may optimize
+memory by maximizing episodic detail.
+Modeling the Memory Optimization Function. Together, these findings on the content and
+dynamics of spontaneous thought suggest that it may serve to optimize memory. We can further test this
+hypothesis using a neural network model of spontaneous thought by testing the importance of the
+following features: the amount of episodic richness or the temporal orientation of a thought.
+First, if the mind spontaneously recalls the past or recombines memory traces into possible future
+events, episodic content should be a key feature of our model. As in the work above, we can test if, in an
+optimal model of spontaneous thought, the context layer keeps a running average of the amount of
+episodic detail in the stream of thought and executes a large jump, akin to a topic switch, when the current
+thought contains less episodic detail than the running average of prior thoughts. This mechanism would
+maximize the amount of episodic detail in thought while at the same time ensuring a certain amount of
+variability by triggering larger jumps regularly.
+Second, if memory optimization is a function of spontaneous thought, the mind may choose to
+prioritize the recall of similar experiences. For instance, thinking about a conversation with a friend in the
+near past may lead to a related thought from another conversation in the recent past. We would see
+evidence for this as high weights on the content variables reflecting memory-relevant features, and a slow
+decay rate over context.
+Thus, we can test the role of spontaneous thought in memory optimization by tracking the
+dynamics of features such as the temporal orientation or amount of episodic detail of a thought, and fine-
+tuning its switching mechanism to be attuned to these features. If our model parallels human data, then
+memory optimization may serve as a function of spontaneous thought. In that case, spontaneous thought
+patterns that match the memory-optimization mechanisms specified in our model should lead to enhanced
+memory for recalled experiences.
+Memory Optimization in a Network of Thought. Some thought landscapes, and the routes
+overlaid on them are more conducive to memory optimization than others. Network science can offer
+insight into whether typical spontaneous thought dynamics prioritize features important to memory
+optimization as well as the effect of spontaneous thought on memory consolidation.
+spontaneous thought network has a highly organized or clustered structure, then thoughts would primarily
+walk over strong edges between similar concepts in a semantic network or experiences in a memory
+network. This dynamic might promote efficient recall within those clusters. However, tight clustering
+could limit the flexibility needed to abstract away from specific instances or to recall information in new
+contexts. In contrast, if an individual’s network has random, loosely connected thoughts characterized by
+low clustering and low edge-weights, then thoughts would primarily walk over weaker edges in the
+semantic or memory network. This might lead to inefficient memory retrieval. The ideal spontaneous
+thought network may strike a balance between these two extremes of randomness and clustering.
+Moderate clustering, where related memories form loosely connected clusters, would support recall by
+maintaining strong, associative links within clusters while allowing enough flexibility to retrieve
+information across contexts. Indeed, semantic network are built in this way, balancing local clustering and
+randomness, with high utility for memory (Benedek et al., 2017; Kumar et al., 2022; Lin et al., 2016;
+Marupaka et al., 2012; Nelson et al., 2013; Steyvers & Tenenbaum, 2005).
+Second, the centrality of certain nodes might indicate the importance of memory optimization
+function in spontaneous thought. If thought dynamics prioritize revisiting key anchor points in memory,
+we would expect thoughts to frequently traverse edges connecting concepts rich in episodic detail. This
+would result in those detail-rich thoughts becoming more central within the network, suggesting their
+importance in guiding memory retrieval and providing cues that facilitate associative thinking, helping
+people link related memories more efficiently.
+Third, if certain nodes can shift the activation dynamics of the network, we can test which content
+drives such shifts. For example, thoughts low in episodic detail might serve as triggers for shifting to a
+higher variability state to increase the likelihood of finding richer detail; thoughts high in episodic detail
+might cool that variability, allowing thoughts to more thoroughly explore clusters of episodic detail.
+Finally, the relation between thought network structure and the trajectory of thought is dynamic:
+the structure of a network shapes thought trajectory, and thought trajectories shape the network structure.
+Edges can be loosened (decrease in edge weight) or strengthened (increase in edge weight) depending on
+how they have been walked in spontaneous thought. Analyzing how the structure of these networks
+evolve over time can therefore offer insights into how spontaneous thought aids consolidating, retaining,
+and abstracting away from specific episodic experiences.
+Emotion Regulation
+Our minds may wander to help us regulate our emotions. Emotions are a fundamental part of the
+human experience. They weave through every moment in life, influencing how we perceive the world,
+how we act, and how we interact. It’s crucial to regulate emotions effectively. Disturbances in this ability
+at both clinical (e.g., mood disorders) and subclinical (e.g., difficulties with emotion regulation) levels can
+have devastating consequences for wellbeing. For example, not being able to regulate one’s emotions can
+lead to heightened negative affect and mood disorders, can strain interpersonal relationships, and disrupt
+sleep (Eagleson et al., 2016; Gross & John, 2003; Hoag et al., 2016; Ray et al., 2010, p. 201). Given the
+import of emotion regulation, if spontaneous thoughts helped to maintain affective homeostasis, this
+would be a powerful tool for maintaining overall wellbeing. If emotion regulation is a key function of
+spontaneous thought, a couple of prerequisites should be met.
+First, thoughts should offer a window into the unfolding effects of emotions. The content of
+spontaneous thought is inextricably linked to emotion experience. Emotional content is ubiquitous in
+thought: it is present in roughly 50-67% of waking self-generated thoughts and 75-90% of dream reports
+(Fox, 2016; Fox et al., 2013; Killingsworth & Gilbert, 2010). At baseline, self-generated thoughts tend to
+be rated as mildly pleasant, positive, and enjoyable, although the valence of thoughts varies widely from
+person to person and at any given time (Fox et al., 2018). When a person is feeling positive, their thoughts
+tend to be positive, future-oriented, less personally significant and more specific (Andrews-Hanna et al.,
+2013). When a person is feeling negative, their thoughts are typically more negative, past-oriented, self-
+focused, and less specific (Andrews-Hanna et al., 2013; Raffaelli et al., 2021).
+Emotions also change thought dynamics. Positive emotions broaden our awareness and encourage
+novel, varied and exploratory thoughts and actions (Huppert et al., 2004). Negative emotions cause
+repetitive thoughts with less dynamic conceptual associations (Kim et al., 2022; Smith & Alloy, 2009). A
+variety of mental health conditions alter thought dynamics, in particular. Mania can trigger racing,
+fleeting thoughts; while ruminative thinking is transdiagnostic of depression, anxiety, and OCD
+(Marchetti et al., 2016). The dynamics of spontaneous thought thus reflect different affective experiences.
+Second, the content and dynamics of spontaneous thought should impact our affective
+experiences. That is, if thoughts function to facilitate emotion regulation, then they should do more than
+just reflect affective experiences, they should also cause emotions to change. We see several ways in
+which thought content can influence emotions. First, studies using lag analyses show that the emotional
+content of thoughts predicts subsequent mood (Ruby, Smallwood, Engen, et al., 2013). Past or other-
+related thoughts are associated with subsequent negative mood, even if the content of the thought was
+positive, while the opposite holds true for future and self-directed thoughts (Ruby, Smallwood, Sackur, et
+al., 2013). Second, emotion regulation strategies directly intervene on what individuals are thinking in
+order to improve mood. For example, cognitive reappraisal and positive thinking reframe thought content
+to increase positive and decrease negative affect (Eagleson et al., 2016; Ray et al., 2010). Linguistic
+distancing (i.e,. reducing the use of first person pronouns and present-tense verbs) decreases the severity
+of internalizing symptoms and leads to better outcomes in therapy sessions (Nook et al., 2022).
+Distraction and suppression propose avoiding certain thought content in order to temporarily diminish the
+intensity of an emotional experience.
+Thought dynamics too can influence emotions. The way in which thoughts flow from one to the
+next at slower or faster paces, covering smaller or larger distances, moving in a single direction or a
+circular one, can facilitate movement through conceptual space and change how a person construes
+situations, in turn, regulating emotion. For example, expansive thinking triggers positive emotions.
+Manipulating thoughts to occur faster or with greater variety improves mood and decreases depression
+(Pronin, 2013; Pronin & Jacobs, 2008). The more free moving thought is, the more positive valence in the
+moment and in the future. On the flip side, as thoughts become more negative, they tend to become more
+semantically similar to the next thought (Raffaelli et al., 2021). This leads to a narrowing of conceptual
+scope following negative thoughts, which may, in turn, increase negative emotions.
+Taken together, these insights highlight emotion regulation as a potential primary function of
+thought. Affective experience shape what we think about and how we think, and our spontaneous
+thoughts may likewise govern our emotional experiences.
+Modeling the Emotion Regulation Function. These findings of a bidirectional relationship
+between emotions and the dynamics of spontaneous thought suggests that thoughts may help individuals
+maintain affective homeostasis. We can test this hypothesis with a neural network model of spontaneous
+thought by testing the importance of emotion-relevant content (e.g., emotionality, valence) and
+momentum in the context layer. In particular, we expect to see certain dynamics when the valence of the
+current state is highly negative, such that thoughts maximize the likelihood of moving away from
+negative towards positive states.
+First, we can test if an optimal model of spontaneous thought accounts for thought momentum.
+Momentum can be captured by tracking the valence of the current thought, a running average (via a decay
+function) of past thoughts, and choosing subsequent thoughts that maintain movement in a particular
+direction. These features would allow for momentum-like dynamics, such that adjacent thoughts maintain
+a similar valence, while also moving thoughts in the direction of more regulated emotions. Further, we
+could characterize the content level variables that determine the force of propulsion behind this
+momentum.
+Second, to regulate emotions, people may need to make quick, large jumps away from distressing
+content. If spontaneous emotion regulation capitalizes on this kind of dynamic, an optimal model of
+thought should have an emotion or valence threshold that triggers a large jump. This dynamic would be
+reflected in the output layer of our model, where after a distressing thought, the next selected thought
+should be semantically distant rather than similar in extreme negative valence.
+In all, we can test the role of spontaneous thought in emotion regulation by tracking the dynamics
+of features such as the valence or emotional intensity of thoughts, and fine-tuning its thresholds to be
+attuned to these features. If our model accurately mirrors human data, then emotion regulation may serve
+as a function of spontaneous thought. In that case, spontaneous thought patterns that align with the
+emotion-regulation mechanisms specified in our model should lead to improved emotional stability and
+quicker recovery from negative emotional states. This would suggest that spontaneous thought plays a
+critical role in maintaining affective homeostasis, providing a self-regulating system for emotional well-
+being.
+Emotion Regulation in a Network of Thought. Emotion regulation should affect the trajectory
+of spontaneous thought. Successful emotion regulators should move away from negative conceptual
+spaces towards positive ones, while unsuccessful regulators might ruminate on negative ideas. These two
+types of individuals should exhibit thought dynamics–quantified by walks on existing semantic
+networks—that differ in meaningful ways.
+First, differences in the clustering coefficients, characteristic path length, or average edge weight
+of semantic networks likely shape the way thoughts move, influencing emotion regulation. A network
+with a low clustering coefficient might be especially well suited for emotion regulation as its structure
+allows thoughts to travel along weaker semantic connections, helping individuals escape a negative
+headspace. By reducing the tight association between similar concepts, this network structure supports
+more expansive thinking, allowing thoughts to cover a broader range of ideas. Successful emotion
+regulators may benefit from traversing fewer tightly connected clusters of negative thoughts, where
+longer distances between clusters enable movement away from negative conceptual spaces. In contrast, a
+network with high clustering and strong connections may constrain thought trajectories, possibly leading
+to ruminative patterns. In such cases, ineffective regulators might find themselves trapped in densely
+connected clusters of negative thoughts, with higher edge weights and shorter path lengths, limiting their
+ability to break free from negative thought patterns.
+Second, the centrality of positive, negative, and neutral thoughts within the network likely plays a
+key role in emotion regulation. If negative thoughts hold higher centrality, they may act as attractor states,
+pulling individuals back to negative ideas more frequently. This could make it harder for someone to shift
+away from negative conceptual spaces, reinforcing ruminative patterns. In contrast, for successful
+emotion regulators, we would expect to see negative thoughts with lower centrality, indicating they are
+less influential and less likely to dominate the thought network. Instead, thoughts with positive or neutral
+content may be more central, guiding individuals toward more adaptive, emotionally balanced thought
+trajectories. This distinction highlights how the structure and dynamics of an individual's thought
+processes can shape their ability to regulate emotions.
+Finally, if certain nodes can shift the activation dynamics of the network, we can test how
+regulation abilities might be activating nodes that drive activation of other nodes that are very far from the
+current affective state nodes. During moments of affective homeostasis, people might activate nodes that
+drive activation of other nearby nodes, creating more focused or rigid flows of thought. As thoughts shift
+from one function to the next (e.g., from emotion regulation to goal pursuit) either over time within
+individuals or across individuals–we might also see these parameters shift between prioritizing thought
+jumps along high edge weights and moving more liberally along lower edge weight paths.
+Goal Pursuit
+People pursue a variety of goals, both large and small, in their daily life. While deliberate thought
+can provide a straightforward path to addressing these goals, spontaneous thought also plays an important
+role in goal pursuit. Early research on daydreaming and mind wandering highlighted the prevalence of
+current concerns in spontaneous thought (Klinger, 2013; Klinger & Cox, 1987), and more recent studies
+indicate that nearly half of all spontaneous thoughts are relevant to one’s goals (Stawarczyk, 2018). For
+instance, you might find yourself imagining the taste of a home-cooked meal on the bus, or brainstorm
+new solutions to a work problem while waiting in line at the grocery store. A key function of spontaneous
+thought may be to help individuals attend to and actively pursue their goals.
+Spontaneous thoughts helps with goal pursuit in several ways. First, they can help one keep track
+of multiple concurrent goals. Environmental cues associated with a goal amplify spontaneous thoughts
+about it (Jordão & St. Jacques, 2022), meaning that thoughts about goals can arise at any time, as the
+environment introduces stimuli related to current concerns. This may help ensure one is ready to act on
+current concerns, even while deliberately focusing on a different goal (Klinger et al., 2018).
+Second, spontaneous thought can facilitate planning for the future (Klinger et al., 2018). While
+deliberative planning–such as making a grocery list–is not classified as spontaneous thought, spontaneous
+thought can contain fragments of goal-oriented ideas that aid in future decision-making (Cole &
+Kvavilashvili, 2021). For instance, when your home-cooked meal comes to mind on the bus, you might
+also imagine friends and family enjoying it, which can help you later decide what to cook for a dinner
+party. Indeed, spontaneous thought is often about the future rather than the past or present (F. T.
+Anderson & McDaniel, 2019; Baumeister et al., 2020; D’Argembeau et al., 2011; Warden et al., 2019), in
+particular, about events coming up within the next few days (Berntsen & Jacobsen, 2008; Kvavilashvili &
+Rummel, 2020). Goal relevant thought often takes the form of imagining goal-relevant scenarios, and
+planning in particular (Kvavilashvili & Rummel, 2020; Mazzoni, 2019; Plimpton et al., 2015). This
+prospective bias offers evidence that spontaneous thought helps us prepare to achieve our goals.
+Goals clearly shape the content of spontaneous thought. There is also emerging evidence that
+goals shape the dynamics of thought, albeit in a distinct way from how memory shapes dynamics. In
+particular, goal-related content seems to ramp up before a topic jump and then decline after the jump
+(Mildner & Tamir, 2024). The more one is concerned about a topic, the more pronounced this dynamic.
+This dynamic suggests that goals may serve as attractors in thought space. As the mind wanders closer to
+a current concern, or as cues in the environment prime thoughts about a current concern, movement
+towards this concern ramps up. If spontaneous thought serves as a reminder of current concerns that have
+been temporarily placed on the backburner, the dynamics of thought should be geared to jump between
+different current concerns and not linger on a single one for too long. Thus, once reactivated, thoughts
+about a current concern can ramp down again. Features of current concerns themselves may affect which
+current concerns serve as the strongest attractors. For instance, it may preferentially select goals that are
+important, require imminent action, or are congruent with a current or desired emotional state.
+Modeling the Goal Pursuit Function. A wealth of evidence suggests that spontaneous thought
+may help people to pursue their goals. We can test for this function of spontaneous thought by evaluating
+the importance of goal-related features and temporal orientation to an optimal model of spontaneous
+thought. Goal-related features include the relevance of each thought to a goal and goal importance. We
+can measure goal relevance using large-scale data to catalog common goals and then natural language
+processing to assess the similarity between these goals and each thought. We can measure goal
+importance as the overall frequency with which goals occur in spontaneous thoughts.
+First, if goals are relevant to the content of spontaneous thought, then the mind should prioritize
+activating thoughts about similar goals in adjacent thoughts. For example, if the current thought is most
+highly related to the goal of eating healthily, then subsequent thoughts are also likely to be related to that
+goal. This can be captured as binary (i.e., the same or different goal) or continuous (e.g., the amount of
+relevance to each goal) similarity, which the model accounts for in a decay function over goal-relevance
+and a weight on goal-related similarity, within a cluster.
+Second, goal pursuits may affect which topics the mind gravitates to. If spontaneous thought
+serves a planning function, the model should preferentially jump to thoughts that address the most
+important goals, particularly those salient in the near future. If spontaneous thought helps the mind
+maintain awareness of multiple concerns, an optimal model should keep a running tally of recent goal-
+related thoughts, and prioritize moving to an undersampled goal. This mechanism would help a mind stay
+attuned to current concerns on the backburner, by making sure to cycle through current concerns rather
+than focusing on a small subset.
+Spontaneous thoughts need to balance sampling both important goals and currently undersampled
+goals, and individuals may place different weights on these factors. Modeling these individualized
+weights may help explain why some people’s minds get stuck in deep ruminative trenches, why others’
+flit shallowly through to-do lists, and how others’ more optimally balance problem solving and goal
+maintenance.
+In sum, we can test whether the function of thought is to aid in goal pursuits by tracking the
+dynamics of goal-relevant features, and fine-tuning weights in the output layer. If a model with these
+mechanisms fits human data, then aiding in goal pursuit is likely to be a function of spontaneous thought.
+In that case, spontaneous thought patterns that adhere very closely to this model should produce better
+outcomes in terms of goal pursuit, such as more spontaneous planning and increased preparedness to act
+on multiple different goals at any given time.
+Goal Pursuit in a Network of Thought. We can test the hypothesis that one function of
+spontaneous thought is to aid in goal pursuit by examining how the structure of thought networks reflects
+behaviors associated with attending to and achieving goals. If spontaneous thought is optimized for goal
+pursuit, we would expect certain network properties to reveal this focus.
+First, we might expect that goal-relevant thoughts occupy nodes with higher centrality within the
+thoughts, creating multiple pathways back to those nodes. This would allow spontaneous thoughts to
+frequently return to goal-relevant ideas, increasing their influence within the thought stream. For example,
+if a student is preparing for an important exam, thoughts about study materials, exam strategies, and
+relevant subjects might hold higher centrality, making them more prominent in the student's thinking. The
+centrality of these goal-related thoughts could reflect a hierarchy in goal-importance, with the most
+important goals represented by the nodes with the highest centrality. These central nodes act as attractor
+states, pulling thoughts back toward them and ensuring sustained attention on goal-directed actions. Thus,
+the structure of the thought network, particularly the distribution of centrality, reveals how spontaneous
+thoughts support or hinder the pursuit of goals.
+Second, the structure of thought networks likely influences goal pursuit. If a thought network is
+highly clustered, with strong connections (high edge weights) between goal-relevant nodes, this structure
+should facilitate more focused and efficient goal-directed thinking. In such a network, thoughts are more
+likely to follow paths that repeatedly link back to goal-related ideas, ensuring that attention stays centered
+on achieving current concerns. The high clustering and shorter path lengths in these networks would
+reflect a streamlined, goal-focused trajectory, where thoughts flow quickly between related concepts. On
+the other hand, when the thought network has lower clustering, weaker edge weights, and longer path
+lengths, it might signal a lack of goal-directed focus. In this case, thoughts may wander more freely,
+covering less goal-relevant ground. This looser, more exploratory network structure could indicate that
+the mind is not actively engaged in goal pursuit, allowing for more random and unstructured thinking.
+Thus, the structure of the thought network—whether tightly or loosely organized—directly impacts the
+mind's ability to pursue goals effectively.
+By analyzing the structure of thought networks and the attributes of individual thoughts within
+those networks, we can gain deeper insight into how our minds navigate the complex task of attending to
+and pursuing goals.
+Quantifying Individual Differences in Spontaneous Thought
+The proposed approaches to studying spontaneous thought can also help capture individual
+differences in patterns of thought. Quantifying thought motion, either using computational modeling or
+network approaches, can help characterize and quantify these different thought patterns. Each individual
+may have a different decay parameter that determines how much the context layer changes with each
+subsequent thought; individuals may have different clustering coefficients, or different numbers of highly
+central nodes. We can measure these kinds of parameters to model the contents and dynamics of
+spontaneous thought for each individual and then test how these variations in spontaneous thought are
+beneficial or maladaptive for individuals.
+Creativity
+Creativity consists of a combination of two processes: one to generate new ideas and one to
+evaluate the quality and appropriateness of the new ideas (Finke et al., 1992). Creative generation is a
+relatively unconstrained and associative form of thought that is similar to spontaneous thought (Girn et
+al., 2020). The dynamics of thought are tightly linked to creativity, particularly the associative processes
+that guide memory search (Beaty et al., 2023; Beaty & Kenett, 2023; Benedek et al., 2023; Mednick,
+1962). For example, the speed and clustering of items during memory recall and the connectivity,
+distance, and structure of individuals’ semantic networks have been linked to greater generativity (Kenett
+& Faust, 2019; Tellez et al., 2024).
+Future work that quantifies the dynamics of spontaneous thought directly will shed further light
+on optimally creative processes. For example, highly creative individuals might find an optimal clustering
+or context decay parameter that balances greater randomness (high decay, low clustering) with constraint
+(low decay, high clustering). Creativity might be associated with more nodes that drive activation of other
+far vs. near nodes. Finally, the iterative process of creativity might be defined by predictable variability in
+these variables, as individuals oscillate between idea generation and evaluation, and by progressive
+increases in the specificity and constraint applied during the generative process (Campbell, 1960; Pinho et
+al., 2015).
+Mental health
+Spontaneous thought is tightly linked to mental health. Multiple mental health conditions are
+characterized by divergent thought patterns. For instance, manic episodes are accompanied by racing
+thoughts (Piguet et al., 2010), where the mind rapidly shifts from one idea to another. Depressive states
+can be marked by ruminative thinking (Nolen-Hoeksema et al., 2008; Watkins, 2008), where the mind
+repeatedly scrolls through the same negative thoughts. The link between spontaneous thought arises
+because thoughts both reflect and drive changes in psychological well-being. For example, ruminative
+dynamics can, in turn, can exacerbate feelings of hopelessness and sadness.
+Quantifying spontaneous thought offers a deeper understanding of how these maladaptive
+patterns arise and sustain themselves (Hudachek & Wamsley, 2024; Rostami et al., 2022). For instance,
+we can test how adjustments to key parameters in a model of spontaneous thought simulate specific
+thought patterns. Does having more nodes that switch the network into a high variability state mimic the
+rapid shifts in content seen during mania or in ADHD? Does decreasing the amount of decay simulate the
+persistent focus on a single theme seen in obsessive-compulsive disorder? Does altering the weights on
+emotion-related variables produce thought patterns that resemble rumination or worry? By quantifying
+clustering coefficients or path lengths, can we capture the severity of an individual’s ADHD (Kérébel et
+al., 2024)? Additionally, maladaptive thought patterns may fail to contribute to the proposed functions of
+spontaneous thought and thereby exacerbate other symptoms such as memory deficits or poor emotion
+regulation. Some changes to key parameters in the model may also be self-reinforcing, for instance, if
+there is momentum towards negatively valenced thoughts and the current thought is negative, it may
+become almost impossible to spontaneously transition to a more positive thought space and all subsequent
+thoughts will be more likely to be negatively valenced as well. We propose that fitting individual-level
+parameters in these models and networks can identify meaningful, transdiagnostic differences in thought
+dynamics, leading to more accurate identification of clinical conditions and more targeted interventions.
+Conclusion
+The mind moves, unbidden, through a vast landscape of thought. Here, we propose two methods
+for tracking the motion of this movement, and revealing the topography of the landscape through which it
+moves. In both cases, we aim to reveal the factors that determine where the mind goes, when the mind
+moves from one place to the next, and how the mind enacts its leaps, large or small. The ultimate goal is
+to understand why the mind moves.
+Why do we think anything at all? We suspect that a roving mind serves a purpose, giving people
+an advantage over a fully blank mind attending to the task at hand or the environment. In particular, the
+mind’s motion may help people consolidate memories, regulate emotions, and pursue goals. The
+parameters that define an individual’s thought stream may reflect the underlying knowledge space
+available for a mind to sample, or the dynamics of how it samples this space. Tracking the stability of
+dynamics over time will shed light on the relationships between mind, thoughts, and real-world
+functioning (Shareef-Trudeau et al., 2024). The efficiency with which people move through this
+landscape of thought may have implications for wellbeing, cognitive and affective functioning, and
+beyond.

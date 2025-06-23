@@ -1,0 +1,560 @@
+Predicting current voting intentions by Big Five personality domains, facets, and
+nuances – A random forest analysis approach in a German sample
+Cornelia Sindermann, René Mõttus, Dmitri Rozgonjuk, & Christian Montag
+This is a preprint of an article with the same title and by the same authors.
+Thus, this is not the final published version of this article.
+Abstract
+To understand what is driving individual differences in voting intentions in a large German
+sample, we investigated the predictability of voting intentions from the Big Five personality
+domains, facets, and nuances, thereby tackling shortcomings of previous studies.
+Using random forest analyses in a dataset of N = 4,286 individuals (46.01% men),
+separate models were trained to predict intentions to i) not vote versus to vote, ii) vote for a
+specific party, and iii) vote for a left- versus right-from-the-center party from either the Big
+Five personality domains, facets, or nuances (represented by individual items).
+Except for intentions to not vote versus to vote, balanced accuracies to predict voting
+intentions marginally exceeded those achieved by a baseline learner always predicting the
+majority class. Using nuances over facets and domains slightly increased balanced
+accuracies.
+Results indicate that additional variables should be considered to accurately predict
+voting intentions, at least in German samples.
+Keywords: Big Five; Personality; Voting intentions; Voting; Random Forest
+Introduction
+Voting is a civil right in democracies around the world. By voting, citizens have the
+power to influence political developments. Therefore, understanding what underlies voting
+decisions and political preferences is an important aim in several fields of research like
+political science and psychology. With regard to personality psychology, previous findings
+indicate weak associations between the Big Five personality domains and, for example,
+political left- vs right-positioning and party preferences, accordingly (Krieger et al., 2019).
+However, it is unclear whether it is possible to accurately predict one’s current voting
+intentions and preferences for a specific party from broad personality traits. Moreover, it is
+unclear whether narrower personality traits, facets and nuances, can enhance predictive
+accuracy over Big Five personality domains. Investigating these questions is especially
+interesting in countries like Germany, where the party system is more complex than in, for
+example, the USA or the UK. Therefore, the present study aimed to investigate whether one
+can predict Germans’ voting intentions from self-reported Big Five personality domains,
+facets, and nuances by means of random forest analyses.
+The Personality Trait Hierarchy
+Personality traits constitute a pool of hierarchically organized characteristics, with the
+Big Five personality domains of Openness (to Experience), Conscientiousness, Extraversion,
+Agreeableness, and Neuroticism (Costa & McCrae, 1992; Goldberg, 1990; Tupes & Christal,
+1992) at one of the highest levels. High scores in Openness describe individuals who are open
+for emotions and aesthetics, like to make new experiences, and are intellectually curious.
+Individuals scoring high in Conscientiousness carry out their duties carefully, are orderly,
+ambitious, and disciplined. Highly extraverted individuals are socially outgoing, tend to feel
+positive emotions, and are active and assertive. High scores in Agreeableness indicate that a
+person is helpful, altruistic, forgiving, and considerate. High Neuroticism describes
+individuals who are anxious, hostile, impulsive, and might show depressive tendencies
+(Rammstedt & Danner, 2017).
+Each of the Big Five personality domains can be split into different narrower aspects
+also called facets, although there is no consensus yet regarding an exhaustive set of facets
+(Costa & McCrae, 1992; DeYoung et al., 2007; John et al., 1991; Rammstedt & Danner,
+2017). It has been demonstrated that facets are not just different ways of expressing the Big
+Five personality domains but reflect unique personality characteristics (Jang et al., 1998) and
+that they often provide incremental predictive value over the Big Five personality domains
+(Judge et al., 2013; Paunonen & Ashton, 2001). Below facets, many individual questionnaire
+items also contain reliable and valid trait information beyond what they share with other
+items (Mõttus et al., 2020). That is, many items represent unique personality traits, often
+called nuances, that are narrower than facets and domains (McCrae, 2015; McCrae & Mõttus,
+2019; Mõttus, Kandler, et al., 2017) and show unique predictive validity (Seeboth & Mõttus,
+2018).
+As a result, it seems advisable to compare different levels of the personality trait
+hierarchy in terms of predictive accuracy when exploring the links of personality with other
+variables, such as voting intentions. In some cases, the Big Five personality domains may
+provide just as accurate predictions as lower levels of the trait hierarchy, but the reverse is
+more likely (Mõttus, Bates, et al., 2017; Mõttus et al., 2020).
+Personality Traits and Political Attitudes
+When investigating voting intentions, a first step includes examination of intentions to
+not vote vs to vote. The few previous studies investigating associations between Big Five
+personality domains and non-voting vs voting intentions as well as non-voting vs voting
+behavior/self-reported voter turnout have reported inconclusive results. The mixed findings
+might be due to differences in voting settings (e.g., countries and years) as well as specific
+measures used. Hence, the results might only be applicable to the specific samples under
+investigation (Dawkins, 2017; Mondak et al., 2010; Mondak & Halperin, 2008; Sindermann
+et al., 2020).
+In contrast, results on associations between Big Five personality domains and political
+ideology (which is likely to be associated with voting (intentions) for a specific party) are
+more conclusive, especially regarding the Openness and Conscientiousness domains. While
+Openness has been positively associated with a more left-leaning and liberal ideological self-
+positioning, Conscientiousness has been positively associated with a more right-leaning and
+conservative self-positioning (Cooper et al., 2013; Gerber et al., 2011; Hirsh et al., 2010;
+Krieger et al., 2019; Mondak & Halperin, 2008; Sibley et al., 2012). The effects of the
+Extraversion, Agreeableness, and Neuroticism domains are usually smaller, are not as often
+replicated, and the sizes and directions of effects vary between studies (Cooper et al., 2013;
+Hirsh et al., 2010; Krieger et al., 2019; Mondak & Halperin, 2008).
+Results of two meta-analyses on German samples support the mentioned associations
+with the Openness and Conscientiousness domains. Moreover, these studies report smaller
+effects of Agreeableness (in one of the meta-analyses) and Neuroticism (in both meta-
+analyses), which were both related to higher left-leaning and lower conservative ideological
+self-positioning (Krieger et al., 2019; Sibley et al., 2012). These findings support the
+existence of associations between personality, especially the Openness and Conscientiousness
+domains, and political ideology in Germany and lead to the assumption that personality might
+also be associated with voting intentions for specific parties.
+In Germany, there are currently six parties/party alliances included in the Bundestag,
+the German federal parliament. Three of them are seen as right-from-the-center parties/party
+alliances, namely the AfD (Alternative for Germany), the CDU/CSU (party alliance of the
+Christian Democratic Union of Germany and the Christian Social Union in Bavaria), and the
+FDP (Free Democratic Party). The other three parties, Bündnis 90/Die Grünen (Alliance
+90/The Greens), SPD (Social Democratic Party of Germany), and DIE LINKE (The Left) are
+described as left-from-the-center parties/party alliances (Volkens et al., 2020). More
+specifically, the AfD is seen as a right-wing populist party and shows critical attitudes on
+immigration related topics (Berbuir et al., 2015; Lewandowsky, 2015). The CDU/CSU is
+seen as a conservative, center-right party alliance and – at the time of data collection – the
+chancellor, Angela Merkel, was a member of the CDU. The FDP supports economic liberal
+positions plus restrictive attitudes on refugee and European politics, which makes it a party
+voted by many individuals with higher incomes. Bündnis 90/Die Grünen was long time
+mostly associated with environmental politics. The SPD pronounces the values of freedom,
+justice, and solidarity. Finally, DIE LINKE has been described as left-wing populist party
+(see Bundeszentrale für politische Bildung (2017), Expatica (2020), Schleunes et al. (2020),
+and/or Volkens et al. (2020) for information on German parties).
+Associations between the Big Five personality domains and voting intentions and
+attitudes towards specific parties in the German context have been investigated before. One
+study found highest scores in Openness in individuals who would vote for Bündnis 90/Die
+Grünen in comparison to putative voters of the other major German parties (Sindermann et
+al., 2020). Lowest scores in Openness were found in individuals who stated that they would
+vote for the CDU/CSU; only individuals who indicated they would not vote showed lower
+scores. At the same time, putative voters of the CDU/CSU showed highest scores in
+Conscientiousness. Lowest scores in Conscientiousness were observed in individuals who
+stated they would vote for DIE LINKE. However, not all of the differences between groups
+were statistically significant (Sindermann et al., 2020). Another study found that
+Conscientiousness was negatively related to voting for left-from-the-center parties
+(specifically, the SPD and Bündnis 90/Die Grünen) and positively to voting for right-from-
+the-center parties (specifically, the CDU/CSU). Openness showed the opposite pattern of
+associations (Vecchione et al., 2011). Findings from a third study among others support a
+positive correlation between Openness and attitudes towards left-from-the-center German
+parties; specifically, the SPD, Bündnis 90/Die Grünen, and the PDS (a precursor party of DIE
+LINKE). At the same time, Openness was negatively related to attitudes towards the
+CDU/CSU and the FDP, hence, right-from-the-center parties. Conscientiousness showed the
+opposite pattern of associations, except the link to attitudes towards the FDP, which was non-
+significant (Schoen & Schumann, 2007). The associations between party preferences and
+other Big Five personality domains were either mixed or non-significant in the cited studies.
+The Current Study
+The Big Five personality domains appear to be descriptively associated with non-
+voting vs voting and voting intentions/preferences for specific parties in the German context:
+while associations with non-voting vs voting are inconclusive, Openness seems to be
+associated with preferences for left-from-the-center parties and Conscientiousness seems to
+be associated with preferences for right-from-the-center parties. However, since effect sizes
+are often rather small, it remains unknown whether it is possible to predict one’s voting
+intentions (non-voting vs voting and voting for a specific party) from the Big Five personality
+domains. Descriptions and predictions are not the same (Mõttus et al., 2020). While
+descriptive modeling documents associations between variables in a given sample, predictive
+research constructs models with the aim to predict observations in an independent sample:
+that is, prediction models are “trained” and tested in independent (sub)samples. Successful
+predictions require that the associations are not overfitted and are sufficiently robust to
+generalize beyond idiosyncrasies of particular samples and their compositions (Mõttus et al.,
+2020; Yarkoni & Westfall, 2017). Results relying on predictive analysis might resolve some
+problems of previous research, such as lack of generalizability, and might help to overcome
+non-replicable findings. Moreover, the predictive associations between lower levels of the
+personality trait hierarchy and voting intentions in the German multiparty context have not
+yet been explored. It is possible that constructing prediction models based on Big Five
+personality facets and nuances will yield more accurate predictions than those based on the
+Big Five personality domains. However, it is important that such comparative studies account
+for model overfitting, because more complex models automatically account for more variance
+in their outcome than comparatively simpler models: training and validating models in
+independent samples is a particularly effective way of achieving this (Mõttus & Rozgonjuk,
+2021; Seeboth & Mõttus, 2018; Yarkoni & Westfall, 2017)
+For the present work, we chose to implement random forest analyses. This approach
+differs from, for example, different kinds of regression analyses for classification problems
+(e.g., binomial/binary logistic, multinomial logistic) in many ways. Of importance for the
+present work, the non-parametric random forest algorithm i) does not assume linear relations
+between predictor and criterion variables, ii) can deal with a large number of intercorrelated
+predictors, iii) is robust against outliers, and iv) combinations of predictor variables are
+automatically considered, thus, also combinations of variables not expected by the
+researchers are taken into account (Buskirk & Kolenikov, 2015; Lingjun et al., 2019; Mendez
+et al., 2008; Stachl et al., 2020).
+In conclusion, the present study aimed at investigating the aforementioned
+associations by means of random forest analyses in a German sample. We had no predefined
+hypotheses with regards to predictions of intentions to not vote vs to vote. Regarding voting
+intentions for a specific party (leaning), Openness and Conscientiousness were expected to be
+the most important predictors. No hypotheses were built for Big Five personality facets or
+nuances given the lack of existing literature.
+Materials and Methods
+Transparency, Openness, and Reproducibility
+The present study and hypotheses were not preregistered. Data and the R analysis
+studies. The overlaps are detailed in Supplementary Material I.
+Sample
+By means of two online surveys, we recruited a convenience sample of N = 4,286
+individuals (n = 1,972 men, n = 2,307 women, n = 7 “third gender”) eligible to be included in
+the present analyses (see Supplementary Material I for details on data collection and data
+cleaning).
+Self-Report Measures
+Big Five Inventory
+The Big Five personality traits were assessed by applying the Big Five Inventory
+(BFI; John et al., 1991) in German language (Rammstedt & Danner, 2017). It consists of 45
+items but the 45th item is unique to the German version. It was not included in our analyses
+based on previous studies in the German context including the original validation study of the
+German BFI (Rammstedt & Danner, 2017; Sindermann et al., 2020) and to enable closer
+comparability with studies applying the English version of the BFI. All items of the
+questionnaire are answered on a 5-point Likert-scale from 1 = “very inapplicable” to 5 =
+“very applicable”. Next to the broad Big Five personality domains, two facets of each Big
+Five personality domain can be calculated. These facets are labeled Openness for aesthetics,
+Openness for ideas (Openness); Order, Self-discipline (Conscientiousness); Assertiveness,
+Activity (Extraversion); Altruism, Compliance (Agreeableness); Anxiety, Depression
+(Neuroticism). Psychometric properties are detailed in Supplementary Material I.
+Current Voting Intentions
+Individuals stated which party they would vote for if general elections would be held
+the following Sunday. Response options were CDU/CSU (n = 586, 13.67%), SPD (n = 331,
+7.72%), Bündnis 90/Die Grünen (n = 1,769, 41.27%), FDP (n = 292, 6.81%), DIE LINKE (n
+= 412, 9.61%), AfD (n = 187, 4.36%), “others” (n = 464, 10.83%) – indicating voting for
+smaller parties not currently included in the German federal parliament – and “I would not
+vote” (n = 245, 5.72%); percentages do not add up to 100% due to rounding.
+Statistical Analyses
+Main Analyses
+The statistical software R version 4.1.0 (R Core Team, 2018) and RStudio version
+1.4.1106 (RStudio Team, 2020) were used for all analyses. Packages used for the analyses are
+listed in the Supplementary Material and the R-script. First, we calculated descriptive
+statistics of the BFI on domain, facet, and item level (see Supplementary Material I).
+Next, we trained random forest models to predict intentions i) to not vote vs to vote
+and ii) to vote for specific parties from either Big Five i) domains, ii) facets, or iii) items (6
+models in total). More specifically, we implemented a 10-times repeated 10-fold cross-
+validation procedure. Thus, we split the total sample into ten different folds of equal size (and
+with equal distributions of the respective criterion variable) ten times; thus, a total of 100
+different folds were built across repeats. Moreover, we needed to account for class imbalance
+in the criterion variables. Prominent methods to deal with imbalanced data are weighting and
+over-/under-sampling (Chen et al., 2004). We applied a weighting procedure to put heavier
+costs on misclassifications in the minority class and decrease prediction errors of the minority
+class, accordingly. Specifically, weights were set indirectly proportional to the class sizes by
+applying the following formula: class weight of class x = n(majority class) / n(class x)
+(Breiman & Cutler, n.d.). We used the default setting for the number of trees (n = 500),
+splitting rule (“gini”), and the numbers of variables randomly sampled as candidates at each
+split (square root of number of predictor variables) in all models.
+The results across folds and repeats were averaged. More specifically, we extracted
+mean accuracies across folds and repeats and compared these to the No Information Rate
+(NIR), which is the accuracy derived from always predicting the majority class (i.e.,
+percentage of observations in the majority class). Additionally, we computed the mean
+balanced accuracies ((sensitivity + specificity) / 2) from the confusion matrices derived from
+the 10-times repeated 10-fold cross-validations. Balanced accuracies are of importance in this
+specific work given the imbalanced class distributions and because the balanced accuracy
+weights performance of the model for each class equally. Next, we calculated the respective
+misclassification errors from the confusion matrices across repeated cross-validation. Finally,
+variable importance scores derived from the final models were extracted and are presented in
+Supplementary Material I.
+The procedure was applied to predict all criterion variables (intentions i) to not vote vs
+to vote and ii) to vote for specific parties) by either Big Five personality domains, facets, or
+nuances in separate models.
+Additional Analyses
+We additionally ran the same analyses to predict intentions to vote for left- vs right-from-
+the-center parties. Grouping of parties into left and right was implemented according to
+Volkens et al. (2020): left: DIE LINKE, SPD, Bündnis 90/Die Grünen; right: FDP,
+CDU/CSU, AfD. This investigation was not planned from the beginning but was data driven.
+Specifically, it was based on the imbalance in the aforementioned criterion variables. By
+splitting voting intentions into two groups with intentions to vote for a left- vs right-from-the-
+center party, we aimed at receiving more balanced classes and to counteract problems of
+majority class voting. We still applied the weighting procedure (detailed above) for
+consistency with other analyses.
+Finally, results of binomial/binary logistic regression analyses to predict intentions to i)
+not vote vs to vote, ii) vote for a specific party (one-vs-all approach), and iii) vote for left- vs
+right-from-the-center parties are presented in Supplementary Material II for easier
+interpretation of effects of single predictors.
+Results
+Predicting Intentions to Not Vote versus to Vote
+The mean accuracies across the 10-times repeated 10-fold cross-validations to predict
+intentions to not vote vs to vote were 92.94% (SD = 0.01) for the models comprising Big Five
+personality domains, 93.97% (SD = 0.00) for the models comprising facets, and 94.25% (SD
+= 0.00) for the models comprising items. Thus, all mean accuracies were lower than the NIR,
+which was 94.28% in the total sample (thus, roughly the same in each fold).
+Mean balanced accuracies across the 10-times repeated 10-fold cross-validations were
+49.87%, 49.97%, and 49.98% for the models comprising Big Five personality domains,
+facets, and items, respectively. Thus, all mean balanced accuracies were lower than the
+balanced accuracy of 50.00% which would be achieved by a model always predicting the
+majority class.
+validations and misclassification errors for models based on Big Five personality domains,
+facets, or items.
+Confusion matrices and misclassification errors when predicting intentions to not vote vs to
+vote from Big Five personality domains, facets, or items across 10-times repeated 10-fold
+cross-validations.
+Confusion Matrices and Misclassification Errors
+True score
+Non-voting Voting
+Non-voting 30 604
+Domains Predicted
+Voting 2,420 39,806
+Non-voting 7 141
+Facets Predicted
+Voting 2,443 40,269
+Non-voting 0 13
+Items Predicted
+Voting 2,450 40,397
+Total (per
+confusion matrix) 2,450 40,410
+Misclassification
+98.78% 1.49%
+errors - domains
+Misclassification
+99.71% 0.35%
+errors - facets
+Misclassification
+100.00% 0.03%
+errors - items
+Note. The distribution of current voting intentions in the total sample was: n = 245 (5.72%)
+voters, n = 4,041 (94.28%) non-voters (because of the 10-times repeated 10-fold cross-
+validation, these numbers are multiplied by 10 in the matrices). Misclassification errors are
+defined as the proportion of individuals in a given class who have been incorrectly classified;
+misclassification error in the class of individuals who actually intended to not vote: 1-
+Sensitivity; misclassification error in the class of individuals who actually intended to vote: 1-
+Specifity.
+Predicting Intentions to Vote for a Specific Party within Putative Voters
+Mean accuracies across the 10-times repeated 10-fold cross-validations to predict intentions
+to vote for a specific party were 23.40% (SD = 0.02), 27.39% (SD = 0.02), and 34.63% (SD =
+0.02) when including Big Five personality domains, facets, or items as predictors in the
+models, respectively. Thus, all accuracies were below the NIR of 43.78%.
+Mean balanced accuracies across the 10-times repeated 10-fold cross-validations and
+across all classes were 51.48% for the models built based on Big Five personality domains,
+51.96% for the models comprising facets, and 52.71% for the models comprising items. For
+each individual class and across the 10-times repeated 10-fold cross-validations, the balanced
+accuracies lied between 49.08% (“others”) and 53.48% (“CDU/CSU”), between 48.58%
+(“SPD”) and 54.16% (“DIE LINKE”), and between 50.20% (“FDP”) and 55.74%
+(“CDU/CSU”) for the models comprising Big Five personality domains, facets, and items,
+respectively. Thus, balanced accuracies of the predictions of voting intentions for most
+parties as well as mean balanced accuracies across all parties exceeded the balanced accuracy
+of 50.00%, which would be achieved by a model always predicting the majority class. More
+specifically, this was true for voting intentions for all parties except the SPD and “other”
+parties when predictions were based on domains, for all parties except the SPD when
+predictions were based on facets, and for all parties when predictions were based on items.
+intentions to vote for a specific party from either Big Five personality domains, facets, or
+items across repeated cross-validations.
+Confusion matrices and misclassification errors when predicting intentions to vote for specific parties from Big Five personality domains, facets,
+or items across the 10-times repeated 10-fold cross-validations.
+Confusion Matrices and Misclassification Errors
+True score
+Bündnis
+DIE LINKE SPD FDP CDU/CSU AfD “others”
+90/Die Grünen
+DIE LINKE
+718 269 2,370 342 613 224 724
+SPD
+302 335 1,958 301 601 172 525
+Bündnis 90/
+Die Grünen 1,337 1,173 5,985 725 1,614 346 1,378
+Domains Predicted
+FDP
+288 283 1,485 312 543 232 405
+CDU/CSU
+608 550 2,978 588 1,411 428 760
+AfD
+193 210 845 270 385 184 338
+“others”
+674 490 2,069 382 693 284 510
+DIE LINKE
+808 351 2,282 260 438 142 623
+SPD
+246 119 1,183 184 389 44 340
+Bündnis 90/
+Die Grünen 1,625 1,404 7,644 1,019 2,166 527 1,748
+Facets Predicted
+FDP
+197 251 1,056 252 399 175 342
+CDU/CSU
+564 706 3,115 631 1,507 567 788
+AfD
+174 106 715 163 423 189 249
+“others”
+506 373 1,695 411 538 226 550
+DIE LINKE 604 309 1,663 264 346 115 546
+Items Predicted SPD 71 99 373 56 168 30 49
+Bündnis 90/ 2,341 1,880 10,832 1,445 2,838 669 2,500
+Die Grünen
+FDP 88 84 444 99 204 114 190
+CDU/CSU 524 630 2,895 701 1,722 642 798
+AfD 65 90 308 109 231 162 79
+“others” 427 218 1,175 246 351 138 478
+Total (per
+confusion matrix) 4,120 3,310 17,690 2,920 5,860 1,870 4,640
+Misclassification
+82.57% 89.88% 66.17% 89.32% 75.92% 90.16% 89.01%
+errors - domains
+Misclassification
+80.39% 96.40% 56.79% 91.37% 74.28% 89.89% 88.15%
+errors - facets
+Misclassification
+85.34% 97.01% 38.77% 96.61% 70.61% 91.34% 89.70%
+errors - items
+Note. The distribution of current voting intentions in the total sample used for these analyses was as follows: n = 412 (10.20%) DIE LINKE, n =
+331 (8.19%) SPD, n = 1,769 (43.78%) Bündnis 90/Die Grünen, n = 292 (7.23%) FDP, n = 586 (14.50%) CDU/CSU, n = 187 (4.63%) AfD, n =
+464 (11.48%) "others" (because of the 10-times repeated 10-fold cross-validation, these numbers are multiplied by 10 in the matrices).
+Individuals stating they would not vote were not included in the present analyses; percentages do not add up to 100% due to rounding.
+Misclassification errors are defined as the proportion of individuals in a given class who have been incorrectly classified; misclassification errors
+= 1-Sensitivity.
+Predicting Intentions to Vote for Left- versus Right-from-the-Center Parties within
+Putative Voters of One of the Six Major German Parties
+When predicting intentions to vote for left- vs right-from-the-center parties, mean
+accuracies across 10-times repeated 10-fold cross-validations were 64.15% (SD = 0.02),
+65.16% (SD = 0.02), and 68.85% (SD = 0.02) when using Big Five personality domains,
+facets, or items in the prediction models, respectively. These accuracies were all lower than
+the NIR of 70.23%.
+Balanced accuracies across the 10-times repeated 10-fold cross-validations were
+56.40% for predictions from Big Five personality domains, 55.87% for predictions from
+facets, and 57.70% for predictions from items. Thus, balanced accuracies of these models
+exceeded the balanced accuracy of 50.00% achieved by a model always predicting the
+majority class.
+intentions to vote for left- vs right-from-the-center parties from either Big Five personality
+domains, facets, or items across repeated cross-validations.
+Confusion matrices and misclassification errors when predicting intentions to vote for left- vs
+right-from-the-center parties from Big Five personality domains, facets, or items across 10-
+times repeated 10-fold cross-validations.
+Confusion Matrices and Misclassification Errors
+True score
+Left Right
+Left 18,982 6,685
+Domains Predicted
+Right 6,138 3,965
+Left 19,804 7,146
+Facets Predicted
+Right 5,316 3,504
+Left 21,421 7,442
+Items Predicted
+Right 3,699 3,208
+Total (per
+confusion matrix) 25,120 10,650
+Misclassification
+24.43% 62.77%
+errors - domains
+Misclassification
+21.16% 67.10%
+errors - facets
+Misclassification
+14.73% 69.88%
+errors - items
+Note. The distribution of current voting intentions in the total sample included in these analyses
+was: n = 2,512 (70.23%) intending to vote for a left-from-the-center party, n = 1,065 (29.77%)
+intending to vote for a right-from-the-center party (because of the 10-times repeated 10-fold
+cross-validation, these numbers are multiplied by 10 in the matrices). Individuals stating they
+would vote for “another” party and individuals stating they would not vote were not included
+in the analyses. Misclassification errors are defined as the proportion of individuals in a given
+class who have been incorrectly classified; misclassification error in the class of individuals
+who actually intend to vote for a left-from-the-center party: 1-Sensitivity; misclassification
+error in the class of individuals who actually intend to vote for a right-from-the-center party:
+1-Specifity.
+Discussion
+The present study aimed to investigate the predictability of voting intentions of German
+individuals from Big Five personality domains, facets, and nuances (indexed by individual
+items).
+Results showed that intentions to not vote vs to vote could not be predicted better than
+by a baseline learner/model always predicting the majority class (i.e., “voter”).
+Regarding the prediction of intentions to vote for a specific party, mean prediction
+accuracies across repeated cross validations ranged from 23.40% for the models comprising
+Big Five personality domains to 34.63% for the models comprising nuances. All of these
+accuracies were below the NIR. In this realm, it is important to note that accurate predictions
+of individuals’ voting intentions in multi-party systems are difficult to achieve; this has also
+been observed in other studies. One study using all political Facebook likes of individuals,
+thus, variables much closer related to voting intentions than personality traits, reports a
+prediction accuracy of around 60% (Kristensen et al., 2017). Nevertheless, mean balanced
+accuracies for predictions of intentions to vote for a specific party observed in the present
+work were – in parts – higher than the mean balanced accuracy of 50.00%; a balanced
+accuracy of 50.00% is achieved by a model always predicting the majority class. Due to the
+class imbalance in the present sample, balanced accuracies are of special interest because the
+performance of the model in predicting each class is weighted equally. Voting for the
+Christian religion oriented and conservative party alliance of CDU/CSU (from Big Five
+personality domains and nuances) and for the left-wing party DIE LINKE (from Big Five
+personality facets) showed highest balanced accuracies exceeding 50.00% (Bundeszentrale
+für politische Bildung, 2017; Volkens et al., 2020). Moreover, the mean balanced accuracies
+across classes and across 10-times repeated 10-fold cross-validations were exceeding 50.00%
+for predictions from Big Five personality domains, facets, and nuances. This indicates that
+voting for specific parties can – to a certain degree – be predicted by personality at different
+levels of the trait hierarchy when weighting the performance to predict each class equally; but
+not of overall accuracies as compared to the NIR.
+For predictions of intentions to vote for left- vs right-from-the-center parties, mean
+prediction accuracies across repeated cross-validations ranged from 64.15% for models
+comprising Big Five personality domains to 68.85% for models comprising nuances. Again,
+all of these accuracies were below the NIR. However, balanced accuracies ranged from
+55.87% for predictions from Big Five personality facets, to 57.70% for prediction models
+based on nuances. Hence, the balanced accuracies were – again – exceeding the balanced
+accuracy of 50.00% achieved by a model always predicting the majority class.
+Regarding the aim of the present study to test whether Big Five personality facets and
+nuances exhibit higher predictive accuracies compared to domains, the overall answer would
+be: no and yes. For a more elaborate discussion on this, we compare the balanced accuracies
+across 10-times repeated 10-fold cross-validations of models derived from Big Five
+personality domains, facets, and nuances. Moreover, we focus on the prediction of voting
+intentions for specific parties and for left- vs right-from-the-center parties since only models
+to predict these variables exceeded a balanced accuracy of 50.00%. As can be seen in the
+results section, the mean balanced accuracies were highest for models based on Big Five
+personality nuances. However, the balanced accuracies for models based on Big Five
+personality facets were roughly the same, once even lower, compared to models based on Big
+Five personality domains. Thus, using nuances increased balanced accuracies of predictions
+in comparison to using domains and facets; but the increase was only around 1.8% at most.
+The finding that models based on Big Five personality facets did barely exhibit higher
+balanced accuracies of predictions over models based on domains might be due to the
+following fact: in the specific questionnaire applied in this study, not all items are included in
+facets; but domains and single-item analyses comprise all 44 items (see Supplementary
+Material I for an overview on which items do and do not belong to a certain facet and a
+certain domain). Items not included in facets might play a role in the prediction.
+Importantly, what is understood as satisfying prediction performance is to a certain
+degree subjective. Similarly, whether the overall accuracy or the balanced accuracy of a
+model is considered when evaluating prediction performance is a subjective decision.
+Therefore, we transparently present both accuracy measures. Nevertheless, it is clear that the
+predictions of intentions to not vote vs to vote based on the present models were not better
+than predictions of a baseline learner/model always predicting the majority class: accuracies
+consistently lied below the NIR and the balanced accuracies consistently lied below 50.00%.
+Regarding the prediction of voting intentions for a specific party and for left- vs right-from-
+the-center parties, the present results (regarding accuracies and balanced accuracies) indicate
+that additional variables need to be taken into account in order to increase the prediction
+performance (see further discussion below). The fact that accuracies did not exceed the NIR
+but balanced accuracies exceeded the 50.00% threshold indicates that the algorithms used in
+the present study might overall perform better in samples with more balanced class
+distributions.
+To judge on the effect sizes found in the present study (for voting for a specific party
+or left- vs right-from-the-center parties), we would like to take into account effect sizes
+reported in other related studies. As such, the correlation between Big Five personality
+domains and voting for center-right vs center-left parties in the study by Vecchione et al.
+(2011) ranged from |.12| to |.24| in the German sample. In a meta-analysis on associations
+between the Big Five personality domains and political ideology in German samples, the
+highest correlation was |.07| (Krieger et al., 2019). These effect sizes derived from previous
+studies together with the imbalanced class distributions might explain why accuracies of none
+of the present models did exceed the NIR (but please see interpretation of balanced
+accuracies). Moreover, these results indicate that personality does not seem to play a major
+role in predicting voting intentions. Putatively, one’s voting intention is a complex
+psychological construct and many different variables and their interactions might contribute
+to it; each with a small singular effect. Thus, taking into account more variables to predict
+voting intentions, like socio-demographics (Nier, 2017) or political attitudes such as attitudes
+towards refugees (Igarashi, 2021), might improve the prediction. However, for the federal
+elections in 2017 in Germany, nearly 62,000,000 individuals were eligible to vote (Der
+Bundeswahlleiter, 2021). On a population scale, therefore, even seemingly small effect sizes,
+such as those found in the present study, can be of importance (Götz et al., 2021).
+The results have important implications for current debates. As such, it is often
+discussed in how far knowledge of individuals’ personality can be used to influence their
+opinions, for example by microtargeting, in the political as well as economic field (Matz et
+al., 2017). A prominent example from the political field is the Cambridge Analytica scandal.
+Inference on, among others, the Big Five characteristics of citizens from their digital footprint
+data appears to have been used to predict and manipulate voting preferences, for example in
+the 2016 American presidential elections and the Brexit referendum (Wylie, 2019).
+Supporting evidence that personality traits can be predicted from digital footprint data to a
+certain degree comes from various studies (Kosinski et al., 2013; Marengo & Montag, 2020).
+However, with regard to political attitudes and according to the results of the present study,
+more variables aside from (self-reported) personality should be taken into account to improve
+prediction performance – at least in the German context. If voting intentions cannot be
+accurately predicted from personality traits, this makes it seem unlikely that purely
+personality-based campaigning effectively influences one’s voting intentions. However, by
+taking into account more variables (see above) the prediction of voting intensions might be
+improved. In line with this, also Cambridge Analytica did putatively not use knowledge on
+the Big Five personality traits exclusively.
+Finally, some limitations of the present study need to be mentioned. First, the sample was
+not representative of the general German population. The distribution of current voting
+intentions observed in the present sample did neither reflect the election outcome from the
+federal elections 2017, nor the distributions found in general population samples in the time
+of data collection (Bundeszentrale für politische Bildung, 2018; Guttmann, 2020). This might
+limit generalizability of findings. Moreover, the imbalance in the class sizes of the criterion
+variables seem to have posed a problem. Next, the current sampling procedure was focused
+on individuals from Germany. However, we did not specifically ask whether participants
+were eligible to vote in the general German elections. Even if unlikely, it is possible that
+some of the study participants are German residents, but are not eligible to vote, e.g., because
+they are not citizens. Moreover, the present study is limited to one self-report measure of the
+Big Five. We therefore call for future studies reinvestigating the present research questions
+using different Big Five measures to test replicability of results across different
+measurements. Similarly, longer questionnaires assessing more nuances and facets of the Big
+Five might give more detailed insights. In the same vein, also applying different algorithms
+with different tuning parameter settings might lead to (slightly) different results. Next, it is
+also important to note that in general German elections, one has two votes – one to vote for a
+specific candidate from one’s electoral district to become a member of the Bundestag and one
+for a specific party. In line with common surveys of professional research institutes on voting
+preferences (Willkow & Cantow, 2020), we focused on the second vote in the present study.
+Another limitation of the present study is that the generalizability of the findings is
+necessarily limited to the German context. Applicability of the findings to other countries
+must be tested in future studies.
+Conclusion
+This study sheds light on the predictability of voting intentions by Big Five personality
+domains, facets, and nuances in the German context. The differentiation between German
+individuals with the intention to not vote vs to vote was not possible. The predictions of
+voting intentions for specific parties or for parties on the left vs right side of the spectrum was
+barely possible. The prediction accuracies might be improved by adding more variables to the
+models. Still, the accuracies of predictions from models based on Big Five personality
+nuances were slightly higher than predictions from models based on Big Five personality
+facets and domains.

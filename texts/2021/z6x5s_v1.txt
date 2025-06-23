@@ -1,0 +1,927 @@
+Modelling the learning impacts of educational disruptions
+in the short and long run.
+Luis Monroy-Gómez-Franco
+March, 2022
+Abstract
+In this paper, I propose a new framework for analysing the short and long-run effects of
+temporary educational disruptions on the learning progression of children. The framework
+integrates into a coherent model recent advances in the literature on learning acquisition
+(Kaffenberger, 2021; Kaffenberger and Pritchett, 2020b, 2021) and the literature on estimat-
+ing the immediate costs of instructional disruptions (Neidhöfer et al., 2021). The integrated
+framework includes explicit modelling of continuous parental investments, filling a gap in
+the literature related to the Potential Pedagogical Function and other explicit models of
+learning progression and acquisition. In the same way, the model considers the role of
+economic resources as part of the resources employed by parents to mitigate the effects of a
+temporary shock in instruction., expanding the notion of attenuation capacity developed by
+Neidhöfer et al. (2021). Finally, I take this framework to the data to estimate the potential
+effects of the instructional disruption caused by the COVID-19 pandemic in Mexico. The
+estimates suggest that, for the Mexican cohort affected by the instructional disruption,
+the potential persistent loss in learning with respect to the counterfactual lies on average
+between 20% and 90% of the learning acquired during a usual school year, depending
+on the effectiveness of the remote learning policies implemented during 2020 and 2021.
+These results already consider the mitigating role of parental investments. Furthermore,
+my results suggest substantial variation between inhabitants from different regions of the
+country and inside inhabitants of the same region, being the South of the country the
+region where the losses are the largest.
+JEL-Classification: I24, I25, I28, J24, O15
+Keywords: Educational disruptions, Learning progression, Education, Mexico, COVID-19,
+Persistence
+I deeply appreciate the comments made by Miles Corak, Jonathan Conning, Audrey Light, Roberto Vélez-
+Grajales, Nuria Rodríguez-Planas, Wim Vijverberg and the participants of the Dissertation Seminar of the PhD
+in Economics at The Graduate Center, CUNY, the participants of the Stone Center Multidisciplinary Seminar
+Series, the participants of the Seminario del Programa Universitario de Estudios sobre Educación Superior, and
+the El Colegio de México Economics Seminar to a previous draft of this document. I will also like to thank
+Mariana Tello de Jaray for her excellent research assistance. All remaining errors are my own.
+PhD Candidate in Economics; The Graduate Center, CUNY. lmonroygomezfranco@gradcenter.cuny.edu
+Introduction
+A classic problem for policymakers is the lack of information on the long-run effects of any shock.
+This is particularly true for processes in which their outcomes are observed only after long
+periods, an example of which is the learning process. This lack of information makes the imple-
+mentation of measures to attenuate the effects of the shock more complex to the policymaker,
+as neither the magnitude nor the characteristics of those impacted are apparent at the time
+of the shock. In this paper, I integrate and expand previous work on learning progression and
+educational disruptions by Kaffenberger and Pritchett (2020b, 2021) and Neidhöfer et al. (2021)
+into a unified model of learning progression, parental investments and instruction interruptions.
+This integration allows me to disaggregate the impacts of an instructional disruption into its
+immediate effects and its cumulative effects of learning, highlighting the role played by parental
+resources (and its distribution) in attenuating those effects. Furthermore, this approach allows
+to expand the calculation of the costs of an educational disruption proposed by Neidhöfer et al.
+(2021) to consider the immediate costs and the cumulative ones.
+However, in contrast with Kaffenberger and Pritchett (2020b, 2021) and Neidhöfer et al.
+(2021), I model parental interventions as constantly occurring throughout the learning trajectory
+of children following recent research on the economics of parenting (Doepke et al., 2019). The
+integrated framework also allows me to analyse how different policy interventions can interact
+with parental interventions to attenuate the effects of the disruptions. Thus, the model provides
+a framework for the policymaker to opportunely assess the effects of a shock and the policy
+alternatives available to her.
+The model presented in this paper represents an alternative to the traditional approach to
+modelling learning acquisition in economics, represented by Cunha et al. (2010). Although both
+models focus on learning accumulation instead of schooling, they take very different approaches
+to the subject. In the case of Cunha et al. (2010),the focus of the model is at the level of the
+individual, requiring vast information regarding non-cognitive and cognitive skills in the relevant
+population in order to be calibrated for the estimation of optimal interventions. This reduces
+the approach’s applicability to contexts where data is more scarce, or it is only available at an
+aggregated level. In contrast, the model presented here requires less information regarding the
+individual skills while still being able to replicate the observed patterns in learning accumulation
+and being suitable to inform about the impacts of different interventions. These characteristics
+make it relevant for the case of developing countries where data constraints limit the application
+of formal modelling to inform the policymaking process about the long-run effects of interventions.
+A growing empirical literature has documented the medium and long-run effects of an
+instructional disruption on educational attainment, standardised test scores and labour market
+outcomes. The papers in this literature find that an instructional disruption translates into
+lower educational attainment, scores or earnings in the absence of private or public attenuation
+measures. These effects are observed both when the cause of the instructional interruption is a
+major societal disruption (for example, the Second World War (Ichino and Winter-Ebmer, 2004)
+, the Chinese Cultural Revolution (Meng and Zhao, 2021), or a natural disaster(Andrabi et
+al., 2021; Sacerdote, 2012) and less socially disruptive causes, like a teacher strike (Jaume and
+Willén, 2019; Belot and Webbink, 2010) or an abnormal frequency of snowing days (Marcotte
+and Hemelt, 2008).
+Due to data restrictions, the studies that focus on the effects of educational disruptions after
+five years of the event tend to rely on formal measures of schooling, such as enrollment and
+years of education as a proxy of the human capital or learning stock of the children affected by
+the shock (see, for instance, Ichino and Winter-Ebmer (2004); Belot and Webbink (2010); Meng
+and Zhao (2021)). A recent series of studies on the relationship between learning acquisition
+and schooling progression questions this assumption. Evidence from Indonesia (Beatty et al.,
+2021), Rwanda (Crawfurd, 2021), multiple African countries (Pritchett and Sandefur, 2020;
+Kaffenberger and Pritchett, 2020a) and Pakistan (Bau et al., 2021) indicates that the increase
+in the average number of school years in those countries has not been matched by an increase in
+the stock of learning of children as measured by standardised tests. Thus, this evidence suggests
+that the impacts of a transitory instructional disruption on the human capital of those affected
+are not necessarily captured in the schooling dimension, and thus they should be modelled in
+the learning dimension or in outcomes linked to the stock of learning, such as labour earnings
+as Jaume and Willén (2019) do.
+The decoupling between learning and school progression is also present in the analyses by
+Andrabi et al. (2021), and Sacerdote (2012) on the role of responses to natural disasters on
+the persistence of the effects of an instructional interruption. Andrabi et al. (2021) analyse the
+case of the 2005 earthquake in Kashmir, Pakistan, while Sacerdote (2012) studies the effects
+of Hurricane Katrina in New Orleans, USA. In both cases, the authors study the effects of
+the natural disaster on learning (test scores) and a measure of formal educational progression
+(school enrollment). However, the type of response by the public sector and households differs.
+In Kashmir, households affected by the earthquake received a cash transfer that represented, on
+average, 150% of their monthly consumption. Children affected by the hurricane relocated to
+school districts with better quality schools regarding their average score in standardised tests
+in the New Orleans case. In both studies, the authors do not find any effect of the disruption
+and compensatory measure in their measure of formal schooling, but they find an effect in the
+children’s performance in standardised tests. Sacerdote (2012) finds that after an initial decline,
+four years after the relocation due to the hurricane, the test scores of the children who changed
+residence improved regarding their pre-Katrina score compared with those who did not move. In
+contrast, Andrabi et al. (2021) find that the score of those affected by the earthquake remained
+below those unaffected four years after the earthquake.
+The results by Andrabi et al. (2021); Sacerdote (2012) highlight the importance of considering
+the effects of an instructional interruption in terms of learning and not only schooling. They also
+show that the short-run impacts are not necessarily representative of the long-run ones, which
+are influenced by the responses by households and policymakers. The rest of the paper goes
+as follows. In the following section, I describe the formal model used to characterise how the
+instructional process affects learning acquisition. Next, I describe the methodology employed
+to measure the short-run losses in learning due to an instructional disruption and how these
+losses can be introduced into the learning acquisition model to estimate the cumulative effects
+of the disruption. In the fourth section of this paper, I describe the data, and the calibration of
+the model used to estimate the potential losses caused by COVID-19 in Mexico. Afterwards,
+I present the application results and conclude with some final remarks and future avenues of
+research.
+Instructional processes and learning acquisition.
+Modelling the impacts of an instruction disruption on learning requires a model of how educa-
+tional instruction affects learning acquisition during an educational career. Identifying the impact
+of instruction on learning has been the subject of interest of a vast literature on Educational
+Production Functions. (EPF). EPF, as their name indicates, consider learning as the output of
+a multi-input production process, establishing the marginal contribution of each of the inputs
+to the learning acquired by the student .
+The most common formulations of the EPF consider four groups of variables as determining
+the stock of learning (A ) that a child i has accumulated up to moment t: family background
+it
+factors (B ), peer factors (P ), school-related factors (S ), and the innate affinities and abilities
+it it it
+of each child (I ). The stock of each of these factors determines the stock of learning of person
+it
+The origin of the Educational Production Functions literature is the Coleman Report (Coleman et al., 1966)
+commissioned by the U.S. Congress to identify the association between different elements of a student background
+and her performance in school. For a review of the early literature see Bowles (1970); Hanushek (1979) and for
+more recent studies Hanushek (2002, 2010); Todd and Wolpin (2003)
+i up to moment t. Formally, this can be expressed in a general form as follows:
+A (t) = f (B (t), P (t), S (t), I (t)) (1)
+i i i i i
+From equation 1 it is possible to derive the formulation corresponding to the learning gains
+occurred between two periods. Equation 1 implies that any gains in learning between t and
+t − 1 occur due to a change in the input stocks. Let ∆ represent the change in a given variable
+between t and t − 1, this can be formally expressed as follows:
+(cid:16) (cid:17)
+∆A = f ∆B , ∆P , ∆S , ∆N (2)
+i i i i i
+From equation 1 we know that the learning observed in the previous period (a ) is a
+i,t−1
+sufficient statistic of the history of values of the inputs, transformed according to the learning
+technology f (·) (Todd and Wolpin, 2003). Thus, the level of learning observed at time t, namely
+a can be expressed as the sum of the current values of the inputs (B , P , S , I ), plus the
+i,t it it it it
+learning observed in the previous period a , which represents the learning stock up until
+i,t−1
+period t − 1 This is the value-added formulation of an Educational Production Function.
+a = f (B , P , S , I ) + a (3)
+i,t it it it it i,t−1
+A limitation of EPFs is that they do not provide an explicit model of the mechanisms behind
+learning accumulation. Specifically, they do not specify the different mechanisms through which
+each input influences learning acquisition, nor how those mechanisms might change in the face
+of a temporary shock. A way to address this limitation of EPF is through a structured model of
+learning accumulation that explicitly represents these mechanisms. The Potential Pedagogical
+Function proposed by Kaffenberger and Pritchett (2021, 2020b) is such a model.
+The Potential Pedagogical Function (PPF) models the interplay between the expected process
+of learning accumulation implied in school curricula and the preconditions of the students that
+interact with it. By explicitly modelling the relationships between the different inputs of the
+learning production process, the PPF allows the analysis of the effects of changes in those rela-
+tionships and the level of the inputs on the learning accumulation process. This property makes it
+an ideal starting point for the construction of a model of the effects of instructional interruptions.
+Following Kaffenberger and Pritchett (2020b, 2021), the first element of the PPF is the
+learning profile (LP) implied by the school curriculum of a specific school grade. The learning
+profile represents the learning gains (in this case, in terms of points in a standardised test) that
+a student is expected to acquire by attending school grade G, and it is a function of the learning
+stock accumulated by students up until the end of grade G-1. It is defined by a coverage width
+(w), the median of prerequisite knowledge (π ), the minimum and maximum expected learning
+gains (z , z ), and the learning gradient in school grade G (v). The educational authorities
+min max
+define all these elements in the curriculum for a specific school grade.
+The coverage width of school grade G (w) represents the domain upon which the learning
+profile is effective. In other words, it is the set of values of the learning stock upon which the
+attendance to school grade G will lead to students learning something new. The width is centred
+at a specific value of previous knowledge (π ), which represents the learning stock at the end of
+school grade G-1 of the median student in the school system. The minimum z (maximum
+min
+z ) expected learning gains correspond to the learning gains that a student with the minimum
+max
+(maximum) amount of previous knowledge on the subject will obtain during school grade G. The
+gradient indicates the gains above the minimum learning gains that a student with a learning
+stock above the minimum will gain during the school grade G. It is defined by the combination
+of the width, minimum, and maximum learning gains define the learning gradient of the school
+grade (v) as follows:
+z − z
+max min
+v = (4)
+All these elements, along with the learning stock of students at G-1, A , define the
+i,G−1
+learning profile, and consequently the expected learning gains according to the curricula during
+grade G (a ) as follows:
+i,G
+(cid:16) (cid:16) w (cid:17)(cid:17)
+G G
+LP (w, z, v, π ) = a = z + v A − π − (5)
+i,G min i,G−1
+Equation 5 is equivalent to an EPF in its value-added form (equation 3) from the policy-
+maker’s point of view that designed the curricula of school grade G. However; it is not necessarily
+equal to the observed EPF. As the evidence on the decoupling between schooling learning gains
+summarised in the previous section indicates, the EPF implied in the curricula of school grade
+G is not necessarily the one that is effective for all students attending that school grade.
+The PPF formalises this empirical insight by establishing that only the children with a stock
+of knowledge in the domain of the learning profile (equation 5) will gain any learning from
+attending school grade G. From the definition of the learning profile for grade G we know that
+(cid:2) (cid:3)
+G w G w
+its domain is the set A ∈ π − , π + , which implies that children with a stock of
+i,G−1
+2 2
+G w G w
+knowledge A < π − or A > π + will not learn anything while attending school
+i,G−1 i,G−1
+2 2
+grade G. Informally, this means that students without the prerequisites for course G will not
+learn anything if they were to attend and complete grade G, while those with a knowledge level
+above that of the contents of grade G will also not learn anything from attending grade G.
+With these elements, it is possible to define the PPF as a function from the learning stocks
+of children at G-1 to the effective learning gains at the end of G (F : A → a ) with the
+i,G−1 i,G
+following form.
+G w
+0 if A < π −
+ i,G−1
+ 2
+P P F (LP (·), A ) = a = G w G w G w
+z + v(A − (π − )) if π − ≤ A ≤ π +
+i,G−1 i,G
+min i,G−1 i,G−1
+2 2 2
+G w
+0 if A > π +
+i,G−1
+(6)
+The PPF describes the effective EPF of school grade G in which the learning gains experi-
+enced by a student during a school grade depend on the learning stock accumulated up to the
+beginning of that grade. The non-linear gains allow the model to reproduce the decoupling
+between school and learning progression observed in the empirical data.
+So far, this model only characterises the learning gains from a school year. In order to
+replicate the process of learning accumulation through a school career, it is necessary to include
+the progression in the centre of the learning profiles of different school grades. Kaffenberger
+and Pritchett (2021, 2020b) propose doing so by including a “shift” parameter ρ that represents
+the expected learning gains of the median student according to the school curricula. Formally,
+this implies that from school grade G to school grade G + 1, the boundaries of the width of the
+learning profile increase according to the following equations:
+w w
+G G+1
+(π + ρ) − =π − (7)
+2 2
+w w
+G G+1
+(π + ρ) + =π + (8)
+2 2
+By modelling learning progression in this way, the PPF proposed by Kaffenberger and Pritch-
+ett (2021, 2020b) implies that the only input relevant to learning accumulation is schooling.
+In the context of EPFs, Todd and Wolpin (2003) suggest that the score of a standardised test
+at the end of a school grade is a sufficient statistic of the learning attained during the school
+grade. That is, the test score a summarises all the relevant information on the educational
+i,G
+inputs invested during school grade G and the previous stock of learning of student i. This
+property, however, no longer holds in the case of a structured model such as the PPF. That
+is because a structured model seeks to explicitly model the mechanisms through which each
+input influences the outcome variable. This implies that non-modelled mechanisms are assumed
+to be non-existent. Thus, the description of learning accumulation in the PPF, as proposed
+by Kaffenberger and Pritchett (2021, 2020b), ignores the role of parental investments during a
+child’s academic career, contradicting much of the literature on parenting and human capital
+investments (Doepke et al., 2019).
+I supplement this omission in the basic PPF model by explicitly modelling parental in-
+vestments in their children’s human capital, subject to the resource constraint of the parental
+household in the spirit of Ben-Porath (1967); Leibowitz (1974) and Todd and Wolpin (2003).
+Specifically, I model parental investments as a compensatory measure to guarantee that a child
+remains in the domain of the learning profile of the school grade she is attending, thus replicating
+the empirical finding that parental investments are complements to schooling (Heckman and
+Mosso, 2014).
+In this framework, the parents’ objective is to guarantee that their child has a knowledge
+stock sufficiently high enough to be in the domain of the learning profile of the school grade
+in which the child is enrolled. Their restriction is the amount of educational and economic
+resources available to them.
+This restriction can be expressed as the weighted sum of the educational and economic
+resources of the household. Let e be the educational attainment in school years of the parents
+of child i, and w the economic resources in the household of child i. Then, the total amount of
+educational resources of household i can be expressed in relative terms as the ratio between the
+observed attainment e and the maximum attainment in the population, max (e). Similarly, the
+total amount of economic resources in the household expressed in relative terms is the ratio of
+the difference between the maximum amount of resources max(w) and the amount of household
+i , w and the range of the economic resource distribution, max(w) − min(w). Then, the total
+amount of resources in household i is defined as follows.
+(cid:34) (cid:35)
+e | max (w) − w |
+i i
+β = θ + (1 − θ) 1 − (9)
+max (e) | max (w) − min(w)|
+Equation 9 is similar to what Neidhöfer et al. (2021) consider the attenuation capacity of
+households. However, a major difference between equation 9 and Neidhöfer et al. (2021) is that
+the former considers both educational and economic resources, following the literature on the
+determinants of parental investments (Heckman and Mosso, 2014; Prix and Erola, 2017). In
+contrast, Neidhöfer et al. (2021) only consider the role played by educational resources.
+Next, define A as the stock of learning of child i before the beginning of grade G. From
+i,G−1
+equation 1, this stock is a function of schooling, parental investments, peers and innate skills.
+Assuming that peer effects occur in the environments where schooling and parental investments
+take place and that innate ability is predetermined, the reduced form of A is given by:
+i,G−1
+A = f (B , S ) (10)
+i,t−1 i,t−1
+i,G−1
+Given that parents seek to minimise the distance between the knowledge stock of their chil-
+dren and the median knowledge stock in the domain of the learning profile of grade G, the
+optimal investment they have to perform is equivalent to the distance between π and the stock
+of knowledge at the end of grade G − 1, A penalised by the number of resources avail-
+i,G−1
+able to the household. Thus, the stock of knowledge at the beginning of grade G will be given by:
+∗ G
+A = A + β|π − A | (11)
+i,G−1 i,G−1
+i,G−1
+Redefining equation 8 to be in terms of the knowledge stock before the start of grade G,
+A , gives the following PPF, in which both the role of schooling and parental investments
+i,G−1
+are explicitly modelled:
+∗ G w
+0 if A < π −
+i,G−1
+ 2
+P P F (LP (·), A ) = a = ∗ G w G w ∗ G w
+z + v(A − (π − )) if π − ≤ A ≤ π +
+i,G
+i,G−1 min
+i,G−1 i,G−1
+2 2 2
+∗ G w
+0 if A > π +
+i,G−1
+(12)
+Finally, the accumulation of the learning for child i is given by the following equation.
+A = A + a (13)
+i,G i,G
+i,G−1
+The last parameter in the model is the dropout rate. Following Kaffenberger and Pritchett
+(2021, 2020b), the dropout rate is modelled as a function of the knowledge stock of the children.
+Specifically, the assumption is that the lower tail of the distribution of the knowledge stock
+drops out of school at a rate consistent with the observed dropout rates in the educational
+system. Let φ be the grade-specific cut-off value of the knowledge stock distribution below
+which students drop out., then the dropout function will be defined as
+1 if A ≤ φ
+q(A ) = (14)
+0 if A > φ
+Together, equations 8, 9, 11, 12, 13 and 14 form the learning progression model used in the
+rest of the paper.
+Estimating the costs of an instructional disruption
+In general terms, an educational disruption can have two types of costs: immediate and cu-
+mulative costs. The first set corresponds to the share of a school year lost because in-person
+instruction was suspended due to the occurrence of an external event (the underlying cause of
+the disruption). This share is equivalent to the share of the learning of a school year lost due to
+the in-person class suspension. The cumulative costs are those associated with the lags in the
+learning progression that a student might experience at further stages of her academic career due
+to the disruption of in-person instruction. This second set of costs occurs due to the immediate
+costs that might displace the student from the domain of the learning profile of the school
+grade she is attending. This would imply that the student fails to obtain the expected learning
+gains from that course and starts to lag behind the learning profile of the subsequent school grades.
+In the following subsections, I delve into the characterisation of both types of costs.
+Estimating the immediate learning cost
+To estimate the immediate costs, I generalise the approach proposed by Neidhöfer et al. (2021).
+This approach considers three significant components of the immediate costs of a learning
+disruption faced by a child. The first two components are defined at the lowest geographical
+level of aggregation for which data is available. The third allows translating the costs from the
+aggregate level to the individual level.
+The first component is the gross cost of the disruption, O. These costs are the sum of the
+share of the school year during which in-person classes did not occur, , and the days lost due
+to the incidence of the underlying cause of the instructional interruption, expressed as a share
+of the school year. This second component is the product of the days lost due to the underlying
+cause of the disruption, λ, and the probability of being affected by it, Ω. Thus, the expected
+value of the gross costs of the disruption is given by:
+d λ × Ω
+E(O) = + (15)
+D D
+The second component of the immediate costs is the government’s attenuation measures to
+diminish the impact of the instructional interruption Z. Following Neidhöfer et al. (2021), I model
+this as the product between their effectiveness in substituting a day of in-person instruction
+γ, and the probability of access to these attenuation measures, θ. I express these measures in
+terms of the share of the school year in which in-person instruction did not occur. The following
+equation gives the expected value of these public attenuation measures:
+E(Z) = (γ × θ) (16)
+With the gross immediate costs and the public attenuation measures, it is possible to con-
+struct the expected value of the net immediate costs faced by each household, k as follows
+d + λ × Ω − d(γ × θ)
+E(k ) = E(O) − E(Z) = (17)
+The immediate net costs are assumed to be homogeneous across the region of analysis. What
+produces differences at the individual level is the attenuation capacity of households. This is the
+household’s capacity to diminish the effect of the immediate net costs on the children’s learning
+process. Neidhöfer et al. (2021) define it as a negative function of the educational resources of the
+parents of the children. However, their formulation leaves aside the role of economic resources as
+enabling households to diminish the effects of a shock on a student’s learning process. Following
+the formulation of total resources of a household in equation 9, in equation 18, I define the at-
+tenuation capacity of the household as a negative function of the total resources in the household:
+(cid:32) (cid:34) (cid:35)(cid:33)
+e | max (w) − w |
+i i
+1 − β = 1 − θ + (1 − θ) 1 − (18)
+max (e) | max (w) − min (w)|
+The effective learning cost experienced by child i, C , will depend on the attenuation capacity
+of her household and the immediate net costs experienced in the region. I define the effective
+learning cost as the share of the learning gains from a school grade lost due to instructional
+disruption. Formally the expected value of the effective learning costs is given by :
+d + λ × Ω − d (γ × θ)
+E [C ] = (1 − β) × E (k ) = (1 − β) × (19)
+i r
+Equation 19 represents the immediate loss of learning experienced by children i in terms of the
+share of learning from a school grade that the students do not obtain due to the instructional
+disruption. This cost is included in the model of learning accumulation developed in the previous
+section to calculate the cumulative cost of the disruption. This calculation is explained in the
+following subsection.
+Estimating the cumulative learning costs of an instructional disruption
+The first step to estimate the cumulative effects of a transitory instructional disruption, is to
+introduce the immediate costs into the model of learning accumulation. Assuming that the
+transitory shock occurred when child i attended school grade G, the accumulation of learning
+described in equation 12 will be affected by costs E [C ]. This means that the stock of learning
+at the end of grade G will be given by:
+A = A + (1 − E [C ]) a (20)
+i,G i i,G
+i,G−1
+Using equation 20 as the accumulation rule at grade G and afterwards employing the model
+of learning progression defined by equations 8, 9, 11, 12, 13 and 14 for the rest of the school grade
+allows simulating the learning trajectory under the effects of the instructional shock. If the end
+of the learning trajectory is grade T , then the stock of learning resulting from this trajectory for
+child i will be A .This is the stock of learning under the effects of the interruption. The model
+(cid:100)
+i,T
+defined by equations 8, 9, 11, 12, 13 and 14 can then be used to construct a counterfactual
+trajectory in which the shock never took place. The resulting learning stock is denoted by A .
+i,T
+Similarly, it is possible to define a counterfactual trajectory that considers the learning
+progression expected by the educational system. Equation 8 define this progression through the
+parameter ρ, which defines the learning gain for each school grade implicit in the progression of
+the school curricula. Thus, for T school grades the stock of learning accumulated at the end of
+this learning progression will be defined by
+A = T ρ (21)
+i,T
+With these three learning stocks, it is possible to estimate the cumulative learning costs
+of an instructional disruption. The effective cumulative learning cost (ECC) is estimated as
+the difference between the learning stock at T of the trajectory without a shock, A , and the
+i, T
+(cid:91)
+learning stock of the trajectory that considers the effect of the shock, A . This difference is
+i, T
+expressed in terms of the learning progression from one grade to the next one implied in the
+school system curricula ρ. Thus, the difference is measured as the years of learning progression
+lost due to the shock with respect to a scenario without a shock. Formally,
+A − A
+(cid:100)
+i,T i,T
+ECC = (22)
+It is also possible to estimate the cumulative cost with respect to the median progression im-
+plied by the school system curricula (SCC). The SCC is the difference between the learning stock
+at T of the trajectory that considers the effect of the instructional shock and the learning stock
+accumulated under the learning progression of the system given by ρ. As before, the difference
+is expressed in terms of ρ, which allows interpreting the result as the years of learning progres-
+sion lost due to the shock with respect to the expected progression of the system. Formally, this is
+A − A
+(cid:100)
+i,T i,T
+SCC = (23)
+In the following section, I provide an empirical illustration of the model for estimating the
+immediate and cumulative costs of the instructional disruption in Mexico due to the COVID-19
+Pandemic. The empirical illustration seeks to highlight the role of the additions to the basic
+model and the robustness of the estimations to changes in several key parameters.
+An application: Mexican children during the COVID-19 Pandemic
+Data and Calibration of the Learning Accumulation Model.
+The first step in bringing the model described by equations 8, 9, 11, 12, 13 and 14 to produce an
+estimate of the potential learning effects of the COVID-19 pandemic in Mexico is to calibrate
+the learning progression model to the observed data on learning acquisition in the country. For
+this exercise and following previous exercises (Kaffenberger and Pritchett, 2020b, 2021), I use
+as a measure of learning acquisition the math scores of a nationally implemented standardised
+test. For this exercise, I use the average test score and standard deviation of the 2017 math
+component of the National Plan for the Evaluation of Learnings (Programa Nacional para la
+Evaluación de los Aprendizajes, PLANEA in Spanish) for students in ninth grade. This test
+has information at both the national and regional level, allowing me to calibrate a PPF for
+each one of the regions of the country . In addition, due to institutional changes in the coun-
+try, the test from 2017 is the most recent information on math learning for students in ninth grade.
+The model has four parameters to be calibrated: ρ, z , z and w. For the value of w,
+min max
+I follow Kaffenberger and Pritchett (2020b), who assume that the learning profile covers all
+students enrolled in the system at the beginning of their educational trajectory. This assumption,
+although extreme, implies overestimating the coverage of the learning profile, thus implying an
+underestimation of the impacts of an instructional disruption. This leaves three parameters to
+be calibrated: ρ, z , and z
+min max
+In the Mexican context, the parameter ρ is defined at the national level, as the federal
+ministry of education determines the school curricula for primary and secondary education.
+Hence, to obtain its value, I calibrate a PPF at the national model by selecting the values of
+ρ, z , and z that produce a learning trajectory that at the end of ninth grade produces
+min max
+the values of the average score and standard deviation as close as possible to those observed
+in the standardised test. With this value of ρ, I calibrate the values of, z , and z for
+min max
+each region using the same methodology as before: selecting the values of z , and z that
+min max
+Given the data restrictions from the Espinosa Rugarcia Social Mobility in Mexico Survey 2017 I am
+restricted to only consider five aggregate regions of the country composed in the following way: the North
+region consists of Baja California, Sonora, Chihuahua, Coahuila, Nuevo León and Tamaulipas; North West
+consists of Baja California Sur, Sinaloa, Nayarit, Durango and Zacatecas; the Center North region is form by
+Jalisco, Aguascalientes, Colima, Michoacán and San Luis Potosí; the Center region is formed by Guanajuato,
+Querétaro, Hidalgo, Estado de México, ; Mexico City, Morelos, Tlaxcala, and Puebla; the South region is formed
+by Guerrero, Oaxaca, Chiapas, Veracruz, Tabasco, Campeche, Yucatán and Quintana Roo.
+produce a learning trajectory that in ninth grade replicates as close as possible the observed
+the calibrated parameter values and the comparison between the observed scores and those
+derived from the calibrated models.
+North North West Center North Center South
+Average math score in PLANEA 2017
+492 494 513 511 483
+(Total sample)
+Average math score 483.824 492.5117 497.2913 503.016 466.338
+(Model) (0.5367) (0.7484 (0.4891) (0.4660) (1.2817)
+w 153 153 153 153 153
+z 37.7 37.7 38.4 38.4 36.5
+min
+z 71.63 71.63 72.96 72.96 69.35
+max
+ρ 54 54 54 54 54
+v 0.2218 0.2218 0.2259 0.2259 0.2147
+Initial distribution N(0,20) N(0,20) N(0,20) N(0,20) N(0,20)
+To calculate the economic and educational resources of the household (equation 9), I use the
+data from the Espinosa Rugarcia Social Mobility in Mexico Survey 2017 (ESRU-EMOVI 2017).
+This survey is designed to measure social mobility in Mexico and its regions and consequently
+has extensive information about the Mexican population’s living conditions and parental charac-
+teristics. Furthermore, the survey is representative at the national and regional level for the
+population between 25 and 64 years old, recovering information about the conditions of the
+households they inhabited when 14 years old. However, I am only interested in the information
+of the youngest cohort (25 to 30 years old) as the conditions of their households of origin are
+closest to the characteristics of the current Mexican households. Consequently, the sample
+employed diminishes from 17,665 to 2,474 observations.
+It is important to note that although the conditions of these households are not necessarily
+equivalent to the conditions of current Mexican households, they represent a sample of households
+of which ample information about conditions of origin is available and that does not suffer from
+urban residence, and the years of school attainment of the respondent and both parents.
+To measure the educational resources in the household, I use the average years of education
+of both parents or those of the present parent in single-parent households. In this, my measure
+Variable National North North West Center North Center South
+Years of school of interviewee 11.8453 11.4828 12.2753 11.6716 12.5643 10.9050
+(Regional mean) (0.1291) (0.2009) (0.2578) (0.2989) (0.2396) (0.3074)
+Years of school of the father 7.5955 8.1953 6.7974 7.4127 8.8788 5.4875
+(Regional mean) (0.2115) (0.2568) (0.3377) (0.3669) (0.4235) (0.3393)
+Years of school of the mother 7.2009 8.1953 7.1173 7.2323 8.2746 5.0322
+(Regional mean) (0.1896) (0.2473) (0.3714) (0.3350) (0.4236) (0.3308)
+Female population 0.5219 0.5307 0.5139 0.5217 0.5160 0.5284
+(Share of regional population) (0.0141) (0.0242) (0.0321) (0.0352) (0.0273) (0.0264)
+Urban community of origin 0.7297 0.8955 0.6048 0.7135 0.8374 0.4953
+(Share of regional population (0.0327) (0.0244) (0.0566) (0.0449) (0.0298) (0.0411)
+Indigenous population 0.1085 0.0525 0.0254 0.0641 0.0656 0.2618
+(Share of regional population) (0.0123) (0.0161) (0.0146) (0.0169) (0.0149) (0.0326)
+Regional population 0.1588 0.0673 0.1310 0.4137 0.2292
+(Share of national population) (0.0184) (0.0098) (0.0163) (0.0361) (0.0213)
+Notes: Data from ESRU-EMOVI 2017 for respondents between 25 and 30 years old. Standard errors in parenthesis.
+of educational resources is the same as that employed by Neidhöfer et al. (2021). In the case of
+economic resources, I use a household asset index to measure them. Household asset indices have
+been employed in the development literature for analysis regarding the distribution of economic
+resources when other variables such as income are not available (see Filmer and Pritchett (2001);
+McKenzie (2005); Wittenberg and Leibbrandt (2017); Poirier et al. (2020)). In this case, as
+ESRU-EMOVI 2017 only records the ownership of an asset, I employ Multiple Correspondence
+Analysis (MCA) in the construction of the index. MCA uses relative frequencies across the
+binary variables considered to identify an underlying structure across the observations in terms
+of ownership of the assets. This underlying structure can produce a rank of the individuals
+assets employed in the construction of the index. With this data on educational and economic
+resources, I calculate equation 9 for all individuals in the sample.
+The household has access to the water supply The household has a washing machine
+The household has an oven The household has a landline telephone
+The household has a television The household has a computer
+The household has a refrigerator The household has a VHS
+The household has a microwave The household has cable television
+The household owns a water heater The household owns a vacuum cleaner
+A member of the household owned
+A member of the household owns a car
+the housing facilities inhabited
+A member of the household A member of the household
+has a bank account. owns a credit card.
+The household hires a domestic worker.
+Calculation of the immediate costs
+The first step to calculate the immediate learning costs of the COVID-19 pandemic is to calculate
+the net costs as defined by equation 15 above. The net costs are composed of the direct costs
+COVID-19 in terms of days of in-person instruction lost and the effect of the attenuation
+measures deployed by the government. Moreover, the direct costs of COVID-19 consist of the
+school days under remote instruction, d, plus the expected value of the days lost due to the
+incidence and mortality of COVID-19. τ , both expressed as a share of the days in a school year
+(190 in the Mexican case). Formally, this is
+d + τ
+E [O ] = (24)
+In the case of the COVID-19 pandemic, the interruption of in-person instruction lasted the
+last third of the 2019-2020 school year (60 days) and the whole 2020-2021 school year. Thus, we
+calculate equation 22 for two school years, where in the first one d = 60 and in the second one
+d = 190. Let P (s = 1) be the probability of a household member being sick of COVID-19 and
+P (m = 1) be the probability that a household member died of COVID-19 for inhabitants of
+s m
+region r and define τ = 5 as the number of school days lost due to sickness and τ = 15 the
+school days lost due to the mourning of the death of a household member. Then the expected
+value of the days lost due to the incidence and mortality of COVID-19 will be given by equation
+25 for inhabitants of region r
+s m
+τ = τ × P (s = 1) + τ × P (m = 1) (25)
+r r r
+m s
+In which the values for τ and τ are taken from Neidhöfer et al. (2021). The probabilities
+P (s = 1) and P (m = 1) are calculated with the data for the cumulative incidence and cumu-
+r r
+lative mortality of COVID-19 in region r from the official government records on the spread
+probabilities for each school year affected by the pandemic.
+The second component of the net costs is the effect of the attenuation measures deployed by
+the government to reduce the impact of the instructional displacement on learning (E (Z) in
+equation 16). In the case of the COVID-19 pandemic, the public attenuation measures taken by
+the government were two. The first was a program of remote instruction implemented through
+televised classes in which the course syllabus materials were covered (Ramírez-Raymundo et al.,
+2021). This was to act in tandem with the second component, which was the displacement of
+all instruction to a remote instruction model through internet-based platforms and telephone
+contact between parents, children and teachers (Diario Oficial de la Federación, 2020). However,
+the government did not expand the coverage of the internet, t.v. or telephone services.
+A difficulty in modelling these two interventions is that there is no data on their effectiveness
+as substitutes for one day of in-person instruction. This limitation forces me to make different
+assumptions regarding their effectiveness. Let α be the share of in-person instruction that both
+interventions are able to substitute jointly and define φ and δ as the effectiveness parameter of
+each intervention (δ for the televised transmissions, φ for the remote instruction model) such
+that φ + δ = α. I simulate three cases α = 0, α = 0.5, and α = 1. As stated in equation 16, this
+substitutability capacity has to be weighted by the probability of access to the interventions
+by the relevant population, in this case, the population of region r. The relevant probabilities
+are, in this case, the probability that a household has access to a digital television, γ , the
+joint probability that a household has a computational device and internet access, κ , and
+the probability that the student remained in contact with their teachers λ. Thus, the formal
+expression of these attenuation policies is in equation 26.
+d [(δ × γ ) + (ψ × κ × j)]
+r r
+E [Z ] = (26)
+I calculate the probabilities γ and κ using information from the Mexican Population Census
+r r
+from 2020. At the same time, I calculate the probability λ with the information from the
+ENCOVID-ED, a special telephone survey designed to gather information on the conditions
+under which remote learning took place (Instituto Nacional de Estadística y Geografía, 2021).
+Substituting equations 24 and 26 into equation 19 provides the equation that I use to
+calculate the immediate costs of the pandemic as a share of a school year of learning. Formally,
+this is :
+d + τ − d [(δ × γ ) + (ψ × κ × λ)]
+r r r
+E [C ] = (1 − β ) × (27)
+i i
+three scenarios considered for the parameter α. In the best case scenario, when α = 1, the
+average immediate cost at the national level represents a third of a school year of learning. In
+the worst case scenario, when α = 0, the costs represents a 0.9583 of a school year, where the
+potential maximum is of 1.3 years of learning. A first pattern observed in the data is that the
+assumption made about the remote instructional model’s effectiveness in substituting in-person
+instruction plays an important role in the size and distribution of the cost. The larger the
+assumed effectiveness, the larger is the regional difference in the average immediate learning
+cost. For instance, if the remote instruction learning model is assumed to be a perfect substitute
+for in-person learning (α = 1), the average immediate costs in the South represents 1.79 times
+the cost in the Center. On the other hand, if the substitutability is assumed to be null between
+those two modes of instruction (α = 0), the cost in the South represents 1.18 times the cost in
+the Center.
+Average effective immediate cost Average effective immediate cost Average effective immediate cost
+Region
+(α = 1) (α = 0.5) (α = 0)
+0.2964 0.6273 0.9583
+National
+(0.0052) (0.0066) (0.0085)
+0.2208 0.5695 0.9183
+North
+(0.0022) (0.0056) (0.0091)
+0.2957 0.6349 0.9741
+North West
+(0.0047) (0.0102) (0.0156)
+0.2619 0.6029 0.9440
+Center North
+(0.0039) (0.0090) (0.0141)
+0.2490 0.5789 0.9089
+Center
+(0.0038) (0.0089) (0.0140)
+0.4469 0.7598 1.0726
+South
+(0.0063) (0.0108) (0.0152)
+Note: Authors’ calculations corresponding to equation 27. The effective immediate cost corresponds to the share of a school year of learning
+lost due to the transition to remote learning. Clustered standard errors in parenthesis. The clusters are defined at the primary sampling unit.
+This pattern is a consequence of the interventions’ effectiveness and the inequalities in the
+probability of access to them. As Campos-Vázquez and Monroy-Gómez-Franco (2016) and
+Delajara et al. (2021) show, the South region of the country is the region with lower social
+mobility rates in absolute terms and with higher levels of multidimensional poverty in Mex-
+ico. Consequently, the probability of access to the policy interventions is the smallest in the
+effectiveness of a policy intervention increases, the greater the effect inequalities in access to
+them have in increasing or decreasing the cost of the instructional interruption. In other words,
+interventions that are highly effective in attenuating the cost of the instructional interruption
+increase the opportunity cost of not having access to them. This highlights an important factor
+in policy: even if the policy implemented is a perfect substitute for in-person instruction, gaps in
+access to the policy have to be closed for the policy to attenuate the learning cost of the disruption.
+average, diminish the immediate cost of the disruption by 26% of the potential maximum. This
+is calculated as the share of the potential maximum effective immediate cost (1.3 of a school year
+of learning in this case) that the difference between the maximum possible loss and the average
+effective cost when α = 0 represents. The average maximum attenuation occurs in the Center
+region, where on average, households can reduce effective immediate cost by 30%, whereas in
+the South, the private resources of the household only can attenuate 17% of the cost. This
+highlights the complementarity between public and private attenuation measures and the limits
+of a response to an instructional disruption that relies exclusively upon the households’ resources.
+Before proceeding to the estimation of the cumulative costs, an important question is how
+relevant is the inclusion of economic resources in the attenuation capacity of the household when
+different weights to the role of economic resources in the household’s total resources (equation 8).
+I consider three scenarios: θ = 1, which is the scenario Neidhöfer et al. (2021) consider, θ = 0.5
+which is my preferred estimation and θ = 0 which is a scenario where the only determinant of
+different values of α.
+(θ = 1) produces the highest attenuation capacity and, consequently, the lowest effective im-
+mediate cost. In contrast, when only the economic resources of the household are considered
+relevant (θ = 0), the result is the highest effective immediate costs. This suggests that although
+both types of resources are related, they do not entirely overlap. In particular, it suggests that
+the lower bound of the educational resources is higher than that of economic resources. This
+is consistent with the evidence regarding the evolution across generations of both educational
+attainment and economic resources in Mexico. Whereas there has been convergence in educa-
+tional attainment, the same is not true regarding income or other types of economic resources.
+(de la Torre and Vélez-Grajales, 2016). Thus, it seems a better approach to include both types
+(National average effective immediate cost)
+θ = 1 θ = 0.5 θ = 0
+0.2827 0.5979 0.9130
+α = 1
+(0.0055) (0.0080) (0.0112)
+0.2964 0.6273 0.9583
+α = 0.5
+(0.0052) (0.0066) (0.0084)
+0.3101 0.6568 1.0035
+α = 0
+(0.0052) (0.0061) (0.0076)
+Author’s calculations. θ = 1 corresponds to the case where household resources are composed exclusively of
+educational resources, while θ = 0 represents the case where household resources are composed only of economic
+resources. α = 1 corresponds to the case where the remote instruction is a perfect substitute of in person classes,
+α = 0 is the case where remote instruction has no effect on learning. The effective immediate cost corresponds
+to the share of a school year of learning lost due to the transition to remote learning.
+of resources when possible.
+For the estimation of the cumulative costs, I consider only the specification that considers
+(θ = 0.5)
+Calculation of the cumulative costs
+To estimate the potential cumulative costs of the COVID-19 pandemic, I simulate the process
+of learning accumulation in which the immediate costs estimated in equation 27 affects the
+learning acquired during sixth and seventh grade (sixth grade of primaria and first grade of
+secundaria in the terminology of the Mexican education system) and progresses up to ninth grade.
+These simulations are done using the calibrated PPF for the Mexican case, varying the mag-
+nitude of the costs introduced in the sixth and seventh grades according to the student-specific
+costs estimated in the previous subsection (following equation 20). The counterfactual learning
+stock for student i will be the mean value of the distribution produced by this simulated learning
+progression up to ninth grade. Then, the cumulative costs with respect a trajectory without
+pandemic are calculated following equation 22 and with respect to the school system expected
+trajectory using equation 23.
+Without household compensating investment With household compensating investment
+Region
+α = 1 α = 0.5 α = 0 α = 1 α = 0.5 α = 0
+0.9870 1.4479 2.0505 0.1871 0.4711 0.9040
+National
+(0.0170) (0.0199) (0.0178) (0.0087) (0.0129) (0.0158)
+0.8043 1.2391 1.8422 0.0773 0.1608 0.9178
+North
+(0.0097) (0.0099) (0.0097) (0.0024) (0.0019) (0.0183)
+1.0624 1.4034 2.0195 0.2154 0.4065 0.7787
+North West
+(0.0133) (0.0177) (0.0147) (0.0069) (0.0064) (0.0154)
+0.7950 1.1504 1.7660 0.1803 0.3949 0.7575
+Center North
+(0.0089) (0.0138) (0.0253) (0.0042) (0.0026) (0.0076)
+0.7946 1.2542 1.8789 0.1270 0.4003 0.7601
+Center
+(0.0099) (0.0109) (0.0099) (0.0017) (0.0036) (0.0089)
+1.5217 2.0948 2.6479 0.4622 0.8597 1.2577
+South
+(0.0256) (0.0254) (0.0239) (0.0108) (0.0212) (0.0354)
+Author’s calculations. The first three columns refer to the estimations of the cumulative costs with a PPF without parental
+compensation (that is a model without equation 11). The second three columns refer to the model that includes equation 11.
+α = 1 corresponds to the case where the remote instruction is a perfect substitute of in person classes, α = 0 is the case where
+remote instruction has no effect on learning. The effective immediate cost corresponds to the share of a school year of learning
+lost due to the transition to remote learning. Jackknife standard errors in parenthesis.
+under different assumptions regarding the effectiveness of the remote instruction policy adopted.
+The first set corresponds to a model of learning accumulation without an active role for parents
+in investing in their children to attenuate the gap with respect to the learning progression of the
+school syllabi. This is the original learning accumulation model as proposed by Kaffenberger
+and Pritchett (2020, 2021) without equation 20. The second set of results includes equation 18
+and, as a result, consider the case in which parents invest in their children’s learning to minimise
+the gap with respect to the school system learning progression. This comparison allows me to
+examine how sensitive is the model to the inclusion of an active parental investment function,
+which would bring the PPF model closer to the results from the parenting literature (Doepke et
+al., 2019).
+In the first scenario, that without parental investments, the national average of the expected
+cumulative cost of the instructional disruption supposed by the COVID-19 pandemic ranges
+between the loss of one year of learning (if α = 1, the best-case scenario) and two years of
+learning (if α = 0, the worst-case scenario) with respect to a learning progression without a
+shock. In the second scenario, which considers the role of parental investments throughout the
+learning progression, the values are 0.1871 of a school year of learning for the best-case scenario
+and 0.9040 of a school year of learning for the worst-case scenario. In the two scenarios, these
+national averages hide substantial regional heterogeneity, and in particular, the south of the
+country is expected to be the most affected region regardless of the scenario considered.
+assumptions
+Without household compensating investment With household compensating investment
+Region
+α = 1 α = 0.5 α = 0 α = 1 α = 0.5 α = 0
+0.9162 1.3771 1.9797 0.1163 0.4003 0.8332
+National
+(0.0315) (0.0340) (0.0319) (0.0252) (0.0289) (0.0335)
+0.8433 1.2782 1.8812 0.0383 0.1998 0.9568
+North
+(0.0060) (0.0056) (0.0048) (0.0096) (0.0098) (0.0281)
+0.9418 1.2829 1.8989 0.0948 0.2859 0.6581
+North West
+(0.0108) (0.0078) (0.0071) (0.0202) (0.0197) (0.0288)
+0.5860 0.9413 1.5569 0.0288 0.1859 0.5484
+Center North
+(0.0056) (0.0065) (0.0253) (0.0124) (0.0106) (0.0163)
+0.4795 0.9391 1.5639 0.1881 0.0852 0.4450
+Center
+(0.0038) (0.0055) (0.0036) (0.0083) (0.0118) (0.0173)
+1.8858 2.0948 2.6479 0.8263 1.2238 1.6218
+South
+(0.0058) (0.0045) (0.0048) (0.0340) (0.0446) (0.0587)
+Author’s calculations. The first three columns refer to the estimations of the cumulative costs with a PPF without parental
+compensation (that is a model without equation 11). The second three columns refer to the model that includes equation 11.
+α = 1 corresponds to the case where the remote instruction is a perfect substitute of in person classes, α = 0 is the case where
+remote instruction has no effect on learning. The effective immediate cost corresponds to the share of a school year of learning
+lost due to the transition to remote learning. Jackknife standard errors in parenthesis.
+As expected, the cumulative cost is smaller in the model that considers parental investments
+throughout a child’s learning trajectory. However, the role of parental investments in mitigating
+the widening of the initial gap caused by the instructional disruption is more apparent when
+comparing the relationship between immediate and cumulative costs between both models. For
+example, under the assumption that no parental investment occurs, when α = 1, the cumulative
+costs are 3.32 times the immediate costs. Similarly, when α = 0, the average cumulative cost at
+the national level is 2.1397 times the immediate cost. In contrast, when parents are assumed
+to actively try to attenuate the disruption throughout the children’s learning progression, the
+cumulative costs are smaller than the immediate cost. In this case, when α = 1 the national
+average cumulative cost represent s 0.6312 times the national average immediate cost, whereas
+when α = 0 the national average cumulative cost represents 0.9433 times the national average
+immediate cost.
+However, it is essential to highlight that there are persistent costs of temporary instructional
+disruption even when parental investments are included in the model. This result is consistent
+with the empirical literature reviewed in the introduction and highlights the role of policy
+interventions in preventing this persistence. As my results indicate, parental investments can
+prevent the cumulative costs from increasing with respect to the immediate cost, but they are not
+enough to completely attenuate the cumulative effect of the temporal disruption. This is particu-
+larly true for families with fewer resources and, thus, a lower investment capacity in their children.
+(Gini coefficient)
+Without household compensating investment With household compensating investment
+Region
+α = 1 α = 0.5 α = 0 α = 1 α = 0.5 α = 0
+0.1935 0.1529 0.1015 0.3877 0.2896 0.1828
+National
+(0.0046) (0.0037) (0.0026) (0.0057) (0.0065) (0.0046)
+0.1061 0.0884 0.0575 0.2863 0.1719 0.1869
+North
+(0.0065) (0.0052) (0.0035) (0.0121) (0.0077) (0.0098)
+0.0820 0.0805 0.0495 0.2187 0.1095 0.1168
+North West
+(0.0052) (0.0044) (0.0028) (0.0101) (0.0059) (0.0051)
+0.0879 0.0783 0.0555 0.1852 0.0817 0.0884
+Center North
+(0.0055) (0.0046) (0.0028) (0.0094) (0.0036) (0.0039)
+0.0992 0.0644 0.0402 0.1291 0.0773 0.0906
+Center
+(0.0068) (0.0046) (0.0027) (0.0066) (0.0049) (0.0051)
+0.1179 0.0846 0.0662 0.1629 0.1724 0.1894
+South
+(0.0055) (0.0037) (0.0028) (0.0066) (0.0049) (0.0051)
+Author’s calculations. The first three columns refer to the estimations of the cumulative costs with a PPF without parental
+compensation (that is a model without equation 11). The second three columns refer to the model that includes equation 11.
+α = 1 corresponds to the case where the remote instruction is a perfect substitute of in person classes, α = 0 is the case where
+remote instruction has no effect on learning. The effective immediate cost corresponds to the share of a school year of learning
+lost due to the transition to remote learning. Jackknife standard errors in parenthesis.
+To analyse the effect of varying the assumptions on parental compensating investments and
+costs under the scenarios analysed above. As expected, the inclusion of parental investments
+throughout the learning progression results in a more unequal distribution of the cumulative
+costs than when this factor is not considered. The reason is that when this factor is excluded,
+the inequality in household resources only affects the immediate costs, after which it stops
+playing a role in the model. However, when parental investments are included, the inequality
+in their distribution translates directly into inequality in the cumulative costs experienced by
+can be seen, those who lie below the median of the economic and educational resources joint
+distribution are the ones who suffer the most persistent effect in terms of magnitude. In contrast,
+those at the top of the distribution can recover from the short-run shock and do not experience
+a persistent negative effect.
+The results from my preferred specification (that which includes parental attenuation) suggest
+that as a result of the temporary instructional disruption, the knowledge stock of the Mexican
+children who experienced the shock at sixth grade will be, on average, between 0.1871 and
+0.9040 school years of learning when they reach ninth grade. In other words, in the best-case
+scenario, at the end of their primary education cycle, the cohort who experienced the shock
+in sixth grade will have the learning stock equivalent to a student who missed two months of
+schooling in a scenario without the pandemic. In the worst-case scenario, they will have the
+learning stock of a child who missed almost an entire year of in-person instruction. However,
+this average loss in years of learning masks substantial regional heterogeneity. For the children
+from the Centre region, the expected loss of years of learning lies between 10% (a month of
+in-person instruction) and 76% of a school year of learning progression (7 months of instruction).
+In contrast, the expected cost for the children from the South region lies between 40% of a
+school year of learning (about four months of instruction) and a school year and a quarter of
+learning. These results already consider the role of parental effort in mitigating the ripple effects
+of the temporary disruption, highlighting the importance of complementary public policy aimed
+at reinforcing that mitigation effort.
+Final Remarks
+This paper’s first set of implications has to do with the recent literature on models of instruc-
+tional disruptions and their costs (Kaffenberger and Pritchett, 2020b, 2021; Kaffenberger, 2021;
+Neidhöfer et al., 2021). Firstly, this literature has sought to explicitly model the mechanism
+through which instructional disruptions affect learning acquisition both in the short and the long
+run. However, as these papers come from two different strands of the literature (development
+economics and education studies), their modelling strategies have remained isolated from each
+other. In this paper, I show that the insights from both types of models can be put together in
+a cohesive framework that matches the empirical findings that initially motivated the literature.
+Secondly, in this paper, I show that it is possible to integrate continuous parental investments
+into this framework, supplementing a gap in the literature and closening the gap between
+learning progression models based on the Potential Pedagogical Function and more traditional
+economic models. The inclusion of this factor does not prevent the model from replicating the
+persistence effect of temporary shocks into the learning acquisition process. Furthermore, the
+model highlights that the explicit inclusion of economic resources as part of the resources of the
+household for attenuating the impacts of a temporary shock provides information not captured
+by the educational resources, which has been the only variable used so far in the literature
+(Neidhöfer et al., 2021).
+The second set of implications refers to the empirical application of the model. The results
+suggest that the instructional disruption caused by the COVID-19 pandemic will cause a
+persistent learning loss with respect to the counterfactual without the disruption in the Mexican
+case. The magnitude of the loss varies by region and depends on the performance of the remote
+learning model implemented as a substitute for in-person classes. If the remote instruction
+model were a perfect substitute, the average loss in the country for the cohort affected would be
+equivalent in terms of learning gains lost to missing a month of in-person classes. However, if
+the remote instruction model failed, the loss would be, on average, equivalent to missing a whole
+year of learning. These average results are worse in the south of the country, a region that is
+already behind the rest of the country in learning progression and scholarly attainment. Given
+that these results already consider the effort performed by households in mitigating this learning
+loss, the policy implications are clear. In order to minimise the effect of the pandemic shock
+in the future stock of learning of the affected children, it is necessary to implement a remedial
+education policy geared towards the students who inhabit households with less resources.

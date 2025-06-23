@@ -1,0 +1,2884 @@
+Explaining Rural Conservatism:
+Political Consequences of Technological Change in the Great Plains1
+Word Count: 11981
+Aditya Dasgupta2 Elena Ruiz Ramirez3
+ABSTRACT
+How did rural areas become conservative electoral strongholds in the US and other advanced
+capitalist economies? This paper argues that technological change transformed not only
+agriculture but rural political preferences during the twentieth century. It studies a natural
+experiment: the post-WWII introduction of improved groundwater pumps and center-pivot
+irrigation, which enabled farmers to irrigate otherwise arid land in the Great Plains. These
+innovations mainly benefited counties overlying the Ogallala aquifer – a pattern we validate with
+computer-vision estimates of technology diffusion using satellite imagery. Difference-in-
+difference analyses exploiting this differential impact indicate that technological change played a
+large role in the region’s long-term conservative electoral transformation. Additional tests,
+including comparison of individual policy preferences inside/outside of the Ogallala aquifer,
+support the hypothesis that this was due to increasingly capital-intensive agriculture and the
+growing power of agribusiness interests which benefit from conservative economic policies. The
+findings demonstrate how new technologies made new politics in rural America.
+1 For feedback and helpful discussion, we thank Gary Cox, Carles Boix, Mark Brilliant,
+Christopher Ojeda, Adriane Fresh, Jeff Jenkins, Devesh Kapur, Marika Landau-Wells, Debra
+Leiter, Bryan Leonard, Tesalia Rizzo, Melissa Rogers, Pavi Suryanarayan, Jessica Trounstine,
+Steven White, Daniel Ziblatt and seminar participants at: Johns Hopkins SAIS; Hoover
+Institution, Stanford University; WZB Social Science Center; PIPE workshop, University of
+Southern California; Historical Political Economy working group meeting, Cornell University;
+HPE virtual workshop; and APSA annual meeting 2020. Thanks to Osvaldo Valencia and Iven
+Morales for valuable research assistance. Thanks to Carlos Algara for sharing data and librarians
+at the National Archives for assistance with maps.
+2 Assistant Professor, Department of Political Science, University of California, Merced. W.
+Glenn Campbell and Rita Ricardo-Campbell National Fellow, Hoover Institution, Stanford
+University. Corresponding author. Email: adasgupta3@ucmerced.edu. Mail: 5200 North Lake
+Road, Merced, CA, 95343, USA.
+3 PhD Student, Department of Political Science, University of California, Merced. Email:
+eramirez278@ucmerced.edu. Mail: 5200 North Lake Road, Merced, CA, 95343, USA.
+1. Introduction
+Conservative parties thrive electorally in rural areas in the United States and other advanced
+capitalist economies (Cramer 2016; Rodden 2019). Especially given the political over-
+representation of rural areas, the countryside is a critical source of electoral support for right-
+wing political parties. Yet this was not always the case historically (see e.g. Lipset 1950;
+Luebbert 1987). In the case of the United States, rural voters were relatively centrist in their
+politics and often supported left-wing politicians, like those belonging to the Populist party, in
+the late nineteenth and early twentieth century.
+What, then, explains the long-term transformation of rural areas into conservative electoral
+strongholds? In an important debate stoked by Frank’s (2007) book – which asked “What’s the
+Matter with Kansas?” – scholars have puzzled over the growing dominance of the conservative
+Republican party in comparatively poor and rural states, a phenomenon that appears to contradict
+canonical class-based theories of voting. Yet closer inspection of micro-level survey data
+demonstrates that within these states, it is affluent individuals that are most conservative in their
+voting patterns (see e.g. Bartels 2006; Gelman 2009).
+Building on these debates, this paper explores the role of technological and economic change in
+political change in rural areas. Long-term technological change transformed American
+agriculture in the twentieth century with innovations ranging from the improvement of crop and
+animal varieties, to the refinement of fertilizers and pesticides, to various forms of
+mechanization, to the development of new methods for harnessing water for irrigation, especially
+groundwater (Anderson 2009; Olmstead and Rhode 2001, 2008; Worster 1992). Due to
+technological change, agricultural output quadrupled over the twentieth century in the US despite
+an 80 percent decline in labor usage (Pardey and Alston 2021).
+Long-term technological change made agriculture more productive but also more capital-
+intensive, generating economies of scale which resulted in the winnowing of unproductive and
+precarious family farms, and their replacement by highly productive, business-like farms as well
+as the spatial agglomeration of agricultural industries – known jointly as agribusiness – which
+benefit from conservative economic policies, including limited government regulation and pro-
+business tax and spending policies. The growing economic and political power of agribusiness
+interests in rural areas has, this paper argues, played an important role in the long-term
+conservative transformation of rural political preferences and the increasing electoral success of
+the Republican party in rural areas.
+To test the argument, this paper exploits a historical natural experiment in the American Great
+Plains: the post-war introduction of new irrigation technologies, which enabled farmers to
+profitably irrigate otherwise arid land – but only in areas with access to groundwater (Edwards
+and Smith 2018; Hornbeck and Keskin 2014; Splinter 1976). Without irrigation, the arid climate
+of the Great Plains is suitable mainly for extensive agriculture (attempts at intensive farming
+without controlled irrigation were partially responsible for the Dust Bowl which followed the
+droughts of the 1930s). Though the Ogallala aquifer, one of the largest in the world, spans a large
+part of the Great Plains, until the 1940s available technology made it uneconomical to pump and
+distribute this groundwater on a large scale.
+Following World War II, two innovations unleashed a process of technological change that
+transformed the Great Plains. The first was the adaptation of petroleum engines to groundwater
+extraction at scale through deep well pumps. The second was the invention of center-pivot
+irrigation, a system for irrigating large circular fields from a central well with a rotating arm
+affixed with sprinklers. Together, these innovations – “perhaps the most significant mechanical
+innovation in agriculture since the replacement of draft animals by the tractor” (Splinter 1976, p.
+90) – enabled the spread of irrigation and the emergence of highly productive, capital-intensive
+farms operated by increasingly wealthy farmers as well as the spatial agglomeration of
+downstream industries like animal feedlots and meatpacking plants. As a result, the Great Plains
+turned into one of the most industrialized and productive agricultural regions in the world.
+However, these technologies primarily benefited areas with access to groundwater, the main
+source of which is the Ogallala aquifer. To validate this key source of variation in exposure to
+technological change, we develop computer vision estimates of the diffusion of center-pivot
+irrigation based on a convolutional neural network trained to detect the technology’s signature
+circular cropping patterns in historical satellite imagery. This exercise motivates the difference-
+in-differences identification strategy, which exploits time variation arising from the post-war
+introduction of the new technologies together with cross-sectional variation in aquifer coverage
+in a spatially matched sample of counties along the boundary of the Ogallala aquifer to
+investigate whether counties more impacted by the technological shock also became more
+conservative in their voting patterns over time.
+Empirically, we use GIS to measure the share of county land overlying the Ogallala aquifer. We
+link this information to county-level panel data on the Republican party’s share of the two-party
+vote in presidential, senatorial, and gubernatorial elections between 1920 and 2000. Difference-
+in-differences analyses – which in preferred specifications prune the sample of counties to
+200km and 100km buffer zones along the boundary of the Ogallala aquifer in each state and also
+control for state-time-period fixed effects – indicate that technological change played a large role
+in the region’s long-term conservative electoral transformation. Decade-by-decade analyses
+suggest that a positive association between aquifer coverage and conservative voting emerged
+precisely when the new irrigation technologies were introduced and was not driven by
+potentially confounding pre-trends.
+Additional tests indicate that the conservative electoral shift was driven by the spread of capital-
+intensive agriculture and the growing economic and political power of agribusiness interests.
+After WWII, counties with greater aquifer coverage experienced a large relative increase in the
+capital-intensity of agriculture as measured by the density and market value of farms. By
+contrast, tests do not support alternative commonly posited explanations for rural conservatism,
+such as intrinsic differences between rural and urban voters, religiosity or race-related political
+polarization. The conservative shift began in the 1940s, well before the race-related realignment
+of the 1960s in the US south. Counties with greater aquifer coverage experienced little
+depopulation and a relative increase in urbanization, due to the emergence of small towns in
+areas of intensive agriculture. Counties with greater aquifer coverage experienced little relative
+change over time in religiosity as proxied by church membership.
+Analysis of Cooperative Congressional Election Survey (CCES) data suggests that contemporary
+mass policy preferences differ systematically between individuals residing in zip codes just
+inside the Ogallala aquifer compared to those residing just outside, reflecting the long-term
+political legacy of the post-war technological shock. Individuals living inside the boundaries of
+the Ogallala aquifer, where capital-intensive agriculture and agribusiness-dependent local
+political economies thrive, are today systematically more opposed to environmental and labor
+regulation and to taxation and the welfare state. Attitudes also differ with regards to some
+moral/cultural issues. These attitudinal spillovers may reflect feedback effects of the strategic
+bundling of economic and social issues by political parties.
+The findings contribute to two main areas of research. First, they contribute to research on the
+origins of the urban-rural political divide, one of the defining features of politics in advanced
+capitalist economies (Cramer 2016; Rodden 2019). Important work shows that urban-centered
+technological dynamics like industrialization and the rise of the knowledge economy were
+pivotal in the historical emergence of left-wing politics in cities (Rodden 2019). We show that
+technological change in agriculture – a process that transformed politics in many other settings
+(Boix 2015; Dasgupta 2018; Moore 1966) – played an equally important role in the emergence
+of right-wing politics in the countryside, as precarious homesteads operated by yeoman farmers
+(the base of left-wing agrarian movements of the past like the Populist party) gave way to a
+sector dominated by capital-intensive farms and agricultural industries opposed to regulation and
+taxation. Our findings in combination with past work demonstrate how spatial political
+polarization has emerged as a result of technology-driven structural transformation in the
+twentieth century. Though this paper does not identify the cumulative political effects of all the
+agricultural innovations that have taken place in this time period, it leverages one particularly
+large post-war technological shock to provide causally identified evidence on how new
+technologies have made new politics in rural America
+The findings also provide a new answer to longstanding debates in American politics about
+“what’s the matter with Kansas” – i.e. why the party of the rich, the Republican party, thrives in
+comparatively poor and rural states (Bartels 2006; Frank 2007; Gelman 2009; Hacker and
+Pierson 2020; Walsh 2012). Frank’s explanation emphasizes the role of the “culture wars” in
+distracting poor and rural voters from class-based conflict, echoing theoretical models in political
+science which suggest that cross-cutting cleavages can weaken political support for redistribution
+in democracies (see e.g. Iversen 2006; Lee and Roemer 2006). While not incompatible with
+these explanations, this paper shows that much of the rise of rural conservatism can be traced to
+economic self-interest conceptualized in terms of the industries geographically concentrated in
+rural areas. Long-term technological change led to the emergence of agribusiness-dependent
+rural political economies, many residents of which, especially land and business owners but also
+the non-affluent, instrumentally support the Republican party. Indeed, new research finds that
+local economic dependence on other regulation averse industries common in rural areas, like
+fracking, is associated with conservatism (Cooper, Kim, and Urpelainen 2018; Sances and You
+Forthcoming). In the paper, we detail how agribusiness exerts outsized political influence in rural
+areas where it is a dominant industry, due to the “structural” dependence of rural communities on
+the agribusiness economy (Przeworski and Wallerstein 1988), as well as the organized activism
+of agribusiness interests. In this sense, the findings also contribute to the literature on business
+power (Hacker et al. 2021).
+The remainder of the paper is structured as follows. It first describes the historical setting. It then
+discusses the theoretical mechanisms linking technological change to the rise of rural
+conservatism. It then presents the empirical strategy and results before concluding.
+2. Technological and Political Change in the Great Plains
+Agriculture in the Great Plains – a broad expanse of grassland spanning the American states of
+Texas, New Mexico, Oklahoma, Colorado, Kansas, Wyoming, Nebraska, South Dakota,
+Montana, and North Dakota – dates to the Homestead Act of 1862, which encouraged migration
+and agricultural development west of the Mississippi river with the promise of property rights to
+160 acres of land to settlers who could offer proof of having settled and cultivated the land for
+five years. By the 1890s, the Great Plains were extensively populated by settlers, turning what
+had been a frontier region into a center of agriculture.
+The conversion of arid prairie land into family farms – motivated by the widely held (but
+incorrect) belief that “rain follows the plow” – had devastating long-run ecological consequences
+(Libecap and Hansen 2002). The elimination of prairie grasses that held the soil in place
+contributed to soil erosion, culminating in the Dust Bowl of the 1930s, a combination of
+prolonged drought, dust storms, and soil erosion that devastated agricultural production (Cook,
+Miller, and Seager 2009; Hornbeck 2012).
+In the midst of collapsing demand and falling prices of the Great Depression, the Dust Bowl
+contributed to mass outmigration, in spite of New Deal programs that sought to mitigate falling
+prices and provide a safety net to farmers by paying them to cull livestock and reduce crop
+acreage. Agriculture in the region began to recover in the late 1930s and early 1940s. The newly
+created Soil Conservation Service (SCS) disseminated dryland agricultural practices, including
+the conversion of cropland to pastureland and the dissemination of drought-resistant crops. Many
+of the small family farms abandoned by debt-ridden small farmers were reclaimed by banks,
+resulting in the consolidation of agricultural land into larger farms, alleviating some of the
+coordination problems associated with adopting environmentally sustainable practices (Hansen
+and Libecap 2004).
+Yet, agriculture remained relatively unproductive and susceptible to droughts until the
+introduction of two post-WWII inter-related improvements in irrigation technology. The first
+was the adaptation of petroleum-powered engines to the task of extracting groundwater, resulting
+in much cheaper costs of lifting large volumes of groundwater. The pre-existing technology for
+extracting groundwater was the windmill pump, which was constrained in the depth and quantity
+of water it could draw, generally limiting its use to water supply for the household and livestock.
+While more powerful pumps existed, their operating costs were prohibitively expensive for
+usage in agricultural irrigation (Opie 2000, p. 126). Petroleum-powered irrigation pumps, based
+initially on the adaptation of automobile engines to deep well pumps, became widely available
+after World War II, making it much cheaper and economical to extract groundwater on a scale
+sufficient to irrigate crops, resulting in the spread of pump-based deep well groundwater
+irrigation from the 1940s and 1950s onward.
+The second, closely related innovation, necessitated by the first, was the invention of center-
+pivot irrigation, a system for irrigation based on the sprinkler-based distribution of water from a
+central well through rotating arms up to a half-mile in radius. Invented by Frank Zybach in the
+1940s and patented in 1952, center-pivot irrigation spread rapidly from the 1950s onward,
+resulting in the signature circular cropping patterns that dominate large parts of the Great Plains.
+The combination of cheaper extraction of groundwater as well as an efficient method for
+distributing water over a large area from a central source represented one of the most important
+technological innovations in agricultural history, enabling farmers to irrigate from the Ogallala
+aquifer, one of the largest in the world. This enabled farmers to cultivate lucrative but water-
+intensive feed crops like corn and also contributed to the spatial agglomeration of downstream
+agricultural industries like animal feedlots and meatpacking plants – transforming the Great
+Plains into one of the most industrialized and productive agricultural regions of the world despite
+the arid climate (Cunfer 2005; Opie 2000).
+The technological revolution in the Great Plains coincided with a political revolution: the
+growing dominance of the Republican party in elections in a region that had historically been
+relatively centrist in its politics (in the sense of mirroring national trends) and where left-wing
+politics sometimes thrived. During the period of national Republican party dominance in the
+nineteenth century, farmers in the Great Plains also tended to support the Republican party,
+especially because of its support for the westward expansion of the railroad network (Aldrich
+1995). In the late nineteenth and early twentieth century, left-wing politics found considerable
+success in the Great Plains, first in the form of the Populist party – which promised to nationalize
+the railways, eliminate the gold standard, and enact other redistributive policies intended to help
+poor and indebted farmers. Congressional representatives, majorities in state legislatures, and/or
+governors belonging to the Populist party were elected from five (Colorado, Kansas, South
+Dakota, Nebraska, and Montana) Great Plains states (see e.g. Ostler 1993). Subsequently,
+reflecting national trends, both major political parties registered electoral victories in Great
+Plains states over time, including the Democratic party under Franklin Delano Roosevelt, whose
+New Deal policies were popular among poor farmers.
+Following World War II, however, the Great Plains states became increasingly pro-Republican
+in their voting patterns, a trend that has proceeded unabated up to the present. Today, the region
+is an outlier in the degree of its staunch support for the Republican party. Eight out of 10 Great
+Plains states are “red” states – defined as states in which Republican presidential candidates have
+won at least three of the five presidential elections over the 2000-16 period (Grumbach, Hacker,
+and Pierson 2021) – a transformation that has led to debates among scholars and journalists
+about the historical origins of this conservative electoral shift. One conjecture emphasizes the
+“culture wars” which have purportedly distracted poor and rural voters from issues of
+redistribution and won them over to the side of the Republican party due to their social
+conservatism (Frank 2007). Others have pointed out, however, that in survey data household
+income remains a robust predictor of Republican party voting (Bartels 2006), though red states
+like Kansas are also characterized by an “intercept shift” or greater individual propensity to vote
+for the Republican party at all income levels (Gelman 2009). Together, these stylized facts
+challenge the “culture wars” hypothesis but also raise the question of where the aggregate long-
+term shift in conservative voting originates.
+Great Plains counties shaded according to the Republican party’s percentage of the two-party
+vote in presidential elections between 1920 and 1940 in panel A and between 1980 and 2000 in
+panel B. As the map illustrates, over this period, the Great Plains evolved from a mostly “purple”
+(centrist) region into a consistently “red” (pro-Republican) region in elections.
+3. How New Technologies Made New Politics
+We develop a new explanation for the conservative transformation of rural political preferences
+that emphasizes not the culture wars but the role of long-term technological change in
+contributing to the emergence of capital-intensive agriculture and agribusiness, the growing
+economic and political power of which has played an important role in the increasing
+conservative electoral tilt of the region.
+Until the post-war technological shock, homesteaders and farmers on the Great Plains were
+typically poor and precarious, and struggled to make a living on marginal and arid lands suitable
+mainly for dryland farming. Unsurprisingly, many of these small producers were the worst
+victims of the Dust Bowl and Great Depression of the 1930s and important beneficiaries from
+the system of agricultural safety nets implemented in exchange for production controls enacted
+by the Agricultural Adjustment Act (AAA) of 1933, which granted the federal government the
+authority to “secure voluntary reduction of the acreage of basic crops….and to direct payments
+for participation in acreage control programs” as well as to license, regulate, and tax agricultural
+activities. In process of policy making politics, this legislation mobilized farmers into politics,
+giving rise to the “farm lobby”, the influence of which historically spanned both major American
+political parties (Finegold and Skocpol 1995; Hansen 1991; Sheingate 2003) , with both the
+Democratic and Republican parties competing for the votes of farmers with bipartisan federal
+farm bills laden with subsidies.
+However, as new irrigation technologies made agriculture more productive in areas with access
+to groundwater, they also brought sweeping changes to rural economic structure and political
+preferences. In a process found in other rural areas of the US (McWilliams 1939; Pardey and
+Alston 2021; Worster 1992), the increasing capital intensity of agriculture led to a winning of
+small producers, who lacked the economies of scale needed to survive in an environment with
+increasing costs of land, machinery, and inputs. In their place emerged increasingly capital-
+intensive, mechanized, and productive farms, operated by upwardly mobile farmers in a new
+form of business-like agriculture which came to be known as “agribusiness”.4 As one
+contemporaneous study of the impact of new irrigation technologies in a rural Kansas county put
+it: “Farming had become agribusiness…The average size farm of 1200 acres represented a
+considerable capital outlay, and rising operating costs were all but eliminating the marginal
+farmer in 1965. (Mays 1968, p. 36)” Over time, downstream industries reliant on water-intensive
+agriculture like feedlots and meat-packing plants – characterized by high levels of industrial
+4 The term “agribusiness” entered the English lexicon in the 1950s (Hamilton 2014).
+concentration due to extensive vertical integration and interlocking relationships – also
+agglomerated on the Great Plains. These transformations are documented by Opie (2000, p. 268):
+“As irrigation brought prosperity to the High Plains, smaller farmers were pushed out of the
+way…the shift from the family farm toward large-scale centralized agribusiness operations can
+be compared to the demise of ‘ma-and-pa’ neighborhood grocery stores after World War Two as
+supermarkets became commonplace.”
+Unlike the small producers which comprised a core constituency of the New Deal interventionist
+farm policies of the 1930s, dependency on intensive utilization of land, groundwater, and hired
+labor pitted affluent farmers and agribusiness interests against regulation by government
+agencies. For instance, from the 1960s onward, as groundwater levels fell, landowners in the
+Great Plains lobbied to restrain government attempts to meter and regulate groundwater through
+groundwater management districts (Bessire 2021; Bloomquist, Williams, and Bridger 2002; Opie
+2000). More recently, toxic waste-producing agribusiness sites like animal feedlots, which can
+produce as much waste and pollution as small-sized towns, have come into conflict with
+government regulations under the Clean Air Act (enacted in 1963) and Clean Water Act (enacted
+in 1972). Meatpacking plants, which from the 1960s onwards relocated from cities to small rural
+towns both to move closer to the feedlot industry as well to cut labor costs, are large-scale
+employers of labor and are well-known to oppose stringent labor regulation, such as higher
+minimum wages, employer insurance obligations, workplace safety laws, and union-friendly
+policies (Pachirat 2011).
+As farmers became wealthier, they also became more opposed to taxation and redistribution,
+consistent with canonical theories of class-based fiscal conflict (Meltzer and Richard 1981). By
+the 1970s, according to agricultural censuses the average market value of farms across counties
+in the Great Plains was over $1.5 million, up from around $200,000 in the 1930s in 2016 dollars
+(as we will show, the increase in farm values was concentrated in irrigated counties overlying the
+Ogallala aquifer). As farms have become lucrative assets, protection of assorted tax breaks,
+exclusion from estate taxes, write-offs and deductions has become a major area of lobbying on
+the part of industry associations like the Farm Bureau. Large-scale farms and agribusinesses have
+also sought over time to reshape the farm subsidy system, seeking to delink subsidies from
+production controls – the lynchpin of the New Deal-era farm policies – in favor of a “market-
+oriented” regime linking subsidies to the quantity of a farm’s output, concentrating subsidies in
+the largest farms (Dimitri, Effland, and Conklin 2005; Sheingate 2003).
+In rural areas where agribusiness has become a dominant industry, the power of agribusiness is
+“structural”, not unlike the power of the coal industry in former “company towns” or the oil and
+gas industry in shale regions (Cooper, Kim, and Urpelainen 2018; Gaventa 1982; Przeworski and
+Wallerstein 1988; Sances and You Forthcoming). Not just land and business owners but entire
+rural communities depend upon the agribusiness economy. As a result, the post-war economic
+boom that benefited counties overlying the Ogallala aquifer produced a sense of shared sectoral
+interest that leads the non-affluent, like middle-class residents and workers, to internalize the
+policy preferences of agribusiness. As Anderson (2018) puts it: “Water for irrigation and large-
+scale animal feeding didn’t only grow crops and livestock, it gave life to the Great Plains
+communities that depended on agriculture. Families and laborers shopped at local retailers and
+deposited wages in local banks, keeping small towns alive, and irrigators paid the property taxes
+that sustained local governments. Center pivot irrigation supported … a whole way of life that
+would have literally dried up if the fields were less productive.”
+Despite significant rural inequality, class-based conflict has been superseded by a sectoral rural
+political identity, partly because the rural poor are far less organized than are land and business
+owners. For instance, low-wage workers in Great Plains meatpacking factories are completely
+un-unionized (Stull, Broadway, and Griffith 1995), due to right-to-work laws and other
+challenges to labor organizing, including a largely migrant workforce. By contrast, agribusiness
+interests are highly organized through industry associations like the Farm Bureau, which
+influences rural public opinion by circulating mailers, organizing events, and endorsing
+candidates in elections. Once an extension service, today the local branches of the Farm Bureau
+are deeply conservative advocacy organizations. Moreover, government agencies, ranging from
+groundwater management districts to the USDA, institutionalize the representation of land and
+business owners in a variety of policymaking arenas but not other rural stakeholders, like
+workers, further tipping the scales against their organization.
+The role of technological change in the conservative transformation of rural political preferences
+is documented in repeated rural community studies of Haskell County – overlying the Ogallala
+aquifer in southwestern Kansas – conducted by sociologists over a 50-year period spanning the
+pre- and post-technological shock eras. In the initial study, Bell (1942) found a community that
+had been recently devastated by the Dust Bowl and Depression of the 1930s, and which suffered
+from a boom-and-bust pattern of wheat harvests due to volatile precipitation. This generated, he
+observed, a “gambler’s psychology” which affected the entire community: “Agriculture
+dominates [the entire populace’s] existence and influences their attitudes in much the way that
+mining does a village in which the whole population derives its living from the mine. (p. 55)”
+Consistent with theories linking precarity to preferences for social insurance (Rawls 1999), a
+consequence was widespread belief in the legitimate role of government intervention: “Everyone
+interviewed, whether in favor of or opposed to the Government farm program was unanimous in
+the opinion that, as one man said: ‘If it had not been for the Government program, none of us
+would be here now. We simply could not have made it.’ (p. 66)”
+When Mays (1968) revisited the county 25 years later, political attitudes had been transformed
+by the introduction of groundwater irrigation. With growing prosperity came a shift from a
+“gambler’s psychology” to a business-like belief in success linked to individual effort and
+increasing opposition to government intervention: “The [Haskell County farm operator] believes
+that he has won through to his present-day successes by virtue of his own efforts…if the
+government will remove its many controls, he can grow abundantly all that the country needs
+and receive good prices for his produce” (p. 112). These changes in attitudes extended beyond
+the affluent farmer: “The population now accepts as their ideal-type the farmer-capitalist, or agri-
+businessman, who has won out against great odds.” When sociologists revisited the county
+another 30 years later in 1993, they noted the emergence of factory-style industries like animal
+feedlots and meatpacking plants. They also documented the mass government skepticism that is
+characteristic of contemporary rural consciousness (Cramer 2016): “When asked about the
+problems facing their community, the two most frequently mentioned issues were increasing
+taxation and the loss of local control to the state and federal governments. (Williams and
+2006, respectively, illustrating the technological changes which have transformed not only the
+landscape but the politics of the county.
+As the conservative party on the economic dimension of political party competition in the United
+States (Poole and Rosenthal 2000), the Republican party’s pro-business orientation made it the
+electoral beneficiary of the spread of capital-intensive agriculture and the conservative
+transformation of rural political preferences. By contrast, the Democratic party’s association with
+pro-labor and environmental regulation as well as redistributive taxation have made it a
+comparative threat to agribusiness interests. These differences in party platforms have existed for
+at least a century but have hardened and polarized over time, especially since the Republican
+party’s embrace of a hardline anti-regulation stance during the 1980s, as well as the spatial
+polarization of the Republican and Democratic parties into rural- and urban-centered political
+coalitions, respectively (Hacker and Pierson 2010; Rodden 2019).
+areas more exposed to the post-war irrigation technology shock became more conservative (pro-
+Republican) in their voting patterns over time. In terms of mechanisms, we hypothesize that this
+was due to the increasing capital-intensity of agriculture and the growing economic and political
+power of agribusiness interests with preferences for conservative economic policies, including
+limited regulation as well pro-business tax and spending policies. These interests exert broader
+influence on mass policy preferences through their “structural” and organizational power in
+agribusiness-dependent rural political economies. We therefore also expect to observe
+differences in mass attitudes concerning government taxation and regulation across areas more or
+less exposed to the post-war technological shock.
+4. Empirical Strategy
+To test the impact of the technological change on the rise of conservative voting in the Great
+Plains, this paper exploits the differential impact of the post-war irrigation technology shock
+across counties with different degrees of overlap with the Ogallala aquifer, an approximately
+174,000-square-mile body of groundwater that underlies parts of Colorado, Kansas, Nebraska,
+New Mexico, Oklahoma, South Dakota, Texas, and Wyoming. The differential impact of the
+post-war technology shock is evidenced in a number of ways, for instance in large differences in
+the capitalized market value of farmland with and without access to the Ogallala aquifer
+(Hornbeck and Keskin 2014).
+To validate this source of variation in exposure to technological change that underpins our
+empirical strategy, we develop estimates of the diffusion of center-pivot irrigation, using tools
+from the field of computer vision to detect the technology’s signature circular cropping patterns
+in historical satellite imagery. A detailed discussion is provided in the Online Appendix. In brief,
+we train a convolutional neural network (CNN) to count the number of center-pivot irrigation
+circles observable in Landsat satellite imagery across counties over time in the Great Plains.
+CNNs are supervised learning algorithms which take images as input and as output make
+predictions about image characteristics (for a primer see e.g. Torres and Cantú 2022), in our case
+an estimate of the number of visible center-pivots.
+We train a 15-layer CNN to take as input the pixel Landsat 5 satellite image of a Public
+70 × 70
+Land Survey System (PLSS) section – the 1 square mile unit of the grid that governs property
+rights in the western United States – and as output estimate the number of center-pivot irrigation
+systems visible in the image. To train the model, we use as “ground truth” labels a geo-coded
+inventory of center-pivot irrigation systems that was compiled though hand counting of crop
+circles in Landsat satellite imagery by a team of researchers for the state of Nebraska (Carlson
+1989). We use this data to label the count of center-pivot irrigation systems in clipped satellite
+images – from which we compute the normalized difference vegetation index (NDVI) – for all
+PLSS sections in Nebraska between 1985 and 1987 (N With a CNN trained on this
+≈ 220,000).
+data, we count center-pivot irrigation systems visible in Landsat 5 satellite imagery in a massive
+number of PLSS sections across all of the Great Plains states for every year between 1985 and
+2000 (N 10 million), aggregating and normalizing by land area to get county-level estimates of
+technology adoption (center-pivots per 1000 sq kilometers) with near-human accuracy ( of
+𝑅𝑅
+4 illustrates in the case of Kansas, our procedure shows that center-pivot irrigation diffusion was
+heavily concentrated within the Ogallala aquifer boundary (a pattern we subject to formal
+statistical tests later in the paper).
+These patterns motivate the identification strategy, which exploits the timing of the post-war
+irrigation technology shock together with cross-sectional variation in groundwater availability in
+a spatially matched sample of counties along the boundary of the Ogallala aquifer in a
+difference-in-differences framework. In the main specifications, the paper estimates OLS
+regressions of the form,
+𝑠𝑠 𝑠𝑠
+𝑖𝑖𝑖𝑖 𝑖𝑖 𝑖𝑖 𝑖𝑖 𝑠𝑠 𝑠𝑠 𝑖𝑖 𝑠𝑠 𝑖𝑖 𝑖𝑖 𝑖𝑖𝑖𝑖
+𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶 = 𝛼𝛼𝛼𝛼𝛼𝛼𝛼𝛼𝐶𝐶𝛼𝛼𝐶𝐶𝐶𝐶 + 𝛽𝛽𝛼𝛼𝛼𝛼𝛼𝛼𝐶𝐶𝛼𝛼𝐶𝐶𝐶𝐶 × 𝑃𝑃𝐶𝐶𝐶𝐶𝐶𝐶 + ∑ (𝜃𝜃 𝐼𝐼 + 𝜃𝜃 𝐼𝐼 × 𝑃𝑃𝐶𝐶𝐶𝐶𝐶𝐶 ) + 𝜀𝜀
+where the outcome variable is the Republican party’s share of the two-party in
+𝑖𝑖𝑖𝑖
+𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶
+vote in presidential, senatorial, or gubernatorial elections in county and time period (a pre-
+𝐶𝐶 𝐶𝐶
+shock period averaging between 1920-1940 and a post-shock period averaging between 1980-
+2000). This data comes from Amlani and Algara (2021). In the equation, the variable
+𝑖𝑖
+𝛼𝛼𝛼𝛼𝛼𝛼𝐶𝐶𝛼𝛼𝐶𝐶𝐶𝐶
+represents the share of county overlying the Ogallala aquifer, which is computed using GIS
+analysis of shapefiles of county boundaries and a digital map of the aquifer’s boundary
+assembled by the US Geological Survey (Qi 2010). The variable is a time dummy variable
+𝑖𝑖
+𝑃𝑃𝐶𝐶𝐶𝐶𝐶𝐶
+which takes a value of one for the post-shock period and zero otherwise. All specifications
+control for state-period fixed effects . This means that the coefficient
+𝑠𝑠 𝑠𝑠
+𝑠𝑠 𝑠𝑠 𝑖𝑖 𝑠𝑠 𝑖𝑖 𝑖𝑖
+∑ (𝜃𝜃 𝐼𝐼 + 𝜃𝜃 𝐼𝐼 × 𝑃𝑃𝐶𝐶𝐶𝐶𝐶𝐶 )
+represents the estimate of the change in outcomes from the pre-shock period to the post-shock
+𝛽𝛽
+period in a county with complete aquifer coverage relative to a county with no aquifer coverage,
+comparing between counties located within the same state.
+For robustness, we estimate the difference-in-differences regression equation above in a spatially
+matched sample of counties along the boundary of the Ogallala aquifer. To implement the spatial
+matching in a manner that preserves the within-state difference-in-differences design we: i)
+identify the line segment of the Ogallala aquifer boundary intersecting each state; ii) compute the
+geodesic distance of each county centroid in each state to the nearest point on the within-state
+line segment; and iii) prune from the sample any counties beyond a given buffer (200 kilometers
+or 100 kilometers) based on this distance metric. This ensures that all estimates are derived
+strictly from over-time comparisons between spatially proximate counties along the border of the
+Ogallala aquifer within the same state.
+The spatial matching is motivated by Tobler’s Law First Law of Geography (“near things are
+more related than distant things”). By limiting analysis to spatially proximate counties, we
+mitigate concerns about potentially confounding non-parallel trends that may result from
+comparing fundamentally dissimilar counties that are located far away from each other.
+However, a concern that arises is spatial spillovers – exposure to the technological shock
+potentially impacted the economies and electoral outcomes of nearby counties. To address this
+concern, in some specifications we prune counties on the boundary itself, so that the sample is
+restricted to “pure” treatment (completely within the aquifer) and control (completely outside of
+depicts a comparison of the counties that are included in the full sample and those which are
+included in the spatially matched samples.
+depicts the relationship between aquifer coverage and conservative voting across counties within
+200km of the Ogallala aquifer boundary in the pre-technological shock period, after partialing
+out state fixed effects. For illustrative purposes, Kansas counties are represented with shaded
+points. We highlight the point that corresponds to Haskell County with a red diamond. As the
+scatter plot and fitted OLS regression line make clear, there was little association between
+aquifer coverage and the Republican party’s share of the two-party presidential vote in the pre-
+shock period 1920-1940. A county like Haskell, which lies completely within the boundaries of
+the Ogallala aquifer, was no more conservative in its voting patterns than other counties in the
+same state with less overlap with the Ogallala aquifer.
+Panel B depicts the same relationship in the post-shock period 1980-2000. As the scatterplot and
+fitted OLS regression line illustrate, counties with greater aquifer coverage experienced a greater
+improvement in the Republican party’s electoral performance compared to counties with less
+aquifer coverage. Haskell County, for instance, evolved into one of the most conservative
+counties in Kansas. The scatter plot suggests that this pattern is not idiosyncratic to Haskell but is
+systematic. Counties with greater aquifer coverage on average experienced a greater long-term
+improvement in the Republican party’s electoral performance compared to counties in the same
+state with less aquifer coverage, plausibly because they were more exposed to the post-war
+irrigation technology shock that transformed the Great Plains.
+The identifying assumption in the difference-in-differences analyses is the parallel trends
+assumption, which in this case assumes that, counter-factually absent the post-war irrigation
+technology shock, counties with greater overlap with the Ogallala aquifer would have followed
+parallel electoral trends over time as compared to other spatially proximate counties within the
+same state with less overlap. In an additional set of specifications, to study pre- and post-
+technological shock time trends, this paper estimates regressions on a full county-year panel
+election dataset which flexibly interact the aquifer coverage variable with decadal dummy
+variables, while also controlling for state-year effects. If the parallel trends assumption is valid,
+then there should have been no trend in the association between aquifer coverage and
+conservative voting in the decades preceding the technological shock but a large and positive
+relationship that emerged in the decades following the technological shock.
+To account for correlation of errors within counties over time, as well as correlation of errors
+across space in a given election, we estimate standard errors adjusted for two-way clustering
+within counties and within state-periods. We also estimate Conley standard errors which correct
+for spatial correlation within a given radius of county centroids (we use a 200km radius) as well
+as serial correlation. Throughout, we limit the sample to counties (93 percent of the sample) with
+stable boundaries between the start year of 1920 and the end year of 2000 (the preceding decades
+of the 1900s and 1910s were characterized by a large number of boundary changes, including the
+admission of New Mexico and Oklahoma as new states). We drop counties in Montana and
+North Dakota as they do not intersect with the Ogallala aquifer and therefore do not contribute to
+estimation because they are fully absorbed by state-period fixed effects.
+4. Main Results
+counties, panel B for the 200km buffer sample of counties and panel C for the 100km buffer
+sample of counties. Columns (1)-(3) report coefficient estimates for the baseline specification,
+which indicate that the post-war irrigation technology shock had a large impact on conservative
+(pro-Republican) voting. For instance, the coefficients on the interaction term in panel B (the
+200km buffer sample) suggest that compared to a spatially proximate county with no aquifer
+coverage in the same state, a county with full aquifer coverage experienced a 9.7 percentage
+point relative increase in the Republican party’s share of the two-party vote in presidential
+elections, a 7.8 percentage point relative increase in senatorial elections, and a 6.4 percentage
+point relative increase in gubernatorial elections from the pre- to the post-technological shock
+period. By contrast, the coefficients on the lower order term indicate that there was no
+association between aquifer coverage and conservative voting across counties in the pre-
+technological shock period.
+Columns (4)-(6) additionally control for county-level exposure to two pre-treatment shocks
+which affected the Great Plains: the Dust Bowl, the drought and dust storms which wracked
+much of the region, as well as the New Deal, which greatly impacted rural areas. To measure
+county-level exposure to the Dust Bowl, we digitize historical soil erosion maps published by the
+Soil Conservation Service and compute a measure of the share of county land impacted by
+“severe wind erosion” by 1937 (see Online Appendix for details). To compute exposure to the
+New Deal, we use a summary measure of spending across major programs per capita based on
+the dataset assembled by Fishback, Horrace, and Kantor (2005). We include these variables as
+lower order terms as well as in interaction with post-technological shock time-based dummy
+variable in order to absorb potential non-parallel trends across counties as a function of these
+pre-treatment shock variables. While the coefficients of interest shrink slightly, they remain large
+and positive across specifications.
+Columns (7)-(9) address concerns about spatial spillovers by pruning counties partially
+intersecting the boundary of the Ogallala aquifer, so that the sample is comprised only of “pure”
+treatment counties fully contained within the aquifer and control counties fully outside of the
+aquifer. Consistent with the existence of spatial spillovers, the coefficients tend to become larger
+in this specification. Estimates from the 200km buffer sample suggest that compared to a
+spatially proximate county with no aquifer coverage in the same state, a county with full aquifer
+coverage experienced a 10.8 percentage point relative increase in the Republican party’s share of
+the two-party vote in presidential elections, a 8.1 percentage point relative increase in senatorial
+elections, and a 6.7 percentage point relative increase in gubernatorial elections from the pre- to
+the post-technological shock period.
+This helps to make sense of a noticeable pattern: across empirical specifications, though the
+coefficients remain substantively large and statistically significant, the estimated magnitude of
+the impact of the technological shock tends to be smaller in specifications that prune the sample
+to a smaller buffer along the boundary of the Ogallala aquifer. While some of this may be due to
+the elimination of potentially confounding differences between spatially distant counties, it may
+also be due to the existence of spatial spillovers, which tend to attenuate estimates, especially in
+spatially proximate samples.
+Another empirical pattern than emerges from the estimates is that across samples and
+specifications, the coefficient estimates are consistently greater in magnitude in the case of
+presidential voting than in senatorial elections, and greater in senatorial elections than in
+gubernatorial elections. One reason for this may be due to the dynamics of party positioning. In
+national elections, the platforms of the Democratic and Republican parties are sharply polarized,
+whereas in more state-specific elections, the Democratic party may have greater scope to
+moderate its platforms to win over rural voters. For instance, in a state like Kansas, a Democratic
+presidential candidate has not won the state’s electoral college votes since 1964. However,
+Democratic candidates routinely win gubernatorial elections in the state and the party remains
+competitive with the Republican party.
+Were these effects plausibly due to the disproportionate impact of the post-war irrigation
+the same type of regressions but now looks at measures of irrigation technology adoption as the
+outcome variable. Columns (1)-(3) look at impacts on the percentage of county farmland that is
+irrigated according to agricultural censuses. The coefficient estimate in column (2) based on a
+200km buffer sample suggests that a county with full aquifer coverage experienced an
+approximately 13.8 percentage point improvement in irrigation from the 1920-1940 period to the
+1980-2000 period, relative to a spatially proximate county with no aquifer coverage in the same
+state. Columns (4)-(6) look at a particularly capital-intensive form of irrigation – center-pivot
+irrigation – as estimated from satellite imagery. The estimate from column (5) suggests that a
+county with full aquifer coverage gained approximately 105 additional center-pivot irrigation
+systems per 1000 sq km from the 1920-1940 period to the 1980-2000 period, relative to a county
+with no aquifer coverage in the same state.
+with greater aquifer coverage experienced a relative improvement in irrigation as well increase in
+electoral conservatism following the post-war irrigation technology shock. For instance,
+combining estimates from the specifications based on a spatially matched sample of counties
+within a 200km distance to the Ogallala aquifer boundary, the estimates suggest that for every 1
+percentage point relative improvement in irrigated farmland due to greater aquifer coverage, the
+Republican party experienced an approximately 0.7 percentage point relative improvement in its
+share of the two-party vote in presidential elections.
+flexible specifications using a full county-year panel dataset of election returns and reporting
+coefficients on decadal dummy variables interacted with the aquifer coverage variable,
+controlling for state-year fixed effects. Columns (1)-(3) examine the Republican party’s share of
+the two-party vote in presidential elections, while columns (4)-(6) examine senatorial elections,
+and columns (7)-(9) gubernatorial elections. The coefficients indicate that across empirical
+samples and type of election, there was no statistically detectable association between aquifer
+coverage and conservative voting in the 1910s, 1920s and 1930s and that this null relationship
+was stable until a positive relationship began to emerge in the 1940s and 1950s, exactly when the
+new irrigation technologies were introduced. These effects grew over time, consistent with the
+gradual uptake of irrigation technologies. Columns (10)-(12) report a parallel set of results for
+the spread of irrigation. These show that, prior to the availability of technology needed to exploit
+groundwater at scale, there was no association between county-level aquifer coverage and the
+irrigation but a large and positive relationship that emerged from the post-shock period onwards.
+tests for pre- and post-shock trends by omitting the interaction term between aquifer coverage
+and the dummy variable indicating the 1930s (the decade preceding the introduction of the new
+irrigation technology) and including state-year fixed effects and county fixed effects (to deal
+with sample selection issues as some counties drop out in the 1910s). This permits an analysis of
+whether the relationship between aquifer coverage and outcomes displayed a statistically
+detectable difference relative to that existing in the 1930s. As panels A through C indicate, there
+was no visibly confounding pre-trend in the estimated relationship between aquifer coverage and
+conservative voting prior to the technological shock, but a large positive trend that emerged
+thereafter, due to the disproportionate spread of irrigation to counties with greater aquifer overlap
+from the 1940s onward as documented in panel D.
+5. Tests of Channels
+Were these effects due to the spread of increasingly capital-intensive agriculture and agribusiness
+interests with conservative policy preferences, as has been argued? Or were they potentially due
+to other factors? This section of the paper explores potential channels by empirically examining
+the impact of the technological shock on a range of intermediate outcomes measured from
+agricultural, population, and religious censuses (descriptive statistics are available in the Online
+Appendix).
+outcomes. Columns (1) and (2) investigate the impact of the post-war irrigation technology
+shock on the capital intensity of agriculture, as proxied by the natural log of the average market
+value of farms in 2016 dollars (computed from agricultural censuses by dividing the total market
+value of farm land, buildings, and machinery by the number of farms in a county) and the
+number of farms per 1000 acres of county land. As the coefficients indicate, farms in counties
+with greater aquifer coverage were no more valuable than in counties with less and actually
+slightly less dense in the decades preceding the post-war shock. Areas with greater aquifer
+coverage experienced a large relative increase in both the market value and density of farms
+statistical test and gives a sense of their magnitude by scaling the vertical axis by plus or minus a
+standard deviation of the outcome variable.
+Column (3) looks at the share of the employed population working in agricultural occupations
+(an under-estimate as it includes only those working directly on farms but excludes those
+working in related industries) as reported by population censuses. The estimates show that
+counties with greater aquifer coverage employed a larger share of the population in agriculture to
+begin with, though this did not change over time in absolute terms. In relative terms, however,
+counties with greater aquifer coverage remained more agricultural in their workforce in a context
+of long-term secular decline in farm employment. In the Great Plains, 13 percent of the working
+population was employed in agricultural occupations in the 1990s, down from 51 percent in the
+1930s. In this context, retention of an additional five percentage points of the workforce in the
+demonstrates this by taking the natural log of the agricultural employment variable so that
+coefficients have a percent change interpretation. These results suggest that the increasing capital
+intensity of farming, together with the entrenchment of local economic dependence upon the
+agricultural sector, plausibly played an important role in the increasing electoral conservatism of
+counties more impacted by the post-war irrigation technology shock as a result of greater overlap
+with the Ogallala aquifer.
+But could the conservative electoral shift in counties with greater aquifer coverage be explained
+by alternative mechanisms? One explanation for rural conservatism, the race-related polarization
+that led to party realignment in the US south following the civil rights movement and the passage
+of the voting rights act, does not appear to be very relevant in this context. Those processes
+gained steam in the 1960s, whereas analyses of the timing of effects suggest that counties with
+greater aquifer coverage started to shift in a conservative electoral direction relative to counties
+with less nearly 20 years earlier beginning in the 1940s. Moreover, due to the inclusion of state-
+period fixed effects, all estimates are identified from within-state comparisons, so broad regional
+or state-level realignments cannot be driving the increase in conservative voting in areas
+impacted by the new irrigation technologies.
+One of the best cross-sectional predictors of county-level voting patterns is a county’s population
+density (Rodden 2019). Could the results be driven by a process of de-population and de-
+urbanization, as improved agriculturally productivity keeps places relatively more rural? This is
+with greater aquifer coverage experienced a modest relative decline in their levels of population
+density over time relative to counties with less aquifer coverage, though they were slightly less
+greater aquifer experienced a relative improvement in urbanization (the percent of the population
+living in census-defined urban areas) over time, plausibly due to the formation of small towns in
+areas of intensive agriculture. These set of results do not support the idea that the conservative
+shift was driven by intrinsic differences in the degree of rurality as measured with differences in
+population density or urbanization rates.
+Finally, could the conservative shift be explained by the spread of social conservatism in rural
+places? Column (5) looks at decadal associations between aquifer coverage religiosity as proxied
+by the church membership per capita, computed by summing county-level membership reported
+by all churches and religious bodies to religious censuses and dividing by the total county
+population as reported in the next decennial census. The coefficients reveal a modest but
+statistically insignificant relative increase in religiosity, casting doubt on this channel. To the
+extent that we observe some relative increase in the religiosity of counties with greater aquifer
+coverage, this may have been a long-term feedback effect of these areas’ alignment with the
+Republican party, as the following analyses demonstrate.
+6. Contemporary Policy Preferences
+This section assembles geo-coded survey data on contemporary policy preferences and compares
+the reported preferences of individuals residing inside the Ogallala aquifer, where capital
+intensive agriculture thrives as a result of the long-term legacy of the post-war irrigation
+technology shock, to those of individuals residing outside of the aquifer. We utilize data from the
+Cooperative Congressional Election Survey (CCES) waves conducted between 2006 and 2020
+(Kuriwaki 2021), comprising tens of thousands of respondents in annual nationally
+representative samples, which together provide a large sample of respondents located in the
+Great Plains who can be geo-coded to the zip code level, an area of aggregation even smaller
+than that of the county.
+The explanatory variable is the share of a respondent’s zip code that overlies the Ogallala
+aquifer. Depending upon specification we prune the sample to zip codes within 200km or 100km
+distance to the boundary of the Ogallala aquifer in each state. In the preferred specification, we
+use the 100km buffer and prune from the sample zip codes partially overlying the Ogallala
+aquifer. We control for state-survey wave fixed effects, so that the estimates are driven by
+comparisons between individuals who live in zip codes completely (but barely) within the
+boundaries of the Ogallala aquifer and individuals who live in zip codes completely (but barely)
+outside of the boundaries, comparing between individuals in the same state and surveyed in the
+same year. All regressions are estimated by weighted least squares, utilizing cumulative survey
+weights, with standard errors clustered by state-survey wave and county.
+living just inside versus outside of the boundaries of the Ogallala aquifer on nine different issues
+reflecting conservatism on regulation, tax and spending, and cultural issues. Column (1)-(3) of
+panel D (the preferred specification) indicates that people living just inside the boundaries of the
+Ogallala aquifer are about 10 percentage points more likely to express opposition to strengthened
+enforcement of the Clean Air Act and Clean Water Act if it costs US jobs, consistent with the
+opposition of agribusiness interests to environmental regulation. They are about 6.5 percentage
+points more likely to support the repeal of the Affordable Care Act, which imposes health
+insurance mandates on large-scale employers of hired labor. Column (3) suggests that they are 6
+percentage points more likely to oppose fines for employers hiring undocumented laborers, a
+practice common at agribusiness firms and farms. Some coefficients are imprecisely estimated,
+though this is due to a loss of statistical power as the sample is pruned; the coefficient estimates
+in Panel D are virtually identical to those of specifications (in panels A through C) which use
+larger samples and report statistically significant coefficient estimates due to a greater number of
+observations and smaller standard errors.
+Columns (4)-(6) investigate differences in policy preferences regarding tax and spending issues.
+Column (4) indicates that respondents living inside the Ogallala aquifer boundary are 10.1
+percentage points more likely to support prohibiting immigrants from access to public services,
+consistent with preferences for small government, especially forms of spending that would
+benefit workers. Column (5) indicates that people residing inside the boundaries of the Ogallala
+aquifer are relatively more likely to favor cutting spending, as opposed to raising taxes, in order
+to pay for a budget deficit, also indicating a preference for small government. Column (6)
+indicates that respondents living inside the Ogallala aquifer boundary are about 7.9 percentage
+points more likely to support cutting government spending on welfare, a stance consistent with
+opposition to redistributive taxation and spending.
+Columns (7)-(9) investigate policy preferences on polarizing “culture war” issues as opposed to
+purely economic issues. Column (7) indicates that respondents living inside the boundaries of the
+Ogallala aquifer are about 9 percentage points more likely to oppose always giving a woman the
+right to choose to have an abortion under any circumstances. Column (8) suggests that
+respondents living inside versus outside of the boundary of the aquifer do not significantly differ
+in their attitudes towards requiring background checks for all gun purchases. Column (9)
+indicates that respondents are slightly (about 2.4 percentage points) more likely to express
+opposition to affirmative action, a question that touches on issues related to race. These results
+suggest that technological change may have had some spillover effects on social/moral attitudes.
+This may reflect the strategic bundling of social and economic issues by political parties, and is a
+topic that deserves further research.
+7. Conclusion
+At the turn of the twentieth century, the Great Plains were a politically centrist region which
+often supported left-wing parties and politicians like those belonging to the Populist movement.
+But by the end of the twentieth century, large swathes of the Great Plains had evolved into some
+of the most conservative and pro-Republican areas in the United States, typifying the
+conservative electoral shift that took place across rural America and that indeed has taken place
+in the rural sector in other advanced capitalist economies.
+What explains this puzzling transformation? In a lively debate (Bartels 2006; Frank 2007;
+Gelman 2009), scholars have debated the extent to which the culture wars and other cleavages
+which cut across class-based divides have contributed to the rise of rural conservatism. In this
+paper, we have suggested that much of the historical rise of rural conservatism can be traced to
+economic self-interest conceptualized in terms of the industries that dominate in rural areas.
+Long-term technological change gave rise to increasingly capital-intensive agriculture and the
+growing economic and political power of agribusiness interests which benefit from conservative
+economic policies. These agricultural transformations have had far-reaching consequences,
+playing a major role in the long-term transformation of rural states into red states – whose
+political power is amplified by a territorial upper chamber – as well as the spatial polarization of
+politics into a right-left, rural-urban divide (Cramer 2016; Grumbach, Hacker, and Pierson 2021;
+Rodden 2019).
+Drawing on a historical natural experiment – the post-war introduction of new irrigation
+technologies which disproportionately impacted counties with greater overlap with the Ogallala
+aquifer – this paper has provided causally identified evidence that technological change played a
+large role in the long-term rise of rural conservatism. The legacy of the post-war irrigation
+technology shock is visible from space in the circular irrigated fields that dominate land inside
+the Ogallala aquifer. It is also visible in the distinctly conservative economic policy preferences
+that differentiate individuals living just inside the boundaries of the Ogallala aquifer from those
+living just outside.
+The results indicate several pathways for future research. It is important to further explore how
+affluent farmers and agribusiness interests exercise outsized political influence in rural America.
+We have argued that this is due both to the “structural” power of agribusiness in rural economies
+as well as the organizational advantages of land and business owners, though future qualitative
+and quantitative research could provide more direct evidence on these dynamics. We have also
+documented potential spillover effects of long-term technological and economic change on
+social/moral attitudes, potentially due to the feedback effects of the strategic bundling of
+economic and social issues by political parties. Studying the micro-dynamics of how affluence
+translates into influence in rural areas, and how economic policy preferences and cultural beliefs
+co-evolve, are important tasks for future empirical research.
+7. References
+Aldrich, John H. 1995. Why Parties? The Origin and Transformation of Political Parties in
+America. University of Chicago Press.
+Amlani, Sharif, and Carlos Algara. 2021. “Partisanship & Nationalization in American Elections:
+Evidence from Presidential, Senatorial, & Gubernatorial Elections in the US Counties,
+1872–2020.” Electoral Studies 73: 102387.
+Anderson, Joseph. 2009. Industrializing the Corn Belt: Iowa Farmers, Technology and the
+Midwestern Landscape, 1945-1972. Northern Illinois University Press.
+———. 2018. “How Center Pivot Irrigation Brought the Dust Bowl Back to Life.” Smithsonian
+Magazine.
+Bartels, Larry M. 2006. “What’s the Matter with What’s the Matter with Kansas?” Quarterly
+Journal of Political Science 1(2): 201–26.
+Bell, Earl H. 1942. Culture of a Contemporary Rural Community: Sublette, Kansas. Washington
+DC: United States Department of Agriculture.
+Bessire, Lucas. 2021. Running Out: In Search of Water on the High Plains. Princeton University
+Press.
+Bloomquist, Leonard, Duane Williams, and J. Bridger. 2002. “Sublette, Kansas: Persistence and
+Change in Haskell County.” Persistence and Change in Rural Communities. CABI
+Publishing, Wallingford, Oxford: 23–43.
+Boix, Carles. 2015. Political Order and Inequality. Cambridge University Press.
+Carlson, Marvin P. 1989. “The Nebraska Center-Pivot Inventory: An Example of Operational
+Satellite Remote Sensing on a Long-Term Basis.” Photogramm. Eng. Remote Sens 55:
+587–90.
+Cook, Benjamin I., Ron L. Miller, and Richard Seager. 2009. “Amplification of the North
+American ‘Dust Bowl’ Drought through Human-Induced Land Degradation.”
+Proceedings of the National Academy of Sciences 106(13): 4997–5001.
+Cooper, Jasper, Sung Eun Kim, and Johannes Urpelainen. 2018. “The Broad Impact of a Narrow
+Conflict: How Natural Resource Windfalls Shape Policy and Politics.” The Journal of
+Politics 80(2): 630–46.
+Cramer, Katherine J. 2016. The Politics of Resentment: Rural Consciousness in Wisconsin and
+the Rise of Scott Walker. University of Chicago Press.
+Cunfer, Geoff. 2005. On the Great Plains: Agriculture and Environment. Texas A&M
+University Press.
+Dasgupta, Aditya. 2018. “Technological Change and Political Turnover: The Democratizing
+Effects of the Green Revolution in India.” American Political Science Review 112(4):
+918–38.
+Dimitri, Carolyn, Anne Effland, and Neilson Conklin. 2005. “The 20th Century Transformation
+of US Agriculture and Farm Policy.” Economic Research Service-United States
+Department of Agriculture Bulletin No. 3.
+Edwards, Eric C., and Steven M. Smith. 2018. “The Role of Irrigation in the Development of
+Agriculture in the United States.” The Journal of Economic History 78(4): 1103–41.
+Finegold, Kenneth, and Theda Skocpol. 1995. State and Party in America’s New Deal.
+University of Wisconsin Press.
+Fishback, Price V., William C. Horrace, and Shawn Kantor. 2005. “Did New Deal Grant
+Programs Stimulate Local Economies? A Study of Federal Grants and Retail Sales during
+the Great Depression.” The Journal of Economic History 65(1): 36–71.
+Frank, Thomas. 2007. What’s the Matter with Kansas? How Conservatives Won the Heart of
+America. Metropolitan Books.
+Gaventa, John. 1982. Power and Powerlessness: Quiescence and Rebellion in an Appalachian
+Valley. University of Illinois Press.
+Gelman, Andrew. 2009. Red State, Blue State, Rich State, Poor State. Princeton University
+Press.
+Grumbach, Jacob M., Jacob S. Hacker, and Paul Pierson. 2021. “The Political Economies of Red
+States.” The American Political Economy: Politics, Markets, and Power: 209.
+Hacker, Jacob S., Alexander Hertel-Fernandez, Paul Pierson, and Kathleen Thelen. 2021. The
+American Political Economy: Politics, Markets, and Power. Cambridge University Press.
+Hacker, Jacob S., and Paul Pierson. 2010. “Winner-Take-All Politics: Public Policy, Political
+Organization, and the Precipitous Rise of Top Incomes in the United States.” Politics &
+Society 38(2): 152–204.
+———. 2020. Let Them Eat Tweets: How the Right Rules in an Age of Extreme Inequality.
+Liveright Publishing.
+Hamilton, Shane. 2014. “Agribusiness, the Family Farm, and the Politics of Technological
+Determinism in the Post–World War II United States.” Technology and Culture: 560–90.
+Hansen, John. 1991. Gaining Access: Congress and the Farm Lobby, 1919-1981. University of
+Chicago Press.
+Hansen, Zeynep K., and Gary D. Libecap. 2004. “Small Farms, Externalities, and the Dust Bowl
+of the 1930s.” Journal of Political Economy 112(3): 665–94.
+Hornbeck, Richard. 2012. “The Enduring Impact of the American Dust Bowl: Short-and Long-
+Run Adjustments to Environmental Catastrophe.” American Economic Review 102(4):
+1477–1507.
+Hornbeck, Richard, and Pinar Keskin. 2014. “The Historically Evolving Impact of the Ogallala
+Aquifer: Agricultural Adaptation to Groundwater and Drought.” American Economic
+Journal: Applied Economics 6(1): 190–219.
+Iversen, Torben. 2006. “Capitalism and Democracy.” In The Oxford Handbook of Political
+Science, Oxford University Press.
+org/10.7910/DVN/II2DB6.
+Lee, Woojin, and John E. Roemer. 2006. “Racism and Redistribution in the United States: A
+Solution to the Problem of American Exceptionalism.” Journal of public Economics
+90(6–7): 1027–52.
+Libecap, Gary D., and Zeynep Kocabiyik Hansen. 2002. “‘Rain Follows the Plow’ and
+Dryfarming Doctrine: The Climate Information Problem and Homestead Failure in the
+Upper Great Plains, 1890–1925.” The Journal of Economic History 62(1): 86–120.
+Lipset, Seymour Martin. 1950. Agrarian Socialism. University of California Press.
+Luebbert, Gregory M. 1987. “Social Foundations of Political Order in Interwar Europe.” World
+Politics 39(4): 449–78.
+Mays, William E. 1968. Sublette Revisited: Stability and Change in a Rural Kansas Community
+After a Quarter Century. New York: Florham Park Press.
+McWilliams, Carey. 1939. Factories in the Field: The Story of Migratory Farm Labor in
+California. Little, Brown & Co.
+Meltzer, Allan H., and Scott F. Richard. 1981. “A Rational Theory of the Size of Government.”
+Journal of political Economy 89(5): 914–27.
+Moore, Barrington. 1966. Social Origins of Dictatorship and Democracy: Lord and Peasant in
+the Making of the Modern World. Beacon Press.
+Olmstead, Alan L., and Paul W. Rhode. 2001. “Reshaping the Landscape: The Impact and
+Diffusion of the Tractor in American Agriculture, 1910-1960.” Journal of Economic
+history: 663–98.
+———. 2008. Creating Abundance. Cambridge University Press.
+Opie, John. 2000. Ogallala: Water for a Dry Land. University of Nebraska Press.
+Ostler, Jeffrey. 1993. Prairie Populism: The Fate of Agrarian Radicalism in Kansas, Nebraska,
+and Iowa, 1880-1892. University Press of Kansas.
+Pachirat, Timothy. 2011. Every Twelve Seconds: Industrial Slaughter and the Politics of Sight.
+Yale University Press.
+Pardey, Philip G., and Julian M. Alston. 2021. “Unpacking the Agricultural Black Box: The Rise
+and Fall of American Farm Productivity Growth.” The Journal of Economic History
+81(1): 114–55.
+Poole, Keith T., and Howard Rosenthal. 2000. Congress: A Political-Economic History of Roll
+Call Voting. Oxford University Press.
+Przeworski, Adam, and Michael Wallerstein. 1988. “Structural Dependence of the State on
+Capital.” American Political Science Review 82(1): 11–29.
+Qi, Sharon. 2010. Digital Map of Aquifer Boundary for the High Plains Aquifer in Parts of
+Colorado, Kansas, Nebraska, New Mexico, Oklahoma, South Dakota, Texas, and
+Wyoming. US Geological Survey.
+Rawls, John. 1999. A Theory of Justice: Revised Edition. Harvard University Press.
+Rodden, Jonathan A. 2019. Why Cities Lose: The Deep Roots of the Urban-Rural Political
+Divide. Basic Books.
+Sances, Michael W., and Hye Young You. Forthcoming. “Voters and Donors: The Unequal
+Political Consequences of Fracking.” Journal of Politics.
+Sheingate, Adam D. 2003. The Rise of the Agricultural Welfare State: Institutions and Interest
+Group Power in the United States, France, and Japan. Princeton University Press.
+Splinter, William E. 1976. “Center-Pivot Irrigation.” Scientific American 234(6): 90–99.
+Stull, Donald D., Michael J. Broadway, and David Griffith. 1995. Any Way You Cut It: Meat
+Processing and Small-Town America. University Press of Kansas.
+Torres, Michelle, and Francisco Cantú. 2022. “Learning to See: Convolutional Neural Networks
+for the Analysis of Social Science Data.” Political Analysis 30(1): 113–31.
+Walsh, Katherine Cramer. 2012. “Putting Inequality in Its Place: Rural Consciousness and the
+Power of Perspective.” American Political Science Review 106(3): 517–32.
+Williams, Duane, and Leonard Bloomquist. 1996. From Dust Bowl to Green Circles: A Case
+Study of Haskell County, Kansas. Bulletin 662. Agricultural Experiment Station, Kansas
+State University.
+Worster, Donald. 1992. Rivers of Empire: Water, Aridity, and the Growth of the American West.
+Oxford University Press.
+snoitcelE
+laitnediserP
+ni
+erahS
+etoV
+nacilbupeR
+level-ytnuoC
+.I
+ERUGIF
+dna
+neewteb
+snoitcele
+laitnediserp
+ni
+etov
+ytrap-owt
+eht
+fo
+egatnecrep
+nacilbupeR
+egareva
+yb
+dedahs
+seitnuoc
+tciped
+dna
+lenaP
+:setoN
+.snoitcelE
+lairotanrebuG
+dna
+lairotaneS
+rof
+spam
+elbarapmoc
+rof
+xidneppA
+enilnO
+eeS
+.ylevitcepser
+,0002
+dna
+neewteb
+dna
+sasnaK
+,ytnuoC
+lleksaH
+fo
+yregamI
+laireA
+.II
+ERUGIF
+:ecruoS
+.6002
+,81
+enuJ
+no
+nekat
+hpargotohp
+lairea
+si
+egami
+dnah-thgiR
+.4591
+,91
+rebmeceD
+no
+nekat
+hpargotohp
+lairea
+si
+egami
+dnah-tfeL
+:setoN
+.xidneppA
+enilnO
+eht
+ees
+,kcohs
+lacigolonhcet
+raw-tsop
+eht
+no
+sliated
+erom
+roF
+.rerolpxE
+htraE
+SGSU
+
+noisuffiD
+ygolonhceT
+fo
+setamitsE
+noisiV
+retupmoC
+.VI
+ERUGIF
+erutcetihcrA
+krowteN
+larueN
+lanoitulovnoC
+)a(
+1vnoc
+2vnoc
+3vnoc
+4vnoc
+5vnoc
+8 2
+6cf
+yregamI
+etilletaS
+ni
+stovip-retneC
+gnitnuoC
+)b(
+raeniL
+-itca
+noitav
+noitpodA
+ygolonhceT
+level-ytnuoC
+)d(
+sasnaK
+rof
+setamitsE
+esiw-noitceS
+)c(
+-retnec
+fo
+rebmun
+fo
+etamitse
+noisserger
+sekam
+dna
+tupni
+sa
+egami
+lexip
+sekat
+taht
+erutcetihcra
+NNC
+reyal-51
+stciped
+lenaP
+:setoN
+,ytnuoC
+lleksaH
+ni
+)yregami
+tasdnaL
+morf
+detupmoc
+IVDN
+si
+reyal
+esab(
+noitces
+SSLP
+yb
+noitagirri
+tovip-retnec
+fo
+setamitse
+stciped
+lenaP
+.stovip
+raey
+ni
+sasnaK
+ni
+snoitces
+SSLP
+lla
+ssorca
+noitagirri
+tovip-retnec
+fo
+setamitse
+dednuor
+stciped
+lenaP
+.)318
+si
+detnuoc
+stovip-retnec
+latot(
+,SK
+.0002-5891
+neewteb
+degareva
+mk
+qs
+rep
+stovip-retnec
+fo
+elitrauq
+level-ytnuoc
+stciped
+lenaP
+.)26612
+si
+detnuoc
+stovip-retnec
+latot(
+gnihctaM
+laitapS
+.V
+ERUGIF
+.egarevoc
+refiuqa
+fo
+eerged
+yb
+dedahs
+seitnuoC
+.seitnuoc
+fo
+selpmas
+dehctam
+yllaitaps
+tnereffid
+ni
+dedulcni
+seitnuoc
+tciped
+slenaP
+:setoN
+kcohS
+lacigolonhceT
+retfA
+dna
+erofeB
+gnitoV
+evitavresnoC
+dna
+egarevoC
+refiuqA
+.IV
+ERUGIF
+0.1
+5.0
+0.0
+5.0−
+0.1−
+3.0 2.0 1.0 0.0 1.0− 2.0− 3.0−
+)0491−0291(
+kcohs
+lacigolonhcet−erP
+.A
+stceffE
+dexiF
+etatS
+egarevoC
+refiuqA
+stceffE dexiF etatS | etoV ytrap−owT fo erahS nacilbupeR
+ytnuoc
+lleksaH
+0.1
+5.0
+0.0
+5.0−
+0.1−
+3.0 2.0 1.0 0.0 1.0− 2.0− 3.0−
+)0002−0891(
+kcohs
+lacigolonhcet−tsoP
+.B
+stceffE
+dexiF
+etatS
+egarevoC
+refiuqA
+stceffE dexiF etatS | etoV ytrap−owT fo erahS nacilbupeR
+ytnuoc
+lleksaH
+laudiser
+tciped
+dna
+lenaP
+.sasnaK
+ni
+seitnuoc
+ot
+dnopserroc
+stniop
+dedahS
+.)elpmas
+enoz
+reffub
+mk002(
+ytnuoc
+eht
+si
+sisylana
+fo
+tinU
+:setoN
+etats
+tuo
+gnilaitrap
+retfa
+snoitcele
+laitnediserp
+ni
+etov
+ytrap-owt
+eht
+fo
+erahs
+nacilbupeR
+eht
+dna
+egarevoc
+refiuqa
+level
+ytnuoc
+neewteb
+noitalerroc
+.ylevitcepser
+,doirep
+)0002-0891(
+kcohs-tsop
+dna
+)0491-0291(
+kcohs-erp
+eht
+ni
+stceffe
+dexfi
+Republican Share of Two-party Vote
+Baseline Time-interacted Covariates Pure Treatment/Control
+President Senator Governor President Senator Governor President Senator Governor
+(1) (2) (3) (4) (5) (6) (7) (8) (9)
+Panel A: Full Sample
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+Aquifer Post-shock 0.117 0.103 0.086 0.085 0.073 0.060 0.122 0.100 0.088
+(0.022) (0.022) (0.015) (0.019) (0.020) (0.014) (0.022) (0.020) (0.012)
+[0.021] [0.019] [0.019] [0.019] [0.018] [0.017] [0.020] [0.017] [0.019]
+Aquifer 0.007 0.003 0.012 0.017 0.009 0.012 0.005 0.007 0.015
+(0.015) (0.013) (0.012) (0.014) (0.015) (0.013) (0.018) (0.010) (0.009)
+[0.012] [0.011] [0.012] [0.012] [0.012] [0.011] [0.013] [0.010] [0.012]
+Observations 1,350 1,350 1,350 1,350 1,350 1,350 1,072 1,072 1,072
+Adjusted R 0.774 0.857 0.815 0.775 0.859 0.817 0.765 0.855 0.816
+Panel B: 200km Sample
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗ ∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+Aquifer Post-shock 0.097 0.078 0.064 0.071 0.055 0.046 0.108 0.081 0.067
+(0.024) (0.021) (0.017) (0.021) (0.021) (0.017) (0.025) (0.020) (0.014)
+[0.019] [0.017] [0.018] [0.019] [0.018] [0.018] [0.019] [0.016] [0.018]
+Aquifer 0.006 0.007 0.014 0.014 0.013 0.012 0.003 0.010 0.018
+(0.019) (0.015) (0.015) (0.016) (0.017) (0.015) (0.023) (0.013) (0.014)
+[0.011] [0.010] [0.011] [0.012] [0.011] [0.011] [0.012] [0.009] [0.011]
+Observations 826 826 826 826 826 826 548 548 548
+Adjusted R 0.788 0.861 0.806 0.790 0.863 0.809 0.780 0.859 0.807
+Panel C: 100km Sample
+∗∗ ∗∗ ∗∗ ∗∗ ∗ ∗∗ ∗∗ ∗∗
+Aquifer Post-shock 0.072 0.055 0.042 0.053 0.038 0.029 0.082 0.057 0.042
+(0.025) (0.021) (0.018) (0.022) (0.020) (0.017) (0.029) (0.023) (0.017)
+[0.021] [0.019] [0.020] [0.019] [0.017] [0.017] [0.019] [0.019] [0.021]
+Aquifer 0.017 0.019 0.024 0.019 0.018 0.018 0.015 0.022 0.029
+(0.019) (0.014) (0.016) (0.017) (0.016) (0.015) (0.024) (0.014) (0.016)
+[0.011] [0.010] [0.012] [0.011] [0.011] [0.011] [0.011] [0.009] [0.012]
+Observations 562 562 562 562 562 562 284 284 284
+Adjusted R 0.821 0.880 0.829 0.822 0.882 0.834 0.819 0.884 0.839
+State-period Fixed Effects Yes Yes Yes Yes Yes Yes Yes Yes Yes
+Time-interacted Controls No No No Yes Yes Yes No No No
+Pure treatment/Control No No No No No No Yes Yes Yes
+Notes: Unit of analysis is county-period average (pre-period is 1920-1940 and post-period is 1980-2000). Re-
+publican Vote is the Republican party’s share of the two-party vote in presidential, senatorial, or gubernatorial
+elections, depending on specification. Aquifer is a cross-sectional measure of the share of county land overly-
+ing Ogallala aquifer. Post-shock is a time dummy variable taking a value of one for the post-shock period and
+zero otherwise. Control variables are per capita New Deal spending and share of county land exposed to severe
+wind erosion during the Dust Bowl, interacted with time. Analysis estimated by OLS. Standard errors adjusted
+∗ ∗∗ ∗∗∗
+< < <
+for clustering by county and state-period reported in parentheses: p 0.1; p 0.05; p 0.01. Conley stan-
+dard errors adjusted for serial correlation and spatial correlation within a 200km radius of county centroids
+reported in brackets.
+Dependent variable:
+Irrigation (% Farmland) Center-Pivots (per 1000 sq km)
+(1) (2) (3) (4) (5) (6)
+∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗ ∗∗∗
+Aquifer Post-shock 14.025 13.891 15.576 106.745 104.533 125.598
+(2.421) (1.964) (2.350) (20.300) (22.015) (18.035)
+[2.355] [2.222] [2.423] [19.411] [20.715] [19.932]
+− − −
+Aquifer 1.238 0.539 0.327 0.000 0.000 0.000
+(1.333) (0.855) (0.871) (0.000) (0.000) (0.000)
+[0.666] [0.473] [0.524] [0.000] [0.000] [0.000]
+County FE Yes Yes Yes Yes Yes Yes
+State-period FE Yes Yes Yes Yes Yes Yes
+Sample Full 200-km 100-km Full 200-km 100-km
+Observations 1,350 826 562 1,045 697 473
+Adjusted R 0.409 0.438 0.485 0.579 0.553 0.594
+Notes: Unit of analysis is county-period average (1920-1940 average comprises pre-period and 1980-2000 av-
+erage comprises post period). Irrigation is average percentage of farmland that is irrigated as computed from
+agricultural censuses conducted in 1920, 1925, 1930, 1935, 1940 (pre-period) and 1982, 1987, 1992, and 1997
+(post-period). Center pivots is computer vision estimate of center-pivot irrigation systems per 1000 sq kilo-
+meters from satellite imagery averaged 1985-2000 (the variable takes a value of zero for all counties in the
+pre-shock period as the technology did not exist at this time). Analysis estimated by OLS. Standard errors ad-
+justed for clustering by county and state-period reported in parentheses. Conley standard errors adjusted for
+serial correlation and spatial correlation within a 200km radius of county centroids reported in brackets.
+emiT
+revO
+snoitcelE
+dna
+egnahC
+lacigolonhceT
+.III
+ELBAT
+)dnalmraF
+%(
+noitagirrI
+)erahS
+nacilbupeR(
+ronrevoG
+)erahS
+nacilbupeR(
+rotaneS
+)erahS
+nacilbupeR(
+tnediserP
+)21(
+)11(
+)01(
+)9(
+)8(
+)7(
+)6(
+)5(
+)4(
+)3(
+)2(
+)1(
+∗∗∗
+∗∗∗
+785.1
+397.1
+744.2
+720.0
+810.0
+200.0
+610.0
+600.0
+800.0
+800.0
+310.0
+830.0
+s0191
+refiuqA
+)188.1(
+)489.1(
+)145.2(
+)010.0(
+)110.0(
+)310.0(
+)410.0(
+)510.0(
+)610.0(
+)510.0(
+)410.0(
+)210.0(
+∗∗
+∗∗
+674.0
+447.0
+606.1
+910.0
+010.0
+100.0
+320.0
+610.0
+310.0
+230.0
+320.0
+920.0
+s0291
+refiuqA
+)187.0(
+)997.0(
+)414.1(
+)410.0(
+)310.0(
+)510.0(
+)510.0(
+)510.0(
+)410.0(
+)310.0(
+)110.0(
+)910.0(
+∗∗
+514.0
+745.0
+761.1
+720.0
+710.0
+120.0
+400.0
+900.0
+010.0
+600.0
+020.0
+120.0
+s0391
+refiuqA
+)597.0(
+)086.0(
+)539.0(
+)210.0(
+)210.0(
+)410.0(
+)110.0(
+)210.0(
+)110.0(
+)410.0(
+)610.0(
+)510.0(
+270.0
+550.0
+223.0
+410.0
+900.0
+600.0
+510.0
+210.0
+900.0
+620.0
+710.0
+400.0
+s0491
+refiuqA
+)273.0(
+)293.0(
+)655.0(
+)900.0(
+)900.0(
+)800.0(
+)310.0(
+)210.0(
+)010.0(
+)610.0(
+)610.0(
+)310.0(
+∗∗∗
+∗∗
+∗∗
+∗∗
+∗∗
+∗∗
+178.5
+915.5
+395.5
+310.0
+310.0
+610.0
+930.0
+330.0
+030.0
+240.0
+030.0
+330.0
+s0591
+refiuqA
+)041.2(
+)541.2(
+)224.2(
+)010.0(
+)010.0(
+)900.0(
+)510.0(
+)510.0(
+)810.0(
+)910.0(
+)610.0(
+)020.0(
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+957.01
+051.01
+154.01
+140.0
+830.0
+540.0
+550.0
+250.0
+660.0
+460.0
+360.0
+180.0
+s0691
+refiuqA
+)747.2(
+)238.2(
+)020.3(
+)510.0(
+)410.0(
+)410.0(
+)910.0(
+)710.0(
+)710.0(
+)120.0(
+)020.0(
+)120.0(
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗
+∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗
+∗∗
+∗∗∗
+242.51
+409.31
+517.31
+240.0
+440.0
+250.0
+650.0
+260.0
+760.0
+240.0
+930.0
+450.0
+s0791
+refiuqA
+)592.2(
+)223.2(
+)515.2(
+)020.0(
+)020.0(
+)810.0(
+)510.0(
+)210.0(
+)110.0(
+)710.0(
+)710.0(
+)810.0(
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+675.41
+697.21
+612.21
+160.0
+170.0
+190.0
+660.0
+470.0
+190.0
+670.0
+480.0
+501.0
+s0891
+refiuqA
+)987.1(
+)725.1(
+)576.1(
+)310.0(
+)210.0(
+)210.0(
+)610.0(
+)510.0(
+)610.0(
+)610.0(
+)410.0(
+)510.0(
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+229.51
+909.31
+753.31
+070.0
+280.0
+201.0
+080.0
+390.0
+711.0
+101.0
+121.0
+241.0
+s0991
+refiuqA
+)829.1(
+)775.1(
+)708.1(
+)210.0(
+)110.0(
+)110.0(
+)210.0(
+)110.0(
+)210.0(
+)510.0(
+)310.0(
+)210.0(
+seY
+seY
+seY
+seY
+seY
+seY
+seY
+seY
+seY
+seY
+seY
+seY
+EF
+raey-etatS
+mk-001
+mk-002
+lluF
+mk-001
+mk-002
+lluF
+mk-001
+mk-002
+lluF
+mk-001
+mk-002
+lluF
+elpmaS
+809,4
+502,7
+087,11
+221,01
+137,41
+180,42
+428,8
+539,21
+942,12
+834,6
+764,9
+684,51
+snoitavresbO
+314.0
+483.0
+723.0
+658.0
+248.0
+248.0
+418.0
+008.0
+287.0
+738.0
+618.0
+777.0
+detsujdA
+sisylanA
+.)noitagirri
+fo
+esac
+eht
+ni
+raey
+susnec
+larutlucirga
+dna
+semoctuo
+larotcele
+fo
+esac
+eht
+ni
+raey
+noitcele(
+raey-ytnuoc
+si
+sisylana
+fo
+tinU
+:setoN
+.sesehtnerap
+ni
+detroper
+raey-etats
+dna
+ytnuoc
+yb
+gniretsulc
+rof
+detsujda
+srorre
+dradnatS
+.SLO
+yb
+detamitse
+1920 1940 1960 1980
+2.0
+1.0
+0.0
+1.0−
+2.0−
+A. Presidential Elections
+Decade (start year)
+s0391
+ot
+evitaleR
+tneiciffeoC
+1920 1940 1960 1980
+2.0
+1.0
+0.0
+1.0−
+2.0−
+B. Senatorial Elections
+Decade (start year)
+s0391
+ot
+evitaleR
+tneiciffeoC
+1920 1940 1960 1980
+2.0
+1.0
+0.0
+1.0−
+2.0−
+C. Gubernatorial Elections
+Decade (start year)
+s0391
+ot
+evitaleR
+tneiciffeoC
+1920 1940 1960 1980
+01−
+02−
+D. Farmland Irrigated (%)
+Decade (start year)
+s0391
+ot
+evitaleR
+tneiciffeoC
+Notes: Plot depicts coefficient on aquifer coverage variable interacted with decadal dummy variables, with the
+1930s left out as the reference category. Vertical bars are 95% confidence intervals. Vertical axis range is plus
+or minus one standard deviation of the outcome in panels A through C and two standard deviations in panel
+D. All specifications control for state-year and county fixed effects and are based on 100km buffer sample of
+counties. Analysis estimated by OLS. Standard errors adjusted for clustering within counties and state-years.
+Dependent variable:
+Capitalized Value Farms Density Agricultural Population Density Urbanization Religosity
+(Log Per Farm Value $) (# per 1000 Acres) Employment (%) (People per 1000 Acres) (%) (Members Per Capita )
+(1) (2) (3) (4) (5) (6)
+× − − ∗∗∗ − ∗∗ − ∗∗∗
+Aquifer 1910s 0.082 1.433 – 12.552 6.592 –
+(0.202) (0.382) (0.000) (4.228) (1.722) (0.000)
+× − ∗∗∗ − ∗∗ − ∗∗ − ∗
+Aquifer 1920s 0.075 1.226 – 12.199 4.840 0.055
+(0.113) (0.286) (0.000) (4.901) (2.029) (0.029)
+× − ∗∗∗ ∗∗ − ∗ − ∗ − ∗∗∗
+Aquifer 1930s 0.062 1.118 5.111 12.224 5.415 0.041
+(0.070) (0.382) (1.735) (5.668) (2.429) (0.010)
+× − − ∗∗∗ ∗∗ − ∗ − ∗∗
+Aquifer 1940s 0.053 0.985 4.408 11.755 6.690 –
+(0.067) (0.364) (1.842) (6.028) (2.648) (0.000)
+× − ∗∗ ∗ − − − ∗
+Aquifer 1950s – 0.667 4.324 11.518 4.066 0.047
+(0.000) (0.313) (1.874) (7.094) (3.178) (0.028)
+× ∗∗∗ − ∗ ∗∗∗ − −
+Aquifer 1960s 0.315 0.402 6.486 14.172 5.638 –
+(0.072) (0.226) (1.791) (8.850) (3.515) (0.000)
+× ∗∗∗ − ∗∗ − − −
+Aquifer 1970s 0.281 0.295 5.327 17.428 3.375 0.024
+(0.076) (0.183) (1.537) (10.158) (3.671) (0.028)
+× ∗∗ − ∗∗∗ − ∗ − −
+Aquifer 1980s 0.239 0.252 5.433 20.524 0.855 0.003
+(0.106) (0.157) (1.387) (10.724) (3.686) (0.028)
+× ∗∗ − ∗∗∗ − ∗ − −
+Aquifer 1990s 0.210 0.200 5.934 27.709 0.212 0.018
+(0.096) (0.137) (1.108) (13.361) (4.055) (0.032)
+Sample 100km 100km 100km 100km 100km 100km
+State-year FE Yes Yes Yes Yes Yes Yes
+Observations 3,082 4,769 2,248 2,800 2,876 1,672
+Adjusted R 0.829 0.587 0.468 0.004 0.090 0.333
+Notes: Unit of analysis is county-year (agricultural, population or religious census year depending on out-
+come). Capitalized value is the log of the inflation-adjusted average market value of farm land and buildings.
+Farm density is the number of farms per 1000 acres of county land. Population density is the number of people
+per 1000 acres of county land. Urbanization is the percentage of the county population living in census-defined
+urban areas. Agricultural employment is the percentage of workforce employed in agriculture. Religiosity is
+church membership per capita. Data from the US Census of Religion Bodies conducted in 1926, 1936; the sur-
+vey of Churches and Church Membership conducted by the National Council of Churches in 1952, 1971, 1980
+and 1990. Analysis estimated by OLS. Standard errors adjusted for clustering by county and state-year.
+slennahC
+laitnetoP
+.IIIV
+ERUGIF
+2 1 0 1− 2−
+mraF
+rep
+eulaV
+goL
+.A
+)raey
+trats(
+edaceD
+s0391 ot evitaleR tneiciffeoC
+2 1 0 1− 2−
+sercA
+rep
+smraF
+.B
+)raey
+trats(
+edaceD
+s0391 ot evitaleR tneiciffeoC
+0.1 5.0 0.0 5.0− 0.1−
+erahS
+tnemyolpmE
+larutlucirgA
+goL
+.C
+)raey
+trats(
+edaceD
+s0391 ot evitaleR tneiciffeoC
+004 002 0 002− 004−
+ytisneD
+noitalupoP
+.D
+)raey
+trats(
+edaceD
+s0391 ot evitaleR tneiciffeoC
+03 02 01 0 01− 02− 03−
+noitazinabrU
+.E
+)raey
+trats(
+edaceD
+s0391 ot evitaleR tneiciffeoC
+1.0 0.0 1.0−
+pihsrebmeM
+hcruhC
+.F
+)raey
+trats(
+edaceD
+s0391 ot evitaleR tneiciffeoC
+ecnerefer
+eht
+sa
+tuo
+tfel
+s0391
+eht
+htiw
+,selbairav
+ymmud
+ladaced
+htiw
+detcaretni
+elbairav
+egarevoc
+refiuqa
+no
+tneicfifeoc
+stciped
+tolP
+:setoN
+emoctuo
+eht
+fo
+noitaived
+dradnats
+eno
+sunim
+ro
+sulp
+si
+egnar
+sixa
+lacitrev
+,tolp
+hcae
+nI
+.slavretni
+ecnedfinoc
+%59
+era
+srab
+lacitreV
+.yrogetac
+yb
+detamitse
+sisylanA
+.seitnuoc
+fo
+elpmas
+reffub
+mk001
+no
+desab
+era
+dna
+stceffe
+dexfi
+ytnuoc
+dna
+raey-etats
+rof
+lortnoc
+snoitacfiiceps
+llA
+.elbairav
+.sraey-etats
+dna
+seitnuoc
+nihtiw
+gniretsulc
+rof
+detsujda
+srorre
+dradnatS
+.SLO
+ataD
+SECC
+ni
+stnednopseR
+fo
+sedoC
+piZ
+.XI
+ERUGIF
+.selpmas
+laciripme
+tnereffid
+ni
+ataD
+)SECC(
+yevruS
+noitcelE
+lanoissergnoC
+evitarepooC
+ni
+sedoc
+piz
+tciped
+stolP
+:setoN
+refiuqA
+alallagO
+eht
+fo
+edistuO
+dna
+edisnI
+secnereferP
+yciloP
+yraropmetnoC
+.V
+ELBAT
+seussi
+larutluC
+dnepS/xaT
+ssenisub-orP
+noitalugeR
+esoppO
+evitamrfifA
+oN
+nuG
+esoppO
+esoppO
+erafleW
+tuC
+esoppO
+tnargimmI
+oN
+eniF
+oN
+laepeR
+APE
+esoppO
+noitcA
+skcehC
+noitrobA
+sexaT
+secivreS
+reyolpmE
+ACA
+tnemecrofnE
+)9(
+)8(
+)7(
+)6(
+)5(
+)4(
+)3(
+)2(
+)1(
+elpmas
+lluF
+:A
+lenaP
+∗∗
+∗∗∗
+∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+∗∗∗
+040.0
+220.0
+290.0
+980.0
+168.2
+850.0
+250.0
+490.0
+811.0
+refiuqA
+)610.0(
+)020.0(
+)720.0(
+)430.0(
+)760.1(
+)820.0(
+)810.0(
+)130.0(
+)720.0(
+641,66
+358,92
+338,72
+234,21
+091,53
+988,51
+040,32
+676,63
+326,62
+snoitavresbO
+274.0
+210.0
+110.0
+600.0
+900.0
+360.0
+610.0
+220.0
+810.0
+detsujdA
+mk-002
+:B
+lenaP
+∗∗
+∗∗
+∗∗
+540.0
+400.0
+660.0
+770.0
+358.2
+750.0
+130.0
+650.0
+570.0
+refiuqA
+)910.0(
+)320.0(
+)230.0(
+)550.0(
+)003.1(
+)630.0(
+)330.0(
+)630.0(
+)930.0(
+561,22
+228,9
+321,9
+490,4
+782,21
+336,5
+950,8
+763,21
+587,8
+snoitavresbO
+884.0
+420.0
+520.0
+700.0
+510.0
+270.0
+420.0
+830.0
+820.0
+detsujdA
+mk-001
+:C
+lenaP
+∗∗∗
+∗∗
+430.0
+510.0
+780.0
+980.0
+839.2
+850.0
+060.0
+060.0
+370.0
+refiuqA
+)420.0(
+)720.0(
+)030.0(
+)930.0(
+)785.1(
+)130.0(
+)030.0(
+)630.0(
+)540.0(
+575,11
+560,5
+107,4
+860,2
+144,6
+450,3
+033,4
+225,6
+915,4
+snoitavresbO
+894.0
+430.0
+820.0
+700.0
+220.0
+550.0
+030.0
+630.0
+530.0
+detsujdA
+palrevo
+laitrap
+on
+mk-001
+:D
+lenaP
+∗∗
+∗∗
+420.0
+110.0
+290.0
+970.0
+689.2
+101.0
+060.0
+560.0
+301.0
+refiuqA
+)220.0(
+)730.0(
+)830.0(
+)240.0(
+)833.2(
+)930.0(
+)830.0(
+)340.0(
+)260.0(
+049,9
+593,4
+180,4
+308,1
+145,5
+136,2
+337,3
+546,5
+829,3
+snoitavresbO
+494.0
+620.0
+520.0
+410.0
+020.0
+950.0
+830.0
+240.0
+920.0
+detsujdA
+192.0
+041.0
+944.0
+073.0
+250.06
+734.0
+926.0
+235.0
+964.0
+naeM
+esnopseR
+APE
+esoppO
+.0202
+dna
+neewteb
+detelpmoc
+)SECC(
+syevruS
+noitcelE
+lanoissergnoC
+evitarepooC
+ssorca
+,laudividni
+si
+sisylana
+fo
+tinU
+:setoN
+SU
+stsoc
+ti
+fi
+neve
+tcA
+retaW
+naelC
+dna
+tcA
+riA
+naelC
+fo
+tnemecrofne
+gninehtgnerts"
+ot
+noitisoppo
+sesserpxe
+tnednopser
+rehtehw
+rof
+rotacidni
+si
+esoppO
+.)sevaw
+yevrus
+9102-2102(
+tcA
+eraC
+elbadroffA
+fo
+laeper
+gnitroppus
+rof
+rotacidni
+si
+ACA
+laepeR
+.)sevaw
+yevrus
+9102-4102
+ni
+noitseuq(
+"sboj
+.)sevaw
+7102-3102
+,0102
+,7002(
+stnargimmi
+lagelli
+erih
+taht
+sessenisub
+SU
+gninfi
+ot
+noitisoppo
+sesserpxe
+tnednopser
+rehtehw
+rof
+rotacidni
+si
+enfi
+cilbup
+dna
+erac
+latipsoh
+ycnegreme
+gnisu
+morf
+stnargimmi
+lagelli
+]gni[tibihorp"
+stroppus
+tnednopser
+rehtehw
+rof
+rotacidni
+si
+tnargimmi
+tibihorP
+,8002-6002(
+ticfied
+tegdub
+ot
+esnopser
+ni
+)stuc
+gnidneps(
+ot
+)sexat
+gnisaercni(
+morf
+elacs
+ecnereferp
+si
+sexat
+esoppO
+.)sevaw
+41-2102(
+"sloohcs
+timiL
+.)sevaw
+dna
+6102(
+gnidneps
+eraflew
+gnicuder
+rof
+ecnereferp
+setacidni
+tnednopser
+rehtehw
+rof
+rotacidni
+si
+eraflew
+tuC
+.)sevaw
+7102-0102
+.)sevaw
+9102-4102(
+"eciohc
+fo
+rettam
+sa
+noitroba
+na
+niatbo
+ot
+namow
+]gni[wolla
+syawla"
+sesoppo
+tnednopser
+rehtehw
+rof
+rotacidni
+si
+noitroba
+evitamrfifa
+oN
+.)sevaw
+9102-3102(
+selas
+nug
+lla
+rof
+skcehc
+dnuorgkcab
+gniriuqer
+sesoppo
+tnednopser
+rehtehw
+rof
+rotacidni
+si
+kcehc
+nug
+esoppO
+gniretsulc
+yaw-owt
+rof
+detsujda
+srorre
+dradnatS
+.)sevaw
+41-8002(
+noitca
+evitamrfifa
+ot
+noitisoppo
+gnorts
+ro
+tahwemos
+rof
+rotacidni
+na
+si
+noitca
+.ytnuoc
+dna
+evaw
+yevrus-etats
+nihtiw
+Online Appendix
+Contents
+1 Details of Technological Shock 58
+1.1 Pre-existing Technology . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 58
+1.2 Image of Windmill Pump . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 59
+1.3 Post-war Technology Shock . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 60
+1.4 Images of Improved Groundwater Pumps and Center-pivot Irrigation . . . . . . . . 61
+2 Maps of Voting in Senatorial and Gubernatorial Elections 64
+2.1 County-level Map of Voting in Senatorial Elections . . . . . . . . . . . . . . . . . . . 64
+2.2 County-level Map of Voting in Gubernatorial Elections . . . . . . . . . . . . . . . . . 65
+3 Computer Vision Estimates of Center-pivot Irrigation 66
+3.1 Processing Satellite Imagery in Google Earth Engine . . . . . . . . . . . . . . . . . . 66
+3.2 Ground Truth Annotations from the Nebraska Center-pivot Inventory . . . . . . . . 66
+3.3 Model Architecture, Training, and Testing Accuracy . . . . . . . . . . . . . . . . . . . 67
+3.4 State-by-State Center-pivot Counts . . . . . . . . . . . . . . . . . . . . . . . . . . . . 72
+4 Notes on GIS Analysis 80
+4.1 Source of Shapefiles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 80
+4.2 Software and Packages Used in GIS Analysis . . . . . . . . . . . . . . . . . . . . . . . 80
+4.3 Defining Stable County Boundaries . . . . . . . . . . . . . . . . . . . . . . . . . . . . 80
+5 Measuring Exposure to the Dust Bowl 81
+5.1 Soil Conservation Service Map . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 81
+6 Descriptive Statistics for Major Variables 82
+6.1 Decadal Averages of Major Variables in Full Sample . . . . . . . . . . . . . . . . . . . 82
+6.2 Decadal Averages of Major Variables in 200km Buffer Sample . . . . . . . . . . . . . 83
+6.3 Decadal Averages of Major Variables in 100km Buffer Sample . . . . . . . . . . . . . 84
+1 Details of Technological Shock
+1.1 Pre-existing Technology
+Prior to the post-WWII irrigation technology shock, virtually no agricultural land in the Great
+Plains was irrigated. What little irrigation existed was typically based on surface irrigation from
+seasonal rivers and streams. As the 1920 Agricultural Census section on irrigation in Kansas put
+it: “On the High Plains there is ground water, but it occurs at such great depths that the cost of
+pumping is too great for a large use of water from wells. (p. 179)”
+Agriculture west of the 100th meridian (most of the Great Plains), which is typically taken to
+divide arid from subhumid climates in the western United States, was typically unproductive
+and highly suceptible to droughts. Subsequent Homestead Acts (of 1904 and 1909) following
+the original legislation enacted in 1862, revised the law to grant larger landholdings (640 acres,
+equivalent to a quarter-section in the Public Land Survey System) to farmers settling lands in
+the Great Plains, where it was recognized that 160 acres was too small to sustain family farms
+on sub-marginal land where only uproductive dryland farming was possible.
+Episodic precipitation often brought bumper crops and waves of settlement, followed by
+prolonged multi-year droughts which resulted in mass farm failures and mass outmigration.
+This culminated in the Dust Bowl, the combination of prolonged drought, dust storms, and soil
+erosion that devastated agriculture in the region between 1930 and 1936 and resulted in mass
+outmigration to more agriculturally productive regions.
+The pre-existing technology for accessing groundwater was the windmill pump, which was
+typically limited to drawing water from a maximum of 30 feet under the ground. The per-acre
+foot cost did not justify the windmill’s deployment in large-scale crop irrigation. As one scholar
+puts it: “the average windmill kit a farmer could buy from a local manufacturer cost $75 for
+an eight-foot mill, $100 for a ten-foot mill, and $135 for a twelve-foot mill. As costs declined,
+in 1909 a farmer could build his own reservoir and install two twelve-foot windmills with ten-
+inch pumps for $330...farmers learned regretfully that their costly $330 investment might at best
+water a total of eight acres...the inherent pumping limits of windmill technology were quickly
+reached and did little to aid the wheat farmer on his 640-acre section.”’ .
+In the 1920s, new and improved pumping technologies emerged, but remained prohibitively
+expensive to provide large-scale crop irrigation. These included, for example, steam-powered
+centrifugal pumps. More cost-efficient electric irrigation pumps existed, but farmers typically
+lacked widespread access to electricity connections. In any case, by the time these technologies
+became available in the 1920s, farmers in the Great Plains were at the beginning of a 20-year
+depression in crop prices that made it uneconomical to employ either technology on a large
+scale for irrigation given their still exorbitant pumping costs.
+Seager, Richard, et al. "Whither the 100th meridian? The once and future physical and human geography of
+America’s arid–humid divide. Part I: The story so far." Earth Interactions 22.5 (2018): 1-22.
+See e.g. Cook, Benjamin I., Ron L. Miller, and Richard Seager. "Dust and sea surface temperature forcing of the
+1930s “Dust Bowl” drought." Geophysical Research Letters 35.8 (2008).; Gregory, James Noble. American exodus:
+the dust bowl migration and Okie culture in California. Oxford University Press, USA, 1991.
+Opie, John. Ogallala: Water for a Dry Land. University of Nebraska Press, 2000, p. 117
+1.2 Image of Windmill Pump
+Notes: From Opie, John. Ogallala: Water for a Dry Land. University of Nebraska Press, 2000, p. 118
+1.3 Post-war Technology Shock
+Post-WWII advances in groundwater pumping technology finally made it economical for the
+typical farmer to irrigate crops on a large scale. Improved petroleum-powered groundwater
+pumps based on the adaptation of used automobile engines originated in the late 1930s, but
+did not become widely available until commercialization and mass production, and diffusion
+through demonstration effects led to widespread uptake in areas overlying the Ogallala aquifer
+the 1950s. These new pumps were much more efficient in terms of per acre-foot cost than the
+pre-existing technology: "Compared to earlier operating expenses of about $6.00 per acre-foot,
+the 1938 irrigator could flood his field for $3.20 to $4.50, including installed well and equipment,
+interest and depreciation, and fuel and maintenance...Advances in technology would soon give
+the ordinary farmer access to irrigation, but it would be two more decades before it would be
+commonplace.”
+The ability to draw from the Ogallala aquifer on a large scale led to a second problem – how
+to distribute this water efficiently across a typical 640-acre quarter-section farm. Flood and
+ditch irrigation systems were both costly to build, in terms of labor and materials, and were
+also water inefficient as they depended upon immersing fields in water in a context of loamy,
+permeable soils that are susceptible to rapid dissipation of moisture. A solution arrived in the
+form of center-pivot irrigation, a system for irrigating large circular fields with a rotating arm
+affixed with sprinklers. Designed initially to irrigate a 640-acre quarter-section (with a rotating
+arm about a quarter mile in length), over time center-pivot irrigation systems evolved in scale
+so that the largest units could irrigate an entire PLSS section (with a rotating arm about a half
+mile in length).
+The main benefit of center-pivot irrigation was that it eliminated the need to build labor-
+intensive irrigation systems and was much more water efficient, providing water evenly across
+large circular fields at a rate that could be controlled by the farmer. Center-pivot irrigation was
+patented in 1952 by its inventor Frank Zybach and spread rapidly across the Great Plains from
+the 1950s and 1960s onward. The patent for center-pivot irrigation was purchased by Valmont
+in 1954, which played a major role in the commercialization, mass production and diffusion of
+the new technology across the Great Plains. In the state of Nebraska, much of which intersects
+with the Ogallala aquifer, a team of researchers utilizing manual counting of circular fields from
+Landsat satellite imagery found that the number of center-pivot irrigation systems in the state
+increased rapidly, from over 4000 in 1973 (when satellite images are first available) to nearly
+10,000 in 1976.
+The spread of center-pivot irrigation supplied by petroluem-powered deepwell pumps trans-
+formed the Great Plains, resulting in the signature irrigated crop circles that are visible from
+space as well as the quasi-industrial revolution in agriculture that made the Great Plains one
+of the most agriculturally productive regions in the world. As one observer in the 1970s put it:
+"What is being observed is perhaps the most significant mechanical innovation in agriculture
+since the replacement of draft animals by the tractor."
+Opie, John. Ogallala: Water for a Dry Land. University of Nebraska Press, 2000, p. 132
+Splinter, William E. "Center-pivot irrigation." Scientific American 234.6 (1976): 90-99.
+Splinter, William E. "Center-pivot irrigation." Scientific American 234.6 (1976): 90.
+1.4 Images of Improved Groundwater Pumps and Center-pivot Irrigation
+Notes: From Opie, John. Ogallala: Water for a Dry Land. University of Nebraska Press, 2000, p. 135
+
+metsyS
+noitagirrI
+toviP-retneC
+fo
+egamI
+.VI
+ERUGIF
+detagirri
+fo
+erca
+rep
+tner
+hsac
+eht
+,yadot
+sasnaK
+,ytnuoC
+lleksaH
+nI
+.serca
+ro
+noitces-retrauq
+SSLP
+yletamixorppa
+srevoc
+elcric
+hcaE
+:setoN
+.muimerp
+%023
+ro
+dnalporc
+detagirrinu
+fo
+erca
+rep
+53$
+ot
+derapmoc
+211$
+yletamixorppa
+si
+dnal
+2 Maps of Voting in Senatorial and Gubernatorial Elections
+2.1 County-level Map of Voting in Senatorial Elections
+Notes: Panel A depicts counties shaded by average Republican percentage of the two-party vote in senatorial
+elections between 1920 and 1940. Panel B depicts counties shaded by average Republican percentage of the
+two-party vote in senatorial elections between 1980 and 2000.
+2.2 County-level Map of Voting in Gubernatorial Elections
+Notes: Panel A depicts counties shaded by average Republican percentage of the two-party vote in gubernato-
+rial elections between 1920 and 1940. Panel B depicts counties shaded by average Republican percentage of
+the two-party vote in gubernatorial elections between 1980 and 2000.
+3 Computer Vision Estimates of Center-pivot Irrigation
+3.1 Processing Satellite Imagery in Google Earth Engine
+Our goal is to count the area-normalized number of center-pivot irrigation systems in operation
+in all counties in the Great Plains states in each year between 1985 and 2000 (Landsat 5 satellite
+imagery becomes available from 1984 onwards). We exclude Texas, which does not use the
+Public Land Survey System (PLSS) from this exercise as well as Montana and North Dakota,
+which do not intersect with the Ogallala aquifer and are not a part of our empirical strategy.
+Our focus is therefore on measuring the density of center-pivot irrigation technology adoption
+for all counties in Oklahoma, New Mexico, Kansas, Colorado, Nebraska, Wyoming, and South
+Dakota between 1985 and 2000.
+For each state-year, we compute a state-wide raster layer comprised of the normalized dif-
+ference vegetation index (NDVI), which highlights areas of greenery and cropping. The NDVI
+is defined as (NIR - R) / (NIR + R), where NIR is Near Infrared surface reflectance values and R
+is Red surface reflectance values. In the case of Landsat 5, this is (Band 5 – Band 4) / (Band 5
++ Band 4). We compute this index for each pixel by taking pixel-level median values computed
+from all cloud-free images of a given pixel taken between July and August in a given year. Some
+pixels are missing due to cloud cover. Computing and processing this satellite imagery required
+us to process and analyze terabytes of satellite imagery. All computations were performed on
+the cloud in Google Earth Engine (code available on request).
+We clip these state-year raster files to the extent of individual PLSS sections, rescaling each to
+a 70 70 pixel image. Given Landsat 5 resolution (each pixel is 30 square meters) this is approxi-
+mately the typical size in satellite imagery of a PLSS section, which is about 1 mile on a side (with
+deviation). Shapefiles of PLSS sections are obtained from the Bureau of Land Management. As
+part of our data pre-processing before we feed images to a convolutional neural network, we
+also re-scale the NDVI index to a measure that ranges between 0 (minimum possible value) and
+1 (maximum possible value).
+There are a total of 621, 000 PLSS sections in each of 16 years for which we have imagery or
+nearly 10 million images which we wish to make predictions about the number of center-pivot
+irrigation systems contained therein. Once we have these predictions, it is possible to aggre-
+gate up to the county level by counting all the center-pivot irrigation systems in PLSS sections
+contained within a county, and normalizing by total land area to get a measure of the number
+of center-pivots per 1000 square kilometers.
+3.2 Ground Truth Annotations from the Nebraska Center-pivot Inventory
+Manually counting center-pivot irrigation systems in nearly 10 million PLSS sections is beyond
+human ability. As a result, we turn to tools from computer vision to automate this process.
+We train a convolutional neural network (CNN) that takes as input the 70 70 pixel image of
+a PLSS section and as output makes a prediction of the number of center-pivot irrigation sys-
+tems contained therein. CNNs are supervised learning algorithms and require labeled training
+data where the labels represent “ground truth" estimates of the count of center-pivot irrigation
+systems in an image.
+To obtain ground-truth labels, we utilize a geo-coded inventory of center-pivot irrigation
+systems that was compiled though hand counting of crop circles in Landsat satellite imagery
+by a team of researchers for the state of Nebraska. . The inventory consists of a spreadsheet
+of every center-pivot irrigation system observed manually in Landsat satellite imagery for each
+year between 1972 and 1987 with longitude and latitude coordinates.
+Since geo-coding was performed by hand, there is some noise in the recorded coordinates
+(i.e. when coordinates are overlaid with accurately geo-referenced satellite imagery, they do
+not exactly correspond to center-pivot irrigation systems). This makes certain approaches to
+counting, for instance those based on dot-annotated density maps, difficult to implement.
+However, it is possible to obtain highly accurate estimates of the number of center-pivot irriga-
+tion systems contained within aggregated spatial units, in our case PLSS sections.
+A typical PLSS section contains between 0 and 4 center-pivot irrigation systems in predictable
+overlapping with our years of interest to label the count of center-pivot irrigation systems in
+clipped satellite images of all PLSS sections in Nebraska, which comprises our training dataset
+(N 220,000). We use a 80:20 training/testing split, stratified by county-year, where 80 percent of
+the data is used for traning and validation of the CNN model and 20 percent of the data is used
+to test the model’s out-of-sample predictive performance. That is, we randomly sample 20% of
+all county-year pairs in Nebraska for the years 1985-1987 and allocate all images of PLSS sec-
+tions taken in each of these county-year pairs to the test set and allocate the remaining images
+to the training set. There are 93 counties in Nebraska observed over three years or 279 county-
+year pairs; of these, 223 were allocated to the training set and 56 to the test set. This stratified
+construction of a test set permits us to measure the predictive accuracy of the algorithm at two
+levels: at the PLSS section and at the county-year level.
+3.3 Model Architecture, Training, and Testing Accuracy
+We utilize a modified version of the VGG16 network architecture to design our convolutional
+neural network. We modify it in the following ways. First, we modify the input dimensions of
+× ×
+the model so that it takes as input the 70 70 1 dimension image (i.e. a 70 by 70 pixel image in
+a single color channel) of a PLSS section. Second, we replace the softmax activation layer with a
+linear activation layer so that as output the model make a continous regression estimate of the
+number of center-pivots in the image. Third, since we have a relatively focused task, we replace
+the two 4096 neuron dense layers at the bottom of the standard VGG16 network architecture
+with a much smaller single 128 neuron dense layer. This convolutional neural network model
+has a total of 14,975,937 trainable parameters.
+Carlson, Marvin P. "The Nebraska Center-Pivot Inventory: An example of operational satellite remote sensing
+on a long-term basis." Photogramm. Eng. Remote Sens 55 (1989): 587-590.
+Arteta, Carlos, Victor Lempitsky, and Andrew Zisserman. "Counting in the wild." European conference on
+computer vision. Springer, Cham, 2016.
+Simonyan, Karen, and Andrew Zisserman. "Very deep convolutional networks for large-scale image recogni-
+tion." arXiv preprint arXiv:1409.1556 (2014).
+Notes: Images represent examples of Landsat 5 satellite imagery (NDVI index) of PLSS sections from Nebraska
+with “ground truth" labels corresponding to the number of center-pivot irrigation systems in the image ac-
+cording to the Nebraska center-pivot inventory.
+Linear
+acti-
+vation
+512 512 512
+conv5
+512 512 512
+conv4
+256 256 256 1 7 1 1 2 8
+128 128 3 conv3 fc6
+6464 7 conv2
+conv1
+Notes: Image represents layers of convolutional neural network which takes as input a 70 by 70 pixel image of a
+PLSS section in a single channel and as output makes a linear regression estimate of the number of center-pivot
+irrigation systems in the image. Our approach treats counting center-pivot irrigation systems as a regression
+problem, requiring as labels only the total number of objects per training image.
+Our general approach is in the spirit of “learning to count" objects in images with deep neu-
+ral networks without object localization, in which counting is treated as a regression problem,
+requiring as labels only the total number of objects per training image. Similar approaches have
+been taken to counting objects ranging from fruits and leaves to animals in imagery. While
+there may be some degree of idisyncratic error in the predictions in the case of individual PLSS
+sections, as we aggregate to the county-year level, much of this prediction error ‘cancels out’
+(in the sense that the variance of the sum of at least partially uncorrelated random variables
+is less than the sum of their variances). This is also why we opt for a linear activation layer
+that makes a continuous estimate of the number of center-pivots in supplied images rather
+than softmax classification of the image into whole integer categories. Numerical over- and
+under-predictions relative to an integer-valued target label contain useful information about
+classification ambiguity that improves overall predictive power when we aggregate up to the
+county-year level.
+In terms of a loss function, we minimize the mean squared error (MSE) of predictions. The
+model was trained on the Nebraska training data for a total of 10 epochs using a the Root Mean
+Squared Propagation (RMSprop) optimizer and a learning rate of 1e-4. Training was imple-
+mented in the keras package in R which uses TensorFlow in Python as a backend. In test data for
+the state of Nebraska 1985-87, when “ground truth" labels were regressed on predicted counts
+in PLSS sections in Nebraska, the coefficient on the predicted count variable was 0.98 and the
+R was 0.73. This implies a high level of accuracy at the PLSS section level (for examples see
+the idiosyncratic prediction error in PLSS section counts cancel each other out as we aggregate
+to higher levels.
+Using the trained model, we can make predictions for a massive number of PLSS sections
+(approximately 10 million) across all of the Great Plains states for each year between 1985 and
+2000. We then aggregate up to the county level and divide by total county land area (omitting
+PLSS sections missing predictions due to cloud cover) to get a panel dataset on center-pivot
+irrigation density (center-pivots/1000 sq kilometers) at the county-year level. We achieve near-
+human predictive accuracy at this level. When we regress ground-truth measures (based on
+manual counts from the Nebraska center-pivot inventory) of center-pivot irrigation density for
+the 56 county-year pairs in Nebraska that were allocated to the test set to our computer vision
+estimates of center-pivot irigation density, the coefficient on the predicted density variable is
+2 2 =
+1.1 and and the R is 0.94. The accuracy of our computer vision estimates is even higher (R
+Below we provide images of predicted center-pivot irrigation counts at the PLSS section and
+county level for Oklahoma, New Mexico, Kansas, Colorado, Nebraska, Wyoming, and South
+of center-pivots per 1000 square kilometers averaged between 1985 and 2000. As the map illus-
+trates, center-pivot irrigation was overwhelmingly concentrated within the boundaries of the
+Ogallala aquifer. Images 12-18 provide state-by-state maps of center-pivot irrigation counts at
+the PLSS section level and then aggregated to the county level.
+Rahnemoonfar, Maryam, and Clay Sheppard. "Deep count: fruit counting based on deep simulated learn-
+ing." Sensors 17.4 (2017): 905; Hoekendijk, Jeroen, et al. "Counting using deep learning regression gives value to
+ecological surveys." Nature scientific reports 11.1 (2021): 1-12.
+Notes: Images represent 32 randomly selected examples of Landsat 5 satellite imagery (NDVI index) of PLSS
+sections from Nebraska with predicted center-pivot counts estimated by the CNN (top left of each image) and
+“ground truth" (top right) labels corresponding to the number of center-pivot irrigation systems in the image
+according to the Nebraska center-pivot inventory. These are images from test set (i.e. the CNN did not see
+these examples during training).
+0 100 200 300 400 500
+A. Center Pivot Density
+Predicted Center Pivots per 1000 sq km
+mk
+qs
+rep
+stoviP
+retneC
+hturt−dnuorG
+0 500 1000 1500 2000
+B. Center Pivot Count
+Predicted Center Pivot Count
+tnuoC
+toviP
+retneC
+hturt−dnuorG
+Notes: Points represent test-set county-year observations from Nebraska for which we can compare “ground
+truth" estimates of center-pivot irrigation (based on manual counts from the Nebraska center-pivot inven-
+tory) against computer vision estimates of technology adoption. Estimates contructed by using trained CNN
+to count the number of center-pivots in every PLSS section image in a given county-year and then aggregat-
+ing these counts to the county level and normalizing by land area. Red line represents fitted regression line.
+= 2
+Dashed blue line represents x y diagonal. Adjusted R in panel A (where the measure is center-pivots per 1000
+sq km) is 0.94. Adjusted R in panel B (where the measure is total center-pivot count) is 0.98.
+3.4 State-by-State Center-pivot Counts
+Notes: Map depicts county-level quartile of center-pivots per 1000 sq km averaged between 1985-2000. Note
+that Texas is excluded because it does not use the PLSS system. Light blue polygon is Ogallala aquifer boundary.
+Notes: Top panel depicts rounded estimates of center-pivot irrigation across all PLSS sections in Nebraska in
+year 2000 (total center-pivots counted is 35851). Bottom panel depicts county-level quartile of center-pivots
+per 1000 sq km averaged between 1985-2000. Light blue polygon is Ogallala aquifer boundary.
+Notes: Top panel depicts rounded estimates of center-pivot irrigation across all PLSS sections in Kansas in year
+2000 (total center-pivots counted is 21662). Bottom panel depicts county-level quartile of center-pivots per
+1000 sq km averaged between 1985-2000. Light blue polygon is Ogallala aquifer boundary.
+Notes: Top panel depicts rounded estimates of center-pivot irrigation across all PLSS sections in New Mexico
+in year 2000 (total center-pivots counted is 4054). Bottom panel depicts county-level quartile of center-pivots
+per 1000 sq km averaged between 1985-2000. Light blue polygon is Ogallala aquifer boundary.
+Notes: Top panel depicts rounded estimates of center-pivot irrigation across all PLSS sections in Oklahoma in
+year 2000 (total center-pivots counted is 7411). Bottom panel depicts county-level quartile of center-pivots
+per 1000 sq km averaged between 1985-2000. Light blue polygon is Ogallala aquifer boundary.
+Notes: Top panel depicts rounded estimates of center-pivot irrigation across all PLSS sections in Colorado in
+year 2000 (total center-pivots counted is 12117). Bottom panel depicts county-level quartile of center-pivots
+per 1000 sq km averaged between 1985-2000. Light blue polygon is Ogallala aquifer boundary.
+Notes: Top panel depicts rounded estimates of center-pivot irrigation across all PLSS sections in Wyoming in
+year 2000 (total center-pivots counted is 3919). Bottom panel depicts county-level quartile of center-pivots
+per 1000 sq km averaged between 1985-2000. Light blue polygon is Ogallala aquifer boundary.
+Notes: Top panel depicts rounded estimates of center-pivot irrigation across all PLSS sections in South Dakota
+in year 2000 (total center-pivots counted is 5304). Bottom panel depicts county-level quartile of center-pivots
+per 1000 sq km averaged between 1985-2000. Light blue polygon is Ogallala aquifer boundary.
+4 Notes on GIS Analysis
+4.1 Source of Shapefiles
+To measure county boundaries, we utilize shapefiles published by the IPUMS National His-
+torical Geographical Information System (NHGIS). NHGIS provides decennial shapefiles of
+county boundaries. These files contain polygons representing county boundaries at 10-year
+intervals corresponding to population censuses.
+To measure the boundaries of the Ogallala aquifer, we utilize a shapefile produced by the
+US Geological Survey. . This shapefile contains a polygon representing the boundaries of the
+Ogallala aquifer, as synthesized from a range of historical and local geological surveys.
+4.2 Software and Packages Used in GIS Analysis
+All GIS and spatial analyses are performed in the R programming language. The rgdal package
+is used to load, store, and project shapefiles into a coordinate reference system (WGS84 is used
+throughout).
+The package rgeos, which provides an R interface to GEOS (an open-source C package for
+analyzing spatial geometries), is used to perform spatial operations, including computation of
+county centroids and the intersection county and aquifer boundaries in order to compute the
+degree to which a county overlaps with the Ogallala aquifer.
+The packages geosphere is used to measure spatial distances and areas. This package is used
+to compute the geodesic distance of county centroids from the Ogallala aquifer boundary in
+each state as well as to compute the share of each county’s surface area that overlies the Ogallala
+aquifer.
+4.3 Defining Stable County Boundaries
+To identify counties that possessed “stable" boundaries between 1920 and 2000, we compute
+polygons representing the union and intersection of the boundary of a given county (identified
+by name and ICPSR code) in 1920 and in 2000. If the county exists in both years and the inter-
+section is at least 99 percent of the union in terms of land area, it is considered to have stable
+boundaries over this time period (and not if either condition is not satisfied).
+Qi, Sharon. Digital Map of Aquifer Boundary for the High Plains Aquifer in Parts of Colorado, Kansas, Nebraska,
+New Mexico, Oklahoma, South Dakota, Texas, and Wyoming. No. 543. US Geological Survey, 2010
+5 Measuring Exposure to the Dust Bowl
+5.1 Soil Conservation Service Map
+Esri, HERE, Garmin, FAO, NOAA, USGS, EPA, Esri, USGS
+Notes: Map represents Soil Conservation Service’s estimates of areas exposed to different degrees of soil erosion
+by 1937. Exposure to the Dust Bowl is defined as the share of county land exposed to severe wind erosion based
+on geo-referenced map. This map was geo-referenced in ArcGIS and polygons were manually constructed to
+represent areas of "severe wind erosion" in the Great Plains states. The measure of exposure to the Dust Bowl
+is the share of county land that was exposed to severe wind erosion according to this measure. For comparable
+analyses, see: Hornbeck, Richard. "The enduring impact of the American Dust Bowl: Short-and long-run
+adjustments to environmental catastrophe." American Economic Review 102.4 (2012): 1477-1507. Source:
+National Archives.
+6 Descriptive Statistics for Major Variables
+6.1 Decadal Averages of Major Variables in Full Sample
+Presidential Senatorial Gubernatorial Irrigation Farm Value Farms Density Agricultural Population Density Urbanization Religiosity
+Vote Share Vote Share Vote Share Farmland % $1000s #/1000 Acres Employment % People/1000 Acres Urban % Members per Capita
+1920s 0.53 0.47 0.41 1.77 244.16 3.04 – 32.84 13.94 0.34
+1930s 0.28 0.36 0.34 1.69 215.55 3.24 51.12 37.23 17.36 0.34
+1940s 0.41 0.39 0.38 0.81 184.28 2.71 46.53 38.25 20.62 –
+1950s 0.60 0.42 0.36 2.72 – 2.02 36.87 41.63 27.81 0.49
+1960s 0.51 0.51 0.42 4.02 868.52 1.52 26.80 48.60 32.58 –
+1970s 0.60 0.49 0.43 5.51 1530.75 1.28 18.95 54.68 35.27 0.34
+1980s 0.63 0.53 0.51 5.60 1249.43 1.27 16.02 64.84 36.33 0.39
+1990s 0.60 0.60 0.56 6.17 917.60 1.20 12.65 79.25 36.19 0.37
+Notes: Data represent decadal averages for full sample of data (all counties with stable boundaries between
+1920 and 2000 in Texas, Oklahoma, New Mexico, Kansas, Colorado, Nebraska, South Dakota, Wyoming). Vote
+share variables are the Republican party’s county-level share of the two-party vote in presidential, senatorial,
+or gubernatorial elections. Irrigation is average percentage of farmland that is irrigated as computed from
+agricultural censuses conducted in 1920, 1925, 1930, 1935, 1940, 1945, 1950, 1954, 1959, 1964, 1969, 1974, 1978,
+1982, 1987, 1992, and 1997. Farm value is inflation-adjusted average market value of farm land, machinery and
+buildings in 2016 dollars (source: agricultural censuses). Farm density is the number of farms per 1000 acres
+of county land (source: agricultural censuses). Population density is the number of people per 1000 acres of
+county land (source: decennial population censuses). Urbanization is the percentage of the county population
+living in census-defined urban areas (source: decennial population censuses). Agricultural employment is
+the percentage of workforce employed in agriculture (source: decennial population censuses). Religiosity is
+church membership per capita (data from the US Census of Religion Bodies conducted in 1926, 1936; the
+survey of Churches and Church Membership conducted by the National Council of Churches in 1952, 1971,
+1980 and 1990.
+6.2 Decadal Averages of Major Variables in 200km Buffer Sample
+Presidential Senatorial Gubernatorial Irrigation Farm Value Farms Density Agricultural Population Density Urbanization Religiosity
+Vote Share Vote Share Vote Share Farmland % $1000s #/1000 Acres Employment % People/1000 Acres Urban % Members per Capita
+1920s 0.59 0.53 0.46 1.06 300.52 2.35 – 24.26 12.18 0.32
+1930s 0.33 0.43 0.41 1.23 266.54 2.56 50.56 28.12 16.06 0.34
+1940s 0.47 0.47 0.47 0.60 217.50 2.18 46.75 27.31 18.97 –
+1950s 0.64 0.49 0.44 2.98 – 1.76 39.26 29.52 25.20 0.49
+1960s 0.56 0.56 0.47 4.97 960.81 1.36 30.40 33.92 29.85 –
+1970s 0.62 0.53 0.46 7.01 1687.97 1.15 22.84 36.53 31.87 0.37
+1980s 0.67 0.57 0.54 7.23 1356.80 1.06 20.00 40.80 33.32 0.43
+1990s 0.64 0.63 0.58 8.02 1001.27 0.95 15.67 45.33 33.27 0.40
+Notes: Data represent decadal averages for 200km buffer sample of data (counties within 200km distance of the
+Ogallala aquifer boundary in each state with stable boundaries between 1920 and 2000 in Texas, Oklahoma,
+New Mexico, Kansas, Colorado, Nebraska, South Dakota, Wyoming). Vote share variables are the Republican
+party’s county-level share of the two-party vote in presidential, senatorial, or gubernatorial elections. Irriga-
+tion is average percentage of farmland that is irrigated as computed from agricultural censuses conducted in
+1920, 1925, 1930, 1935, 1940, 1945, 1950, 1954, 1959, 1964, 1969, 1974, 1978, 1982, 1987, 1992, and 1997. Farm
+value is inflation-adjusted average market value of farm land, machinery and buildings in 2016 dollars (source:
+agricultural censuses). Farm density is the number of farms per 1000 acres of county land (source: agricultural
+censuses). Population density is the number of people per 1000 acres of county land (source: decennial popu-
+lation censuses). Urbanization is the percentage of the county population living in census-defined urban areas
+(source: decennial population censuses). Agricultural employment is the percentage of workforce employed in
+agriculture (source: decennial population censuses). Religiosity is church membership per capita (data from
+the US Census of Religion Bodies conducted in 1926, 1936; the survey of Churches and Church Membership
+conducted by the National Council of Churches in 1952, 1971, 1980 and 1990.
+6.3 Decadal Averages of Major Variables in 100km Buffer Sample
+Presidential Senatorial Gubernatorial Irrigation Farm Value Farms Density Agricultural Population Density Urbanization Religiosity
+Vote Share Vote Share Vote Share Farmland % $1000s #/1000 Acres Employment % People/1000 Acres Urban % Members per Capita
+1920s 0.59 0.52 0.46 0.71 300.42 2.26 – 22.60 11.09 0.32
+1930s 0.32 0.42 0.40 0.95 274.98 2.47 51.88 26.29 15.30 0.35
+1940s 0.47 0.46 0.47 0.47 212.60 2.10 47.83 25.34 18.19 –
+1950s 0.64 0.49 0.43 3.52 – 1.73 39.89 27.37 24.35 0.49
+1960s 0.56 0.56 0.47 6.18 957.43 1.35 31.43 31.58 29.26 –
+1970s 0.63 0.53 0.46 8.87 1700.78 1.15 24.11 33.22 31.28 0.39
+1980s 0.68 0.57 0.55 9.00 1347.11 1.06 21.35 36.25 32.17 0.46
+1990s 0.66 0.64 0.59 10.08 1013.83 0.93 16.75 39.86 32.29 0.42
+Notes: Data represent decadal averages for 100km buffer sample of data (counties within 100km distance of the
+Ogallala aquifer boundary in each state with stable boundaries between 1920 and 2000 in Texas, Oklahoma,
+New Mexico, Kansas, Colorado, Nebraska, South Dakota, Wyoming). Vote share variables are the Republican
+party’s county-level share of the two-party vote in presidential, senatorial, or gubernatorial elections. Irriga-
+tion is average percentage of farmland that is irrigated as computed from agricultural censuses conducted in
+1920, 1925, 1930, 1935, 1940, 1945, 1950, 1954, 1959, 1964, 1969, 1974, 1978, 1982, 1987, 1992, and 1997. Farm
+value is inflation-adjusted average market value of farm land, machinery and buildings in 2016 dollars (source:
+agricultural censuses). Farm density is the number of farms per 1000 acres of county land (source: agricultural
+censuses). Population density is the number of people per 1000 acres of county land (source: decennial popu-
+lation censuses). Urbanization is the percentage of the county population living in census-defined urban areas
+(source: decennial population censuses). Agricultural employment is the percentage of workforce employed in
+agriculture (source: decennial population censuses). Religiosity is church membership per capita (data from
+the US Census of Religion Bodies conducted in 1926, 1936; the survey of Churches and Church Membership
+conducted by the National Council of Churches in 1952, 1971, 1980 and 1990.

@@ -1,0 +1,350 @@
+USE OF CONTROL VARIABLES 1
+1 Unfortunately, everything is under control: A plea for stronger statistical considerations
+2 about the use of control variables
+4 Faculty of Psychology, FernUniversität in Hagen, Hagen, Germany
+5 Author Note
+6 Acknowledgment: I would like to thank Marie Beisemann and Andreas Mokros for
+7 their feedback on an earlier draft of this manuscript.
+8 Conflict of interest: Christian Blötner is the developer and maintainer of the R
+9 package latcontrol.
+10 Data availability: The R script that reproduces the simulations reported in this
+12 Correspondence concerning this article should be addressed to Christian Blötner,
+13 FernUniversität in Hagen, Faculty of Psychology, Chair of Personality, Legal Psychology and
+14 Assessment, Universitätsstr. 27, 58084 Hagen, Germany. E-Mail: christian.bloetner@fernuni-
+15 hagen.de.
+USE OF CONTROL VARIABLES 2
+16 Abstract
+17 Control variables are frequently employed when assumed relations between constructs of
+18 interest should be corrected for extraneous effects. However, researchers rarely justify the
+19 inclusion of control variables, and the statistical impacts receive only little attention. This paper
+20 provides critical reflections on the commonly carefree use of control variables. Furthermore,
+21 two statistical methods to evaluate the influence of control variables on latent properties in
+22 structural equation models were probed. To this end, a simulation study was conducted in which
+23 the strengths of associations between the substantial constructs as well as the effects of the
+24 control variable were manipulated. Adding a control variable did not affect the model-implied
+25 covariance structure, but the parameter estimates of the structural equation model. In
+26 conclusion, better theoretical and statistical considerations are required when dealing with
+27 control variables and parameters should be compared between models with and without control
+28 variables.
+29 Keywords: Partialing, methodology, structural equation model, discrepancy, model evaluation
+USE OF CONTROL VARIABLES 3
+30 Unfortunately, everything is under control: A plea for stronger statistical considerations
+31 about the use of control variables
+32 Social scientists frequently assume that their predictors, moderators, mediators, and
+33 outcomes alike are contaminated by certain extraneous variables that potentially serve as
+34 alternative explanations for the relations under scrutiny. Shared variances with these
+35 extraneous variables (i.e., assumed control variables) are sought to be eliminated to adjust the
+36 tested relationships among the substantial variables for erroneous contents not immediately
+37 pertinent to the subject. Researchers thereby frequently control for gender, age, or socio-
+38 economic status or psychological variables in a narrower sense such as social desirability or
+39 negative affectivity (Spector & Brannick, 2011).
+40 Pointing to the very nature of the utilized control variable in a particular analysis,
+41 however, researchers should ensure at the conceptual level that the control variable is not in
+42 fact an antecedent or a consequence of one of the substantial variables (i.e., has a causal
+43 relation with the constructs of interest as opposed to being a mere covariate). For instance,
+44 researchers might control the relations among supervisors’ performance appraisals of their
+45 employees for the supervisor’s liking for a person. At the conceptual level, it is reasonable to
+46 assume that a supervisor’s liking is not just a covariate but a consequence of good work
+47 performance (cf. Spector & Brannick, 2011). Similarly, one might argue that employees’
+48 work performance improves, given a positive relationship with their supervisor. In both cases,
+49 the relations among performance appraisals were distorted if they were controlled for liking,
+50 yielding ambiguous associations and false conclusions (Carlson & Wu, 2012). Consistent
+51 with this, Simmons et al. (2011) argued that almost every hypothesized relation could be
+52 proved by arbitrarily controlling for certain variables (see also Becker, 2005). A different
+53 string of research pointed to the perils of partialling (Hoyle et al., 2023). That is, eliminating
+54 shared portions of variance among constructs can jeopardize accurate interpretations of the
+55 links between the “refined” predictors and criteria. More precisely, meaningful contents from
+USE OF CONTROL VARIABLES 4
+56 the substantial variables are assumed to be removed by adjusting them for other predictors.
+57 Therefore, aspects of a particular variable needed for the full expression of this construct also
+58 covered by the control variable(s) would be eliminated (see also Carlson & Wu, 2012). For
+59 instance, if a researcher were to investigate the relationship between depressive symptoms and
+60 eating behaviors and controls for negative affect, the conceptual content of the assumed
+61 predictor (depressive symptoms) and the criterion (eating behavior) would be substantially
+62 curtailed by the inclusion of the control variable (negative affectivity; Iqbal & Dar, 2015; Van
+63 Strien et al., 1985). In this case, the substantial variable cannot be meaningfully interpreted.
+64 Addressing the lack of proper methods to evaluate the impact of control variables in
+65 structural equation models (Becker, 2005), two methods are presented that assists scholars in
+66 this regard. The first comprises an exploratory comparison of the model-implied variance-
+67 covariance matrices of the assumed structural model with and without the control variable(s).
+68 To this end, the basic discrepancy function from latent models as well as pertinent model fit
+69 indices were adopted. Second, the effects of including a control variable are evaluated in
+70 terms of model parameters that are frequently subject to hypothesis testing of substantial
+71 relations (e.g., loadings, factor covariances and paths; Becker, 2005; Simmons et al., 2011;
+72 Spector & Brannick, 2011). To demonstrate and evaluate both methods, the relations among
+73 independent, dependent, and control variables are manipulated using a simulation study.
+74 Derivation of the Discrepancy Function
+75 The first method explores whether including one or more control variable(s) has any
+76 effects on the variance-covariance structure of the remaining indicators. To this end, the
+77 difference between the model-implied variance-covariance matrices of the structural equation
+78 models with and without the control variable(s) is computed by means of an adopted form of
+79 the discrepancy function from structural equation modeling. In its original form, it deals with
+80 the comparison of a model-implied variance-covariance matrix and an empirical variance-
+81 covariance matrix (see Equation 1).
+USE OF CONTROL VARIABLES 5
+#$
+(1)
++ +
+𝐹 = log |Σ(𝜃)| log|𝑆| + 𝑡𝑟 1𝑆 ∗ Σ3𝜃4 5 − 𝑘
+!"
+82 In this equation, 𝛴3𝜃4 denotes the variance-covariance matrix proposed by the latent
+83 model, S denotes the empirical variance-covariance matrix, and k reflects the number of
+84 manifest indicators in the model (cf. Jöreskog et al., 2016). F can be transformed into a χ2-
+ML
+85 distributed index with k * (k + 1)/2 degrees of freedom by multiplying it with the number of
+86 observations minus one (i.e., n – 1). If the observed χ2-value exceeds the critical χ2-value with
+87 the same degrees of freedom, one concludes that S differs substantially from 𝛴3𝜃4. Applying
+88 these considerations to the comparison of models with and without control variables, and in
+89 keeping with the general logic of the discrepancy function (Jöreskog et al., 2016), I adopted
++ +
+90 the function as demonstrated in Equation 2, with 𝛴3𝜃 4 and 𝛴3𝜃 4 being the model-
+%&’( %&’()*’
+91 implied variance-covariance matrices of the fitted models with and without the control
+92 variable(s), respectively.
++ + + +
+(2)
+𝐹 = log9Σ(𝜃 )9 − log9Σ(𝜃 )9 + 𝑡𝑟:Σ3𝜃 4 ∗ Σ(𝜃 ); − 𝑘
++&, %&’( %&’()*’ %&’()*’ %&’(
+93 Prior to computation, all columns and rows unique to 𝛴3𝜃 4 are removed. Just like
+%&’(
+94 in structural equation modeling, the value of the discrepancy function is multiplied by (n – 1)
+95 to obtain a χ2-index. The number of degrees of freedom is a function of the number of
+96 indicators with df = k * (k + 1). This expression reflects the total number of estimated
+97 variances and non-redundant covariances in both matrices. Both the derivation of the
+98 discrepancy function and the approach to quantifying the degrees of freedom are similar to
+99 Jennrich’s (1970) method for the comparison of correlation matrices. However, in latent
+100 modeling, computations of variance-covariance matrices are preferred over correlation
+101 matrices (e.g., to obtain valid standard errors or to enable multiple-group analyses; Jöreskog
+102 et al., 2016). Due to reliance on correlation versus variance-covariance matrices, the
+103 difference between the degrees of freedom of the present approach and those in Jennrich’s
+104 approach equals the number of elements on the diagonal of the matrices (i.e., indicator
+USE OF CONTROL VARIABLES 6
+105 variances). Since standardized variances are restricted to 1, they would be omitted in
+106 Jennrich’s method, but I argue that implied item variances provide additional information in
+107 terms of the intended comparisons.
+108 Derivation of Adopted Versions of Common Descriptive Fit Indices
+109 Due to the conceptual proximity to discrepancies sensu structural equation modeling,
+110 another advantage of the present approach refers to descriptive fit indices that supplement the
+111 above significance test: Since the χ2-index suggests differences between the matrices quite
+112 easily if the sample size is sufficiently large, reports of χ2-indices are usually supplemented by
+113 descriptive indices (Jöreskog et al., 2016). Common indices are the Root Mean Square Error
+114 of Approximation (RMSEA) and the Square Root Mean Residual (SRMR). Put simply, the
+115 RMSEA quantifies the relative discrepancy between the proposed and the observed variance-
+116 covariance matrices. In the present approach, the adopted χ2-index reflecting the discrepancy
+117 between the models with and without the control variable(s) is used. The SRMR quantifies the
+118 average deviation between the elements of the model-implied and observed correlation
+119 matrices. Before the average deviation is calculated, differences between the non-redundant
+120 entries of the model-implied correlation matrices are squared. This procedure was adopted to
+121 the difference between the elements of the model-implied variance-covariance matrices of
+122 models with and without one or more control variable(s).
+123 Side-by-Side Comparison of Parameter Profiles
+124 Another, rather simple way to evaluate the influence of control variables refers to
+125 immediate comparisons of the parameter estimates of interest (Simmons et al., 2011; Spector
+126 & Brannick, 2011). In structural equation models, those could be loadings, item residuals,
+127 factor variances, covariances among factors, and assumed paths between factors. To this end,
+128 standardized estimates of the parameters both competing models have in common are
+129 compared to enable users to evaluate whether the same conclusions emerge from models with
+130 or without one or more control variable(s).
+USE OF CONTROL VARIABLES 7
+131 Method
+132 Data Generation and Analytical Strategy
+133 A simulation study with structural equation models was conducted. The strengths of
+134 associations among the independent, dependent, and control variables (βs = .20, .40, and .60),
+135 whereby — for the sake of simplicity — equal effects of the control variable onto the
+136 independent and dependent variables were specified. Within each condition, 1,000 datasets
+137 with 500 observations each were simulated. Given that the magnitude of loadings does not
+138 affect the relations between latent factors (Hodson, 2021), all loadings (four per factor) were
+139 restricted to λ = .60. The simulations were carried out with the R package lavaan (version
+140 0.6–16; Rosseel, 2012).
+141 The influence of including the control variable was evaluated in two ways, both
+142 implemented in the R package latcontrol (Blötner, 2023). First, employing the approach from
+143 Equation 2, I evaluated the differences between the variance-covariance matrices of the
+144 models belonging to the same condition with and without control variables. The evaluation
+145 was based on the modified χ2-index, the modified RMSEA, and the modified SRMR. Second,
+146 I compared the parameter profiles of the structural equation models belonging to the same
+147 condition with and without the control variables.
+148 Results
+149 Effects of the Inclusion of Control Variables onto the Variance-Covariance-Matrix
+151 trials each. As can be seen, differences in the variance-covariance matrices of the models with
+152 and without the control variable were negligible because the χ2-indices and descriptive fit
+153 indices alike support the null hypothesis according to which the model-implied variance-
+154 covariance matrices do not differ. Thus, the approach lacks sensitivity to detect biases due to
+155 the inclusion of a control variable.
+USE OF CONTROL VARIABLES 8
+Results of the Simulations of Manipulating the Effects of Control Variables and the Links Between an Independent and a Dependent Variable
+Weak link between IV and DV Moderate link between IV and DV Strong link between IV and DV
+Fit Indices Weak CV Moderate CV Strong CV Weak CV Moderate CV Strong CV Weak CV Moderate CV Strong CV
+χ2(72) 0.14 0.33 0.44 0.11 0.27 0.37 0.09 0.21 0.28
+p 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00
+RMSEA .00 .00 .00 .00 .00 .00 .00 .00 .00
+SRMR .00 .00 .00 .00 .00 .00 .00 .00 .00
+Note. k = 1,000 iterations per condition. n = 500 observations per condition. Weak, moderate, and strong relations are reflected by path coefficients βs = .20,
+.40, and .60, respectively. CV, DV, and IV reflect control, dependent, and independent variables, respectively. RMSEA = Root mean square error of
+approximation. SRMR = Square root mean residual.
+USE OF CONTROL VARIABLES 9
+157 Side-by-Side Comparisons of the Parameter Profiles
+159 equation models with and without control variables across conditions. As can be seen, item
+160 loadings and residuals remained essentially identical, irrespective of the inclusion and the
+161 strength of the control variable. On the other hand, the residual variances of the independent
+162 and dependent variables were higher in the models without the control variable. This,
+163 however, is reasonable because — as per model specification — the control variable is
+164 intended to explain unique variance of the dependent variable. In the model without a control
+165 variable, the independent variable is an exogenous variable, that is, its variance is not
+166 accounted for by other variables. Thus, all of its variance remains unexplained. In contrast,
+167 models with a control variable treat the independent variable as an endogenous variable for
+168 which a specific ratio of variance is accounted for by other variables in the model (i.e., the
+169 control variable). Likewise, as per model specification, the control variable is supposed to
+170 explain variance not yet accounted for by the independent variable (Jöreskog et al., 2016).
+171 Thus, it is unsurprising to observe differences in the ratios of explained variance for the
+172 independent and dependent variables.
+USE OF CONTROL VARIABLES 10
+Differences of the Parameter Estimates Between Simulated Models with and Without Control Variable
+Weak link between IV and DV Moderate link between IV and DV Strong link between IV and DV
+Parameter Weak CV Moderate CV Strong CV Weak CV Moderate CV Strong CV Weak CV Moderate CV Strong CV
+Loadings
+i1 -.001 .000 .000 .000 .000 .000 .000 .000 .000
+i2 .000 .000 -.001 .000 .000 .000 .000 .000 .000
+i3 .000 .000 .000 .000 -.001 .000 .000 .000 .000
+i4 .000 -.001 .000 .000 .000 .000 .000 .000 .000
+i5 -.001 .000 .000 .000 -.001 .000 .000 .000 .000
+i6 .000 .000 .000 .000 .000 -.001 .000 .000 .000
+i7 .000 .001 .000 .000 .001 .000 .000 .000 .000
+i8 .000 .000 .000 .000 .000 .000 .000 .000 .000
+IV à DV -.036 -.135 -.248 -.034 -.122 -.227 -.032 -.109 -.203
+Variances
+i1 .000 .000 .000 .000 .000 .000 .000 .000 .000
+i2 .000 .000 .000 .000 .000 .001 .000 .001 .000
+i3 .001 .000 .000 .000 .001 .001 -.001 .000 .000
+i4 .000 .001 .000 .000 .000 .000 .000 .000 .000
+i5 .000 .000 .000 .000 .000 .000 .000 .000 .001
+i6 .000 .001 .000 .000 .000 .000 .000 .000 .000
+i7 .000 .000 .001 .000 .000 .001 .001 .000 -.001
+i8 .000 .000 .000 .000 .000 .000 .000 -.001 .000
+USE OF CONTROL VARIABLES 11
+IV -.042 -.145 -.269 -.043 -.144 -.268 -.045 -.142 -.265
+DV -.042 -.117 -.173 -.037 -.097 -.147 -.031 -.081 -.120
+Note. Weak, moderate, and strong relations are reflected by path coefficients βs = .20, .40, and .60, respectively. CV, DV, and IV indicate the control,
+dependent, and independent variables, respectively. i1 to i8 indicate the loadings of the eight items that measure the independent (i1 to i4) and dependent
+variables (i5 to i8). All parameters were obtained by subtracting the respective estimate from the model without the control variable from the corresponding
+parameter estimate with the control variable.
+USE OF CONTROL VARIABLES 12
+174 Discussion
+175 Spector and Brannick (2011) argued that a plethora of studies did not provide
+176 sufficient theoretical reasoning for the control variables included in the manifest or latent
+177 models tested. Simmons et al. (2011) pinpointed this lack of theoretical elaboration as one
+178 case for the replication crisis of psychology. Given a lack of appropriate statistical techniques
+179 to evaluate the role(s) of control variables, the present study aimed to present straightforward
+180 statistical tools in this regard and investigated their performance in simulation studies.
+181 Evaluation of the Findings
+182 It turned out that the more complex method — dealing with potential effects of the
+183 control variable(s) on the covariance structure of the remaining items — was not eligible to
+184 detect biasing effects. Given that the magnitude of the χ2-index (and the corresponding p-
+185 value) depends on the sample size, an extreme number of observations would be required to
+186 find significant differences. For instance, due to the number of shared elements in the model-
+187 implied variance-covariance matrices of the models with and without the control variable, the
+188 χ2-test utilized in this study had 72 degrees of freedom. The critical χ2-value for 72 degrees of
+189 freedom, given an α-level of 5%, is 92.81. To obtain such a high χ2-value in the simulated
+190 condition with the highest discrepancy between the models with and without the control
+191 variable from the simulations (i.e., a weak link between independent and dependent variables
+192 but strong influence of the control variable; χ2 = 0.44), 105,253 observations would be
+193 required. The estimators of structural equation models are sought to minimize the difference
+194 between the variance-covariance matrix observed in the sample at hand and the model-
+195 implied variance-covariance matrix. Thus, it stands to reason that the poor performance of the
+196 above discrepancy function can be attributed to the fact that it is applied to optimized
+197 parameters. Furthermore, the other approach demonstrated in this study — the comparison of
+198 the parameter profiles — also suggested that virtually no effects of the inclusion of a control
+199 variable can be observed at the item-level (i.e., item loadings and item residuals).
+USE OF CONTROL VARIABLES 13
+200 Apart from non-existing item-level differences, the side-by-side comparison of the
+201 parameter profiles was suitable for identifying interpretative differences between the models
+202 with and without a control variable at the factor level. The “causal” effects of the independent
+203 variable on the dependent variable exhibited considerable differences. The analyses suggested
+204 that the stronger the effect of the control variable, the higher the difference between the path
+205 coefficients of the relation between the independent and the dependent variable observed in
+206 the models with and without the control variable. Since the differences between the path
+207 coefficients of the relations between independent and dependent variables were negligible
+208 (Δ = -.036), a weak control variable (i.e., β = .20) had no substantial impact on the
+max
+209 interpretations of the observed link between independent and dependent variables. This was
+210 true, irrespective of the magnitude of the link between the independent and dependent
+212 in the first place. Therefore, and in line with the principle of parsimony, it would be
+213 reasonable to exclude it (Carlson & Wu, 2012). On the other hand, the magnitude and —
+214 correspondingly — the interpretation of the relation between the independent and dependent
+215 variables differs substantially between models with and without a control variable if the
+216 control variable elicits a strong effect onto both (i.e., β = .60). Note in this regard that such
+217 strong effects indicate that the control variable shares large amounts of variance with the
+218 constructs of genuine interest. In the sense of the perils of partialing (Hoyle et al., 2023), this
+219 raises doubts about the interpretative value of the relation between the dependent and
+220 independent variables once being refined for the control variable because it stands to reason
+221 that both constructs are strongly constrained in terms of their respective conceptual breadth.
+222 Thus, by adjusting both substantial constructs for overlaps with a highly similar construct
+223 (i.e., the control variable), the full expression of the substantial concepts is no longer
+224 warranted. Applying these considerations to the above fictitious example, the interpretation of
+225 the link between depression and eating behavior would be unclear if this relation was adjusted
+USE OF CONTROL VARIABLES 14
+226 for negative affectivity because negative affectivity is a meaningful determinant of depression
+227 and eating behavior alike (Iqbal & Dar, 2015; Van Strien et al., 1985). In this sense, the scores
+228 ostensibly reflecting depression and eating behaviors no longer contain all pertinent elements
+229 if affect-related variance is removed from them.
+230 Limitations
+231 This study was not without limitations. First, this research relied on simulated data for
+232 which the configurations of path coefficients and loadings were “artificial”. Real data might
+233 be less optimal in these regards as loading patterns might be more heterogeneous and path
+234 coefficients might be dispersed across a wider range than that employed in the simulations.
+235 However, the idea behind the specified path coefficients was to contrast the effects across
+236 settings that are as realistic as possible because — in my point of view — researchers would
+237 treat effect sizes below β = .20 as small and those above β = .60 as extremely high. Thus, the
+238 selected effect sizes were sought to reflect the usual range observable for typical applications.
+239 Second, the present simulation study dealt with the most basic scenario that can be observed
+240 in structural equation modeling as it considered only a single predictor, a single criterion, and
+241 a single control variable. Simultaneously, I postulated isomorphic effects of the control
+242 variable onto both substantial variables. This being said, structural equation models computed
+243 in psychological research are usually more complex and it is unlikely that a control variable
+244 elicits equal effects on independent and dependent variables. Given the multitude of possible
+245 patterns of specifications, however, applying any structure that would have been more
+246 complex (i.e., more predictors, control variables, and/or criteria) would have resulted in
+247 arbitrary decisions and more complex interpretations in terms of the underlying question.
+248 Third, imposing different effects of the control variables on the independent vis-à-vis the
+249 dependent variable was beyond the scope of this research. Even without conducting respective
+250 analyses, however, it is disadvantageous to include a control variable that is substantially
+251 related to the dependent variable(s) but unrelated to the independent variable(s) as this poses a
+USE OF CONTROL VARIABLES 15
+252 suppression effect and compromises statistical power. Since the R script to conduct the
+254 research to expand on the present settings and test other patterns of parameters. Fourth, the
+255 derivation of the adopted discrepancy function introduced in this research was exploratory
+256 and the side-by-side comparison of parameter profiles was comparatively easy in terms of
+257 methodological rigor. It is conceivable that even more information about the roles of control
+258 variables can be obtained with more sophisticated methods that have yet to be developed.
+259 Implications
+260 The rationale of this study was to evaluate the general effect of control variables on
+261 model parameters of structural equation models but also to raise researchers’ awareness of the
+262 caveats of control variables. This is not to say that control variables are per se “bad” but a call
+263 to provide more profound considerations about the potential causal roles of proposed control
+264 variables. Researchers should also put more emphasis on potentially distorted interpretations
+265 if an independent variable is refined for one or more control variable(s), that is, what does the
+267 provides an overview of exemplary “true” relations between what researchers posited as
+268 independent, dependent, and control variables. In this sense, it is the researchers’ job to rule
+269 out alternative model configurations’ plausibility. Given that the present simulation did not
+270 mention particular theoretical concepts, content-related considerations about the interplays of
+271 the variables were not possible. One way to better acknowledge the presumed control variable
+273 would be able to model individual differences instead of eliminating them. Such analyses
+274 arguably pose stronger contributions to scientific progress than efforts to “clean” conceptual
+275 links for ostensibly extraneous influences. If in a specific case, it is reasonable to adjust
+276 relationships for one or more variable(s), methods such as propensity score matching should
+277 be used to balance rather than eliminate extraneous variance.
+USE OF CONTROL VARIABLES 16
+Exemplary Overview of Alternative Causal Relations Among Assumed Independent, Dependent, and Control Variables
+IV DV IV DV IV DV IV DV
+CV CV CV CV
+IV DV IV DV IV DV IV DV
+CV CV CV CV
+Note. IV, DV, and CV indicate assumed independent, dependent, and control variables, respectively. This overview is not exhaustive.
+USE OF CONTROL VARIABLES 17
+279 Conclusion
+280 It is always reasonable to compare the results of structural equation models with and
+281 without control variables to each other to identify potential suppression, consider the perils of
+282 partialing, and evaluate whether the control variable alters the parameter patterns (Hoyle et
+283 al., 2023; Simmons et al., 2011; Spector & Brannick, 2011). If the comparison reveals that
+284 there are no major interpretative differences, and considering the principle of parsimony, it
+285 stands to reason to omit the control variable (Carlson & Wu, 2012).
+EVALUATION OF CONTROL VARIABLES 18

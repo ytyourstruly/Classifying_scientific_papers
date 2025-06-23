@@ -1,0 +1,501 @@
+Measuring Norms: A Comparison of the Predictive
+and Descriptive Power of Three Methods
+Diego Aycinena Francesco Bogliacino
+School of Arts and Sciences, Dipartimento di Scienze Economiche
+University of Pennsylvania University of Bergamo
+diegoay@sas.upenn.edu francesco.bogliacino@unibg.it
+Erik O. Kimbrough
+Smith Institute for Political Economy & Philosophy
+Chapman University
+ekimbrou@chapman.edu
+April 2, 2024
+Abstract
+We analyze and compare three methods of measuring social norms: the Krupka and Weber
+(KW) coordination game, the two-step approach by Bicchieri and Xiao (BX), and a novel
+Binarized Scoring Method (BSM) we introduce that elicits the full distribution of normative
+beliefs. We discuss the properties of each method and test their effectiveness in two distinctive
+ways. First, we compare the fit and predictive power of the norms elicited by each method
+in 3 versions of the dictator game, which differ in how the pie is initially allocated. Then we
+use vignettes to assess the extent to which the methods can recover existing norms for various
+naturally occurring settings. We find that, within the framework of a norm-dependent utility
+model, the KW method yields better predictive power. All three methods effectively recover
+norms in field settings, although KW and BSM are more robust to false positives.
+Keywords— Social Norms; Normative Expectations; Personal Normative Beliefs; Bina-
+rized Scoring; Laboratory experiments
+JEL Codes: A13; C91; D01; D64; D83; D91
+We thank participants at the BEEC 2022, ESA Global Meeting Around the Clock 2021, REXCON21, Norms and Behavioral Change (NoBeC)
+Talks, and the Giornata di Studi in Onore a Giorgio Rampa at the University of Pavia, as well as attendants at seminars at University of Bergamo,
+University of Milan (Statale), ICES, at PSE-Paris I, GATE-Lab, and University of Konstanz. We also thank Christian Mora, Laura Jime´nez, and
+Diego Sebastia´n Ram´ırez for assistance in conducting experimental sessions, Paula Remicio and Nicola´s Caicedo for programming, and Yaritza
+Zambrano for outstanding research assistance. We acknowledge financial support from the Alianza EFI-Colombia Cient´ıfica grant No. 60185 and
+FP44842-220-2018, from the Smith Institute for Political Economy and Philosophy at Chapman University, and the John Templeton Foundation
+(22-0179).
+1 Introduction
+Social norms prescribing and proscribing behavior influence decision-making over a broad range of
+domains, from compliance with laws, to gender roles related to labor market outcomes (Acemoglu
+and Jackson, 2017; Bernhardt et al., 2018; Bursztyn et al., 2020; Jayachandran, 2021; Miller et
+al., 2022a,b). Norms are well suited to explain why economic decisions are context-dependent
+and culturally variable. Their explanatory power outperforms other behavioral accounts of why
+small changes in choice sets or framing lead to sizable changes in behavior (e.g. Dana et al., 2007;
+List, 2007), why decisions exhibit pronounced audience effects (Bursztyn and Yang, 2022), and
+why incentivizing pro-social behavior may backfire (Gneezy and Rustichini, 2000; Bowles and
+Polania-Reyes, 2012).
+Social norms assign a key role to a well-defined class of beliefs: shared expectations over the
+appropriate course of action. While the literature has devoted considerable attention to examin-
+ing the measurement of factual beliefs (Danz et al., 2022; Charness et al., 2021; Holt and Smith,
+2016; Schotter and Trevino, 2014), it seemed to overlook a comparative assessment of the meth-
+ods to elicit normative expectations. As a first attempt in this endeavor, this paper develops an
+experimental evaluation of the descriptive and predictive power of these methods.
+We evaluate the two most prominent existing methods and introduce a novel one, developed
+from the most up-to-date methodology for incentive-compatible measurement of beliefs. One
+method (hereafter BX) follows from the work of Bicchieri (2006) and was first used by Bicchieri
+and Xiao (2009). This method elicits normative beliefs directly using a two-stage approach. After
+asking respondents to make a personal normative judgment in stage 1 about which action in a set
+is normatively best, the second stage incentivizes them to guess the normative judgments reported
+by others. Krupka and Weber (2013) introduced the second method (hereafter KW). This method
+uses a pure coordination game to elicit shared beliefs about the social appropriateness of different
+actions. Respondents are incentivized to match the modal response of others in their group. The
+instructions are designed to spur respondents to use shared normative beliefs as a focal point.
+These methods differ in the kind of information they collect about normative beliefs: The KW method offers
+We compare the performance of KW, BX, and a new, intuitive, and incentive-compatible
+method that attempts to bridge the gap between them. This new method elicits the entire dis-
+tribution of normative expectations. It layers a binarized scoring method (BSM) of Hossain and
+Okui (2013) upon the two-step approach of BX. In the first step, individuals have a budget of 100
+tokens to allocate across a set of available actions in a given scenario according to their own be-
+liefs about their relative moral worthiness. In the second step, they are asked to predict the average
+distribution of tokens produced by other respondents. This second step is incentivized via a binary
+lottery mechanism that pays a large prize with a probability that increases with how close their
+prediction is to the actual distribution. The results from the second step thus give us a measure of
+beliefs about the entire distribution of normative expectations. More importantly, this distribution
+captures the relative intensity of personal normative beliefs, thus allowing the results to be used
+within a norm-dependent utility model and facilitating the classification of types according to their
+perceived injunctive norm profile (Aycinena et al., 2022a; Kimbrough et al., 2021).
+We report controlled experiments that randomize the method used to elicit normative expec-
+tations for three dictator game (DG) variants and a set of vignettes describing naturally occurring
+situations governed by social norms. The variants of the dictator game allow us to test whether
+norms vary as expected across contexts and -more importantly- to assess the predictive value of the
+norms elicited by each method when used in models of norm-dependent utility. We elicit norms us-
+ing each method for three dictator game variants that vary the source of the endowment (unearned,
+earned by dictator, earned by receiver) in a way that has been shown to produce causal effects
+on the distribution of dictator choices (Oxoby and Spraggon, 2008; Cherry et al., 2002). Subse-
+quently, we run an auxiliary experiment on a separate sample drawn from the same subject pool
+to collect behavioral data on the three variants of the dictator game. We then feed the normative
+expectations elicited over the dictator game variants from the three methods into a norm-dependent
+estimates of the degree of appropriateness of all actions in the set, while the BX method offers data on the share of
+people seeing each action as most appropriate.
+With a similar aim, Dimant (2023) elicits the distributions of normative expectations using a quadratic scoring
+rule (QSR). The BSR has theoretical and empirical advantages over QSR, as BSR remains incentive-compatible under
+weaker assumptions about preferences and reports probabilities more accurately than QSR, especially with risk-averse
+subjects (Hossain and Okui, 2013).
+utility model and examine their relative predictive power for observed behavior.
+The vignettes represent a proof of concept. We describe to subjects several real-life scenarios
+and associated action sets for which ethnographic observation offers relatively strong priors on
+norms. One scenario involves a clear norm (tipping), others depict situations in which the norm
+should be sensitive to contextual cues (greetings), one includes competing sources of normativity,
+and the last is a placebo to test for false positives.
+We observe strong evidence of differences in elicited norms across the methods in the dictator
+games. Building upon the KW approach, we use the elicited normative expectations under each
+method to estimate a norm-dependent utility model and assess the model’s fit to observed behavior
+in dictator games from a separate sample. We find that the elicited normative beliefs differ some-
+what across methods, and those elicited via the KW method offer the best fit to the data (with the
+BSM method a close second). We go beyond putting “the horse (norm) before the cart (behav-
+ior)” (Krupka and Weber, 2013, p. 496) as we run a horse-drawn cart race between predictions
+implied by the norms elicited under each of the methods. Since normative expectations are not
+directly comparable to behavior, we combine the normative expectations within a norm-dependent
+utility model and estimate the model’s parameters on a random subset of data. Then, we assess the
+predicted distribution of choices relative to observed choices in the testing sample. We find that,
+within a norm-dependent utility model, the KW method outperforms the other methods regarding
+predictive power.
+In the vignette studies, all three methods perform well in identifying shared norms when they
+are clear (tipping, greeting). Moreover, all three methods identify multiple normative views when
+expected (e.g., in our dress code and parenting vignettes). However, we also find that the new
+method we propose is less sensitive than BX to the risk of false positives, i.e., detecting a norm
+when, in fact, there is none.
+After describing the methods in the next section, the following describes the experimental
+design. Section four presents the results, and section five presents a discussion and conclusions.
+The horse-race approach to norm elicitation methods is similar, in spirit, to that of Trautmann and van de Kuilen
+(2015) to test belief elicitation methods.
+2 The Norm Elicitation Methods
+Conceptually, social norms reflect shared expectations among a specific group of people about the
+appropriateness of certain actions in a particular context. These higher-order beliefs are referred to
+as normative expectations (or perceived injunctive norms).
+The existing methods are plausibly effective techniques for eliciting higher-order normative
+beliefs. However, they differ in the kind of information they collect about normative expectations.
+We explain below the three methods and the information we recover from each method.
+2.1 The BX method
+BX uses a two-step approach to elicit second-order normative beliefs. The first stage is an unin-
+centivized elicitation of Personal Normative Beliefs (PNB) regarding a situation. It asks subjects
+to make a personal normative judgment (i.e., first-order or personal normative beliefs) about the
+most appropriate action in a particular context. The second stage incentivizes them to guess the
+normative judgments reported by others, i.e., to guess the action that most individuals from a ref-
+erence group selected as the most appropriate action when reporting their personal beliefs in the
+first stage. That is, step two is an incentivized elicitation of second-order beliefs regarding oth-
+ers’ responses to the PNB question (e.g., normative expectations Bicchieri (2006)). Thus, this
+method captures the extensive margin of expectations regarding the most appropriate action –the
+proportion of members of a group who believe an action to be the most appropriate.
+An advantage of the BX method is that it intrinsically offers direct evidence on peoples’ own
+views about what is appropriate. This allows detecting instances where individuals might recognize
+that there exists a social norm which is nevertheless not prescriptive for them (e.g. as when an
+This approach is similar to the second-order belief elicitation approaches of Dufwenberg and Gneezy (2000);
+Charness and Dufwenberg (2006); Vanberg (2008); Manski and Neri (2013). The main difference, besides incentive
+rules, is that BX anchors second-order beliefs on personal normative beliefs in the first stage, while the others anchor
+the second stage on factual beliefs about behavior in strategic settings.
+The original BX method elicits the singleton (most appropriate action) in both the first and second stage. We
+modify the second stage to recover the distribution of second-order beliefs over the singleton in the first stage. This
+allows us to better compare it with the BSM elicitation and to filter the normative expectations within the norm-
+dependent utility model -with a different interpretation.
+individual travels abroad and recognizes that local customs differ from their own), or instances of
+pluralistic ignorance, where shared but privately held personal normative beliefs differ from shared
+perceived injunctive norms (see Bicchieri and Dimant, 2019; Bursztyn et al., 2020).
+2.2 The KW method
+KW uses an incentivized coordination game to elicit shared beliefs about the social appropriate-
+ness of each outcome. It is underpinned by the assumption that widely shared normative beliefs
+can serve as a focal point to resolve the coordination game, thus revealing higher-order normative
+expectations. Subjects are incentivized to match the modal response given by other participants
+(regarding the social appropriateness of each outcome). The ranking typically uses a four-item
+scale with labelled categories: Very Socially Inappropriate, Somewhat Socially Inappropriate,
+Somewhat Socially Appropriate, Very Socially Appropriate. Thus, this method captures the in-
+tensive margin of normative expectations for each action; that is, the modal expected degree of
+appropriateness for each possible action within a set.
+These estimates of the degree of appropriateness of all actions in the set offer an advantage,
+as they make elicitation output readily compatible with norm-dependent utility specifications, in
+which decisions are modeled as utility maximization with preferences that reflect a trade-off be-
+tween material self-interest and normative appropriateness (Krupka and Weber, 2013; Kimbrough
+and Vostroknutov, 2016). To see what is at stake, consider two cases; in both, action A is unani-
+mously recognized as the most appropriate while action B yields the highest payoff. In one case,
+action B is slightly less appropriate than A; in the other, action B is seen as extremely inappropri-
+ate. Under a norm-dependent utility model, data generated by the KW method can account for the
+fact that people may resolve those trade-offs differently in the first case than in the second, but data
+generated by the BX method cannot.
+This approach is similar to others that leverage focal points in coordination games to capture shared social percep-
+tions, such as Von Ahn and Dabbish (2005); Von Ahn (2006) to label images and as a fulcrum to human computation,
+?Houser and Xiao (2011) to classify natural language, or Engle-Warnick and Soroka (2009) to rate the tone of news.
+While for BX it is clear it captures second-order normative beliefs, for KW it is unclear the level of higher order
+normative beliefs it recovers.
+2.3 The BSM method
+The BSM method attempts to recover the full distribution of the relative intensive margin per-
+sonal normative beliefs and, in an incentive-compatible way, the full distribution of second-order
+normative beliefs.
+The method works as follows. Define the distribution of personal normative beliefs, D, as
+the distribution of M data points across a discrete and finite set of distinct K options: D =
+(cid:80)
+K ˆ
+{m , . . . , m }, where m = M . The method aims to elicit the predicted distribution: D =
+1 K i
+i=1
+(cid:80)
+{mˆ , . . . , mˆ }, where mˆ = M .
+1 K i
+i=1
+To incentivize the subjects, we draw one option j and pay the participants π probability points
+based on prediction accuracy. These probability points are translated into money through a lottery
+that pays A with probability π /M and a with probability 1 − π /M . π = M if mˆ = m ,
+j j j j j
+otherwise π = min{mˆ , m }.
+j j j
+As long as A strictly dominates a, a subject will always prefer the lottery with a higher chance
+of winning regardless of risk attitudes, reference-dependence, or probability weighting. Since
+truth-telling induces the only lottery that maximizes the probability of winning, incentive compat-
+ibility is ensured. We provide a formal proof in Appendix A.
+Adapting it to elicit normative expectations, the BSM method can be implemented within a
+two-step approach like the BX, with the following procedure:
+0. Subject i read a vignette, describing the scenario and the action space (K) available to the
+decision-maker.
+1. In the first step, subject i must allocate M = 100 tokens across the action space available
+to the DM, according to their belief over the normative appropriateness of each action. This
+gives i’s believed distribution of the relative normative appropriateness over the K potential
+actions.
+When developing our design we were inspired by the Belief Elicitation by Superimposition Approach [BESA] of
+Fragiadakis et al. (2019).
+2. In the second step, they are asked to predict the average distribution of token allocation by
+a well-defined reference group. 9 This gives i’s full distribution of the second-order beliefs
+regarding the average relative normative appropriateness over the K potential actions.
+Participants evaluate R situations, each with a description of the context and k actions available
+to the decision-makers to be evaluated and predicted. Then, a binarized lottery determines the
+payment.
+Like BX, BSM offers information on both personal normative beliefs and normative expecta-
+tions; however, BSM recovers the full distribution of both. Like KW, BSM focuses on the intensive
+margin and captures the normative beliefs about the relative appropriateness from a set of actions. 10
+This allows the results from this approach to be used naturally with norm-dependent utility mod-
+els. Furthermore, the method is flexible enough to be implemented using intuitive pencil and paper
+protocols (Fragiadakis et al., 2019), or in computerized interfaces via the “distribution builder”
+approach of Crosetto and de Haan (2023).
+3 Experimental Design
+For this experiment, we use data from two sources: in the main experiment, we elicited norma-
+tive beliefs; in the auxiliary experiment, we collected data on dictator game behavior to test the
+predictive power of the beliefs elicited in the main experiment.
+The main experiment was part of a larger project. This project consisted of laboratory sessions
+with a nested between-subject design. Participants were assigned to treatment A or B. Both treat-
+ments included part I and part II, each with different sub-treatments. The norms data for this
+paper comes from part II of the experiments.
+In the experiment, they predict the average distribution of ten randomly selected subjects in their session.
+It differs in that the relative appropriateness under BSM is constrained (by the token budget set), while it is
+unconstrained for KW. In addition, KW can recover (negative or positive) valence of the actions; under BSM that is
+not possible.
+In part I, we elicit normative beliefs for one of two variants of the dictator game, with half of the subjects assigned
+to each dictator variant. We use the KW protocol for treatment A and the BX protocol for B. The data from part I are
+reported and analyzed in Aycinena et al. (2023b,a). Full details of the experimental design and protocols are available
+in Online Appendix B.
+In part II of treatments A and B, we elicit normative beliefs for a set of vignettes depicting
+everyday interactions and two additional variants of the dictator game, using the norm elicitation
+method to which they were not exposed in part I. See Section 3.2 for details on the vignettes. The
+variants of the dictator game used in part II include whichever variant a subject was not asked
+about in part I and a third condition, called P2-Earned, where the receiver earned the money.
+Our data consist of N = 228 and N = 219 subjects who had norms elicited via the BX
+BX BSM
+and BSM methods in part II of Treatment A, plus N = 103 subjects who had norms elicited
+KW
+via the KW method in part II of Treatment B.
+All subjects reported their normative beliefs for M different scenarios. The first and last sce-
+narios were two different dictator game variants that they had not seen before, the other M − 2
+scenarios were drawn randomly from a set of 17 vignettes depicting everyday interactions. The
+action space in the dictator games included 11 possible actions: sending 0, 10%, . . . , 100% to the
+counterpart. The action spaces for the vignettes varied depending on the context. Vignettes were
+presented in random order, as was the list of actions in each situation, except for those like the
+dictator game in which actions are naturally ordered. In those cases, the actions are randomized in
+decreasing or increasing order.
+In the BX and BSM methods, we elicit personal normative beliefs for nine scenarios first, and
+then we elicit normative expectations. In the KW method, we only elicit normative expectations
+for 19 scenarios. The measurement of normative expectation is incentivized under all three meth-
+ods, with one of the nine situations randomly selected to determine payment. In BX, subjects
+are paid COP20, 000 if they correctly guess the (singleton) personal normative beliefs of 10 other
+randomly selected subjects and nothing otherwise. In BSM, subjects reported their PNBs by dis-
+tributing 100 tokens across the action space according to the “moral worthiness” of each action.
+Their payment then depends on how accurately they estimate the average token allocation made
+by ten other randomly selected subjects across each action: subjects again receive 100 tokens, and
+they are incentivized by a lottery that pays COP30, 000 with probability p and COP5, 000 with
+Treatment A also included 3 other sub-treatments that varied methodological aspects of the KW protocol (Ayci-
+nena et al., 2023a); here we focus on the standard KW sub-treatment.
+probability 1 − p, where p is equal to the minimum of the average number of tokens allocated
+in the first part by ten randomly selected subjects, divided by 100, and the subject’s estimate of
+that average, divided by 100. In KW, participants are paid COP30, 000 only if their estimate of
+the “social appropriateness”, on a 4-point Likert scale, of one randomly chosen action matches the
+most common response given by ten other participants.
+3.1 Dictator Game Norms
+We elicit norms in 3 variants of the widely studied dictator game that differ in how the initial
+endowment is allocated. We include the Unearned variant (Forsythe et al., 1994; Hoffman et al.,
+1994), in which the endowment is a provisional joint allocation exogenously given by the exper-
+imenter; the P1-Earned (P1E) variant (Cherry et al., 2002), in which the dictator has earned the
+endowment; and the P2-Earned (P2E) variant (Oxoby and Spraggon, 2008), in which the receiver
+has earned the endowment. In the P1E (P2E) dictator game, the instructions state that player 1
+(player 2) has earned the money being divided by correctly answering 10 out of 17 GMAT prob-
+lems in 45-minute, while it is commonly known that player 2 (player 1) arrived at the lab 45
+minutes after the dictator.
+3.2 Vignette Norms
+This paper uses 7 of the 18 vignettes for which we elicited normative expectations. We look at
+(a) one vignette about tipping, where a known norm exists; (b) three vignettes depicting greetings,
+where there are norms that vary with contextual cues; (c) one vignette about parenting, where
+two competing norms coexist; and (d) two vignettes about clothing choices, where we manipulate
+whether there is a norm at all.
+3.3 Auxiliary Experiment: Dictator Games
+To evaluate the predictive validity of the normative expectations obtained under each method,
+we conducted auxiliary experiments to observe behavior in the three dictator games for which
+we elicited norms: Unearned, P1E, and P2E. As discussed below, this allows us to test whether
+changes in normative beliefs predict changes in observed behavior across treatments via the esti-
+mation of a norm-dependent utility model.
+In the Unearned treatment, participants arrived at the laboratory, where they were provisionally
+given a sum of COP100, 000. The dictators had the choice of sending either 0 or any multiple
+of COP10, 000 to the recipients. The instructions closely correspond to those used in the norm
+elicitation experiment.
+In the P1E and P2E treatments, half of the subjects were summoned to the laboratory one
+hour earlier and were given a questionnaire containing 17 GMAT-type problems. If they man-
+aged to solve at least ten problems within 45 minutes, they were given a provisional allocation
+of COP100, 000 and were informed that the final distribution of the sum would be determined by
+themselves or others at a later stage. If they failed to solve ten problems correctly, they were allo-
+cated COP20, 000. After this stage, the remaining half of the subjects were permitted to enter the
+laboratory (one hour later). These subjects took part only in the dictator phase, with the same set
+of options as the Unearned treatment. The only distinction between P1E and P2E was who earned
+the endowment: in P1E, the dictator had earned the money by answering the GMAT questions; in
+P2E, it was the receiver who had earned the money.
+We analyze the data of 85 Dictators (21 subjects for the Unearned treatment, 24 for the P1
+Earned, and 20 for the P2 Earned) who play with an endowment of COP100, 000, matching the
+high-stakes protocol described in the norm elicitation experiment.
+The experiment was programmed in oTree (Chen et al., 2016), and the problem set questionnaire in Google Forms.
+All subjects received an additional COP10, 000 for participation. Sessions were run at REβEL, drawing from the same
+subject pool but excluding participants from the Main Experiment.
+4 Results
+4.1 Dictator Games
+First, we present the normative expectations revealed by the three methods for each Dictator Game
+(DG) variant. Specifically, for the Unearned, P1-Earned, and P2-Earned versions, we report the
+distribution of the average normative expectations across actions according to BX and BSM on the
+left vertical axis. For the KW method, we include an auxiliary vertical axis that encodes the social
+All three methods indicate that giving 50% to the recipient is the normatively most appropriate
+action in the Unearned variant, although to different degrees. In the P1-Earned variant, normative
+expectations are highest for keeping the entire endowment according to BX and BSM, and for
+keeping 90% according to KW. Note that the difference in mean social acceptability for any amount
+between 0%-40$ is fairly small for KW. There is a larger discrepancy in the normative expectations
+across methods for the P2-Earned variant. BSM and BX both agree that giving 50% is normatively
+best, with a second peak at giving 100%. KW points to giving 60% as most appropriate and rates all
+“generous” actions as socially appropriate, with relatively small differences among the 50%-90%.
+The small differences between them may be due to the different margins of normative infor-
+mation recovered by each method. Following Krupka and Weber (2013), we predict Dictators’
+choices using a norm-dependent utility model that trades off the monetary payoffs (π) and the
+normative appropriateness (N ) of different actions (a , ∀j ∈ {1, ..., 11}), according to the relative
+weights (β, γ) individuals assign to each: 14
+U (a ) = β π(a ) + γN (a ) (1)
+j j j
+To estimate the parameters β and γ, we combine the data from the main and the auxiliary
+experiments. We pool the behavioral data (of the auxiliary experiment) from all three DG variants,
+transform it into a panel with eleven dummies (the action set) per dictator game, and merge it
+with the mean normative expectation for each action of each dictator game. With this data, we
+estimate for each elicitation method the parameters β and γ using a conditional logit choice model
+where the dependent variable is the observed choice (from the auxiliary experiment) by individual
+i taking part in Dictator Game d.
+The model includes two regressors: First, the payoffs (in thousands of COP) corresponding to
+each action, π(a ), which are known and invariant across all DGs. Second, the mean normative
+expectation, N a ), for each action in each DG variant elicited using each of the methods. 15 That is,
+( j
+we leverage the variation in normative expectations (and behavior) across DG variants to estimate
+β and γ for each t ∈ {KW, BX, BSM }. The estimated β and γ parameters allow us to predict
+t t t t
+Dictator choices based on model (1) and compare how the predictions fit the observed choices
+from our auxiliary experiment.
+of behavior in each dictator game using the normative expectations from each elicitation method.
+Visual inspection suggests that the norm-dependent utility model captures the observed data rea-
+sonably well. Regardless of the elicitation method used to recover the normative beliefs, the fitted
+This norm-dependent model was jointly proposed with the KW method to consider trade-offs along the intensive
+margin of normative expectations. Given the different margins of normative expectations captured by each method,
+the interpretation of the trade-off within the utility function must differ across methods.
+Since we collect incentivized empirical expectations by the recipients in the DG, we also run a version of each
+model including empirical, in addition to normative expectations, as regressors. We find that in this specification,
+empirical expectations are not statistically significant.
+distribution captures the observed peaks at 50-50 in the Unearned and P2-Earned treatments and
+at 0 (followed by 10%) in the P1-Earned treatment. The fitted distributions also reflect the relative
+absence of inequality-increasing generosity in the Unearned and P1-Earned variants.
+Unearned P1-Earned
+P2-Earned Pooled
+We test which method yields normative expectation reports that, when filtered through the
+norm-dependent utility model, best fit the observed data using the Akaike information criterion
+(AIC). Using the pooled data, the AIC favors KW, but this advantage is only significant relative to
+BX.
+Next, we move the horse race from fit to out-of-sample prediction. Using again the elicited
+normative expectations from the main experiment and the behavioral data from the auxiliary ex-
+periment within the framework in model (1), we repeat the following exercise 1000 times: first, we
+randomly split the data into a training set (50%) and a testing set (50%). Then, we use the training
+set to estimate parameters β and γ. Next, we use the estimated parameters in the training set to
+predict choice probabilities P (a ), ∀j = 1, . . . , 11, for each observation in the testing set. Finally,
+we translate these probabilities into a predicted action (A ) for each observation (i) in the testing
+set and compute the mean absolute distance between the observed (A ) and predicted actions:
+(cid:88)
+M AD = |A − A | (2)
+i=1
+We consider two ways of translating those probabilities into a predicted action (A i) for each
+individual: (1) the realization rule, randomly drawing A ∼ P (a ), j = 1, . . . , k, and (2) the max
+i i j
+rule, choosing A = arg max P (a ). 17
+i a ,j=1,...,11 i j
+KW, 21.60 for BSM, and 23.14 for BX (all pairwise Mann-Whitney tests z ≥ 9.7, p < 0.0001).
+Results are similar using the max rule to compute predicted actions: median MAD is 12.96 for KW,
+13.33 for BSM, and 16.48 for BX; all differences are statistically significant (MW: z > 11.9, p <
+0.0001), but the difference in accuracy between KW and BSM is economically small (0.98%). 18
+4.2 Qualitative evidence from the vignettes
+As mentioned above, our vignettes offer an opportunity to assess aspects of the external validity of
+the three norm elicitation techniques.
+Our first vignette asks about the appropriate tip at a restaurant, offering options from 0% to
+AICs are 227.36 (KW), 229.18 (BSM), 245.29 (BX).
+Appendix C explores an alternative rule for robustness along with more detailed statistics and analysis.
+As we show in Appendix C, results do not vary if we add empirical expectations as a regressor to the estimation.
+Realization Rule Max Rule
+norm-dependent utility model for the Dictator Games.
+50%, and assesses whether the methods can recover naturally occurring norms. In Colombia, tips
+are regulated by law (Bill 1935 of 2018). The tip is voluntary; the business can ask whether to
+include the tip (not to exceed 10%) in the bill. As a result, most businesses follow the rule of
+asking and including 10%. It is extremely uncommon to refuse the tip, although this is based on
+the authors’ own experience. As a conservative hypothesis, we expect data to reveal that the most
+The next three vignettes examine greetings, allowing us to assess whether the methods readily
+identify context-dependent variation in norms. Greeting norms tend to be highly contingent: small
+changes in context evoke different scripts, and deviating from the script can be socially awkward.
+In Latino cultures, it is customary to kiss on the cheek a female friend; in Italy it is customary even
+among males; in Japan, both would be extremely inappropriate. In Colombia, greeting norms are
+usually very gendered and depend on the context and the social ties among the persons involved.
+Ideally, methods designed to elicit normative expectations should reveal norms that are sensi-
+tive to those cues. Thus, we designed one vignette in which someone encounters an acquaintance (a
+classmate), another in which someone encounters a close friend during the pre-pandemic era, and a
+Tipping: a. 0%, b. (cid:15), c. 5%, d. 10%, e. 15%, f. 20%, g. 25%, h. 30%, i. 40%, j. 50%
+Greeting: a. avoid visual contact and continue walking; b. nod at the visual contact by W, without
+waving or saying anything, and continue walking; c. smile, wave at W from a distance and continue
+walking; d. stop, greet, and shake hands with W and continue walking; e. stop and greet W without any
+physical contact; f. stop, greet, and hug W; g. stop, greet and kiss W on one cheek; h. stop, greet and kiss
+W on both cheeks; i. stop, greet and kiss W three times, alternating cheeks; j. stop, greet and kiss W on the
+lips; k. (only for the COVID case) to take the mask off and verbally greet W (without physical contact).
+Play Date: a. tell S a lie about how she needs his help with some chores in order to prevent him
+from going b. allow S to go play at his friend’s house c. allow S to go, but forbid him to accept any food
+d. not allow S to go to his friend’s place, but invite S’s friend to play at his house e. order S to end his
+relationship with his school friend
+Dress Code: a. go to class in pajamas? b. go to class in sweatpants and a T-shirt? c. go to class
+wearing shorts and a T-shirt? d. go to class wearing jeans and a T-shirt? e. go to class in a formal suit and
+tie? f. go to class in a tuxedo?
+Dress Placebo: a. white, b. red, c. blue, d. black, e. green, f. yellow
+third in which the close friend encounter happens during the COVID-19 pandemic when masking
+and social distancing were common. Apart from the words acquaintance (vs. close friend) and
+The municipality of Bogota collected evidence related to social distancing and other COVID-19
+restrictions, documenting compliance rates above 90% (SDCRD, 2021b,a). Thus, we expect to see
+reduced appropriateness of physical contact going from the close friend to acquaintance vignettes
+and from the pre-COVID to during-COVID vignettes. This is consistent with the evidence shown
+most appropriate action, but in both treatments, the normatively appropriate actions shift to those
+that involve minimal physical contact, which suggests that the methods are sensitive to contextual
+changes in norms.
+Having shown that all three methods successfully recover norms in simple cases, we now con-
+sider a more complicated situation in which there are competing norms. In the Play Date vignette,
+a kid receives an invitation to visit a friend’s house in a squatter neighborhood, and we elicit norms
+about the response by the mother. The setting creates a conflict between a social norm of protect-
+ing the family in an objectively perilous environment and a norm of non-discriminatory behavior,
+which would cause one to avoid offending the family who extended the invitation. Another assess-
+ment of external validity asks whether the norm elicitation protocol can detect both of these norms.
+Our final assessment concerns false positives: instances in which a method yields reports of a
+shared normative expectation when, in fact, all actions in the set are normatively neutral. We elicit
+norms for two scenarios depicting decisions about what clothes to wear to a university class. One
+of the vignettes includes options that differ in appropriateness: the Dress Code vignette compares
+appropriate casual options (e.g. jeans and a t-shirt) to inappropriate ways of under- or over-dressing
+(e.g., pajamas or a tuxedo). In the other version, instead, respondents should be normatively indif-
+ferent between all options: in the Dress Placebo vignette, the student plans to wear a t-shirt, and
+the action space is limited to the choice of what color shirt to wear (white, red, blue, black, green,
+and yellow).
+it with the Dress Placebo vignette in 4(g). While the former distribution should be non-uniform,
+the latter should be approximately uniform. Visual inspection reveals that all three methods favor
+the casual options in the Dress Code vignette, but only KW and BSM yield reports visually con-
+sistent with the hypothesis of normative neutrality in the Placebo vignette. The fact that the BX
+method forces respondents to choose a singleton normative belief seems to induce false consensus
+in situations where all actions are, in fact, equally appropriate.
+5 Discussion
+The incorporation of social norms in economics shares parallels with the incorporation of tech-
+nological change-driven factor productivity. While economists have recognized its existence for
+a long time, its formal incorporation has required advances along several steps: the development
+of the conceptual framework and refining an operational definition, followed by empirical work
+that first assumes it, then infers it, and finally measures it. Each step requires several advances,
+including the development and evaluation of the instruments used for empirical measurement.
+In this article, we systematically evaluate the methods developed to measure normative expec-
+tations and report results from experiments in which we elicit normative expectations using three
+methods: the well-known BX and KW methods (Bicchieri and Xiao, 2009; Krupka and Weber,
+2013), and a new BSM method, which ensures the elicitation of the entire distribution of nor-
+mative expectations is incentive-compatible. Overall, all methods perform fairly well and we
+highlight some potential modifications to mitigate some weaknesses.
+We show that all three methods can detect externally validated norms, normatively salient
+cues, and changes in norms that track changes in context. For example, in the case of greetings,
+normative expectations adjust to account for the effects of COVID-19 or whether the decision-
+Although the methods are somewhat malleable and can be modified, our examination focuses on common imple-
+mentations of these.
+maker is interacting with an acquaintance instead of a friend. These methods are also robust in
+situations involving competing norms, as demonstrated in our play date vignette.
+However, the BX method may produce a false consensus in cases where no norm exists. In
+our “placebo” vignette, where all actions are normatively equivalent, participants still identify one
+action as a norm under BX. We believe this is because PNBs are elicited as singletons using a
+forced choice instrument. To support this view, this false consensus effect dissipates when we
+allow subjects to report the relative moral worthiness of all possible actions in the first step of the
+elicitation in BSM. Thus, the BSM achieves this, and false consensus is reduced as in the KW
+method. In this sense, BSM can be seen as an upgrade of the BX method.
+In addition, we combine the normative expectations elicited across three variants of the dicta-
+tor game (Forsythe et al., 1994; Cherry et al., 2002; Oxoby and Spraggon, 2008), with observed
+behavior in each variant. With this combined data and a norm-dependent utility model we conduct
+a horserace of norm-elicitation methods. The results show that within the norm-dependent utility
+model, KW outperforms BX in both fitting and predicting observed behavior. It also outperforms
+BSM in predicting behavior, by a smaller margin.
+The different methods capture different margins of normative expectations: BX returns the
+predicted proportion of individuals who believe each action to be the most socially appropriate.
+KW returns the expected modal degree of social appropriateness for each action, and the new
+BSM method returns the predicted mean of (constrained) relative moral appropriateness assigned
+to each action. This paper sheds light on the properties, strengths and weaknesses of each method.
+These strengths and weaknesses, together with the relevant conceptual framework and margins of
+interest for researchers, should guide the appropriate use and modifications.
+In some instances, the researchers may be more concerned with the intensive margin of normative expectations
+(Aycinena et al., 2022b), while in others, they may be more concerned with the extensive margin (Dimant et al., 2023).

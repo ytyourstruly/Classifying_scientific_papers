@@ -1,0 +1,1161 @@
+ORIGINAL ARTICLE
+Path and Direction Discovery in Individual Dynamic Factor Models:
+A Regularized Hybrid Unified Structural Equation Modeling with
+Latent Variable
+a b
+Ai Ye and Kenneth A. Bollen
+Lehrstuhl fu¨r Psychologische Methodenlehre & Diagnostik, Department Psychologie,
+Ludwig-Maximilians-Universit¨at Mu¨nchen, Germany; Department of Psychology and
+Neuroscience, Department of Sociology, University of North Carolina at Chapel Hill
+ABSTRACT
+There has been an increasing call to model multivariate time series data with mea-
+surement error. The combination of latent factors with a vector autoregressive (VAR)
+model leads to the dynamic factor model (DFM), in which dynamic relations are
+derived within factor series, among factors and observed time series, or both. How-
+ever, a few limitations exist in the DFM representatives and estimation: 1) the dy-
+namic component of DFM contains either directed or undirected contemporaneous
+relations, but not both, 2) selecting the optimal model in exploratory DFM is a chal-
+lenge, 3) the consequences of structural misspecifications on estimation and model
+selection is barely studied. Our paper serves to advance DFM with a hybrid VAR
+representations and the utilization of LASSO regularization to select the dynamnic
+relations in a data-driven manner. A simulation study is presented to investigate the
+sensitivity of finding the true hybird dynamic relations in the structural model and
+the specificity of excluding the false relations using LASSO-regularization versus
+pseudo-ML. We also examine the robustness of parameter estimates in the selected
+model using LASSO-regularization, pseudo-ML, and model-implied instrumental
+variable two-stage least squares estimation. We aim to offer researchers guidance
+on model selection and estimation in person-centered dynamic assessments.
+KEYWORDS
+Time Series Data; Hybrid Unified SEM; Regularized SEM, Dynamic Factor Model,
+Model-Implied Instrumental Variable Two-Stage Least Square
+CONTACT Ai Ye. Email: ai.ye@lmu.de
+1. Introduction
+With the development of technology to collect intensive longitudinal or time series
+data (TSD) in a fast and economical pace, recent decades have been witnessing a
+surge of psychological and neurological research at the individual level. Studies focused
+on person-specific dynamic assessment emphasize individual differences in individual
+characteristics and development. Along with the shift of research interest is the need
+for advancing the statistical methods to facilitate person-specific dynamic assessments
+using TSD. Within the psychometric field, researchers have developed psychometric
+modeling frameworks to fit traditional time series models, such as the Vector Autore-
+gressive (VAR) models, that have deep roots in statistics and econometrics (Hamilton,
+1994; Lu¨tkepohl, 2005). The psychometric literature on modeling individual dynamic
+models for time series data on a manifest level (TSD; Epskamp, Waldorp, M˜ottus, &
+Borsboom, 2018; Gates, Fisher, & Bollen, 2019; Ye, Gates, Henry, & Luo, 2021) has
+grown. These models estimate the dynamic relations (e.g., temporal and contempora-
+neous) unpacked in a multivariate TSD. For instance, two representative approaches
+are the unified Structural Equation Model (uSEM; Gates, Molenaar, Hillary, Ram, &
+Rovine, 2010; Kim, Zhu, Chang, Bentler, & Ernst, 2007), as a time series extension
+of the SEM, and the graphical VAR (gVAR; Epskamp et al., 2018) model, as a time
+series extension of the network psychometric model. Recently, researchers have ex-
+tended the VAR model into a hybrid representation (called ‘hybrid VAR’ by Molenaar
+& Lo., 2016, or ‘hybrid uSEM’ by Ye et al., 2021) that can handle both the direct
+causal effects and undirected contemporaneous associations (Molenaar & Lo, 2016; Ye
+et al., 2021). These approaches differ in the variant of VAR representation and in the
+estimation framework to select and identify the optimal model. For instance, uSEM
+is usually identified by step-wise model search algorithms (Gates & Molenaar, 2012),
+while gVAR (Epskamp et al., 2018) or hybrid uSEM (Ye et al., 2021) adopt some
+variants of machine learning method (e.g., regularization) to select and estimate the
+identifiable optimal sparse model.
+However, so far these have focused on models with only a small number of manifest
+variables without accounting for measurement error. In practice, it is common that
+more than one, sometimes many, indicators measure the same underlying dynamic la-
+tent variable. When multiple indicators are available, latent time series variables could
+be formed to adjust for measurement error and to reduce the dimensions of the ob-
+served variables. The combination of the factor model and the time series model results
+in what we call the dynamic factor model (DFM; Browne & Nesselroade, 2005; Mole-
+naar, 1985). In DFM, dynamic relations (e.g., lagged and contemporaneous relations)
+are allowed either within the factor series or amongst the factor and the observed time
+series. In fact, current dynamic modeling approaches include a factor model within
+their restricted VAR version to estimate a DFM. For example, the uSEM model in the
+GIMME framework (Gates & Molenaar, 2012) has been extended to the uSEM with
+latent variables (i.e., LV-uSEM), for which they call the Latent Variable GIMME (or
+LV-GIMME; Gates et al., 2019). LV-GIMME estimates a DFM as a LV-uSEM using
+the stepwise model building algorithm, and an option to estimate parameters by use
+of either the pseudo-maximum likelihood (i.e., pseudo-ML ; Molenaar & Nesselroade,
+1998) or the model-implied instrumental variables with two-stage least squares (MIIV-
+2SLS; Fisher, Bollen, & Gates, 2019). In addition, the graphical VAR (gVAR) model
+has been combined with a factor model to form what is called the latent variable
+gVAR (or LV-gVAR; Epskamp, 2020) model under the general Gaussian Graphical
+Model framework.
+However, the estimation of the more flexible VAR representation of DFM remains
+to be developed. Therefore, the primary purpose of our paper is to extend the hybrid
+uSEM with regularization (Ye et al., 2021) to the regularized hybrid uSEM with latent
+variables, so that we can estimate a sparse DFM that allows for hybrid contempora-
+neous dynamic relations between the latent factors themselves. Three steps address
+this overarching goal: the first is to reform the structural model of the latent variable
+uSEM (LV-uSEM) to its hybrid uSEM version, which the authors refer to as the latent
+variable hybrid uSEM (or LV-huSEM); the second is to perform model selection us-
+ing the LASSO regularization in the search for the optimal sparse LV-huSEM; lastly,
+the final model, i.e., a sparse LV-huSEM, will be estimated via either the regulariza-
+The term “pseudo-ML” in the current work specifically refers to the application of using maximum likelihood estimation for
+time series data where the independence assumption is violated due to temporal dependence between repeated observations, as
+used in time series literature such as Molenaar & Nesselroade (1998).
+tion, pseudo-ML, or an equation-by-equation least square estimator (i.e., MIIV-2SLS)
+to obtain final parameter estimates. To evaluate the proposed method with existing
+ones, a simulation study will be conducted to compare 1) model recovery performance
+(sensitivity and specificity) of the LASSO regularization versus the pseudo-ML based
+stepwise model build when they are applied under the LV-huSEM context; and 2)
+biasedness and robustness of parameter estimates obtained by LASSO regularization,
+pseudo-ML, as well as the MIIV-2SLS estimation.
+Below, we first introduce the basic concepts and specification of DFM, followed by
+a review of the LV-GIMME framework to estimate an individual DFM as the LV-
+uSEM. Next, we point out the issues and limitations of the current approach, and how
+the proposed method addresses these issues. This leads to the design and conduct of
+a simulation study to evaluate and compare the proposed method with the existing
+ones. Finally, conclusions and discussion are drawn from the results of the simulation
+study.
+1.1. Dynamic Factor Models
+Dynamic Factor Models (DFMs) represent a class of models that includes lagged re-
+lations within the latent variable approach (Browne & Nesselroade, 2005; Molenaar,
+1985). It can also be seen as a factor analysis extension to the family of VAR models in
+the sense that latent variables (or, factor series) are defined in a measurement model
+and that permits lagged relations either in the measurement model, in the structural
+(i.e., latent variable) model, or both (Molenaar, 1985). Indeed, DFM is a synthesis
+of factor analysis and VAR. Such a synthesis is ideal for many psychological studies
+that aim to unravel hybrid relations in unobserved dynamic processes. A substantive
+question that can be investigated by a DFM approach is to what extent an increase in
+a latent dynamic construct (e.g., anxiety) predicts changes in another latent dynamic
+construct (e.g., depression) as well as changes in the indicators of the other latent
+construct. As another example, neuroscientists often aim to study functional connec-
+tivity in human brains. The latent constructs in this context could be some unknown
+“brain networks” formed by a cluster of disparate brain regions that tend to interact
+across time when performing a task (Gates et al., 2019). Integrating a factor model
+component in the dynamic model opens up the possibility to explore dynamics among
+latent constructs underlying what we could observe.
+A general DFM for a single multivariate TSD is defined by two components, the mea-
+surement model and the structural or latent variable model (Molenaar, 1985; Zhang,
+Hamaker, & Nesselroade, 2008). Let Y = [y , y , ..., y ] denote a vector of a p-
+t 1t 2t pt
+variate time series at a given time point t, with t = 1, ..., T . Assuming Y represents a
+weakly stationary linear time series (i.e., with a constant mean, variance and covari-
+ance function). To ease the presentation, it is assumed that all the time series have
+zero mean function (i.e., no intercept term):
+(cid:88)
+Y = Λ(u)η(t − u) + ϵ , ϵ ∼ N (0, Θ). (1)
+t t t
+u=0
+(cid:88)
+η = Φ(u)η(t − u) + ζ , ζ ∼ N (0, Ψ). (2)
+t t t
+u=1
+In the measurement model, the η(t − u) is a q-variant set of latent factor series,
+with the (p, q)-dimensional time-invariant factor loading matrix Λ(u), u = 0, 1, ..., l
+that denotes the linear relations between the original p-variant time series Y and the
+q-variant factor series η at the lag order of u. The ϵ is a p-variate measurement
+t t
+error process for the p-variate observed variables in Y . We assume that the unique
+factors (“errors”) are independent over time and no cross-loadings. The structural
+(latent variable) equation in the DFM is a dynamic process of VARMA(m, n), i.e.,
+a VAR of order n with a MA of order m. The Φ(u), u = 1, 2, ..., n is a sequence of
+(q, q)-dimensional matrices of AR and cross-lagged effect of the latent factors at the lag
+order of u. In Model (2), the parameters are time invariant. In addition, we assume that
+the errors ϵ and ζ are uncorrelated with their respective latent variables η(t − u),
+t t
+the errors are uncorrelated over time, i.e., cov(ζ , ζ ) = 0. Here, moving average
+t t−1
+(MA) coefficient matrices (i.e., current latent variable values predicted by errors from
+the prediction of previous latent variable values) are not not considered (m = 0). In
+this way, the structural (latent variable) equation in the DFM is a dynamic process
+of VAR(n), i.e., a VAR of order n. Taken together with the measurement model, this
+returns a DFM (p, q, m, n, l). The general DFM implies that lagged values of the latent
+variable can have loadings on future values of the indicators beyond the indirect effect
+via the factor at that concurrent time point.
+For model identification and substantive purposes, however, analysts often impose
+restrictions to allow only one type of the lagged relations. For example, a general DFM
+is reduced to a simpler, more restrictive version containing only lag relations among the
+factors, i.e., DFM(p,q,0,1,0), called the first-order lag-1 process factor analysis or direct
+autoregressive factor models (DAFM; Browne & Nesselroade, 2005); alternatively, it
+reduces to what is called the shock factor analysis or white noise factor model when
+lagged relations are only in the measurement model, i.e., DFM(p,q,0,0,1); McArdle,
+1982; Zhang & Browne, 2007).
+1.2. Latent Variable Group Iterative Multiple Model Estimation
+Latent Variable Group Iterative Multiple Model Estimation (LV-GIMME; Gates et
+al., 2019) adopts the DAFM model or the DFM(p,q,0,1,0) with lagged relations only
+between latent factors in the structural or latent variable model. The DAFM makes
+the interpretation and the implementation of LV-uSEM simpler, because the dynamic
+relations are between factors, which can be separate from the measurement model
+where factors are extracted from indicators at the same time. The dynamic relations
+between the latent variables in the LV-uSEM are comparable to those among the
+observed variables in the uSEM model, with the exception that these dynamic relations
+take account of measurement errors in the observed variables. Because our aim is to
+compare approaches of individual dynamic models with hybrid relations, we focus on
+individual case time series, that is, no group-level modeling or aggregation of individual
+models will be performed. In the remaining part of this paper, we refer to this model as
+LV-uSEM instead of the LV-GIMME from the paper that applies to multiple subjects
+TSD.
+In the measurement model, LV-uSEM adopts the general form of DAFM, that is, a
+first-order processing factor series, or DFM(p,q,0,1,0). This part adopts a confirmatory
+factor approach to obtain latent variables with the same qualitative meaning. For each
+individual:
+Y = Λη + ϵ , ϵ ∼ N (0, Θ). (3)
+t t t t
+In the structural (latent variable) model, LV-uSEM inherits a uSEM structure
+(Gates, Molenaar, Hillary, & Slobounov, 2011; Kim et al., 2007) that “unifies” tempo-
+ral ordering dependency and contemporaneous associations among the latent factors.
+The following model specification and matrix notations follow Gates et al. (2017) and
+Ye et al. (2021):
+η = Bη + ζ, ζ ∼ N (0, Ψ). (4)
+where η = [η , η ] is a 2q×T matrix. That is, the factor variables are time-embedded
+t−1 t
+by appending the data at t − 1 to the data at t. The data are thus expanded to two
+consecutive time points t − 1 and t, so time series vector of lagged (exogenous) factor
+variables and those of contemporaneous (endogenous) factor variables are appended
+horizontally. This requires that the error vector ζ also be extended, as well as each of
+the corresponding matrices.
+The contemporaneous and lagged regression coefficients collapse into a single 2p×2p
+B regression coefficient matrix:
+ 
+0 · · · · · · · · · 0 0 · · · · · · · · · 0
+ 
+. . . . . .
+ . . . . . . 
+. . . . . .
+ 
+ 
+ . . . . . . 
+. . . . . .
+ . . . . . . 
+ 
+ . . . . . . 
+. . . . . .
+ . . . . . . 
+ 
+ 
+ 
+0 · · · · · · · · · 0 0 · · · · · · · · · 0
+ 
+B =
+ 
+ 
+ϕ · · · · · · · · · ϕ 0 a · · · · · · a
+ 
+11 1p 12 1p
+ 
+. . . . . .
+ 
+. . . . . .
+. . . a . . .
+ 
+ 
+ . . . . . . . . 
+. . . . . . . .
+ . . . . . . . . 
+ 
+ . . . . . . 
+. . . . . .
+ 
+. . . . . . a
+ (p−1)p
+ 
+ϕ · · · · · · · · · ϕ a · · · · · · a 0
+p1 pp p1 p(p−1)
+2p×2p
+in which the upper left p × p and the upper right p × p matrix block coefficients are
+set to zero for lagged (exogenous) factor variables. That is, no factor variable at time
+t directly predicts a factor variable at time t − 1, and factor variables at time t − 1
+cannot predict each other. The lower left and right blocks are Φ parameters for lag-1
+relations and A for contemporaneous factor variables at time, respectively.
+The error covariance Ψ is a diagonal matrix representing an independent white
+noises:
+ 
+ 
+ . 
+ψ .
+ 
+ 
+. . .
+ 
+. . .
+ . . . 
+ 
+ . . . 
+. . .
+ . . . 
+ 
+ 
+ 
+ψ · · · · · · ψ .
+ p1 p(p−1) 
+Ψ =
+ 
+ . 
+0 · · · · · · · · · 0 .
+ 
+ 
+. . . .
+ 
+. . . .
+ . . . 0 . 
+ 
+ . . . . . . 
+. . . . . .
+ . . . . . . 
+ 
+ 
+. . . . . .
+. . . . . .
+ 
+. . . . . .
+ 
+ 
+0 · · · · · · · · · 0 0 · · · · · · 0 ψ
+(2p)(2p)
+2p×2p
+where the upper left triangle contains freely estimated variance and covariances among
+the lagged (exogenous) factor variables, and the lower right triangle is the variance and
+covariance matrix of factor residuals. Note that the covariances among factor residuals
+are set to zero as in the traditional uSEM framework. These matrices provide the
+foundation from which the expansion to latent variable hybrid uSEM is developed.
+A note on the level of heterogeneity across individuals. It is possible that individu-
+als vary both in the measurement of constructs as well as the relations among latent
+factors. But the interpretation of the dynamic relations is hard to generalize across
+people if the latent factors stand for completely different constructs. For this rea-
+son, a typical practice in GIMME framework is to have a qualitatively homogeneous
+and quantitatively heterogeneous measurement models (i.e., same nonzero pattern yet
+individual-specific estimates in Λ matrix) to ensure the same substantive meaning of
+the latent factor with some levels of individual variability (Gates et al., 2019). To
+maximize heterogeneity in the dynamic patterns, the structural models represent en-
+tirely idiographic dynamic models (i.e., person-specific patterns and estimates). Note
+that this setting is opposite to the practice in idiographic filter DFM (Molenaar, 1985;
+Nesselroade, Gerstorf, Hardy, & Ram, 2007), where the measurement model structure
+and factor loading are allowed to vary across individuals on the condition that the
+structural relations among the latent variables remain invariant across people. This
+is critical since previous literature has pointed to great variability across individuals
+both in how constructs are measured and how they relate to each other (Epskamp
+et al., 2018; Gates et al., 2019; Hamaker, Dolan, & Molenaar, 2005). GIMME rep-
+resents a very flexible approach that maximizes heterogeneity in dynamic patterns
+across individual DFMs.
+The pseudo-ML model selection and the MIIV-2SLS estimation. The LV-uSEM
+operates under the SEM framework for DFM that uses a pseudo-ML based model
+building algorithm and the model-implied instrumental variables with two-stage least
+squares (MIIV-2SLS; Bollen, 1996) for parameter estimation. Ideally, the specification
+for the structural (latent variable) model 3 should be guided by a priori theory. Un-
+fortunately, very little is known about the individual dynamic pattern, besides that
+research has shown that the patterns vary across people (Nichols, Gates, Molenaar,
+& Wilson, 2014; Wright, Beltz, Gates, Molenaar, & Simms, 2015, e.g.,). GIMME uses
+a data-driven forward selection algorithm where for every individual, it starts with a
+null model, and one path with the highest and significant modification indices is added
+iteratively until the model arrives at an acceptable fit (Gates et al., 2010). This model
+building procedure is automatic in the free open-source R package gimme (Lane et al.,
+2019).
+The recommended estimation approach is a sequential, three-step procedure: in the
+first stage, the measurement model is estimated with MIIV-2SLS (default), or pseudo-
+ML, or PCA, and latent scores of factor series are derived through the regression
+method; the second stage is consistent with the general GIMME approach which in-
+volves a pseudo-ML based stepwise search to identify the sparse individual structural
+models (i.e., uSEMs) with individualized patterns of dynamic relations amongst the
+latent factor series obtained from the previous step; finally, parameter estimates of
+the measurement and the sparse structural model are obtained via MIIV-2SLS. MIIV-
+2SLS has been shown to be more robust to model misspecification than the system
+wise ML estimations for traditional SEM (Bollen, Kirby, Curran, Paxton, & Chen,
+2007) and particularly for SEM under DFM (Fisher et al., 2019).
+The use of equation-by-equation estimation in MIIV-2SLS is particularly advanta-
+geous because it separates the estimation of the measurement model from the struc-
+tural (latent variable) model so that the measurement model parameter estimates re-
+main unaffected by heterogeneous structures in the latent variable model (Gates et al.,
+2019). Enabling individual variability in the pattern of contemporaneous or dynamic
+relations among latent constructs allows for a better understanding of individual-
+centered processes as they unfold over time. However, MIIV-2SLS is not a model
+selection tool, hence we apply the MIIV-2SLS estimation of the final sparse LV-uSEM
+after the stepwise model selection procedure.
+Technical details of the MIIV-2SLS are available in Bollen (1996); Bollen et al.
+(2021, 2007) and elsewhere. Here we give a brief description of MIIV-2SLS. Unlike
+system-wise full-information estimators such as maximum likelihood that estimates
+all parameters simultaneously, the MIIV-2SLS estimates one equation at a time. To
+start, the MIIV-2SLS transforms the latent variable model into one that contains only
+the observed variables (i.e., L2O) by substituting each latent variable with its scaling
+indicator minus its error as specified in the measurement model (Bollen et al., 2021).
+One assumption for the OLS estimator is that the composite error cannot correlate
+with any covariates of that equation, which is typically violated after the L2O trans-
+formation. A common way to solve the correlated error issue is to use instrumental
+variables, i.e., variables that are uncorrelated with the composite error but correlate
+with the covariates that are associated with these errors. The special advantage of the
+MIIV-2SLS is that qualified instruments were drawn from other equation(s) within
+the system itself based on the model structure, hence it is called model-implied in-
+strumental variables (or MIIVs; Bollen et al., 2021). Finding qualified MIIVs is done
+automatically using the algorithm from Bollen (1996) and is implemented in the R
+package MIIVsem (Fisher, Bollen, Gates, & R¨onkk¨o, 2020). Another advantage of the
+equation-by-equation MIIV-2SLS estimation is that, besides the χ tests of goodness-
+of-fit for the whole model, equation-wise overidentification test (e.g., Sargan’s χ test;
+Sargan, 1958) is available when the equation has more than the minimum number of
+MIIVs. A rejection to the null hypothesis of the overidentification test suggests that
+at least one of the MIIVs fail to meet the conditions based on the current model spec-
+ification, which is an evidence that some specifications of the model is in error (Bollen
+et al., 2021).
+To estimate a LV-uSEM using MIIV-2SLS estimator under the GIMME approach,
+one convenience is that the latent factor variables are obtained prior to the estimation
+of the structural (latent variable) model and are treated as observed variables in the
+model selection and estimation for structural relations. In addition, the lagged latent
+factor variables are predetermined (exogenous) variables because no backward predic-
+tions from factor scores at time T to those at the previous time are allowed (recall
+the zero elements in the B matrix in Equation 4). This setting of the lagged factor
+variables guaranteed a minimum set of qualified MIIVs for the parameter estimates in
+the structural model.
+2. The Current Study
+The uSEM framework is used to estimate individual dynamic models with latent
+factors such as the DAFM. However, there are a couple of areas that we propose to
+extend the individual modeling under the GIMME framework. First, it is imperative to
+move from the restrictive VAR representation in the DAFM from a uSEM to the more
+flexible hybrid uSEM. That is, directed regressions and undirected error covariances
+among contemporaneous latent factor variables should be incorporated simultaneously.
+Because not only can they co-exist, they can carry different causal interpretations as
+well as practical implications. Therefore, the first goal is to extend the structural model
+in LV-uSEM to the hybrid representation, i.e., LV-huSEM, by altering the residual
+covariance matrix Ψ in Equation 4 to Ψ :
+ 
+ 
+ . 
+ψ .
+ 
+ 
+. . .
+ 
+. . .
+ . . . 
+ 
+ . . . 
+. . .
+ . . . 
+ 
+ 
+ 
+ψ · · · · · · ψ .
+ p1 p(p−1) 
+Ψ =
+ 
+ . 
+0 · · · · · · · · · 0 .
+ 
+ 
+. . .
+ 
+. . .
+ . . . ψ 
+(p+1)(p)
+ 
+ . . . . . . 
+. . . . . .
+ . . . . . . 
+ 
+ 
+. . . . . .
+. . . . . .
+ 
+. . . . . .
+ 
+ 
+0 · · · · · · · · · 0 ψ · · · · · · ψ ψ
+(2p)(p) (2p)(2p−1) (2p)(2p)
+2p×2p
+Note that the lower-right matrix block of Ψ is now a symmetric matrix with con-
+temporaneous variances ψ , i = p + 1. . . 2p of the factor residuals on the diagonal as
+seen in Ψ. By substituting the off-diagonal 0’s in Ψ with parameters of contemporane-
+∗ ∗
+ous residual covariance ψ , i, j = p + 1. . . 2p, i ̸= j, Ψ is turned to Ψ . Each element in
+ij
+the lower right hand corner are now candidates in a model search procedure. By doing
+so, we relax the conditional independence assumption on the contemporaneous errors
+of uSEM, and allow the errors to be correlated. Additionally, the regression coefficient
+matrix B in Equation 4 is turned to B as the relations and estimates may change
+from what they were previously, and the model-implied covariance matrix is now Σ
+derived by:
+∗ ∗ −1 ∗ ∗ −1′
+Σ = (I − B ) Ψ (I − B ) (5)
+Second, the forward selection method of model building is highly dependent on the
+starting model and the intermediate steps, and can arrive at an arbitrary final model.
+Results from the simulation study in Ye et al. (2021) also showed that this approach
+tends to miss relations with moderate to medium strengths even with the correct
+starting model and a large sample size. Another critical downside unique to the current
+LV-GIMME is the sequential analysis. That is, factor scores of latent variable series
+are obtained through the traditional Bartlett method (Bartlett, 2011) or regression
+methods (Thurstone, 1935) in a separate step prior to the model building and are
+treated as observed variables in the estimation of the structural model. However, it has
+been shown analytically and numerically that a na¨ıve use of factor scores as observed
+variables without correction leads to inconsistent and biased parameter estimates in
+the context of linear regressions (Skrondal & Laake, 2001) or simultaneous equations
+(Croon, 2002). In addition, there is a lack of knowledge about the impact of the
+measurement errors and random errors from the factor scores, regardless of the method
+of calculation, on model selection and estimation in simultaneous equations.
+Regularization, in contrast, is a global, continuous model selection and a simultane-
+ous estimation method. Regularization introduces sparsity by imposing a penalty term,
+the level of which is gauged by searching across a prespecified range of λ values until
+the optimal λ (hence the sparsity level) is reached such that the model has the least
+mean square error or the lowest BIC (Jacobucci, 2017; Ye et al., 2021). When using
+the least absolute shrinkage and selection operator (LASSO, aka the L1-norm penalty;
+Tibshirani, 1996), the sum of the absolute values of the parameters are shrunken to-
+wards zero as λ increases, and they can eventually reach exactly zero. Hence, the
+LASSO penalty is often used in favor of a sparse model or to perform model and
+variable selection. Previous simulation study (Ye et al., 2021) demonstrated success in
+adopting the LASSO regularization to identify a sparse huSEM with a high sensitivity
+(identify true paths) regardless of the magnitude as well as a high specificity (elimi-
+nating zero relations). However, to the authors’ knowledge, LASSO regularization has
+not been implemented under the LV-uSEM context. Therefore, the current method
+seeks to replace the pseudo-ML stepwise searching and sequential estimation with the
+LASSO regularization for a simultaneous identification and estimation of the extended
+LV-huSEM.
+To obtain the solution, a ML regularized cost function is derived by adding the
+user-defined penalty function to the unregularized ML cost function:
+F (θ) = F (θ) + λP (θ ) (6)
+Reg ML
+in which F (θ) is the unregularized cost function computed from the model implied
+ML
+covariance Σ given in Equation 5. The set θ includes all the parameters estimated in
+the model, while θ is the subset containing user-specified parameters under penaliza-
+tion.
+Lastly, there is a lack of evaluation and comparison of these methods for the parame-
+ter estimation under data-driven model building procedures. Previous researchers have
+found that pseudo-ML estimates of individual DFMs obtained by the SEM approach
+showed higher biases and a tendency for inaccurate statistical conclusions compared
+with true ML estimates obtained from methods such as the state-space modeling ap-
+proach with Kalman Filter estimator (Chow, ho R. Ho, Hamaker, & Dolan, 2010). But
+such evaluation was done on the correctly specified model, without potential biases
+associated with the model selection procedure. In addition, as an alternative model
+selection and estimation method, the property of LASSO regularized estimates in
+the LV-uSEM context has not been studied. In theory, regularization methods have
+sacrificed some level of unbiasedness for efficiency, because all the parameters under
+penalty (including the unknown true ones) are shrunk at the same time. But this
+does not mean that the LASSO estimates are always more biased than unregularized
+pseudo-ML estimates, because penalization eliminates unnecessary variables and false
+relations that can also bias the estimates of the correct parameters.
+Importantly, both the pseudo-ML and the LASSO regularization are system-wide
+estimator that are not robust to structural misspecifications because errors in one
+place can spread out to other parts of the model including those that are correctly
+specified (Bollen et al., 2021). Using a non-robust estimator to select the structural
+(latent variable) model would potentially impact final estimates in both the mea-
+surement model and the structural model. In contrast, the MIIV-2SLS is a limited-
+information equation-by-equation estimator that is more robust to structural mis-
+specifications (Bollen et al., 2007). Indeed, the MIIV-2SLS has been shown to be more
+robust than the pseudo-ML for the estimation of a DFM when estimated under the
+LV-uSEM framework (Fisher et al., 2019; Gates et al., 2019). Further, Bollen et al.
+(2018) has illustrated the analytic robustness conditions of the MIIV-2SLS estima-
+tor in SEM. Specifically, they found that misspecification errors from the structural
+(latent variable) model should not contaminate MIIV-2SLS estimates in the measure-
+ment model, whereas the impact of misspecifications in the measurement model on
+& Fisher, 2018). This robustness property makes MIIV-2SLS an excellent choice for
+the estimation of sparse LV-huSEM when the heterogeneous, exploratory individual
+structural models are conditioned on a common, confirmatory measurement model.
+Because under the assumption of the correctly specified measurement model, the only
+source of misspecification comes from the structural model (as a result of model se-
+lection), which according to the robustness condition, will not bias the MIIV-2SLS
+estimates of the measurement model. This property, however, will not be guaranteed
+when system-wide estimators were used. That is, even though the measurement model
+is correctly specified, the errors from the misspecified structural model will likely bias
+pseudo-ML and LASSO regularization estimates of both the structural as well as the
+measurement model. Hence, the LV-GIMME research group adopted the MIIV-2SLS
+approach for the final parameter estimation post to the pseudo-ML based stepwise
+model search.
+Therefore, to investigate consistent and robust estimation under possible hetero-
+geneous misspecified structural models, we included the MIIV-2SLS as a post model
+selection estimation approach as well (i.e., parameter estimation after the optimal
+sparse LV-huSEM model is selected). Besides model recovery property, we also seek to
+compare unbiasedness and robustness behaviors of the pseudo-ML, the LASSO reg-
+ularized, and the MIIV-2SLS estimators under the context of data-driven dynamic
+modeling. The current investigation will include the evaluations of these properties
+under the LV-huSEM with entirely idiographic structural models conditioning on a
+unified, confirmatory measurement model. Having an identical factor structure in the
+final LV-huSEM models across these methods ensures that the comparison of model
+recovery and parameter estimation for the dynamic relations are not contaminated by
+differences in the structure of latent factors.
+In sum, the primary goal of the current study is to evaluate the different model
+building methods (pseudo-ML vs. regularization) with respect to model recovery as
+well as estimation approaches (e.g., pseudo-ML, regularization, and MIIV-2SLS) for
+unbiased and robust parameter estimations for a DAFM with a hybrid VAR rep-
+resentations (i.e., LV-huSEM). First, we extend the model specification for DAFM
+implemented in methods such as GIMME. That is, the LV-uSEM is extended to the
+LV-huSEM in the same way that uSEM is extended to huSEM in Ye et al. (2021), with
+the distinction that the huSEM is now constructed on the factor series instead of the
+observed time series variables. Second, the LV-GIMME approach used a pseudo-ML
+based stepwise model search on the factor scores. Instead, the proposed method adopts
+the LASSO regularization for model search and estimation in the extended LV-huSEM.
+One advantage of using LASSO regularization in this LV-huSEM context is that we
+can estimate the measurement model and structural model simultaneously rather than
+separately. The simultaneous estimation avoids potential biases introduced by the er-
+rors in the factor scores. Finally, neither the unbiasedness or robustness of parameter
+estimates obtained by regularization has yet been evaluated under the current con-
+text. Indeed, the focus of existing literature is primarily on the recovery of true path
+presence and path direction (e.g., Epskamp et al., 2018; Gates et al., 2019; Ye et al.,
+2021). However, it is vital to compare regularization with pseudo-ML and MIIV-2SLS
+for parameter estimates in the LV-huSEM. Therefore, in addition to model recovery,
+we seek to evaluate properties of parameter estimates using the current three esti-
+mation approaches (i.e., pseudo-ML, regularization, and MIIV-2SLS), especially with
+misspecifications in the structural model recovered through model building procedures.
+Particularly, the authors are interested in comparing the model search and estimation
+method using the proposed LASSO regularized LV-huSEM approach as well as a com-
+bination of LASSO regularization and MIIV-2SLS for LV-huSEM, versus the existing
+LV-GIMME approach, with the pseudo-ML and MIIV-2SLS estimation. The authors
+hypothesize that LASSO regularization will be a more efficient and reliable method
+than the pseudo-ML based forward selection in the search for the optimal sparse model;
+and for parameter estimates, MIIV-2SLS is the most unbiased and robust estimator
+(under model structural misspecifications).
+2.1. The Simulation Design
+We designed a Monte Carlo simulation study to evaluate LASSO regularization and
+pseudo-ML approach with respect to model recovery as well as their properties for
+parameter estimation compared to those of MIIV-2SLS under the LV-huSEM context.
+The goal is to investigate the extent to which building LV-huSEM models with LASSO
+regularization and MIIV-2SLS estimation is superior to the LV-GIMME approach in
+terms of 1) sensitivity of finding the true dynamic relations in the structural model,
+2) the specificity of excluding the false dynamic relations, and 3) the robustness of
+parameter estimates to structural misspecifications.
+The Data Generating Model (DGM). The DGM is a five-factor DFAS with lag-1
+effects as well as hybrid types of contemporaneous relations among the latent factors.
+In the measurement model, each factor has three indicators with no cross loadings
+or lagged relations. The factor loading of the scaling indicator of each factor equals
+1 with the other two loadings set to 0.7 and 0.9. We include paths of different types
+and magnitudes to investigate the path recovery for hybrid dynamic relations. This
+includes a lag-1 autoregressive process within each factor (0.5), a cross-lagged effect
+from lagged factor three to contemporary factor four (0.7). For the contemporaneous
+relations amongst factors, we included a direct path from factor one to two (-0.25),
+from factor one to four (-0.7), a covariance between factors one and three (0.25), and a
+covariance between factors three and five (0.7). We varied the magnitude of coefficients
+and covariances to see whether these impact the recovery of the true DGM. We do not
+claim that the combination of these parameter values returns a common LV-huSEM
+model in practice. In fact, we suspect that this model is overly simplified with sparse
+relations compared to what would be found in empirical data. We will return to this
+point in the limitation section.
+To investigate the influence of sample size on the performance, data is generated
+from the same DGM using time lengths varying from 60, 200, to 1,000, representing
+a range from small to large in practice. This is to be consistent with the simulation
+design in a previous evaluation on regularized huSEM (Ye et al., 2021). That is, the
+choice of these design factors are decided such that they represent data structure and
+characteristics of time series data in psychological and psychophysiological research.
+For example, although 60 might appear small in panel or cross-sectional data, it would
+be moderately large in time series such as daily dairy. Note that only the number
+of timepoints is crossed design, the other factors are investigated within one model.
+All the DGMs will be replicated 1,000 times, resulting in 3,000 datasets. The weak
+stationary test will be performed in the data generating process, i.e., we will test that
+all eigenvalues of Φ have modulus less than one (Lu¨tkepohl, 2005). All analyses will be
+performed in R, codes will be released and made publicly available on Open Science
+Framework (OSF).
+2.2. Analytic Procedure
+For the pseudo-ML approach, confirmatory five-factor measurement models are esti-
+mated by pseudo-ML in lavaan or by MIIV-2SLS in MIIVsem, and factor scores are
+obtained by the default regression method of the ’lavPredict’ function in lavaan. These
+factor score series will enter the subsequent structural model for model selection using
+pseudo-ML forward search in the GIMME package, function indSEM. The difference
+from the original setting in LV-GIMME is that here the starting structural model is
+a huSEM (with the covariance matrix ψ ) instead of the more restricted uSEM (with
+ψ). Additionally, we focus on individual models only, i.e., no group level model is
+involved. For this reason, we refer to this method “pseudoML-FS-huSEM” to indicate
+it uses modification indexes for the search of sparse huSEM model using the factor
+scores.
+For the proposed method, the LV-huSEM under LASSO regularization (i.e., LASSO-
+LV-huSEM) will be implemented under the regularized SEM framework. After the LV-
+huSEM model structure is specified in lavvan, regsem can import the lavvan output,
+i.e., the unregularized ML cost function F (θ) derived from 6, and perform LASSO
+ML
+regularization with the user-defined list of parameters in the penalty function λP (θ ).
+Note that in LASSO-LV-huSEM the model selection and estimation are performed
+simultaneously on both the measurement and the structural (latent variable) model.
+To ensure that factor series represent latent constructs that are consistent with those of
+“pseudoML-FS-huSEM”, the same confirmatory factor structure is estimated without
+penalty. Parameters in the measurement model (e.g., factor loadings) belong to the
+∗ ∗
+freely estimated set in θ but not in set θ . Parameters in the set θ are regression
+coefficients for cross-lagged effects and contemporaneous effects (coefficients in the
+B matrix except the diagonal elements of the lower left block matrix Φ to free up
+AR coefficients) as well as the error covariance among contemporaneous latent factors
+(i.e., off-diagonal elements in the lower right block matrix Ψ . Ideally, the optimal λ
+(with the lowest BIC) penalizes all unnecessary parameter(s) to zero and estimates the
+remaining parameter(s), unraveling the true type of relation between any two latent
+factors from five possibilities: two cross-lagged effects, two directed contemporaneous
+regression coefficients, and one undirected contemporaneous error covariance.
+Two additional methods were included in the analysis to account for the confound-
+ing factor from the use of factor scores in the “pseudoML-FS-huSEM” method. The
+first one is to repeat the huSEM model search and estimation using factor scores
+obtained from the DGM (i.e., LV-huSEM) which we call “pseudoML-DGM-FS”. By
+using the population parameters from the DGM, it could reduce the biases because the
+population parameters remove sampling error of the parameter estimates that are part
+of generating the factor scores. But note that factor score estimates would still differ
+from the latent variables - the problem is the measurement errors that are part of the
+indicators that form the factor scores. In reality, however, the true model is unknown
+and so it is impossible to implement this method without error. It is included in the
+simulation to determine if the use of factor scores improves when population parame-
+ters are part of their calculations. Another confounding factor lies in the comparison
+of “pseudoML-FS-huSEM” (i.e., using pseudo-ML) and “LASSO-LV-huSEM” in their
+ability to select and estimate true relations and eliminate false ones in the structural
+model is the fact that the pseudo-ML is subject to measurement errors and random
+errors in the factor scores, while LASSO regularization simultaneously estimates the
+measurement and structural (latent variable) models without calculating factor scores.
+To account for that difference which confounds the comparison between pseudo-ML
+and LASSO regularization, we included an additional analysis to apply LASSO regu-
+larization on a huSEM using the same factor scores from the five-factor measurement
+model as we did in the pseudo-ML approach, i.e., “LASSO-FS-huSEM”. In that case,
+“LASSO-FS-huSEM” and “pseudoML-FS-huSEM” only differ in their model selection
+and estimation methods but not how the measurement model and starting structural
+model are constructed. While the difference between “LASSO-FS-huSEM” and the
+generic proposed method “LASSO-LV-huSEM” informs the impact of measurement
+errors from factor scores instead of latent variables.
+Finally, recall that both pseudo-ML and LASSO regularization are for both model
+selection and estimation. But given the potential biases introduced by the model se-
+lection procedure and the robustness property of the MIIV-2SLS, the latter is also in-
+cluded as a post model selection estimation. That is, after the final sparse LV-huSEM
+is selected, it will be estimated again using the MIIV-2SLS to obtain the final parame-
+ter estimates of both the measurement and the structural (latent variable) models. In
+terms of the selection of MIIVs for each equation when the number of MIIVs exceed
+the minimum number required for model identification, previous simulations studies
+(e.g.,; Bollen et al., 2007) found that using one additional MIIV than the minimum
+Modeling Framework LASSO Regularization pseudo-ML
+Method Name LASSO-LV-huSEM LASSO-FS-huSEM pseudoML-FS-huSEM pseudoML-DGM-FS
+Analysis Procedure Simultaneous Sequential Sequential Sequential
+Measurement Model confirmatory factor scores factor scores factor scores (DGM)
+VAR Model Build LASSO penalty LASSO penalty Forward stepwise Forward stepwise
+Parameter Estimate LASSO/MIIV-2SLS n/a Pseudo-ML/MIIV-2SLS n/a
+number produces the least biased estimation at small sample size conditions, but
+matters less in large samples. We chose to adopt this approach for the MIIV-2SLS
+estimation in the current simulation, given that the examination includes small to
+moderate sample sizes. We refer to this approach MIIV-2SLS-DF1 to indicate the one
+degree of freedom in the overidentification Sargan’s test. With these investigations,
+we could examine which combination of model selection and estimation regime is the
+overall optimal practice, accounting for the treatment of the measurement model. The
+2.3. Evaluation Measures
+We use sensitivity and specificity to evaluate the accuracy of recovering relations with
+the correct direction. Sensitivity and specificity are common outcome measures in net-
+work research (e.g., abegaz2013sparse; epskamp2016primer). Sensitivity is calculated
+by the ratio of the true positive count discovered in the search over the sum of all true
+relations in the DGM (i.e., true positives and false negatives). Sensitivity represents
+the power to detect true relationships. In this paper, because the starting model is
+the more flexible LV-huSEM with all the free parameters in the extended Ψ and
+B , we do not distinguish path sensitivity from direction sensitivity. That is, only the
+relations that are recovered with the correct direction are recorded. Essentially, the
+sensitivity concept here is equivalent to the direction sensitivity in Ye et al. (2021).
+Specificity, in comparison, is calculated by the ratio of true negative count over the
+sum of negatives in the DGM (i.e., the sum of true negative count and false positive
+count). This represents the percentage of non-existing paths in the DGM that the
+search procedure accurately omitted in the final model. These measures allow for a
+global evaluation of a model’s ability to detect true recovery and to reject false ones.
+In both sensitivity and specificity measures, higher values indicate better performance
+in the selection of true data-generating relations.
+However, from previous observations, sometimes a relation between two variables
+will still be recovered with a misspecified direction. For example, at the presence
+of a directed relation between two contemporaneous factors (e.g., Y →− Y ), an
+t,1 t,2
+alternative relation such as a reversed sign (Y ←− Y ) or as lagged ( Y →− Y
+t,1 t,2 t−1,1 t,2
+or Y →− Y ) or as undirected covariance (Y ↔ Y ) might be selected by the
+t−1,2 t,1 t,1 t,2
+model. In some scenarios, it is better to have another form of relation from the true
+form than completely missing the relations, but not always. For example, if a direct
+path between two variables is missed, having a covariance or a lagged path with the
+correct direction in the selected model is more informative than having no relation;
+however, if the directed path with the reversed sign is recovered, the information is
+misleading (i.e., a wrong causal implication). Sometimes, a relation with one or two
+wrong directions could be selected instead when the sample size is too small and the
+sampling error is large, but other times one or more could also be selected in addition
+to the true direction when the sample size is large. To investigate this behavior in
+relation to model selection methods and across sample sizes, we calculate relation-
+specific “direction false positive”: the percentage of time where there are at least one
+(out of four possible) misspecified directions in relation to a given true relation being
+selected in the final model. Accordingly, we distinguish the overall model specificity
+with the one that eliminate the “direction false positive” related to true relations,
+the authors refer to them as direction specificity (more stringent) and path specificity
+(more lenient), respectively.
+To examine unbiasedness and robustness, we will exam the relative bias measure. We
+calculate the mean relative bias (RB) for each parameter as the difference of the actual
+estimate and the true value divided by the true value, averaged across the cases when
+the path is recovered by the model (i.e., nonzero). Hence, this is a RB rate conditional
+on the path recovery. When using MIIV-2SLS, the equation level over-identification
+2 2
+test (i.e., Sargan’s χ test) is available. The Sargan’s χ test informs whether the
+MIIVs are uncorrelated with the error term of the corresponding equation. Rejection
+of the null hypothesis suggests that one or more of the MIIVs are inappropriate. This
+could occur if the equation is misspecified or if another part of the model is misspecified
+and this leads to one or more incorrect MIIVs for the estimated equation. A significant
+Sargan test cannot definitely tell which of these is true, but it does alert the researcher
+to the potential of inconsistent coefficients estimators. Following previous literature
+(Fisher et al., 2019), we are interested in two properites: 1) what is the statistical
+power of the Sargan’s χ test when at least one of the MIIVs for an equation is
+wrong, and 2) Is the Type I error rate of the Sargan’s χ test accurate when all MIIVs
+are valid. Consistent with literature, we will use an α of .05 for both circumstances.
+The aim is to evaluate the RB and robustness behaviors under different misspecified
+structural models as recovered by pseudo-ML, regularization, versus MIIV-2SLS. From
+a practical point of view, the convergence behaviors for each method will be recorded
+and compared.
+3. Result
+3.1. Model Convergence
+Some datasets caused nonconvergence when the LASSO regularization or the pseudo-
+ML approach estimates a LV-huSEM. These datasets were dropped from the analysis
+of the outcome measures below. It was observed that out of the 1000 datasets, there
+were 10.9 %, 7.3%, and 7.1% that did not converge for the one-step LASSO-LV-huSEM
+method at sample sizes N = 60, 200, 1000, respectively. These rates were increased
+to 21.9%, 14.5%, 8.3% (respectively) when we used the two-step LASSO-FS-huSEM
+method. The pseudo-ML method using factor scores from a five-factor measurement
+model did not converge for 2% datasets at N = 60. All the other conditions were
+converged. It is clear that the model using LASSO regularization using a starting
+model of a full LV-huSEM (with all the parameters included) has a higher chance of
+model nonconvergence compared to those using the pseudo-ML method that starts
+with a null model and a much small model specification (as the estimation of the
+measurement model is separate from that of the structural model).
+3.2. Sensitivity and Specificity
+Note: Small.Dir = small directed path, Large.Dir = large directed path, Small.Cov = small covariance relation,
+Large.Cov = large covariance relation, CL = cross-lag effect, Lag-1 = lag-1 effect, Large.FL refers to factor
+loadings of .9, Med.FL refers to factor loadings of .7.
+Let us first turn to the sensitivity for recovering true relations of the DGM from
+the starting LV-huSEM (i.e., confirmatory measurement model and an exploratory
+structural model with all the free parameters denoted in B and ψ ). All the methods
+showed an excellent sensitivity for lag-1 effects regardless of the sample size. Besides
+lag-1 relations, the probability to recover another true path by any method depends
+largely on the sample size: the recovery rates were low when the sample size was small
+(N = 60), overall acceptable at a medium sample size (N = 200) and satisfactory
+given a large sample size (N = 1000). Specifically, between the two generic methods of
+our interest, i.e., the pseudo-ML using factor scores (pseudoML-FS-huSEM) and the
+proposed LV-huSEM under LASSO regularization (LASSO-LV-huSEM), the perfor-
+mance of recovering a moderate directed path or a covariance relation were similar;
+however, LASSO-LV-huSEM showed an overall higher sensitivity to strong relations
+(i.e., directed, covariance, and cross-lagged relations) when given a medium or large
+sample size. Surprisingly, pseudoML-FS-huSEM performed poorly in recovering the
+strong directed path even with a large sample size. A closer examination revealed that
+the majority of time the model tended to recover a true strong directed path as a co-
+variance relation and sometimes as a reversed sign directed path (hence a high rate of
+that counted as a “path presence recovery” but not as a “direction recovery” in the
+simulation of Ye et al. (2021). Note that the distinction was emphasized there because
+the investigation involved more restricted starting models such that some types of
+relation were misspecified one way or another, their presence can only be recovered
+by an alternative form between the two variables. It is not the case here where both
+methods used the true starting structural model (i.e., huSEM) for the search.
+Turning to the impact of the type of factor score, it seemed that when a true DGM
+model (i.e., LV-huSEM) was used to obtain the factor scores for the subsequent pseudo-
+ML analysis (i.e., pseudoML-DGM-FS), the overall model recovery performance of the
+strong relations was much better than those from using the factor scores of a confir-
+matory measurement model alone. This suggests using estimated parameter values for
+the factor scores affect the recovery of the structural relations amongst the factors.
+Overall, LASSO-FS-huSEM had the best sensitivity performance of all the methods
+(latent variable) model using factor scores as observed actually increased the chance
+of recovering the structural relations amongst the latent factors.
+Next, we examined the path-specific “direction false positive rate”, defined as the
+chance of recovering a true association yet with a wrong direction (refer to the Eval-
+uation Measures section for the more detailed description). Not surprisingly, it was
+observed that some relations were recovered with a wrong direction when the sample
+size was small. However, even when the sample size was sufficient and in many cases
+the true path was recovered, sometimes additional paths might still be selected when
+there existed a strong correlation between the two variables. Hence, direction false
+positive rates did not necessary go down with the increase of sample size. Overall,
+Note: Small.Dir = small directed path, Large.Dir = large directed path, Small.Cov = small covariance relation,
+Large.Cov = large covariance relation, CL = cross-lag effect, Lag-1 = lag-1 effect, Large.FL refers to factor
+loadings of .9, Med.FL refers to factor loadings of .7.
+except for cross-lagged relations, pseudo-ML methods had higher direction false pos-
+itive rates in relation to the true paths in the DGM than did LASSO methods. This
+is partly the reason that pseudoML-FS-huSEM had very poor sensitivity under some
+conditions. That is, some relations were recovered only with a wrong direction or type
+of relation. For instance, at sample size of 200 and 1000, both the LASSO-LV-huSEM
+(around 12-17%) and pseudoML-FS-huSEM (around 20-34%) methods had some ten-
+dency to recover a directed path at the presence of a true covariance relations between
+two contemporaneous factors. More problematically, pseudo-ML showed a high chance
+(67% at N = 200 or 96% at N = 1000) of recovering a reversed signed directed path or
+a covariance when there existing a strong directed path. Using the factor scores from
+the DGM (i.e., pseudoML-DGM-FS) did not decrease the chance of false positive di-
+rections,. In fact, using LASSO on the factors scores to select the structural model
+seemed to also introduce more direction false positive than the one-step LASSO-LV-
+huSEM model. These consistent observations that all methods using the factor scores
+showed a higher rate of direction false positive than their counterparts suggested that
+the issue of a wrong direction recovery of true relations is very likely tied to the use
+of factor scores in place of the latent variables.
+Both generic methods reached a path specificity above 90%, suggesting they are
+reliable in rejecting false paths that were unrelated with those pairs of variables that
+have a true relation of another form or direction. However, the direction specificity
+(i.e., the odds of ruling out any path when it is truly false) dropped quite a bit for
+pseudoML-FS-huSEM (to around 72-77%) or any method that used factor scores. This
+is again because there was quite an amount of direction false positive paths in relation
+to true paths.
+3.3. Conditional Relative Bias
+Overall, the post model selection MIIV-2SLS estimation was the least biased for pa-
+rameter estimates of contemporaneous relations in the structural model, even though
+the estimates of moderate relations from any method were highly biased at a sample
+size of 60. In comparison, the LASSO penalized LV-huSEM methods produced the
+Note: Small.Dir = small directed path, Large.Dir = large directed path, Small.Cov = small covariance relation,
+Large.Cov = large covariance relation, CL = cross-lag effect, Lag-1 = lag-1 effect, Large.FL refers to factor
+loadings of .9, Med.FL refers to factor loadings of .7.
+most unbiased estimates for freely estimated parameters, i.e., lag-1 autoregressive ef-
+fects within each latent factor as well as factor loading in the measurement model,
+even at a small sample size as low as 60. Two methods produced similar results for
+cross-lagged effect among latent factors. Particularly, at a sample size of 200 and 1000,
+the conditional mean relative biases of lag-1 from LASSO-LV-huSEM were only 4.6%
+and 1.6%, respectively. The mean RBs of factor loading estimates were as low as under
+1.8% at N = 200 or under 0.4% at N = 1000. When sample size was large, MIIV-2SLS-
+DF1 also produced estimates with small biases on average for factor loading estimates
+(under 5%), but the mean RBs were higher than those from LASSO-LV-huSEM at
+a small to moderate sample size (e.g., around 20% for MIIV-2SLS-DF1 compared
+to around 10% for LASSO-LV-huSEM at N = 60, or 12% versus 2% at N = 200,
+respectively). However, for the parameters under penalty in LASSO-LV-huSEM or
+LASSO-FS-huSEM (i.e., contemporaneous effects in the structural model), estimates
+were on average more biased (e.g., ranged from 20% to 40% at N = 1000) than those
+from MIIV-2SLS-DF1 (e.g., ranged from 5% to 18% at N = 1000), which was as ex-
+pected given they were under penalty in LASSO methods while being freely estimated
+by the MIIV-2SLS after the model selection.
+The comparisons between LASSO methods and pseudo-ML methods were mixed
+across different types and strengths of relations. For example, for lag-1 and cross-
+lagged estimates, pseudoML-FS-huSEM estimates produced larger biases (e.g., mean
+RBs was between 50 to 60% even at N = 200 or 1000) than did LASSO estimates
+(e.g., mean RBs ranged from 2% to 13% at N = 200 or 1000). Evidence that some of
+the biases come from errors in factor scores is that pseudoML-DGM-FS using factors
+scores from the DGM produced much less biased estimates than did pseudoML-FS-
+huSEM (using factor scores from a five-factor measurement model). The true DGM
+is not known so the pseudoML-DGM-FS is never available, but we include it here
+to illustrate the impact of forming factor scores from estimated rather than true pa-
+rameter values. However, this pattern did not apply to all types of parameters. For
+instance, the two pseudoML methods produced similar and slightly less biased esti-
+mates than did the two LASSO for moderate directed and large covariance relations
+at each sample size level, although all of them were still more biased than those from
+MIIV-2SLS. This suggests that errors in factor scores could introduce additional biases
+in some (e.g., lagged relations) but not all types of relations. However, all the pseu-
+doML and LASSO estimates were largely biased for moderate covariance relations
+even with a large sample size (mean RBs ranged from 40% to 70%). The RBs of these
+estimates were also associated with a large variability across replications, indicating a
+substantial amount of influence from the sampling error. Therefore, MIIV-2SLS-DF1
+is particularly useful to obtain less biased estimates for moderate or small structural
+relations.
+One interesting observation is that mean RBs of pseudo-ML estimates did not show
+the same asymptotic trend as did LASSO estimates or the MIIV-2SLS estimates.
+Increased sample size was associated with a decrease in the mean RBs in LASSO
+estimates and the MIIV-2SLS estimates across all parameters, but the mean RBs of
+pseudo-ML estimates were not so consistent. For example, the mean RBs of lag-1
+and cross-lagged even went up as sample size increased. This suggests that the source
+of biases in pseudo-ML estimators do not just come from sampling error. This is
+more evidence of impact of systematic errors in the factor scores. As another way to
+investigate the shortcoming of using the factor scores instead of latent variables, we
+need to examine results between the two LASSO methods in which the only difference
+is that one uses factor scores (LASSO-FS-huSEM) while the other estimates a latent
+variable model simultaneously with a measurement model (LASSO-LV-huSEM). It
+seemed that the use of factor scores did not necessarily affect biases in the parameter
+estimates, as the overall mean RBs were similar between the two LASSO methods;
+however, in some cases the variability of RBs was larger in LASSO-FS-huSEM than
+that from LASSO-LV-huSEM, particularly when sample size was small. This seems
+to suggest that sampling errors and measurement errors in factor scores might not
+affect the average accuracy of the parameter estimates of the structural model in
+a systematic way, but it affects the consistency of the estimates such that they are
+even less consistent at an increasing sampling fluctuation than methods using latent
+variables.
+3.4. The Overidentification Test
+We evaluated the finite sample properties of Sargan’s χ overidentification test of
+MIIVs. The current examination involves the specificity (i.e., true negative) as well as
+sensitivity to wrong MIIVs (i.e., the statistical power of the Sargan’s χ test when at
+least one of the MIIVs for an equation is wrong). We investigated the case where a
+wrong MIIV was included due to an omitted true relation in the model. For instance,
+the omission of the directed contemporaneous relation from factor one to factor four
+will render a wrong inclusion of the scale indicator of factor one in the structural
+equation of factor four. Even though a significant Sargan’s Test does not suggest the
+equation per se is incorrect, it offers evidence that one or more MIIVs of that equation
+are incorrect. This in turn indicates errors in the model specification that led to these
+MIIVs. In contrast, passing the Sargan test is consistent with a correctly specified
+equation and valid MIIVs for that equation. We found that the specificity was around
+95-97%. In other words, as expected there was less than 5% of rejection rate in which
+Sargan’s χ test incorrectly identified a wrong selection of MIIVs when in reality the
+model was correctly specified and all MIIVs were correct. This suggests accurate Type
+I error across the sample sizes considered here. For the test sensitivity, i.e., when a true
+relation was omitted from the model and hence a wrong MIIV set would be included
+in the corresponding equation, the Sargan’s test rejected the problematic equation at
+the rates of 59% at N = 60, 66% at N = 200, and 92% at N = 1000, respectively. This
+suggests that the test has a moderate power to detect a wrong MIIV at a small to
+medium sample size, but can do so at a very high rate when the sample size is large.
+4. Discussion
+The current study serves to advance and investigate the model search and estima-
+tion for a DFM with a hybrid VAR representations. Three goals were achieved in the
+proposed framework. First, we extended the structural model of the latent variable
+uSEM (LV-uSEM) to its hybrid uSEM version, i.e., the latent variable hybrid uSEM
+(or LV-huSEM). In this way, the extended LV-huSEM estimates a dynamic factor
+model with a hybrid VAR representation in the structural model. When restrictions
+on the contemporaneous relations between the latent factors are relaxed, structural
+and covariance relations can be simultaneously estimated. Second, LASSO regulariza-
+tion is used to perform both model selection for the optimal sparse latent variable
+hybrid uSEM, and a simultaneous estimation for a freely estimated confirmatory mea-
+surement model and an exploratory structural model (with LASSO penalty on the
+structural paths and covariances between the contemporaneous latent factors). Com-
+pared to the current approaches, where measurement model and structural model are
+estimated sequentially with a stepwise model search procedure using factor scores ob-
+tained prior to the model selection (e.g., LV-GIMME ; Gates et al., 2019), the current
+method provides a model search on a continuum and a simultaneous estimation with-
+out calculating factor scores. Finally, to obtain final parameter estimates, the selected
+sparse LV-huSEM is estimated via a limited-information estimator, the model-implied
+Since the current focus is on individual models without using the group level modeling in the LV-GIMME
+framework (Gates et al., 2019), the authors referred to the compared method as pseudo-ML method.
+instrumental variables with two-stage least squares (MIIV-2SLS; Bollen, 1996; Fisher
+et al., 2019). The post model selection MIIV-2SLS estimation is chosen for its robust-
+ness property under model structural misspecification (Bollen et al., 2007), which is
+particularly advantageous for the estimation of sparse LV-huSEM selected in a data-
+driven manner. The source of biases in the parameter estimates under the current
+context includes 1) model structural misspecifications result from model selection, 2)
+the LASSO penalty in the regularized LV-huSEM, or 3) errors of factor scores (if under
+the uSEM framewrork). The goal is to obtain less biased final parameter estimates of
+the selected sparse latent variable hybrid uSEM. A simulation study was conducted
+to investigate to what extent the novel estimation method for the LV-huSEM models,
+i.e., with a LASSO regularization model build and post model selection MIIV-2SLS
+estimation, is superior to the pseudo-ML approach similar to the individual model in
+the LV-GIMME framework with respect to 1) model recovery performance (sensitiv-
+ity and specificity) of the LASSO regularization versus the pseudo-ML based stepwise
+model build when they are applied under the LV-huSEM context; and 2) biasedness of
+parameter estimates in sparse LV-huSEM obtained by LASSO regularization, pseudo-
+ML, versus the post model selection MIIV-2SLS estimation.
+For model recovery, the simulation results revealed that the two approaches have
+comparable recovery rates for some relations such as lagged effects and moderate
+contemporaneous effects among factors, and they both are reliable in recovering a
+close-to-true structural model when the sample size is medium to large. The impact
+of factor scores on model selection under the SEM context was largely unknown. Even
+though that the LV-GIMME study (Gates et al., 2019) found that the path recovery
+performance does not seem to be related to what approach was used to derive the factor
+scores, there is no comparison with a simultaneous estimation method without the use
+of factor scores. In addition, the evaluation was on a restricted DFM, i.e., LV-uSEM
+with only directed contemporaneous relations among factors, which might not apply
+to the recovery of the more complicated model, LV-huSEM in which the recovery of a
+true relation between two variables involves a selection among five possible parameters.
+Indeed, we found that the pseudo-ML methods using factor scores have a higher chance
+to commit a direction false positive on strong directed relations, that is, a tendency
+to recover a strong directed as one with a reversed direction or as an undirected
+covariance relation. This low direction specificity seems tied to the estimation of the
+factor scores. And it is shown that the performance is improved when with factor
+scores from the DGM, although the use of such factor scores is still different from
+the latent variables (due to the measurement errors from the part of the indicators
+that form the factor scores). Further, in the additional analysis of applying LASSO
+regularized hybrid uSEM on factor scores, the likelihood to commit a direction false
+positive is also higher than that of the simultaneous LASSO regularization hybrid
+uSEM with latent variables. The result suggests that the use of factor scores instead
+of latent variable approach is more likely to select a model with a higher false positive
+rate.
+This tendency of recovering a relation with a wrong direction undermines the pur-
+pose of adopting the more flexible VAR representation, i.e., to accurately represent
+the hybrid forms of contemporaneous relations that might coexist in practice. Causal
+implications represented by a model with only directed paths or only undirected co-
+variance could be very different. However, if we choose to use a more flexible model
+representation, but the chance of selecting false positive relations with a wrong direc-
+tion is high by the model selection method, we still end up with misleading causal
+interpretations. In this sense, when there might exist some strong contemporaneous
+relations, LASSO regularization seems to have a higher tendency to eliminate false
+positive relations and avoid misleading causal interpretations than does the pseudo-
+ML method using factor scores. To our knowledge, this is the first evaluation on the
+impact of using factor scores for model selection under the uSEM context.
+In terms of parameter estimation, as expected, the post model selection MIIV-
+2SLS estimator is the least biased for parameters in the exploratory structural model.
+But slightly surprisingly, the proposed LASSO regularized hybrid uSEM with latent
+variable approach produced the least biased estimates for free parameters including
+factor loading coefficients in the confirmatory measurement model and the lag-1 au-
+toregressive effect between factors. This suggests that the biases for other regularized
+parameters are mainly from the LASSO penalty. In practice, if we are using regular-
+ized SEM method, we should only penalize the uncertain (i.e., exploratory) part of the
+model. However, both the pseudo-ML estimator and the LASSO regularized estimator
+introduce quite some biases in the parameter estimates of the structural model, espe-
+cially for moderate relations. Hence, post model selection estimation might indeed be
+a more practical choice to obtain final estimates.
+We also observe at least two major downsides of using factor scores in parameter
+estimation, besides its impact on model selection (i.e., the tendency to select a directed
+path with a wrong direction). First, the estimation of the lagged effects seem to be
+particularly largely biased, regardless of sample size. This is not surprising because no
+matter what estimation method is used to obtain the factor scores, the sample variance
+matrix of estimated factor scores is an inconsistent and biased estimate of the true
+variance matrix of factors (Croon, 2002; Skrondal & Laake, 2001). In addition, the
+time embedding process of the data to obtain lagged factor variables introduces more
+random error on top of the measurement error within the contemporaneous factors
+variables themselves, thus causing additional biases in the estimates of relations be-
+tween the lagged factor variables and the contemporaneous factors variables. Second,
+besides a high average level of biases in estimates of moderate contemporaneous rela-
+tions regardless of which factor score methods are used, methods using factor scores
+also tend to produce less consistent estimates that is more subject to sampling fluc-
+tuations. The substantial amount of variability in the biases across samples especially
+with a small to medium sample size is very likely a consequence of the sampling error
+in the sample variance matrix of estimated factor scores.
+4.1. Limitations and Future Directions
+Limitation in the two approaches under investigation. The simultaneous analysis using
+LASSO regularization under the LV-huSEM is easy to implement and can avoid biases
+from the use of factor scores, but it might be more limited in the size and complexity of
+the model (e.g., number of variables, factors, density of the structural paths, etc.) than
+is sequential analysis like the GIMME approach. This is because use of factor scores
+reduces the dimension of the parameter space - the number of parameters is higher in
+the simultaneous model as it includes estimates for the measurement model besides
+the structural model. Optimizing the covariance matrix of observed variables with a
+higher dimension is more difficult than that of the latent factors. Another advantage
+of a sequential analysis is that it is at a better chance to avoid improper solutions
+or nonconvergence issues that is not uncommon in simultaneous estimation methods.
+Nevertheless, the issue with a high direction of false positives using factor scores makes
+it a less appealing choice for model selection.
+Although the use of MIIV-2SLS estimation reduces biases from model misspecifica-
+tion and model selection, the na¨ıve post model selection statistical inference is subject
+to another source of bias due to the duplicate use of the data, that is, the same
+dataset is used for model selection and model estimation. Since statistical inference
+is established under the assumption that the fitted model is known in advance, which
+is clearly violated here, the na¨ıve inference of a regularized LV-huSEM after the data
+driven selection process for variables and relations is no longer valid. Because both
+the randomness introduced by the selection process and the sample space restriction
+implied by the chosen model influence the sampling distribution of the estimator and
+need to be accounted for (Huang, 2020). Indeed, it has been found that the na¨ıve
+method after model selection using regularized SEM tends to obtain significant results
+for selected zero parameters, resulting in numerous false positive findings in psychol-
+ogy (Huang, 2020). However, post model selection inference methods are extremely
+difficult to perform, and few has been developed for regularized SEM or been imple-
+mented in the regsem package at the time of this work. This is probably because the
+primary goal of statistical learning method such as LASSO regularization is to achieve
+the least biased prediction, while the aim of traditional psychology and of the current
+study is to identify the optimal model from which to obtain statistical inference for
+individual parameters. This is one of the biggest gap yet to be filled in the future
+development of statistical learning under SEM framework. It would be useful to make
+these methods available in the software and packages for regularized SEM, so that
+future studies could be conducted to evaluate and validate their properties under the
+regularized hybrid uSEM with latent variables.
+Another aspect that is out of the scope of the current study is DFMs for multiple
+subject time series. The focus of the study is on individual dynamic models, for which
+there is no consideration of between-person effects nor attempt to aggregate individual
+models. However, the use of group-level or between-person information (i.e., similar-
+ities and variances across individuals) has been shown as an effective way to extract
+true effects from noise information so that it avoids the risk of over-fitting individual
+dynamic models (Asparouhov, Hamaker, & Muth´en, 2018; Gates et al., 2019). In fact,
+one of the strengths in the GIMME algorithm is to construct a group-level model
+with the most shared information that forms the starting model for each individual
+model. Such an approach might address to some extent the high direction false posi-
+tive rates. Besides, one recent method called “multi-VAR” is proposed (Fisher, Kim,
+Fredrickson, & Pipiras, 2022) that used LASSO penalization on multiple subjects mul-
+tivariate TSD for the forecast of dynamic processes at the individual level. The goal
+of multi-VAR is to identify an optimal sparse VAR that achieves the best prediction,
+rather than recovering the true model or statistical inferences of the selected model.
+Another framework is to aggregate individual dynamic results using a multilevel struc-
+ture, such as the Dynamic Structural Equation Modeling (DSEM; Asparouhov et al.,
+2018), where multiple subjects time series are modeled simultaneously to estimate
+population mean and individual differences (deviations from the mean) in the param-
+eters governing a dynamic process. In future studies, the current LASSO regularized
+hybrid uSEM with latent variable can be extended to multiple subject cases either in
+the form of the group-level model or the multilevel structure. When that is done, we
+can compare these methods under LASSO regularization, GIMME, as well as DSEM
+in modeling multiple subject DFM with hybrid VAR representations.
+Limitation in the simulation design Like all simulations, the simulation factors do
+not represent a comprehensive list of empirical situations. To keep the scope man-
+ageable, we did not adopt a cross design of factors such as path strength, model size
+(i.e., number of variables), level of measurement error in the latent factors, etc. The
+DGM might also represent an over-simplified, over-sparse DFM, with a very standard
+measurement structure without cross-loadings or local dependency structures. In prac-
+tice, the latent variable relations in a DFM could be much denser with many weak to
+moderate relations. In addition, the measurement model could also be extended both
+in the sense of containing some error correlations as well as to include lagged effects
+between the observed indicators and latent factors, i.e., a white noise factor model
+or a hybrid of WNFM and DAFM. These added complexities pose a bigger challenge
+for the model selection and parameter estimation, because a denser model means that
+the model search and optimization for solution are performed at a larger parameter
+space with higher dimensions. This might require a harsher penalty term, which in
+turn might lead to larger biases in the estimates of correct parameters, although the
+current proposal to use the post model selection MIIV-2SLS estimation could par-
+tially compensate for the biases. Future development in the optimization algorithm
+for regularized SEM in general is the key to estimate a LV-huSEM with more complex
+structures and higher dimensions.
+Our results of the LASSO regularized hybrid uSEM with latent variables highlights
+the flexibility of the LASSO regularized SEM in estimating individual DFMs. The
+data-driven LASSO penalty opens up a variety of possibilities in the development and
+appraisal of individual dynamic theories. The penalization structure relies on which
+part of the model is more supported by theory, and which part is more uncertain and
+needs to be explored by the data. For instance, when the latent factor structure among
+the candidate indicators is not fully determined by the theory, partially exploratory
+model selection could be implemented on the measurement model. Specifically, if some
+indicators of a factor are confirmed by the theory, but the rest of the indicators are
+not, we can adopt the “semi-confirmatory” factor model from Huang (2020) in the way
+such that the factor loadings from the uncertain indicators are included as parame-
+ters under penalization while the factor loadings of the confirmed indicators are free
+parameters. This way, only the uncertain part of the measurement model is under the
+data-driven LASSO selection. This idea could also be used to explore the hybrid form
+of WNFM and DAFM when the theory is not enough to determine which DFM is more
+appropriate. That is, in the case where the measurement model may contain either
+the lagged factor loading, or the contemporaneous factor loading, or some combination
+thereof. One way is to penalize the lagged factor loading and the contemporaneous
+factor loading simultaneously, as an automatic search between a WNFM and a DAFM
+with respect to the factor loading structure across time. Alternatively, we can retain
+the confirmed structure of the contemporaneous factor loading and only penalize the
+lagged factor loading if the latter is optional. Depending on the knowledge of the
+theory available to us, we can choose which relations we feel confident enough to be
+included as free estimates, and which we are less so and thus allow the data to decide
+by imposing a LASSO penalty on the corresponding parameters. Therefore, the flex-
+ibility of regularization with user-defined estimation and penalization structure lifts
+the dichotomous boundary between the exploratory approach and the confirmatory
+one and allows for an expansion and refining of theory on a continuum.

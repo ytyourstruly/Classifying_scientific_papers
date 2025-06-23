@@ -1,0 +1,784 @@
+The dialogue between Ebbinghaus and Bach:
+studying human memory with artworks
+1,2* 1,2 1,2
+Wei Liu , JinPeng Guo , Hongxiao Li
+1. Key Laboratory of Adolescent Cyberpsychology and Behavior (CCNU), Ministry of
+Education, Wuhan, China
+2. Key Laboratory of Human Development and Mental Health of Hubei Province, School of
+Psychology, Central China Normal University, Wuhan, China
+Correspondence:
+Dr. Wei Liu
+School of Psychology
+Central China Normal University
+th
+Address: the 8 floor, Nanhu Complex Building, No 152 Luoyu Road, Wuhan.
+Postal Code: 430079
+E-mail: weiliu1991@ccnu.edu.cn
+Abstract
+Artwork, ubiquitous across all human cultures, offers an innovative medium for
+studying human memory. This review article discusses the value of various art forms
+in exploring human memory and its neural mechanisms. We summarize novel
+experimental paradigms and computational methodologies used to investigate the
+storage and reconstruction of artworks. The development of naturalistic neuroimaging
+and advanced statistical frameworks are highlighted as key advancements in our
+understanding of memory encoding of artworks. We propose investigating the neural
+mechanisms underpinning memory consolidation, or neural replay, through the lens of
+artwork. We theorize that the mnemonic benefits of artwork may arise from enhanced
+memory consolidation during wakeful rest or sleep. The memory replay of artworks
+may embody more than reactivation of identical information, extending to
+personalized memory reconstruction. To quantify memory reconstruction at both
+behavioral and neural levels, drawing and memory-based creative writing are
+proposed as retrieval tests. We advocate the use of Deep Neural Networks to assess
+the similarities of behaviors and neural responses between encoding and retrieval. In
+conclusion, studying human memory with artworks offers valuable insights into the
+complex interplay between memory and other cognitive, affective, and social
+processes, with far-reaching implications for art, journalism, and communication.
+Keywords: human memory; artworks; memory consolidation; neural replay;
+naturalistic neuroimaging
+Highlights
+(1) Artworks offer a unique avenue for studying the individualized memory
+reconstruction from encoding to consolidation and retrieval.
+(2) Innovative experimental paradigms coupled with advanced computational
+methods can provide new insights into the neural mechanisms underpinning the
+storage and transformation of art memories in the human brain.
+(3) Emotional and aesthetic processes are the driving force in the neural replay of
+artworks during the post-encoding wakeful rest/sleep, enhancing memory
+consolidation.
+(4) Integrating drawling/writing with Deep Neural Networks (DNN) can quantify
+individualized memory reconstruction at both the behavioral and neural levels.
+General Audience Summary
+Have you ever contemplated the mechanisms behind your brain's ability to recall a
+stunning painting witnessed in a gallery, or the captivating tune of a novel song? In
+the quest to decipher this enigma, researchers have employed cutting-edge
+neuroimaging technologies and advanced mathematical models to investigate the
+processes underlying the encoding and retrieval of artistic experiences within our
+neural circuits.
+We postulate that the cognitive strategies deployed for encoding, consolidating, and
+recollecting art significantly diverge from those associated with ordinary real-life
+memory experiences. It appears that each act of recollection may be imbued with a
+unique, subjective imprint, analogous to digitally enhancing an image or
+reconfiguring a musical piece within the confines of our minds. To further probe these
+hypotheses, forthcoming research could involve participants recreating or drawling
+the observed artwork, thereby providing empirical data for memory assessment.
+Additionally, intricate computational simulations, mirroring cerebral functions, may
+be utilized to gauge the fidelity of recollected experiences against their original
+occurrences.
+Delving into the intricacies of how we remember art not only expands our
+understanding of memory's intricate weave but also illuminates its intricate
+connections with our emotions, communicative capacities, and social intercourse.
+1. Introduction
+Memory remains a central topic of neuroscience and psychology due to its critical
+importance in both educational contexts and the acquisition of skills. Hermann
+Ebbinghaus, widely recognized as the pioneer of memory research, conducted self-
+experiments involving the memorization of nonsensical three-letter syllables1. While
+these syllables provided rigorous experimental control, their ecological validity (EV)
+might be questioned. Specifically, their capacity to explore essential determinants of
+human memory, such prior knowledge and novelty2, emotional influence3, and temporal
+sequence4,5, remain limited. Subsequent Ebbinghaus' pioneering work, memory
+researchers have diversified their employment of materials for memory research,
+encompassing vocabularies6,7, images of objects and/or scenes8, human faces9,10, and
+intricate conceptual or scientific information11.
+The study of human memory is complicated by the lack of direct behavioral
+measures during the encoding phase regardless of employed materials. Our primary
+means of determining successful memory encoding has traditionally been through
+assessing performance during retrieval. However, with the emergence of noninvasive
+brain imaging techniques, we now have a potential solution. We can investigate whether
+successful memory formation is associated with brain activities observed during the
+encoding process. Nearly 25 years ago, this possibility was simultaneously investigated
+by two research groups employing the subsequent memory paradigm and functional
+Magnetic Resonance Imaging (fMRI). Brewer and colleagues utilized color images of
+scenes8, while Wagner et al. employed visually presented English words7 as encoding
+material for studying memory formation in the brain via fMRI. Despite differing
+encoding materials, both groups determined that the ability to recall stimuli in
+subsequent retrieval tasks correlated with activation in the prefrontal cortex and
+hippocampus during encoding, a phenomenon known as the subsequent memory effect
+(SME). Using invasive brain recordings in treatment-resistant epilepsy patients,
+Fernández et al. demonstrated that successful memory retrieval of German words could
+be predicted by hippocampal neural activity roughly 500 milliseconds post-stimulus
+presentation6. Over the past two decades, studies have employed diverse brain
+recording techniques, memory tests, and encoding materials, comparing brain activities
+during the encoding of subsequently remembered and forgotten information12. Findings
+from these SME studies have spurred memory researchers to localize the core brain
+networks for memory13,14. Generally, human memory is believed to involve three major
+subsystems: (1) the medial temporal lobe (MTL) system, inclusive of the hippocampus,
+parahippocampal cortex, and entorhinal cortex; (2) the prefrontal system, involving the
+inferior frontal gyrus (IFG) and medial prefrontal cortex; and (3) the parietal system,
+which includes the inferior parietal lobule (IPL), precuneus, and angular gyrus (AG)).
+Subsequent studies have demonstrated that these brain networks are not only active
+during encoding but are also heavily involved in memory retrieval15,16.
+However, recent advancements of our understanding of human memory have
+primarily been driven by progress in brain imaging acquisition and analysis, often
+neglecting the differential contributions of various materials to memory research. In
+this perspective article, we advocate for the use of artworks as a medium to study human
+memory and its related neural mechanisms. The recent advancements in naturalistic
+neuroimaging necessitate a reassessment of the importance of specific materials in
+cognitive neuroscience. With this in mind, we particularly emphasize the potential of
+artworks - a unique form of naturalistic stimuli - to enhance our understanding of the
+human memory system. We argue that artworks not only aid in identifying the SME
+stimuli, into human memory. Nonetheless, to harness the full potential of artworks, the
+subsequent memory paradigm alone is insufficient. Thus, we further outline innovative
+experimental paradigms and computational methods for studying art memories,
+emphasizing their ability to elucidate the individualized memory reconstruction
+process, spanning from encoding to consolidation and retrieval. Lastly, we advocate for
+interdisciplinary collaboration among psychologists, neuroscientists, computer
+scientists, and most notably, artists. Such collaboration could illuminate the
+fundamental principles governing how artists communicate and resonate with
+audiences.
+memory studies to identify subsequent memory effects in the human brain.
+(1) Traditional vs Art Materials: Traditional materials used in memory studies
+include stimuli such as Chinese characters, English vocabulary, images, and human
+faces. In comparison, naturalistic neuroimaging studies have utilized artworks,
+including paintings, films, music, and novels to study memory formation. (2)
+Perception Phase: During this stage, participants are presented with materials and
+instructed to remember them. Neural activity associated with encoding is recorded
+using neuroimaging tools such as functional magnetic resonance imaging (fMRI) or
+electroencephalography (EEG). (3) Retrieval Phase: Following the perception stage,
+participants attempt to recall the materials they were asked to remember. Based on
+memory performance, neural activity during the perception phase is categorized
+within specific time windows as either "Remember" (successful recall) or "Forget"
+(unsuccessful recall). (4) Identifying Neural Networks for Successful Encoding: By
+contrasting the "Remember" and "Forget" conditions, previous studies have identified
+the brain networks implicated in successful memory encoding.
+2. What can artworks contribute to study of human memory?
+Before we delve into the study of human memories through the lens of artworks, it is
+imperative to clearly define the term “artwork”. Although art is a sprawling and diverse
+field, for the purpose of this discussion, we have confined the definition of artworks to
+paintings, sculptures, music compositions, movies, novels, and poetry that have gained
+considerable popularity. However, modern forms of art such as movies, video games,
+and photographs, while undoubtedly falling under the umbrella of art, possess
+distinctive characteristics that set them apart from traditional art forms and thus
+necessitate case-by-case consideration. Not every piece of video content should be
+considered a movie. While some recordings may qualify as movies, others are merely
+captures of everyday life, lacking the deliberate artistry often associated with film. The
+distinction between the two does not hinge on duration; rather, it lies in the presence of
+artistic elements and storytelling. A true movie is marked by its aesthetic appeal, which
+includes visual artistry, thematic depth, and emotional resonance. Furthermore, it
+possesses a comprehensive narrative structure that guides the audience through a
+thoughtfully constructed plot, with well-developed characters and a meaningful arc.
+These are the hallmarks that set films apart from simple video recordings of daily events.
+Similarly, not all captured images can be rightfully termed as photographs; a
+distinction must be made between those that rise to the level of photographic art and
+those that are mere snapshots of moments in time. The differentiation does not lie in the
+subject matter or the complexity of the image, but in the aesthetic qualities and the
+intent behind the image. A true photograph is characterized by its artistic expression
+and the photographer's vision, which is evident in the composition, lighting, perspective,
+and emotional impact. Moreover, a photograph often conveys a narrative or concept,
+inviting the viewer to engage with the scene in a meaningful way. These elements
+combine to elevate a photograph beyond a simple picture, transforming it into a work
+that captures not just a moment, but a piece of human experience. Video games have
+been predominantly used in human cognitive neuroscience to study action control,
+spatial navigation, and for cognitive training 17. Given that the player determines the
+specific content of a video game, and the content fluctuates significantly between
+participants, video games are uniquely suited for the study of specific memory types
+(e.g., autobiographical memory or action memory). Concurrently, for the purposes of
+this article, we have a specific definition for music that excludes music or sound
+containing spoken words, given the existence of separate neural pathways for
+processing music and speech18–20.
+While artworks hold a shared value in studying human memory, it is essential to
+consider their inherent characteristics when developing corresponding studies. We
+suggest dividing the various types of art into two categories: static and dynamic art
+presence of temporal regularities (e.g., sequence and/or rhythm) in the creation and
+appreciation of the artwork. Hence, static and dynamic arts are best examined using
+distinct methodologies. For more details on diverse research methodologies for static
+and dynamic art, refer to the “Innovative Methods to Study Art Memories” section below.
+Table1 Comparison between non-art and two major categories of artworks
+Non-art daily-life stimuli Artworks
+Static art Dynamic art
+Examples Daily-life photos, Painting, Music,
+Videos, Conversation Sculpture Poetry
+Emotion Simple Complex Complex
+Aesthetic processes Limited High High
+Individual preferences Similar Varies Varies
+Public evaluations Limited Extensive Extensive
+Reconstruction Limited Intense Intense
+Order/Rhythm Depends No Yes
+Then, the critical question is: what unique contributions can artworks provide, as
+opposed to other naturistic stimuli, in studying human memory? When contrasted
+with stimuli such as nonsense syllables, vocabularies, or human faces, artworks offer a
+distinct advantage in memory experiments due to their high Ecological Validity (EV).
+High EV can enrich the real-life implications of research and increase participants’
+engagement during experiments. This aspect is notably vital for brain imaging studies
+involving populations beyond healthy college students, such as children 21, older adults
+22, and patients with psychiatric disorders 23.
+Some may argue that naturalistic stimuli, in general, already offer the benefits of high
+EV 24–26. Here, we are making a deliberate comparison between non-artistic naturalistic
+stimuli (e.g., daily-life photos, videos, conversation) and artworks (See Table1). We
+propose four unique contributions of artworks in studying human memory system
+extending beyond high EV and put forth corresponding testable hypotheses at the
+behavioral and/or neural level (Figure2). In essence, we argue that, compared to non-
+artistic naturalistic stimuli, artworks (1) are capable of eliciting heightened emotional
+and aesthetic responses, (2) display more variance in individual preferences, (3) can be
+quantified using large-scale public evaluations, and (4) may undergo individualized
+memory reconstruction. We further emphasize that while other salient stimulus may
+elicit emotional responses, only artworks can selectively invoke aesthetic processes
+while concurrently satisfying all three additional predictions. The primary distinction
+between artworks and other salient stimuli lies in the interaction of mnemonic
+processing of artwork with the autobiographical memory system, which in turn triggers
+greater individual variability in preferences and memory reconstructions.
+(1) Compared to other naturalistic stimuli, the mnemonic processes of artworks could
+evoke more intricate emotional reactions and dynamical interactions with the aesthetic
+processes. Thus, when individuals intentionally remembering/recalling artworks, we
+anticipate observing the triple network interactions among between brain regions
+related to memory, emotion, and aesthetics. This could be evidenced by comparing
+fMRI-based brain activities during encoding/recalling of artworks and other
+(naturalistic) stimuli. However, we note that the emotional responses during mnemonic
+processes of artworks may be too intricate and not potent enough to elicit conspicuous
+biological responses (e.g., heart rate, blood pressure, or pupil size). Concurrently, self-
+reported emotional or reward ratings could vary significantly among individuals and
+may largely rely on their language abilities. Therefore, we propose facial-expression
+tracking as a non-neural objective measure of triple network interactions (See
+“Innovative Methods to Study Art Memories” below). By simultaneously measuring the
+dynamic fluctuations in brain activities and facial expressions, the proposed triple
+network interaction model could be further validated.
+(2) Artworks are likely to evoke more diverse personal preferences compared to non-
+artistic naturalistic stimuli. In fact, a study explicitly comparing aesthetic preferences
+for photographs of natural objects or landscapes to those for similar-themed paintings,
+found that individual differences in aesthetic judgement were greater for the paintings
+than photographs27. Correspondingly, we predict that artworks will induce more varied
+neural responses patterns when shared brain responses when measured using the inter-
+subject correlation (ISC) analysis28. Furthermore, this variance in individual responses
+should be less pronounced in early sensory regions and more significant in high-order
+regions related to emotional and conceptual understanding.
+(3) Artworks provide a distinctive conduit, connecting laboratory-based memory
+studies with public perceptions of identical artworks in real societal contexts.
+Specifically, both objective and subjective evaluations of particular artworks are readily
+available from hundreds of thousands of individuals. For example, the popularity of a
+musical piece can be quantified by the number of downloads or plays, the “value” of a
+painting can be, at least partly, determined by its auction price, and the success of a
+movie can be gauged by online ratings (e.g., Internet Movie Database (IMDb)) from
+thousands of viewers29,30. Thus, we posit that population-level opinions of artworks
+could mirrored in neural responses and the memory performance of participants in
+laboratory studies. We further hypothesize that while public perceptions are likely to
+correlate strongly with diverse behavioral ratings in laboratories, public perceptions,
+when compared to opinions from a limited number of individuals in such settings,
+would serve as more accurate predictors of neural responses within culturally similar
+groups.
+(4) Artworks provide a unique platform to investigate the individualized memory
+reconstruction in its entirety, encompassing encoding, consolidation, and retrieval.
+Recent theoretical and empirical studies have underscored the abstraction, integration,
+differentiation, and reorganization of memory representations31. We postulate that while
+memory reconstruction is discernible in conventional formats of episodic memories,
+such as pictures, this process may be more individualized when examining art-related
+memories. This individualization can be attributed to the dynamic interplay between
+new, incoming information, specifically artworks, and pre-existing autobiographical
+memories, predominantly during the memory consolidation phase. For instance, the
+capacity of music to evoke autobiographical memories is well documented (i.e., music-
+evoked autobiographical memory32). We surmise that this capacity, albeit less described
+in other art forms, could be generalizable to other formats of art. Upon encountering an
+artwork, individuals are likely to activate primary nodes of autobiographical memories,
+primarily life events. This activation leads to a unique, personal interpretation and
+subsequent mental representation of artworks. Moreover, beyond the widely discussed
+transformation from encoding to retrieval, individualized memory transformation of
+artworks could occur more significantly during consolidation. Artworks frequently
+elicit strong emotional responses, which can enhance memory consolidation. This
+suggests a favorable window for older and newer memories to further interact with each
+other. To encapsulate the individualized transformative process, it is essential to
+measure neural similarities across diverse stages of memory (e.g., encoding-retrieval
+similarity) amongst different individuals, and separately for artworks and non-art
+naturalistic stimuli. We propose that while the essential elements of memory
+representations remained intact during the transition from encoding and retrieval (i.e.,
+pattern reinstatement33–35), neural representations of artworks undergo more substantial
+changes than those of non-artwork stimuli. To support this proposed individualized
+transformation, we need to compute the encoding-retrieval similarity for each
+participant and between-participants similarity separately during encoding and retrieval.
+If the neural representations of art memories are indeed modified in an individualized
+manner, we anticipate observing two phenomena: firstly, between-participants
+similarity during encoding should be higher than that during retrieval; secondly,
+encoding-retrieval similarity should be higher than between-participants similarity
+during retrieval.
+Figure2 Unique contributions of artworks in studying human memory. (A) The triple
+network interaction model of art memories. We summarize the key cognitive processes and
+corresponding neural networks involved in art memories. We used Neurosynth
+analyses using following terms: autobiographical memory, emotional response, and rewarding.
+Our searches yielded 84, 97, and 120 relevant studies respectively. We propose that artworks
+elicit complex emotional responses and foster dynamical interactions with aesthetic processes
+during memory processing. (B) Individual preferences for artworks and associated neural
+effects. Diverse preferences for artworks lead to different participants remembering different
+sets of stimuli. Inter-subject correlations (ISC) between participants (e.g., between P1 and P2)
+can be used to measure these individual preferences at the neural level. The ISC can be assessed
+during memory encoding, consolidation, and retrieval. (C) Artworks as a link between public
+opinions and laboratory findings. Objective measures for artworks, such as popularity and/or
+prices, along with subjective liking ratings from the general population, can be correlated with
+memory performance and/or neural measures in a laboratory setting. (D) Artworks as a
+window into the individualized memory construction. By comparing memory
+representations across different stages of memory, we predict that neural representations for
+artworks should transform in a highly individual-specific manner. This comparison requires
+repeated recording of brain responses from the same individual across different memory stages.
+3. Innovative experimental paradigms and computational methods to study art
+memories
+Given the inherent properties of artworks and the unique cognitive processes proposed
+to occur during their encoding, consolidation, and retrieval, we argue that innovative
+experimental paradigms and computational methods should be integrated to study art
+memories. We review promising experimental and computational methods in the order
+art memories. During memory encoding (left), naturalistic neuroimaging approaches
+can be employed to record brain responses to artworks. Concurrently, facial expression
+tracking provides an innovative and objective method for measuring dynamic changes
+in individuals’ emotional responses. Computational methods, including Deep Neural
+Networks (DNN), Natural Language Processing (NLP), and Computer Vision (CV), are
+utilized to extract unobservable features from artworks. These features can
+subsequently be used to predict memory performance and mnemonic neural activity.
+During memory consolidation (middle), we propose integrating continuous neural
+(e.g., electroencephalogram, EEG) and biological measures (e.g., heart rate and pupil
+size) with neural decoding methods to detect spontaneous memory reactivation/replay
+during sleep or periods of wakeful rest. During memory retrieval (right), we suggest
+that retrieval paradigms such as drawing, creative writing, and artificial intelligence
+(AI)-based memory sensitivity are more appropriate for measuring memory
+representations of artworks in the human memory system compared to traditional
+paradigms like the recognition test. Additionally, computational methods (e.g., NLP and
+DMN) can unveil comprehensive information in participants’ drawings and writings.
+3.1 Memory Encoding
+To empirically investigate memory encoding of artworks, we propose the integration of
+naturalistic neuroimaging with facial expression tracking. These methodologies
+facilitate concurrent recording of participants' brain responses and facial expressions,
+potentially representing neural and affective processing, respectively. Naturalistic
+neuroimaging aims to study the brain functions under conditions that closely mimic
+real-world, natural experiences such as listening to music, watching movies, or
+appreciating paintings 24–26. While not originally designed for memory studies, many
+naturalistic neuroimaging protocols can be easily adapted to examine memory encoding.
+Specifically, following the perception phase in which artworks are displayed to
+participants, successful memory formation can be assessed during retrieval. This allows
+for the analysis of brain activity from the perception phase based on whether the stimuli
+were remembered or forgotten, thereby identifying the presence of the SME in the
+human brain. However, leveraging artworks to pinpoint SME necessitates the
+development of innovative statistical frameworks that extend beyond traditional
+contrast-based subsequent memory analyses.
+Here, we introduced four principal statistical frameworks for analyzing naturistic
+type of neuroimaging data, we summarize each based on their underlying statistical
+principles. Consequently, with appropriate modifications, these frameworks can be
+generalized for application from one type of neuroimaging to another, such as from
+fMRI to EEG. It is noteworthy that these methodologies have already been employed
+to analyze movie datasets and can also be applied to other dynamic art forms such as
+music, poetry, and novels. Inter-subject correlation (ISC) analysis is an approach for
+measuring shared information representation across the brains of different participants36.
+Recently, Sheng and colleagues utilized this framework and discovered that common
+activation patterns mirrored shared memory content within a traditional trial-based
+memory encoding paradigm37. When applying this framework to a movie-based
+memory encoding study, Hasson and colleagues identified SME effects in regions such
+as the parahippocampal gyrus, superior temporal gyrus, anterior temporal poles, and
+temporal-parietal junction38. However, due to limited sample size, Hasson and
+colleagues did not explore whether shared neural response patterns observed while
+participants watched the movie could predict a similar memory structure during
+subsequent retrieval. Given the nature of artworks, we propose that this could be a
+valuable question with two plausible yet contrasting predictions. On one hand, it can be
+hypothesized that after exposure to a variety of artworks, participants will exhibit a
+more similar memory structure compared to other types of stimuli, supported by similar
+neural response patterns during encoding. This is due to the presence of key universal
+factors influencing memory formation such as emotion and reward, which should be
+consistent across participants and hence drive similar neural activities, making a work
+of art more memorable than others. On the other hand, the highly personal and
+subjective nature of processing art could result in more diverse neural responses during
+encoding, leading to larger individual differences in memory structure. Voxel-wise
+encoding models provide a precise method for constructing a semantic atlas of the
+cerebral cortex39. This approach is particularly valuable for artworks abundant in
+linguistic information such as songs, poetry, and novels. Compared to traditional
+localization approaches, this model reveals the multiple-to-multiple mapping between
+semantic concepts and brain areas throughout the cerebral cortex. If the representation
+of semantic concepts is distributed, the subsequent question to explore is how the
+general memory network interacts with specific brain areas to complete memory
+encoding. Conversely, the decoding model aims to reconstruct stimuli from brain
+activity; for example, reconstructing music from human auditory cortex activity40. The
+integration of encoding and decoding models could illuminate the fundamental
+principles of memory encoding and retrieval, and how they are represented by similar
+neural patterns. Among various theories to understand memory formation of dynamic
+art, we propose that event segmentation41,42 is the most promising candidate. In
+cognitive psychology, event segmentation theory postulates that continuous
+information flow is segmented into smaller units for efficient perceptual and mnemonic
+processing43. This concept, however, is challenging to study using contrast-based
+neuroimaging analyses. Recently, two independent research teams were able to identify
+event boundaries based on shifts in brain activity patterns44–46. Employing the Hidden
+Markov Model (HMM), distinct states within brain response patterns observed during
+continuous movie watching were recognized44. In addition, hippocampal activity
+detected immediately after an event boundary predicted neural reactivation during
+subsequent memory retrieval. This finding aligns with recent discoveries that human-
+generated event boundaries trigger hippocampal response, where neural patterns of the
+previous movie event are rapidly replayed 47–49. Nevertheless, the observation that
+neural-based event boundaries coupled with hippocampal activity and pattern
+reactivation provides only indirect evidence of event segmentation's role in memory
+formation. Utilizing Representational Similarity Analysis (RSA), originally
+developed to measure information representation on a trial-by-trial basis, Liu and
+colleagues measured event segmentation during movie watching, demonstrating that
+the degree of segmentation, indexed by neural similarity, could predict subsequent
+memory performance50. Event segmentation has also been explored, at a more refined
+timescale, in other art forms such as novels, poetry, and music. Ding and colleagues
+first outlined the hierarchy of neural processing timescales during connected speech51.
+This analytical framework was subsequently applied to detect a similar type of
+segmentation processing occurring when listening to poetry and music52,53. Based on
+our findings that event segmentation during movie watching predicts subsequent
+memory retrieval, we hypothesize this may also hold true for poetry and music. Our lab
+is currently conducting experiments to investigate this possibility by combining the
+subsequent memory paradigm with event segmentation.
+(A) Inter-Subject Correlation (ISC): Chen et al. used ISC to analyze fMRI data of
+participants recalling the same movie scene, quantifying the degree of similarity in
+neural representations for the same memory across individuals. This led to the
+conclusion that there are common neural representations underlying retrieval across
+brains (Chen et al., 2017, Nature Neuroscience). This method can also be applied to
+brain responses recorded by other imaging modalities, such as functional near-infrared
+spectroscopy (fNIRS). (B) Voxel-wise Encoding Models (VEM): Huth et al. applied
+VEM to fMRI recordings of participants listening to narrative speech to discover
+multiple-to-multiple relationships between semantic concepts and brain areas, creating
+a detailed functional organization of the semantic atlas (Huth et al., 2016, Nature). We
+propose using this method to study how the human brain forms memories for poetry,
+predicting that semantic maps of poetry will be less consistent across individuals than
+those of natural language representations. (C) Hidden Marko Model (HMM):
+Bardassano et al. utilized HMM to analyze continuous brain measures and identified
+the event segmentation process during both memory encoding and retrieval. Notably,
+the event segmentation revealed a nested hierarchy from short events in sensory regions
+to long events in higher-order areas, primarily the default model network (DMN)
+(Bardassano et al., 2017, Neuron). (D) Representational Similarity Analysis (RSA).
+Wei and colleagues applied the RSA to analyze activation patterns and connectivity
+patterns before and after event segmentation and identified the hippocampal-prefrontal
+event processing signatures predicts subsequent free recall and order memory measures
+(Wei Liu et al., 2022, Cerebral Cortex). This is the critical demonstration that RSA can
+be used to analyze naturalistic neuroimaging data and predict memory performance.
+Another critical question to consider is how emotional fluctuations during memory
+encoding of artworks can predict subsequent memory performance. Although art-
+triggered emotions are often too subtle and complex to be measured by functional brain
+imaging (e.g., quantify activations in amygdala) or biological responses (e.g., heart rate,
+blood pressure, or pupil size), real-time facial expression tracking presents a novel way
+to track emotional reactions. By applying this method to video recording while
+participants watched a movie, Chang and colleagues generated multiple time series of
+complex emotional responses including but not limited to hope, sadness, surprise, fear,
+and contempt 54. While they did not investigate how these facial expression-based
+emotional responses predict subsequent memory performance, they already validated
+the strong relationships between facial expression readouts and self-reported emotional
+experiences across four studies. This validation paves the way for future application of
+this method in memory encoding studies.
+With the advent of artificial intelligence, it is now also feasible to employ objective
+computational methods such as computer vision and content analysis to extract “unseen”
+features from artworks themselves (Rohrbach et al., 2017; Ying Li et al., 2006). These
+computationally generated features can be used as additional predictor in neuroimaging
+data analysis, shedding novel light on the process of memory formation. For instance,
+a promising approach is extracting the emotional features directly from visual (i.e.,
+painting), auditory (i.e., music), or combined visual-auditory content (e.g., movies).
+Kragel and colleagues developed a convolutional neural network (i.e., EmoNet) that
+decodes movie contents into 11 distinct emotion categories on a frame-by-frame basis
+55. Future research could correlate these time series of different emotion categories with
+dynamically changing brain activity during movie watching to predict subsequent
+memory performance.
+3.2 Memory Consolidation
+Memory consolidation plays a crucial role in transforming newly encoded, unstable
+information into durable long-term memories 56. Despite its importance, our
+understanding of the consolidation process regarding art memories remains limited. We
+argue for an increase in empirical studies to shed light on the consolidation of art
+memories, noting that prior studies have predominantly centered on art perception and
+memory formation. We suggest that an individualized memory reconstruction
+process predominantly occurs spontaneously during consolidation. We will address the
+technical challenges of studying human memory consolidation, emphasizing art
+memories, and highlight recent advancements in both experimental and computational
+methodologies to overcome these obstacles.
+Investigating the consolidation of art memories can offer unique insights into their
+mnemonic advantages. Although direct experimental comparisons are challenging, it's
+widely acknowledged that artworks are typically better remembered than non-art
+everyday stimuli. Previous memory encoding research indicates that this mnemonic
+advantage might arise from associated emotional responses 57,58, aesthetics-induced
+rewarding 59–61, and self-reference effects 62,63. While these effects were initially
+identified with non-art stimuli, recent investigations have employed artworks to
+validate these traditional memory encoding effects. For instance, contemporary
+research has simulated scenarios where participants visit a museum with paintings
+displayed, aiming to understand appreciation and recall of artworks. While the
+perceptual attributes of paintings can predict memorability 64, factors such as
+motivation 65, self-relevance 66, and aesthetic experience 67 play a role in memory
+formation. We posit that these aforementioned emotional, motivational, and aesthetic
+elements persist beyond encoding, enhancing memory consolidation for artworks, with
+artworks. Artworks, such as music, movies, and novels, naturally generate sequential
+information during memory formation. This can be captured by non-invasive
+neuroimaging techniques (e.g., fMRI, EEG, and MEG) during the consolidation phase.
+Following initial encoding, this sequential information may undergo replay during
+periods of wakeful rest and/or sleep. We propose that the emotional responses and
+aesthetic rewards associated with artworks may enhance this memory replay, which in
+turn leads to enhanced memory retrieval. It is important to note that memory replay
+may not simply mirror the original sequence. The sequence order may be reversed, the
+specificity of information may decrease, and multiple sequences may be replayed
+concurrently. Hence, memory consolidation plays a crucial role in the proposed
+individualized memory reconstruction process.
+However, investigating the neural mechanisms underlying memory consolidation
+presents a significant challenge due to the extended and unpredictable consolidation
+timeline. Cognitive theories of memory consolidation suggest that the stabilization of
+newly formed memories occurs spontaneously either during wakeful rest or sleep 68,69.
+Chronic implantation techniques are employed in animal studies for continuous data
+collection during the post-encoding consolidation phase. However, this method is not
+feasible for human participants. Nonetheless, continuous neural measures play a vital
+role in the study of human memory consolidation, ideally collected immediately post-
+encoding and during sleep if possible.
+Currently, there are two settings where these measures can be appropriately obtained.
+Firstly, in the case of patients with treatment-resistant epilepsy, clinical requirements
+necessitate the invasive implantation of electrodes to monitor abnormal neural activities.
+Utilizing this unique opportunity, Zhang and colleagues identified electrophysiological
+markers of memory consolidation during wakeful rest and sleep 70. Critically,
+intracranial stimulation during sleep enhanced the coupling of hippocampal–prefrontal
+neuronal oscillations and improved memory performance 71. Secondly, for healthy
+participants, the precision neuroimaging approach can be employed whereby neural
+activity of a small group of participants is densely sampled 72. For instance, in the dream
+decoding study, in total of 900 sessions of dreaming-waking experiments were collected
+from three participants. They demonstrated that visual content during dreams can be
+decoded based on a model trained on fMRI signals during visual perception. This
+provides strong evidence that spontaneously emerging visual information during dream
+is driven by similar neural pattern reactivations 73.
+In addition to neural measures, we propose continuous recording of biological
+measures such as pupil size, heart rate, blood pressure, and Skin Conductance
+Response (SCR) in conjunction with neural responses to effectively study the
+consolidation of art memories. Antony et al. (2021) reported a correlation between the
+incidence of surprise during sports viewership and subsequent memory recall, as
+indicated by behavioral, physiological, and neural markers 74. Although basketball
+games do not fall within our initial definition of artworks, the surprise signal examined
+in this context is also prevalent in responses to artworks such as movies and music.
+Hence, future research could adopt similar methodologies to document and analyze
+biological reactions to artworks. Considering the emotional responses elicited by art
+appreciation, it is plausible to hypothesize that if art memories are reactivated during
+consolidation, corresponding biological responses linked to emotional reactions will
+reoccur. It is worth noting that due to the spontaneous reactivation of memory
+representations during consolidation, we lack reliable behavioral measures to validate
+neural-based memory decoding outcomes. In other words, we have no objective means
+to evaluate the accuracy if the classifier indicates the reactivation of specific content.
+This issue can be partially mitigated using proposed continuous biological measures.
+Detecting the reactivation of certain art memories (ideally emotional) can allow for a
+comparison of the biological measures at those times with measures taken at other time
+points when no memories are reactivating. If the reported time points associated with
+reactivated art memories correspond to, for instance, an elevated heart rate and blood
+pressure, we can have greater confidence in the neural decoding outcomes.
+Moreover, the complex temporal and spatial features of artworks generate sequential
+information, posing another challenge in describing its consolidation process. As such,
+we need to measure memory replay, rather than memory reactivation, during
+consolidation for artworks. In contrast to memory reactivation, which involves a single
+stimulus (like a picture or word), memory replay involves the reactivation of sequential
+(both temporal and spatial) information. Memory replay was first identified in the
+rodent hippocampus during post-task sleep 75. Hippocampal "place cells" were
+sequentially activated as animals moved in a specific direction, each with a preferred
+firing field in space. Notably, similar temporal order neural activation patterns were
+observed during sleep, termed as “memory replay.” Detecting the reactivation of
+multiple specific memories in sequences based on brain activities is challenging due to
+the compressed sequence replay and the often unknown speed. Recent studies have
+provided convincing evidence for human memory replay during rest 76,77, and
+subsequent studies have outlined corresponding experimental design and statistical
+tools (e.g., Temporally delayed linear modelling (TDLM)) for future human memory
+replay studies78,79 However, memory replay can also be studied through behavioral
+experiments without the need for neural measures. A recent study explored the memory
+replay of music and provided behavioral evidence that spontaneous mental replay of
+music improves memory for incidentally associated event knowledge80. There exists an
+intriguing phenomenon whereby memory replay during consolidation may not merely
+mirror the original sequence. The sequence order might be reversed, the specificity of
+information could decrease, and several sequences might be replayed simultaneously.
+This suggests that the functions of memory replay extend beyond merely consolidating
+received information. As such, prior theoretical models proposed that memory replay
+plays a critical role in future planning81. Additionally, given empirical findings
+demonstrating that sleep can facilitate insight82 and problem-solving83, Lewis and
+colleagues proposed that memory replay during sleep enhances creativity by forming
+novel and unexpected connections within existing cortically coded knowledge84.
+Building on this concept and considering the connection between artworks and
+creativity, we propose that memory replay underpins the suggested individualized
+memory reconstruction. In order to investigate these relationships, it is necessary to not
+only quantify the occurrence of memory replay but also assess its mathematical
+properties (such as speed, sequences, accuracy, and interactions between multiple
+sequences) through the use of computational modelling to decoding outcomes. By
+elucidating how artworks are replayed during consolidation, we may leverage neural
+measures to make predictions about the outcomes of memory reconstruction during
+retrieval (as discussed in the subsequent section).
+3.3 Memory Retrieval
+Given the unique nature of art memories discussed above, characteristics of art
+memories mentioned earlier, we suggest using innovative paradigms such as drawing,
+memory-based creative writing, and artificial intelligence (AI)-based memory
+sensitivity tests to measure memory retrieval. Traditional memory studies typically
+rely on recognition and/or cue-based recall tests for assessing episodic memories. Free
+recall tests are occasionally employed, but their use in neuroimaging experiments is
+less frequent due to their limitations in time-locking and averaging neural responses
+repetitions. These tests share the assumption that stored memory representations should
+mirror the input sensory information, which can then be utilized during retrieval.
+However, as we propose that neural representations of artworks undergo an
+individualized reconstruction process, the introduction of novel retrieval paradigms
+may be necessary. We will explore these promising paradigms and related
+computational methods and explain why and how they can provide a more reasonable
+measure of the individualized memory reconstruction.
+Firstly, we propose that drawing serves as a retrieval test to measure art memories85.
+While drawings typically serve to document current visual experiences, participants can
+also be instructed to produce drawings based on their prior experiences, serving as a
+novel test for memory retrieval. We highlight three distinct advantages of this approach:
+(A) Beyond a simple remember/forget (i.e., all-or-none) outcome in other retrieval
+paradigms, experimenters can assess the degree of visual detail participants have
+actually encoded; (B) Drawings are subject to perceptual distortions and memory decay,
+and influenced by participants' individual memory systems, thus providing a means to
+measure how incoming information interact with pre-exist knowledge system to
+support the individualized processes during memory reconstruction; (C) Beyond
+recording visual experiences, drawing can also be used to measure knowledge, abstract
+concepts, and logical progression. If the process of drawing is recorded, we can even
+infer participants' cognitive structures by analyzing the sequence in which elements
+appear during the drawing process.
+Secondly, we propose the utilization of memory-based creative writing86. This
+method involves initially recalling elements depicted in artworks, such as novels,
+movies, or poetry (visual arts like paintings are possible but involves cross-modality
+memory reconstruction, see below) and subsequently generating content that is absent
+in the original art, based on participants' imagination. We assume that this imaginative
+process is supported by the dynamic interplay between art-related memories and
+participants' personal memory and knowledge systems. The retrieval component
+closely resembles the free-recall method employed in prior research to measure movie
+memories 50,87, while the creative writing aspect is commonly used in creativity
+assessments88. By analyzing the parallels in participants' responses during retrieval-
+based writing and creative writing, we can discern the behavioral implications of
+individualized memory reconstruction. Importantly, experimenters have the capacity to
+manipulate the nature of instructions participants receive prior to memory encoding,
+preparing them for either a free recall test or a creative writing task rooted in memory.
+We postulate that emphasizing memory-based creative writing in pre-encoding
+instructions could provoke a greater extent of individualized memory reconstruction.
+Should we discover that the introduction of creative writing instructions prior to
+encoding induces more varied neural response patterns amongst participants during
+encoding, we may surmise that the timing of individualized memory reconstruction
+could precede even consolidation and could be noticeable during the encoding stage.
+Thirdly, we propose the use of artificial intelligence (AI)-based memory sensitivity
+tests during retrieval. In the context of recognition texts, one key confounding factor is
+familiarity89. Familiarity appears to be an unavoidable factor in memory studies, even
+in traditional experiments featuring objects like faces, buildings, and words, and is
+amplified when dealing with artworks. However, we argue that familiarity with
+artworks is subject to greater control. Factors such as cultural background and
+geographical location heavily influence an individual's exposure to various artworks.
+For instance, a typical college student from a Western country is unlikely to have
+enough exposure to Chinese paintings to evoke familiarity during memory experiments.
+Moreover, the development of AI-based algorithms for art creation facilitates the
+generation of unlimited unique stimuli for memory studies. For example, a
+magnetoencephalography (MEG) experiment employed Chinese poetry created by the
+Recurrent Neural Network (RNN) as experimental materials53 Diffusion models have
+been utilized to create "paintings" based on a user's text input90,91. Notably, this type of
+images in a certain artist's signature style, offering materials for recognition memory
+tests and/or the false memory paradigm. Vessel et al., used deep neural networks to
+generate personalized, synthetic artworks, which were found to be rated as more
+aesthetically appealing than controls66. These synthetic artworks, generated by the
+aforementioned algorithms, can be utilized in the encoding phase to explore whether
+the memory advantages of artworks are exclusive to real artworks and cannot be
+generalized to synthetic ones. During the retrieval phase, these synthetic artworks can
+serve as lures in recognition tests. As these algorithms can be programmed to produce
+highly similar artworks, they can be employed to investigate memory sensitivity (i.e.,
+the ability of participants to correctly select true old items and reject highly similar
+ones). We posit that individualized memory reconstruction may act as a double-edged
+sword: while artworks showcase general memory advantages, they may result in
+reduced sensitivity. During reconstruction, while gist information is largely retained,
+detailed information is lost, leading to low memory sensitivity during retrieval. Without
+the aid of AI, it is nearly impossible to find item-specific artworks highly similar to the
+original artwork, hence, the memory disadvantages of artworks may be overlooked. We
+offer a concise overview of the Artificial Intelligence (AI) algorithms discussed in this
+reference for readers interested in further exploration.
+Table2 Brief Overview of AI Algorithms mentioned
+in Studying Human Memory with Artworks
+Name Function Reference
+Detects facial expressions from images Chang, L. J. et al. (2021). Science Advances.
+Py-Feat
+and videos
+Decodes distinct types of emotional Philip A. Kragel et al. (2019). Science Advances
+EmoNet
+responses from images and videos
+Predicts the intrinsic memorability of Needell, C. D et al. (2022). Computational Brain
+ResMem
+an image & Behavior
+Network trained on the ImageNet Simonyan,K.,and Zisserman,A. (2015). ArXiv
+VGG-19
+dataset to classify images
+Classify high-resolution images into A. Krizhevsky et al. (2012). Commun. ACM .
+AlexNet
+1000 different cases
+Natural language processing tool to Y. Song, S et al. (2018). Proceedings of the 2018
+Word2vector
+learn word representations or word Conference of the North American Chapter of the
+embeddings Association for Computational Linguistics:
+Human Language Technologies.
+Generates realistic images and art from Ramesh, A., Dhariwal, P., Nichol, A., Chu, C., &
+DALL.E2
+natural language descriptions Chen, M. (2022). ArXiv
+A text-to-image diffusion model that Link: stablediffusionweb.com
+Stable diffusion
+produces photo-realistic images from
+any text input
+Chinese Poetry Generation with Zhang, X et al. (2014). Proceedings of the 2014
+RNNPG
+Recurrent Neural Networks Conference on Empirical Methods in Natural
+Language Processing (EMNLP).
+AdaIN-style A real-time style transfer algorithm Huang X., Belongie S. (2017). ArXiv
+capable of transferring new styles
+As previously introduced, promising retrieval paradigms may measure art memories
+more accurately and AI-based method have been used to extract features from artworks
+during memory encoding. This section expands on the discussion on integrating these
+experimental and computational approaches to quantify individualized memory
+gauged the dynamic transformation of memory representations by the encoding-
+retrieval similarity, i.e., the correlation between the neural response patterns during
+encoding and retrieval. A significant limitation of this strategy is the absence of a
+corresponding behavioral measure of memory reconstruction. Hence, we cannot
+provide trial-specific evidence to demonstrate how neural pattern transformations
+influence memory trace alterations. For simple episodic memories, if recognition or
+free recall tests are employed during retrieval, it is commonly observed that encoding-
+retrieval similarities are higher for remembered than forgotten trials33–35. However, this
+finding, while supporting the concept of pattern reinstatement, fails to map the
+relationships between behavioral and neural measures of individualized memory
+reconstruction for art memories.
+We propose that considering the properties of artworks and the aim to behaviorally
+measure the memory reconstruction, drawing and writing can replace the traditional
+remember or forget framework as retrieval outcomes. Drawing can measure the
+memory not only for visual art, such as painting, sculpture, and movie but also art
+formats without visual stimuli, including but not limited to music, poetry, and novels.
+This function is particularly valuable to measure the cross-modality memory
+reconstruction, i.e., from auditory and language to a visual model through
+individualized imagination. In contrast, writing can measure cross-modality memory
+reconstruction in the opposite direction, where information from the auditory or visual
+modalities is stored in the memory system and then retrieved in the format of language.
+A technical challenge lies in measuring encoding-retrieval similarity between, for
+instance, original paintings and participants’ responses, or between presented visual-
+auditory movies and participants’ writings. We suggest using AI-based methods for
+comparison, deeming human-based ratings from additional experimenters as
+suboptimal. Among various AI-based methods to analyze visual images and texts, we
+focus on the value Deep Neural Networks (DNN), as their outputs can largely mimic
+the hierarchical structure of the human mind (i.e., from perception to semantic and
+abstract level). Previous studies on perception and memory quantified presented images
+using the DNN method and compare layer-specific information representations across
+different memory stages92,93, between perception and imagination94, between infants
+and adults95. By simultaneously applying the DNN to presented artworks and
+participants’ drawings, it is possible to investigate which level of information
+underwent the most significant changes during memory reconstruction. Crucially, a
+similar DNN approach can be applied to neural response patterns during encoding and
+retrieval, decomposing raw neural patterns into combinations of multiple meaningful
+patterns. The integration of drawing/writing and DNN can explore whether the gist of
+an artwork persists from encoding to retrieval, with corresponding neural patterns
+remaining consistent, while detailed visual features transform in a personalized manner
+accompanied by unstable neural patterns.
+behavioral and neural levels. (A) Drawing as a retrieval task: For static art forms
+such as painting and sculpture, we propose that drawing, as opposed to recognition tests,
+may provide a more detailed measure of individualized memory reconstruction. (B)
+Writing as a retrieval task. For dynamic art forms like films and novels, beyond free
+recall, we suggest that memory-based creative writing could be further adapted to
+observe the interactions between the participants' existing memory structures and new
+information. (C) Use of Deep Neural Networks (DNN) to measure encoding-
+retrieval similarity to reflect the memory reconstruction: At the behavioral level,
+the DNN can extract unseen features from both the original paintings and participants'
+drawings to calculate the similarity measures at different layers of the network (e.g.,
+visual, semantic, and concept). Comparable analyses can also be conducted for dynamic
+art, transforming written responses into meaningful vectors using natural language
+processing. At the neural level, we can identify specific time windows and/or brain
+regions that represent information in similar ways, decompose neural response patterns,
+and correlate these with different memory measures.
+4. Summary
+This perspective article seeks to synergize two distinct yet overlapping research
+domains: neuroaesthetics96 and the study of human memory. Despite their unique
+theoretical objectives, both fields significantly benefit from the implementation of non-
+invasive human brain imaging methodologies. By emphasizing the distinctive
+contributions of studying human memory systems through the lens of artworks, we aim
+to stimulate fresh insights into the cognitive and neural mechanisms of human memory.
+This ambitious task necessitates interdisciplinary collaboration from psychologists,
+neuroscientists, computer scientists, and notably, artists. Concrete strategies such as
+organizing cross-disciplinary workshops and conferences, establishing
+interdisciplinary research grants, developing digital platforms for exchange of ideas,
+stimuli, data, and software, could significantly facilitate this collaboration. We
+anticipate that studying the memory of artworks may ultimately shed light on the
+fundamental principles underlying how artists convey their ideas, emotions, and
+imaginations to audiences, and how these contents are stored as shared memories
+between artists and audiences.
+Competing Interests
+Authors declare no Competing Financial or Non-Financial Interests
+Author contribution statement following the CRediT Taxonomy
+W.L: Conceptualization: Lead; Funding acquisition: Lead; Project administration: Lead;
+Supervision: Lead; Validation: Lead; Visualization: Lead; Writing – original draft: Lead; Writing –
+review & editing: Lead. H.X.L: Conceptualization: Supporting; Writing – original draft:
+Supporting; Writing – review & editing: Supporting. J.P.G: Conceptualization: Supporting;
+Writing – original draft: Supporting; Writing – review & editing: Supporting
+Acknowledgement
+W.L was supported by the National Natural Science Foundation of China (grant No. 32300879),
+Humanities and Social Sciences Fund, Ministry of Education (grant No. 22YJCZH109), Natural
+Science Foundation of Hubei (grant No. 2022CFB793), Open Research Fund of the State Key
+Laboratory of Cognitive Neuroscience and Learning (CNLYB2103), Open Research Fund of the
+Key Laboratory of Adolescent Cyber Psychology and Behavior (grant No.
+CCNUCYPSYLAB2022B10), and the Major Program of the National Social Science Foundation
+of China (grant No. 22&ZD187). The authors thanks Prof. Zhijin Zhou and Guanxiong Liu for
+helpful discussion and fruitful collaborations regarding ideas presented in this Review and thanks
