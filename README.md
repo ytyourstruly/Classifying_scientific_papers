@@ -11,18 +11,9 @@ Prerequisites
 
 Setup
 
-- Ensure you have a `csv_files` folder at the project root to collect CSV outputs. Create it if missing:
+- Ensure you have a `csv_files` folder at the project root to collect CSV outputs. 
+- Install required packages:
 
-```bash
-
-# Classifying Scientific Papers
-
-This repository contains scripts to classify scientific texts and produce CSV outputs with classification results and evaluation metrics. The main scripts accept CLI flags and write outputs to `csv_files/` by default.
-
-Prerequisites
-
-- Python 3.8+ (3.10+ recommended)
-- Install required Python packages:
 
 ```bash
 python3 -m pip install -r requirements.txt
@@ -84,7 +75,4 @@ Files
 
 - Requirements: [requirements.txt](requirements.txt)
 - Main scripts: [baseline_classifying_chatgpt.py](baseline_classifying_chatgpt.py), [extract_classification.py](extract_classification.py), [extract_classification_v2.py](extract_classification_v2.py), [compare_models.py](compare_models.py), [calculate_metrics.py](calculate_metrics.py)
-# multiple files via glob (aggregates and prints each)
-
-python3 calculate_metrics.py --input "csv_files/evaluation_*.csv" --output csv_files/all_metrics.csv
 
