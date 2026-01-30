@@ -7,7 +7,6 @@ This repository contains scripts to classify scientific texts (from the `osf` or
 Prerequisites
 
 - Python 3.8+ (recommend 3.10+)
-- Install dependencies (if any) used by the project. If there's a `requirements.txt`, install with pip.
 
 Setup
 
