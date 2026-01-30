@@ -129,11 +129,33 @@ def classify_text(text):
         "First Classification": (label1, round(avg_score1 * 100, 2)),
         # "Second Classification": (label1, round(avg_score1 * 100, 2))
     }
-text_file = "GPT_texts.txt"
-with open(text_file, "r", encoding="utf-8") as f:
-    full_text = f.read()
-# for i, text in enumerate(text_file):
-result = classify_text(full_text)
-# print(f"\n--- Text {i+1} ---")
-print(f"First: {result['First Classification'][0]} ({result['First Classification'][1]}%)")
+import argparse
+import os
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Classify a text file with baseline classifier')
+    parser.add_argument('--input', '-i', default='GPT_texts.txt', help='Input text file to classify')
+    parser.add_argument('--output', '-o', default='csv_files/baseline_classification.csv', help='Output CSV file to write results')
+    args = parser.parse_args()
+
+    with open(args.input, 'r', encoding='utf-8') as f:
+        full_text = f.read()
+
+    result = classify_text(full_text)
+    print(f"First: {result['First Classification'][0]} ({result['First Classification'][1]}%)")
+
+    # Save to CSV (single-row)
+    os.makedirs(os.path.dirname(args.output) or '.', exist_ok=True)
+    df = pd.DataFrame([{
+        'file': os.path.basename(args.input),
+        'classification': result['First Classification'][0],
+        'score_pct': result['First Classification'][1]
+    }])
+    df.to_csv(args.output, index=False)
+    print(f"Saved baseline result to {args.output}")
+
+
+if __name__ == '__main__':
+    main()
     # print(f"Model 2: {result['Second Classification'][0]} ({result['Second Classification'][1]}%)")
